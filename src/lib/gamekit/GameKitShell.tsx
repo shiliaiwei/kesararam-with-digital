@@ -95,9 +95,14 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
         if (phase.name !== "playing") return;
         answersRef.current.push(result);
 
-        // cosmetic-only HUD update
-        const newStreak = result.isCorrectGuess ? phase.streak + 1 : 0;
-        const cosmeticGain = result.isCorrectGuess ? 1 + (newStreak >= 2 ? 1 : 0) : 0;
+        // cosmetic-only HUD update. Multi-item rounds report correctUnits/unitCount
+        // so partial-correct still visibly adds points (single-answer rounds fall
+        // back to isCorrectGuess → 1 unit, preserving the original behavior).
+        const correct = result.correctUnits ?? (result.isCorrectGuess ? 1 : 0);
+        const total = result.unitCount ?? 1;
+        const fullyCorrect = total > 0 && correct >= total;
+        const newStreak = fullyCorrect ? phase.streak + 1 : 0;
+        const cosmeticGain = correct + (fullyCorrect && newStreak >= 2 ? 1 : 0);
 
         const next = phase.index + 1;
         if (next >= phase.rounds.length) {

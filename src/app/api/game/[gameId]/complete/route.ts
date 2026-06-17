@@ -34,7 +34,8 @@ export async function POST(
             gameId,
             session?.id ?? null,
             access.willRecord,
-            rounds
+            rounds,
+            spec.scoringMode
         );
         return NextResponse.json(result);
     } catch (e) {

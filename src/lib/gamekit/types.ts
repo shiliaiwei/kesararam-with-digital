@@ -32,6 +32,8 @@ export interface GameFormatMeta {
     Icon: LucideIcon; // Lucide only — no emoji
     accessTier: AccessTier;
     badge?: I18nText; // hub card chip, e.g. {en:"DAILY", kh:"ប្រចាំថ្ងៃ"}
+    /** Official game: pinned above others on the hub; usable in live teacher sessions. */
+    official?: boolean;
 }
 
 /** Runtime config a format requests from the shell. */
@@ -53,6 +55,14 @@ export interface RoundResult {
     timeTakenMs: number;
     /** Difficulty (forwarded to calculateScore); may be null. */
     difficulty?: string | null;
+    /**
+     * For multi-item rounds (drag N words, tick N rows): how many sub-items were
+     * correct and the total. Drives the in-game HUD counter (so partial-correct
+     * rounds visibly add points) and per-unit server scoring in recordGameAttempt.
+     * Omit for single-answer rounds — they fall back to isCorrectGuess.
+     */
+    correctUnits?: number;
+    unitCount?: number;
 }
 
 /** Props the shell passes into every format's round renderer. */

@@ -558,7 +558,8 @@ export default function HostPage() {
 
   async function createSession() {
     if (!sessionName.trim()) { setError(kh ? "ដាក់ឈ្មោះ" : "Enter session name"); return; }
-    if (!selectedCats.length) { setError(kh ? "ជ្រើសរើសប្រភេទ" : "Select at least one category"); return; }
+    // Click the Sign sources signs directly — no category needed.
+    if (selectedMode !== "tick-sign" && !selectedCats.length) { setError(kh ? "ជ្រើសរើសប្រភេទ" : "Select at least one category"); return; }
     setError("");
     setQuestionCountWarning(null);
     setActualQuestionCount(null);
@@ -773,10 +774,26 @@ export default function HostPage() {
     "final-practice",
   ]);
 
-  const GAME_MODES = Object.entries(GAME_MODE_CONFIG)
-    .map(([id, cfg]) => ({ id, ...cfg }))
-    .filter((m) => !HIDDEN_MODES.has(m.id));
-  const selectedModeConfig = GAME_MODE_CONFIG[selectedMode];
+  // "Click the Sign" (tick-sign) is an official non-MCQ live game sourced from
+  // sign topics (no question bank), so it lives outside GAME_MODE_CONFIG.
+  const TICK_SIGN_MODE = {
+    id: "tick-sign",
+    defaultQuestionCount: 10,
+    allowedQuestionCounts: [6, 10, 15, 20],
+    timePerQuestion: 15,
+    label: "Click the Sign",
+    labelKm: "Click the Sign",
+    color: "#14b8a6",
+    description: "Click the correct road sign for each name.",
+    descriptionKm: "ចុចសញ្ញាចរាចរណ៍ឱ្យត្រូវនឹងឈ្មោះ។",
+  };
+  const GAME_MODES = [
+    ...Object.entries(GAME_MODE_CONFIG)
+      .map(([id, cfg]) => ({ id, ...cfg }))
+      .filter((m) => !HIDDEN_MODES.has(m.id)),
+    TICK_SIGN_MODE,
+  ];
+  const selectedModeConfig = GAME_MODE_CONFIG[selectedMode] ?? GAME_MODES.find((m) => m.id === selectedMode);
 
   const darkBase: React.CSSProperties = {
     minHeight: "100vh",
@@ -891,6 +908,14 @@ export default function HostPage() {
                       badge: "Mixed",
                       badgeColor: "#a855f7",
                     },
+                    "tick-sign": {
+                      icon: "task_alt",
+                      tagline: "Official kids game — click the sign",
+                      taglineKm: "ហ្គេមផ្លូវការ — ចុចសញ្ញា",
+                      accentShape: "polygon(0 0,85% 0,100% 100%,0 100%)",
+                      badge: "Official",
+                      badgeColor: "#14b8a6",
+                    },
                   };
 
                   const MODE_STATS: Record<string, { xp: string; complexity: string; complexityKm: string }> = {
@@ -898,6 +923,7 @@ export default function HostPage() {
                     "speed-round": { xp: "1.5x XP", complexity: "Hard", complexityKm: "ពិបាក" },
                     "sign-challenge": { xp: "1.2x XP", complexity: "Medium", complexityKm: "មធ្យម" },
                     "mixed-practice": { xp: "2.0x XP", complexity: "Mixed", complexityKm: "ចម្រុះ" },
+                    "tick-sign": { xp: "1.0x XP", complexity: "Easy", complexityKm: "ងាយ" },
                   };
 
                   return (

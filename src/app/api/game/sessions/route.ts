@@ -6,6 +6,7 @@ import { classes } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { generateSessionCode, GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
 import { selectRandomQuestions } from "@/lib/question-selector";
+import { buildTickSignLiveRows } from "@/lib/gamekit/live-tick-sign";
 import { enforceSessionCreation, getUserSubscription } from "@/lib/subscription";
 import { eq, and, inArray, sql } from "drizzle-orm";
 
@@ -28,7 +29,8 @@ export async function POST(req: NextRequest) {
     classId = null,
   } = body;
 
-  if (!categoryIds?.length) {
+  // Click the Sign sources signs directly (no category bank), so it needs no category.
+  if (gameType !== "tick-sign" && !categoryIds?.length) {
     return NextResponse.json({ error: "Select at least one category" }, { status: 400 });
   }
 
@@ -73,6 +75,55 @@ export async function POST(req: NextRequest) {
     } catch (subErr) {
       console.warn("[sessions] subscription check failed, allowing session:", subErr);
     }
+  }
+
+  // ── Click the Sign (tick-sign): official non-MCQ live game ──
+  // Build image-pick rows from published sign topics and store them in roundData
+  // (no question bank). questionIds holds the per-row prompt ids so the existing
+  // index/timer/scoring/sync machinery works unchanged.
+  if (gameType === "tick-sign") {
+    const rows = await buildTickSignLiveRows(questionCount);
+    if (rows.length < 4) {
+      return NextResponse.json(
+        { error: "Not enough published signs for Click the Sign." },
+        { status: 422 }
+      );
+    }
+    let tsCode = "";
+    for (let i = 0; i < 10; i++) {
+      const c = generateSessionCode();
+      const existing = await db
+        .select({ id: gameSessions.id })
+        .from(gameSessions)
+        .where(and(eq(gameSessions.sessionCode, c), eq(gameSessions.status, "lobby")));
+      if (!existing.length) { tsCode = c; break; }
+    }
+    if (!tsCode)
+      return NextResponse.json({ error: "Could not generate unique code" }, { status: 500 });
+
+    const [tsSession] = await db
+      .insert(gameSessions)
+      .values({
+        sessionCode: tsCode,
+        hostId: user.id,
+        gameMode: "tick-sign",
+        category: null,
+        classId: scopedClassId,
+        difficulty: null,
+        questionIds: rows.map((r) => r.promptId),
+        roundData: JSON.stringify({ rows }),
+        timePerQuestion,
+        scoringMode,
+        maxPlayers: Math.min(Math.max(maxPlayers, 1), 200),
+        language,
+        status: "lobby",
+      })
+      .returning();
+
+    return NextResponse.json(
+      { sessionCode: tsSession.sessionCode, sessionId: tsSession.id, status: "lobby", questionCount: rows.length },
+      { status: 201 }
+    );
   }
 
   // Fetch questions — allow draft + approved so test data works

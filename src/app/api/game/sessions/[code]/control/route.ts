@@ -9,6 +9,7 @@ import { broadcastEvent } from "@/lib/realtime-bus";
 import { mapContentToGameType, type GameStatus } from "@/lib/game-engine";
 import { awardStorePoints } from "@/lib/store-points/award";
 import { seededShuffle } from "@/lib/question-selector";
+import { tickRowToQuestion, type TickLiveRoundData } from "@/lib/gamekit/live-tick-sign";
 import { eq, and, asc, sql } from "drizzle-orm";
 
 async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number>): Promise<LeaderboardEntry[]> {
@@ -278,12 +279,19 @@ export async function POST(
       const currentQId = qIds[idx];
       const now = new Date();
 
-      // Correct answer for reveal
-      const [correctAnswer] = await db
-        .select({ id: answers.id })
-        .from(answers)
-        .where(and(eq(answers.questionId, currentQId), eq(answers.isCorrect, true)))
-        .limit(1);
+      // Correct answer for reveal. For Click the Sign the correct choice IS the
+      // prompt sign, whose id equals currentQId; MCQ reads the answers table.
+      let correctAnswerId: number | null = null;
+      if (session.gameMode === "tick-sign") {
+        correctAnswerId = currentQId;
+      } else {
+        const [correctAnswer] = await db
+          .select({ id: answers.id })
+          .from(answers)
+          .where(and(eq(answers.questionId, currentQId), eq(answers.isCorrect, true)))
+          .limit(1);
+        correctAnswerId = correctAnswer?.id ?? null;
+      }
 
       // Insert timeout records for non-answerers
       const participants = await db.select().from(gameParticipants).where(eq(gameParticipants.sessionId, session.id));
@@ -311,7 +319,7 @@ export async function POST(
       // Broadcast question_end so clients see the correct answer + round leaderboard
       await broadcastEvent(code.toUpperCase(), {
         type: "question_end",
-        correctAnswerId: correctAnswer?.id ?? null,
+        correctAnswerId,
         leaderboard,
       });
 
@@ -582,6 +590,18 @@ export async function POST(
 
 async function getQuestionPayload(questionId: number, sessionCode: string) {
   try {
+    // Click the Sign (tick-sign): build the image-pick payload from the session's
+    // stored rows instead of the question bank.
+    const [liveSess] = await db
+      .select({ gameMode: gameSessions.gameMode, roundData: gameSessions.roundData })
+      .from(gameSessions)
+      .where(eq(gameSessions.sessionCode, sessionCode.toUpperCase()));
+    if (liveSess?.gameMode === "tick-sign" && liveSess.roundData) {
+      const rd = JSON.parse(liveSess.roundData) as TickLiveRoundData;
+      const row = rd.rows?.find((r) => r.promptId === questionId);
+      if (row) return tickRowToQuestion(row);
+    }
+
     console.log(`[getQuestionPayload] Fetching question ${questionId}`);
 
     // Explicitly select only the columns we need to avoid schema mismatch

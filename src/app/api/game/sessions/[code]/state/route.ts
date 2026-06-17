@@ -5,6 +5,7 @@ import { questions, answers } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { mapContentToGameType } from "@/lib/game-engine";
 import { seededShuffle } from "@/lib/question-selector";
+import { tickRowToQuestion, type TickLiveRoundData } from "@/lib/gamekit/live-tick-sign";
 import { eq, and } from "drizzle-orm";
 
 export async function GET(
@@ -28,7 +29,12 @@ export async function GET(
     .where(eq(gameParticipants.sessionId, session.id));
 
   let currentQuestion = null;
-  if (session.status === "active" && session.questionIds?.length) {
+  if (session.status === "active" && session.gameMode === "tick-sign" && session.roundData) {
+    // Click the Sign — build the image-pick payload from the stored rows.
+    const rd = JSON.parse(session.roundData) as TickLiveRoundData;
+    const row = rd.rows?.[session.currentQuestionIndex ?? 0];
+    if (row) currentQuestion = tickRowToQuestion(row);
+  } else if (session.status === "active" && session.questionIds?.length) {
     const qId = session.questionIds[session.currentQuestionIndex ?? 0];
     const [q] = await db.select().from(questions).where(eq(questions.id, qId));
     const ans = await db

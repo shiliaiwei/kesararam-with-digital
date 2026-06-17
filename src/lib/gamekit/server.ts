@@ -18,8 +18,10 @@ import {
     userStreaks,
     priorityScenes,
     gameAttempts,
+    pointsLedger,
     type DailyChallengeSet,
 } from "@/db/schema/content";
+import { users } from "@/db/schema/users";
 import { calculateScore } from "@/lib/game-engine";
 import { awardStorePoints } from "@/lib/store-points/award";
 import {
@@ -69,6 +71,42 @@ function isUniqueViolation(e: unknown): boolean {
  * any DB read). Never lets an award failure break the play recording — the
  * legacy score is already persisted by the caller.
  */
+/**
+ * Credit the PUBLIC rank for a recorded solo/practice play. Mirrors the live
+ * session sync (syncScoresToUserProfiles): bumps users.lifetimePoints +
+ * totalGamesPlayed + highestScore and writes a pointsLedger row (which powers
+ * the weekly/monthly windowed boards). Call ONCE per persisted attempt — the
+ * attempt insert is the dedupe boundary. Never throws into the caller: a rank
+ * failure must not break the play recording (the legacy score is already saved).
+ */
+async function awardRankPoints(ctx: {
+    userId: number;
+    gameType: string; // GameFormat id, e.g. "tick-sign"
+    source: string; // pointsLedger.source, e.g. "solo:tick-sign"
+    points: number;
+}): Promise<void> {
+    if (ctx.points <= 0) return;
+    try {
+        await db
+            .update(users)
+            .set({
+                totalGamesPlayed: sql`${users.totalGamesPlayed} + 1`,
+                lifetimePoints: sql`${users.lifetimePoints} + ${ctx.points}`,
+                highestScore: sql`GREATEST(${users.highestScore}, ${ctx.points})`,
+                updatedAt: new Date(),
+            })
+            .where(eq(users.id, ctx.userId));
+        await db.insert(pointsLedger).values({
+            userId: ctx.userId,
+            source: ctx.source,
+            gameType: ctx.gameType,
+            points: ctx.points,
+        });
+    } catch (e) {
+        console.error("[awardRankPoints] failed:", e);
+    }
+}
+
 async function tryAwardStorePoints(ctx: {
     userId: number;
     gameType: string;
@@ -330,6 +368,9 @@ export async function recordDailyAttempt(
         idempotencyKey: `${userId}:daily:${today}`,
     });
 
+    // Public rank: the daily play contributes to lifetimePoints + the ledger.
+    await awardRankPoints({ userId, gameType: "daily", source: `daily:${today}`, points: totalScore });
+
     return {
         totalScore,
         correctAnswers: correctCount,
@@ -471,6 +512,7 @@ export async function validatePriority(
             totalUnits: rounds.length,
             idempotencyKey: key,
         });
+        await awardRankPoints({ userId, gameType: "priority-puzzle", source: "priority-puzzle", points: totalScore });
     }
 
     return {
@@ -627,6 +669,7 @@ export async function validateTrafficCommander(
             totalUnits: rounds.length,
             idempotencyKey: `${userId}:traffic-commander:${row?.id ?? totalScore}`,
         });
+        await awardRankPoints({ userId, gameType: "traffic-commander", source: "traffic-commander", points: totalScore });
     }
 
     return {
@@ -722,6 +765,7 @@ export async function recordSignConnectAttempt(
             totalUnits: totalPairs,
             idempotencyKey: `${userId}:sign-connect:${row?.id ?? totalScore}`,
         });
+        await awardRankPoints({ userId, gameType: "sign-connect", source: "sign-connect", points: totalScore });
     }
 
     return {
@@ -803,6 +847,7 @@ export async function recordWordBankAttempt(
             totalUnits: total,
             idempotencyKey: `${userId}:word-bank:${row?.id ?? totalScore}`,
         });
+        await awardRankPoints({ userId, gameType: "word-bank", source: "word-bank", points: totalScore });
     }
 
     return { totalScore, correctAnswers: correct, totalRounds: total, perRound, persisted };
@@ -887,6 +932,7 @@ export async function recordTickSignAttempt(
             totalUnits: totalRows,
             idempotencyKey: `${userId}:tick-sign:${row?.id ?? totalScore}`,
         });
+        await awardRankPoints({ userId, gameType: "tick-sign", source: "tick-sign", points: totalScore });
     }
 
     return {
@@ -911,36 +957,47 @@ export async function recordGameAttempt(
     gameId: string,
     userId: number | null,
     willRecord: boolean,
-    rounds: RoundResult[]
+    rounds: RoundResult[],
+    scoringMode: "speed" | "equal" = "speed"
 ) {
     let totalScore = 0;
     let correctCount = 0;
+    let totalUnits = 0;
     let streak = 0;
     const perRound: { refId: number; isCorrect: boolean; pointsEarned: number }[] = [];
 
     for (const r of rounds) {
-        const isCorrect = !!r.isCorrectGuess;
-        if (isCorrect) {
-            streak++;
-            correctCount++;
-        } else {
-            streak = 0;
-        }
+        // Multi-item rounds (e.g. a 5-question Safe Street Smart round, an N-pair
+        // Sign Match) score per sub-item; single-answer rounds are 1 unit.
+        const units = typeof r.unitCount === "number" && r.unitCount > 0 ? r.unitCount : 1;
+        const correctUnits =
+            typeof r.correctUnits === "number"
+                ? Math.max(0, Math.min(r.correctUnits, units))
+                : r.isCorrectGuess ? 1 : 0;
         const totalMs = 15_000;
-        const s = calculateScore({
-            isCorrect,
-            difficulty: r.difficulty ?? "easy",
-            scoringMode: "speed",
-            remainingTimeMs: Math.max(0, totalMs - r.timeTakenMs),
-            totalTimeMs: totalMs,
-            currentStreak: streak,
-        });
-        totalScore += s.totalPoints;
-        perRound.push({ refId: r.refId, isCorrect, pointsEarned: s.totalPoints });
+        const remainingTimeMs = Math.max(0, totalMs - (r.timeTakenMs ?? totalMs));
+        let roundPoints = 0;
+        for (let i = 0; i < units; i++) {
+            const ok = i < correctUnits;
+            if (ok) streak++; else streak = 0;
+            const s = calculateScore({
+                isCorrect: ok,
+                difficulty: r.difficulty ?? "easy",
+                scoringMode,
+                remainingTimeMs,
+                totalTimeMs: totalMs,
+                currentStreak: streak,
+            });
+            roundPoints += s.totalPoints;
+        }
+        totalScore += roundPoints;
+        correctCount += correctUnits;
+        totalUnits += units;
+        perRound.push({ refId: r.refId, isCorrect: correctUnits >= units, pointsEarned: roundPoints });
     }
 
     // Kid arcade games are solo/practice — record the attempt for the student's
-    // own history, but do NOT contribute to the public leaderboard.
+    // own history. Per the rank decision they also credit lifetimePoints + ledger.
     let persisted = false;
     if (userId !== null && willRecord) {
         const [row] = await db
@@ -950,7 +1007,7 @@ export async function recordGameAttempt(
                 gameId,
                 score: totalScore,
                 correctCount,
-                totalRounds: rounds.length,
+                totalRounds: totalUnits,
                 breakdown: JSON.stringify(perRound),
             })
             .returning({ id: gameAttempts.id });
@@ -959,15 +1016,16 @@ export async function recordGameAttempt(
             userId,
             gameType: gameId,
             correctUnits: correctCount,
-            totalUnits: rounds.length,
+            totalUnits,
             idempotencyKey: `${userId}:${gameId}:${row?.id ?? totalScore}`,
         });
+        await awardRankPoints({ userId, gameType: gameId, source: gameId, points: totalScore });
     }
 
     return {
         totalScore,
         correctAnswers: correctCount,
-        totalRounds: rounds.length,
+        totalRounds: totalUnits,
         perRound,
         persisted,
     };

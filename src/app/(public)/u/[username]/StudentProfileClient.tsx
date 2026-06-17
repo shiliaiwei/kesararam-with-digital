@@ -29,6 +29,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { CautionTape, SignShape } from "@/components/brand/brand-kit";
 import { getAvatarFaceStyle } from "@/lib/utils";
+import { RankedAvatarRing } from "@/components/shared/rank-label";
 
 export interface SerializableStudent {
   id: number;
@@ -158,8 +159,8 @@ function avatarSrc(url: string | null, changedAt?: string | null): string | null
   return `${base}${base.includes("?") ? "&" : "?"}v=${new Date(changedAt).getTime()}`;
 }
 
-function Avatar({ url, name, size = 96, changedAt }: {
-  url: string | null; name: string; size?: number; changedAt?: string | null;
+function Avatar({ url, name, size = 96, changedAt, round }: {
+  url: string | null; name: string; size?: number; changedAt?: string | null; round?: boolean;
 }) {
   const [err, setErr] = useState(false);
   const initials = (name || "?").slice(0, 2).toUpperCase();
@@ -179,9 +180,11 @@ function Avatar({ url, name, size = 96, changedAt }: {
     return null;
   })();
 
+  const borderRadiusStyle = round ? { borderRadius: "50%" } : undefined;
+
   if (parsed) {
     return (
-      <div className="relative h-full w-full" style={{ background: BRAND.yellow }}>
+      <div className="relative h-full w-full overflow-hidden" style={{ background: BRAND.yellow, ...borderRadiusStyle }}>
         {parsed.head && <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden className="absolute inset-0 h-full w-full object-contain" />}
         {parsed.face && <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden style={getAvatarFaceStyle(parsed.head)} />}
       </div>
@@ -190,13 +193,13 @@ function Avatar({ url, name, size = 96, changedAt }: {
 
   const src = avatarSrc(url, changedAt);
   if (src && !err) {
-    return <img src={src} alt={name} onError={() => setErr(true)} className="h-full w-full object-cover" />;
+    return <img src={src} alt={name} onError={() => setErr(true)} className="h-full w-full object-cover" style={borderRadiusStyle} />;
   }
 
   return (
     <div
       className="flex h-full w-full items-center justify-center bg-[#1e40af] font-mono font-black text-white"
-      style={{ fontSize: Math.round(size * 0.3) }}
+      style={{ fontSize: Math.round(size * 0.3), ...borderRadiusStyle }}
     >
       {initials}
     </div>
@@ -405,17 +408,16 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
             <div className="border-[3px] border-black bg-white" style={{ boxShadow: "6px 6px 0 #000" }}>
               <div className="h-14 border-b-[3px] border-black" style={checkerboardStyle} />
               <div className="flex flex-col items-center gap-5 p-4 text-center sm:p-6 md:p-8">
-                <div className="relative w-fit">
-                  <div className="border-[3px] border-black bg-white p-2" style={{ boxShadow: "5px 5px 0 #000" }}>
-                    <div className="h-[124px] w-[124px] overflow-hidden border-[3px] border-black bg-[#eab308] sm:h-[140px] sm:w-[140px]">
-                      <Avatar
-                        url={student.avatar}
-                        name={isNamePublic ? (student.displayName || student.username) : "S"}
-                        size={140}
-                        changedAt={student.avatarChangedAt}
-                      />
-                    </div>
-                  </div>
+                <div className="relative w-fit hover:-translate-y-1 transition-transform duration-200">
+                  <RankedAvatarRing lifetimePoints={student.lifetimePoints} size={118}>
+                    <Avatar
+                      url={student.avatar}
+                      name={isNamePublic ? (student.displayName || student.username) : "S"}
+                      size={118}
+                      changedAt={student.avatarChangedAt}
+                      round={true}
+                    />
+                  </RankedAvatarRing>
                   <div className="absolute -bottom-5 -right-5">
                     <SignShape shape="diamond" body={BRAND.yellow} size={66}>
                       <Crown size={22} className="text-black" strokeWidth={2.6} />

@@ -33,13 +33,13 @@ async function storePointsLeaderboard(opts: {
     gameType !== "all" ? sql` AND spe.game_type = ${gameType}` : sql``;
 
   // Ranking metric: earned (delta>0) within the window, optionally one game type.
-  const windowExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.delta > 0 AND spe.play_date >= ${start}${gameTypeCond}), 0)::int`;
+  const windowExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.delta > 0 AND spe.play_date >= ${start}${gameTypeCond}), 0)::int`;
   // Claimable store balance = lifetime SUM of every delta (earn − spend/hold).
-  const balanceExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id}), 0)::int`;
+  const balanceExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id), 0)::int`;
   // Live-session Store Points = the "priority" subtotal (attempt_id like 'live:%').
-  const liveExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.delta > 0 AND spe.attempt_id LIKE 'live:%'${gameTypeCond}), 0)::int`;
+  const liveExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.delta > 0 AND spe.attempt_id LIKE 'live:%'${gameTypeCond}), 0)::int`;
   // Average accuracy across recorded plays (0..100).
-  const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(spe.accuracy) * 100) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.reason = 'play'${gameTypeCond}), 0)::int`;
+  const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(spe.accuracy) * 100) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.reason = 'play'${gameTypeCond}), 0)::int`;
 
   const provinceFilter =
     province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
@@ -146,13 +146,18 @@ export async function GET(req: NextRequest) {
     const provinceFilter =
       province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
 
+    const gameTypeCondPl =
+      gameType !== "all" ? sql` AND pl.game_type = ${gameType}` : sql``;
+    const gameTypeCondGs =
+      gameType !== "all" ? sql` AND gs.game_mode = ${gameType}` : sql``;
+
     // Per-user point buckets from the single ledger:
     //   priority (live) = the rank + claimable currency
     //   solo            = separate practice currency (not claimable yet)
-    const priorityExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = ${users.id} AND pl.source LIKE 'live-session:%'), 0)::int`;
-    const soloExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = ${users.id} AND pl.source = 'solo'), 0)::int`;
+    const priorityExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source LIKE 'live-session:%'${gameTypeCondPl}), 0)::int`;
+    const soloExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source = 'solo'${gameTypeCondPl}), 0)::int`;
     // Average accuracy across recorded solo plays (0..100).
-    const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(CASE WHEN gs.total_questions > 0 THEN gs.correct_answers::numeric / gs.total_questions END) * 100) FROM game_scores gs WHERE gs.user_id = ${users.id}), 0)::int`;
+    const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(CASE WHEN gs.total_questions > 0 THEN gs.correct_answers::numeric / gs.total_questions END) * 100) FROM game_scores gs WHERE gs.user_id = users.id${gameTypeCondGs}), 0)::int`;
 
     let rows: {
       id: number;

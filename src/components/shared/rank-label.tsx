@@ -61,47 +61,17 @@ export const RANK_KEYFRAMES = `
     9%       { transform: translate(-50%,-50%) translate(var(--star-x),var(--star-y)) scale(.9) rotate(20deg); opacity: 1; }
     14%,100% { transform: translate(-50%,-50%) translate(var(--star-x),var(--star-y)) scale(.35) rotate(35deg); opacity: 0; }
   }
-  @keyframes tierGlow {
-    0%, 100% {
-      box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
-      opacity: 0.95;
-    }
-    45% {
-      box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
-      opacity: 0.95;
-    }
-    46% {
-      box-shadow: 0 0 2px var(--glow-color), 0 0 4px var(--glow-color);
-      opacity: 0.35;
-    }
-    47% {
-      box-shadow: 0 0 14px var(--glow-color), 0 0 22px var(--glow-color);
-      opacity: 1;
-    }
-    48% {
-      box-shadow: 0 0 2px var(--glow-color), 0 0 4px var(--glow-color);
-      opacity: 0.25;
-    }
-    50% {
-      box-shadow: 0 0 18px var(--glow-color), 0 0 30px var(--glow-color);
-      opacity: 1;
-    }
-    52% {
-      box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
-      opacity: 0.95;
-    }
-    53% {
-      box-shadow: 0 0 2px var(--glow-color), 0 0 4px var(--glow-color);
-      opacity: 0.35;
-    }
-    54% {
-      box-shadow: 0 0 14px var(--glow-color), 0 0 22px var(--glow-color);
-      opacity: 1;
-    }
-    55% {
-      box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
-      opacity: 0.95;
-    }
+  @keyframes magneticSweep {
+    from { stroke-dashoffset: 360; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes magneticSweepReverse {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: 360; }
+  }
+  @keyframes electricSpark {
+    0%, 100% { opacity: 0.4; stroke-width: 0.8; }
+    50% { opacity: 0.95; stroke-width: 1.6; }
   }
   @keyframes techRingRotate {
     0%   { transform: rotate(0deg); }
@@ -275,13 +245,6 @@ export function RankedAvatarRing({
     index?: number;
 }) {
     const tier = getRank(lifetimePoints);
-    const burstDistance = Math.round(size / 2 + 8);
-    const starBursts = [
-        { x: -burstDistance, y: -Math.round(burstDistance * 0.65), delay: 0 },
-        { x: burstDistance, y: -Math.round(burstDistance * 0.55), delay: 0.12 },
-        { x: Math.round(burstDistance * 0.75), y: burstDistance, delay: 0.24 },
-        { x: -Math.round(burstDistance * 0.75), y: burstDistance, delay: 0.36 },
-    ];
 
     return (
         <>
@@ -293,10 +256,8 @@ export function RankedAvatarRing({
                     background: "#000",
                     borderRadius: "50%",
                     filter: "drop-shadow(2px 2px 0 #000)",
-                    animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both, tierGlow 3s ease-in-out infinite",
-                    animationDelay: `${Math.max(0, index) * 0.06}s, ${3 + Math.max(0, index) * 0.2}s`,
-                    // @ts-expect-error custom CSS properties
-                    "--glow-color": tier.glow,
+                    animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both",
+                    animationDelay: `${Math.max(0, index) * 0.06}s`,
                 }}
             >
                 {/* Tech/Magnetic HUD Ring Overlay */}
@@ -309,22 +270,26 @@ export function RankedAvatarRing({
                         left: "50%",
                         marginTop: -Math.round((size + 32) / 2),
                         marginLeft: -Math.round((size + 32) / 2),
-                        animation: "techRingRotate 16s linear infinite",
+                        animation: "techRingRotate 22s linear infinite",
                     }}
                     viewBox="0 0 100 100"
                 >
-                    {/* Outer dashed tech segment ring */}
+                    {/* Outer dashed tech segment ring (magnetic sweep) */}
                     <circle
                         cx="50"
                         cy="50"
                         r="45"
                         fill="none"
                         stroke={tier.accent}
-                        strokeWidth="2"
-                        strokeDasharray="18 8 35 12 8 8"
-                        className="opacity-90"
+                        strokeWidth="2.2"
+                        strokeDasharray="24 10 12 8"
+                        pathLength="360"
+                        className="opacity-95"
+                        style={{
+                            animation: "magneticSweep 10s linear infinite",
+                        }}
                     />
-                    {/* Inner thin tech ring */}
+                    {/* Inner thin tech ring (electric spark style) */}
                     <circle
                         cx="50"
                         cy="50"
@@ -332,10 +297,11 @@ export function RankedAvatarRing({
                         fill="none"
                         stroke={tier.accent}
                         strokeWidth="0.8"
-                        strokeDasharray="4 2"
-                        className="opacity-60"
+                        strokeDasharray="6 3"
+                        pathLength="360"
+                        className="opacity-75"
                         style={{
-                            animation: "techRingPulse 3s ease-in-out infinite alternate",
+                            animation: "magneticSweepReverse 6s linear infinite, electricSpark 2s ease-in-out infinite alternate",
                         }}
                     />
                     {/* Tiny tick marks / magnetic accents */}
@@ -346,29 +312,14 @@ export function RankedAvatarRing({
                         fill="none"
                         stroke={tier.glow}
                         strokeWidth="1.2"
-                        strokeDasharray="1 14"
-                        className="opacity-95"
-                    />
-                </svg>
-
-                {starBursts.map((star, starIndex) => (
-                    <Star
-                        key={starIndex}
-                        className="rank-star-burst pointer-events-none absolute left-1/2 top-1/2 z-[2]"
-                        aria-hidden="true"
-                        size={size >= 72 ? 16 : 12}
-                        strokeWidth={3}
+                        strokeDasharray="2 18"
+                        pathLength="360"
+                        className="opacity-90"
                         style={{
-                            color: tier.accent,
-                            fill: tier.accent,
-                            animation: "rankStarBurst 9s ease-out infinite",
-                            animationDelay: `${(Math.max(0, index) * -0.35) + star.delay}s`,
-                            // @ts-expect-error CSS custom properties drive each star direction.
-                            "--star-x": `${star.x}px`,
-                            "--star-y": `${star.y}px`,
+                            animation: "magneticSweep 14s linear infinite",
                         }}
                     />
-                ))}
+                </svg>
                 <div
                     style={{
                         padding: 4,

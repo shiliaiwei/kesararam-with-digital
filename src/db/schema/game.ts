@@ -14,6 +14,9 @@ export const gameSessions = pgTable(
     classId: integer("class_id").references(() => classes.id, { onDelete: "set null" }),
     difficulty: varchar("difficulty", { length: 20 }),
     questionIds: integer("question_ids").array().notNull(),
+    // Non-MCQ live games (e.g. "tick-sign" / Click the Sign) store their per-step
+    // round payload here as JSON; MCQ sessions leave it null and use questionIds.
+    roundData: text("round_data"),
     currentQuestionIndex: integer("current_question_index").default(0),
     questionStartedAt: timestamp("question_started_at"),
     status: varchar("status", { length: 20 }).notNull().default("lobby"),

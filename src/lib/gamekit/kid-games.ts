@@ -9,6 +9,8 @@ import { getSignItems } from "./kid-rounds";
 export interface KidGameSpec {
     accessTier: AccessTier;
     buildRounds: (count: number) => Promise<unknown[]>;
+    /** Matches the format's config.scoringMode; recordGameAttempt honors it. */
+    scoringMode: "speed" | "equal";
 }
 
 // Sign Match — pairs of (sign image, meaning) to match.
@@ -498,12 +500,12 @@ async function buildSafeStreetSmartRounds(count: number) {
 }
 
 export const KID_GAMES: Record<string, KidGameSpec> = {
-    "sign-match": { accessTier: "user", buildRounds: buildSignMatchRounds },
-    "sign-connect": { accessTier: "user", buildRounds: buildSignConnectRounds },
-    "tick-sign": { accessTier: "user", buildRounds: buildTickSignRounds },
-    "word-bank": { accessTier: "user", buildRounds: buildWordBankRounds },
-    "catch-sign": { accessTier: "user", buildRounds: buildCatchSignRounds },
-    "light-hero": { accessTier: "user", buildRounds: buildLightHeroRounds },
-    "safety-adventure": { accessTier: "user", buildRounds: buildSafetyAdventureRounds },
-    "safe-street-smart": { accessTier: "user", buildRounds: buildSafeStreetSmartRounds },
+    "sign-match": { accessTier: "user", buildRounds: buildSignMatchRounds, scoringMode: "equal" },
+    "sign-connect": { accessTier: "user", buildRounds: buildSignConnectRounds, scoringMode: "equal" },
+    "tick-sign": { accessTier: "user", buildRounds: buildTickSignRounds, scoringMode: "speed" },
+    "word-bank": { accessTier: "user", buildRounds: buildWordBankRounds, scoringMode: "equal" },
+    "catch-sign": { accessTier: "user", buildRounds: buildCatchSignRounds, scoringMode: "speed" },
+    "light-hero": { accessTier: "user", buildRounds: buildLightHeroRounds, scoringMode: "speed" },
+    "safety-adventure": { accessTier: "user", buildRounds: buildSafetyAdventureRounds, scoringMode: "equal" },
+    "safe-street-smart": { accessTier: "user", buildRounds: buildSafeStreetSmartRounds, scoringMode: "equal" },
 };

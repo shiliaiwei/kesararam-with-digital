@@ -50,10 +50,13 @@ function TickSignView({ round, lang, onRoundComplete }: RoundViewProps<TickSignR
         if (next >= round.rows.length) {
             doneRef.current = true;
             const allCorrect = picksRef.current.every((x) => x.promptId === x.pickedId);
+            const correctUnits = picksRef.current.filter((x) => x.promptId === x.pickedId).length;
             setTimeout(() => {
                 onRoundComplete({
                     refId: round.id,
                     isCorrectGuess: allCorrect,
+                    correctUnits,
+                    unitCount: picksRef.current.length,
                     payload: { picks: picksRef.current },
                     timeTakenMs: Date.now() - startRef.current,
                     difficulty: "easy",
@@ -151,7 +154,8 @@ export const tickSignFormat: GameFormat<TickSignRound, KitCompletionResult> = {
         brandColor: "#14b8a6",
         Icon: ListChecks,
         accessTier: "user",
-        badge: { en: "KIDS", kh: "កុមារ" },
+        badge: { en: "OFFICIAL", kh: "ផ្លូវការ" },
+        official: true,
     },
     config: { timed: false, secondsPerRound: 0, scoringMode: "speed", showStreakHud: true },
     fetchRounds: async () => {

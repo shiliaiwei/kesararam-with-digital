@@ -31,7 +31,8 @@ export async function POST(req: NextRequest) {
             "safe-street-smart",
             session?.id ?? null,
             access.willRecord,
-            rounds
+            rounds,
+            spec.scoringMode
         );
         return NextResponse.json(result);
     } catch (e) {

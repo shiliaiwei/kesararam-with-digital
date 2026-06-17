@@ -136,10 +136,13 @@ function WordBankView({ round, lang, onRoundComplete }: RoundViewProps<WordBankR
         if (placementsRef.current.length === round.items.length && !doneRef.current) {
             doneRef.current = true;
             const allCorrect = placementsRef.current.every((x) => x.pictureId === x.chipId);
+            const correctUnits = placementsRef.current.filter((x) => x.pictureId === x.chipId).length;
             setTimeout(() => {
                 onRoundComplete({
                     refId: round.id,
                     isCorrectGuess: allCorrect,
+                    correctUnits,
+                    unitCount: placementsRef.current.length,
                     payload: { placements: placementsRef.current },
                     timeTakenMs: Date.now() - startRef.current,
                     difficulty: "easy",

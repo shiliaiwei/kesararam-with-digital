@@ -436,6 +436,9 @@ export default function PlayPage() {
     upgradeMessage: { en: string; kh: string } | null;
   } | null>(null);
 
+  // Play counts per GameKit game → orders the "More Games" grid by popularity.
+  const [playCounts, setPlayCounts] = useState<Record<string, number>>({});
+
   // Read guest plays today from localStorage
   const getGuestPlaysToday = () => {
     if (typeof window === "undefined") return 0;
@@ -466,6 +469,12 @@ export default function PlayPage() {
             .catch(() => { });
         }
       })
+      .catch(() => { });
+
+    // Fetch play counts to order the "More Games" grid by popularity.
+    fetch("/api/game/play-counts")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d?.counts) setPlayCounts(d.counts); })
       .catch(() => { });
 
     // Fetch limits
@@ -734,7 +743,15 @@ export default function PlayPage() {
           </span>
         </div>
         <div className="card-grid">
-          {GAMEKIT_CARDS.filter((g) => g.id !== "daily").map((g) => {
+          {[...GAMEKIT_CARDS.filter((g) => g.id !== "daily")]
+            .sort((a, b) => {
+              // Official games pinned on top, then most-played first, then title.
+              if (!!a.official !== !!b.official) return a.official ? -1 : 1;
+              const ca = playCounts[a.id] ?? 0, cb = playCounts[b.id] ?? 0;
+              if (cb !== ca) return cb - ca;
+              return a.title.en.localeCompare(b.title.en);
+            })
+            .map((g) => {
             const isPro = g.accessTier === "class-pro";
             const isLimitReached = !!limits?.isLimitReached;
             const isBlocked = isPro || isLimitReached;

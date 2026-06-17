@@ -65,20 +65,28 @@ export async function POST(
   if (!participant)
     return NextResponse.json({ error: "Not a participant" }, { status: 403 });
 
-  // 5. Get question difficulty
-  const [question] = await db
-    .select({ difficulty: questions.difficulty })
-    .from(questions)
-    .where(eq(questions.id, questionId));
-
-  // 6. Check if answer is correct
+  // 5/6. Difficulty + correctness. Click the Sign (tick-sign) is an image-pick
+  // game whose answer key derives from the prompt: a pick is correct iff the
+  // chosen sign's topic id equals the prompt's topic id — which IS the step's
+  // questionId. MCQ sessions read the answers table as before.
+  const isTickSign = session.gameMode === "tick-sign";
+  let difficulty: string | null = "easy";
   let isCorrect = false;
-  if (answerId !== null && answerId !== undefined) {
-    const [ans] = await db
-      .select({ isCorrect: answers.isCorrect })
-      .from(answers)
-      .where(eq(answers.id, answerId));
-    isCorrect = ans?.isCorrect ?? false;
+  if (isTickSign) {
+    isCorrect = answerId !== null && answerId !== undefined && answerId === questionId;
+  } else {
+    const [question] = await db
+      .select({ difficulty: questions.difficulty })
+      .from(questions)
+      .where(eq(questions.id, questionId));
+    difficulty = question?.difficulty ?? null;
+    if (answerId !== null && answerId !== undefined) {
+      const [ans] = await db
+        .select({ isCorrect: answers.isCorrect })
+        .from(answers)
+        .where(eq(answers.id, answerId));
+      isCorrect = ans?.isCorrect ?? false;
+    }
   }
 
   // 7. Calculate score (server-side only) with new difficulty-based system
@@ -109,7 +117,7 @@ export async function POST(
 
   const scoreResult = calculateScore({
     isCorrect,
-    difficulty: question?.difficulty,
+    difficulty,
     scoringMode: session.scoringMode as "speed" | "equal",
     remainingTimeMs,
     totalTimeMs: session.timePerQuestion * 1000,
@@ -158,7 +166,7 @@ export async function POST(
       baseScore: scoreResult.baseScore,
       speedBonus: scoreResult.speedBonus,
       streakBonus: scoreResult.streakBonus,
-      difficulty: question?.difficulty,
+      difficulty,
     });
   }
 
@@ -208,6 +216,6 @@ export async function POST(
     baseScore: scoreResult.baseScore,
     speedBonus: scoreResult.speedBonus,
     streakBonus: scoreResult.streakBonus,
-    difficulty: question?.difficulty,
+    difficulty,
   });
 }

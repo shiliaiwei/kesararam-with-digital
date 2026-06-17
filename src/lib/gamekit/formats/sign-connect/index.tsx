@@ -112,10 +112,13 @@ function SignConnectView({ round, lang, onRoundComplete }: RoundViewProps<SignCo
         if (picksRef.current.length === signs.length && !doneRef.current) {
             doneRef.current = true;
             const allCorrect = picksRef.current.every((p) => p.signId === p.meaningId);
+            const correctUnits = picksRef.current.filter((p) => p.signId === p.meaningId).length;
             setTimeout(() => {
                 onRoundComplete({
                     refId: round.id,
                     isCorrectGuess: allCorrect,
+                    correctUnits,
+                    unitCount: picksRef.current.length,
                     payload: { picks: picksRef.current },
                     timeTakenMs: Date.now() - startRef.current,
                     difficulty: "easy",

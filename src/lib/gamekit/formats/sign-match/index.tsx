@@ -69,6 +69,10 @@ function SignMatchView({ round, lang, onRoundComplete }: RoundViewProps<SignMatc
                         onRoundComplete({
                             refId: 0,
                             isCorrectGuess: true,
+                            // Score per matched pair (not a flat 2) — the board only
+                            // completes once every pair is matched.
+                            correctUnits: round.pairs.length,
+                            unitCount: round.pairs.length,
                             payload: { flips, pairs: round.pairs.length },
                             timeTakenMs: Date.now() - startRef.current,
                             difficulty: "easy",
