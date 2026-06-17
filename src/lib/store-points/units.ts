@@ -8,7 +8,8 @@
  *
  * DEFAULT_UNITS is each mode's current default activity size, used only as a
  * fallback. Phase 3 passes the REAL validated unit count from the play; prefer
- * that over the default. The Store Points formula caps units at 10 regardless.
+ * that over the default. The Store Points formula caps reward units at 30 regardless
+ * (STORE_POINTS_UNIT_CAP) — 30+ validated units reach the full 60-point per-play cap.
  */
 
 export const DEFAULT_UNITS: Record<string, number> = {

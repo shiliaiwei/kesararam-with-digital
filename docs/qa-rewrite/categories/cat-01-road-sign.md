@@ -56,22 +56,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-166-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ប៊ុនគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should give way or stop to let other vehicles go first to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to give way or stop to let other vehicles go first to prevent crashes.
 
 ### RS-166-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-166-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -145,22 +145,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-172-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should give way or stop to let other vehicles go first to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុនភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to give way or stop to let other vehicles go first immediately and avoid any carelessness.
 
 ### RS-172-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-172-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -234,22 +234,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-173-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should give way or stop to let other vehicles go first to stay safe.
+Explain KM: នាងត្រូវតែផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to give way or stop to let other vehicles go first to maintain safety and road control.
 
 ### RS-173-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-173-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -323,22 +323,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-174-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុភាគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should give way or stop to let other vehicles go first to stay safe.
+Explain KM: អ្នកគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to give way or stop to let other vehicles go first to prepare for any unexpected hazards.
 
 ### RS-174-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-174-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -412,22 +412,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-175-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should give way or stop to let other vehicles go first to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must give way or stop to let other vehicles go first because life safety comes first.
 
 ### RS-175-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-175-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -501,22 +501,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-176-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should give way or stop to let other vehicles go first to stay safe.
+Explain KM: គាត់ត្រូវតែផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to give way or stop to let other vehicles go first to protect his passengers.
 
 ### RS-176-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-176-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -590,22 +590,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-177-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should give way or stop to let other vehicles go first to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to give way or stop to let other vehicles go first to prevent crashes.
 
 ### RS-177-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-177-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -679,22 +679,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-178-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should give way or stop to let other vehicles go first to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុនភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to give way or stop to let other vehicles go first immediately and avoid any carelessness.
 
 ### RS-178-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-178-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -768,22 +768,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-179-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should give way or stop to let other vehicles go first to stay safe.
+Explain KM: នាងត្រូវតែផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to give way or stop to let other vehicles go first to maintain safety and road control.
 
 ### RS-179-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-179-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -857,22 +857,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរផ្តល់�
 Explain EN: When you see this sign, you should give way or stop to let other vehicles go first.
 
 ### RS-180-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន / Give way or stop to let other vehicles go first
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុភាគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should give way or stop to let other vehicles go first to stay safe.
+Explain KM: អ្នកគួរផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to give way or stop to let other vehicles go first to prepare for any unexpected hazards.
 
 ### RS-180-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-180-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -946,22 +946,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-191-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the extra information and follow the main sign to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the extra information and follow the main sign because life safety comes first.
 
 ### RS-191-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-191-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1035,22 +1035,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-192-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the extra information and follow the main sign to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the extra information and follow the main sign to protect his passengers.
 
 ### RS-192-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-192-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1124,22 +1124,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-193-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the extra information and follow the main sign to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the extra information and follow the main sign to prevent crashes.
 
 ### RS-193-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-193-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1213,22 +1213,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-194-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the extra information and follow the main sign to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the extra information and follow the main sign immediately and avoid any carelessness.
 
 ### RS-194-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-194-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1302,22 +1302,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-195-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the extra information and follow the main sign to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the extra information and follow the main sign to maintain safety and road control.
 
 ### RS-195-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-195-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1391,22 +1391,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-196-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the extra information and follow the main sign to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the extra information and follow the main sign to prepare for any unexpected hazards.
 
 ### RS-196-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-196-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1480,22 +1480,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-197-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the extra information and follow the main sign to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the extra information and follow the main sign because life safety comes first.
 
 ### RS-197-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-197-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1569,22 +1569,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-198-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the extra information and follow the main sign to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the extra information and follow the main sign to protect his passengers.
 
 ### RS-198-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-198-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1658,22 +1658,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-199-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ប៊ុនគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the extra information and follow the main sign to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the extra information and follow the main sign to prevent crashes.
 
 ### RS-199-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-199-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1747,22 +1747,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-200-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the extra information and follow the main sign to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the extra information and follow the main sign immediately and avoid any carelessness.
 
 ### RS-200-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-200-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1836,22 +1836,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-201-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ដារ៉ាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the extra information and follow the main sign to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the extra information and follow the main sign to maintain safety and road control.
 
 ### RS-201-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-201-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -1925,22 +1925,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-202-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុភាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the extra information and follow the main sign to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the extra information and follow the main sign to prepare for any unexpected hazards.
 
 ### RS-202-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-202-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2014,22 +2014,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-203-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the extra information and follow the main sign to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the extra information and follow the main sign because life safety comes first.
 
 ### RS-203-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-203-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2103,22 +2103,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-204-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the extra information and follow the main sign to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the extra information and follow the main sign to protect his passengers.
 
 ### RS-204-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-204-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2192,22 +2192,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-205-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the extra information and follow the main sign to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the extra information and follow the main sign to prevent crashes.
 
 ### RS-205-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-205-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2281,22 +2281,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-206-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុខគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the extra information and follow the main sign to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the extra information and follow the main sign immediately and avoid any carelessness.
 
 ### RS-206-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-206-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2370,22 +2370,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-207-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ដារ៉ាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the extra information and follow the main sign to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the extra information and follow the main sign to maintain safety and road control.
 
 ### RS-207-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-207-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2459,22 +2459,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-208-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the extra information and follow the main sign to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the extra information and follow the main sign to prepare for any unexpected hazards.
 
 ### RS-208-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-208-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2548,22 +2548,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-209-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the extra information and follow the main sign to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the extra information and follow the main sign because life safety comes first.
 
 ### RS-209-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-209-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2637,22 +2637,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-210-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the extra information and follow the main sign to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the extra information and follow the main sign to protect his passengers.
 
 ### RS-210-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-210-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2726,22 +2726,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-211-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the extra information and follow the main sign to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the extra information and follow the main sign to prevent crashes.
 
 ### RS-211-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-211-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2815,22 +2815,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-212-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the extra information and follow the main sign to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the extra information and follow the main sign immediately and avoid any carelessness.
 
 ### RS-212-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-212-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2904,22 +2904,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-213-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the extra information and follow the main sign to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the extra information and follow the main sign to maintain safety and road control.
 
 ### RS-213-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-213-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -2993,22 +2993,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-214-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុភាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the extra information and follow the main sign to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the extra information and follow the main sign to prepare for any unexpected hazards.
 
 ### RS-214-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-214-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3082,22 +3082,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the extra information and follow the main sign.
 
 ### RS-215-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ / Read the extra information and follow the main sign
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the extra information and follow the main sign to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the extra information and follow the main sign because life safety comes first.
 
 ### RS-215-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-215-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3171,22 +3171,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-216-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should follow the road marking to stay safe.
+Explain KM: គាត់ត្រូវតែធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to follow the road marking to protect his passengers.
 
 ### RS-216-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-216-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3260,22 +3260,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-217-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should follow the road marking to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to follow the road marking to prevent crashes.
 
 ### RS-217-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-217-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3349,22 +3349,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-218-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should follow the road marking to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to follow the road marking immediately and avoid any carelessness.
 
 ### RS-218-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-218-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3438,22 +3438,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-219-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should follow the road marking to stay safe.
+Explain KM: នាងត្រូវតែធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to follow the road marking to maintain safety and road control.
 
 ### RS-219-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-219-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3527,22 +3527,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-220-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុភាគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should follow the road marking to stay safe.
+Explain KM: អ្នកគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to follow the road marking to prepare for any unexpected hazards.
 
 ### RS-220-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-220-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3616,22 +3616,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-221-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should follow the road marking to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must follow the road marking because life safety comes first.
 
 ### RS-221-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-221-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3705,22 +3705,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-222-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should follow the road marking to stay safe.
+Explain KM: គាត់ត្រូវតែធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to follow the road marking to protect his passengers.
 
 ### RS-222-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-222-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3794,22 +3794,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-223-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should follow the road marking to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to follow the road marking to prevent crashes.
 
 ### RS-223-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-223-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3883,22 +3883,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the road marking.
 
 ### RS-224-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ / Follow the road marking
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should follow the road marking to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to follow the road marking immediately and avoid any carelessness.
 
 ### RS-224-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-224-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -3972,22 +3972,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរឈប់នៅ�
 Explain EN: When you see this sign, you should stop before the line.
 
 ### RS-225-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ឈប់នៅពីមុខបន្ទាត់ / Stop before the line
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរឈប់នៅពីមុខបន្ទាត់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should stop before the line to stay safe.
+Explain KM: នាងត្រូវតែឈប់នៅពីមុខបន្ទាត់ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to stop before the line to maintain safety and road control.
 
 ### RS-225-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-225-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4061,22 +4061,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរឈប់នៅ�
 Explain EN: When you see this sign, you should stop before the line.
 
 ### RS-226-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ឈប់នៅពីមុខបន្ទាត់ / Stop before the line
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរឈប់នៅពីមុខបន្ទាត់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should stop before the line to stay safe.
+Explain KM: អ្នកគួរឈប់នៅពីមុខបន្ទាត់ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to stop before the line to prepare for any unexpected hazards.
 
 ### RS-226-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-226-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4150,22 +4150,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរឈប់នៅ�
 Explain EN: When you see this sign, you should stop before the line.
 
 ### RS-227-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ឈប់នៅពីមុខបន្ទាត់ / Stop before the line
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរឈប់នៅពីមុខបន្ទាត់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should stop before the line to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែឈប់នៅពីមុខបន្ទាត់ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must stop before the line because life safety comes first.
 
 ### RS-227-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-227-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4239,22 +4239,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរឈប់នៅ�
 Explain EN: When you see this sign, you should stop before the line.
 
 ### RS-228-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ឈប់នៅពីមុខបន្ទាត់ / Stop before the line
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរឈប់នៅពីមុខបន្ទាត់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should stop before the line to stay safe.
+Explain KM: គាត់ត្រូវតែឈប់នៅពីមុខបន្ទាត់ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to stop before the line to protect his passengers.
 
 ### RS-228-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-228-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4328,22 +4328,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-236-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-236-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-236-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4417,22 +4417,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-237-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should not do what the sign forbids to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តមិនធ្វើអ្វីដែលសញ្ញានេះហាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to not do what the sign forbids immediately and avoid any carelessness.
 
 ### RS-237-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-237-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4506,22 +4506,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-238-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information on the post to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មានលើបង្គោល ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information on the post to maintain safety and road control.
 
 ### RS-238-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-238-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4595,22 +4595,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-239-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុភាគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information on the post to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មានលើបង្គោល ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information on the post to prepare for any unexpected hazards.
 
 ### RS-239-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-239-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4684,22 +4684,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-240-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the information on the post to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មានលើបង្គោល ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the information on the post because life safety comes first.
 
 ### RS-240-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-240-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4773,22 +4773,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-241-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-241-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-241-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4862,22 +4862,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-242-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ប៊ុនគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the information on the post to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មានលើបង្គោល ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the information on the post to prevent crashes.
 
 ### RS-242-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-242-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -4951,22 +4951,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-243-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the information on the post to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មានលើបង្គោលភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the information on the post immediately and avoid any carelessness.
 
 ### RS-243-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-243-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5040,22 +5040,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-244-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ដារ៉ាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should not do what the sign forbids to stay safe.
+Explain KM: នាងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to not do what the sign forbids to maintain safety and road control.
 
 ### RS-244-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-244-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5129,22 +5129,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-245-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information on the post to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មានលើបង្គោល ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information on the post to prepare for any unexpected hazards.
 
 ### RS-245-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-245-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5218,22 +5218,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-246-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should not do what the sign forbids to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must not do what the sign forbids because life safety comes first.
 
 ### RS-246-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-246-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5307,22 +5307,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-247-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: វិសាលគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the information on the post to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មានលើបង្គោល ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the information on the post to protect his passengers.
 
 ### RS-247-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-247-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5396,22 +5396,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-248-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-248-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-248-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5485,22 +5485,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-249-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the information on the post to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មានលើបង្គោលភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the information on the post immediately and avoid any carelessness.
 
 ### RS-249-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-249-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5574,22 +5574,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-250-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information on the post to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មានលើបង្គោល ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information on the post to maintain safety and road control.
 
 ### RS-250-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-250-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5663,22 +5663,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information on the post.
 
 ### RS-251-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មានលើបង្គោល / Read the information on the post
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរអានព័ត៌មានលើបង្គោល ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information on the post to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មានលើបង្គោល ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information on the post to prepare for any unexpected hazards.
 
 ### RS-251-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-251-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5752,22 +5752,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-252-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should not do what the sign forbids to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must not do what the sign forbids because life safety comes first.
 
 ### RS-252-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-252-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5841,22 +5841,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-253-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-253-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-253-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -5930,22 +5930,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-254-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-254-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-254-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6019,22 +6019,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-255-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should not do what the sign forbids to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តមិនធ្វើអ្វីដែលសញ្ញានេះហាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to not do what the sign forbids immediately and avoid any carelessness.
 
 ### RS-255-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-255-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6108,22 +6108,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-256-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should not do what the sign forbids to stay safe.
+Explain KM: នាងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to not do what the sign forbids to maintain safety and road control.
 
 ### RS-256-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-256-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6197,22 +6197,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-257-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should not do what the sign forbids to stay safe.
+Explain KM: អ្នកគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to not do what the sign forbids to prepare for any unexpected hazards.
 
 ### RS-257-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-257-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6286,22 +6286,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-258-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should not do what the sign forbids to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must not do what the sign forbids because life safety comes first.
 
 ### RS-258-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-258-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6375,22 +6375,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-259-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-259-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-259-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6464,22 +6464,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-260-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-260-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-260-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6553,22 +6553,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-261-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should not do what the sign forbids to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តមិនធ្វើអ្វីដែលសញ្ញានេះហាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to not do what the sign forbids immediately and avoid any carelessness.
 
 ### RS-261-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-261-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6642,22 +6642,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-262-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should not do what the sign forbids to stay safe.
+Explain KM: នាងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to not do what the sign forbids to maintain safety and road control.
 
 ### RS-262-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-262-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6731,22 +6731,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-263-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should not do what the sign forbids to stay safe.
+Explain KM: អ្នកគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to not do what the sign forbids to prepare for any unexpected hazards.
 
 ### RS-263-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-263-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6820,22 +6820,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-264-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should not do what the sign forbids to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must not do what the sign forbids because life safety comes first.
 
 ### RS-264-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-264-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6909,22 +6909,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-265-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-265-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-265-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -6998,22 +6998,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-266-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-266-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-266-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7087,22 +7087,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-267-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should not do what the sign forbids to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តមិនធ្វើអ្វីដែលសញ្ញានេះហាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to not do what the sign forbids immediately and avoid any carelessness.
 
 ### RS-267-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-267-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7176,22 +7176,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-268-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should not do what the sign forbids to stay safe.
+Explain KM: នាងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to not do what the sign forbids to maintain safety and road control.
 
 ### RS-268-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-268-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7265,22 +7265,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-269-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should not do what the sign forbids to stay safe.
+Explain KM: អ្នកគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to not do what the sign forbids to prepare for any unexpected hazards.
 
 ### RS-269-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-269-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7354,22 +7354,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-270-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should not do what the sign forbids to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must not do what the sign forbids because life safety comes first.
 
 ### RS-270-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-270-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7443,22 +7443,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-271-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-271-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-271-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7532,22 +7532,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-272-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-272-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-272-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7621,22 +7621,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-274-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should follow this temporary sign first to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិនភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to follow this temporary sign first immediately and avoid any carelessness.
 
 ### RS-274-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-274-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7710,22 +7710,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-275-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should follow this temporary sign first to stay safe.
+Explain KM: នាងត្រូវតែធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to follow this temporary sign first to maintain safety and road control.
 
 ### RS-275-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-275-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7799,22 +7799,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-277-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should follow this temporary sign first to stay safe.
+Explain KM: អ្នកគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to follow this temporary sign first to prepare for any unexpected hazards.
 
 ### RS-277-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-277-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7888,22 +7888,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-287-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should follow this temporary sign first to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must follow this temporary sign first because life safety comes first.
 
 ### RS-287-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-287-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -7977,22 +7977,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-288-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should follow this temporary sign first to stay safe.
+Explain KM: គាត់ត្រូវតែធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to follow this temporary sign first to protect his passengers.
 
 ### RS-288-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-288-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8066,22 +8066,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-289-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should follow this temporary sign first to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to follow this temporary sign first to prevent crashes.
 
 ### RS-289-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-289-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8155,22 +8155,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-290-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should follow this temporary sign first to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិនភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to follow this temporary sign first immediately and avoid any carelessness.
 
 ### RS-290-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-290-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8244,22 +8244,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-291-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should follow this temporary sign first to stay safe.
+Explain KM: នាងត្រូវតែធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to follow this temporary sign first to maintain safety and road control.
 
 ### RS-291-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-291-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8333,22 +8333,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-292-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should follow this temporary sign first to stay safe.
+Explain KM: អ្នកគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to follow this temporary sign first to prepare for any unexpected hazards.
 
 ### RS-292-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-292-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8422,22 +8422,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-293-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should follow this temporary sign first to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must follow this temporary sign first because life safety comes first.
 
 ### RS-293-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-293-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8511,22 +8511,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow this temporary sign first.
 
 ### RS-294-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន / Follow this temporary sign first
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should follow this temporary sign first to stay safe.
+Explain KM: គាត់ត្រូវតែធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to follow this temporary sign first to protect his passengers.
 
 ### RS-294-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-294-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8600,22 +8600,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down when entering a built-up area.
 
 ### RS-689-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន / Slow down when entering a built-up area
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ប៊ុនគួរបន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down when entering a built-up area to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down when entering a built-up area to prevent crashes.
 
 ### RS-689-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-689-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8689,22 +8689,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down when entering a built-up area.
 
 ### RS-690-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន / Slow down when entering a built-up area
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុខគួរបន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down when entering a built-up area to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជនភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down when entering a built-up area immediately and avoid any carelessness.
 
 ### RS-690-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-690-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8778,22 +8778,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down when entering a built-up area.
 
 ### RS-691-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន / Slow down when entering a built-up area
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down when entering a built-up area to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down when entering a built-up area to maintain safety and road control.
 
 ### RS-691-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-691-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8867,22 +8867,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down when entering a built-up area.
 
 ### RS-692-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន / Slow down when entering a built-up area
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរបន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down when entering a built-up area to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down when entering a built-up area to prepare for any unexpected hazards.
 
 ### RS-692-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-692-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -8956,22 +8956,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានឈ្�
 Explain EN: When you see this sign, you should read the street name.
 
 ### RS-693-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានឈ្មោះផ្លូវ / Read the street name
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរអានឈ្មោះផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the street name to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានឈ្មោះផ្លូវ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the street name because life safety comes first.
 
 ### RS-693-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-693-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9045,22 +9045,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានឈ្�
 Explain EN: When you see this sign, you should read the street name.
 
 ### RS-694-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានឈ្មោះផ្លូវ / Read the street name
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរអានឈ្មោះផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the street name to stay safe.
+Explain KM: គាត់ត្រូវតែអានឈ្មោះផ្លូវ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the street name to protect his passengers.
 
 ### RS-694-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-694-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9134,22 +9134,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានឈ្�
 Explain EN: When you see this sign, you should read the street name.
 
 ### RS-695-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានឈ្មោះផ្លូវ / Read the street name
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ប៊ុនគួរអានឈ្មោះផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the street name to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានឈ្មោះផ្លូវ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the street name to prevent crashes.
 
 ### RS-695-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-695-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9223,22 +9223,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានឈ្�
 Explain EN: When you see this sign, you should read the street name.
 
 ### RS-696-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានឈ្មោះផ្លូវ / Read the street name
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរអានឈ្មោះផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the street name to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានឈ្មោះផ្លូវភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the street name immediately and avoid any carelessness.
 
 ### RS-696-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-696-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9312,22 +9312,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានឈ្�
 Explain EN: When you see this sign, you should read the street name.
 
 ### RS-697-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានឈ្មោះផ្លូវ / Read the street name
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរអានឈ្មោះផ្លូវ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the street name to stay safe.
+Explain KM: នាងត្រូវតែអានឈ្មោះផ្លូវ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the street name to maintain safety and road control.
 
 ### RS-697-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-697-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9401,22 +9401,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរទៅតាម�
 Explain EN: When you see this sign, you should go in the direction of the arrow.
 
 ### RS-698-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ទៅតាមទិសព្រួញ / Go in the direction of the arrow
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរទៅតាមទិសព្រួញ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should go in the direction of the arrow to stay safe.
+Explain KM: អ្នកគួរទៅតាមទិសព្រួញ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to go in the direction of the arrow to prepare for any unexpected hazards.
 
 ### RS-698-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-698-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9490,22 +9490,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរទៅតាម�
 Explain EN: When you see this sign, you should go in the direction of the arrow.
 
 ### RS-699-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ទៅតាមទិសព្រួញ / Go in the direction of the arrow
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរទៅតាមទិសព្រួញ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should go in the direction of the arrow to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែទៅតាមទិសព្រួញ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must go in the direction of the arrow because life safety comes first.
 
 ### RS-699-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-699-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9579,22 +9579,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរទៅតាម�
 Explain EN: When you see this sign, you should go in the direction of the arrow.
 
 ### RS-700-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ទៅតាមទិសព្រួញ / Go in the direction of the arrow
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរទៅតាមទិសព្រួញ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should go in the direction of the arrow to stay safe.
+Explain KM: គាត់ត្រូវតែទៅតាមទិសព្រួញ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to go in the direction of the arrow to protect his passengers.
 
 ### RS-700-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-700-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9668,22 +9668,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរទៅតាម�
 Explain EN: When you see this sign, you should go in the direction of the arrow.
 
 ### RS-701-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ទៅតាមទិសព្រួញ / Go in the direction of the arrow
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរទៅតាមទិសព្រួញ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should go in the direction of the arrow to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយទៅតាមទិសព្រួញ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to go in the direction of the arrow to prevent crashes.
 
 ### RS-701-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-701-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9757,22 +9757,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរទៅតាម�
 Explain EN: When you see this sign, you should go in the direction of the arrow.
 
 ### RS-702-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ទៅតាមទិសព្រួញ / Go in the direction of the arrow
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរទៅតាមទិសព្រួញ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should go in the direction of the arrow to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តទៅតាមទិសព្រួញភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to go in the direction of the arrow immediately and avoid any carelessness.
 
 ### RS-702-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-702-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9846,22 +9846,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរទៅតាម�
 Explain EN: When you see this sign, you should go in the direction of the arrow.
 
 ### RS-703-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ទៅតាមទិសព្រួញ / Go in the direction of the arrow
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរទៅតាមទិសព្រួញ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should go in the direction of the arrow to stay safe.
+Explain KM: នាងត្រូវតែទៅតាមទិសព្រួញ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to go in the direction of the arrow to maintain safety and road control.
 
 ### RS-703-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-703-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -9935,22 +9935,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរទៅតាម�
 Explain EN: When you see this sign, you should go in the direction of the arrow.
 
 ### RS-704-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ទៅតាមទិសព្រួញ / Go in the direction of the arrow
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុភាគួរទៅតាមទិសព្រួញ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should go in the direction of the arrow to stay safe.
+Explain KM: អ្នកគួរទៅតាមទិសព្រួញ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to go in the direction of the arrow to prepare for any unexpected hazards.
 
 ### RS-704-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-704-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10024,22 +10024,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរទៅតាម�
 Explain EN: When you see this sign, you should go in the direction of the arrow.
 
 ### RS-705-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ទៅតាមទិសព្រួញ / Go in the direction of the arrow
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរទៅតាមទិសព្រួញ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should go in the direction of the arrow to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែទៅតាមទិសព្រួញ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must go in the direction of the arrow because life safety comes first.
 
 ### RS-705-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-705-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10113,22 +10113,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-706-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should stay in your own lane to stay safe.
+Explain KM: គាត់ត្រូវតែបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to stay in your own lane to protect his passengers.
 
 ### RS-706-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-706-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10202,22 +10202,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-707-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should stay in your own lane to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបើកក្នុងគន្លងរបស់ខ្លួន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to stay in your own lane to prevent crashes.
 
 ### RS-707-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-707-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10291,22 +10291,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-708-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should stay in your own lane to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបើកក្នុងគន្លងរបស់ខ្លួនភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to stay in your own lane immediately and avoid any carelessness.
 
 ### RS-708-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-708-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10380,22 +10380,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-709-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should stay in your own lane to stay safe.
+Explain KM: នាងត្រូវតែបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to stay in your own lane to maintain safety and road control.
 
 ### RS-709-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-709-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10469,22 +10469,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-710-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should stay in your own lane to stay safe.
+Explain KM: អ្នកគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to stay in your own lane to prepare for any unexpected hazards.
 
 ### RS-710-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-710-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10558,22 +10558,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-711-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should stay in your own lane to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបើកក្នុងគន្លងរបស់ខ្លួន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must stay in your own lane because life safety comes first.
 
 ### RS-711-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-711-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10647,22 +10647,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-712-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should stay in your own lane to stay safe.
+Explain KM: គាត់ត្រូវតែបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to stay in your own lane to protect his passengers.
 
 ### RS-712-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-712-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10736,22 +10736,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-713-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ប៊ុនគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should stay in your own lane to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបើកក្នុងគន្លងរបស់ខ្លួន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to stay in your own lane to prevent crashes.
 
 ### RS-713-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-713-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10825,22 +10825,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-714-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុខគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should stay in your own lane to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបើកក្នុងគន្លងរបស់ខ្លួនភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to stay in your own lane immediately and avoid any carelessness.
 
 ### RS-714-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-714-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -10914,22 +10914,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-715-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ដារ៉ាគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should stay in your own lane to stay safe.
+Explain KM: នាងត្រូវតែបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to stay in your own lane to maintain safety and road control.
 
 ### RS-715-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-715-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11003,22 +11003,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបើកក្�
 Explain EN: When you see this sign, you should stay in your own lane.
 
 ### RS-717-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បើកក្នុងគន្លងរបស់ខ្លួន / Stay in your own lane
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should stay in your own lane to stay safe.
+Explain KM: អ្នកគួរបើកក្នុងគន្លងរបស់ខ្លួន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to stay in your own lane to prepare for any unexpected hazards.
 
 ### RS-717-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-717-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11092,22 +11092,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-718-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should not do what the sign forbids to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must not do what the sign forbids because life safety comes first.
 
 ### RS-718-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-718-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11181,22 +11181,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-719-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-719-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-719-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11270,22 +11270,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-720-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-720-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-720-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11359,22 +11359,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-721-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should not do what the sign forbids to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តមិនធ្វើអ្វីដែលសញ្ញានេះហាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to not do what the sign forbids immediately and avoid any carelessness.
 
 ### RS-721-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-721-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11448,22 +11448,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-722-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should not do what the sign forbids to stay safe.
+Explain KM: នាងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to not do what the sign forbids to maintain safety and road control.
 
 ### RS-722-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-722-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11537,22 +11537,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-723-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុភាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should not do what the sign forbids to stay safe.
+Explain KM: អ្នកគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to not do what the sign forbids to prepare for any unexpected hazards.
 
 ### RS-723-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-723-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11626,22 +11626,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-724-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should not do what the sign forbids to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must not do what the sign forbids because life safety comes first.
 
 ### RS-724-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-724-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11715,22 +11715,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-725-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-725-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-725-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11804,22 +11804,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-726-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-726-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-726-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11893,22 +11893,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-727-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should not do what the sign forbids to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តមិនធ្វើអ្វីដែលសញ្ញានេះហាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to not do what the sign forbids immediately and avoid any carelessness.
 
 ### RS-727-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-727-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -11982,22 +11982,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-728-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should not do what the sign forbids to stay safe.
+Explain KM: នាងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to not do what the sign forbids to maintain safety and road control.
 
 ### RS-728-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-728-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12071,22 +12071,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-729-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should not do what the sign forbids to stay safe.
+Explain KM: អ្នកគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to not do what the sign forbids to prepare for any unexpected hazards.
 
 ### RS-729-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-729-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12160,22 +12160,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-730-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should not do what the sign forbids to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must not do what the sign forbids because life safety comes first.
 
 ### RS-730-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-730-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12249,22 +12249,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-731-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-731-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-731-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12338,22 +12338,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-732-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-732-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-732-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12427,22 +12427,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-733-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should not do what the sign forbids to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តមិនធ្វើអ្វីដែលសញ្ញានេះហាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to not do what the sign forbids immediately and avoid any carelessness.
 
 ### RS-733-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-733-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12516,22 +12516,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-734-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-734-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-734-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12605,22 +12605,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-735-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down and stay alert to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down and stay alert to prepare for any unexpected hazards.
 
 ### RS-735-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-735-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12694,22 +12694,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-736-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should slow down and stay alert to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must slow down and stay alert because life safety comes first.
 
 ### RS-736-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-736-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12783,22 +12783,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-737-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: វិសាលគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should slow down and stay alert to stay safe.
+Explain KM: គាត់ត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to slow down and stay alert to protect his passengers.
 
 ### RS-737-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-737-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12872,22 +12872,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-738-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down and stay alert to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down and stay alert to prevent crashes.
 
 ### RS-738-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-738-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -12961,22 +12961,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-739-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down and stay alert to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿន និងប្រុងប្រយ័ត្នភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down and stay alert immediately and avoid any carelessness.
 
 ### RS-739-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-739-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13050,22 +13050,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-740-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-740-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-740-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13139,22 +13139,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-741-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down and stay alert to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down and stay alert to prepare for any unexpected hazards.
 
 ### RS-741-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-741-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13228,22 +13228,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-742-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should slow down and stay alert to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must slow down and stay alert because life safety comes first.
 
 ### RS-742-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-742-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13317,22 +13317,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-743-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should slow down and stay alert to stay safe.
+Explain KM: គាត់ត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to slow down and stay alert to protect his passengers.
 
 ### RS-743-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-743-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13406,22 +13406,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-744-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down and stay alert to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down and stay alert to prevent crashes.
 
 ### RS-744-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-744-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13495,22 +13495,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-745-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down and stay alert to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿន និងប្រុងប្រយ័ត្នភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down and stay alert immediately and avoid any carelessness.
 
 ### RS-745-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-745-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13584,22 +13584,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-746-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-746-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-746-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13673,22 +13673,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-747-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down and stay alert to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down and stay alert to prepare for any unexpected hazards.
 
 ### RS-747-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-747-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13762,22 +13762,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-748-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should slow down and stay alert to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must slow down and stay alert because life safety comes first.
 
 ### RS-748-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-748-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13851,22 +13851,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-749-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should slow down and stay alert to stay safe.
+Explain KM: គាត់ត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to slow down and stay alert to protect his passengers.
 
 ### RS-749-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-749-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -13940,22 +13940,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-750-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down and stay alert to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down and stay alert to prevent crashes.
 
 ### RS-750-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-750-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14029,22 +14029,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-751-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុខគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down and stay alert to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿន និងប្រុងប្រយ័ត្នភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down and stay alert immediately and avoid any carelessness.
 
 ### RS-751-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-751-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14118,22 +14118,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-752-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-752-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-752-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14207,22 +14207,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-753-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down and stay alert to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down and stay alert to prepare for any unexpected hazards.
 
 ### RS-753-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-753-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14296,22 +14296,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-754-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should slow down and stay alert to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must slow down and stay alert because life safety comes first.
 
 ### RS-754-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-754-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14385,22 +14385,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-755-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should slow down and stay alert to stay safe.
+Explain KM: គាត់ត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to slow down and stay alert to protect his passengers.
 
 ### RS-755-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-755-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14474,22 +14474,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-756-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down and stay alert to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down and stay alert to prevent crashes.
 
 ### RS-756-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-756-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14563,22 +14563,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-757-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down and stay alert to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿន និងប្រុងប្រយ័ត្នភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down and stay alert immediately and avoid any carelessness.
 
 ### RS-757-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-757-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14652,22 +14652,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-758-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-758-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-758-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14741,22 +14741,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-759-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down and stay alert to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down and stay alert to prepare for any unexpected hazards.
 
 ### RS-759-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-759-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14830,22 +14830,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-760-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should slow down and stay alert to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must slow down and stay alert because life safety comes first.
 
 ### RS-760-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-760-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -14919,22 +14919,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-761-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should slow down and stay alert to stay safe.
+Explain KM: គាត់ត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to slow down and stay alert to protect his passengers.
 
 ### RS-761-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-761-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15008,22 +15008,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-762-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down and stay alert to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down and stay alert to prevent crashes.
 
 ### RS-762-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-762-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15097,22 +15097,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-763-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុខគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down and stay alert to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿន និងប្រុងប្រយ័ត្នភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down and stay alert immediately and avoid any carelessness.
 
 ### RS-763-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-763-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15186,22 +15186,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-764-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-764-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-764-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15275,22 +15275,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-765-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down and stay alert to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down and stay alert to prepare for any unexpected hazards.
 
 ### RS-765-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-765-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15364,22 +15364,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-766-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should slow down and stay alert to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must slow down and stay alert because life safety comes first.
 
 ### RS-766-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-766-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15453,22 +15453,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-767-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should slow down and stay alert to stay safe.
+Explain KM: គាត់ត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to slow down and stay alert to protect his passengers.
 
 ### RS-767-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-767-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15542,22 +15542,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-768-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down and stay alert to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down and stay alert to prevent crashes.
 
 ### RS-768-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-768-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15631,22 +15631,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-769-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុខគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down and stay alert to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿន និងប្រុងប្រយ័ត្នភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down and stay alert immediately and avoid any carelessness.
 
 ### RS-769-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-769-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15720,22 +15720,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-770-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-770-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-770-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15809,22 +15809,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-771-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down and stay alert to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down and stay alert to prepare for any unexpected hazards.
 
 ### RS-771-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-771-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15898,22 +15898,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-772-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should slow down and stay alert to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must slow down and stay alert because life safety comes first.
 
 ### RS-772-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-772-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -15987,22 +15987,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-773-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should slow down and stay alert to stay safe.
+Explain KM: គាត់ត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to slow down and stay alert to protect his passengers.
 
 ### RS-773-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-773-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16076,22 +16076,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-774-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down and stay alert to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down and stay alert to prevent crashes.
 
 ### RS-774-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-774-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16165,22 +16165,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-775-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down and stay alert to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿន និងប្រុងប្រយ័ត្នភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down and stay alert immediately and avoid any carelessness.
 
 ### RS-775-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-775-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16254,22 +16254,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-776-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-776-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-776-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16343,22 +16343,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-777-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should slow down and stay alert to stay safe.
+Explain KM: អ្នកគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to slow down and stay alert to prepare for any unexpected hazards.
 
 ### RS-777-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-777-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16432,22 +16432,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-778-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should slow down and stay alert to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must slow down and stay alert because life safety comes first.
 
 ### RS-778-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-778-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16521,22 +16521,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-779-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should slow down and stay alert to stay safe.
+Explain KM: គាត់ត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to slow down and stay alert to protect his passengers.
 
 ### RS-779-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-779-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16610,22 +16610,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-780-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should slow down and stay alert to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to slow down and stay alert to prevent crashes.
 
 ### RS-780-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-780-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16699,22 +16699,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-781-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុខគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should slow down and stay alert to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តបន្ថយល្បឿន និងប្រុងប្រយ័ត្នភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to slow down and stay alert immediately and avoid any carelessness.
 
 ### RS-781-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-781-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16788,22 +16788,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរបន្ថយ�
 Explain EN: When you see this sign, you should slow down and stay alert.
 
 ### RS-782-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន / Slow down and stay alert
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ដារ៉ាគួរបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should slow down and stay alert to stay safe.
+Explain KM: នាងត្រូវតែបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to slow down and stay alert to maintain safety and road control.
 
 ### RS-782-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-782-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16877,22 +16877,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-783-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should obey the light colour to stay safe.
+Explain KM: អ្នកគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to obey the light colour to prepare for any unexpected hazards.
 
 ### RS-783-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-783-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -16966,22 +16966,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-784-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should obey the light colour to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែធ្វើតាមពណ៌ភ្លើង ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must obey the light colour because life safety comes first.
 
 ### RS-784-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-784-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17055,22 +17055,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-785-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should obey the light colour to stay safe.
+Explain KM: គាត់ត្រូវតែធ្វើតាមពណ៌ភ្លើង ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to obey the light colour to protect his passengers.
 
 ### RS-785-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-785-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17144,22 +17144,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-786-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: ប៊ុនគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should obey the light colour to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយធ្វើតាមពណ៌ភ្លើង ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to obey the light colour to prevent crashes.
 
 ### RS-786-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-786-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17233,22 +17233,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-787-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should obey the light colour to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តធ្វើតាមពណ៌ភ្លើងភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to obey the light colour immediately and avoid any carelessness.
 
 ### RS-787-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-787-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17322,22 +17322,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-788-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ដារ៉ាគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should obey the light colour to stay safe.
+Explain KM: នាងត្រូវតែធ្វើតាមពណ៌ភ្លើង ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to obey the light colour to maintain safety and road control.
 
 ### RS-788-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-788-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17411,22 +17411,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-789-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should obey the light colour to stay safe.
+Explain KM: អ្នកគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to obey the light colour to prepare for any unexpected hazards.
 
 ### RS-789-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-789-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17500,22 +17500,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-790-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should obey the light colour to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែធ្វើតាមពណ៌ភ្លើង ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must obey the light colour because life safety comes first.
 
 ### RS-790-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-790-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17589,22 +17589,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-791-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should obey the light colour to stay safe.
+Explain KM: គាត់ត្រូវតែធ្វើតាមពណ៌ភ្លើង ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to obey the light colour to protect his passengers.
 
 ### RS-791-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-791-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17678,22 +17678,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-792-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should obey the light colour to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយធ្វើតាមពណ៌ភ្លើង ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to obey the light colour to prevent crashes.
 
 ### RS-792-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-792-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17767,22 +17767,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should obey the light colour.
 
 ### RS-793-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ធ្វើតាមពណ៌ភ្លើង / Obey the light colour
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរធ្វើតាមពណ៌ភ្លើង ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should obey the light colour to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តធ្វើតាមពណ៌ភ្លើងភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to obey the light colour immediately and avoid any carelessness.
 
 ### RS-793-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-793-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17856,22 +17856,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the traffic police's command.
 
 ### RS-794-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] ធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ / Follow the traffic police's command
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should follow the traffic police's command to stay safe.
+Explain KM: នាងត្រូវតែធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to follow the traffic police's command to maintain safety and road control.
 
 ### RS-794-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-794-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -17945,22 +17945,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the traffic police's command.
 
 ### RS-795-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] ធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ / Follow the traffic police's command
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should follow the traffic police's command to stay safe.
+Explain KM: អ្នកគួរធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to follow the traffic police's command to prepare for any unexpected hazards.
 
 ### RS-795-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-795-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18034,22 +18034,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the traffic police's command.
 
 ### RS-796-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] ធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ / Follow the traffic police's command
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should follow the traffic police's command to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must follow the traffic police's command because life safety comes first.
 
 ### RS-796-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-796-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18123,22 +18123,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the traffic police's command.
 
 ### RS-797-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] ធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ / Follow the traffic police's command
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should follow the traffic police's command to stay safe.
+Explain KM: គាត់ត្រូវតែធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to follow the traffic police's command to protect his passengers.
 
 ### RS-797-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-797-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18212,22 +18212,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should follow the traffic police's command.
 
 ### RS-798-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] ធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ / Follow the traffic police's command
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should follow the traffic police's command to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to follow the traffic police's command to prevent crashes.
 
 ### RS-798-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-798-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18301,22 +18301,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-799-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the information and follow it to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មាន ហើយធ្វើតាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the information and follow it immediately and avoid any carelessness.
 
 ### RS-799-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-799-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18390,22 +18390,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-800-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ដារ៉ាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information and follow it to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information and follow it to maintain safety and road control.
 
 ### RS-800-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-800-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18479,22 +18479,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-801-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information and follow it to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information and follow it to prepare for any unexpected hazards.
 
 ### RS-801-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-801-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18568,22 +18568,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-802-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the information and follow it to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the information and follow it because life safety comes first.
 
 ### RS-802-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-802-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18657,22 +18657,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-803-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: វិសាលគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the information and follow it to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the information and follow it to protect his passengers.
 
 ### RS-803-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-803-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18746,22 +18746,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-804-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the information and follow it to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មាន ហើយធ្វើតាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the information and follow it to prevent crashes.
 
 ### RS-804-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-804-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18835,22 +18835,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-805-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុខគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the information and follow it to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មាន ហើយធ្វើតាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the information and follow it immediately and avoid any carelessness.
 
 ### RS-805-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-805-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -18924,22 +18924,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-806-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ដារ៉ាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information and follow it to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information and follow it to maintain safety and road control.
 
 ### RS-806-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-806-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19013,22 +19013,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-807-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: សុភាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information and follow it to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information and follow it to prepare for any unexpected hazards.
 
 ### RS-807-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-807-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19102,22 +19102,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-808-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the information and follow it to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the information and follow it because life safety comes first.
 
 ### RS-808-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-808-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19191,22 +19191,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-809-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should not do what the sign forbids to stay safe.
+Explain KM: គាត់ត្រូវតែមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to not do what the sign forbids to protect his passengers.
 
 ### RS-809-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-809-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19280,22 +19280,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរមិនធ្�
 Explain EN: When you see this sign, you should not do what the sign forbids.
 
 ### RS-810-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] មិនធ្វើអ្វីដែលសញ្ញានេះហាម / Not do what the sign forbids
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ប៊ុនគួរមិនធ្វើអ្វីដែលសញ្ញានេះហាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should not do what the sign forbids to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយមិនធ្វើអ្វីដែលសញ្ញានេះហាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to not do what the sign forbids to prevent crashes.
 
 ### RS-810-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-810-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19369,22 +19369,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-811-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the information and follow it to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មាន ហើយធ្វើតាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the information and follow it immediately and avoid any carelessness.
 
 ### RS-811-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-811-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19458,22 +19458,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-812-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ដារ៉ាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information and follow it to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information and follow it to maintain safety and road control.
 
 ### RS-812-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-812-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19547,22 +19547,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-813-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information and follow it to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information and follow it to prepare for any unexpected hazards.
 
 ### RS-813-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-813-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19636,22 +19636,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-814-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: រតនាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the information and follow it to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the information and follow it because life safety comes first.
 
 ### RS-814-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-814-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19725,22 +19725,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-815-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the information and follow it to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the information and follow it to protect his passengers.
 
 ### RS-815-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-815-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19814,22 +19814,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-816-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the information and follow it to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មាន ហើយធ្វើតាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the information and follow it to prevent crashes.
 
 ### RS-816-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-816-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19903,22 +19903,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-817-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: សុខគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the information and follow it to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មាន ហើយធ្វើតាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the information and follow it immediately and avoid any carelessness.
 
 ### RS-817-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-817-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -19992,22 +19992,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-818-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information and follow it to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information and follow it to maintain safety and road control.
 
 ### RS-818-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-818-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20081,22 +20081,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-819-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information and follow it to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information and follow it to prepare for any unexpected hazards.
 
 ### RS-819-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-819-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20170,22 +20170,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-820-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: រតនាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the information and follow it to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the information and follow it because life safety comes first.
 
 ### RS-820-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-820-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20259,22 +20259,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-821-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the information and follow it to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the information and follow it to protect his passengers.
 
 ### RS-821-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-821-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20348,22 +20348,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-822-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the information and follow it to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មាន ហើយធ្វើតាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the information and follow it to prevent crashes.
 
 ### RS-822-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-822-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20437,22 +20437,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-823-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the information and follow it to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មាន ហើយធ្វើតាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the information and follow it immediately and avoid any carelessness.
 
 ### RS-823-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-823-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20526,22 +20526,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-824-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ដារ៉ាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information and follow it to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information and follow it to maintain safety and road control.
 
 ### RS-824-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-824-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20615,22 +20615,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-826-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុភាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information and follow it to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information and follow it to prepare for any unexpected hazards.
 
 ### RS-826-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-826-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20704,22 +20704,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-827-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the information and follow it to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the information and follow it because life safety comes first.
 
 ### RS-827-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-827-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20793,22 +20793,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-828-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: វិសាលគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the information and follow it to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the information and follow it to protect his passengers.
 
 ### RS-828-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-828-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20882,22 +20882,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-829-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the information and follow it to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មាន ហើយធ្វើតាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the information and follow it to prevent crashes.
 
 ### RS-829-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-829-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -20971,22 +20971,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-830-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: សុខគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should read the information and follow it to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តអានព័ត៌មាន ហើយធ្វើតាមភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to read the information and follow it immediately and avoid any carelessness.
 
 ### RS-830-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-830-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21060,22 +21060,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-831-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information and follow it to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information and follow it to maintain safety and road control.
 
 ### RS-831-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-831-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21149,22 +21149,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-832-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information and follow it to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information and follow it to prepare for any unexpected hazards.
 
 ### RS-832-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-832-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21238,22 +21238,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-833-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: រតនាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the information and follow it to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the information and follow it because life safety comes first.
 
 ### RS-833-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-833-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21327,22 +21327,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-834-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: វិសាលគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the information and follow it to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the information and follow it to protect his passengers.
 
 ### RS-834-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-834-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21416,22 +21416,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-835-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បង្កើនល្បឿន / Speed up
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
-Explain KM: ប៊ុនគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the information and follow it to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មាន ហើយធ្វើតាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the information and follow it to prevent crashes.
 
 ### RS-835-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-835-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21505,22 +21505,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរធ្វើត�
 Explain EN: When you see this sign, you should do what the sign says.
 
 ### RS-836-06 - medium - scenario (sign shown)
-KM: សុខកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុខគួរធ្វើអ្វី?
-EN: Sok is driving and sees this sign ahead. What should Sok do?
+KM: គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?
+EN: He is driving and sees this sign. How should he control his speed and mindset?
 1. [correct] ធ្វើតាមអ្វីដែលសញ្ញានេះប្រាប់ / Do what the sign says
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុខគួរធ្វើតាមអ្វីដែលសញ្ញានេះប្រាប់ ដើម្បីសុវត្ថិភាព។
-Explain EN: Sok should do what the sign says to stay safe.
+Explain KM: គាត់គួរតែសម្រេចចិត្តធ្វើតាមអ្វីដែលសញ្ញានេះប្រាប់ភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។
+Explain EN: He should choose to do what the sign says immediately and avoid any carelessness.
 
 ### RS-836-07 - medium - true_false (sign shown)
-KM: សុភាគិតថា ពេលឃើញសញ្ញានេះ សុភាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sophea thinks that when seeing this sign, Sophea can keep driving fast and ignore it.
+KM: នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។
+EN: She thinks that she only needs to obey this sign when traffic police or others are watching.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។
+Explain EN: Traffic laws must be obeyed at all times for safety, not just when being observed.
 
 ### RS-836-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21594,22 +21594,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-837-06 - medium - scenario (sign shown)
-KM: ដារ៉ាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើដារ៉ាគួរធ្វើអ្វី?
-EN: Dara is driving and sees this sign ahead. What should Dara do?
+KM: នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?
+EN: She is driving and encounters this sign on an unfamiliar road. How should she focus?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: ដារ៉ាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Dara should read the information and follow it to stay safe.
+Explain KM: នាងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។
+Explain EN: She must choose to read the information and follow it to maintain safety and road control.
 
 ### RS-837-07 - medium - true_false (sign shown)
-KM: រតនាគិតថា ពេលឃើញសញ្ញានេះ រតនាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Ratana thinks that when seeing this sign, Ratana can keep driving fast and ignore it.
+KM: យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។
+EN: We assume that if other drivers are ignoring this sign, we can also ignore it.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។
+Explain EN: Road safety starts with each of us; we must not copy the illegal actions of others.
 
 ### RS-837-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21683,22 +21683,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-838-06 - medium - scenario (sign shown)
-KM: សុភាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើសុភាគួរធ្វើអ្វី?
-EN: Sophea is driving and sees this sign ahead. What should Sophea do?
+KM: អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?
+EN: You are driving and see this sign ahead. What defensive action should you take?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 4. [ ] បង្កើនល្បឿន / Speed up
-Explain KM: សុភាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Sophea should read the information and follow it to stay safe.
+Explain KM: អ្នកគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។
+Explain EN: You should choose to read the information and follow it to prepare for any unexpected hazards.
 
 ### RS-838-07 - medium - true_false (sign shown)
-KM: វិសាលគិតថា ពេលឃើញសញ្ញានេះ វិសាលអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Visal thinks that when seeing this sign, Visal can keep driving fast and ignore it.
+KM: គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។
+EN: He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Hazards can appear unexpectedly, so this sign must be obeyed at all times.
 
 ### RS-838-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21772,22 +21772,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-839-06 - medium - scenario (sign shown)
-KM: រតនាកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើរតនាគួរធ្វើអ្វី?
-EN: Ratana is driving and sees this sign ahead. What should Ratana do?
+KM: យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?
+EN: We are in a hurry and encounter this sign. How should we manage our impatience?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បន្តបើកលឿនដដែល / Keep driving at the same speed
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: រតនាគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Ratana should read the information and follow it to stay safe.
+Explain KM: ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។
+Explain EN: Even when in a hurry, we must read the information and follow it because life safety comes first.
 
 ### RS-839-07 - medium - true_false (sign shown)
-KM: ប៊ុនគិតថា ពេលឃើញសញ្ញានេះ ប៊ុនអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Bun thinks that when seeing this sign, Bun can keep driving fast and ignore it.
+KM: នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។
+EN: She believes that when in a rush to work, she can drive past this sign without slowing down.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។
+Explain EN: Being in a hurry is not an excuse to break traffic laws or endanger others.
 
 ### RS-839-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21861,22 +21861,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-840-06 - medium - scenario (sign shown)
-KM: វិសាលកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើវិសាលគួរធ្វើអ្វី?
-EN: Visal is driving and sees this sign ahead. What should Visal do?
+KM: គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?
+EN: He is driving with passengers and sees this sign. What decision should he make to protect them?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
-Explain KM: វិសាលគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Visal should read the information and follow it to stay safe.
+Explain KM: គាត់ត្រូវតែអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។
+Explain EN: He must choose to read the information and follow it to protect his passengers.
 
 ### RS-840-07 - medium - true_false (sign shown)
-KM: សុខគិតថា ពេលឃើញសញ្ញានេះ សុខអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Sok thinks that when seeing this sign, Sok can keep driving fast and ignore it.
+KM: យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។
+EN: We feel that when driving on a very familiar road, we do not need to follow this sign.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។
+Explain EN: A driver must obey this sign at all times, regardless of road familiarity.
 
 ### RS-840-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?
@@ -21950,22 +21950,22 @@ Explain KM: ពេលឃើញសញ្ញានេះ គួរអានព័�
 Explain EN: When you see this sign, you should read the information and follow it.
 
 ### RS-841-06 - medium - scenario (sign shown)
-KM: ប៊ុនកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើប៊ុនគួរធ្វើអ្វី?
-EN: Bun is driving and sees this sign ahead. What should Bun do?
+KM: យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?
+EN: We are driving and see this sign ahead. What decision should we make to stay safe?
 1. [correct] អានព័ត៌មាន ហើយធ្វើតាម / Read the information and follow it
 2. [ ] បត់ត្រឡប់ភ្លាម / Make a U-turn at once
 3. [ ] បង្កើនល្បឿន / Speed up
 4. [ ] មិនអើពើនឹងសញ្ញា / Ignore the sign
-Explain KM: ប៊ុនគួរអានព័ត៌មាន ហើយធ្វើតាម ដើម្បីសុវត្ថិភាព។
-Explain EN: Bun should read the information and follow it to stay safe.
+Explain KM: យើងត្រូវធ្វើតាមសញ្ញាដោយអានព័ត៌មាន ហើយធ្វើតាម ការពារគ្រោះថ្នាក់។
+Explain EN: We must follow the sign by choosing to read the information and follow it to prevent crashes.
 
 ### RS-841-07 - medium - true_false (sign shown)
-KM: ដារ៉ាគិតថា ពេលឃើញសញ្ញានេះ ដារ៉ាអាចបន្តបើកលឿនដដែលដោយមិនអើពើ។
-EN: Dara thinks that when seeing this sign, Dara can keep driving fast and ignore it.
+KM: គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។
+EN: He believes he can ignore this sign if he is only glancing at his phone for a second.
 1. [ ] ត្រូវ / True
 2. [correct] ខុស / False
-Explain KM: អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។
-Explain EN: A driver must follow the sign every time.
+Explain KM: ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។
+Explain EN: Any distraction, even for a second, can cause a crash, so this sign must be obeyed.
 
 ### RS-841-08 - hard - multiple_choice (sign shown)
 KM: ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?

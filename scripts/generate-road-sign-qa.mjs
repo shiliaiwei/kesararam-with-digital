@@ -43,8 +43,7 @@ const ALL_TYPES = [...Object.values(G), DEFAULT_G].map((g) => ({ km: g.typeKm, e
 const ACTION_BAD = [{ km: "បន្តបើកលឿនដដែល", en: "Keep driving at the same speed" }, { km: "បង្កើនល្បឿន", en: "Speed up" }, { km: "មិនអើពើនឹងសញ្ញា", en: "Ignore the sign" }, { km: "បត់ត្រឡប់ភ្លាម", en: "Make a U-turn at once" }];
 const WHY_BAD = [{ km: "ដើម្បីតុបតែងផ្លូវឱ្យស្អាត", en: "It decorates the road" }, { km: "ដើម្បីបង្ហាញឈ្មោះម្ចាស់ផ្លូវ", en: "It shows the road owner's name" }, { km: "គ្មានន័យពិសេសអ្វីទេ", en: "It has no special meaning" }];
 const PENALTY_BAD = [{ km: "ការទទួលរង្វាន់", en: "a reward" }, { km: "គ្មានផលអ្វីទាំងអស់", en: "nothing at all" }, { km: "ការបើកលឿនជាងមុន", en: "driving faster than before" }];
-const WRONG_BELIEF = { km: "បន្តបើកលឿនដដែលដោយមិនអើពើ", en: "keep driving fast and ignore it" };
-const NAMES = [{ km: "ប៊ុន", en: "Bun" }, { km: "សុខ", en: "Sok" }, { km: "ដារ៉ា", en: "Dara" }, { km: "សុភា", en: "Sophea" }, { km: "រតនា", en: "Ratana" }, { km: "វិសាល", en: "Visal" }];
+// Psychological subjects are used directly in templates instead of proper names.
 
 function readEnvValue(key) {
   const env = readFileSync(".env.local", "utf8");
@@ -131,8 +130,6 @@ function item(topic, slot, difficulty, questionType, questionKm, questionEn, ans
 
 function buildTopicItems(topic, topics, idx) {
   const g = groupOf(topic.subGroup);
-  const nm = NAMES[idx % NAMES.length];
-  const nm2 = NAMES[(idx + 2) % NAMES.length];
   const meaning = answer(topic.nameKm, topic.nameEn, true);
   const meaningDistract = groupDistractors(topics, topic, 1, 3).map((d) => answer(d.nameKm, d.nameEn, false));
   const imgDistract = groupDistractors(topics, topic, 3, 3).map((d) => answer(d.nameKm, d.nameEn, false, "image_selection", d.imageUrl));
@@ -141,6 +138,84 @@ function buildTopicItems(topic, topics, idx) {
   const actAll6 = [answer(g.actionKm, cap(g.actionEn), true), ...badChoices(topic, 6, ACTION_BAD, g.actionKm, 3).map((d) => answer(d.km, d.en, false))];
   const whyAll = [answer(g.whyKm, g.whyEn, true), ...badChoices(topic, 8, WHY_BAD, g.whyKm, 3).map((d) => answer(d.km, d.en, false))];
   const penAll = [answer(g.penaltyKm, cap(g.penaltyEn), true), ...badChoices(topic, 9, PENALTY_BAD, g.penaltyKm, 3).map((d) => answer(d.km, cap(d.en), false))];
+
+  // 6 medium — scenario apply (psychological, using subjects: he, she, we, you)
+  const scenarioIndex = idx % 6;
+  let q6Km = "";
+  let q6En = "";
+  let exp6Km = "";
+  let exp6En = "";
+
+  if (scenarioIndex === 0) {
+    q6Km = "យើងកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើយើងគួរសម្រេចចិត្តបែបណាដើម្បីសុវត្ថិភាព?";
+    q6En = "We are driving and see this sign ahead. What decision should we make to stay safe?";
+    exp6Km = `យើងត្រូវធ្វើតាមសញ្ញាដោយ${g.actionKm} ការពារគ្រោះថ្នាក់។`;
+    exp6En = `We must follow the sign by choosing to ${g.actionEn} to prevent crashes.`;
+  } else if (scenarioIndex === 1) {
+    q6Km = "គាត់កំពុងបើកបរ ហើយឃើញសញ្ញានេះ តើគាត់គួរគ្រប់គ្រងអារម្មណ៍ និងល្បឿនយ៉ាងដូចម្ដេច?";
+    q6En = "He is driving and sees this sign. How should he control his speed and mindset?";
+    exp6Km = `គាត់គួរតែសម្រេចចិត្ត${g.actionKm}ភ្លាមៗ មិនត្រូវមានការធ្វេសប្រហែសទេ។`;
+    exp6En = `He should choose to ${g.actionEn} immediately and avoid any carelessness.`;
+  } else if (scenarioIndex === 2) {
+    q6Km = "នាងកំពុងបើកបរ ហើយជួបសញ្ញានេះនៅផ្លូវមិនស៊ាំ តើនាងត្រូវផ្ដោតអារម្មណ៍បែបណា?";
+    q6En = "She is driving and encounters this sign on an unfamiliar road. How should she focus?";
+    exp6Km = `នាងត្រូវតែ${g.actionKm} ដើម្បីរក្សាសុវត្ថិភាព និងការគ្រប់គ្រងផ្លូវឱ្យបានល្អ។`;
+    exp6En = `She must choose to ${g.actionEn} to maintain safety and road control.`;
+  } else if (scenarioIndex === 3) {
+    q6Km = "អ្នកកំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ តើអ្នកគួរមានសកម្មភាពបង្ការបែបណា?";
+    q6En = "You are driving and see this sign ahead. What defensive action should you take?";
+    exp6Km = `អ្នកគួរ${g.actionKm} ដើម្បីត្រៀមខ្លួនបង្ការរាល់គ្រោះថ្នាក់ជាយថាហេតុ។`;
+    exp6En = `You should choose to ${g.actionEn} to prepare for any unexpected hazards.`;
+  } else if (scenarioIndex === 4) {
+    q6Km = "យើងកំពុងប្រញាប់ ហើយជួបសញ្ញានេះ តើយើងគួរទប់ទល់នឹងអារម្មណ៍ចង់បើកលឿនដោយរបៀបណា?";
+    q6En = "We are in a hurry and encounter this sign. How should we manage our impatience?";
+    exp6Km = `ទោះបីជាប្រញាប់ក៏ដោយ យើងត្រូវតែ${g.actionKm} ព្រោះសុវត្ថិភាពជីវិតជាចម្បង។`;
+    exp6En = `Even when in a hurry, we must ${g.actionEn} because life safety comes first.`;
+  } else {
+    q6Km = "គាត់កំពុងបើកបរជាមួយមិត្តភក្តិ ហើយឃើញសញ្ញានេះ តើគាត់គួរសម្រេចចិត្តបែបណាដើម្បីការពារអ្នករួមដំណើរ?";
+    q6En = "He is driving with passengers and sees this sign. What decision should he make to protect them?";
+    exp6Km = `គាត់ត្រូវតែ${g.actionKm} ដើម្បីការពារអ្នករួមដំណើររបស់គាត់។`;
+    exp6En = `He must choose to ${g.actionEn} to protect his passengers.`;
+  }
+
+  // 7 medium — True/False misconception (psychological, using subjects: he, she, we)
+  const tfIndex = (idx + 1) % 6;
+  let q7Km = "";
+  let q7En = "";
+  let exp7Km = "";
+  let exp7En = "";
+
+  if (tfIndex === 0) {
+    q7Km = "យើងយល់ថា ពេលបើកបរលើផ្លូវដែលធ្លាប់ស្គាល់ច្បាស់ យើងមិនបាច់គោរពសញ្ញានេះទេ។";
+    q7En = "We feel that when driving on a very familiar road, we do not need to follow this sign.";
+    exp7Km = "អ្នកបើកបរត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល មិនថាផ្លូវនោះធ្លាប់ស្គាល់ ឬ មិនធ្លាប់ស្គាល់ទេ។";
+    exp7En = "A driver must obey this sign at all times, regardless of road familiarity.";
+  } else if (tfIndex === 1) {
+    q7Km = "គាត់ជឿថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់គ្រាន់តែក្រឡេកមើលទូរសព្ទមួយភ្លែត។";
+    q7En = "He believes he can ignore this sign if he is only glancing at his phone for a second.";
+    exp7Km = "ការធ្វេសប្រហែសទោះបីតែមួយវិនាទីក៏អាចបង្កគ្រោះថ្នាក់បានដែរ ដូច្នេះត្រូវគោរពសញ្ញានេះគ្រប់ពេល។";
+    exp7En = "Any distraction, even for a second, can cause a crash, so this sign must be obeyed.";
+  } else if (tfIndex === 2) {
+    q7Km = "នាងគិតថា នាងត្រូវគោរពសញ្ញានេះតែពេលមានប៉ូលិសចរាចរណ៍ ឬ គេមើលមកប៉ុណ្ណោះ។";
+    q7En = "She thinks that she only needs to obey this sign when traffic police or others are watching.";
+    exp7Km = "ច្បាប់ចរាចរណ៍ត្រូវតែគោរពគ្រប់ពេលដើម្បីសុវត្ថិភាព មិនមែនគោរពតែពេលមានគេមើលនោះទេ។";
+    exp7En = "Traffic laws must be obeyed at all times for safety, not just when being observed.";
+  } else if (tfIndex === 3) {
+    q7Km = "យើងយល់ថា ប្រសិនបើអ្នកបើកបរផ្សេងទៀតមិនគោរពសញ្ញានេះទេ យើងក៏មិនបាច់គោរពដែរ។";
+    q7En = "We assume that if other drivers are ignoring this sign, we can also ignore it.";
+    exp7Km = "សុវត្ថិភាពចរាចរណ៍ចាប់ផ្ដើមពីខ្លួនយើងម្នាក់ៗ មិនត្រូវធ្វើតាមការល្មើសច្បាប់របស់អ្នកដទៃទេ។";
+    exp7En = "Road safety starts with each of us; we must not copy the illegal actions of others.";
+  } else if (tfIndex === 4) {
+    q7Km = "គាត់គិតថា គាត់អាចមិនអើពើនឹងសញ្ញានេះបាន ប្រសិនបើគាត់មើលឃើញផ្លូវស្ងាត់ និងគ្មានគ្រោះថ្នាក់។";
+    q7En = "He assumes that he can ignore this sign if he sees the road is empty and feels there is no danger.";
+    exp7Km = "គ្រោះថ្នាក់អាចកើតឡើងដោយស្មានមិនត្រូវ ដូច្នេះត្រូវតែគោរពសញ្ញានេះគ្រប់ពេល។";
+    exp7En = "Hazards can appear unexpectedly, so this sign must be obeyed at all times.";
+  } else {
+    q7Km = "នាងយល់ថា ពេលប្រញាប់ទៅកន្លែងធ្វើការ នាងអាចបើកហួសសញ្ញានេះដោយមិនបាច់បន្ថយល្បឿនទេ។";
+    q7En = "She believes that when in a rush to work, she can drive past this sign without slowing down.";
+    exp7Km = "ការប្រញាប់មិនមែនជាលេសក្នុងការល្មើសច្បាប់ចរាចរណ៍ ឬ បង្កគ្រោះថ្នាក់ដល់អ្នកដទៃទេ។";
+    exp7En = "Being in a hurry is not an excuse to break traffic laws or endanger others.";
+  }
 
   return [
     // 1 easy — meaning (sign shown)
@@ -175,16 +250,12 @@ function buildTopicItems(topic, topics, idx) {
       actAll, `ពេលឃើញសញ្ញានេះ គួរ${g.actionKm}។`, `When you see this sign, you should ${g.actionEn}.`),
     // 6 medium — scenario apply
     item(topic, 6, "medium", "scenario",
-      `${nm.km}កំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើ${nm.km}គួរធ្វើអ្វី?`,
-      `${nm.en} is driving and sees this sign ahead. What should ${nm.en} do?`,
-      actAll6, `${nm.km}គួរ${g.actionKm} ដើម្បីសុវត្ថិភាព។`, `${nm.en} should ${g.actionEn} to stay safe.`),
+      q6Km, q6En, actAll6, exp6Km, exp6En),
     // 7 medium — True/False misconception (false), sign shown
     item(topic, 7, "medium", "true_false",
-      `${nm2.km}គិតថា ពេលឃើញសញ្ញានេះ ${nm2.km}អាច${WRONG_BELIEF.km}។`,
-      `${nm2.en} thinks that when seeing this sign, ${nm2.en} can ${WRONG_BELIEF.en}.`,
+      q7Km, q7En,
       [answer("ត្រូវ", "True", false), answer("ខុស", "False", true)],
-      `អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។`,
-      "A driver must follow the sign every time."),
+      exp7Km, exp7En),
     // 8 hard — why / safety (sign shown)
     item(topic, 8, "hard", "multiple_choice",
       "ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?", "Why is this sign important for safety?",
