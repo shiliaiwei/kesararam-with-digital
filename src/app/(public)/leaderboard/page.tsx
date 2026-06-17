@@ -1228,7 +1228,7 @@ export default function LeaderboardPage() {
                   <span className="h-[3px] flex-1 max-w-[80px] bg-black" />
                 </div>
 
-                <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
+                <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full pt-12">
                 {[
                   { cfg: PODIUM_CFG[0], user: top3[1] },
                   { cfg: PODIUM_CFG[1], user: top3[0] },
