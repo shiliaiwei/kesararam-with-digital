@@ -45,15 +45,15 @@ export interface RewardItem {
 }
 
 export const REWARD_ITEMS: RewardItem[] = [
-  { id: 5, name: "Eraser",      nameKh: "ជ័រលុប",           cost: 250,   color: "#a855f7", image: "/rewards/eraser.webp" },
-  { id: 2, name: "Pencil",      nameKh: "ខ្មៅដៃ",           cost: 400,   color: "#eab308", image: "/rewards/pencil.webp" },
-  { id: 3, name: "Pen",         nameKh: "ប៊ិច",              cost: 650,   color: "#22c55e", image: "/rewards/pen.webp" },
-  { id: 4, name: "Ruler",       nameKh: "បន្ទាត់",           cost: 950,   color: "#f97316", image: "/rewards/ruler.webp" },
-  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់",       cost: 1400,  color: "#ef4444", image: "/rewards/highlighter.webp" },
-  { id: 7, name: "Notes",       nameKh: "ក្រដាសសម្គាល់",     cost: 2000,  color: "#06b6d4", image: "/rewards/notes.webp" },
-  { id: 1, name: "Notebook",    nameKh: "សៀវភៅកត់ត្រា",      cost: 3000,  color: "#3b82f6", image: "/rewards/notebook.webp" },
-  { id: 8, name: "Kit",         nameKh: "ឧបករណ៍គណិត",       cost: 4500,  color: "#ec4899", image: "/rewards/kit.webp" },
-  { id: 9, name: "Planner",     nameKh: "ផែនការសិក្សា",      cost: 6500,  color: "#84cc16", image: "/rewards/planner.webp" },
+  { id: 5, name: "Eraser",      nameKh: "ជ័រលុប",           cost: 500,   color: "#a855f7", image: "/rewards/eraser.webp" },
+  { id: 2, name: "Pencil",      nameKh: "ខ្មៅដៃ",           cost: 800,   color: "#eab308", image: "/rewards/pencil.webp" },
+  { id: 3, name: "Pen",         nameKh: "ប៊ិច",              cost: 1300,  color: "#22c55e", image: "/rewards/pen.webp" },
+  { id: 4, name: "Ruler",       nameKh: "បន្ទាត់",           cost: 1900,  color: "#f97316", image: "/rewards/ruler.webp" },
+  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់",       cost: 2800,  color: "#ef4444", image: "/rewards/highlighter.webp" },
+  { id: 7, name: "Notes",       nameKh: "ក្រដាសសម្គាល់",     cost: 4000,  color: "#06b6d4", image: "/rewards/notes.webp" },
+  { id: 1, name: "Notebook",    nameKh: "សៀវភៅកត់ត្រា",      cost: 6000,  color: "#3b82f6", image: "/rewards/notebook.webp" },
+  { id: 8, name: "Kit",         nameKh: "ឧបករណ៍គណិត",       cost: 9000,  color: "#ec4899", image: "/rewards/kit.webp" },
+  { id: 9, name: "Planner",     nameKh: "ផែនការសិក្សា",      cost: 13000, color: "#84cc16", image: "/rewards/planner.webp" },
 ];
 
 /**
@@ -63,10 +63,10 @@ export const REWARD_ITEMS: RewardItem[] = [
 export type RewardRarity = "common" | "rare" | "epic" | "legendary" | "mythic";
 
 export function getRewardRarity(cost: number): RewardRarity {
-  if (cost >= 6000) return "mythic";
-  if (cost >= 3000) return "legendary";
-  if (cost >= 1400) return "epic";
-  if (cost >= 650) return "rare";
+  if (cost >= 12000) return "mythic";
+  if (cost >= 6000) return "legendary";
+  if (cost >= 2800) return "epic";
+  if (cost >= 1300) return "rare";
   return "common";
 }
 

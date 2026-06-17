@@ -550,10 +550,11 @@ const TIER_COOLDOWNS: Record<string, number> = {
 };
 
 // ── REWARD CARD (Brutalist Premium Redesign) ──────────────────────────────────
-function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimePoints = 0 }: {
+function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimePoints = 0, teacherInventory = [] }: {
   item: typeof REWARD_ITEMS[number]; userPoints: number;
   isLoggedIn: boolean; onClaim: (item: typeof REWARD_ITEMS[number]) => void; lang: string;
   userLifetimePoints?: number;
+  teacherInventory?: any[];
 }) {
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "var(--font-system)" } : {};
@@ -602,7 +603,13 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
     setMousePos({ x, y });
   };
 
-  const canClaim = isLoggedIn && userPoints >= item.cost && !claimed;
+  const itemConfig = teacherInventory?.find((i: any) => i.itemId === item.id);
+  const isFrozen = itemConfig ? !!itemConfig.frozen : false;
+  const isOutOfStock = itemConfig ? (itemConfig.stock === 0 || itemConfig.stock === "0") : false;
+  const stockCount = itemConfig ? Number(itemConfig.stock) : null;
+  const isPushed = itemConfig ? !!itemConfig.pushed : false;
+
+  const canClaim = isLoggedIn && userPoints >= item.cost && !claimed && !isFrozen && !isOutOfStock;
   const rawPct = Math.min(100, (userPoints / item.cost) * 100);
   const pct = Math.round(rawPct);
 
@@ -738,11 +745,38 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
           }}
         />
 
-        {/* Lucide Badge Tag */}
-        {bonusBadge && !claimed && (
-          <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000]">
-            <bonusBadge.icon size={10} strokeWidth={3.5} className="text-yellow-400" />
-            <span>{bonusBadge.label}</span>
+        {/* Availability Badge */}
+        {!claimed && (
+          isLoggedIn ? (
+            isFrozen ? (
+              <div className="absolute top-3 left-3 z-20 bg-red-600 text-white text-[8px] font-black uppercase px-2 py-1 border-2 border-black shadow-[2px_2px_0_#000]">
+                <span>{kh ? "ផ្អាកប្តូរ" : "FROZEN"}</span>
+              </div>
+            ) : isOutOfStock ? (
+              <div className="absolute top-3 left-3 z-20 bg-zinc-600 text-white text-[8px] font-black uppercase px-2 py-1 border-2 border-black shadow-[2px_2px_0_#000]">
+                <span>{kh ? "អស់ស្តុក" : "OUT OF STOCK"}</span>
+              </div>
+            ) : stockCount !== null ? (
+              <div className="absolute top-3 left-3 z-20 bg-green-600 text-white text-[8px] font-black uppercase px-2 py-1 border-2 border-black shadow-[2px_2px_0_#000]">
+                <span>{kh ? `ស្តុក៖ ${stockCount}` : `STOCK: ${stockCount}`}</span>
+              </div>
+            ) : (
+              <div className="absolute top-3 left-3 z-20 bg-green-600 text-white text-[8px] font-black uppercase px-2 py-1 border-2 border-black shadow-[2px_2px_0_#000]">
+                <span>{kh ? "មានស្តុក" : "IN STOCK"}</span>
+              </div>
+            )
+          ) : (
+            <div className="absolute top-3 left-3 z-20 bg-blue-600 text-white text-[8px] font-black uppercase px-2 py-1 border-2 border-black shadow-[2px_2px_0_#000]">
+              <span>{kh ? "មានជានិច្ច" : "ALWAYS AVAILABLE"}</span>
+            </div>
+          )
+        )}
+
+        {/* Featured Star Badge (if pushed by teacher) */}
+        {!claimed && isPushed && (
+          <div className="absolute top-3 right-3 z-20 bg-yellow-400 text-black text-[8px] font-black uppercase px-2 py-1 border-2 border-black shadow-[2px_2px_0_#000] flex items-center gap-1 animate-pulse">
+            <Star size={10} className="fill-black text-black" />
+            <span>{kh ? "★ ណែនាំពិសេស" : "★ FEATURED"}</span>
           </div>
         )}
 
@@ -873,6 +907,20 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
               <Lock size={12} strokeWidth={3} />
               {kh ? "ចូលគណនីដើម្បីទទួល" : "LOG IN TO CLAIM"}
             </a>
+          ) : isFrozen ? (
+            <button disabled
+              className="w-full py-3 font-black text-xs border-3 border-black bg-zinc-100 text-zinc-400 cursor-not-allowed leading-none flex items-center justify-center gap-1.5 uppercase tracking-wider"
+              style={{ boxShadow: `3px 3px 0 ${rmeta.accent}`, ...kf }}>
+              <Lock size={12} strokeWidth={3} className="text-zinc-400" />
+              <span>{kh ? "ផ្អាកប្តូរជាបណ្តោះអាសន្ន" : "TEMPORARILY FROZEN"}</span>
+            </button>
+          ) : isOutOfStock ? (
+            <button disabled
+              className="w-full py-3 font-black text-xs border-3 border-black bg-zinc-100 text-zinc-400 cursor-not-allowed leading-none flex items-center justify-center gap-1.5 uppercase tracking-wider"
+              style={{ boxShadow: `3px 3px 0 ${rmeta.accent}`, ...kf }}>
+              <Lock size={12} strokeWidth={3} className="text-zinc-400" />
+              <span>{kh ? "អស់ពីស្តុក" : "OUT OF STOCK"}</span>
+            </button>
           ) : canClaim ? (
             <button
               onClick={handleClaim}
@@ -950,6 +998,7 @@ export default function LeaderboardPage() {
   // Real-time tracking user points state
   const [userPoints, setUserPoints] = useState(0);
   const [claimMsg, setClaimMsg] = useState("");
+  const [teacherInventory, setTeacherInventory] = useState<any[]>([]);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [countdown, setCountdown] = useState(60);
 
@@ -1016,6 +1065,9 @@ export default function LeaderboardPage() {
                   setUserPoints(Math.max(0, cd.balance.available));
                 } else {
                   setUserPoints(Math.max(0, livePoints || lifetimePoints));
+                }
+                if (cd && Array.isArray(cd.teacherInventory)) {
+                  setTeacherInventory(cd.teacherInventory);
                 }
               })
               .catch(() => setUserPoints(Math.max(0, livePoints || lifetimePoints)));
@@ -1517,17 +1569,29 @@ export default function LeaderboardPage() {
 
                 {/* Responsive Cards Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                  {REWARD_ITEMS.map((item, idx) => (
-                    <RewardCard
-                      key={item.id}
-                      item={item}
-                      userPoints={userPoints}
-                      isLoggedIn={!!currentUser}
-                      lang={lang}
-                      onClaim={handleClaimItem}
-                      userLifetimePoints={currentUser?.lifetimePoints ?? 0}
-                    />
-                  ))}
+                  {(() => {
+                    const sortedItems = [...REWARD_ITEMS].sort((a, b) => {
+                      const aConf = teacherInventory.find((i: any) => i.itemId === a.id);
+                      const bConf = teacherInventory.find((i: any) => i.itemId === b.id);
+                      const aPushed = aConf ? !!aConf.pushed : false;
+                      const bPushed = bConf ? !!bConf.pushed : false;
+                      if (aPushed && !bPushed) return -1;
+                      if (!aPushed && bPushed) return 1;
+                      return a.cost - b.cost;
+                    });
+                    return sortedItems.map((item, idx) => (
+                      <RewardCard
+                        key={item.id}
+                        item={item}
+                        userPoints={userPoints}
+                        isLoggedIn={!!currentUser}
+                        lang={lang}
+                        onClaim={handleClaimItem}
+                        userLifetimePoints={currentUser?.lifetimePoints ?? 0}
+                        teacherInventory={teacherInventory}
+                      />
+                    ));
+                  })()}
                 </div>
 
                 {/* How it works + delivery note */}

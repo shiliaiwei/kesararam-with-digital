@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { REWARD_ITEMS } from "@/lib/rewards";
 
 type ClaimStatus = "pending" | "accepted" | "fulfilled" | "rejected";
 
@@ -43,11 +44,18 @@ function timeAgo(iso: string): string {
 }
 
 export function ClaimsContent() {
+  const [activeTab, setActiveTab] = useState<"claims" | "inventory">("claims");
   const [claims, setClaims] = useState<TeacherClaim[]>([]);
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState<number | null>(null);
   const [error, setError] = useState("");
+
+  // Inventory states
+  const [inventory, setInventory] = useState<any[]>([]);
+  const [savingInv, setSavingInv] = useState(false);
+  const [invError, setInvError] = useState("");
+  const [invSuccess, setInvSuccess] = useState("");
 
   const load = useCallback(async () => {
     try {
@@ -63,11 +71,37 @@ export function ClaimsContent() {
     }
   }, []);
 
+  const loadInventory = useCallback(async () => {
+    try {
+      const res = await fetch("/api/teacher/inventory", { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to load inventory");
+      const data = await res.json();
+      
+      const serverInv = data.inventory ?? [];
+      const initialized = REWARD_ITEMS.map((item) => {
+        const existing = serverInv.find((i: any) => i.itemId === item.id);
+        return {
+          itemId: item.id,
+          name: item.name,
+          nameKh: item.nameKh,
+          cost: item.cost,
+          stock: existing ? existing.stock : 10,
+          frozen: existing ? !!existing.frozen : false,
+          pushed: existing ? !!existing.pushed : false,
+        };
+      });
+      setInventory(initialized);
+    } catch (e) {
+      console.error("Error loading inventory:", e);
+    }
+  }, []);
+
   useEffect(() => {
     load();
-    const t = setInterval(load, 20000); // auto-refresh — new claims arrive while open
+    loadInventory();
+    const t = setInterval(load, 20000);
     return () => clearInterval(t);
-  }, [load]);
+  }, [load, loadInventory]);
 
   async function act(id: number, action: "accept" | "reject" | "fulfill") {
     if (action === "reject" && !confirm("Reject this claim? The student's points are refunded.")) return;
@@ -91,6 +125,45 @@ export function ClaimsContent() {
     }
   }
 
+  async function saveInventory() {
+    setSavingInv(true);
+    setInvError("");
+    setInvSuccess("");
+    try {
+      const res = await fetch("/api/teacher/inventory", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ inventory }),
+      });
+      if (!res.ok) throw new Error("Failed to save inventory settings");
+      setInvSuccess("Inventory settings saved successfully!");
+      setTimeout(() => setInvSuccess(""), 3000);
+    } catch (e) {
+      setInvError((e as Error).message);
+    } finally {
+      setSavingInv(false);
+    }
+  }
+
+  const handleStockChange = (itemId: number, value: string) => {
+    const stockVal = value === "" ? 0 : Math.max(0, parseInt(value) || 0);
+    setInventory((prev) =>
+      prev.map((i) => (i.itemId === itemId ? { ...i, stock: stockVal } : i))
+    );
+  };
+
+  const toggleFrozen = (itemId: number) => {
+    setInventory((prev) =>
+      prev.map((i) => (i.itemId === itemId ? { ...i, frozen: !i.frozen } : i))
+    );
+  };
+
+  const togglePushed = (itemId: number) => {
+    setInventory((prev) =>
+      prev.map((i) => (i.itemId === itemId ? { ...i, pushed: !i.pushed } : i))
+    );
+  };
+
   const pending = claims.filter((c) => c.status === "pending");
   const preparing = claims.filter((c) => c.status === "accepted");
   const history = claims.filter((c) => c.status === "fulfilled" || c.status === "rejected");
@@ -105,10 +178,10 @@ export function ClaimsContent() {
           </span>
           <div>
             <h1 className="text-2xl md:text-3xl font-black text-black leading-none tracking-tight">
-              REWARD CLAIMS
+              REWARD CLAIMS & STORE CONTROL
             </h1>
             <p className="text-black/70 text-xs font-bold mt-1">
-              Students claim store items with live-game points. Accept to prepare, then hand it over in class.
+              Manage student claims and customize store item availability, stock count, and freeze status.
             </p>
           </div>
         </div>
@@ -119,51 +192,165 @@ export function ClaimsContent() {
         </div>
       </div>
 
+      {/* Tabs Menu */}
+      <div className="flex border-b-4 border-black mb-6">
+        <button
+          onClick={() => setActiveTab("claims")}
+          className={`px-5 py-3 font-black text-sm border-t-4 border-x-4 border-black transition-all ${
+            activeTab === "claims"
+              ? "bg-black text-white translate-y-[4px]"
+              : "bg-white text-black hover:bg-yellow-300"
+          }`}
+        >
+          STUDENT CLAIMS ({pending.length + preparing.length})
+        </button>
+        <button
+          onClick={() => setActiveTab("inventory")}
+          className={`px-5 py-3 font-black text-sm border-t-4 border-x-4 border-black border-l-0 transition-all ${
+            activeTab === "inventory"
+              ? "bg-black text-white translate-y-[4px]"
+              : "bg-white text-black hover:bg-yellow-300"
+          }`}
+        >
+          MANAGE STORE INVENTORY
+        </button>
+      </div>
+
       {error && (
         <div className="border-2 border-black bg-red-100 text-red-800 font-bold text-sm p-3 mb-4 shadow-[3px_3px_0_#000]">
           {error}
         </div>
       )}
 
-      {loading ? (
-        <p className="text-center text-zinc-500 font-bold py-12">Loading claims…</p>
-      ) : claims.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <div className="space-y-8">
-          <Section title="Needs your action" icon="notifications_active" count={pending.length}>
-            {pending.length === 0 ? (
-              <Muted>No pending claims right now.</Muted>
-            ) : (
-              pending.map((c) => (
-                <ClaimRow key={c.id} c={c} busy={busyId === c.id}>
-                  <ActionBtn label="Accept" icon="check" color="#22c55e" onClick={() => act(c.id, "accept")} disabled={busyId === c.id} />
-                  <ActionBtn label="Reject" icon="close" color="#ef4444" outline onClick={() => act(c.id, "reject")} disabled={busyId === c.id} />
-                </ClaimRow>
-              ))
-            )}
-          </Section>
-
-          <Section title="Preparing to give" icon="inventory_2" count={preparing.length}>
-            {preparing.length === 0 ? (
-              <Muted>Nothing being prepared.</Muted>
-            ) : (
-              preparing.map((c) => (
-                <ClaimRow key={c.id} c={c} busy={busyId === c.id}>
-                  <ActionBtn label="Mark as given" icon="task_alt" color="#22c55e" onClick={() => act(c.id, "fulfill")} disabled={busyId === c.id} />
-                  <ActionBtn label="Reject" icon="close" color="#ef4444" outline onClick={() => act(c.id, "reject")} disabled={busyId === c.id} />
-                </ClaimRow>
-              ))
-            )}
-          </Section>
-
-          {history.length > 0 && (
-            <Section title="History" icon="history" count={history.length}>
-              {history.map((c) => (
-                <ClaimRow key={c.id} c={c} busy={false} />
-              ))}
+      {activeTab === "claims" ? (
+        loading ? (
+          <p className="text-center text-zinc-500 font-bold py-12">Loading claims…</p>
+        ) : claims.length === 0 ? (
+          <EmptyState />
+        ) : (
+          <div className="space-y-8">
+            <Section title="Needs your action" icon="notifications_active" count={pending.length}>
+              {pending.length === 0 ? (
+                <Muted>No pending claims right now.</Muted>
+              ) : (
+                pending.map((c) => (
+                  <ClaimRow key={c.id} c={c} busy={busyId === c.id}>
+                    <ActionBtn label="Accept" icon="check" color="#22c55e" onClick={() => act(c.id, "accept")} disabled={busyId === c.id} />
+                    <ActionBtn label="Reject" icon="close" color="#ef4444" outline onClick={() => act(c.id, "reject")} disabled={busyId === c.id} />
+                  </ClaimRow>
+                ))
+              )}
             </Section>
+
+            <Section title="Preparing to give" icon="inventory_2" count={preparing.length}>
+              {preparing.length === 0 ? (
+                <Muted>Nothing being prepared.</Muted>
+              ) : (
+                preparing.map((c) => (
+                  <ClaimRow key={c.id} c={c} busy={busyId === c.id}>
+                    <ActionBtn label="Mark as given" icon="task_alt" color="#22c55e" onClick={() => act(c.id, "fulfill")} disabled={busyId === c.id} />
+                    <ActionBtn label="Reject" icon="close" color="#ef4444" outline onClick={() => act(c.id, "reject")} disabled={busyId === c.id} />
+                  </ClaimRow>
+                ))
+              )}
+            </Section>
+
+            {history.length > 0 && (
+              <Section title="History" icon="history" count={history.length}>
+                {history.map((c) => (
+                  <ClaimRow key={c.id} c={c} busy={false} />
+                ))}
+              </Section>
+            )}
+          </div>
+        )
+      ) : (
+        /* Inventory Management Tab */
+        <div className="space-y-6">
+          {invError && (
+            <div className="border-2 border-black bg-red-100 text-red-800 font-bold text-sm p-3 shadow-[3px_3px_0_#000]">
+              {invError}
+            </div>
           )}
+          {invSuccess && (
+            <div className="border-2 border-black bg-green-100 text-green-800 font-bold text-sm p-3 shadow-[3px_3px_0_#000]">
+              {invSuccess}
+            </div>
+          )}
+
+          <div className="bg-white border-4 border-black p-5 shadow-[6px_6px_0_#000]">
+            <h2 className="text-lg font-black text-black uppercase mb-4 flex items-center gap-2">
+              <span className="material-symbols-rounded">inventory</span>
+              Teacher Stock Controller
+            </h2>
+
+            <div className="divide-y-2 divide-black">
+              {inventory.map((item) => (
+                <div key={item.itemId} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-zinc-100 border-2 border-black flex items-center justify-center shrink-0">
+                      <img src={`/rewards/${item.name.toLowerCase()}.webp`} alt="" className="w-full h-full object-cover" onError={(e) => { (e.target as any).src = "/rewards/eraser.webp"; }} />
+                    </div>
+                    <div>
+                      <span className="font-black text-black block leading-none">{item.name} / {item.nameKh}</span>
+                      <span className="text-xs font-bold text-zinc-500 font-mono mt-1 block">{item.cost.toLocaleString()} PTS</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-3">
+                    {/* Stock Count */}
+                    <div className="flex items-center gap-2 bg-zinc-50 border-2 border-black px-2.5 py-1.5 shadow-[2px_2px_0_#000]">
+                      <span className="text-[10px] font-black uppercase text-zinc-500">Stock:</span>
+                      <input
+                        type="number"
+                        min="0"
+                        value={item.stock}
+                        onChange={(e) => handleStockChange(item.itemId, e.target.value)}
+                        className="w-14 font-mono font-black text-center text-sm border-b border-black outline-none bg-transparent"
+                      />
+                    </div>
+
+                    {/* Freeze toggle */}
+                    <button
+                      onClick={() => toggleFrozen(item.itemId)}
+                      className={`px-3 py-1.5 text-xs font-black uppercase border-2 border-black shadow-[2px_2px_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-1 ${
+                        item.frozen ? "bg-red-500 text-white" : "bg-white text-black hover:bg-yellow-300"
+                      }`}
+                    >
+                      <span className="material-symbols-rounded text-sm" style={{ fontSize: "14px" }}>
+                        {item.frozen ? "ac_unit" : "check_circle"}
+                      </span>
+                      {item.frozen ? "Frozen" : "Active"}
+                    </button>
+
+                    {/* Push toggle */}
+                    <button
+                      onClick={() => togglePushed(item.itemId)}
+                      className={`px-3 py-1.5 text-xs font-black uppercase border-2 border-black shadow-[2px_2px_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-1 ${
+                        item.pushed ? "bg-yellow-400 text-black" : "bg-white text-black hover:bg-yellow-300"
+                      }`}
+                    >
+                      <span className="material-symbols-rounded text-sm" style={{ fontSize: "14px" }}>
+                        {item.pushed ? "push_pin" : "keep"}
+                      </span>
+                      {item.pushed ? "Featured" : "Feature"}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 pt-4 border-t-2 border-dashed border-zinc-200 flex justify-end">
+              <button
+                onClick={saveInventory}
+                disabled={savingInv}
+                className="bg-yellow-400 hover:bg-yellow-500 text-black border-4 border-black px-6 py-3 font-black text-sm uppercase shadow-[4px_4px_0_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:opacity-50 flex items-center gap-2"
+              >
+                <span className="material-symbols-rounded">save</span>
+                {savingInv ? "Saving settings..." : "Save inventory settings"}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

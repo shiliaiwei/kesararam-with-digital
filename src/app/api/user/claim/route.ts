@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { rewardClaims } from "@/db/schema/content";
 import { eq, and, inArray, desc } from "drizzle-orm";
 import { getRewardItem } from "@/lib/rewards";
+import { users } from "@/db/schema/users";
 import {
   resolveStudentClass,
   getClaimBalance,
@@ -51,6 +52,43 @@ export async function POST(req: Request) {
             "Join a class first — reward claims are handed over by your teacher in class.",
         },
         { status: 422 }
+      );
+    }
+
+    // Load teacher inventory settings
+    let isFrozen = false;
+    let isOutOfStock = false;
+    if (klass.teacherId) {
+      const [teacher] = await db
+        .select({ claimedRewards: users.claimedRewards })
+        .from(users)
+        .where(eq(users.id, klass.teacherId))
+        .limit(1);
+      if (teacher && teacher.claimedRewards) {
+        try {
+          const inv = JSON.parse(teacher.claimedRewards);
+          const itemConfig = inv.find((i: any) => i.itemId === item.id);
+          if (itemConfig) {
+            isFrozen = !!itemConfig.frozen;
+            isOutOfStock = itemConfig.stock === 0 || itemConfig.stock === "0";
+          }
+        } catch (e) {
+          // ignore parsing error
+        }
+      }
+    }
+
+    if (isFrozen) {
+      return NextResponse.json(
+        { error: "frozen", message: "This item is currently unavailable to claim." },
+        { status: 400 }
+      );
+    }
+
+    if (isOutOfStock) {
+      return NextResponse.json(
+        { error: "out_of_stock", message: "This item is currently out of stock." },
+        { status: 400 }
       );
     }
 
@@ -134,5 +172,22 @@ export async function GET() {
     getClaimBalance(session.id),
   ]);
 
-  return NextResponse.json({ claims, balance, heldStatuses: CLAIM_HELD_STATUSES });
+  let teacherInventory: any[] = [];
+  try {
+    const klass = await resolveStudentClass(session.id);
+    if (klass && klass.teacherId) {
+      const [teacher] = await db
+        .select({ claimedRewards: users.claimedRewards })
+        .from(users)
+        .where(eq(users.id, klass.teacherId))
+        .limit(1);
+      if (teacher && teacher.claimedRewards) {
+        teacherInventory = JSON.parse(teacher.claimedRewards);
+      }
+    }
+  } catch (e) {
+    console.error("Error loading teacher inventory for student:", e);
+  }
+
+  return NextResponse.json({ claims, balance, heldStatuses: CLAIM_HELD_STATUSES, teacherInventory });
 }
