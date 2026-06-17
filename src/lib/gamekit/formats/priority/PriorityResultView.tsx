@@ -38,7 +38,7 @@ export function PriorityResultView({
     lang: Lang;
 }) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
+    const khFont = { fontFamily: "var(--font-qa)" };
 
     return (
         <div className="flex flex-col gap-3">

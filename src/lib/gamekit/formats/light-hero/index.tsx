@@ -21,7 +21,7 @@ const LIGHT_COLOR = { green: "#22c55e", red: "#ef4444", yellow: "#f59e0b" };
 
 function LightHeroView({ round, lang, onRoundComplete }: RoundViewProps<LightHeroRound>) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
+    const khFont = { fontFamily: "var(--font-qa)" };
     const [picked, setPicked] = useState<string | null>(null);
     const startRef = useRef(Date.now());
     const doneRef = useRef(false);

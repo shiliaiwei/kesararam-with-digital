@@ -74,7 +74,7 @@ export default function SoloPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
-  const qaFont = kh ? { fontFamily: "var(--font-learning)" } : {};
+  const qaFont = { fontFamily: "var(--font-qa)" };
 
   const [phase, setPhase] = useState<Phase>({ name: "setup" });
   const [selectedMode, setSelectedMode] = useState(searchParams.get("mode") ?? "quick-quiz");

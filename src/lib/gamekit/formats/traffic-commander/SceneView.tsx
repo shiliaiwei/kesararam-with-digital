@@ -121,7 +121,7 @@ function Pedestrian({ x, y }: { x: number; y: number }) {
 }
 
 function Student({ x, y, kh }: { x: number; y: number; kh: boolean }) {
-    const khStyle = kh ? { fontFamily: "var(--font-learning)" } : { fontFamily: "var(--font-en)" };
+    const khStyle = { fontFamily: "var(--font-qa)" };
     return (
         <g transform={`translate(${x} ${y})`} style={{ pointerEvents: "none" }} aria-hidden>
             {/* Shadow */}
@@ -167,7 +167,7 @@ function TrafficLightSprite({ x, y, rotation, active = "red" }: { x: number; y: 
 }
 
 function Landmarks({ kh }: { kh: boolean }) {
-    const khStyle = kh ? { fontFamily: "var(--font-learning)" } : { fontFamily: "var(--font-en)" };
+    const khStyle = { fontFamily: "var(--font-qa)" };
     return (
         <g style={{ pointerEvents: "none" }} aria-hidden>
             {/* HOSPITAL (Top-Left) */}
@@ -257,9 +257,7 @@ export function SceneView({
     onRoundComplete,
 }: RoundViewProps<TrafficRound>) {
     const kh = lang === "kh";
-    const khFont = kh
-        ? { fontFamily: "var(--font-learning)" }
-        : {};
+    const khFont = { fontFamily: "var(--font-qa)" };
     const vehicles = round.layout.vehicles;
     const signs = round.signs ?? [];
     const isLast = index + 1 >= total;

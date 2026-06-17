@@ -47,6 +47,26 @@
 }
 
 @font-face {
+  font-family: "KWD Google Sans QA";
+  src: url("/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.woff2") format("woff2"),
+    url("/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+1780-17FF, U+19E0-19FF, U+2000-206F, U+20A0-20CF, U+2190-21FF, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Google Sans QA";
+  src: url("/Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.woff2") format("woff2"),
+    url("/Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+1780-17FF, U+19E0-19FF, U+2000-206F, U+20A0-20CF, U+2190-21FF, U+25CC;
+}
+
+@font-face {
   font-family: "KWD Kantumruy Pro";
   src: url("/Kantumruy_Pro/static/KantumruyPro-Regular.ttf") format("truetype");
   font-style: normal;
@@ -103,9 +123,10 @@
 :root {
   --font-en: "KWD Roboto";
   --font-kh-ui: "KWD Google Sans Khmer";
-  --font-kh-learning: "KWD Kantumruy Pro";
+  --font-kh-learning: "KWD Google Sans Khmer";
+  --font-qa: "KWD Google Sans QA", "KWD Roboto", sans-serif;
   --font-system: "KWD Roboto", "KWD Google Sans Khmer", sans-serif;
-  --font-learning: "KWD Kantumruy Pro", "KWD Roboto", sans-serif;
+  --font-learning: var(--font-qa);
   --font-kh-header: var(--font-kh-ui);
   --font-kh-body: var(--font-kh-ui);
   --font-sans: var(--font-system);
@@ -115,12 +136,12 @@
 /* Responsive language-based stacks to ensure numbers/symbols render in the matching context font */
 html.lang-kh {
   --font-system: "KWD Google Sans Khmer", "KWD Roboto", sans-serif;
-  --font-learning: "KWD Kantumruy Pro", "KWD Roboto", sans-serif;
+  --font-learning: var(--font-qa);
 }
 
 html.lang-en {
   --font-system: "KWD Roboto", "KWD Google Sans Khmer", sans-serif;
-  --font-learning: "KWD Roboto", "KWD Kantumruy Pro", sans-serif;
+  --font-learning: var(--font-qa);
 }
 
 /* Brand font utility classes */
@@ -144,7 +165,7 @@ html.lang-en {
 .font-kh-learning,
 .font-qa,
 .font-learning {
-  font-family: var(--font-learning) !important;
+  font-family: var(--font-qa) !important;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -433,6 +454,10 @@ html.lang-en {
 }
 
 /* Font usage by context (KWD brand rule). */
+.font-qa {
+  font-family: var(--font-qa) !important;
+}
+
 .font-learning {
   font-family: var(--font-learning) !important;
 }

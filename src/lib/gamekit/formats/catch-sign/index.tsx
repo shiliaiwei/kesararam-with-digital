@@ -15,7 +15,7 @@ interface CatchSignRound {
 
 function CatchSignView({ round, lang, onRoundComplete }: RoundViewProps<CatchSignRound>) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
+    const khFont = { fontFamily: "var(--font-qa)" };
     const [picked, setPicked] = useState<number | null>(null);
     const startRef = useRef(Date.now());
     const doneRef = useRef(false);

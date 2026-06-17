@@ -33,10 +33,8 @@ export interface SSSRound {
     questions: SSSQuestion[];
 }
 
-function khFont(kh: boolean) {
-    return kh
-        ? { fontFamily: "var(--font-learning)" }
-        : {};
+function qaFont() {
+    return { fontFamily: "var(--font-qa)" };
 }
 
 // Map question id → Lucide icon component
@@ -115,7 +113,7 @@ function SafeStreetSmartView({ round, lang, onRoundComplete }: RoundViewProps<SS
                 className="border-2 border-black text-center py-2 px-4 font-black text-white"
                 style={{ background: "#e91e8c", boxShadow: "3px 3px 0 #000" }}
             >
-                <span style={khFont(kh)}>
+                <span style={qaFont()}>
                     {kh ? "ធីក (✓) ចម្លើយត្រឹមត្រូវ" : "Tick (✓) the correct answer"}
                 </span>
             </div>
@@ -149,7 +147,7 @@ function SafeStreetSmartView({ round, lang, onRoundComplete }: RoundViewProps<SS
                             >
                                 <IconComp size={18} color={iconColor} strokeWidth={2.5} />
                             </span>
-                            <p className="font-black text-black text-sm sm:text-base leading-snug flex-1" style={khFont(kh)}>
+                            <p className="font-black text-black text-sm sm:text-base leading-snug flex-1" style={qaFont()}>
                                 <span className="text-[#e91e8c] mr-1">{qi + 1}.</span>
                                 {kh ? q.promptKm : q.promptEn}
                             </p>
@@ -192,7 +190,7 @@ function SafeStreetSmartView({ round, lang, onRoundComplete }: RoundViewProps<SS
                                             {ans && isCorrectChoice && <Check size={11} className="text-white" strokeWidth={3} />}
                                             {ans && isPicked && !isCorrectChoice && <X size={11} className="text-white" strokeWidth={3} />}
                                         </span>
-                                        <span className="font-bold text-sm" style={khFont(kh)}>
+                                        <span className="font-bold text-sm" style={qaFont()}>
                                             <span className="font-black mr-1">{c.id})</span>
                                             {kh ? c.km : c.en}
                                         </span>
@@ -205,7 +203,7 @@ function SafeStreetSmartView({ round, lang, onRoundComplete }: RoundViewProps<SS
             })}
 
             {/* Progress label */}
-            <div className="text-center text-xs font-black text-zinc-400" style={khFont(kh)}>
+            <div className="text-center text-xs font-black text-zinc-400" style={qaFont()}>
                 {kh
                     ? `សំណួរ ${Math.min(current + (doneRef.current ? 0 : 1), round.questions.length)}/${round.questions.length}`
                     : `Question ${Math.min(current + (doneRef.current ? 0 : 1), round.questions.length)}/${round.questions.length}`}

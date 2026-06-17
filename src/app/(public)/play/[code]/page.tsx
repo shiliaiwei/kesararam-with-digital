@@ -222,7 +222,7 @@ export default function StudentGamePage() {
   const { lang, setLang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
-  const qaFont = kh ? { fontFamily: "var(--font-learning)" } : {};
+  const qaFont = { fontFamily: "var(--font-qa)" };
 
   const [joining, setJoining] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);

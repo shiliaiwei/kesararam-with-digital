@@ -39,8 +39,8 @@ function shuffle<T>(arr: T[]): T[] {
     return a;
 }
 
-function khFontOf(kh: boolean) {
-    return kh ? { fontFamily: "var(--font-learning)" } : {};
+function qaFont() {
+    return { fontFamily: "var(--font-qa)" };
 }
 
 // ── A draggable word chip (also tappable for the tap-to-place fallback) ──
@@ -61,7 +61,7 @@ function Chip({
                 transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
                 opacity: isDragging ? 0.4 : 1,
                 cursor: "grab",
-                ...khFontOf(kh),
+                ...qaFont(),
             }}
             aria-label="word chip"
         >
@@ -94,7 +94,7 @@ function PictureSlot({
                 )}
             </div>
             <div className="px-1.5 py-1 text-center min-h-[26px] flex items-center justify-center" style={{ background: bg }}>
-                <span className="font-black text-[11px] leading-tight" style={{ color: placed ? (placed.correct ? "#166534" : "#991b1b") : "#a1a1aa", ...khFontOf(kh) }}>
+                <span className="font-black text-[11px] leading-tight" style={{ color: placed ? (placed.correct ? "#166534" : "#991b1b") : "#a1a1aa", ...qaFont() }}>
                     {label ?? (kh ? "ទម្លាក់ពាក្យ" : "drop word")}
                 </span>
             </div>
@@ -167,10 +167,10 @@ function WordBankView({ round, lang, onRoundComplete }: RoundViewProps<WordBankR
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={onDragStart} onDragEnd={onDragEnd}>
             <div className="flex flex-col gap-3 w-full">
                 <div className="text-center">
-                    <div className="text-sm font-black text-zinc-300" style={khFontOf(kh)}>
+                    <div className="text-sm font-black text-zinc-300" style={qaFont()}>
                         {kh ? `ផ្គូផ្គងសញ្ញា · ${filled}/${round.items.length}` : `Matching Sign · ${filled}/${round.items.length}`}
                     </div>
-                    <div className="text-xs font-bold text-zinc-500 mt-0.5" style={khFontOf(kh)}>
+                    <div className="text-xs font-bold text-zinc-500 mt-0.5" style={qaFont()}>
                         {kh ? "អូស ឬប៉ះពាក្យ រួចដាក់លើរូបសញ្ញាត្រឹមត្រូវ" : "Drag or tap a word onto the matching sign"}
                     </div>
                 </div>
@@ -178,7 +178,7 @@ function WordBankView({ round, lang, onRoundComplete }: RoundViewProps<WordBankR
                 {/* Word bank */}
                 <div className="border-2 border-black bg-zinc-900 p-2 flex flex-wrap gap-2 justify-center min-h-[52px]" style={{ boxShadow: "3px 3px 0 #000" }}>
                     {remainingChips.length === 0 ? (
-                        <span className="text-xs font-black text-zinc-500 self-center" style={khFontOf(kh)}>
+                        <span className="text-xs font-black text-zinc-500 self-center" style={qaFont()}>
                             {kh ? "អស់ពាក្យ" : "bank empty"}
                         </span>
                     ) : (
@@ -205,7 +205,7 @@ function WordBankView({ round, lang, onRoundComplete }: RoundViewProps<WordBankR
 
             <DragOverlay>
                 {activeChip !== null ? (
-                    <div className="flex items-center gap-1 border-2 border-black px-2 py-1.5" style={{ background: "#fde047", boxShadow: "3px 3px 0 #000", ...khFontOf(kh) }}>
+                    <div className="flex items-center gap-1 border-2 border-black px-2 py-1.5" style={{ background: "#fde047", boxShadow: "3px 3px 0 #000", ...qaFont() }}>
                         <GripVertical size={12} className="text-black/60" />
                         <span className="font-black text-black text-xs">{labelOf(activeChip)}</span>
                     </div>

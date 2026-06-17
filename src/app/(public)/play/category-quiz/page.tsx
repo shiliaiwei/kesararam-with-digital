@@ -213,7 +213,7 @@ export default function CategoryQuizPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
-  const qaFont = kh ? { fontFamily: "var(--font-learning)" } : {};
+  const qaFont = { fontFamily: "var(--font-qa)" };
 
   const [phase, setPhase] = useState<Phase>({ name: "select" });
   const [categories, setCategories] = useState<Category[]>([]);
