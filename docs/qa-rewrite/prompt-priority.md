@@ -25,15 +25,19 @@ Generate **9 questions per topic** for **all 70 priority topics**, processed in 
 
 **Fill-in-the-blank** is also allowed where it fits (still ≤ 4 options).
 
-## Image rule (priority ONLY — every question must have an image)
-- **Every question in this category carries an image.** No text-only questions.
-- The correct visual is the **topic's own real image** (`primary_image_url` — the "owner" intersection/scenario).
-- **Image-selection** questions: 4 image options = the **owner image + 3 random distractor images** from other topics in the same category.
-- **Text-answer** questions: still **show the topic's own image** as the stimulus, 4 text options below.
+## Image rule (priority ONLY)
+- **MCQ & True/False slots** — show the **topic's own real image** (`primary_image_url` — the "owner" intersection/scenario) above the question; answers are text (4) or ត្រូវ/ខុស (2).
+- **Image-selection slot** — **NO image above the question.** The stem is **text only** (it states the situation); the **4 options are scenario images** = the **owner image + 3 random distractors** from other topics. The player matches the text to the correct scenario.
 
 ## Answer rules
 - **Max 4 options per question** (always ≤ 4): MCQ = 4, True/False = 2, fill-in-blank ≤ 4.
 - Exactly **one** correct answer (`isCorrect: true`).
+
+## Khmer phrasing styles (approved)
+- **Never use the `៖` sign** anywhere.
+- **True/False (slots 2, 7)** — write a short real-life **scenario as a statement**; **no `ត្រូវ ឬ ខុស` prefix**. Answers stay **ត្រូវ / ខុស**.
+- **Right-of-way (slot 1)** — driver's-eye, not textbook: `ដល់ផ្លូវបំបែកនេះ តើរថយន្តណាគួរទៅមុនគេ?`
+- **Image-selection (slot 3)** — text stem states the situation, options are images.
 
 ## Language rules (all categories)
 - Obey **banned-words-cheatsheet.md**: no banned words, no emoji, no `&` (write `និង`), no `*`, no stiff/legal tone.
