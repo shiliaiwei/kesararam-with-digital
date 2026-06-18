@@ -31,6 +31,7 @@ import { CautionTape, SignShape } from "@/components/brand/brand-kit";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { RankedAvatarRing } from "@/components/shared/rank-label";
 import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
+import { MythicAvatarBorder } from "@/components/rank/MythicAvatarBorder";
 import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
 import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
@@ -366,6 +367,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
   const topGameMeta = topGame ? gameLabel(topGame.gameType) : null;
   const bestModePoints = Math.max(...gameStats.map((g) => g.points), 1);
   const profileRank = calculateRankAndDivision(student.lifetimePoints).rank;
+  const isMythicBorder = profileRank.id === "mythic";
   const isDiamondBorder = profileRank.id === "diamond";
   const isPlatinumBorder = profileRank.id === "platinum";
   const isGoldBorder = profileRank.id === "gold";
@@ -419,7 +421,22 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
               <div className="h-14 border-b-[3px] border-black" style={checkerboardStyle} />
               <div className="flex flex-col items-center gap-5 p-4 text-center sm:p-6 md:p-8">
                 <div className="relative w-fit hover:-translate-y-1 transition-transform duration-200">
-                   {isDiamondBorder ? (
+                   {isMythicBorder ? (
+                    <MythicAvatarBorder
+                      alt={`${displayName} avatar`}
+                      username={isNamePublic ? (student.displayName || student.username) : "S"}
+                      score={student.lifetimePoints}
+                      size="md"
+                    >
+                      <Avatar
+                        url={student.avatar}
+                        name={isNamePublic ? (student.displayName || student.username) : "S"}
+                        size={96}
+                        changedAt={student.avatarChangedAt}
+                        round={true}
+                      />
+                    </MythicAvatarBorder>
+                  ) : isDiamondBorder ? (
                     <DiamondAvatarBorder
                       alt={`${displayName} avatar`}
                       username={isNamePublic ? (student.displayName || student.username) : "S"}

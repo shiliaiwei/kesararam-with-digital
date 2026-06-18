@@ -108,6 +108,20 @@ export const RANK_TIERS: RankTier[] = [
         textColor: "#000",
         textDark: "#0e7490",
     },
+    {
+        id: "mythic",
+        label: "Mythic",
+        labelKh: "Mythic",
+        emoji: "",
+        minPoints: 12000,
+        labelGradient: "linear-gradient(90deg,#7e22ce,#a855f7,#7e22ce)",
+        borderGradient: "linear-gradient(135deg,#7e22ce,#fbbf24,#a855f7,#ffd700,#7e22ce)",
+        accent: "#fbbf24",
+        glow: "#c084fc",
+        animated: true,
+        textColor: "#fff",
+        textDark: "#6b21a8",
+    },
 ];
 
 /** Get the current tier for a given lifetime points value */
@@ -149,11 +163,11 @@ export function getDivision(lifetimePoints: number): RankDivision {
     const current = getRank(lifetimePoints);
     const next = getNextRank(lifetimePoints);
     
-    // Diamond is open-ended: IV 7,000+ · III 10,000+ · II 15,000+ · I 25,000+.
+    // Mythic is open-ended: IV 12,000+ · III 15,000+ · II 20,000+ · I 30,000+.
     if (!next) {
-        if (lifetimePoints < 10000) return "IV";
-        if (lifetimePoints < 15000) return "III";
-        if (lifetimePoints < 25000) return "II";
+        if (lifetimePoints < 15000) return "IV";
+        if (lifetimePoints < 20000) return "III";
+        if (lifetimePoints < 30000) return "II";
         return "I";
     }
 

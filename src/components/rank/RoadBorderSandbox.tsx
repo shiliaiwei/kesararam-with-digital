@@ -5,6 +5,7 @@ import { RoadAvatarBorder } from "./RoadAvatarBorder";
 import { GoldAvatarBorder } from "./GoldAvatarBorder";
 import { PlatinumAvatarBorder } from "./PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "./DiamondAvatarBorder";
+import { MythicAvatarBorder } from "./MythicAvatarBorder";
 import {
     getRankNameByScore,
     getDivisionForScore,
@@ -91,7 +92,16 @@ export function RoadBorderSandbox() {
             <div className="flex flex-wrap items-end justify-center gap-10 border-2 border-black bg-zinc-50 p-8 shadow-[4px_4px_0_0_#000]">
                 {sizes.map((size) => (
                     <div key={size} className="flex flex-col items-center gap-2">
-                        {rank === "Diamond" ? (
+                        {rank === "Mythic" ? (
+                            <MythicAvatarBorder
+                                src={demoSrc}
+                                alt="Sandbox player"
+                                username="Sophea"
+                                score={score}
+                                size={size}
+                                animated={animated}
+                            />
+                        ) : rank === "Diamond" ? (
                             <DiamondAvatarBorder
                                 src={demoSrc}
                                 alt="Sandbox player"

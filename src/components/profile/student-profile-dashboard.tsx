@@ -17,6 +17,7 @@ import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
 import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
 import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
+import { MythicAvatarBorder } from "@/components/rank/MythicAvatarBorder";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { useLang } from "@/context/lang-context";
 import { calculateRankAndDivision } from "@/lib/ranks";
@@ -294,6 +295,7 @@ export function StudentProfileDashboard({
   const nextProgress = tierProgress(rankStats.lifetimePoints);
   const pointsRemaining = pointsToNextRank(rankStats.lifetimePoints);
   const roadFrameRank = calculateRankAndDivision(rankStats.lifetimePoints).rank;
+  const isMythicBorder = roadFrameRank.id === "mythic";
   const isDiamondBorder = roadFrameRank.id === "diamond";
   const isPlatinumBorder = roadFrameRank.id === "platinum";
   const isGoldBorder = roadFrameRank.id === "gold";
@@ -377,7 +379,16 @@ export function StudentProfileDashboard({
 
             {/* Avatar */}
             <div className="relative flex-shrink-0">
-              {isDiamondBorder ? (
+              {isMythicBorder ? (
+                <MythicAvatarBorder
+                  alt={`${name} avatar`}
+                  username={name}
+                  score={rankStats.lifetimePoints}
+                  size="sm"
+                >
+                  <AvatarDisplay avatar={user.avatar} name={name} size={64} radius={999} />
+                </MythicAvatarBorder>
+              ) : isDiamondBorder ? (
                 <DiamondAvatarBorder
                   alt={`${name} avatar`}
                   username={name}

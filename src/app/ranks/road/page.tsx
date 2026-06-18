@@ -4,6 +4,7 @@ import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
 import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
 import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
+import { MythicAvatarBorder } from "@/components/rank/MythicAvatarBorder";
 import { RoadBorderSandbox } from "@/components/rank/RoadBorderSandbox";
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function RoadBorderPage() {
 
             {/* Static Rank Showcase */}
             <section className="mx-auto w-full max-w-6xl px-4 py-10">
-                <div className="grid gap-6 grid-cols-2 md:grid-cols-5">
+                <div className="grid gap-6 grid-cols-2 md:grid-cols-6">
                     <div className="flex flex-col items-center gap-3 border-2 border-black bg-zinc-50 p-6 shadow-[4px_4px_0_0_#000]">
                         <RoadAvatarBorder src={null} alt="Rookie example" username="Sophea" score={120} size="lg" />
                         <span className="text-[10px] font-black uppercase tracking-wider text-zinc-500">Rookie · 120 pts</span>
@@ -48,8 +49,12 @@ export default function RoadBorderPage() {
                         <span className="text-[10px] font-black uppercase tracking-wider text-zinc-500">Platinum · 3,500 pts</span>
                     </div>
                     <div className="flex flex-col items-center gap-3 border-2 border-black bg-zinc-50 p-6 shadow-[4px_4px_0_0_#000]">
-                        <DiamondAvatarBorder src={null} alt="Diamond example" username="Chanthy" size="lg" />
+                        <DiamondAvatarBorder src={null} alt="Diamond example" username="Chanthy" score={7000} size="lg" />
                         <span className="text-[10px] font-black uppercase tracking-wider text-zinc-500">Diamond · 7,000 pts</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-3 border-2 border-black bg-zinc-50 p-6 shadow-[4px_4px_0_0_#000]">
+                        <MythicAvatarBorder src={null} alt="Mythic example" username="Virak" score={15000} size="lg" />
+                        <span className="text-[10px] font-black uppercase tracking-wider text-zinc-500">Mythic · 12,000+ pts</span>
                     </div>
                 </div>
             </section>

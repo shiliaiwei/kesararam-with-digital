@@ -25,7 +25,8 @@ export type RankName =
     | "Rising"
     | "Gold"
     | "Platinum"
-    | "Diamond";
+    | "Diamond"
+    | "Mythic";
 
 /** Roman-numeral divisions inside a rank. IV = lowest, I = highest before rank-up. */
 export type Division = "IV" | "III" | "II" | "I";
@@ -217,8 +218,23 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         icon: "gem",
         safetyTheme: "Expert road-safety player",
         description: "An expert player — sharp, consistent, road-safety smart.",
-        // Diamond divisions are now open-ended as the highest rank:
-        divisionThresholds: [7000, 10000, 15000, 25000],
+    },
+    {
+        id: "mythic",
+        name: "Mythic",
+        label: "MYTHIC",
+        minPoints: 12000,
+        displayPoints: "12,000 PTS",
+        primaryColor: "#a855f7",
+        secondaryColor: "#ffd700",
+        accentColor: "#fbbf24",
+        textColor: "#ffffff",
+        borderClass: "rank-frame--mythic",
+        animationClass: "rank-anim-mythic",
+        icon: "crown",
+        safetyTheme: "Elite road protector",
+        description: "An elite protector of the road. Masterful safety knowledge.",
+        divisionThresholds: [12000, 15000, 20000, 30000],
     },
 ] as const;
 
