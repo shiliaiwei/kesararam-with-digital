@@ -3,6 +3,7 @@
 import * as React from "react";
 import { RoadAvatarBorder } from "./RoadAvatarBorder";
 import { GoldAvatarBorder } from "./GoldAvatarBorder";
+import { PlatinumAvatarBorder } from "./PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "./DiamondAvatarBorder";
 import {
     getRankNameByScore,
@@ -92,6 +93,15 @@ export function RoadBorderSandbox() {
                     <div key={size} className="flex flex-col items-center gap-2">
                         {rank === "Diamond" ? (
                             <DiamondAvatarBorder
+                                src={demoSrc}
+                                alt="Sandbox player"
+                                username="Sophea"
+                                score={score}
+                                size={size}
+                                animated={animated}
+                            />
+                        ) : rank === "Platinum" ? (
+                            <PlatinumAvatarBorder
                                 src={demoSrc}
                                 alt="Sandbox player"
                                 username="Sophea"

@@ -32,6 +32,7 @@ import { getAvatarFaceStyle } from "@/lib/utils";
 import { RankedAvatarRing } from "@/components/shared/rank-label";
 import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
 import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
+import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
 import { calculateRankAndDivision } from "@/lib/ranks";
 
@@ -366,6 +367,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
   const bestModePoints = Math.max(...gameStats.map((g) => g.points), 1);
   const profileRank = calculateRankAndDivision(student.lifetimePoints).rank;
   const isDiamondBorder = profileRank.id === "diamond";
+  const isPlatinumBorder = profileRank.id === "platinum";
   const isGoldBorder = profileRank.id === "gold";
   const hasRoadAvatarBorder = profileRank.id === "rookie" || profileRank.id === "rising";
 
@@ -432,6 +434,21 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                         round={true}
                       />
                     </DiamondAvatarBorder>
+                  ) : isPlatinumBorder ? (
+                    <PlatinumAvatarBorder
+                      alt={`${displayName} avatar`}
+                      username={isNamePublic ? (student.displayName || student.username) : "S"}
+                      score={student.lifetimePoints}
+                      size="md"
+                    >
+                      <Avatar
+                        url={student.avatar}
+                        name={isNamePublic ? (student.displayName || student.username) : "S"}
+                        size={96}
+                        changedAt={student.avatarChangedAt}
+                        round={true}
+                      />
+                    </PlatinumAvatarBorder>
                   ) : isGoldBorder ? (
                     <GoldAvatarBorder
                       alt={`${displayName} avatar`}

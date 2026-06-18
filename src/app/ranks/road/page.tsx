@@ -2,6 +2,7 @@ import * as React from "react";
 import type { Metadata } from "next";
 import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
 import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
+import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
 import { RoadBorderSandbox } from "@/components/rank/RoadBorderSandbox";
 
@@ -22,14 +23,14 @@ export default function RoadBorderPage() {
                         Road Avatar Borders
                     </h1>
                     <p className="mt-2 text-sm font-bold uppercase tracking-wider text-zinc-600">
-                        Rookie, Rising, Gold &amp; Diamond — Premium Road-Safety Frames
+                        Rookie, Rising, Gold, Platinum &amp; Diamond — Premium Road-Safety Frames
                     </p>
                 </div>
             </header>
 
             {/* Static Rank Showcase */}
             <section className="mx-auto w-full max-w-6xl px-4 py-10">
-                <div className="grid gap-6 grid-cols-2 md:grid-cols-4">
+                <div className="grid gap-6 grid-cols-2 md:grid-cols-5">
                     <div className="flex flex-col items-center gap-3 border-2 border-black bg-zinc-50 p-6 shadow-[4px_4px_0_0_#000]">
                         <RoadAvatarBorder src={null} alt="Rookie example" username="Sophea" score={120} size="lg" />
                         <span className="text-[10px] font-black uppercase tracking-wider text-zinc-500">Rookie · 120 pts</span>
@@ -41,6 +42,10 @@ export default function RoadBorderPage() {
                     <div className="flex flex-col items-center gap-3 border-2 border-black bg-zinc-50 p-6 shadow-[4px_4px_0_0_#000]">
                         <GoldAvatarBorder src={null} alt="Gold example" username="Bopha" size="lg" />
                         <span className="text-[10px] font-black uppercase tracking-wider text-zinc-500">Gold · 2,500 pts</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-3 border-2 border-black bg-zinc-50 p-6 shadow-[4px_4px_0_0_#000]">
+                        <PlatinumAvatarBorder src={null} alt="Platinum example" username="Sophea" score={3500} size="lg" />
+                        <span className="text-[10px] font-black uppercase tracking-wider text-zinc-500">Platinum · 3,500 pts</span>
                     </div>
                     <div className="flex flex-col items-center gap-3 border-2 border-black bg-zinc-50 p-6 shadow-[4px_4px_0_0_#000]">
                         <DiamondAvatarBorder src={null} alt="Diamond example" username="Chanthy" size="lg" />

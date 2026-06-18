@@ -15,6 +15,7 @@ import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { RankBadge, RankedAvatarRing, TIER_ICONS } from "@/components/shared/rank-label";
 import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
 import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
+import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { useLang } from "@/context/lang-context";
@@ -294,6 +295,7 @@ export function StudentProfileDashboard({
   const pointsRemaining = pointsToNextRank(rankStats.lifetimePoints);
   const roadFrameRank = calculateRankAndDivision(rankStats.lifetimePoints).rank;
   const isDiamondBorder = roadFrameRank.id === "diamond";
+  const isPlatinumBorder = roadFrameRank.id === "platinum";
   const isGoldBorder = roadFrameRank.id === "gold";
   const hasRoadAvatarBorder = roadFrameRank.id === "rookie" || roadFrameRank.id === "rising";
 
@@ -384,6 +386,15 @@ export function StudentProfileDashboard({
                 >
                   <AvatarDisplay avatar={user.avatar} name={name} size={64} radius={999} />
                 </DiamondAvatarBorder>
+              ) : isPlatinumBorder ? (
+                <PlatinumAvatarBorder
+                  alt={`${name} avatar`}
+                  username={name}
+                  score={rankStats.lifetimePoints}
+                  size="sm"
+                >
+                  <AvatarDisplay avatar={user.avatar} name={name} size={64} radius={999} />
+                </PlatinumAvatarBorder>
               ) : isGoldBorder ? (
                 <GoldAvatarBorder
                   alt={`${name} avatar`}

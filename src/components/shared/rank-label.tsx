@@ -19,7 +19,6 @@ import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
 import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
 import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
-import { MythicAvatarBorder } from "@/components/rank/MythicAvatarBorder";
 import {
     Sprout,
     PartyPopper,
@@ -268,6 +267,13 @@ export function RankedAvatarRing({
             <DiamondAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
                 {children}
             </DiamondAvatarBorder>
+        );
+    }
+    if (rank.id === "platinum") {
+        return (
+            <PlatinumAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
+                {children}
+            </PlatinumAvatarBorder>
         );
     }
     if (rank.id === "gold") {

@@ -24,6 +24,7 @@ export type RankName =
     | "Rookie"
     | "Rising"
     | "Gold"
+    | "Platinum"
     | "Diamond";
 
 /** Roman-numeral divisions inside a rank. IV = lowest, I = highest before rank-up. */
@@ -184,6 +185,22 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         icon: "triangle-alert",
         safetyTheme: "Warning-sign learner",
         description: "Knows the warning signs and reads the road with care.",
+    },
+    {
+        id: "platinum",
+        name: "Platinum",
+        label: "PLATINUM",
+        minPoints: 3500,
+        displayPoints: "3,500 PTS",
+        primaryColor: "#3b82f6",
+        secondaryColor: "#ffffff",
+        accentColor: "#1d4ed8",
+        textColor: "#ffffff",
+        borderClass: "rank-frame--platinum",
+        animationClass: "rank-anim-platinum",
+        icon: "info",
+        safetyTheme: "Official road knowledge",
+        description: "Solid, official road-rule knowledge. Reads every sign.",
     },
     {
         id: "diamond",

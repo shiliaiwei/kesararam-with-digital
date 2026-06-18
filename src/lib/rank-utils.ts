@@ -81,6 +81,20 @@ export const RANK_TIERS: RankTier[] = [
         textDark: "#a16207",
     },
     {
+        id: "platinum",
+        label: "Platinum",
+        labelKh: "Platinum",
+        emoji: "",
+        minPoints: 3500,
+        labelGradient: "linear-gradient(90deg,#1d4ed8,#3b82f6,#1d4ed8)",
+        borderGradient: "linear-gradient(135deg,#1d4ed8,#60a5fa,#3b82f6,#93c5fd,#1d4ed8)",
+        accent: "#3b82f6",
+        glow: "#93c5fd",
+        animated: true,
+        textColor: "#fff",
+        textDark: "#1e3a8a",
+    },
+    {
         id: "diamond",
         label: "Diamond",
         labelKh: "Diamond",
@@ -135,11 +149,11 @@ export function getDivision(lifetimePoints: number): RankDivision {
     const current = getRank(lifetimePoints);
     const next = getNextRank(lifetimePoints);
     
-    // Mythic is open-ended: IV 12,000+ · III 15,000+ · II 20,000+ · I 30,000+.
+    // Diamond is open-ended: IV 7,000+ · III 10,000+ · II 15,000+ · I 25,000+.
     if (!next) {
-        if (lifetimePoints < 15000) return "IV";
-        if (lifetimePoints < 20000) return "III";
-        if (lifetimePoints < 30000) return "II";
+        if (lifetimePoints < 10000) return "IV";
+        if (lifetimePoints < 15000) return "III";
+        if (lifetimePoints < 25000) return "II";
         return "I";
     }
 

@@ -1,0 +1,114 @@
+"use client";
+
+import * as React from "react";
+import { User } from "lucide-react";
+import { cn } from "@/lib/utils";
+import type { AvatarSize } from "@/lib/ranks";
+import { calculateRankAndDivision } from "@/lib/ranks";
+
+const SCALE: Record<AvatarSize, number> = {
+    sm: 0.65,
+    md: 1,
+    lg: 1.33,
+    xl: 1.66,
+};
+
+export interface PlatinumAvatarBorderProps {
+    src?: string | null;
+    alt: string;
+    username?: string;
+    score?: number;
+    size?: AvatarSize | number;
+    animated?: boolean;
+    className?: string;
+    children?: React.ReactNode;
+}
+
+export function PlatinumAvatarBorder({
+    src,
+    alt,
+    username,
+    score,
+    size = "md",
+    animated = true,
+    className,
+    children,
+}: PlatinumAvatarBorderProps) {
+    const [imgFailed, setImgFailed] = React.useState(false);
+    const scale = typeof size === "number" ? size / 84.0 : SCALE[size];
+    const showCustomAvatar = Boolean(children);
+    const showImage = Boolean(src) && !imgFailed && !showCustomAvatar;
+    const initial = username?.trim()?.charAt(0)?.toUpperCase() ?? "";
+
+    const clampedScore = score !== undefined ? Math.max(3500, Math.min(6999, score)) : undefined;
+    const division = clampedScore !== undefined ? calculateRankAndDivision(clampedScore).division : undefined;
+
+    const vars = {
+        "--s": scale,
+    } as React.CSSProperties;
+
+    return (
+        <div
+            className={cn(
+                "platinum-avatar",
+                animated ? "platinum-avatar--animated" : "platinum-avatar--static",
+                className,
+            )}
+            style={vars}
+        >
+            <div className="platinum-avatar__plate">
+                {/* The high-resolution PLATINUM rank border PNG */}
+                <img
+                    src="/brand/platinum-avatar-border.png"
+                    alt="Platinum Rank Border Frame"
+                    className="platinum-avatar__frame-img"
+                />
+
+                {/* Sweeping silver shine overlay */}
+                <div className="platinum-avatar__shine" aria-hidden="true" />
+
+                {/* Glowing chevrons overlay on left */}
+                <div className="platinum-avatar__chevron-glow" aria-hidden="true" />
+
+                {/* Pulsing/flashing traffic light bulbs */}
+                <div className="platinum-avatar__blue-light" aria-hidden="true" />
+                <div className="platinum-avatar__yellow-light" aria-hidden="true" />
+                <div className="platinum-avatar__green-light" aria-hidden="true" />
+
+                {/* Soft blue ring light breathing around the inner circular ring */}
+                <div className="platinum-avatar__ring-glow" aria-hidden="true" />
+
+                {/* Protected profile photo window in the center */}
+                <div className="platinum-avatar__photo">
+                    {showCustomAvatar ? (
+                        <div className="platinum-avatar__custom-photo" role="img" aria-label={alt}>
+                            {children}
+                        </div>
+                    ) : showImage ? (
+                        <img
+                            src={src as string}
+                            alt={alt}
+                            className="platinum-avatar__img"
+                            onError={() => setImgFailed(true)}
+                        />
+                    ) : (
+                        <div className="platinum-avatar__fallback" role="img" aria-label={alt}>
+                            {initial || (
+                                <User size={Math.round(44 * scale)} strokeWidth={2.5} aria-hidden="true" />
+                            )}
+                        </div>
+                    )}
+                </div>
+
+                {/* Division Badge (Top-Left) */}
+                {division && (
+                    <div className="platinum-avatar__division-badge" aria-label={`Division ${division}`}>
+                        <span className="platinum-avatar__division-text">{division}</span>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default PlatinumAvatarBorder;

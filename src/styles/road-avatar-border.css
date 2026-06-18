@@ -534,7 +534,7 @@
     pointer-events: none;
 }
 
-/* Sweeping silver/light-blue shine (masked inside the shield shape) */
+/* Sweeping silver/light-blue shine */
 .platinum-avatar__shine {
     position: absolute;
     inset: 0;
@@ -556,28 +556,145 @@
     100% { background-position: -150% 0; }
 }
 
-/* Top information-sign glow */
-.platinum-avatar__top-glow {
+/* Chevron arrow glows on the left */
+.platinum-avatar__chevron-glow {
     position: absolute;
-    top: 11%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(26px * var(--s));
-    height: calc(26px * var(--s));
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(30px * var(--s));
+    height: calc(30px * var(--s));
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.7) 0%, rgba(59, 130, 246, 0) 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.45) 0%, rgba(59, 130, 246, 0) 70%);
     z-index: 2;
     pointer-events: none;
     opacity: 0;
 }
 
-.platinum-avatar--animated .platinum-avatar__top-glow {
-    animation: platinumTopGlowPulse 4s infinite ease-in-out;
+.platinum-avatar--animated .platinum-avatar__chevron-glow {
+    animation: chevronGlowPulse 4s infinite ease-in-out;
 }
 
-@keyframes platinumTopGlowPulse {
-    0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.85); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.35); }
+/* Pulsing/Flashing traffic light bulbs in the capsule */
+.platinum-avatar__blue-light {
+    position: absolute;
+    right: calc(12px * var(--s));
+    top: calc(44px * var(--s));
+    width: calc(14px * var(--s));
+    height: calc(14px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.95) 0%, rgba(59, 130, 246, 0.4) 40%, rgba(59, 130, 246, 0) 70%);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.9;
+    box-shadow: 0 0 calc(6px * var(--s)) rgba(59, 130, 246, 0.8),
+                inset 0 0 calc(2px * var(--s)) rgba(255, 255, 255, 0.5);
+}
+
+.platinum-avatar__yellow-light {
+    position: absolute;
+    right: calc(12px * var(--s));
+    top: calc(70px * var(--s));
+    width: calc(14px * var(--s));
+    height: calc(14px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.95) 0%, rgba(234, 179, 8, 0.4) 40%, rgba(234, 179, 8, 0) 70%);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.9;
+    box-shadow: 0 0 calc(6px * var(--s)) rgba(234, 179, 8, 0.8),
+                inset 0 0 calc(2px * var(--s)) rgba(255, 255, 255, 0.5);
+}
+
+.platinum-avatar__green-light {
+    position: absolute;
+    right: calc(12px * var(--s));
+    top: calc(96px * var(--s));
+    width: calc(14px * var(--s));
+    height: calc(14px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.95) 0%, rgba(34, 197, 94, 0.4) 40%, rgba(34, 197, 94, 0) 70%);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.9;
+    box-shadow: 0 0 calc(6px * var(--s)) rgba(34, 197, 94, 0.8),
+                inset 0 0 calc(2px * var(--s)) rgba(255, 255, 255, 0.5);
+}
+
+.platinum-avatar--animated .platinum-avatar__blue-light {
+    animation: platinumBlueSequence 3s infinite ease-in-out;
+}
+
+.platinum-avatar--animated .platinum-avatar__yellow-light {
+    animation: platinumYellowCautionSequence 3s infinite ease-in-out;
+}
+
+.platinum-avatar--animated .platinum-avatar__green-light {
+    animation: platinumGreenSequence 3s infinite ease-in-out;
+}
+
+@keyframes platinumBlueSequence {
+    0%, 30% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 0 calc(10px * var(--s)) rgba(59, 130, 246, 0.95);
+    }
+    40%, 100% {
+        opacity: 0.25;
+        transform: scale(0.9);
+        box-shadow: 0 0 calc(2px * var(--s)) rgba(59, 130, 246, 0.3);
+    }
+}
+
+@keyframes platinumGreenSequence {
+    0%, 30% {
+        opacity: 0.25;
+        transform: scale(0.9);
+        box-shadow: 0 0 calc(2px * var(--s)) rgba(34, 197, 94, 0.3);
+    }
+    35%, 65% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 0 calc(10px * var(--s)) rgba(34, 197, 94, 0.95);
+    }
+    75%, 100% {
+        opacity: 0.25;
+        transform: scale(0.9);
+        box-shadow: 0 0 calc(2px * var(--s)) rgba(34, 197, 94, 0.3);
+    }
+}
+
+@keyframes platinumYellowCautionSequence {
+    0%, 66% {
+        opacity: 0.25;
+        transform: scale(0.9);
+        box-shadow: 0 0 calc(2px * var(--s)) rgba(234, 179, 8, 0.3);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 0 calc(10px * var(--s)) rgba(234, 179, 8, 0.95);
+    }
+    76% {
+        opacity: 0.25;
+        transform: scale(0.9);
+        box-shadow: 0 0 calc(2px * var(--s)) rgba(234, 179, 8, 0.3);
+    }
+    82% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 0 calc(10px * var(--s)) rgba(234, 179, 8, 0.95);
+    }
+    88% {
+        opacity: 0.25;
+        transform: scale(0.9);
+        box-shadow: 0 0 calc(2px * var(--s)) rgba(234, 179, 8, 0.3);
+    }
+    100% {
+        opacity: 0.25;
+        transform: scale(0.9);
+        box-shadow: 0 0 calc(2px * var(--s)) rgba(234, 179, 8, 0.3);
+    }
 }
 
 /* Ring light breathing around dashed road lane */
@@ -586,8 +703,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 53.5%;
-    height: 53.5%;
+    width: 52.5%;
+    height: 52.5%;
     border-radius: 50%;
     border: calc(2px * var(--s)) solid rgba(59, 130, 246, 0.4);
     box-shadow: 0 0 calc(5px * var(--s)) rgba(59, 130, 246, 0.75),
@@ -606,14 +723,14 @@
     50% { opacity: 0.95; box-shadow: 0 0 calc(9px * var(--s)) rgba(59, 130, 246, 0.95); }
 }
 
-/* Center photo window (cutout size is 51% for Platinum) */
+/* Center photo window (cutout size is 49.41% for Platinum) */
 .platinum-avatar__photo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 51%;
-    height: 51%;
+    width: 49.41%;
+    height: 49.41%;
     border-radius: 50%;
     overflow: hidden;
     background: #e4e4e7;
