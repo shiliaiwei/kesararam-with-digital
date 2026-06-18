@@ -91,7 +91,7 @@
     transform: translate(-50%, -50%);
     border-radius: 50%;
     overflow: hidden;
-    background: #e4e4e7;
+    background: #ffffff;
     border: calc(2px * var(--s)) solid #000;
     z-index: 5;
 }
@@ -112,7 +112,7 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    background: #d4d4d8;
+    background: #ffffff;
     color: #52525b;
     font-weight: 900;
     font-size: calc(40px * var(--s));
@@ -294,6 +294,14 @@
     border-radius: 50%;
 }
 
+.gold-avatar__bg {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
+    background: radial-gradient(circle at 50% 50%, #1f2937 0%, #0b1220 60%, #030712 100%);
+    pointer-events: none;
+}
+
 .gold-avatar__frame-img {
     position: absolute;
     top: 0;
@@ -420,7 +428,7 @@
     height: 40.23%;
     border-radius: 50%;
     overflow: hidden;
-    background: #e4e4e7;
+    background: #ffffff;
     border: calc(2px * var(--s)) solid #000;
     z-index: 5;
 }
@@ -438,7 +446,7 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    background: #d4d4d8;
+    background: #ffffff;
     color: #52525b;
     font-weight: 900;
     font-size: calc(40px * var(--s));
@@ -733,7 +741,7 @@
     height: 49.41%;
     border-radius: 50%;
     overflow: hidden;
-    background: #e4e4e7;
+    background: #ffffff;
     border: calc(2px * var(--s)) solid #000;
     z-index: 5;
 }
@@ -757,7 +765,7 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    background: #d4d4d8;
+    background: #ffffff;
     color: #52525b;
     font-weight: 900;
     font-size: calc(40px * var(--s));
@@ -817,13 +825,13 @@
 /* Top diamond jewel beacon glow */
 .diamond-avatar__top-glow {
     position: absolute;
-    top: 10%;
+    top: 7%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: calc(28px * var(--s));
-    height: calc(28px * var(--s));
+    width: calc(38px * var(--s));
+    height: calc(38px * var(--s));
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, rgba(6, 182, 212, 0) 70%);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.85) 0%, rgba(34, 211, 238, 0) 70%);
     z-index: 2;
     pointer-events: none;
     opacity: 0;
@@ -836,6 +844,91 @@
 @keyframes diamondTopGlow {
     0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.8); }
     50% { opacity: 1; transform: translate(-50%, -50%) scale(1.35); }
+}
+
+/* Bottom warning sign glows (alternating hazard strobes) */
+.diamond-avatar__left-sign-glow,
+.diamond-avatar__right-sign-glow {
+    position: absolute;
+    width: calc(36px * var(--s));
+    height: calc(36px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.8) 0%, rgba(34, 211, 238, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.diamond-avatar__left-sign-glow {
+    left: calc(10px * var(--s));
+    bottom: calc(10px * var(--s));
+}
+
+.diamond-avatar__right-sign-glow {
+    right: calc(10px * var(--s));
+    bottom: calc(10px * var(--s));
+}
+
+.diamond-avatar--animated .diamond-avatar__left-sign-glow {
+    animation: diamondStrobeLeft 2s infinite ease-in-out;
+}
+
+.diamond-avatar--animated .diamond-avatar__right-sign-glow {
+    animation: diamondStrobeRight 2s infinite ease-in-out;
+}
+
+@keyframes diamondStrobeLeft {
+    0%, 12%, 24% { opacity: 0.95; transform: scale(1.25); }
+    6%, 18%, 30%, 100% { opacity: 0.15; transform: scale(0.9); }
+}
+
+@keyframes diamondStrobeRight {
+    0%, 50%, 62%, 74% { opacity: 0.15; transform: scale(0.9); }
+    56%, 68%, 80% { opacity: 0.95; transform: scale(1.25); }
+}
+
+/* Side arrow/chevron glows (sliding rising animation) */
+.diamond-avatar__arrow-glow {
+    position: absolute;
+    width: calc(24px * var(--s));
+    height: calc(24px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.95) 0%, rgba(34, 211, 238, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.diamond-avatar__arrow-glow--left {
+    left: calc(21px * var(--s));
+    top: calc(75px * var(--s));
+}
+
+.diamond-avatar__arrow-glow--right {
+    right: calc(21px * var(--s));
+    top: calc(75px * var(--s));
+}
+
+.diamond-avatar--animated .diamond-avatar__arrow-glow {
+    animation: diamondArrowRise 3s infinite linear;
+}
+
+.diamond-avatar--animated .diamond-avatar__arrow-glow--right {
+    animation-delay: 1.5s;
+}
+
+@keyframes diamondArrowRise {
+    0% {
+        transform: translateY(calc(30px * var(--s))) scale(0.8);
+        opacity: 0;
+    }
+    30%, 70% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(calc(-30px * var(--s))) scale(0.8);
+        opacity: 0;
+    }
 }
 
 /* Side crystal shards shimmering */
@@ -891,7 +984,7 @@
     height: 43%;
     border-radius: 50%;
     overflow: hidden;
-    background: #e4e4e7;
+    background: #ffffff;
     border: calc(2px * var(--s)) solid #000;
     z-index: 5;
 }
@@ -915,7 +1008,7 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    background: #d4d4d8;
+    background: #ffffff;
     color: #52525b;
     font-weight: 900;
     font-size: calc(40px * var(--s));
@@ -1112,7 +1205,7 @@
     height: 44.4%;
     border-radius: 50%;
     overflow: hidden;
-    background: #e4e4e7;
+    background: #ffffff;
     border: calc(2px * var(--s)) solid #000;
     z-index: 5;
 }
@@ -1136,7 +1229,7 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    background: #d4d4d8;
+    background: #ffffff;
     color: #52525b;
     font-weight: 900;
     font-size: calc(40px * var(--s));

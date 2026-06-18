@@ -57,6 +57,9 @@ export function GoldAvatarBorder({
             style={vars}
         >
             <div className="gold-avatar__plate">
+                {/* Dark asphalt background behind the transparent warning diamond body */}
+                <div className="gold-avatar__bg" aria-hidden="true" />
+
                 {/* The high-resolution GOLD rank border PNG */}
                 <img
                     src="/brand/gold-avatar-border.png"

@@ -178,7 +178,7 @@ export function AvatarBorder({
                         />
                     ) : (
                         <div
-                            className="flex h-full w-full items-center justify-center bg-zinc-200 text-zinc-500"
+                            className="flex h-full w-full items-center justify-center bg-white text-zinc-500"
                             role="img"
                             aria-label={alt}
                         >

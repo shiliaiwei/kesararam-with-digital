@@ -73,8 +73,13 @@ export function DiamondAvatarBorder({
                 {/* Side crystal shards shimmer/glow */}
                 <div className="diamond-avatar__crystal-shimmer" aria-hidden="true" />
 
-                {/* Bottom-right roundabout traffic sign glow */}
-                <div className="diamond-avatar__sign-glow" aria-hidden="true" />
+                {/* Side glowing chevrons sliding up */}
+                <div className="diamond-avatar__arrow-glow diamond-avatar__arrow-glow--left" aria-hidden="true" />
+                <div className="diamond-avatar__arrow-glow diamond-avatar__arrow-glow--right" aria-hidden="true" />
+
+                {/* Bottom-left and bottom-right warning sign hazard glows */}
+                <div className="diamond-avatar__left-sign-glow" aria-hidden="true" />
+                <div className="diamond-avatar__right-sign-glow" aria-hidden="true" />
 
                 {/* Protected profile photo window in the center (43% cutout) */}
                 <div className="diamond-avatar__photo">
