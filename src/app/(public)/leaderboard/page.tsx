@@ -30,6 +30,8 @@ import {
   TriangleAlert,
   Gamepad2,
   ArrowUp,
+  Filter,
+  X,
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -1063,6 +1065,10 @@ export default function LeaderboardPage() {
   const [province, setProvince] = useState("all");
   const [sourceTab, setSourceTab] = useState("all");
   const [gameType, setGameType] = useState("all");
+  // Secondary filters (source/province/game) collapse behind a toggle to keep the
+  // default view simple (Hick's law). hasActiveFilters surfaces a reset shortcut.
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const hasActiveFilters = sourceTab !== "all" || province !== "all" || gameType !== "all";
 
   const fetchLeaderboard = useCallback(async () => {
     try {
@@ -1307,8 +1313,9 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
-              {/* ── Window + province + source + gameType ── */}
-              <div className="mb-4 flex flex-wrap items-center gap-2">
+              {/* ── Filters: time window stays visible; source/province/game collapse
+                   behind a single toggle to keep the default view uncluttered. ── */}
+              <div className="mb-3 flex flex-wrap items-center gap-2">
                 {/* Time Window Tabs */}
                 <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
                   {WINDOW_TABS.map((w, i) => {
@@ -1326,79 +1333,91 @@ export default function LeaderboardPage() {
                   })}
                 </div>
 
-                {/* Source Tabs */}
-                <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
-                  {SOURCE_TABS.map((s, i) => {
-                    const active = sourceTab === s.id;
-                    return (
-                      <button
-                        key={s.id}
-                        onClick={() => setSourceTab(s.id)}
-                        className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
-                        style={kf}
-                      >
-                        {kh ? s.kh : s.en}
-                      </button>
-                    );
-                  })}
+                {/* Filters toggle — reveals the secondary filters panel */}
+                <button
+                  onClick={() => setFiltersOpen((o) => !o)}
+                  aria-expanded={filtersOpen}
+                  className={`flex items-center gap-1.5 border-2 border-black px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${filtersOpen || hasActiveFilters ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                  style={{ borderRadius: 0, ...kf }}
+                >
+                  <Filter size={13} strokeWidth={2.5} />
+                  {kh ? "តម្រង" : "Filters"}
+                  {hasActiveFilters && (
+                    <span className="inline-flex h-4 min-w-4 items-center justify-center border border-black bg-yellow-400 px-1 text-[9px] font-black text-black">
+                      {[sourceTab !== "all", province !== "all", gameType !== "all"].filter(Boolean).length}
+                    </span>
+                  )}
+                  <ChevronDown size={12} strokeWidth={3} className={`transition-transform ${filtersOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {/* Reset shortcut — only when something is filtered */}
+                {hasActiveFilters && (
+                  <button
+                    onClick={() => { setSourceTab("all"); setProvince("all"); setGameType("all"); }}
+                    className="flex items-center gap-1 border-2 border-black bg-white px-2.5 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider text-red-600 transition-colors hover:bg-red-50"
+                    style={{ borderRadius: 0, ...kf }}
+                  >
+                    <X size={12} strokeWidth={3} />
+                    {kh ? "សម្អាត" : "Reset"}
+                  </button>
+                )}
+              </div>
+
+              {/* Collapsible secondary filters */}
+              {filtersOpen && (
+                <div className="mb-3 flex flex-col gap-3 border-2 border-black bg-zinc-50 p-3" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
+                  {/* Source + Province */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
+                      {SOURCE_TABS.map((s, i) => {
+                        const active = sourceTab === s.id;
+                        return (
+                          <button
+                            key={s.id}
+                            onClick={() => setSourceTab(s.id)}
+                            className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                            style={kf}
+                          >
+                            {kh ? s.kh : s.en}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <BrandSelect
+                      ariaLabel={kh ? "ខេត្ត/ក្រុង" : "Province"}
+                      value={province}
+                      onValueChange={setProvince}
+                      fontStyle={kf}
+                      options={[
+                        { value: "all", label: kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces" },
+                        ...CAMBODIA_PROVINCES.map((p) => ({ value: p.en, label: kh ? p.kh : p.en })),
+                      ]}
+                    />
+                  </div>
+
+                  {/* Game chips — what games we have, doubles as the gameType filter */}
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
+                    <span className="flex flex-shrink-0 items-center gap-1 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
+                      <Gamepad2 size={13} strokeWidth={2.5} />
+                      {kh ? "ហ្គេម" : "Games"}
+                    </span>
+                    {GAME_CHIPS.map((g) => {
+                      const active = gameType === g.id;
+                      return (
+                        <button
+                          key={g.id}
+                          onClick={() => setGameType(g.id)}
+                          className={`flex flex-shrink-0 items-center gap-1.5 border-2 border-black px-2.5 py-1 text-[10px] font-black uppercase tracking-wide transition-all ${active ? "bg-black text-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"}`}
+                          style={{ borderRadius: 0, ...kf }}
+                        >
+                          <span className="h-2 w-2 flex-shrink-0 border border-black" style={{ background: g.color }} />
+                          {kh ? g.kh : g.en}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-
-                {/* Province Select — brutalist BrandSelect (native popup can't be brand-styled) */}
-                <BrandSelect
-                  ariaLabel={kh ? "ខេត្ត/ក្រុង" : "Province"}
-                  value={province}
-                  onValueChange={setProvince}
-                  fontStyle={kf}
-                  options={[
-                    { value: "all", label: kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces" },
-                    ...CAMBODIA_PROVINCES.map(p => ({ value: p.en, label: kh ? p.kh : p.en })),
-                  ]}
-                />
-
-              </div>
-
-              {/* ── Game filter chips — "what games we have", doubles as the gameType
-                   filter. Recognition-over-recall: show the options, don't hide them
-                   in a dropdown. Active chip = black fill / yellow text (Von Restorff). ── */}
-              <div className="mb-3 flex items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
-                <span className="flex flex-shrink-0 items-center gap-1 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
-                  <Gamepad2 size={13} strokeWidth={2.5} />
-                  {kh ? "ហ្គេម" : "Games"}
-                </span>
-                {GAME_CHIPS.map((g) => {
-                  const active = gameType === g.id;
-                  return (
-                    <button
-                      key={g.id}
-                      onClick={() => setGameType(g.id)}
-                      className={`flex flex-shrink-0 items-center gap-1.5 border-2 border-black px-2.5 py-1 text-[10px] font-black uppercase tracking-wide transition-all ${active ? "bg-black text-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"}`}
-                      style={{ borderRadius: 0, ...kf }}
-                    >
-                      <span className="h-2 w-2 flex-shrink-0 border border-black" style={{ background: g.color }} />
-                      {kh ? g.kh : g.en}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* ── Scoring legend — frames LIVE as the valued, claimable currency.
-                   Token economy + endowment/loss-aversion: only LIVE can be spent. ── */}
-              <div
-                className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 border-2 border-black bg-yellow-50 px-3 py-1.5 text-[9px] font-bold text-zinc-600"
-                style={{ boxShadow: "2px 2px 0 #000", borderRadius: 0, ...kf }}
-              >
-                <span className="flex items-center gap-1 font-black uppercase text-black">
-                  <Gift size={12} strokeWidth={3} className="text-yellow-600" />
-                  {kh ? "ពិន្ទុផ្ទាល់ = អាចដោះរង្វាន់" : "Live = the claimable currency"}
-                </span>
-                <span className="text-zinc-400">·</span>
-                <span className="flex items-center gap-1">
-                  <Wifi size={11} strokeWidth={3} className="text-red-500" />
-                  {kh ? "ចំណាត់ថ្នាក់តាមពិន្ទុផ្ទាល់" : "Ranked by Live score"}
-                </span>
-                <span className="text-zinc-400">·</span>
-                <span>{kh ? "សរុប និងត្រឹមត្រូវ = ស្ថិតិតែប៉ុណ្ណោះ" : "Total & Accuracy = stats only"}</span>
-              </div>
+              )}
 
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
                 <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase flex items-center gap-2" style={kf}>
