@@ -55,6 +55,7 @@ export const REWARD_ITEMS: RewardItem[] = [
   { id: 1, name: "Notebook",    nameKh: "សៀវភៅកត់ត្រា",      cost: 200, color: "#3b82f6", image: "/rewards/notebook.webp" },
   { id: 8, name: "Kit",         nameKh: "ឧបករណ៍គណិត",       cost: 240, color: "#ec4899", image: "/rewards/kit.webp" },
   { id: 9, name: "Planner",     nameKh: "ផែនការសិក្សា",      cost: 300, color: "#84cc16", image: "/rewards/planner.webp" },
+  { id: 10, name: "Book Writer Lesson", nameKh: "មេរៀនសរសេរសៀវភៅ", cost: 500, color: "#a855f7", image: "/rewards/book_writer_lesson.webp" },
 ];
 
 /**
@@ -83,3 +84,16 @@ export const RARITY_META: Record<RewardRarity, { label: string; labelKh: string;
 export function getRewardItem(id: number): RewardItem | undefined {
   return REWARD_ITEMS.find((r) => r.id === id);
 }
+
+/**
+ * Calculate the dynamic cost of a reward item for a student based on their claim history.
+ * For 'Book Writer Lesson' (id: 10), the cost doubles with each successful claim:
+ * 1st claim = 500, 2nd claim = 1000, 3rd claim = 2000, etc.
+ */
+export function calculateDynamicCost(item: RewardItem, claimCount: number): number {
+  if (item.id === 10) {
+    return 500 * Math.pow(2, claimCount);
+  }
+  return item.cost;
+}
+

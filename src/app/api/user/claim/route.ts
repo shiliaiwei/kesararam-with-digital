@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { rewardClaims } from "@/db/schema/content";
-import { eq, and, inArray, desc } from "drizzle-orm";
-import { getRewardItem } from "@/lib/rewards";
+import { eq, and, inArray, desc, ne, sql } from "drizzle-orm";
+import { getRewardItem, calculateDynamicCost } from "@/lib/rewards";
 import { users } from "@/db/schema/users";
 import {
   resolveStudentClass,
@@ -41,6 +41,20 @@ export async function POST(req: Request) {
     if (!item) {
       return NextResponse.json({ error: "Reward item not found" }, { status: 400 });
     }
+
+    // Load claim history to calculate dynamic item cost
+    const [claimsCountRow] = await db
+      .select({ count: sql<number>`COUNT(*)::int` })
+      .from(rewardClaims)
+      .where(
+        and(
+          eq(rewardClaims.studentId, session.id),
+          eq(rewardClaims.itemId, item.id),
+          ne(rewardClaims.status, "rejected")
+        )
+      );
+    const claimCount = claimsCountRow?.count ?? 0;
+    const itemCost = calculateDynamicCost(item, claimCount);
 
     // 1. The claim must route to a teacher — student must be in a class.
     const klass = await resolveStudentClass(session.id);
@@ -116,13 +130,13 @@ export async function POST(req: Request) {
 
     // 3. Check the available (live − spent) balance.
     const balance = await getClaimBalance(session.id);
-    if (balance.available < item.cost) {
+    if (balance.available < itemCost) {
       return NextResponse.json(
         {
           error: "insufficient_points",
           message: "Not enough live points yet — keep playing live class games!",
           available: balance.available,
-          cost: item.cost,
+          cost: itemCost,
         },
         { status: 400 }
       );
@@ -137,7 +151,7 @@ export async function POST(req: Request) {
         teacherId: klass.teacherId,
         itemId: item.id,
         itemName: item.name,
-        cost: item.cost,
+        cost: itemCost,
         status: "pending",
         studentNote: typeof note === "string" ? note.slice(0, 280) : null,
       })
@@ -147,7 +161,7 @@ export async function POST(req: Request) {
       success: true,
       claim,
       // available balance AFTER this claim is held
-      activePoints: balance.available - item.cost,
+      activePoints: balance.available - itemCost,
       live: balance.live,
     });
   } catch (error) {

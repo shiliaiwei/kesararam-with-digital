@@ -9,7 +9,7 @@ import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
 import { getRank } from "@/lib/rank-utils";
 import { getAvatarFaceStyle } from "@/lib/utils";
-import { REWARD_ITEMS, getRewardRarity, RARITY_META } from "@/lib/rewards";
+import { REWARD_ITEMS, getRewardRarity, RARITY_META, calculateDynamicCost } from "@/lib/rewards";
 import { BrandSelect } from "@/components/ui/brand-select";
 import {
   Trophy,
@@ -27,6 +27,7 @@ import {
   Layers,
   ChevronUp,
   ChevronDown,
+  TriangleAlert,
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -555,17 +556,23 @@ const TIER_COOLDOWNS: Record<string, number> = {
 };
 
 // ── REWARD CARD (Brutalist Premium Redesign) ──────────────────────────────────
-function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimePoints = 0, teacherInventory = [] }: {
+function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimePoints = 0, teacherInventory = [], dbClaims = [] }: {
   item: typeof REWARD_ITEMS[number]; userPoints: number;
   isLoggedIn: boolean; onClaim: (item: typeof REWARD_ITEMS[number]) => void; lang: string;
   userLifetimePoints?: number;
   teacherInventory?: any[];
+  dbClaims?: any[];
 }) {
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "var(--font-system)" } : {};
 
   const userRank = getRank(userLifetimePoints);
   const cooldownMs = TIER_COOLDOWNS[userRank.id] ?? TIER_COOLDOWNS.rookie;
+
+  // Derive claims from database if logged in, otherwise fall back to localStorage
+  const claimsForItem = dbClaims.filter((c: any) => c.itemId === item.id && c.status !== "rejected");
+  const dbClaimCount = claimsForItem.length;
+  const dbLastClaimedAt = claimsForItem.length > 0 ? new Date(claimsForItem[0].createdAt).getTime() : null;
 
   const claimDataKey = `kwd_claim_data_${item.id}`;
   const [claimData, setClaimData] = useState(() => {
@@ -589,8 +596,10 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
     };
   });
 
-  const claimCount = isLoggedIn ? claimData.claimCount : 0;
-  const lastClaimedAt = isLoggedIn ? claimData.lastClaimedAt : null;
+  const claimCount = isLoggedIn ? (dbClaimCount > 0 ? dbClaimCount : claimData.claimCount) : 0;
+  const lastClaimedAt = isLoggedIn ? (dbLastClaimedAt !== null ? dbLastClaimedAt : claimData.lastClaimedAt) : null;
+
+  const itemCost = calculateDynamicCost(item, claimCount);
 
   const claimed = isLoggedIn && lastClaimedAt !== null && (Date.now() - lastClaimedAt < cooldownMs);
   const msRemaining = lastClaimedAt ? (lastClaimedAt + cooldownMs) - Date.now() : 0;
@@ -614,18 +623,18 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   const stockCount = itemConfig ? Number(itemConfig.stock) : null;
   const isPushed = itemConfig ? !!itemConfig.pushed : false;
 
-  const canClaim = isLoggedIn && userPoints >= item.cost && !claimed && !isFrozen && !isOutOfStock;
-  const rawPct = Math.min(100, (userPoints / item.cost) * 100);
+  const canClaim = isLoggedIn && userPoints >= itemCost && !claimed && !isFrozen && !isOutOfStock;
+  const rawPct = Math.min(100, (userPoints / itemCost) * 100);
   const pct = Math.round(rawPct);
 
   const socialCount = SOCIAL_PROOF[item.id] ?? 0;
   const scarcity = SCARCITY[item.id];
   const bonusBadge = BONUS_BADGE[item.id];
-  const pointsNeeded = item.cost - userPoints;
+  const pointsNeeded = itemCost - userPoints;
 
   // Rarity ("premium collectible") — derived from cost; drives ribbon, frame
   // weight and the accent/aura on the card.
-  const rarity = getRewardRarity(item.cost);
+  const rarity = getRewardRarity(itemCost);
   const rmeta = RARITY_META[rarity];
   const isElite = rarity === "legendary" || rarity === "mythic";
   const isAlmostThere = isLoggedIn && !claimed && rawPct >= 60 && rawPct < 100;
@@ -793,7 +802,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
           </div>
           <div className="bg-black text-white px-2.5 py-1 flex flex-col items-center leading-none">
             <span className="text-[7px] font-black uppercase tracking-wider text-zinc-400">{kh ? "តម្លៃ" : "COST"}</span>
-            <span className="text-base font-mono font-black tabular-nums" style={{ color: "#facc15" }}>{item.cost.toLocaleString()}</span>
+            <span className="text-base font-mono font-black tabular-nums" style={{ color: "#facc15" }}>{itemCost.toLocaleString()}</span>
           </div>
         </div>
       </div>
@@ -823,6 +832,17 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
           )}
         </div>
 
+        {item.id === 10 && (
+          <div className="flex items-start gap-1.5 p-2 bg-purple-50 text-purple-700 border-2 border-black shadow-[2px_2px_0_#000] text-[8.5px] font-black uppercase leading-normal" style={kf}>
+            <TriangleAlert size={10} className="shrink-0 mt-0.5" strokeWidth={3} />
+            <div>
+              {kh 
+                ? "តម្លៃកើនឡើងទ្វេដងរាល់ពេលប្តូរ៖ ៥០០, ១០០០, ២០០០..." 
+                : "Cost doubles with each claim: 500, 1000, 2000..."}
+            </div>
+          </div>
+        )}
+
         {/* Scarcity indicator */}
         {scarcity !== null && !claimed && (
           <div className="flex items-center gap-1.5 self-start bg-red-100 text-red-600 border border-red-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ef4444] animate-pulse">
@@ -851,7 +871,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
           <div className="mt-1 border-t-2 border-dashed border-zinc-100 pt-2.5">
             <div className="flex justify-between items-center mb-1 font-mono text-[9px] font-black">
               <span className="text-zinc-500">
-                {userPoints.toLocaleString()} / {item.cost.toLocaleString()} PTS
+                {userPoints.toLocaleString()} / {itemCost.toLocaleString()} PTS
               </span>
               <span style={{ color: isReady ? "#22c55e" : isAlmostThere ? "#f59e0b" : "#000000" }}>
                 {pct}%
@@ -940,7 +960,15 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
               } as any}
             >
               <Gift size={15} strokeWidth={3} className="animate-bounce" />
-              <span>{kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW"}</span>
+              <span>
+                {item.id === 10 ? (
+                  kh 
+                    ? `ប្តូរឥឡូវនេះ (លើកទី${claimCount + 1}: ${itemCost.toLocaleString()} ពិន្ទុ)` 
+                    : `CLAIM NOW (Claim #${claimCount + 1}: ${itemCost.toLocaleString()} PTS)`
+                ) : (
+                  kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW"
+                )}
+              </span>
             </button>
           ) : (
             <button disabled
@@ -994,6 +1022,7 @@ export default function LeaderboardPage() {
 
   // Real-time tracking user points state
   const [userPoints, setUserPoints] = useState(0);
+  const [userClaims, setUserClaims] = useState<any[]>([]);
   const [claimMsg, setClaimMsg] = useState("");
   const [teacherInventory, setTeacherInventory] = useState<any[]>([]);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
@@ -1030,6 +1059,29 @@ export default function LeaderboardPage() {
     finally { setLoading(false); }
   }, [windowTab, province, sourceTab, gameType]);
 
+  const fetchClaimsAndBalance = useCallback((livePoints?: number, lifetimePoints?: number) => {
+    fetch("/api/user/claim")
+      .then(r => (r.ok ? r.json() : null))
+      .then(cd => {
+        if (cd?.balance && typeof cd.balance.available === "number") {
+          setUserPoints(Math.max(0, cd.balance.available));
+        } else if (typeof livePoints === "number" || typeof lifetimePoints === "number") {
+          setUserPoints(Math.max(0, (livePoints || lifetimePoints) ?? 0));
+        }
+        if (cd && Array.isArray(cd.claims)) {
+          setUserClaims(cd.claims);
+        }
+        if (cd && Array.isArray(cd.teacherInventory)) {
+          setTeacherInventory(cd.teacherInventory);
+        }
+      })
+      .catch(() => {
+        if (typeof livePoints === "number" || typeof lifetimePoints === "number") {
+          setUserPoints(Math.max(0, (livePoints || lifetimePoints) ?? 0));
+        }
+      });
+  }, []);
+
   useEffect(() => {
     fetchLeaderboard();
     const iv = setInterval(fetchLeaderboard, 60000);
@@ -1055,19 +1107,7 @@ export default function LeaderboardPage() {
           // the source of truth now that reward_claims drives the workflow — the
           // old localStorage claim bookkeeping is gone.
           if (d.role === "student") {
-            fetch("/api/user/claim")
-              .then(r => (r.ok ? r.json() : null))
-              .then(cd => {
-                if (cd?.balance && typeof cd.balance.available === "number") {
-                  setUserPoints(Math.max(0, cd.balance.available));
-                } else {
-                  setUserPoints(Math.max(0, livePoints || lifetimePoints));
-                }
-                if (cd && Array.isArray(cd.teacherInventory)) {
-                  setTeacherInventory(cd.teacherInventory);
-                }
-              })
-              .catch(() => setUserPoints(Math.max(0, livePoints || lifetimePoints)));
+            fetchClaimsAndBalance(livePoints, lifetimePoints);
           } else {
             setUserPoints(Math.max(0, livePoints || lifetimePoints));
           }
@@ -1096,7 +1136,7 @@ export default function LeaderboardPage() {
         }
       })
       .catch(() => { });
-  }, [router]);
+  }, [router, fetchClaimsAndBalance]);
 
   // Countdown ticker
   useEffect(() => {
@@ -1131,9 +1171,7 @@ export default function LeaderboardPage() {
         return;
       }
 
-      if (typeof data.activePoints === "number") {
-        setUserPoints(data.activePoints);
-      }
+      fetchClaimsAndBalance();
       const ok = kh
         ? `🎁 "${item.nameKh}" ត្រូវបានផ្ញើទៅគ្រូរបស់អ្នក! រង់ចាំការយល់ព្រម។`
         : `🎁 "${item.name}" claim sent to your teacher! Waiting for approval.`;
@@ -1589,6 +1627,7 @@ export default function LeaderboardPage() {
                         onClaim={handleClaimItem}
                         userLifetimePoints={currentUser?.lifetimePoints ?? 0}
                         teacherInventory={teacherInventory}
+                        dbClaims={userClaims}
                       />
                     ));
                   })()}
