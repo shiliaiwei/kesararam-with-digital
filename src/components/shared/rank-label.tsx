@@ -283,7 +283,6 @@ export function RankedAvatarRing({
         );
     }
 
-    const isSmall = size < 50;
     return (
         <PremiumRankedAvatar
             lifetimePoints={pts}
