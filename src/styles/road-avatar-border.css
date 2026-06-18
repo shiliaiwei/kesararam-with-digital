@@ -415,12 +415,12 @@
 }
 
 .gold-avatar--animated .gold-avatar__top-glow {
-    animation: topGlowPulse 3s infinite ease-in-out;
+    animation: goldCautionBlink 1.2s infinite ease-in-out;
 }
 
-@keyframes topGlowPulse {
-    0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.8); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+@keyframes goldCautionBlink {
+    0%, 30%, 100% { opacity: 0.15; transform: translate(-50%, -50%) scale(0.85); }
+    35%, 55% { opacity: 1; transform: translate(-50%, -50%) scale(1.45); }
 }
 
 /* Ring light breathing around photo */
@@ -455,8 +455,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 44.5%;
-    height: 44.5%;
+    width: 43.16%;
+    height: 43.16%;
     border-radius: 50%;
     overflow: hidden;
     background: #e4e4e7;
