@@ -35,7 +35,7 @@ export function MythicAvatarBorder({
     children,
 }: MythicAvatarBorderProps) {
     const [imgFailed, setImgFailed] = React.useState(false);
-    const scale = typeof size === "number" ? size / 73.1 : SCALE[size];
+    const scale = typeof size === "number" ? size / 96 : SCALE[size];
     const showCustomAvatar = Boolean(children);
     const showImage = Boolean(src) && !imgFailed && !showCustomAvatar;
     const initial = username?.trim()?.charAt(0)?.toUpperCase() ?? "";
@@ -60,7 +60,7 @@ export function MythicAvatarBorder({
                 {/* Scalable SVG Frame instead of a static PNG */}
                 <svg
                     className="mythic-avatar__frame-img"
-                    viewBox="0 0 220 220"
+                    viewBox="0 0 200 200"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true"
@@ -91,102 +91,99 @@ export function MythicAvatarBorder({
                     </defs>
 
                     {/* Brutalist zero-blur shadow for the shield frame */}
-                    <polygon points="48,23 172,23 207,58 207,162 172,197 48,197 13,162 13,58" fill="#000000" transform="translate(5, 5)" />
+                    <polygon points="45,20 155,20 190,55 190,145 155,180 45,180 10,145 10,55" fill="#000000" transform="translate(4, 4)" />
 
-                    {/* Multi-layered Premium Gold Octagonal Shield */}
-                    <polygon points="48,23 172,23 207,58 207,162 172,197 48,197 13,162 13,58" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="4.5" strokeLinejoin="round" />
-                    <polygon points="52,27 168,27 203,62 203,158 168,193 52,193 17,158 17,62" fill="#121212" stroke="#000000" strokeWidth="3" strokeLinejoin="round" />
-                    <polygon points="55,30 165,30 200,65 200,155 165,190 55,190 20,155 20,65" fill="none" stroke="url(#mythic-gold-metal)" strokeWidth="2" strokeLinejoin="round" />
+                    {/* Multi-layered Premium Gold/White Octagonal Shield (Transparent Background) */}
+                    <polygon points="45,20 155,20 190,55 190,145 155,180 45,180 10,145 10,55" fill="rgba(15, 23, 42, 0.6)" stroke="url(#mythic-gold-metal)" strokeWidth="4.5" strokeLinejoin="round" />
+                    <polygon points="48,24 152,24 186,58 186,142 152,176 48,176 14,142 14,58" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinejoin="round" />
+                    <polygon points="50,26 150,26 183,59 183,141 150,174 50,174 17,141 17,59" fill="none" stroke="url(#mythic-gold-metal)" strokeWidth="1" strokeLinejoin="round" />
 
                     {/* Main Outer circle roadway ring */}
-                    <circle cx="110" cy="110" r="56" fill="url(#mythic-carbon)" stroke="#000000" strokeWidth="3.5" />
+                    <circle cx="100" cy="100" r="51" fill="none" stroke="#ffffff" strokeWidth="3" />
 
                     {/* Inner Gold Ring border */}
-                    <circle cx="110" cy="110" r="46" fill="none" stroke="url(#mythic-gold-metal)" strokeWidth="2.5" />
-
-                    {/* Inner Asphalt Ring */}
-                    <circle cx="110" cy="110" r="44" fill="#1c1917" stroke="#000000" strokeWidth="2" />
+                    <circle cx="100" cy="100" r="43" fill="none" stroke="#ffffff" strokeWidth="1.5" />
 
                     {/* White Dashed Lane Markings */}
-                    <circle cx="110" cy="110" r="40" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.8" />
+                    <circle cx="100" cy="100" r="39" fill="none" stroke="#ffffff" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.8" />
 
                     {/* ── INTEGRATED SIDE LIGHTS & WARNING SIGNS ── */}
                     {/* Left Traffic Light Stack */}
-                    <rect x="44" y="93" width="12" height="34" rx="2.5" fill="#0f172a" stroke="#000000" strokeWidth="1.5" />
-                    <circle cx="50" cy="99" r="3.2" className="mythic-light-red" stroke="#000000" strokeWidth="1" />
-                    <circle cx="50" cy="110" r="3.2" className="mythic-light-yellow" stroke="#000000" strokeWidth="1" />
-                    <circle cx="50" cy="121" r="3.2" className="mythic-light-green" stroke="#000000" strokeWidth="1" />
+                    <rect x="39" y="85" width="11" height="31" rx="2" fill="#0f172a" stroke="#ffffff" strokeWidth="1.2" />
+                    <circle cx="44.5" cy="90.5" r="2.9" className="mythic-light-red" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="44.5" cy="100.5" r="2.9" className="mythic-light-yellow" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="44.5" cy="110.5" r="2.9" className="mythic-light-green" stroke="#000000" strokeWidth="0.8" />
 
                     {/* Right Traffic Light Stack */}
-                    <rect x="164" y="93" width="12" height="34" rx="2.5" fill="#0f172a" stroke="#000000" strokeWidth="1.5" />
-                    <circle cx="170" cy="99" r="3.2" className="mythic-light-red" stroke="#000000" strokeWidth="1" />
-                    <circle cx="170" cy="110" r="3.2" className="mythic-light-yellow" stroke="#000000" strokeWidth="1" />
-                    <circle cx="170" cy="121" r="3.2" className="mythic-light-green" stroke="#000000" strokeWidth="1" />
+                    <rect x="150" y="85" width="11" height="31" rx="2" fill="#0f172a" stroke="#ffffff" strokeWidth="1.2" />
+                    <circle cx="155.5" cy="90.5" r="2.9" className="mythic-light-red" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="155.5" cy="100.5" r="2.9" className="mythic-light-yellow" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="155.5" cy="110.5" r="2.9" className="mythic-light-green" stroke="#000000" strokeWidth="0.8" />
 
                     {/* Upper Left warning sign: Pedestrian crossing */}
-                    <polygon points="32,50 42,60 32,70 22,60" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
-                    <circle cx="32" cy="55.2" r="1.3" fill="#000000" />
-                    <path d="M 32 56.5 L 32 62 L 29 66 M 32 62 L 35 66 M 29.5 59 L 34.5 59" stroke="#000000" strokeWidth="1.2" strokeLinecap="round" />
+                    <polygon points="29,45 38,54 29,63 20,54" fill="none" stroke="#ffffff" strokeWidth="1.5" />
+                    <circle cx="29" cy="49.5" r="1.2" fill="#ffffff" />
+                    <path d="M 29 50.8 L 29 55.8 L 26 59.4 M 29 55.8 L 32 59.4 M 26.5 53.2 L 31.5 53.2" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" />
 
                     {/* Upper Right warning sign: Car symbol */}
-                    <polygon points="188,50 198,60 188,70 178,60" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
-                    <path d="M 183.5 62.5 L 185 59.5 Q 188 57.5 191 59.5 L 192.5 62.5 Z" fill="#000000" />
-                    <rect x="181.5" y="62.5" width="13" height="3.5" rx="0.8" fill="#000000" />
-                    <circle cx="184.5" cy="66.5" r="1.2" fill="#000000" />
-                    <circle cx="191.5" cy="66.5" r="1.2" fill="#000000" />
+                    <polygon points="171,45 180,54 171,63 162,54" fill="none" stroke="#ffffff" strokeWidth="1.5" />
+                    <path d="M 166.5 56.5 L 168 53.8 Q 171 52 174 53.8 L 175.5 56.5 Z" fill="#ffffff" />
+                    <rect x="164.5" y="56.5" width="13" height="3" rx="0.7" fill="#ffffff" />
+                    <circle cx="167.5" cy="60" r="1" fill="#ffffff" />
+                    <circle cx="174.5" cy="60" r="1" fill="#ffffff" />
 
                     {/* ── TOP POLICE CHIEF PEAKED CAP ── */}
                     {/* Cap back structure & shadow */}
-                    <ellipse cx="110" cy="23" rx="43" ry="17" fill="#121212" stroke="#000000" strokeWidth="2.5" />
+                    <ellipse cx="100" cy="22" rx="38" ry="15" fill="#121212" stroke="#000000" strokeWidth="2" />
                     {/* Gold cap crown top */}
-                    <path d="M 67 21 C 72 0, 148 0, 153 21 C 143 27, 77 27, 67 21 Z" fill="#1c1917" stroke="url(#mythic-gold-metal)" strokeWidth="3" />
+                    <path d="M 62 21 C 66 2, 134 2, 138 21 C 129 26, 71 26, 62 21 Z" fill="#1c1917" stroke="url(#mythic-gold-metal)" strokeWidth="2.5" />
                     {/* Gold trim band */}
-                    <path d="M 74 23 C 84 26, 136 26, 146 23 L 146 26 C 136 29, 84 29, 74 26 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
-                    {/* Polished black visor (bill) */}
-                    <path d="M 75 26 C 81 39, 139 39, 145 26 C 142 30, 78 30, 75 26 Z" fill="#000000" stroke="url(#mythic-gold-metal)" strokeWidth="1.5" />
+                    <path d="M 68 23 C 77 25.5, 123 25.5, 132 23 L 132 25.5 C 123 28, 77 28, 68 25.5 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="0.8" />
+                    {/* Visor (bill) with white accent */}
+                    <path d="M 69 25.5 C 74 37, 126 37, 131 25.5 C 128 29.5, 72 29.5, 69 25.5 Z" fill="#000000" stroke="#ffffff" strokeWidth="1.5" />
                     {/* Golden Officer Badge Wreath */}
-                    <polygon points="104,10 116,10 119,18 110,25 101,18" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
-                    <polygon points="110,12 111.5,15 115,15 112,17 113,21 110,19 107,21 108,17 105,15 108.5,15" fill="#1c1917" />
-                    <path d="M 97 22 Q 102 25 110 25 Q 118 25 123 22" fill="none" stroke="url(#mythic-gold-metal)" strokeWidth="1.5" />
-                    {/* Eagle topper */}
-                    <path d="M 103 9 Q 110 4 117 9 Q 110 11 103 9" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
+                    <polygon points="95,10 105,10 108,17 100,23 92,17" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="0.8" />
+                    <polygon points="100,12 101.5,14.5 104.5,14.5 102,16 103,19.5 100,17.5 97,19.5 98,16 95.5,14.5 98.5,14.5" fill="#1c1917" />
+                    <path d="M 88 21 Q 93 24 100 24 Q 107 24 112 21" fill="none" stroke="url(#mythic-gold-metal)" strokeWidth="1.2" />
+                    {/* Eagle topper in white */}
+                    <path d="M 94 9 Q 100 4 106 9 Q 100 11 94 9" fill="#ffffff" stroke="#000000" strokeWidth="0.8" />
 
-                    {/* ── SYMMETRICAL GOLD LAUREL WREATHS (SIDES) ── */}
+                    {/* ── SYMMETRICAL GOLD/WHITE LAUREL WREATHS (SIDES) ── */}
                     {/* Left Wreath Leaves */}
-                    <path d="M 25 145 Q 18 138 22 132 Q 28 138 25 145 Z M 22 130 Q 14 122 18 116 Q 25 122 22 130 Z M 18 112 Q 10 104 14 98 Q 21 104 18 112 Z M 16 94 Q 8 86 12 80 Q 19 86 16 94 Z M 18 76 Q 10 68 14 62 Q 21 68 18 76 Z M 22 58 Q 15 50 19 44 Q 26 50 22 58 Z M 27 42 Q 22 34 26 28 Q 32 34 27 42 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.2" />
+                    <path d="M 23 130 Q 17 124 20 118 Q 26 124 23 130 Z M 20 117 Q 13 110 16 104 Q 23 110 20 117 Z M 17 101 Q 10 94 13 88 Q 20 94 17 101 Z M 15 85 Q 8 78 11 72 Q 18 78 15 85 Z M 17 69 Q 10 62 13 56 Q 20 62 17 69 Z M 20 53 Q 14 46 17 40 Q 23 46 20 53 Z M 25 39 Q 20 32 24 26 Q 29 32 25 39 Z" fill="#ffffff" stroke="#000000" strokeWidth="1" />
                     {/* Right Wreath Leaves (Reflected) */}
-                    <path d="M 195 145 Q 202 138 198 132 Q 192 138 195 145 Z M 198 130 Q 206 122 202 116 Q 195 122 198 130 Z M 202 112 Q 210 104 206 98 Q 199 104 202 112 Z M 204 94 Q 212 86 208 80 Q 201 86 204 94 Z M 202 76 Q 210 68 206 62 Q 199 68 202 76 Z M 198 58 Q 205 50 201 44 Q 194 50 198 58 Z M 193 42 Q 198 34 194 28 Q 188 34 193 42 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.2" />
+                    <path d="M 177 130 Q 183 124 180 118 Q 174 124 177 130 Z M 180 117 Q 187 110 184 104 Q 177 110 180 117 Z M 183 101 Q 190 94 187 88 Q 180 94 183 101 Z M 185 85 Q 192 78 189 72 Q 182 78 185 85 Z M 183 69 Q 190 62 187 56 Q 180 62 183 69 Z M 180 53 Q 186 46 183 40 Q 177 46 180 53 Z M 175 39 Q 180 32 176 26 Q 171 32 175 39 Z" fill="#ffffff" stroke="#000000" strokeWidth="1" />
 
                     {/* ── SYMMETRICAL EMERGENCY SIREN FLASHERS (BOTTOM SIDES) ── */}
                     {/* Left Siren: Red Dome & Bracket */}
-                    <path d="M 23 172 L 47 172 L 43 182 L 27 182 Z" fill="#2d2d30" stroke="#000000" strokeWidth="1.5" />
-                    <rect x="18" y="160" width="34" height="12" rx="4" className="mythic-siren-red" stroke="#000000" strokeWidth="1.5" />
+                    <path d="M 21 156 L 43 156 L 39 165 L 25 165 Z" fill="#2d2d30" stroke="#000000" strokeWidth="1" />
+                    <rect x="17" y="145" width="30" height="11" rx="3.5" className="mythic-siren-red" stroke="#ffffff" strokeWidth="1.2" />
                     {/* Left Spotlight under Siren */}
-                    <circle cx="35" cy="189" r="11" fill="#18181b" stroke="#000000" strokeWidth="1.5" />
-                    <circle cx="35" cy="189" r="8" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
+                    <circle cx="32" cy="172" r="9" fill="#18181b" stroke="#ffffff" strokeWidth="1.2" />
+                    <circle cx="32" cy="172" r="6.5" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="0.8" />
 
                     {/* Right Siren: Blue Dome & Bracket */}
-                    <path d="M 173 172 L 197 172 L 193 182 L 177 182 Z" fill="#2d2d30" stroke="#000000" strokeWidth="1.5" />
-                    <rect x="168" y="160" width="34" height="12" rx="4" className="mythic-siren-blue" stroke="#000000" strokeWidth="1.5" />
+                    <path d="M 157 156 L 179 156 L 175 165 L 161 165 Z" fill="#2d2d30" stroke="#000000" strokeWidth="1" />
+                    <rect x="153" y="145" width="30" height="11" rx="3.5" className="mythic-siren-blue" stroke="#ffffff" strokeWidth="1.2" />
                     {/* Right Spotlight under Siren */}
-                    <circle cx="185" cy="189" r="11" fill="#18181b" stroke="#000000" strokeWidth="1.5" />
-                    <circle cx="185" cy="189" r="8" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
+                    <circle cx="168" cy="172" r="9" fill="#18181b" stroke="#ffffff" strokeWidth="1.2" />
+                    <circle cx="168" cy="172" r="6.5" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="0.8" />
 
                     {/* ── OFFICER SHIELD BADGE (CENTER BOTTOM) ── */}
-                    <path d="M 100 142 L 120 142 L 120 152 Q 110 162 100 152 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
-                    <polygon points="110,146 111.5,150 115,150 112,152 113.5,155.5 110,153.5 106.5,155.5 108,152 105,150 108.5,150" fill="#121212" />
-                    <circle cx="106" cy="144" r="0.8" fill="#121212" />
-                    <circle cx="110" cy="143" r="0.8" fill="#121212" />
-                    <circle cx="114" cy="144" r="0.8" fill="#121212" />
+                    <path d="M 91 129 L 109 129 L 109 138 Q 100 147 91 138 Z" fill="none" stroke="#ffffff" strokeWidth="1.5" />
+                    <polygon points="100,132 101.2,135 104,135 101.8,136.5 102.8,139.5 100,137.8 97.2,139.5 98.2,136.5 96,135 98.8,135" fill="#ffffff" />
+                    <circle cx="96" cy="131" r="0.7" fill="#ffffff" />
+                    <circle cx="100" cy="130" r="0.7" fill="#ffffff" />
+                    <circle cx="104" cy="131" r="0.7" fill="#ffffff" />
 
                     {/* ── LICENSE NAMEPLATE ── */}
-                    <rect x="65" y="168" width="90" height="24" rx="4" fill="#0c0a09" stroke="url(#mythic-gold-metal)" strokeWidth="3" />
-                    <text x="110" y="184" fill="#fbbf24" stroke="#000000" strokeWidth="0.5" fontSize="13" fontWeight="950" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.2">MYTHIC</text>
+                    <rect x="60" y="152" width="80" height="22" rx="4" fill="#0c0a09" stroke="#ffffff" strokeWidth="2" />
+                    <text x="100" y="167" fill="#ffffff" fontSize="12" fontWeight="950" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1">MYTHIC</text>
 
                     {/* ── WARNING CAUTION TRIANGLE (BOTTOM CENTER) ── */}
-                    <polygon points="110,195 126,218 94,218" fill="#eab308" stroke="#000000" strokeWidth="2" />
-                    <circle cx="110" cy="214" r="1.5" fill="#000000" />
-                    <path d="M 110 201 L 110 209" stroke="#000000" strokeWidth="2" strokeLinecap="round" />
+                    <polygon points="100,177 115,198 85,198" fill="none" stroke="#ffffff" strokeWidth="1.8" />
+                    <circle cx="100" cy="194" r="1.3" fill="#ffffff" />
+                    <path d="M 100 183 L 100 190" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
 
                 {/* Sweeping purple/gold luxury shine overlay */}

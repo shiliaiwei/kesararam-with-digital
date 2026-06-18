@@ -769,7 +769,7 @@
     --s: 1;
     position: relative;
     display: inline-block;
-    padding: calc(10px * var(--s));
+    padding: calc(25px * var(--s));
     line-height: 0;
 }
 
@@ -782,12 +782,13 @@
 
 .diamond-avatar__frame-img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: calc(-25px * var(--s));
+    left: calc(-25px * var(--s));
+    width: calc(220px * var(--s));
+    height: calc(220px * var(--s));
     z-index: 1;
     pointer-events: none;
+    overflow: visible;
 }
 
 /* Sweeping cyan/blue crystal shine */
@@ -1023,7 +1024,7 @@
     --s: 1;
     position: relative;
     display: inline-block;
-    padding: calc(25px * var(--s));
+    padding: calc(15px * var(--s));
     line-height: 0;
 }
 
@@ -1036,10 +1037,10 @@
 
 .mythic-avatar__frame-img {
     position: absolute;
-    top: calc(-25px * var(--s));
-    left: calc(-25px * var(--s));
-    width: calc(220px * var(--s));
-    height: calc(220px * var(--s));
+    top: calc(-15px * var(--s));
+    left: calc(-15px * var(--s));
+    width: calc(200px * var(--s));
+    height: calc(200px * var(--s));
     z-index: 1;
     pointer-events: none;
     overflow: visible;
