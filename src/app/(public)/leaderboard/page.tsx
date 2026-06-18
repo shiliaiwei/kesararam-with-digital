@@ -7,7 +7,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
-import { getRank } from "@/lib/rank-utils";
+import { getRank, canClaimRewards, CLAIM_MIN_POINTS } from "@/lib/rank-utils";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { REWARD_ITEMS, getRewardRarity, RARITY_META, calculateDynamicCost } from "@/lib/rewards";
 import { BrandSelect } from "@/components/ui/brand-select";
@@ -583,6 +583,10 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   const userRank = getRank(userLifetimePoints);
   const cooldownMs = TIER_COOLDOWNS[userRank.id] ?? TIER_COOLDOWNS.rookie;
 
+  // Rank gate: only Gold tier and above may claim (based on lifetime score).
+  const meetsRank = canClaimRewards(userLifetimePoints);
+  const pointsToGold = Math.max(0, CLAIM_MIN_POINTS - userLifetimePoints);
+
   // Derive claims from database if logged in, otherwise fall back to localStorage
   const claimsForItem = dbClaims.filter((c: any) => c.itemId === item.id && c.status !== "rejected");
   const dbClaimCount = claimsForItem.length;
@@ -637,7 +641,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   const stockCount = itemConfig ? Number(itemConfig.stock) : null;
   const isPushed = itemConfig ? !!itemConfig.pushed : false;
 
-  const canClaim = isLoggedIn && userPoints >= itemCost && !claimed && !isFrozen && !isOutOfStock;
+  const canClaim = isLoggedIn && meetsRank && userPoints >= itemCost && !claimed && !isFrozen && !isOutOfStock;
   const rawPct = Math.min(100, (userPoints / itemCost) * 100);
   const pct = Math.round(rawPct);
 
@@ -651,8 +655,8 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   const rarity = getRewardRarity(itemCost);
   const rmeta = RARITY_META[rarity];
   const isElite = rarity === "legendary" || rarity === "mythic";
-  const isAlmostThere = isLoggedIn && !claimed && rawPct >= 60 && rawPct < 100;
-  const isReady = isLoggedIn && !claimed && rawPct >= 100;
+  const isAlmostThere = isLoggedIn && meetsRank && !claimed && rawPct >= 60 && rawPct < 100;
+  const isReady = isLoggedIn && meetsRank && !claimed && rawPct >= 100;
 
   useEffect(() => {
     if (!isReady) return;
@@ -959,6 +963,18 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
               style={{ boxShadow: `3px 3px 0 ${rmeta.accent}`, ...kf }}>
               <Lock size={12} strokeWidth={3} className="text-zinc-400" />
               <span>{kh ? "អស់ពីស្តុក" : "OUT OF STOCK"}</span>
+            </button>
+          ) : !meetsRank ? (
+            <button disabled
+              className="w-full py-3 font-black text-xs border-3 border-black cursor-not-allowed leading-none flex flex-col items-center justify-center gap-0.5 uppercase tracking-wider"
+              style={{ background: "#fef3c7", color: "#92400e", boxShadow: `3px 3px 0 ${rmeta.accent}`, ...kf }}>
+              <span className="flex items-center gap-1.5">
+                <Lock size={12} strokeWidth={3} />
+                {kh ? "ឡើងថ្នាក់មាសសិន" : "REACH GOLD TO CLAIM"}
+              </span>
+              <span className="text-[8px] font-mono tracking-tighter text-yellow-700">
+                {kh ? `ខ្វះ ${pointsToGold.toLocaleString()} ពិន្ទុដើម្បីដល់មាស` : `${pointsToGold.toLocaleString()} pts to Gold`}
+              </span>
             </button>
           ) : canClaim ? (
             <button

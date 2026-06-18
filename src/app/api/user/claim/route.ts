@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { rewardClaims } from "@/db/schema/content";
 import { eq, and, inArray, desc, ne, sql } from "drizzle-orm";
 import { getRewardItem, calculateDynamicCost } from "@/lib/rewards";
+import { canClaimRewards, CLAIM_MIN_POINTS, CLAIM_MIN_RANK_ID } from "@/lib/rank-utils";
 import { users } from "@/db/schema/users";
 import {
   resolveStudentClass,
@@ -40,6 +41,26 @@ export async function POST(req: Request) {
     const item = getRewardItem(Number(itemId));
     if (!item) {
       return NextResponse.json({ error: "Reward item not found" }, { status: 400 });
+    }
+
+    // Rank gate: only Gold tier and above (lifetime score ≥ CLAIM_MIN_POINTS) may
+    // claim. Spending still draws from live points, but the privilege starts at Gold.
+    const [me] = await db
+      .select({ lifetimePoints: users.lifetimePoints })
+      .from(users)
+      .where(eq(users.id, session.id))
+      .limit(1);
+    if (!me || !canClaimRewards(me.lifetimePoints)) {
+      return NextResponse.json(
+        {
+          error: "rank_too_low",
+          message: "Reach Gold rank to claim rewards — keep earning points!",
+          requiredRank: CLAIM_MIN_RANK_ID,
+          requiredPoints: CLAIM_MIN_POINTS,
+          current: me?.lifetimePoints ?? 0,
+        },
+        { status: 403 }
+      );
     }
 
     // Load claim history to calculate dynamic item cost

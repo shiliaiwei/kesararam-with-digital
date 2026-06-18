@@ -132,6 +132,18 @@ export function getRank(lifetimePoints: number): RankTier {
     return RANK_TIERS[0];
 }
 
+// ── Reward-claim rank gate ──────────────────────────────────────────────────
+// Only Gold tier and above may claim store rewards. Gated by lifetime score so
+// the threshold tracks the rank ladder; spending still draws from live points.
+export const CLAIM_MIN_RANK_ID = "gold";
+export const CLAIM_MIN_POINTS =
+    RANK_TIERS.find(t => t.id === CLAIM_MIN_RANK_ID)?.minPoints ?? 2500;
+
+/** True if a lifetime score qualifies to claim rewards (Gold tier or higher). */
+export function canClaimRewards(lifetimePoints: number): boolean {
+    return lifetimePoints >= CLAIM_MIN_POINTS;
+}
+
 /** Get the next tier (null if already at max) */
 export function getNextRank(lifetimePoints: number): RankTier | null {
     const current = getRank(lifetimePoints);
