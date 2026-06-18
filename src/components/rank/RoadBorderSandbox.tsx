@@ -4,6 +4,8 @@ import * as React from "react";
 import { RoadAvatarBorder } from "./RoadAvatarBorder";
 import { GoldAvatarBorder } from "./GoldAvatarBorder";
 import { PlatinumAvatarBorder } from "./PlatinumAvatarBorder";
+import { DiamondAvatarBorder } from "./DiamondAvatarBorder";
+import { MythicAvatarBorder } from "./MythicAvatarBorder";
 import {
     getRankNameByScore,
     getDivisionForScore,
@@ -13,8 +15,8 @@ import {
 import { formatPoints, type AvatarSize } from "@/lib/ranks";
 
 /**
- * Interactive sandbox — slide the score 0→6999 and watch Rookie, Rising, Gold,
- * and Platinum frames update division, rank-up, fallback initials, sizes, and animations.
+ * Interactive sandbox — slide the score 0→35000+ and watch Rookie, Rising, Gold,
+ * Platinum, Diamond, and Mythic frames update division, rank-up, fallback initials, sizes, and animations.
  */
 export function RoadBorderSandbox() {
     const [score, setScore] = React.useState(120);
@@ -42,7 +44,7 @@ export function RoadBorderSandbox() {
                         <input
                             type="range"
                             min={0}
-                            max={6999}
+                            max={35000}
                             step={1}
                             value={score}
                             onChange={(e) => setScore(Number(e.target.value))}
@@ -60,7 +62,7 @@ export function RoadBorderSandbox() {
                 </div>
 
                 <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wide">
-                    {[0, 250, 500, 750, 999, 1000, 1100, 2500, 3000, 3250, 3500, 4500, 6000].map((v) => (
+                    {[0, 250, 750, 1000, 1900, 2500, 3100, 3500, 5600, 7000, 10100, 12000, 25000, 35000].map((v) => (
                         <button
                             key={v}
                             onClick={() => setScore(v)}
@@ -90,7 +92,23 @@ export function RoadBorderSandbox() {
             <div className="flex flex-wrap items-end justify-center gap-10 border-2 border-black bg-zinc-50 p-8 shadow-[4px_4px_0_0_#000]">
                 {sizes.map((size) => (
                     <div key={size} className="flex flex-col items-center gap-2">
-                        {rank === "Platinum" ? (
+                        {rank === "Mythic" ? (
+                            <MythicAvatarBorder
+                                src={demoSrc}
+                                alt="Sandbox player"
+                                username="Sophea"
+                                size={size}
+                                animated={animated}
+                            />
+                        ) : rank === "Diamond" ? (
+                            <DiamondAvatarBorder
+                                src={demoSrc}
+                                alt="Sandbox player"
+                                username="Sophea"
+                                size={size}
+                                animated={animated}
+                            />
+                        ) : rank === "Platinum" ? (
                             <PlatinumAvatarBorder
                                 src={demoSrc}
                                 alt="Sandbox player"

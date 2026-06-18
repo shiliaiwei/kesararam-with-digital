@@ -630,5 +630,385 @@
     font-size: calc(40px * var(--s));
 }
 
+/* ════════════════════════════════════════════════════════════════════════════
+   KWD Diamond Avatar Border — premium skeuomorphic frame
+   ---------------------------------------------------------------------------- */
+
+.diamond-avatar {
+    --s: 1;
+    position: relative;
+    display: inline-block;
+    padding: calc(10px * var(--s));
+    line-height: 0;
+}
+
+.diamond-avatar__plate {
+    position: relative;
+    width: calc(170px * var(--s));
+    height: calc(170px * var(--s));
+    border-radius: 50%;
+}
+
+.diamond-avatar__frame-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Sweeping cyan/blue crystal shine */
+.diamond-avatar__shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(34, 211, 238, 0.45) 50%, rgba(255, 255, 255, 0) 70%);
+    background-size: 300% 300%;
+    background-position: 150% 0;
+}
+
+.diamond-avatar--animated .diamond-avatar__shine {
+    animation: diamondShineSweep 6s infinite ease-in-out;
+}
+
+@keyframes diamondShineSweep {
+    0% { background-position: 150% 0; }
+    35% { background-position: -150% 0; }
+    100% { background-position: -150% 0; }
+}
+
+/* Top diamond jewel beacon glow */
+.diamond-avatar__top-glow {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(28px * var(--s));
+    height: calc(28px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, rgba(6, 182, 212, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.diamond-avatar--animated .diamond-avatar__top-glow {
+    animation: diamondTopGlow 3s infinite ease-in-out;
+}
+
+@keyframes diamondTopGlow {
+    0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.8); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.35); }
+}
+
+/* Side crystal shards shimmering */
+.diamond-avatar__crystal-shimmer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.5;
+    background: radial-gradient(circle at 10% 40%, rgba(34, 211, 238, 0.25) 0%, rgba(255, 255, 255, 0) 40%),
+                radial-gradient(circle at 90% 40%, rgba(34, 211, 238, 0.25) 0%, rgba(255, 255, 255, 0) 40%);
+}
+
+.diamond-avatar--animated .diamond-avatar__crystal-shimmer {
+    animation: diamondCrystalShimmer 4s infinite alternate ease-in-out;
+}
+
+@keyframes diamondCrystalShimmer {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.85; }
+}
+
+/* Bottom-right roundabout traffic sign glow */
+.diamond-avatar__sign-glow {
+    position: absolute;
+    right: 12%;
+    bottom: 12%;
+    width: calc(24px * var(--s));
+    height: calc(24px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.75) 0%, rgba(59, 130, 246, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.diamond-avatar--animated .diamond-avatar__sign-glow {
+    animation: diamondSignGlow 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes diamondSignGlow {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 0.95; transform: scale(1.2); }
+}
+
+/* Center circular cutout (43%) */
+.diamond-avatar__photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 43%;
+    height: 43%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #e4e4e7;
+    border: calc(2px * var(--s)) solid #000;
+    z-index: 5;
+}
+
+.diamond-avatar__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.diamond-avatar__custom-photo,
+.diamond-avatar__custom-photo > * {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.diamond-avatar__fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #d4d4d8;
+    color: #52525b;
+    font-weight: 900;
+    font-size: calc(40px * var(--s));
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   KWD Mythic Avatar Border — premium skeuomorphic frame
+   ---------------------------------------------------------------------------- */
+
+.mythic-avatar {
+    --s: 1;
+    position: relative;
+    display: inline-block;
+    padding: calc(10px * var(--s));
+    line-height: 0;
+}
+
+.mythic-avatar__plate {
+    position: relative;
+    width: calc(170px * var(--s));
+    height: calc(170px * var(--s));
+    border-radius: 50%;
+}
+
+.mythic-avatar__frame-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Sweeping purple/gold luxury shine */
+.mythic-avatar__shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(168, 85, 247, 0.45) 50%, rgba(250, 204, 21, 0.3) 60%, rgba(255, 255, 255, 0) 80%);
+    background-size: 300% 300%;
+    background-position: 150% 0;
+}
+
+.mythic-avatar--animated .mythic-avatar__shine {
+    animation: mythicShineSweep 6s infinite ease-in-out;
+}
+
+@keyframes mythicShineSweep {
+    0% { background-position: 150% 0; }
+    35% { background-position: -150% 0; }
+    100% { background-position: -150% 0; }
+}
+
+/* Crown jewels beacon glow */
+.mythic-avatar__crown-glow {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(32px * var(--s));
+    height: calc(32px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.85) 0%, rgba(168, 85, 247, 0.5) 45%, rgba(255, 255, 255, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.mythic-avatar--animated .mythic-avatar__crown-glow {
+    animation: mythicCrownGlow 3s infinite ease-in-out;
+}
+
+@keyframes mythicCrownGlow {
+    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.85); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+}
+
+/* Flashing yellow lightning bolts (left & right) */
+.mythic-avatar__lightning-glow {
+    position: absolute;
+    top: 50%;
+    width: calc(32px * var(--s));
+    height: calc(52px * var(--s));
+    transform: translateY(-50%);
+    background: radial-gradient(ellipse, rgba(250, 204, 21, 0.8) 0%, rgba(250, 204, 21, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.mythic-avatar__lightning-glow--left {
+    left: 5%;
+}
+
+.mythic-avatar__lightning-glow--right {
+    right: 5%;
+}
+
+.mythic-avatar--animated .mythic-avatar__lightning-glow {
+    animation: mythicLightningGlow 0.8s infinite alternate ease-in-out;
+}
+
+.mythic-avatar--animated .mythic-avatar__lightning-glow--right {
+    animation-delay: 0.4s;
+}
+
+@keyframes mythicLightningGlow {
+    0% { opacity: 0.3; transform: translateY(-50%) scale(0.9); }
+    100% { opacity: 0.95; transform: translateY(-50%) scale(1.15); }
+}
+
+/* Blinking caution warning sign (bottom-left) - hazard blink */
+.mythic-avatar__caution-glow {
+    position: absolute;
+    left: 13%;
+    bottom: 13%;
+    width: calc(22px * var(--s));
+    height: calc(22px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.95) 0%, rgba(234, 179, 8, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+.mythic-avatar--animated .mythic-avatar__caution-glow {
+    animation: mythicCautionGlow 1s infinite steps(2);
+}
+
+@keyframes mythicCautionGlow {
+    0% { opacity: 0.15; }
+    50% { opacity: 1; }
+}
+
+/* Shimmering trophy glow (bottom-right) */
+.mythic-avatar__trophy-glow {
+    position: absolute;
+    right: 13%;
+    bottom: 13%;
+    width: calc(22px * var(--s));
+    height: calc(22px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.75) 0%, rgba(234, 179, 8, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.mythic-avatar--animated .mythic-avatar__trophy-glow {
+    animation: mythicTrophyGlow 4s infinite alternate ease-in-out;
+}
+
+@keyframes mythicTrophyGlow {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 0.9; transform: scale(1.2); }
+}
+
+/* Purple breathing HUD ring glow around photo cutout */
+.mythic-avatar__ring-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 46.5%;
+    height: 46.5%;
+    border-radius: 50%;
+    border: calc(2px * var(--s)) solid rgba(168, 85, 247, 0.45);
+    box-shadow: 0 0 calc(6px * var(--s)) rgba(168, 85, 247, 0.75),
+                inset 0 0 calc(6px * var(--s)) rgba(168, 85, 247, 0.75);
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.mythic-avatar--animated .mythic-avatar__ring-glow {
+    animation: mythicRingGlow 5s infinite ease-in-out;
+}
+
+@keyframes mythicRingGlow {
+    0%, 100% { opacity: 0.45; box-shadow: 0 0 calc(3px * var(--s)) rgba(168, 85, 247, 0.4); }
+    50% { opacity: 0.95; box-shadow: 0 0 calc(9px * var(--s)) rgba(168, 85, 247, 0.9); }
+}
+
+/* Center circular cutout (44.4%) */
+.mythic-avatar__photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44.4%;
+    height: 44.4%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #e4e4e7;
+    border: calc(2px * var(--s)) solid #000;
+    z-index: 5;
+}
+
+.mythic-avatar__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.mythic-avatar__custom-photo,
+.mythic-avatar__custom-photo > * {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.mythic-avatar__fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #d4d4d8;
+    color: #52525b;
+    font-weight: 900;
+    font-size: calc(40px * var(--s));
+}
+
+
 
 
