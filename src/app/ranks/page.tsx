@@ -21,7 +21,7 @@ import { RankProgressBar } from "@/components/rank/RankProgressBar";
 export const metadata: Metadata = {
     title: "KWD Road Safety Rank System",
     description:
-        "Avatar border & profile badge system — 9 ranks, Roman-numeral divisions, score migration and leaderboard for the KWD road-safety quiz platform.",
+        "Avatar border & profile badge system — 6 ranks, Roman-numeral divisions, score migration and leaderboard for the KWD road-safety quiz platform.",
 };
 
 /* ── Demo data ──────────────────────────────────────────────────────────── */
@@ -111,8 +111,8 @@ export default function RanksPage() {
             </header>
             <CautionBand />
 
-            {/* 2 · All 9 tier preview grid */}
-            <Section n={1} title="All 9 Ranks" subtitle="Rookie → Highmaster · placeholder avatars show each frame.">
+            {/* 2 · All 6 tier preview grid */}
+            <Section n={1} title="All 6 Ranks" subtitle="Rookie → Mythic · placeholder avatars show each frame.">
                 <RankShowcaseGrid />
             </Section>
 

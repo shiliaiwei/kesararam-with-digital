@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { ChevronsRight, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
     getRankNameByScore,
@@ -173,9 +174,7 @@ export function RoadAvatarBorder({
                     ) : (
                         <div className="road-avatar__fallback" role="img" aria-label={alt}>
                             {initial || (
-                                <svg width="46%" height="46%" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5 0-9 2.7-9 6v2h18v-2c0-3.3-4-6-9-6Z" />
-                                </svg>
+                                <User size={Math.round(44 * scale)} strokeWidth={2.5} aria-hidden="true" />
                             )}
                         </div>
                     )}
@@ -185,10 +184,7 @@ export function RoadAvatarBorder({
                 <DivisionBadge division={division} />
 
                 <div className="road-avatar__chevron" aria-hidden="true">
-                    <svg width="62%" height="58%" viewBox="0 0 24 24" fill="none" stroke="#0b0f17" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M4 4 L12 12 L4 20" />
-                        <path d="M12 4 L20 12 L12 20" />
-                    </svg>
+                    <ChevronsRight size={Math.round(24 * scale)} strokeWidth={3.5} />
                 </div>
 
                 <TrafficLightBadge />

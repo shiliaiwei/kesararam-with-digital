@@ -1,8 +1,7 @@
 /**
  * Road-frame rank helpers — thin, spec-named wrappers around the locked 6-tier
  * logic in `src/lib/ranks.ts` (single source of truth). Used by the skeuomorphic
- * RoadAvatarBorder. Division segments match the locked table
- * (.claude/skills/kwd-brand-design/references/rank-tiers.md): e.g. Rookie IV 0–249,
+ * RoadAvatarBorder. Division segments match the locked table: Rookie IV 0–249,
  * III 250–499, II 500–749, I 750–999; Rising IV starts at 1,000.
  */
 

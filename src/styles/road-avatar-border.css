@@ -180,6 +180,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #0b0f17;
     background: linear-gradient(180deg, var(--accent-l), var(--accent-d));
     border: calc(2px * var(--s)) solid #0b0f17;
     border-radius: calc(6px * var(--s));
