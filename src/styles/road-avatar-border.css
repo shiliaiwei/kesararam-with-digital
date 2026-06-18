@@ -997,7 +997,7 @@
     --s: 1;
     position: relative;
     display: inline-block;
-    padding: calc(10px * var(--s));
+    padding: calc(25px * var(--s));
     line-height: 0;
 }
 
@@ -1010,12 +1010,106 @@
 
 .mythic-avatar__frame-img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: calc(-25px * var(--s));
+    left: calc(-25px * var(--s));
+    width: calc(220px * var(--s));
+    height: calc(220px * var(--s));
     z-index: 1;
     pointer-events: none;
+    overflow: visible;
+}
+
+/* Police light bar strobe animations */
+.mythic-siren-blue {
+    fill: #1e3a8a;
+    transition: fill 0.05s ease;
+}
+.mythic-avatar--animated .mythic-siren-blue {
+    animation: mythicPoliceBlueStrobe 1.6s infinite;
+}
+
+.mythic-siren-red {
+    fill: #7f1d1d;
+    transition: fill 0.05s ease;
+}
+.mythic-avatar--animated .mythic-siren-red {
+    animation: mythicPoliceRedStrobe 1.6s infinite;
+}
+
+@keyframes mythicPoliceBlueStrobe {
+    0%, 18%, 36%, 50%, 100% { fill: #1e3a8a; filter: none; }
+    2%, 8%, 14%, 20%, 32%, 38% { fill: #3b82f6; filter: drop-shadow(0 0 10px #3b82f6); }
+    5%, 11%, 17%, 23%, 35% { fill: #93c5fd; filter: drop-shadow(0 0 14px #93c5fd); }
+}
+
+@keyframes mythicPoliceRedStrobe {
+    0%, 50%, 68%, 86%, 100% { fill: #7f1d1d; filter: none; }
+    52%, 58%, 64%, 70%, 82%, 88% { fill: #ef4444; filter: drop-shadow(0 0 10px #ef4444); }
+    55%, 61%, 67%, 73%, 85% { fill: #fca5a5; filter: drop-shadow(0 0 14px #fca5a5); }
+}
+
+/* Traffic Light stack cycling animations */
+.mythic-light-red {
+    fill: #7f1d1d;
+}
+.mythic-avatar--animated .mythic-light-red {
+    animation: mythicTrafficRed 6s infinite;
+}
+
+.mythic-light-yellow {
+    fill: #713f12;
+}
+.mythic-avatar--animated .mythic-light-yellow {
+    animation: mythicTrafficYellow 6s infinite;
+}
+
+.mythic-light-green {
+    fill: #14532d;
+}
+.mythic-avatar--animated .mythic-light-green {
+    animation: mythicTrafficGreen 6s infinite;
+}
+
+@keyframes mythicTrafficRed {
+    0%, 40% { fill: #ef4444; filter: drop-shadow(0 0 6px #ef4444); }
+    45%, 100% { fill: #7f1d1d; filter: none; }
+}
+
+@keyframes mythicTrafficYellow {
+    0%, 40%, 75%, 100% { fill: #713f12; filter: none; }
+    45%, 70% { fill: #eab308; filter: drop-shadow(0 0 6px #eab308); }
+}
+
+@keyframes mythicTrafficGreen {
+    0%, 70%, 100% { fill: #14532d; filter: none; }
+    75%, 95% { fill: #22c55e; filter: drop-shadow(0 0 6px #22c55e); }
+}
+
+/* Mechanical wheel spin animations */
+.mythic-wheel-left {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.mythic-avatar--animated .mythic-wheel-left {
+    animation: mythicWheelSpinLeft 12s infinite linear;
+}
+
+.mythic-wheel-right {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.mythic-avatar--animated .mythic-wheel-right {
+    animation: mythicWheelSpinRight 12s infinite linear;
+}
+
+@keyframes mythicWheelSpinLeft {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes mythicWheelSpinRight {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* Sweeping purple/gold luxury shine */
