@@ -88,23 +88,15 @@ export function MythicAvatarBorder({
                             <stop offset="85%" stopColor="#1c1917" />
                             <stop offset="100%" stopColor="#0a0a0a" />
                         </radialGradient>
-
-                        {/* Silver metal gradient for nameplate */}
-                        <linearGradient id="mythic-silver-metal" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="#f8fafc" />
-                            <stop offset="50%" stopColor="#cbd5e1" />
-                            <stop offset="100%" stopColor="#64748b" />
-                        </linearGradient>
                     </defs>
 
                     {/* Brutalist zero-blur shadow for the shield frame */}
-                    <path d="M 110 25 L 175 35 Q 185 110 110 195 Q 35 110 45 35 Z" fill="#000000" transform="translate(4, 4)"/>
+                    <polygon points="48,23 172,23 207,58 207,162 172,197 48,197 13,162 13,58" fill="#000000" transform="translate(5, 5)" />
 
-                    {/* Gothic Shield Outer Frame */}
-                    <path d="M 110 25 L 175 35 Q 185 110 110 195 Q 35 110 45 35 Z" fill="#a855f7" stroke="#000000" strokeWidth="4" />
-
-                    {/* Gold Inner Border Accent */}
-                    <path d="M 110 32 L 167 41 Q 176 110 110 185 Q 44 110 53 41 Z" fill="none" stroke="url(#mythic-gold-metal)" strokeWidth="2.5" />
+                    {/* Multi-layered Premium Gold Octagonal Shield */}
+                    <polygon points="48,23 172,23 207,58 207,162 172,197 48,197 13,162 13,58" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="4.5" strokeLinejoin="round" />
+                    <polygon points="52,27 168,27 203,62 203,158 168,193 52,193 17,158 17,62" fill="#121212" stroke="#000000" strokeWidth="3" strokeLinejoin="round" />
+                    <polygon points="55,30 165,30 200,65 200,155 165,190 55,190 20,155 20,65" fill="none" stroke="url(#mythic-gold-metal)" strokeWidth="2" strokeLinejoin="round" />
 
                     {/* Main Outer circle roadway ring */}
                     <circle cx="110" cy="110" r="56" fill="url(#mythic-carbon)" stroke="#000000" strokeWidth="3.5" />
@@ -119,43 +111,65 @@ export function MythicAvatarBorder({
                     <circle cx="110" cy="110" r="40" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.8" />
 
                     {/* ── INTEGRATED SIDE LIGHTS & WARNING SIGNS ── */}
-                    {/* Integrated Traffic Light (Left Side of Shield Face) */}
-                    <rect x="52" y="93" width="12" height="34" rx="2.5" fill="#0f172a" stroke="#000000" strokeWidth="1.5" />
-                    <circle cx="58" cy="99" r="3" className="mythic-light-red" stroke="#000000" strokeWidth="1" />
-                    <circle cx="58" cy="110" r="3" className="mythic-light-yellow" stroke="#000000" strokeWidth="1" />
-                    <circle cx="58" cy="121" r="3" className="mythic-light-green" stroke="#000000" strokeWidth="1" />
+                    {/* Left Traffic Light Stack */}
+                    <rect x="44" y="93" width="12" height="34" rx="2.5" fill="#0f172a" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="50" cy="99" r="3.2" className="mythic-light-red" stroke="#000000" strokeWidth="1" />
+                    <circle cx="50" cy="110" r="3.2" className="mythic-light-yellow" stroke="#000000" strokeWidth="1" />
+                    <circle cx="50" cy="121" r="3.2" className="mythic-light-green" stroke="#000000" strokeWidth="1" />
 
-                    {/* Integrated Warning Diamond and Sign (Right Side of Shield Face) */}
-                    <polygon points="162,93 168,99 162,105 156,99" fill="#eab308" stroke="#000000" strokeWidth="1.5" />
-                    <path d="M 162 96 L 162 100 M 162 102 L 162 103" stroke="#000000" strokeWidth="1" strokeLinecap="round" />
+                    {/* Right Traffic Light Stack */}
+                    <rect x="164" y="93" width="12" height="34" rx="2.5" fill="#0f172a" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="170" cy="99" r="3.2" className="mythic-light-red" stroke="#000000" strokeWidth="1" />
+                    <circle cx="170" cy="110" r="3.2" className="mythic-light-yellow" stroke="#000000" strokeWidth="1" />
+                    <circle cx="170" cy="121" r="3.2" className="mythic-light-green" stroke="#000000" strokeWidth="1" />
 
-                    <rect x="156" y="112" width="12" height="12" rx="1.5" fill="#3b82f6" stroke="#000000" strokeWidth="1.5" />
-                    <path d="M 159 118 L 165 118 M 165 118 L 163 116 M 165 118 L 163 120" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    {/* Upper Left warning sign: Pedestrian crossing */}
+                    <polygon points="32,50 42,60 32,70 22,60" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="32" cy="55.2" r="1.3" fill="#000000" />
+                    <path d="M 32 56.5 L 32 62 L 29 66 M 32 62 L 35 66 M 29.5 59 L 34.5 59" stroke="#000000" strokeWidth="1.2" strokeLinecap="round" />
 
-                    {/* ── TOP SIREN BAR & MOUNT ── */}
-                    {/* Mount Bracket */}
-                    <path d="M 75 22 L 145 22 L 135 30 L 85 30 Z" fill="#475569" stroke="#000000" strokeWidth="2" />
-                    {/* Siren Bar Housing */}
-                    <path d="M 55 12 Q 110 8 165 12 L 160 22 L 60 22 Z" fill="#1e293b" stroke="#000000" strokeWidth="2.5" />
-                    {/* Blue Left Light */}
-                    <rect x="65" y="14" width="40" height="6" rx="1" className="mythic-siren-blue" stroke="#000000" strokeWidth="1" />
-                    {/* Red Right Light */}
-                    <rect x="115" y="14" width="40" height="6" rx="1" className="mythic-siren-red" stroke="#000000" strokeWidth="1" />
-                    {/* Center Green Indicator */}
-                    <circle cx="110" cy="17" r="4" fill="#22c55e" stroke="#000000" strokeWidth="1.2" />
+                    {/* Upper Right warning sign: Car symbol */}
+                    <polygon points="188,50 198,60 188,70 178,60" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
+                    <path d="M 183.5 62.5 L 185 59.5 Q 188 57.5 191 59.5 L 192.5 62.5 Z" fill="#000000" />
+                    <rect x="181.5" y="62.5" width="13" height="3.5" rx="0.8" fill="#000000" />
+                    <circle cx="184.5" cy="66.5" r="1.2" fill="#000000" />
+                    <circle cx="191.5" cy="66.5" r="1.2" fill="#000000" />
+
+                    {/* ── TOP MAJESTIC GOLD CROWN ── */}
+                    <path d="M 68 32 C 80 34, 140 34, 152 32 L 150 14 C 145 19, 142 22, 138 23 L 130 6 C 125 13, 122 17, 118 18 L 110 0 L 102 18 C 98 17, 95 13, 90 6 L 82 23 C 78 22, 75 19, 70 14 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="2.5" strokeLinejoin="round" />
+                    {/* Crown jewels: alternating siren strobes */}
+                    <circle cx="110" cy="0" r="4" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.2" />
+                    <circle cx="90" cy="6" r="3.2" className="mythic-siren-blue" stroke="#000000" strokeWidth="1" />
+                    <circle cx="130" cy="6" r="3.2" className="mythic-siren-red" stroke="#000000" strokeWidth="1" />
+                    <circle cx="70" cy="14" r="2.5" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
+                    <circle cx="150" cy="14" r="2.5" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
+                    {/* Crown Base Shield Insignia */}
+                    <path d="M 103 23 L 117 23 L 117 32 Q 110 39 103 32 Z" fill="#000000" stroke="url(#mythic-gold-metal)" strokeWidth="1.5" />
+                    <path d="M 107 26 L 110 29 L 113 26 M 107 30 L 110 33 L 113 30" stroke="url(#mythic-gold-metal)" strokeWidth="1.5" fill="none" />
+
+                    {/* ── SYMMETRICAL GOLD LIGHTNING BOLTS ── */}
+                    <polygon points="35,75 15,105 28,107 5,135 38,105 25,103" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="2" strokeLinejoin="round" />
+                    <polygon points="185,75 205,105 192,107 215,135 182,105 195,103" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="2" strokeLinejoin="round" />
+
+                    {/* ── SYMMETRICAL TRAFFIC CONES AT THE BOTTOM ── */}
+                    {/* Left Cone */}
+                    <path d="M 16 205 L 44 205 L 42 201 L 18 201 Z" fill="#18181b" stroke="#000000" strokeWidth="1.5" />
+                    <path d="M 20 201 L 40 201 L 34 172 L 26 172 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
+                    <path d="M 22 190 L 38 190 L 36 181 L 24 181 Z" fill="#18181b" stroke="#000000" strokeWidth="1.2" />
+
+                    {/* Right Cone */}
+                    <path d="M 176 205 L 204 205 L 202 201 L 178 201 Z" fill="#18181b" stroke="#000000" strokeWidth="1.5" />
+                    <path d="M 180 201 L 200 201 L 194 172 L 186 172 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
+                    <path d="M 182 190 L 198 190 L 196 181 L 184 181 Z" fill="#18181b" stroke="#000000" strokeWidth="1.2" />
+
+                    {/* ── WARNING CAUTION TRIANGLE (BOTTOM CENTER) ── */}
+                    <polygon points="110,185 128,213 92,213" fill="#eab308" stroke="#000000" strokeWidth="2" />
+                    <circle cx="110" cy="208" r="1.8" fill="#000000" />
+                    <path d="M 110 193 L 110 203" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" />
 
                     {/* ── LICENSE NAMEPLATE ── */}
-                    {/* Shadow */}
-                    <polygon points="72,164 148,164 154,179 148,194 72,194 66,179" fill="#000000" />
-                    {/* Metal Outer Plate */}
-                    <polygon points="68,160 144,160 150,175 144,190 68,190 62,175" fill="url(#mythic-silver-metal)" stroke="url(#mythic-gold-metal)" strokeWidth="3.5" />
-                    {/* Inner Black Border */}
-                    <polygon points="70,162 142,162 147,175 142,188 70,188 65,175" fill="none" stroke="#000000" strokeWidth="2" />
-                    {/* Corner Rivets */}
-                    <circle cx="72" cy="175" r="2.2" fill="#94a3b8" stroke="#000000" strokeWidth="1" />
-                    <circle cx="140" cy="175" r="2.2" fill="#94a3b8" stroke="#000000" strokeWidth="1" />
-                    {/* Text Inscriptions - No Code Text */}
-                    <text x="106" y="179" fill="#000000" fontSize="13" fontWeight="950" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="0.8">MYTHIC</text>
+                    <rect x="65" y="156" width="90" height="26" rx="4" fill="#0c0a09" stroke="url(#mythic-gold-metal)" strokeWidth="3" />
+                    <text x="110" y="174" fill="#fbbf24" stroke="#000000" strokeWidth="0.5" fontSize="14" fontWeight="950" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.2">MYTHIC</text>
                 </svg>
 
                 {/* Sweeping purple/gold luxury shine overlay */}
@@ -163,6 +177,19 @@ export function MythicAvatarBorder({
 
                 {/* HUD Ring Glow around photo cutout */}
                 <div className="mythic-avatar__ring-glow" aria-hidden="true" />
+
+                {/* Crown jewels beacon glow */}
+                <div className="mythic-avatar__crown-glow" aria-hidden="true" />
+
+                {/* Flashing yellow lightning bolts (left & right) */}
+                <div className="mythic-avatar__lightning-glow mythic-avatar__lightning-glow--left" aria-hidden="true" />
+                <div className="mythic-avatar__lightning-glow mythic-avatar__lightning-glow--right" aria-hidden="true" />
+
+                {/* Blinking caution warning sign (bottom-left) - hazard blink */}
+                <div className="mythic-avatar__caution-glow" aria-hidden="true" />
+
+                {/* Shimmering trophy glow (bottom-right) */}
+                <div className="mythic-avatar__trophy-glow" aria-hidden="true" />
 
                 {/* Protected profile photo window in the center (44.4% cutout) */}
                 <div className="mythic-avatar__photo">

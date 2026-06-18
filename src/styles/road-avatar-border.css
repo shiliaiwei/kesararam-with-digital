@@ -1051,7 +1051,7 @@
     transition: fill 0.05s ease;
 }
 .mythic-avatar--animated .mythic-siren-blue {
-    /* animation: mythicPoliceBlueStrobe 1.6s infinite; */
+    animation: mythicPoliceBlueStrobe 1.6s infinite;
 }
 
 .mythic-siren-red {
@@ -1059,7 +1059,7 @@
     transition: fill 0.05s ease;
 }
 .mythic-avatar--animated .mythic-siren-red {
-    /* animation: mythicPoliceRedStrobe 1.6s infinite; */
+    animation: mythicPoliceRedStrobe 1.6s infinite;
 }
 
 @keyframes mythicPoliceBlueStrobe {
@@ -1079,21 +1079,21 @@
     fill: #7f1d1d;
 }
 .mythic-avatar--animated .mythic-light-red {
-    /* animation: mythicTrafficRed 6s infinite; */
+    animation: mythicTrafficRed 6s infinite;
 }
 
 .mythic-light-yellow {
     fill: #713f12;
 }
 .mythic-avatar--animated .mythic-light-yellow {
-    /* animation: mythicTrafficYellow 6s infinite; */
+    animation: mythicTrafficYellow 6s infinite;
 }
 
 .mythic-light-green {
     fill: #14532d;
 }
 .mythic-avatar--animated .mythic-light-green {
-    /* animation: mythicTrafficGreen 6s infinite; */
+    animation: mythicTrafficGreen 6s infinite;
 }
 
 @keyframes mythicTrafficRed {
@@ -1125,7 +1125,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__shine {
-    /* animation: mythicShineSweep 6s infinite ease-in-out; */
+    animation: mythicShineSweep 6s infinite ease-in-out;
 }
 
 @keyframes mythicShineSweep {
@@ -1150,7 +1150,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__crown-glow {
-    /* animation: mythicCrownGlow 3s infinite ease-in-out; */
+    animation: mythicCrownGlow 3s infinite ease-in-out;
 }
 
 @keyframes mythicCrownGlow {
@@ -1180,11 +1180,11 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__lightning-glow {
-    /* animation: mythicLightningGlow 0.8s infinite alternate ease-in-out; */
+    animation: mythicLightningGlow 0.8s infinite alternate ease-in-out;
 }
 
 .mythic-avatar--animated .mythic-avatar__lightning-glow--right {
-    /* animation-delay: 0.4s; */
+    animation-delay: 0.4s;
 }
 
 @keyframes mythicLightningGlow {
@@ -1207,7 +1207,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__caution-glow {
-    /* animation: mythicCautionGlow 1s infinite steps(2); */
+    animation: mythicCautionGlow 1s infinite steps(2);
 }
 
 @keyframes mythicCautionGlow {
@@ -1230,7 +1230,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__trophy-glow {
-    /* animation: mythicTrophyGlow 4s infinite alternate ease-in-out; */
+    animation: mythicTrophyGlow 4s infinite alternate ease-in-out;
 }
 
 @keyframes mythicTrophyGlow {
@@ -1256,7 +1256,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__ring-glow {
-    /* animation: mythicRingGlow 5s infinite ease-in-out; */
+    animation: mythicRingGlow 5s infinite ease-in-out;
 }
 
 @keyframes mythicRingGlow {
