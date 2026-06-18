@@ -1,0 +1,209 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   KWD Road Safety Rank System — Avatar Badge ("division-ring") styles & animation
+   ----------------------------------------------------------------------------
+   Import once (e.g. in src/app/globals.css):  @import "../styles/avatar-rank-animations.css";
+
+   HARD RULES baked into this file:
+   • The user photo (.rank-avatar__photo) sits on z-index 5 with an opaque
+     background — the ring, shine arc and pips live BELOW it (z 1) or the corner
+     badges OUTSIDE it (z 20). Nothing ever animates over the face.
+   • Brutalist DNA: double black ring edge, solid black badge borders, hard offset
+     shadows (no blur). Rank colour drives the ring; rank accent fills the pips.
+   • Animations are subtle, 3s / 5s, staggered per rank, and fully disabled under
+     prefers-reduced-motion.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────── Structure ──────────────────────────────── */
+
+.rank-avatar {
+    /* rank colour variables are set inline by <AvatarBorder>; safe fallbacks: */
+    --rank-primary: #000000;
+    --rank-secondary: #ffffff;
+    --rank-accent: #eab308;
+    --rank-text: #ffffff;
+    --rank-shadow: #000000;
+}
+
+.rank-avatar__ring {
+    position: relative;
+}
+
+.rank-avatar__svg {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+/* The rotating shine arc — hidden until an animation turns it on. */
+.rank-avatar__scan {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* Division pips — static by default. */
+.rank-avatar__pip {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* The user photo — OPAQUE, centred, above all ring decoration. */
+.rank-avatar__photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    box-sizing: border-box;
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 3px solid #000000;
+    background: #e4e4e7;
+}
+
+/* Corner badge anchors. */
+.rank-avatar__corner {
+    position: absolute;
+    z-index: 20;
+    line-height: 0;
+}
+.rank-avatar__corner--tl {
+    top: -6px;
+    left: -6px;
+}
+.rank-avatar__corner--tr {
+    top: -6px;
+    right: -6px;
+}
+
+/* ──────────────────────────── Keyframes ───────────────────────────────── */
+
+@keyframes rankRingScan {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rankRingPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.72; }
+}
+
+@keyframes rankPipPop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.22); }
+}
+
+@keyframes rankShineSweep {
+    0% { transform: translateX(-130%); opacity: 0; }
+    8% { opacity: 1; }
+    45% { transform: translateX(130%); opacity: 0; }
+    100% { transform: translateX(130%); opacity: 0; }
+}
+
+@keyframes rankBadgePop {
+    0% { transform: scale(0.7); opacity: 0; }
+    60% { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes rankPointsGlow {
+    0%, 100% { box-shadow: 2px 2px 0 0 #000; }
+    50% { box-shadow: 2px 2px 0 0 #000, 0 0 8px 1px var(--rank-accent); }
+}
+
+@keyframes rankDivisionShine {
+    0%, 100% { box-shadow: inset 0 3px 0 0 var(--rank-accent), 2px 2px 0 0 #000; }
+    50% { box-shadow: inset 0 3px 0 0 #fff, 2px 2px 0 0 #000, 0 0 6px 0 var(--rank-accent); }
+}
+
+/* ──────────── Drive the ring animation off any per-rank class ──────────── */
+/* [class*="rank-anim-"] matches the wrapper that carries rank-anim-<rank>. */
+
+[class*="rank-anim-"] .rank-avatar__scan {
+    opacity: 1;
+    animation: rankRingScan 5s linear infinite;
+}
+[class*="rank-anim-"] .rank-avatar__ringline {
+    animation: rankRingPulse 5s ease-in-out infinite;
+}
+[class*="rank-anim-"] .rank-avatar__pip--on {
+    animation: rankPipPop 3s ease-in-out infinite;
+}
+
+/* ───────────────────── Per-rank staggered delays ──────────────────────── */
+/* Animation plan: rookie 0s … highmaster 1.6s, so a grid never moves in sync. */
+
+.rank-anim-rookie .rank-avatar__scan,
+.rank-anim-rookie .rank-avatar__ringline { animation-delay: 0s; }
+
+.rank-anim-rising .rank-avatar__scan,
+.rank-anim-rising .rank-avatar__ringline { animation-delay: 0.2s; }
+
+.rank-anim-gold .rank-avatar__scan,
+.rank-anim-gold .rank-avatar__ringline { animation-delay: 0.4s; }
+
+.rank-anim-platinum .rank-avatar__scan,
+.rank-anim-platinum .rank-avatar__ringline { animation-delay: 0.6s; }
+
+.rank-anim-diamond .rank-avatar__scan,
+.rank-anim-diamond .rank-avatar__ringline { animation-delay: 0.8s; }
+
+.rank-anim-master .rank-avatar__scan,
+.rank-anim-master .rank-avatar__ringline { animation-delay: 1s; }
+
+.rank-anim-elite .rank-avatar__scan,
+.rank-anim-elite .rank-avatar__ringline { animation-delay: 1.2s; }
+
+.rank-anim-legend .rank-avatar__scan,
+.rank-anim-legend .rank-avatar__ringline { animation-delay: 1.4s; }
+
+.rank-anim-highmaster .rank-avatar__scan,
+.rank-anim-highmaster .rank-avatar__ringline { animation-delay: 1.6s; }
+
+/* Higher tiers spin a touch faster for a premium feel. */
+.rank-anim-legend .rank-avatar__scan { animation-duration: 4s; }
+.rank-anim-highmaster .rank-avatar__scan { animation-duration: 3s; }
+
+/* ─────────────────────── Badge-level animations ───────────────────────── */
+
+.rank-division-badge--shine { animation: rankDivisionShine 5s ease-in-out infinite; }
+.rank-name-banner--shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.6) 50%, transparent 65%);
+    transform: translateX(-130%);
+    animation: rankShineSweep 5s ease-in-out infinite;
+    pointer-events: none;
+}
+.rank-points-chip--glow { animation: rankPointsGlow 3s ease-in-out infinite; }
+
+/* ───────── General helper animation classes (named-class contract) ─────── */
+/* Kept so any code referencing these names keeps working; mapped onto the
+   ring structure where it makes sense. */
+
+.rank-shine-sweep .rank-name-banner::after,
+.rank-shine-sweep::after { animation: rankShineSweep 5s ease-in-out infinite; }
+.rank-border-pulse .rank-avatar__ringline { animation: rankRingPulse 5s ease-in-out infinite; }
+.rank-edge-scan .rank-avatar__scan { opacity: 1; animation: rankRingScan 5s linear infinite; }
+.rank-star-pop .rank-avatar__pip--on { animation: rankPipPop 3s ease-in-out infinite; }
+.rank-badge-pop { animation: rankBadgePop 0.4s ease-out both; }
+.rank-caution-slide .rank-avatar__scan { opacity: 1; animation: rankRingScan 3s linear infinite; }
+.rank-road-line-move .rank-avatar__scan { opacity: 1; animation: rankRingScan 4s linear infinite; }
+.rank-traffic-blink .rank-avatar__pip--on { animation: rankRingPulse 3s steps(1, end) infinite; }
+
+/* ───────────────────── Reduced-motion accessibility ───────────────────── */
+/* Stop all looping animation; keep the premium STATIC badge. The rotating
+   shine arc is hidden so it doesn't freeze mid-sweep on the ring. */
+
+@media (prefers-reduced-motion: reduce) {
+    .rank-reduced-motion-safe *,
+    .rank-reduced-motion-safe *::before,
+    .rank-reduced-motion-safe *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    .rank-reduced-motion-safe .rank-avatar__scan {
+        opacity: 0 !important;
+    }
+}
