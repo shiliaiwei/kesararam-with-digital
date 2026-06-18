@@ -283,7 +283,7 @@
     --s: 1;
     position: relative;
     display: inline-block;
-    padding: calc(10px * var(--s));
+    padding: calc(15px * var(--s));
     line-height: 0;
     background: transparent !important;
 }
@@ -298,12 +298,38 @@
 
 .gold-avatar__frame-img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: calc(-15px * var(--s));
+    left: calc(-15px * var(--s));
+    width: calc(200px * var(--s));
+    height: calc(200px * var(--s));
     z-index: 1;
     pointer-events: none;
+    overflow: visible;
+}
+
+/* Pulsing caution chevrons on left and right side of frame */
+.gold-chevron-left {
+    opacity: 0.85;
+}
+.gold-avatar--animated .gold-chevron-left {
+    animation: goldChevronPulseLeft 3s infinite ease-in-out;
+}
+
+.gold-chevron-right {
+    opacity: 0.85;
+}
+.gold-avatar--animated .gold-chevron-right {
+    animation: goldChevronPulseRight 3s infinite ease-in-out;
+}
+
+@keyframes goldChevronPulseLeft {
+    0%, 100% { opacity: 0.55; filter: drop-shadow(0 0 1px rgba(250, 204, 21, 0.4)); }
+    50% { opacity: 1; filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.95)); }
+}
+
+@keyframes goldChevronPulseRight {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.95)); }
+    50% { opacity: 0.55; filter: drop-shadow(0 0 1px rgba(250, 204, 21, 0.4)); }
 }
 
 /* Sweeping shine (masked inside the warning diamond) */
