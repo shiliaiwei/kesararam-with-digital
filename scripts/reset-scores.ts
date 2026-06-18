@@ -91,28 +91,8 @@ async function main() {
   // Process score adjustment
   for (const s of students) {
     const pts = s.lifetime_points;
-    let newPts = 0;
-    let rankName = "Rookie";
-
-    if (pts >= 12000) {
-      newPts = 12000;
-      rankName = "Mythic";
-    } else if (pts >= 7000) {
-      newPts = 7000;
-      rankName = "Diamond";
-    } else if (pts >= 3500) {
-      newPts = 3500;
-      rankName = "Platinum";
-    } else if (pts >= 2500) {
-      newPts = 2500;
-      rankName = "Gold";
-    } else if (pts >= 1000) {
-      newPts = 1000;
-      rankName = "Rising";
-    } else {
-      newPts = 0;
-      rankName = "Rookie";
-    }
+    const newPts = 0;
+    const rankName = "Rookie";
 
     if (confirmed) {
       // 1. Set user points to rank tier floor
