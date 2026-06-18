@@ -31,6 +31,7 @@ import { CautionTape, SignShape } from "@/components/brand/brand-kit";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { RankedAvatarRing } from "@/components/shared/rank-label";
 import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
+import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
 import { calculateRankAndDivision } from "@/lib/ranks";
 
 export interface SerializableStudent {
@@ -363,6 +364,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
   const topGameMeta = topGame ? gameLabel(topGame.gameType) : null;
   const bestModePoints = Math.max(...gameStats.map((g) => g.points), 1);
   const profileRank = calculateRankAndDivision(student.lifetimePoints).rank;
+  const isGoldBorder = profileRank.id === "gold";
   const hasRoadAvatarBorder = profileRank.id === "rookie" || profileRank.id === "rising";
 
   useEffect(() => {
@@ -413,7 +415,21 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
               <div className="h-14 border-b-[3px] border-black" style={checkerboardStyle} />
               <div className="flex flex-col items-center gap-5 p-4 text-center sm:p-6 md:p-8">
                 <div className="relative w-fit hover:-translate-y-1 transition-transform duration-200">
-                  {hasRoadAvatarBorder ? (
+                  {isGoldBorder ? (
+                    <GoldAvatarBorder
+                      alt={`${displayName} avatar`}
+                      username={isNamePublic ? (student.displayName || student.username) : "S"}
+                      size="md"
+                    >
+                      <Avatar
+                        url={student.avatar}
+                        name={isNamePublic ? (student.displayName || student.username) : "S"}
+                        size={96}
+                        changedAt={student.avatarChangedAt}
+                        round={true}
+                      />
+                    </GoldAvatarBorder>
+                  ) : hasRoadAvatarBorder ? (
                     <RoadAvatarBorder
                       alt={`${displayName} avatar`}
                       username={isNamePublic ? (student.displayName || student.username) : "S"}

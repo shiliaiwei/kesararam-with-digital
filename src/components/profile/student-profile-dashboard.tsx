@@ -14,6 +14,7 @@ import {
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { RankBadge, RankedAvatarRing, TIER_ICONS } from "@/components/shared/rank-label";
 import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
+import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { useLang } from "@/context/lang-context";
 import { calculateRankAndDivision } from "@/lib/ranks";
@@ -291,6 +292,7 @@ export function StudentProfileDashboard({
   const nextProgress = tierProgress(rankStats.lifetimePoints);
   const pointsRemaining = pointsToNextRank(rankStats.lifetimePoints);
   const roadFrameRank = calculateRankAndDivision(rankStats.lifetimePoints).rank;
+  const isGoldBorder = roadFrameRank.id === "gold";
   const hasRoadAvatarBorder = roadFrameRank.id === "rookie" || roadFrameRank.id === "rising";
 
   // ── Changes-remaining helpers ─────────────────────────────────────────────
@@ -371,7 +373,15 @@ export function StudentProfileDashboard({
 
             {/* Avatar */}
             <div className="relative flex-shrink-0">
-              {hasRoadAvatarBorder ? (
+              {isGoldBorder ? (
+                <GoldAvatarBorder
+                  alt={`${name} avatar`}
+                  username={name}
+                  size="sm"
+                >
+                  <AvatarDisplay avatar={user.avatar} name={name} size={64} radius={999} />
+                </GoldAvatarBorder>
+              ) : hasRoadAvatarBorder ? (
                 <RoadAvatarBorder
                   alt={`${name} avatar`}
                   username={name}

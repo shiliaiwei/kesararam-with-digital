@@ -312,3 +312,181 @@
     .road-avatar .road-traffic__light { opacity: 0.15 !important; transform: none !important; box-shadow: none !important; }
     .road-avatar .road-traffic__light--red { opacity: 1 !important; box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow) !important; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   KWD Gold Avatar Border — premium skeuomorphic frame
+   ---------------------------------------------------------------------------- */
+
+.gold-avatar {
+    --s: 1;
+    position: relative;
+    display: inline-block;
+    padding: calc(10px * var(--s));
+    line-height: 0;
+}
+
+.gold-avatar__plate {
+    position: relative;
+    width: calc(170px * var(--s));
+    height: calc(170px * var(--s));
+    border-radius: 50%;
+}
+
+.gold-avatar__frame-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Sweeping shine (masked inside the warning diamond) */
+.gold-avatar__shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 70%);
+    background-size: 300% 300%;
+    background-position: 150% 0;
+}
+
+.gold-avatar--animated .gold-avatar__shine {
+    animation: goldShineSweep 6s infinite ease-in-out;
+}
+
+@keyframes goldShineSweep {
+    0% { background-position: 150% 0; }
+    35% { background-position: -150% 0; }
+    100% { background-position: -150% 0; }
+}
+
+/* Chevron arrow glows */
+.gold-avatar__chevron-glow {
+    position: absolute;
+    top: 50%;
+    width: calc(30px * var(--s));
+    height: calc(30px * var(--s));
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.45) 0%, rgba(234, 179, 8, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.gold-avatar__chevron-glow--left {
+    left: 10%;
+}
+
+.gold-avatar__chevron-glow--right {
+    right: 10%;
+}
+
+.gold-avatar--animated .gold-avatar__chevron-glow {
+    animation: chevronGlowPulse 4s infinite ease-in-out;
+}
+
+.gold-avatar--animated .gold-avatar__chevron-glow--right {
+    animation-delay: 2s;
+}
+
+@keyframes chevronGlowPulse {
+    0%, 100% { opacity: 0.1; transform: translateY(-50%) scale(0.9); }
+    50% { opacity: 0.85; transform: translateY(-50%) scale(1.25); }
+}
+
+/* Top warning sign beacon glow */
+.gold-avatar__top-glow {
+    position: absolute;
+    top: 13.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(24px * var(--s));
+    height: calc(24px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.7) 0%, rgba(234, 179, 8, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.gold-avatar--animated .gold-avatar__top-glow {
+    animation: topGlowPulse 3s infinite ease-in-out;
+}
+
+@keyframes topGlowPulse {
+    0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.8); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+}
+
+/* Ring light breathing around photo */
+.gold-avatar__ring-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 46%;
+    height: 46%;
+    border-radius: 50%;
+    border: calc(2px * var(--s)) solid rgba(234, 179, 8, 0.45);
+    box-shadow: 0 0 calc(5px * var(--s)) rgba(234, 179, 8, 0.75),
+                inset 0 0 calc(5px * var(--s)) rgba(234, 179, 8, 0.75);
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.gold-avatar--animated .gold-avatar__ring-glow {
+    animation: ringLightBreathe 5s infinite ease-in-out;
+}
+
+@keyframes ringLightBreathe {
+    0%, 100% { opacity: 0.4; box-shadow: 0 0 calc(3px * var(--s)) rgba(234, 179, 8, 0.5); }
+    50% { opacity: 0.9; box-shadow: 0 0 calc(9px * var(--s)) rgba(234, 179, 8, 0.9); }
+}
+
+/* Center photo window */
+.gold-avatar__photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44.5%;
+    height: 44.5%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #e4e4e7;
+    border: calc(2px * var(--s)) solid #000;
+    z-index: 5;
+}
+
+.gold-avatar__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gold-avatar__fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #d4d4d8;
+    color: #52525b;
+    font-weight: 900;
+    font-size: calc(40px * var(--s));
+}
+
+.gold-avatar__custom-photo,
+.gold-avatar__custom-photo > * {
+    width: 100%;
+    height: 100%;
+}
+
+

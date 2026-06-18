@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { RoadAvatarBorder } from "./RoadAvatarBorder";
+import { GoldAvatarBorder } from "./GoldAvatarBorder";
 import {
     getRankNameByScore,
     getDivisionForScore,
@@ -11,9 +12,8 @@ import {
 import { formatPoints, type AvatarSize } from "@/lib/ranks";
 
 /**
- * Interactive sandbox — slide the score 0→1100 and watch the Rookie (yellow) and
- * Rising (green) frames update division, rank-up, fallback initials, sizes, and
- * the 15-second traffic light. Demo only; not used in production screens.
+ * Interactive sandbox — slide the score 0→3499 and watch Rookie, Rising, and Gold
+ * frames update division, rank-up, fallback initials, sizes, and animations.
  */
 export function RoadBorderSandbox() {
     const [score, setScore] = React.useState(120);
@@ -41,7 +41,7 @@ export function RoadBorderSandbox() {
                         <input
                             type="range"
                             min={0}
-                            max={1100}
+                            max={3499}
                             step={1}
                             value={score}
                             onChange={(e) => setScore(Number(e.target.value))}
@@ -50,7 +50,7 @@ export function RoadBorderSandbox() {
                     </label>
                     <label className="flex items-center gap-2 text-sm font-bold">
                         <input type="checkbox" checked={animated} onChange={(e) => setAnimated(e.target.checked)} />
-                        Animated lights
+                        Animated lights &amp; shine
                     </label>
                     <label className="flex items-center gap-2 text-sm font-bold">
                         <input type="checkbox" checked={useImage} onChange={(e) => setUseImage(e.target.checked)} />
@@ -59,7 +59,7 @@ export function RoadBorderSandbox() {
                 </div>
 
                 <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wide">
-                    {[0, 250, 500, 750, 999, 1000, 1100].map((v) => (
+                    {[0, 250, 500, 750, 999, 1000, 1100, 2500, 3000, 3250].map((v) => (
                         <button
                             key={v}
                             onClick={() => setScore(v)}
@@ -78,7 +78,7 @@ export function RoadBorderSandbox() {
                         label="Next"
                         value={
                             next.pointsNeeded > 0
-                                ? `${next.rank} ${next.division} · ${formatPoints(next.pointsNeeded)} pts`
+                                        ? `${next.rank} ${next.division} · ${formatPoints(next.pointsNeeded)} pts`
                                 : "Maxed"
                         }
                     />
@@ -89,14 +89,24 @@ export function RoadBorderSandbox() {
             <div className="flex flex-wrap items-end justify-center gap-10 border-2 border-black bg-zinc-50 p-8 shadow-[4px_4px_0_0_#000]">
                 {sizes.map((size) => (
                     <div key={size} className="flex flex-col items-center gap-2">
-                        <RoadAvatarBorder
-                            src={demoSrc}
-                            alt="Sandbox player"
-                            username="Sophea"
-                            score={score}
-                            size={size}
-                            animated={animated}
-                        />
+                        {rank === "Gold" ? (
+                            <GoldAvatarBorder
+                                src={demoSrc}
+                                alt="Sandbox player"
+                                username="Sophea"
+                                size={size}
+                                animated={animated}
+                            />
+                        ) : (
+                            <RoadAvatarBorder
+                                src={demoSrc}
+                                alt="Sandbox player"
+                                username="Sophea"
+                                score={score}
+                                size={size}
+                                animated={animated}
+                            />
+                        )}
                         <span className="text-xs font-black uppercase tracking-wider text-zinc-500">{size}</span>
                     </div>
                 ))}
