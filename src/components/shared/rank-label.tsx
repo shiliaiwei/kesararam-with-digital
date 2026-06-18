@@ -15,6 +15,9 @@
 
 import { getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS } from "@/lib/rank-utils";
 import { PremiumRankedAvatar } from "./premium-ranked-avatar";
+import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
+import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
+import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import {
     Sprout,
     PartyPopper,
@@ -254,10 +257,36 @@ export function RankedAvatarRing({
     children: React.ReactNode;
     index?: number;
 }) {
+    const pts = lifetimePoints ?? 0;
+    const rank = getRank(pts);
+    const avatarSize = size <= 48 ? "sm" : size <= 80 ? "md" : size <= 110 ? "lg" : "xl";
+
+    if (rank.id === "platinum") {
+        return (
+            <PlatinumAvatarBorder size={avatarSize} alt="User avatar" animated={true}>
+                {children}
+            </PlatinumAvatarBorder>
+        );
+    }
+    if (rank.id === "gold") {
+        return (
+            <GoldAvatarBorder size={avatarSize} alt="User avatar" animated={true}>
+                {children}
+            </GoldAvatarBorder>
+        );
+    }
+    if (rank.id === "rookie" || rank.id === "rising" || rank.id === "debut") {
+        return (
+            <RoadAvatarBorder score={pts} size={avatarSize} alt="User avatar" animated={true}>
+                {children}
+            </RoadAvatarBorder>
+        );
+    }
+
     const isSmall = size < 50;
     return (
         <PremiumRankedAvatar
-            lifetimePoints={lifetimePoints}
+            lifetimePoints={pts}
             size={size}
             showRankBadge={!isSmall}
             showDivisionBadge={true}

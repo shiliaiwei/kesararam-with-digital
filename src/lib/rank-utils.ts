@@ -33,13 +33,9 @@ export interface RankTier {
 }
 
 /**
- * minPoints are LIFETIME-EARNED Store Points on the small "premium" scale
- * (live-games-only economy; see src/lib/store-points/award.ts). Numbers are kept
- * deliberately small and scarce so each point feels valuable — psychology:
- * scarcity + endowed status (a low, hard-won number reads as more elite than an
- * inflated one). Spending never lowers a tier: rank reads lifetime-earned, claims
- * spend the store balance. Calibration: Rising 5, Gold 12, Platinum 20,
- * Diamond 30, Mythic 45 (lifetime live points).
+ * minPoints are LIFETIME-EARNED rank points. This UI helper mirrors the canonical
+ * Rookie → Mythic score curve in src/lib/ranks.ts so leaderboard labels, profile
+ * badges, and avatar frames never drift apart.
  */
 export const RANK_TIERS: RankTier[] = [
     {
@@ -48,34 +44,34 @@ export const RANK_TIERS: RankTier[] = [
         labelKh: "Rookie",
         emoji: "",
         minPoints: 0,
-        labelGradient: "linear-gradient(90deg,#71717a,#52525b)",
-        borderGradient: "linear-gradient(135deg,#71717a,#a1a1aa)",
-        accent: "#71717a",
-        glow: "#a1a1aa",
+        labelGradient: "linear-gradient(90deg,#000000,#27272a)",
+        borderGradient: "linear-gradient(135deg,#000000,#eab308)",
+        accent: "#eab308",
+        glow: "#facc15",
         animated: false,
         textColor: "#fff",
-        textDark: "#3f3f46",
+        textDark: "#000000",
     },
     {
         id: "rising",
         label: "Rising",
         labelKh: "Rising",
         emoji: "",
-        minPoints: 50,
-        labelGradient: "linear-gradient(90deg,#d97706,#fbbf24)",
-        borderGradient: "linear-gradient(135deg,#eab308,#ffd700)",
-        accent: "#eab308",
-        glow: "#ffd700",
+        minPoints: 1000,
+        labelGradient: "linear-gradient(90deg,#15803d,#22c55e)",
+        borderGradient: "linear-gradient(135deg,#22c55e,#eab308)",
+        accent: "#22c55e",
+        glow: "#86efac",
         animated: true,
         textColor: "#000",
-        textDark: "#854d0e",
+        textDark: "#14532d",
     },
     {
         id: "gold",
         label: "Gold",
         labelKh: "Gold",
         emoji: "",
-        minPoints: 150,
+        minPoints: 2500,
         labelGradient: "linear-gradient(90deg,#b45309,#fbbf24,#b45309)",
         borderGradient: "linear-gradient(135deg,#b45309,#fbbf24,#f59e0b,#b45309)",
         accent: "#eab308",
@@ -89,7 +85,7 @@ export const RANK_TIERS: RankTier[] = [
         label: "Platinum",
         labelKh: "Platinum",
         emoji: "",
-        minPoints: 350,
+        minPoints: 3500,
         labelGradient: "linear-gradient(90deg,#0369a1,#38bdf8,#0369a1)",
         borderGradient: "linear-gradient(135deg,#0369a1,#7dd3fc,#38bdf8,#0369a1)",
         accent: "#3b82f6",
@@ -103,7 +99,7 @@ export const RANK_TIERS: RankTier[] = [
         label: "Diamond",
         labelKh: "Diamond",
         emoji: "",
-        minPoints: 700,
+        minPoints: 7000,
         labelGradient: "linear-gradient(90deg,#0891b2,#22d3ee,#0891b2)",
         borderGradient: "linear-gradient(135deg,#0891b2,#67e8f9,#22d3ee,#a5f3fc,#0891b2)",
         accent: "#06b6d4",
@@ -113,60 +109,18 @@ export const RANK_TIERS: RankTier[] = [
         textDark: "#0e7490",
     },
     {
-        id: "master",
-        label: "Master",
-        labelKh: "Master",
+        id: "mythic",
+        label: "Mythic",
+        labelKh: "Mythic",
         emoji: "",
-        minPoints: 1200,
-        labelGradient: "linear-gradient(90deg,#1e3a8a,#2563eb,#1e3a8a)",
-        borderGradient: "linear-gradient(135deg,#1e3a8a,#3b82f6,#2563eb,#1e3a8a)",
-        accent: "#2563eb",
-        glow: "#3b82f6",
-        animated: true,
-        textColor: "#fff",
-        textDark: "#1e3a8a",
-    },
-    {
-        id: "elite",
-        label: "Elite",
-        labelKh: "Elite",
-        emoji: "",
-        minPoints: 2000,
-        labelGradient: "linear-gradient(90deg,#6b21a8,#a855f7,#6b21a8)",
-        borderGradient: "linear-gradient(135deg,#6b21a8,#c084fc,#a855f7,#6b21a8)",
+        minPoints: 12000,
+        labelGradient: "linear-gradient(90deg,#6b21a8,#a855f7,#eab308)",
+        borderGradient: "linear-gradient(135deg,#6b21a8,#a855f7,#eab308,#6b21a8)",
         accent: "#a855f7",
         glow: "#c084fc",
         animated: true,
         textColor: "#fff",
         textDark: "#6b21a8",
-    },
-    {
-        id: "legend",
-        label: "Legend",
-        labelKh: "Legend",
-        emoji: "",
-        minPoints: 3000,
-        labelGradient: "linear-gradient(90deg,#d97706,#ffd700,#d97706)",
-        borderGradient: "linear-gradient(135deg,#d97706,#fbbf24,#ffffff,#d97706)",
-        accent: "#ffd700",
-        glow: "#ffffff",
-        animated: true,
-        textColor: "#000",
-        textDark: "#b45309",
-    },
-    {
-        id: "highmaster",
-        label: "Highmaster",
-        labelKh: "Highmaster",
-        emoji: "",
-        minPoints: 5000,
-        labelGradient: "linear-gradient(90deg,#78350f,#fbbf24,#78350f)",
-        borderGradient: "linear-gradient(135deg,#78350f,#fbbf24,#ffd700,#78350f)",
-        accent: "#ffd700",
-        glow: "#fbbf24",
-        animated: true,
-        textColor: "#fff",
-        textDark: "#78350f",
     },
 ];
 
@@ -209,12 +163,11 @@ export function getDivision(lifetimePoints: number): RankDivision {
     const current = getRank(lifetimePoints);
     const next = getNextRank(lifetimePoints);
     
-    // Highmaster is the highest rank. We divide Highmaster progress based on 500pt brackets.
+    // Mythic is open-ended: IV 12,000+ · III 15,000+ · II 20,000+ · I 30,000+.
     if (!next) {
-        const excess = lifetimePoints - current.minPoints;
-        if (excess < 500) return "IV";
-        if (excess < 1000) return "III";
-        if (excess < 1500) return "II";
+        if (lifetimePoints < 15000) return "IV";
+        if (lifetimePoints < 20000) return "III";
+        if (lifetimePoints < 30000) return "II";
         return "I";
     }
 
@@ -229,4 +182,3 @@ export function getDivision(lifetimePoints: number): RankDivision {
     if (pct < 0.75) return "II";
     return "I";
 }
-
