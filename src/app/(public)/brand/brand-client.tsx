@@ -56,6 +56,7 @@ const SECTIONS = [
   { id: "type", title: { en: "Typography", kh: "អក្សរ" } },
   { id: "dna", title: { en: "Design DNA", kh: "Design DNA" } },
   { id: "kit", title: { en: "Design Kit", kh: "ឧបករណ៍រចនា" } },
+  { id: "ranks", title: { en: "Player Ranks & Badges", kh: "កម្រិត និងផ្លាកសញ្ញា" } },
   { id: "apply", title: { en: "Applications", kh: "ការប្រើប្រាស់" } },
   { id: "sitemap", title: { en: "Site Architecture", kh: "រចនាសម្ព័ន្ធគេហទំព័រ" } },
 ];
@@ -367,6 +368,43 @@ export function BrandGuidelineClient() {
                 'import { CautionTape, SignShape } from "@/components/brand/brand-kit"'
               )}
             </p>
+          </section>
+
+          {/* Ranks & Badges */}
+          <section id="ranks" className="scroll-mt-24">
+            <SectionHeading>{t("Player Ranks & Badges", "កម្រិត និងផ្លាកសញ្ញា")}</SectionHeading>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 max-w-2xl">
+              {t(
+                "KWD features a premium, game-inspired rank-frame and profile-badge progression system. Players unlock 9 custom animated avatar borders and collect Roman numeral progress division badges (IV to I) by earning safety test points.",
+                "KWD មានប្រព័ន្ធកម្រិតស៊ុមរូបតំណាង និងផ្លាកសញ្ញាដែលទទួលបានពីការលេងហ្គេម។ អ្នកលេងអាចដោះសោស៊ុមរូបតំណាងគំនូរជីវចលចំនួន ៩ និងប្រមូលផ្លាកសញ្ញាផ្នែករ៉ូម៉ាំង (IV ដល់ I) ដោយទទួលបានពិន្ទុតេស្តសុវត្ថិភាពចរាចរណ៍។"
+              )}
+            </p>
+
+            <div className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2 shadow-[2px_2px_0_#000] dark:shadow-none mb-6 max-w-3xl">
+              <div className="aspect-[4/3] relative bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+                <Image
+                  src="/brand/rank-system-showcase.png"
+                  alt="KWD Rank-Frame and Profile-Badge Showcase"
+                  fill
+                  unoptimized
+                  className="object-cover select-none pointer-events-none"
+                  sizes="(max-width: 640px) 100vw, 100vw"
+                  draggable={false}
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/brand/ranks"
+                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-2 border-black dark:border-white px-4 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+              >
+                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                {t("Open Interactive Showcase", "បើកមើលការបង្ហាញអន្តរកម្ម")}
+              </Link>
+            </div>
           </section>
 
           {/* Applications */}
