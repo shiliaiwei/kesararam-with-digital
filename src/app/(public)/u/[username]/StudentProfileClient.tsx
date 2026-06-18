@@ -36,6 +36,7 @@ import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
 import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
 import { calculateRankAndDivision } from "@/lib/ranks";
+import { REWARD_ITEMS } from "@/lib/rewards";
 
 export interface SerializableStudent {
   id: number;
@@ -121,18 +122,6 @@ function iconTone(accent: string) {
     ? "text-white"
     : "text-black";
 }
-
-const REWARD_ITEMS = [
-  { id: 1, name: "Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, image: "/rewards/notebook.webp" },
-  { id: 2, name: "Pencil", nameKh: "ខ្មៅដៃ", cost: 100, image: "/rewards/pencil.webp" },
-  { id: 3, name: "Pen", nameKh: "ប៊ិច", cost: 150, image: "/rewards/pen.webp" },
-  { id: 4, name: "Ruler", nameKh: "បន្ទាត់", cost: 200, image: "/rewards/ruler.webp" },
-  { id: 5, name: "Eraser", nameKh: "ជ័រលុប", cost: 80, image: "/rewards/eraser.webp" },
-  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, image: "/rewards/highlighter.webp" },
-  { id: 7, name: "Notes", nameKh: "ក្រដាសសម្គាល់", cost: 300, image: "/rewards/notes.webp" },
-  { id: 8, name: "Kit", nameKh: "ឧបករណ៍គណិត", cost: 800, image: "/rewards/kit.webp" },
-  { id: 9, name: "Planner", nameKh: "ផែនការសិក្សា", cost: 1200, image: "/rewards/planner.webp" },
-];
 
 const CAMBODIA_PROVINCES = [
   { en: "Siem Reap", kh: "សៀមរាប" }, { en: "Phnom Penh", kh: "ភ្នំពេញ" },
