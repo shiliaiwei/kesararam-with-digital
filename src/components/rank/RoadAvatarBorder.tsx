@@ -93,10 +93,11 @@ export interface RoadAvatarBorderProps {
     alt: string;
     score: number;
     username?: string;
-    size?: AvatarSize;
+    size?: AvatarSize | number;
     /** run the 15s traffic-light loop (default true) */
     animated?: boolean;
     className?: string;
+    showRankBadge?: boolean;
     /** Optional app-rendered avatar content, kept inside the protected photo window. */
     children?: React.ReactNode;
 }
@@ -109,6 +110,7 @@ export function RoadAvatarBorder({
     size = "md",
     animated = true,
     className,
+    showRankBadge,
     children,
 }: RoadAvatarBorderProps) {
     const [imgFailed, setImgFailed] = React.useState(false);
@@ -116,7 +118,7 @@ export function RoadAvatarBorder({
     const rankName = getRankNameByScore(score);
     const division = getDivisionForScore(score);
     const theme = rankName === "Rising" ? THEMES.green : THEMES.yellow;
-    const scale = SCALE[size];
+    const scale = typeof size === "number" ? size / 96 : SCALE[size];
     const label = rankName.toUpperCase();
 
     const showCustomAvatar = Boolean(children);
@@ -132,6 +134,8 @@ export function RoadAvatarBorder({
         "--label-trim": theme.labelTrim,
         "--shield-bg": theme.shieldBg,
     } as React.CSSProperties;
+
+    const displayRankBadge = showRankBadge ?? (typeof size === "number" ? size >= 50 : size !== "sm");
 
     return (
         <div
@@ -188,7 +192,7 @@ export function RoadAvatarBorder({
                 </div>
 
                 <TrafficLightBadge />
-                <RankLabel label={label} />
+                {displayRankBadge && <RankLabel label={label} />}
             </div>
         </div>
     );

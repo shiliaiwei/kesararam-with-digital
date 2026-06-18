@@ -259,25 +259,25 @@ export function RankedAvatarRing({
 }) {
     const pts = lifetimePoints ?? 0;
     const rank = getRank(pts);
-    const avatarSize = size <= 48 ? "sm" : size <= 80 ? "md" : size <= 110 ? "lg" : "xl";
+    const isSmall = size < 50;
 
     if (rank.id === "platinum") {
         return (
-            <PlatinumAvatarBorder size={avatarSize} alt="User avatar" animated={true}>
+            <PlatinumAvatarBorder size={size} alt="User avatar" animated={true}>
                 {children}
             </PlatinumAvatarBorder>
         );
     }
     if (rank.id === "gold") {
         return (
-            <GoldAvatarBorder size={avatarSize} alt="User avatar" animated={true}>
+            <GoldAvatarBorder size={size} alt="User avatar" animated={true}>
                 {children}
             </GoldAvatarBorder>
         );
     }
     if (rank.id === "rookie" || rank.id === "rising" || rank.id === "debut") {
         return (
-            <RoadAvatarBorder score={pts} size={avatarSize} alt="User avatar" animated={true}>
+            <RoadAvatarBorder score={pts} size={size} alt="User avatar" animated={true} showRankBadge={!isSmall}>
                 {children}
             </RoadAvatarBorder>
         );

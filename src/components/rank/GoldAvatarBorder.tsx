@@ -16,7 +16,7 @@ export interface GoldAvatarBorderProps {
     src?: string | null;
     alt: string;
     username?: string;
-    size?: AvatarSize;
+    size?: AvatarSize | number;
     animated?: boolean;
     className?: string;
     children?: React.ReactNode;
@@ -32,7 +32,7 @@ export function GoldAvatarBorder({
     children,
 }: GoldAvatarBorderProps) {
     const [imgFailed, setImgFailed] = React.useState(false);
-    const scale = SCALE[size];
+    const scale = typeof size === "number" ? size / 75.65 : SCALE[size];
     const showCustomAvatar = Boolean(children);
     const showImage = Boolean(src) && !imgFailed && !showCustomAvatar;
     const initial = username?.trim()?.charAt(0)?.toUpperCase() ?? "";

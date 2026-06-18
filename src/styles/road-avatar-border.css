@@ -103,8 +103,8 @@
 }
 .road-avatar__custom-photo,
 .road-avatar__custom-photo > * {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
 }
 .road-avatar__fallback {
     display: flex;
@@ -485,8 +485,8 @@
 
 .gold-avatar__custom-photo,
 .gold-avatar__custom-photo > * {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
@@ -614,8 +614,8 @@
 
 .platinum-avatar__custom-photo,
 .platinum-avatar__custom-photo > * {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .platinum-avatar__fallback {
