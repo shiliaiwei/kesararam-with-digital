@@ -307,19 +307,19 @@
     overflow: visible;
 }
 
-/* Pulsing caution chevrons on left and right side of frame */
+/* Pulsing caution chevrons on left and right side of frame - STATIC */
 .gold-chevron-left {
     opacity: 0.85;
 }
 .gold-avatar--animated .gold-chevron-left {
-    animation: goldChevronPulseLeft 3s infinite ease-in-out;
+    /* animation: goldChevronPulseLeft 3s infinite ease-in-out; */
 }
 
 .gold-chevron-right {
     opacity: 0.85;
 }
 .gold-avatar--animated .gold-chevron-right {
-    animation: goldChevronPulseRight 3s infinite ease-in-out;
+    /* animation: goldChevronPulseRight 3s infinite ease-in-out; */
 }
 
 @keyframes goldChevronPulseLeft {
@@ -345,7 +345,7 @@
 }
 
 .gold-avatar--animated .gold-avatar__shine {
-    animation: goldShineSweep 6s infinite ease-in-out;
+    /* animation: goldShineSweep 6s infinite ease-in-out; */
 }
 
 @keyframes goldShineSweep {
@@ -377,11 +377,11 @@
 }
 
 .gold-avatar--animated .gold-avatar__chevron-glow {
-    animation: chevronGlowPulse 4s infinite ease-in-out;
+    /* animation: chevronGlowPulse 4s infinite ease-in-out; */
 }
 
 .gold-avatar--animated .gold-avatar__chevron-glow--right {
-    animation-delay: 2s;
+    /* animation-delay: 2s; */
 }
 
 @keyframes chevronGlowPulse {
@@ -405,7 +405,7 @@
 }
 
 .gold-avatar--animated .gold-avatar__top-glow {
-    animation: goldCautionBlink 1.2s infinite ease-in-out;
+    /* animation: goldCautionBlink 1.2s infinite ease-in-out; */
 }
 
 @keyframes goldCautionBlink {
@@ -431,7 +431,7 @@
 }
 
 .gold-avatar--animated .gold-avatar__ring-glow {
-    animation: ringLightBreathe 5s infinite ease-in-out;
+    /* animation: ringLightBreathe 5s infinite ease-in-out; */
 }
 
 @keyframes ringLightBreathe {
@@ -495,7 +495,7 @@
 }
 
 .gold-avatar--animated .gold-avatar__red-light {
-    animation: goldRedLightPulse 1.5s infinite alternate ease-in-out;
+    /* animation: goldRedLightPulse 1.5s infinite alternate ease-in-out; */
 }
 
 @keyframes goldRedLightPulse {
@@ -545,7 +545,7 @@
 }
 
 .platinum-avatar--animated .platinum-avatar__shine {
-    animation: platinumShineSweep 6s infinite ease-in-out;
+    /* animation: platinumShineSweep 6s infinite ease-in-out; */
 }
 
 @keyframes platinumShineSweep {
@@ -570,7 +570,7 @@
 }
 
 .platinum-avatar--animated .platinum-avatar__chevron-glow {
-    animation: chevronGlowPulse 4s infinite ease-in-out;
+    /* animation: chevronGlowPulse 4s infinite ease-in-out; */
 }
 
 /* Pulsing/Flashing traffic light bulbs in the capsule */
@@ -620,15 +620,15 @@
 }
 
 .platinum-avatar--animated .platinum-avatar__blue-light {
-    animation: platinumBlueSequence 3s infinite ease-in-out;
+    /* animation: platinumBlueSequence 3s infinite ease-in-out; */
 }
 
 .platinum-avatar--animated .platinum-avatar__yellow-light {
-    animation: platinumYellowCautionSequence 3s infinite ease-in-out;
+    /* animation: platinumYellowCautionSequence 3s infinite ease-in-out; */
 }
 
 .platinum-avatar--animated .platinum-avatar__green-light {
-    animation: platinumGreenSequence 3s infinite ease-in-out;
+    /* animation: platinumGreenSequence 3s infinite ease-in-out; */
 }
 
 @keyframes platinumBlueSequence {
@@ -713,7 +713,7 @@
 }
 
 .platinum-avatar--animated .platinum-avatar__ring-glow {
-    animation: platinumRingLightBreathe 5s infinite ease-in-out;
+    /* animation: platinumRingLightBreathe 5s infinite ease-in-out; */
 }
 
 @keyframes platinumRingLightBreathe {
@@ -803,7 +803,7 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__shine {
-    animation: diamondShineSweep 6s infinite ease-in-out;
+    /* animation: diamondShineSweep 6s infinite ease-in-out; */
 }
 
 @keyframes diamondShineSweep {
@@ -828,7 +828,7 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__top-glow {
-    animation: diamondTopGlow 3s infinite ease-in-out;
+    /* animation: diamondTopGlow 3s infinite ease-in-out; */
 }
 
 @keyframes diamondTopGlow {
@@ -864,11 +864,11 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__left-sign-glow {
-    animation: policeStrobeRed 1.8s infinite ease-in-out;
+    /* animation: policeStrobeRed 1.8s infinite ease-in-out; */
 }
 
 .diamond-avatar--animated .diamond-avatar__right-sign-glow {
-    animation: policeStrobeBlue 1.8s infinite ease-in-out;
+    /* animation: policeStrobeBlue 1.8s infinite ease-in-out; */
 }
 
 @keyframes policeStrobeRed {
@@ -911,11 +911,11 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__arrow-glow {
-    animation: diamondArrowRise 3s infinite linear;
+    /* animation: diamondArrowRise 3s infinite linear; */
 }
 
 .diamond-avatar--animated .diamond-avatar__arrow-glow--right {
-    animation-delay: 1.5s;
+    /* animation-delay: 1.5s; */
 }
 
 @keyframes diamondArrowRise {
@@ -944,7 +944,7 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__crystal-shimmer {
-    animation: diamondCrystalShimmer 4s infinite alternate ease-in-out;
+    /* animation: diamondCrystalShimmer 4s infinite alternate ease-in-out; */
 }
 
 @keyframes diamondCrystalShimmer {
@@ -967,7 +967,7 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__sign-glow {
-    animation: diamondSignGlow 2.5s infinite alternate ease-in-out;
+    /* animation: diamondSignGlow 2.5s infinite alternate ease-in-out; */
 }
 
 @keyframes diamondSignGlow {
@@ -1047,19 +1047,19 @@
 
 /* Police light bar strobe animations */
 .mythic-siren-blue {
-    fill: #1e3a8a;
+    fill: #3b82f6; /* premium static bright blue */
     transition: fill 0.05s ease;
 }
 .mythic-avatar--animated .mythic-siren-blue {
-    animation: mythicPoliceBlueStrobe 1.6s infinite;
+    /* animation: mythicPoliceBlueStrobe 1.6s infinite; */
 }
 
 .mythic-siren-red {
-    fill: #7f1d1d;
+    fill: #ef4444; /* premium static bright red */
     transition: fill 0.05s ease;
 }
 .mythic-avatar--animated .mythic-siren-red {
-    animation: mythicPoliceRedStrobe 1.6s infinite;
+    /* animation: mythicPoliceRedStrobe 1.6s infinite; */
 }
 
 @keyframes mythicPoliceBlueStrobe {
@@ -1079,21 +1079,21 @@
     fill: #7f1d1d;
 }
 .mythic-avatar--animated .mythic-light-red {
-    animation: mythicTrafficRed 6s infinite;
+    /* animation: mythicTrafficRed 6s infinite; */
 }
 
 .mythic-light-yellow {
     fill: #713f12;
 }
 .mythic-avatar--animated .mythic-light-yellow {
-    animation: mythicTrafficYellow 6s infinite;
+    /* animation: mythicTrafficYellow 6s infinite; */
 }
 
 .mythic-light-green {
     fill: #14532d;
 }
 .mythic-avatar--animated .mythic-light-green {
-    animation: mythicTrafficGreen 6s infinite;
+    /* animation: mythicTrafficGreen 6s infinite; */
 }
 
 @keyframes mythicTrafficRed {
@@ -1125,7 +1125,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__shine {
-    animation: mythicShineSweep 6s infinite ease-in-out;
+    /* animation: mythicShineSweep 6s infinite ease-in-out; */
 }
 
 @keyframes mythicShineSweep {
@@ -1150,7 +1150,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__crown-glow {
-    animation: mythicCrownGlow 3s infinite ease-in-out;
+    /* animation: mythicCrownGlow 3s infinite ease-in-out; */
 }
 
 @keyframes mythicCrownGlow {
@@ -1180,11 +1180,11 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__lightning-glow {
-    animation: mythicLightningGlow 0.8s infinite alternate ease-in-out;
+    /* animation: mythicLightningGlow 0.8s infinite alternate ease-in-out; */
 }
 
 .mythic-avatar--animated .mythic-avatar__lightning-glow--right {
-    animation-delay: 0.4s;
+    /* animation-delay: 0.4s; */
 }
 
 @keyframes mythicLightningGlow {
@@ -1207,7 +1207,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__caution-glow {
-    animation: mythicCautionGlow 1s infinite steps(2);
+    /* animation: mythicCautionGlow 1s infinite steps(2); */
 }
 
 @keyframes mythicCautionGlow {
@@ -1230,7 +1230,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__trophy-glow {
-    animation: mythicTrophyGlow 4s infinite alternate ease-in-out;
+    /* animation: mythicTrophyGlow 4s infinite alternate ease-in-out; */
 }
 
 @keyframes mythicTrophyGlow {
@@ -1256,7 +1256,7 @@
 }
 
 .mythic-avatar--animated .mythic-avatar__ring-glow {
-    animation: mythicRingGlow 5s infinite ease-in-out;
+    /* animation: mythicRingGlow 5s infinite ease-in-out; */
 }
 
 @keyframes mythicRingGlow {

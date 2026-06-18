@@ -142,28 +142,28 @@ export function RankBadge({
 
     const sizeStyles = {
         xs: {
-            iconSize: 10,
-            iconPadding: "0 5px",
-            bodyPadding: "2px 6px",
-            labelSize: "8px",
-            pointsSize: "7px",
-            minHeight: 22,
-        },
-        sm: {
-            iconSize: 13,
-            iconPadding: "0 7px",
+            iconSize: 12,
+            iconPadding: "0 6px",
             bodyPadding: "3px 8px",
-            labelSize: "10px",
-            pointsSize: "8px",
-            minHeight: 28,
-        },
-        md: {
-            iconSize: 16,
-            iconPadding: "0 9px",
-            bodyPadding: "4px 10px",
             labelSize: "11px",
             pointsSize: "8px",
-            minHeight: 34,
+            minHeight: 26,
+        },
+        sm: {
+            iconSize: 15,
+            iconPadding: "0 8px",
+            bodyPadding: "4px 10px",
+            labelSize: "13px",
+            pointsSize: "9px",
+            minHeight: 32,
+        },
+        md: {
+            iconSize: 18,
+            iconPadding: "0 10px",
+            bodyPadding: "5px 12px",
+            labelSize: "15px",
+            pointsSize: "10px",
+            minHeight: 38,
         },
     }[size];
 

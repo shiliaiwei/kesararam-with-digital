@@ -10,10 +10,10 @@ import type { RankConfig } from "@/lib/ranks";
  */
 
 const SIZES = {
-    sm: { font: 10, padX: 8, padY: 2 },
-    md: { font: 12, padX: 10, padY: 3 },
-    lg: { font: 14, padX: 12, padY: 4 },
-    xl: { font: 16, padX: 14, padY: 5 },
+    sm: { font: 11.5, padX: 9, padY: 2.5 },
+    md: { font: 13.5, padX: 11, padY: 3.5 },
+    lg: { font: 15.5, padX: 13, padY: 4.5 },
+    xl: { font: 18, padX: 15, padY: 5.5 },
 } as const;
 
 export interface RankBadgeProps {
