@@ -28,6 +28,8 @@ import {
   ChevronUp,
   ChevronDown,
   TriangleAlert,
+  Gamepad2,
+  ArrowUp,
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -103,6 +105,18 @@ const GAME_LABELS: Record<string, { en: string; kh: string }> = {
   "light-hero": { en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា" },
   "safety-adventure": { en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព" },
 };
+
+// Game filter chips — semantic color dot per game (brand: Lucide icon + color dot,
+// NO emoji). "all" first, then the catalog above. Doubles as the game-type filter.
+const GAME_CHIPS: { id: string; en: string; kh: string; color: string }[] = [
+  { id: "all", en: "All Games", kh: "ហ្គេមទាំងអស់", color: "#eab308" },
+  { id: "daily", ...GAME_LABELS.daily, color: "#3b82f6" },
+  { id: "priority-puzzle", ...GAME_LABELS["priority-puzzle"], color: "#f97316" },
+  { id: "sign-match", ...GAME_LABELS["sign-match"], color: "#a855f7" },
+  { id: "catch-sign", ...GAME_LABELS["catch-sign"], color: "#22c55e" },
+  { id: "light-hero", ...GAME_LABELS["light-hero"], color: "#ef4444" },
+  { id: "safety-adventure", ...GAME_LABELS["safety-adventure"], color: "#06b6d4" },
+];
 
 interface LeaderboardUser {
   id: number;
@@ -1325,17 +1339,49 @@ export default function LeaderboardPage() {
                   ]}
                 />
 
-                {/* Game Type Select — brutalist BrandSelect */}
-                <BrandSelect
-                  ariaLabel={kh ? "ប្រភេទហ្គេម" : "Game Type"}
-                  value={gameType}
-                  onValueChange={setGameType}
-                  fontStyle={kf}
-                  options={[
-                    { value: "all", label: kh ? "គ្រប់ប្រភេទហ្គេម" : "All Game Types" },
-                    ...Object.entries(GAME_LABELS).map(([value, l]) => ({ value, label: kh ? l.kh : l.en })),
-                  ]}
-                />
+              </div>
+
+              {/* ── Game filter chips — "what games we have", doubles as the gameType
+                   filter. Recognition-over-recall: show the options, don't hide them
+                   in a dropdown. Active chip = black fill / yellow text (Von Restorff). ── */}
+              <div className="mb-3 flex items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
+                <span className="flex flex-shrink-0 items-center gap-1 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
+                  <Gamepad2 size={13} strokeWidth={2.5} />
+                  {kh ? "ហ្គេម" : "Games"}
+                </span>
+                {GAME_CHIPS.map((g) => {
+                  const active = gameType === g.id;
+                  return (
+                    <button
+                      key={g.id}
+                      onClick={() => setGameType(g.id)}
+                      className={`flex flex-shrink-0 items-center gap-1.5 border-2 border-black px-2.5 py-1 text-[10px] font-black uppercase tracking-wide transition-all ${active ? "bg-black text-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"}`}
+                      style={{ borderRadius: 0, ...kf }}
+                    >
+                      <span className="h-2 w-2 flex-shrink-0 border border-black" style={{ background: g.color }} />
+                      {kh ? g.kh : g.en}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* ── Scoring legend — frames LIVE as the valued, claimable currency.
+                   Token economy + endowment/loss-aversion: only LIVE can be spent. ── */}
+              <div
+                className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 border-2 border-black bg-yellow-50 px-3 py-1.5 text-[9px] font-bold text-zinc-600"
+                style={{ boxShadow: "2px 2px 0 #000", borderRadius: 0, ...kf }}
+              >
+                <span className="flex items-center gap-1 font-black uppercase text-black">
+                  <Gift size={12} strokeWidth={3} className="text-yellow-600" />
+                  {kh ? "ពិន្ទុផ្ទាល់ = អាចដោះរង្វាន់" : "Live = the claimable currency"}
+                </span>
+                <span className="text-zinc-400">·</span>
+                <span className="flex items-center gap-1">
+                  <Wifi size={11} strokeWidth={3} className="text-red-500" />
+                  {kh ? "ចំណាត់ថ្នាក់តាមពិន្ទុផ្ទាល់" : "Ranked by Live score"}
+                </span>
+                <span className="text-zinc-400">·</span>
+                <span>{kh ? "សរុប និងត្រឹមត្រូវ = ស្ថិតិតែប៉ុណ្ណោះ" : "Total & Accuracy = stats only"}</span>
               </div>
 
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
@@ -1365,13 +1411,17 @@ export default function LeaderboardPage() {
               </div>
 
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
-                {/* Table Header */}
-                <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest text-yellow-400 uppercase">
-                  <span className="col-span-1">#</span>
-                  <span className="col-span-6 sm:col-span-4">{kh ? "សិស្ស" : "Student"}</span>
-                  <span className="col-span-5 sm:col-span-2 text-right">{kh ? "ពិន្ទុសរុប" : "Total"}</span>
-                  <span className="col-span-2 text-center hidden sm:block text-red-400">{kh ? "ផ្ទាល់" : "Live"}</span>
-                  <span className="col-span-3 text-right hidden sm:block text-green-400">{kh ? "ត្រឹមត្រូវ" : "Accuracy"}</span>
+                {/* Table Header — football/chess.com columns. LIVE is the hero (gold),
+                    pinned right like a rating; Played / Accuracy / Total are stats. */}
+                <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
+                  <span className="col-span-2 sm:col-span-1 text-yellow-400">#</span>
+                  <span className="col-span-6 sm:col-span-5 text-yellow-400">{kh ? "សិស្ស" : "Player"}</span>
+                  <span className="col-span-1 text-center text-zinc-500 hidden sm:block" title={kh ? "ចំនួនលេង" : "Games played"}>{kh ? "លេង" : "P"}</span>
+                  <span className="col-span-2 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
+                  <span className="col-span-1 text-right text-zinc-500 hidden sm:block">{kh ? "សរុប" : "Total"}</span>
+                  <span className="col-span-4 sm:col-span-2 flex items-center justify-end gap-1 text-yellow-400">
+                    <Gift size={11} strokeWidth={3} />{kh ? "ផ្ទាល់" : "Live"}
+                  </span>
                 </div>
 
                 {leaderboard.length > 0 ? leaderboard.map((user, rowIndex) => {
@@ -1382,6 +1432,11 @@ export default function LeaderboardPage() {
                   const isMe = !!currentUser && user.id === currentUser.id;
                   const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
                   const rowAvatar = isMe ? currentUser.avatar : user.avatar;
+                  const live = user.priorityPoints ?? 0;
+                  // Goal-gradient hook: for the signed-in user, how many LIVE points to
+                  // overtake the player ranked directly above.
+                  const above = rowIndex > 0 ? leaderboard[rowIndex - 1] : null;
+                  const toOvertake = above ? Math.max(0, (above.priorityPoints ?? 0) - live + 1) : 0;
                   return (
                     <div
                       key={user.id}
@@ -1390,7 +1445,7 @@ export default function LeaderboardPage() {
                       onClick={linkable ? () => handleSelectUser(user) : undefined}
                     >
                       {/* Rank + movement */}
-                      <div className="col-span-1 flex items-center gap-1">
+                      <div className="col-span-2 sm:col-span-1 flex items-center gap-1">
                         {medal ? (
                           <span
                             className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
@@ -1406,7 +1461,7 @@ export default function LeaderboardPage() {
                       </div>
 
                       {/* Avatar + name + meta */}
-                      <div className="col-span-6 sm:col-span-4 flex items-center gap-2.5 min-w-0">
+                      <div className="col-span-6 sm:col-span-5 flex items-center gap-2.5 min-w-0">
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
                           <Avatar
                             url={rowAvatar}
@@ -1438,29 +1493,53 @@ export default function LeaderboardPage() {
                                 <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
                               </span>
                             )}
+                            {/* Goal-gradient: only for me, when someone is just ahead */}
+                            {isMe && above && toOvertake > 0 && (
+                              <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-300 px-1 py-0.5">
+                                <ArrowUp size={8} strokeWidth={4} />
+                                {kh ? `ខ្វះ ${toOvertake.toLocaleString()} ដើម្បីលើស #${above.rank}` : `${toOvertake.toLocaleString()} to pass #${above.rank}`}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
 
-                      {/* Games */}
-                      {/* Total points = the headline ranking metric */}
-                      <div className="col-span-5 sm:col-span-2 text-right">
-                        <span className="font-black tabular-nums text-sm md:text-base text-black">{user.lifetimePoints.toLocaleString()}</span>
-                        <span className="block text-[8px] text-zinc-400 font-bold uppercase tracking-wider leading-none sm:hidden">{kh ? "ពិន្ទុ" : "total"}</span>
-                      </div>
-
-                      {/* Live (priority) points — claimable, live sessions only */}
-                      <span className="col-span-2 text-center text-xs font-bold text-red-600 tabular-nums hidden sm:block">
-                        {(user.priorityPoints ?? 0).toLocaleString()}
+                      {/* Played (games) — football "P" stat */}
+                      <span className="col-span-1 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
+                        {(user.totalGamesPlayed ?? 0).toLocaleString()}
                       </span>
 
                       {/* Accuracy across recorded plays */}
                       <span
-                        className="col-span-3 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
+                        className="col-span-2 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
                         style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa" }}
                       >
                         {(user.accuracy ?? 0)}%
                       </span>
+
+                      {/* Total points — secondary stat, demoted from headline */}
+                      <span className="col-span-1 text-right text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
+                        {user.lifetimePoints.toLocaleString()}
+                      </span>
+
+                      {/* LIVE — the hero metric. Scoreboard chip (chess-rating style):
+                          gold for the leader, gold-tint when earned, zinc when none. */}
+                      <div className="col-span-4 sm:col-span-2 flex justify-end">
+                        <div
+                          className="inline-flex flex-col items-center border-2 border-black px-2 py-0.5 leading-none"
+                          style={{
+                            background: user.rank === 1 && live > 0 ? "#facc15" : live > 0 ? "#fef9c3" : "#f4f4f5",
+                            boxShadow: "2px 2px 0 #000",
+                            borderRadius: 0,
+                            minWidth: 56,
+                          }}
+                        >
+                          <span className="font-black tabular-nums text-base md:text-xl text-black">{live.toLocaleString()}</span>
+                          <span className="flex items-center gap-0.5 text-[7px] font-black uppercase tracking-wider text-zinc-500">
+                            <Gift size={7} strokeWidth={3} />{kh ? "ដោះបាន" : "claim"}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   );
                 }) : (
@@ -1473,8 +1552,8 @@ export default function LeaderboardPage() {
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "ពិន្ទុសរុប = គ្រប់ហ្គេម · ផ្ទាល់ = អាចដោះបាន · ត្រឹមត្រូវ = មធ្យមភាគ · ចំណាត់ថ្នាក់ផ្លាស់ប្ដូរបន្តផ្ទាល់"
-                  : "Total = all plays · Live = claimable · Accuracy = avg correct · Ranks update in real-time"}
+                  ? "ផ្ទាល់ = អាចដោះបាន · ចំណាត់ថ្នាក់តាមពិន្ទុផ្ទាល់ · សរុប = គ្រប់ហ្គេម · ត្រឹមត្រូវ = មធ្យមភាគ"
+                  : "Live = claimable · Ranked by Live · P = games played · Total = all plays · Acc = avg correct"}
               </p>
 
             </div>

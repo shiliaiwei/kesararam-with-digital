@@ -65,7 +65,9 @@ async function storePointsLeaderboard(opts: {
     })
     .from(users)
     .where(sql`${publicFilter}${provinceFilter} AND ${windowExpr} > 0`)
-    .orderBy(desc(windowExpr), desc(users.highestScore))
+    // LIVE score is the primary competitive currency (only live points can claim).
+    // Rank by live earned first, then total earned, then highest single score.
+    .orderBy(desc(liveExpr), desc(windowExpr), desc(users.highestScore))
     .limit(limit)
     .offset(offset);
 
@@ -207,7 +209,9 @@ export async function GET(req: NextRequest) {
         })
         .from(users)
         .where(sql`${publicFilter}${provinceFilter}`)
-        .orderBy(desc(users.lifetimePoints), desc(users.highestScore), desc(users.updatedAt))
+        // LIVE points (claimable, live-session only) are the primary ranking metric;
+        // lifetime total + highest score break ties. This path is source=all only.
+        .orderBy(desc(priorityExpr), desc(users.lifetimePoints), desc(users.highestScore))
         .limit(limit)
         .offset(offset);
     } else {
@@ -277,7 +281,14 @@ export async function GET(req: NextRequest) {
           users.isSectionPublic
         )
         .having(sql`COALESCE(SUM(${pointsLedger.points}), 0) > 0`)
-        .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`), desc(users.highestScore), desc(users.updatedAt))
+        // On the combined board (source=all) LIVE points lead the ranking; when the
+        // user explicitly filters to one source, rank by that source's window total.
+        .orderBy(
+          ...(source === "all" ? [desc(priorityExpr)] : []),
+          desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`),
+          desc(users.highestScore),
+          desc(users.updatedAt)
+        )
         .limit(limit)
         .offset(offset);
     }
