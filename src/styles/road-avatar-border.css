@@ -511,7 +511,7 @@
     --s: 1;
     position: relative;
     display: inline-block;
-    padding: calc(10px * var(--s));
+    padding: calc(15px * var(--s));
     line-height: 0;
 }
 
@@ -524,12 +524,13 @@
 
 .platinum-avatar__frame-img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: calc(-15px * var(--s));
+    left: calc(-15px * var(--s));
+    width: calc(200px * var(--s));
+    height: calc(200px * var(--s));
     z-index: 1;
     pointer-events: none;
+    overflow: visible;
 }
 
 /* Sweeping silver/light-blue shine */
