@@ -213,7 +213,7 @@
 }
 
 .road-avatar--animated .road-avatar__caution {
-    animation: roadCautionScroll 1.2s linear infinite;
+    /* animation: roadCautionScroll 1.2s linear infinite; */
 }
 
 @keyframes roadCautionScroll {
