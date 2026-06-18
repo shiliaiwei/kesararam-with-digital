@@ -110,9 +110,9 @@ export function PlatinumAvatarBorder({
                     {/* ── INTEGRATED SIDE LIGHTS & WARNING SIGNS ── */}
                     {/* Left Traffic Light Stack */}
                     <rect x="39" y="85" width="11" height="31" rx="2" fill="#0f172a" stroke="#ffffff" strokeWidth="1.2" />
-                    <circle cx="44.5" cy="90.5" r="2.9" className="platinum-avatar__blue-light" stroke="#000000" strokeWidth="0.8" />
-                    <circle cx="44.5" cy="100.5" r="2.9" className="platinum-avatar__yellow-light" stroke="#000000" strokeWidth="0.8" />
-                    <circle cx="44.5" cy="110.5" r="2.9" className="platinum-avatar__green-light" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="44.5" cy="90.5" r="2.9" className="platinum-light-red" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="44.5" cy="100.5" r="2.9" className="platinum-light-yellow" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="44.5" cy="110.5" r="2.9" className="platinum-light-green" stroke="#000000" strokeWidth="0.8" />
 
                     {/* Upper Left warning sign: Pedestrian crossing */}
                     <polygon points="29,45 38,54 29,63 20,54" fill="none" stroke="#ffffff" strokeWidth="1.5" />
@@ -152,11 +152,6 @@ export function PlatinumAvatarBorder({
 
                 {/* Glowing chevrons overlay on left */}
                 <div className="platinum-avatar__chevron-glow" aria-hidden="true" />
-
-                {/* Pulsing/flashing traffic light bulbs */}
-                <div className="platinum-avatar__blue-light" aria-hidden="true" />
-                <div className="platinum-avatar__yellow-light" aria-hidden="true" />
-                <div className="platinum-avatar__green-light" aria-hidden="true" />
 
                 {/* Soft blue ring light breathing around the inner circular ring */}
                 <div className="platinum-avatar__ring-glow" aria-hidden="true" />

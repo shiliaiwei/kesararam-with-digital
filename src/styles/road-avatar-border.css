@@ -546,7 +546,7 @@
 }
 
 .platinum-avatar--animated .platinum-avatar__shine {
-    /* animation: platinumShineSweep 6s infinite ease-in-out; */
+    animation: platinumShineSweep 6s infinite ease-in-out;
 }
 
 @keyframes platinumShineSweep {
@@ -571,7 +571,7 @@
 }
 
 .platinum-avatar--animated .platinum-avatar__chevron-glow {
-    /* animation: chevronGlowPulse 4s infinite ease-in-out; */
+    animation: chevronGlowPulse 4s infinite ease-in-out;
 }
 
 /* Pulsing/Flashing traffic light bulbs in the capsule */
@@ -620,16 +620,26 @@
                 inset 0 0 calc(2px * var(--s)) rgba(255, 255, 255, 0.5);
 }
 
-.platinum-avatar--animated .platinum-avatar__blue-light {
-    /* animation: platinumBlueSequence 3s infinite ease-in-out; */
+/* Traffic Light stack cycling animations for Platinum */
+.platinum-light-red {
+    fill: #7f1d1d;
+}
+.platinum-avatar--animated .platinum-light-red {
+    animation: trafficLightCycleRed 6s infinite;
 }
 
-.platinum-avatar--animated .platinum-avatar__yellow-light {
-    /* animation: platinumYellowCautionSequence 3s infinite ease-in-out; */
+.platinum-light-yellow {
+    fill: #713f12;
+}
+.platinum-avatar--animated .platinum-light-yellow {
+    animation: trafficLightCycleYellow 6s infinite;
 }
 
-.platinum-avatar--animated .platinum-avatar__green-light {
-    /* animation: platinumGreenSequence 3s infinite ease-in-out; */
+.platinum-light-green {
+    fill: #14532d;
+}
+.platinum-avatar--animated .platinum-light-green {
+    animation: trafficLightCycleGreen 6s infinite;
 }
 
 @keyframes platinumBlueSequence {
@@ -714,7 +724,7 @@
 }
 
 .platinum-avatar--animated .platinum-avatar__ring-glow {
-    /* animation: platinumRingLightBreathe 5s infinite ease-in-out; */
+    animation: platinumRingLightBreathe 5s infinite ease-in-out;
 }
 
 @keyframes platinumRingLightBreathe {
@@ -770,7 +780,7 @@
     --s: 1;
     position: relative;
     display: inline-block;
-    padding: calc(25px * var(--s));
+    padding: calc(15px * var(--s));
     line-height: 0;
 }
 
@@ -783,10 +793,10 @@
 
 .diamond-avatar__frame-img {
     position: absolute;
-    top: calc(-25px * var(--s));
-    left: calc(-25px * var(--s));
-    width: calc(220px * var(--s));
-    height: calc(220px * var(--s));
+    top: calc(-15px * var(--s));
+    left: calc(-15px * var(--s));
+    width: calc(200px * var(--s));
+    height: calc(200px * var(--s));
     z-index: 1;
     pointer-events: none;
     overflow: visible;
@@ -805,7 +815,7 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__shine {
-    /* animation: diamondShineSweep 6s infinite ease-in-out; */
+    animation: diamondShineSweep 6s infinite ease-in-out;
 }
 
 @keyframes diamondShineSweep {
@@ -830,7 +840,7 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__top-glow {
-    /* animation: diamondTopGlow 3s infinite ease-in-out; */
+    animation: diamondTopGlow 3s infinite ease-in-out;
 }
 
 @keyframes diamondTopGlow {
@@ -866,11 +876,11 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__left-sign-glow {
-    /* animation: policeStrobeRed 1.8s infinite ease-in-out; */
+    animation: policeStrobeRed 1.8s infinite ease-in-out;
 }
 
 .diamond-avatar--animated .diamond-avatar__right-sign-glow {
-    /* animation: policeStrobeBlue 1.8s infinite ease-in-out; */
+    animation: policeStrobeBlue 1.8s infinite ease-in-out;
 }
 
 @keyframes policeStrobeRed {
@@ -946,7 +956,7 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__crystal-shimmer {
-    /* animation: diamondCrystalShimmer 4s infinite alternate ease-in-out; */
+    animation: diamondCrystalShimmer 4s infinite alternate ease-in-out;
 }
 
 @keyframes diamondCrystalShimmer {
@@ -969,7 +979,7 @@
 }
 
 .diamond-avatar--animated .diamond-avatar__sign-glow {
-    /* animation: diamondSignGlow 2.5s infinite alternate ease-in-out; */
+    animation: diamondSignGlow 2.5s infinite alternate ease-in-out;
 }
 
 @keyframes diamondSignGlow {
@@ -1389,6 +1399,44 @@
 .platinum-avatar__division-badge { border: calc(2px * var(--s)) solid #3b82f6; }
 .diamond-avatar__division-badge { border: calc(2px * var(--s)) solid #22d3ee; }
 .mythic-avatar__division-badge { border: calc(2px * var(--s)) solid #ca8a04; }
+
+/* Traffic Light stack cycling animations for Diamond */
+.diamond-light-red {
+    fill: #7f1d1d;
+}
+.diamond-avatar--animated .diamond-light-red {
+    animation: trafficLightCycleRed 6s infinite;
+}
+
+.diamond-light-yellow {
+    fill: #713f12;
+}
+.diamond-avatar--animated .diamond-light-yellow {
+    animation: trafficLightCycleYellow 6s infinite;
+}
+
+.diamond-light-green {
+    fill: #14532d;
+}
+.diamond-avatar--animated .diamond-light-green {
+    animation: trafficLightCycleGreen 6s infinite;
+}
+
+/* Shared Traffic Light Delayed Cycle Keyframes */
+@keyframes trafficLightCycleRed {
+    0%, 30% { fill: #ef4444; filter: drop-shadow(0 0 6px #ef4444); }
+    35%, 100% { fill: #7f1d1d; filter: none; }
+}
+
+@keyframes trafficLightCycleYellow {
+    0%, 30%, 65%, 100% { fill: #713f12; filter: none; }
+    35%, 60% { fill: #eab308; filter: drop-shadow(0 0 6px #eab308); }
+}
+
+@keyframes trafficLightCycleGreen {
+    0%, 60%, 100% { fill: #14532d; filter: none; }
+    65%, 95% { fill: #22c55e; filter: drop-shadow(0 0 6px #22c55e); }
+}
 
 
 
