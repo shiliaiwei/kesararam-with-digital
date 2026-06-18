@@ -421,6 +421,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                     <PlatinumAvatarBorder
                       alt={`${displayName} avatar`}
                       username={isNamePublic ? (student.displayName || student.username) : "S"}
+                      score={student.lifetimePoints}
                       size="md"
                     >
                       <Avatar
@@ -435,6 +436,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                     <GoldAvatarBorder
                       alt={`${displayName} avatar`}
                       username={isNamePublic ? (student.displayName || student.username) : "S"}
+                      score={student.lifetimePoints}
                       size="md"
                     >
                       <Avatar

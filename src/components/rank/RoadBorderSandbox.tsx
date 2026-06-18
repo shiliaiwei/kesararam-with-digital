@@ -97,6 +97,7 @@ export function RoadBorderSandbox() {
                                 src={demoSrc}
                                 alt="Sandbox player"
                                 username="Sophea"
+                                score={score}
                                 size={size}
                                 animated={animated}
                             />
@@ -105,6 +106,7 @@ export function RoadBorderSandbox() {
                                 src={demoSrc}
                                 alt="Sandbox player"
                                 username="Sophea"
+                                score={score}
                                 size={size}
                                 animated={animated}
                             />
@@ -113,6 +115,7 @@ export function RoadBorderSandbox() {
                                 src={demoSrc}
                                 alt="Sandbox player"
                                 username="Sophea"
+                                score={score}
                                 size={size}
                                 animated={animated}
                             />
@@ -121,6 +124,7 @@ export function RoadBorderSandbox() {
                                 src={demoSrc}
                                 alt="Sandbox player"
                                 username="Sophea"
+                                score={score}
                                 size={size}
                                 animated={animated}
                             />

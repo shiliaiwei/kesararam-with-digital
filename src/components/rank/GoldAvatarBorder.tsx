@@ -4,6 +4,7 @@ import * as React from "react";
 import { User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AvatarSize } from "@/lib/ranks";
+import { calculateRankAndDivision } from "@/lib/ranks";
 
 const SCALE: Record<AvatarSize, number> = {
     sm: 0.65,
@@ -16,6 +17,7 @@ export interface GoldAvatarBorderProps {
     src?: string | null;
     alt: string;
     username?: string;
+    score?: number;
     size?: AvatarSize | number;
     animated?: boolean;
     className?: string;
@@ -26,6 +28,7 @@ export function GoldAvatarBorder({
     src,
     alt,
     username,
+    score,
     size = "md",
     animated = true,
     className,
@@ -36,6 +39,9 @@ export function GoldAvatarBorder({
     const showCustomAvatar = Boolean(children);
     const showImage = Boolean(src) && !imgFailed && !showCustomAvatar;
     const initial = username?.trim()?.charAt(0)?.toUpperCase() ?? "";
+
+    const clampedScore = score !== undefined ? Math.max(2500, Math.min(3499, score)) : undefined;
+    const division = clampedScore !== undefined ? calculateRankAndDivision(clampedScore).division : undefined;
 
     const vars = {
         "--s": scale,
@@ -92,6 +98,13 @@ export function GoldAvatarBorder({
                         </div>
                     )}
                 </div>
+
+                {/* Division Badge (Top-Left) */}
+                {division && (
+                    <div className="gold-avatar__division-badge" aria-label={`Division ${division}`}>
+                        <span className="gold-avatar__division-text">{division}</span>
+                    </div>
+                )}
             </div>
         </div>
     );

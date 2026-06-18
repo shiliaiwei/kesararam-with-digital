@@ -379,6 +379,7 @@ export function StudentProfileDashboard({
                 <PlatinumAvatarBorder
                   alt={`${name} avatar`}
                   username={name}
+                  score={rankStats.lifetimePoints}
                   size="sm"
                 >
                   <AvatarDisplay avatar={user.avatar} name={name} size={64} radius={999} />
@@ -387,6 +388,7 @@ export function StudentProfileDashboard({
                 <GoldAvatarBorder
                   alt={`${name} avatar`}
                   username={name}
+                  score={rankStats.lifetimePoints}
                   size="sm"
                 >
                   <AvatarDisplay avatar={user.avatar} name={name} size={64} radius={999} />

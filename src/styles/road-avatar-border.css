@@ -1009,6 +1009,91 @@
     font-size: calc(40px * var(--s));
 }
 
+/* ────────────────────────────────────────────────────────────────────────────
+   Circular Division Badges for Gold, Platinum, Diamond, Mythic
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.gold-avatar__division-badge,
+.platinum-avatar__division-badge,
+.diamond-avatar__division-badge,
+.mythic-avatar__division-badge {
+    position: absolute;
+    top: calc(16px * var(--s));
+    left: calc(16px * var(--s));
+    width: calc(32px * var(--s));
+    height: calc(32px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #2e2e30 0%, #111113 70%, #050505 100%);
+    box-shadow: 0 calc(2px * var(--s)) calc(4px * var(--s)) rgba(0, 0, 0, 0.6);
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gold-avatar__division-text,
+.platinum-avatar__division-text,
+.diamond-avatar__division-text,
+.mythic-avatar__division-text {
+    color: #ffffff;
+    font-weight: 900;
+    font-family: var(--font-mono, monospace);
+    font-size: calc(13px * var(--s));
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.gold-avatar__division-badge::before,
+.gold-avatar__division-badge::after,
+.platinum-avatar__division-badge::before,
+.platinum-avatar__division-badge::after,
+.diamond-avatar__division-badge::before,
+.diamond-avatar__division-badge::after,
+.mythic-avatar__division-badge::before,
+.mythic-avatar__division-badge::after {
+    content: "";
+    position: absolute;
+    width: calc(4px * var(--s));
+    height: calc(4px * var(--s));
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.gold-avatar__division-badge::before { left: calc(2px * var(--s)); }
+.gold-avatar__division-badge::after { right: calc(2px * var(--s)); }
+.gold-avatar__division-badge::before, .gold-avatar__division-badge::after {
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #cbd5e1 40%, #64748b 100%);
+    box-shadow: 0 calc(0.5px * var(--s)) calc(0.5px * var(--s)) rgba(0, 0, 0, 0.5);
+}
+
+.platinum-avatar__division-badge::before { left: calc(2px * var(--s)); }
+.platinum-avatar__division-badge::after { right: calc(2px * var(--s)); }
+.platinum-avatar__division-badge::before, .platinum-avatar__division-badge::after {
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #cbd5e1 40%, #64748b 100%);
+    box-shadow: 0 calc(0.5px * var(--s)) calc(0.5px * var(--s)) rgba(0, 0, 0, 0.5);
+}
+
+.diamond-avatar__division-badge::before { left: calc(2px * var(--s)); }
+.diamond-avatar__division-badge::after { right: calc(2px * var(--s)); }
+.diamond-avatar__division-badge::before, .diamond-avatar__division-badge::after {
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #a5f3fc 40%, #0891b2 100%);
+    box-shadow: 0 calc(0.5px * var(--s)) calc(0.5px * var(--s)) rgba(0, 0, 0, 0.5);
+}
+
+.mythic-avatar__division-badge::before { left: calc(2px * var(--s)); }
+.mythic-avatar__division-badge::after { right: calc(2px * var(--s)); }
+.mythic-avatar__division-badge::before, .mythic-avatar__division-badge::after {
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #fef08a 40%, #ca8a04 100%);
+    box-shadow: 0 calc(0.5px * var(--s)) calc(0.5px * var(--s)) rgba(0, 0, 0, 0.5);
+}
+
+.gold-avatar__division-badge { border: calc(2px * var(--s)) solid #eab308; }
+.platinum-avatar__division-badge { border: calc(2px * var(--s)) solid #3b82f6; }
+.diamond-avatar__division-badge { border: calc(2px * var(--s)) solid #22d3ee; }
+.mythic-avatar__division-badge { border: calc(2px * var(--s)) solid #ca8a04; }
+
+
 
 
 

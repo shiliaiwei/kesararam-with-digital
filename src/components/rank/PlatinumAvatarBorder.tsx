@@ -4,6 +4,7 @@ import * as React from "react";
 import { User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AvatarSize } from "@/lib/ranks";
+import { calculateRankAndDivision } from "@/lib/ranks";
 
 const SCALE: Record<AvatarSize, number> = {
     sm: 0.65,
@@ -16,6 +17,7 @@ export interface PlatinumAvatarBorderProps {
     src?: string | null;
     alt: string;
     username?: string;
+    score?: number;
     size?: AvatarSize | number;
     animated?: boolean;
     className?: string;
@@ -26,6 +28,7 @@ export function PlatinumAvatarBorder({
     src,
     alt,
     username,
+    score,
     size = "md",
     animated = true,
     className,
@@ -36,6 +39,9 @@ export function PlatinumAvatarBorder({
     const showCustomAvatar = Boolean(children);
     const showImage = Boolean(src) && !imgFailed && !showCustomAvatar;
     const initial = username?.trim()?.charAt(0)?.toUpperCase() ?? "";
+
+    const clampedScore = score !== undefined ? Math.max(3500, Math.min(6999, score)) : undefined;
+    const division = clampedScore !== undefined ? calculateRankAndDivision(clampedScore).division : undefined;
 
     const vars = {
         "--s": scale,
@@ -88,6 +94,13 @@ export function PlatinumAvatarBorder({
                         </div>
                     )}
                 </div>
+
+                {/* Division Badge (Top-Left) */}
+                {division && (
+                    <div className="platinum-avatar__division-badge" aria-label={`Division ${division}`}>
+                        <span className="platinum-avatar__division-text">{division}</span>
+                    </div>
+                )}
             </div>
         </div>
     );

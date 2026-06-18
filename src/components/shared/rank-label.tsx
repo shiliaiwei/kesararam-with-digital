@@ -265,28 +265,28 @@ export function RankedAvatarRing({
 
     if (rank.id === "mythic") {
         return (
-            <MythicAvatarBorder size={size} alt="User avatar" animated={true}>
+            <MythicAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
                 {children}
             </MythicAvatarBorder>
         );
     }
     if (rank.id === "diamond") {
         return (
-            <DiamondAvatarBorder size={size} alt="User avatar" animated={true}>
+            <DiamondAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
                 {children}
             </DiamondAvatarBorder>
         );
     }
     if (rank.id === "platinum") {
         return (
-            <PlatinumAvatarBorder size={size} alt="User avatar" animated={true}>
+            <PlatinumAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
                 {children}
             </PlatinumAvatarBorder>
         );
     }
     if (rank.id === "gold") {
         return (
-            <GoldAvatarBorder size={size} alt="User avatar" animated={true}>
+            <GoldAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
                 {children}
             </GoldAvatarBorder>
         );
