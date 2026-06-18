@@ -364,9 +364,9 @@ export function RankProgressBar({
                 </div>
             )}
             {/* Track */}
-            <div className="relative h-2 rounded-full overflow-hidden" style={{ background: "#e4e4e7" }}>
+            <div className="relative h-3.5 border-2 border-black bg-zinc-100 overflow-hidden rounded-none">
                 <div
-                    className="h-full rounded-full transition-all duration-700"
+                    className="h-full border-r-2 border-black transition-all duration-700"
                     style={{
                         width: `${pct}%`,
                         background: next.labelGradient,
@@ -410,34 +410,58 @@ export function RankShowcase({
                     {RANK_TIERS.map((tier) => {
                         const unlocked = lifetimePoints >= tier.minPoints;
                         const isCurrent = tier.id === current.id;
+
+                        // Style states
+                        let borderStyle = "2px solid #000000";
+                        let backgroundStyle = "#ffffff";
+                        let shadowStyle = undefined;
+                        let opacityStyle = 1.0;
+                        let iconColor = unlocked ? tier.accent : "#a1a1aa";
+                        let labelColor = unlocked ? tier.textDark : "#71717a";
+                        let ptsColor = "#71717a";
+
+                        if (isCurrent) {
+                            backgroundStyle = tier.accent;
+                            shadowStyle = "3px 3px 0 #000000";
+                            iconColor = "#000000";
+                            labelColor = "#000000";
+                            ptsColor = "#000000";
+                        } else if (!unlocked) {
+                            borderStyle = "2px dashed #a1a1aa";
+                            backgroundStyle = "#f4f4f5";
+                            opacityStyle = 0.5;
+                            iconColor = "#cbd5e1";
+                            labelColor = "#a1a1aa";
+                            ptsColor = "#a1a1aa";
+                        }
+
                         return (
                             <div
                                 key={tier.id}
-                                className="flex flex-col items-center gap-1 p-2 rounded-lg border-2 transition-all"
+                                className="flex flex-col items-center gap-1.5 p-2 rounded-none transition-all"
                                 style={{
-                                    borderColor: isCurrent ? tier.accent : unlocked ? `${tier.accent}55` : "#e4e4e7",
-                                    background: isCurrent ? `${tier.glow}22` : unlocked ? `${tier.glow}0a` : "#fafafa",
-                                    opacity: unlocked ? 1 : 0.45,
-                                    boxShadow: isCurrent ? `0 0 12px ${tier.glow}66` : undefined,
+                                    border: borderStyle,
+                                    background: backgroundStyle,
+                                    boxShadow: shadowStyle,
+                                    opacity: opacityStyle,
                                 }}
                             >
                                 {(() => {
                                     const Icon = TIER_ICONS[tier.id] || Star;
-                                    return <Icon size={22} style={{ color: unlocked ? tier.accent : "#d4d4d8" }} />;
+                                    return <Icon size={20} style={{ color: iconColor }} strokeWidth={isCurrent ? 3 : 2.5} />;
                                 })()}
                                 <span
-                                    className="text-[8px] font-black uppercase tracking-wide"
-                                    style={{ color: unlocked ? tier.accent : "#a1a1aa" }}
+                                    className="text-[9px] font-black uppercase tracking-wider text-center"
+                                    style={{ color: labelColor }}
                                 >
-                                    {tier.label}
+                                    {isKh ? tier.labelKh : tier.label}
                                 </span>
-                                <span className="text-[7px] text-zinc-400 tabular-nums">
+                                <span className="text-[7.5px] font-bold tabular-nums" style={{ color: ptsColor }}>
                                     {tier.minPoints === 0 ? "Start" : `${tier.minPoints.toLocaleString()} pts`}
                                 </span>
                                 {isCurrent && (
                                     <span
-                                        className="text-[7px] font-black px-1.5 py-0.5 rounded"
-                                        style={{ background: tier.accent, color: tier.textColor }}
+                                        className="text-[8px] font-black px-2 py-0.5 rounded-none border border-black bg-black text-white uppercase tracking-wider"
                                     >
                                         {isKh ? "ឥឡូវ" : "NOW"}
                                     </span>
