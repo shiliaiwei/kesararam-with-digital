@@ -135,41 +135,58 @@ export function MythicAvatarBorder({
                     <circle cx="184.5" cy="66.5" r="1.2" fill="#000000" />
                     <circle cx="191.5" cy="66.5" r="1.2" fill="#000000" />
 
-                    {/* ── TOP MAJESTIC GOLD CROWN ── */}
-                    <path d="M 68 32 C 80 34, 140 34, 152 32 L 150 14 C 145 19, 142 22, 138 23 L 130 6 C 125 13, 122 17, 118 18 L 110 0 L 102 18 C 98 17, 95 13, 90 6 L 82 23 C 78 22, 75 19, 70 14 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="2.5" strokeLinejoin="round" />
-                    {/* Crown jewels: alternating siren strobes */}
-                    <circle cx="110" cy="0" r="4" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.2" />
-                    <circle cx="90" cy="6" r="3.2" className="mythic-siren-blue" stroke="#000000" strokeWidth="1" />
-                    <circle cx="130" cy="6" r="3.2" className="mythic-siren-red" stroke="#000000" strokeWidth="1" />
-                    <circle cx="70" cy="14" r="2.5" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
-                    <circle cx="150" cy="14" r="2.5" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
-                    {/* Crown Base Shield Insignia */}
-                    <path d="M 103 23 L 117 23 L 117 32 Q 110 39 103 32 Z" fill="#000000" stroke="url(#mythic-gold-metal)" strokeWidth="1.5" />
-                    <path d="M 107 26 L 110 29 L 113 26 M 107 30 L 110 33 L 113 30" stroke="url(#mythic-gold-metal)" strokeWidth="1.5" fill="none" />
+                    {/* ── TOP POLICE CHIEF PEAKED CAP ── */}
+                    {/* Cap back structure & shadow */}
+                    <ellipse cx="110" cy="23" rx="43" ry="17" fill="#121212" stroke="#000000" strokeWidth="2.5" />
+                    {/* Gold cap crown top */}
+                    <path d="M 67 21 C 72 0, 148 0, 153 21 C 143 27, 77 27, 67 21 Z" fill="#1c1917" stroke="url(#mythic-gold-metal)" strokeWidth="3" />
+                    {/* Gold trim band */}
+                    <path d="M 74 23 C 84 26, 136 26, 146 23 L 146 26 C 136 29, 84 29, 74 26 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
+                    {/* Polished black visor (bill) */}
+                    <path d="M 75 26 C 81 39, 139 39, 145 26 C 142 30, 78 30, 75 26 Z" fill="#000000" stroke="url(#mythic-gold-metal)" strokeWidth="1.5" />
+                    {/* Golden Officer Badge Wreath */}
+                    <polygon points="104,10 116,10 119,18 110,25 101,18" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
+                    <polygon points="110,12 111.5,15 115,15 112,17 113,21 110,19 107,21 108,17 105,15 108.5,15" fill="#1c1917" />
+                    <path d="M 97 22 Q 102 25 110 25 Q 118 25 123 22" fill="none" stroke="url(#mythic-gold-metal)" strokeWidth="1.5" />
+                    {/* Eagle topper */}
+                    <path d="M 103 9 Q 110 4 117 9 Q 110 11 103 9" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
 
-                    {/* ── SYMMETRICAL GOLD LIGHTNING BOLTS ── */}
-                    <polygon points="35,75 15,105 28,107 5,135 38,105 25,103" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="2" strokeLinejoin="round" />
-                    <polygon points="185,75 205,105 192,107 215,135 182,105 195,103" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="2" strokeLinejoin="round" />
+                    {/* ── SYMMETRICAL GOLD LAUREL WREATHS (SIDES) ── */}
+                    {/* Left Wreath Leaves */}
+                    <path d="M 25 145 Q 18 138 22 132 Q 28 138 25 145 Z M 22 130 Q 14 122 18 116 Q 25 122 22 130 Z M 18 112 Q 10 104 14 98 Q 21 104 18 112 Z M 16 94 Q 8 86 12 80 Q 19 86 16 94 Z M 18 76 Q 10 68 14 62 Q 21 68 18 76 Z M 22 58 Q 15 50 19 44 Q 26 50 22 58 Z M 27 42 Q 22 34 26 28 Q 32 34 27 42 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.2" />
+                    {/* Right Wreath Leaves (Reflected) */}
+                    <path d="M 195 145 Q 202 138 198 132 Q 192 138 195 145 Z M 198 130 Q 206 122 202 116 Q 195 122 198 130 Z M 202 112 Q 210 104 206 98 Q 199 104 202 112 Z M 204 94 Q 212 86 208 80 Q 201 86 204 94 Z M 202 76 Q 210 68 206 62 Q 199 68 202 76 Z M 198 58 Q 205 50 201 44 Q 194 50 198 58 Z M 193 42 Q 198 34 194 28 Q 188 34 193 42 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.2" />
 
-                    {/* ── SYMMETRICAL TRAFFIC CONES AT THE BOTTOM ── */}
-                    {/* Left Cone */}
-                    <path d="M 16 205 L 44 205 L 42 201 L 18 201 Z" fill="#18181b" stroke="#000000" strokeWidth="1.5" />
-                    <path d="M 20 201 L 40 201 L 34 172 L 26 172 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
-                    <path d="M 22 190 L 38 190 L 36 181 L 24 181 Z" fill="#18181b" stroke="#000000" strokeWidth="1.2" />
+                    {/* ── SYMMETRICAL EMERGENCY SIREN FLASHERS (BOTTOM SIDES) ── */}
+                    {/* Left Siren: Red Dome & Bracket */}
+                    <path d="M 23 172 L 47 172 L 43 182 L 27 182 Z" fill="#2d2d30" stroke="#000000" strokeWidth="1.5" />
+                    <rect x="18" y="160" width="34" height="12" rx="4" className="mythic-siren-red" stroke="#000000" strokeWidth="1.5" />
+                    {/* Left Spotlight under Siren */}
+                    <circle cx="35" cy="189" r="11" fill="#18181b" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="35" cy="189" r="8" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
 
-                    {/* Right Cone */}
-                    <path d="M 176 205 L 204 205 L 202 201 L 178 201 Z" fill="#18181b" stroke="#000000" strokeWidth="1.5" />
-                    <path d="M 180 201 L 200 201 L 194 172 L 186 172 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
-                    <path d="M 182 190 L 198 190 L 196 181 L 184 181 Z" fill="#18181b" stroke="#000000" strokeWidth="1.2" />
+                    {/* Right Siren: Blue Dome & Bracket */}
+                    <path d="M 173 172 L 197 172 L 193 182 L 177 182 Z" fill="#2d2d30" stroke="#000000" strokeWidth="1.5" />
+                    <rect x="168" y="160" width="34" height="12" rx="4" className="mythic-siren-blue" stroke="#000000" strokeWidth="1.5" />
+                    {/* Right Spotlight under Siren */}
+                    <circle cx="185" cy="189" r="11" fill="#18181b" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="185" cy="189" r="8" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1" />
 
-                    {/* ── WARNING CAUTION TRIANGLE (BOTTOM CENTER) ── */}
-                    <polygon points="110,185 128,213 92,213" fill="#eab308" stroke="#000000" strokeWidth="2" />
-                    <circle cx="110" cy="208" r="1.8" fill="#000000" />
-                    <path d="M 110 193 L 110 203" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" />
+                    {/* ── OFFICER SHIELD BADGE (CENTER BOTTOM) ── */}
+                    <path d="M 100 142 L 120 142 L 120 152 Q 110 162 100 152 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="1.5" />
+                    <polygon points="110,146 111.5,150 115,150 112,152 113.5,155.5 110,153.5 106.5,155.5 108,152 105,150 108.5,150" fill="#121212" />
+                    <circle cx="106" cy="144" r="0.8" fill="#121212" />
+                    <circle cx="110" cy="143" r="0.8" fill="#121212" />
+                    <circle cx="114" cy="144" r="0.8" fill="#121212" />
 
                     {/* ── LICENSE NAMEPLATE ── */}
-                    <rect x="65" y="156" width="90" height="26" rx="4" fill="#0c0a09" stroke="url(#mythic-gold-metal)" strokeWidth="3" />
-                    <text x="110" y="174" fill="#fbbf24" stroke="#000000" strokeWidth="0.5" fontSize="14" fontWeight="950" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.2">MYTHIC</text>
+                    <rect x="65" y="168" width="90" height="24" rx="4" fill="#0c0a09" stroke="url(#mythic-gold-metal)" strokeWidth="3" />
+                    <text x="110" y="184" fill="#fbbf24" stroke="#000000" strokeWidth="0.5" fontSize="13" fontWeight="950" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.2">MYTHIC</text>
+
+                    {/* ── WARNING CAUTION TRIANGLE (BOTTOM CENTER) ── */}
+                    <polygon points="110,195 126,218 94,218" fill="#eab308" stroke="#000000" strokeWidth="2" />
+                    <circle cx="110" cy="214" r="1.5" fill="#000000" />
+                    <path d="M 110 201 L 110 209" stroke="#000000" strokeWidth="2" strokeLinecap="round" />
                 </svg>
 
                 {/* Sweeping purple/gold luxury shine overlay */}
