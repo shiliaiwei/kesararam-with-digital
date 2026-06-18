@@ -285,6 +285,7 @@
     display: inline-block;
     padding: calc(10px * var(--s));
     line-height: 0;
+    background: transparent !important;
 }
 
 .gold-avatar__plate {
@@ -292,6 +293,7 @@
     width: calc(170px * var(--s));
     height: calc(170px * var(--s));
     border-radius: 50%;
+    background: transparent !important;
 }
 
 .gold-avatar__frame-img {

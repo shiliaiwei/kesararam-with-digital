@@ -59,7 +59,7 @@ export function GoldAvatarBorder({
             <div className="gold-avatar__plate">
                 {/* The high-resolution GOLD rank border PNG */}
                 <img
-                    src="/brand/gold-avatar-border.png"
+                    src="/brand/gold-avatar-border-v3.png"
                     alt="Gold Rank Border Frame"
                     className="gold-avatar__frame-img"
                 />
