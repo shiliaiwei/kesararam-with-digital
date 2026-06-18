@@ -18,19 +18,19 @@
  *  Claiming spends lifetime-earned Store Points (minus non-rejected claim costs);
  *  see src/lib/claims.ts. The earning + read switch is gated by STORE_POINTS_ENABLED.
  *
- * ── Reward cost ladder (points, 1,000 → 12,000 scale) ────────────────────────
- *  Spans the rank-point range Rising (1,000) → Mythic (12,000) so costs read on
- *  the same scale as the rank ladder (2026-06-19). Rarity rises with cost:
- *   Eraser              (1,000)  COMMON    — the first goal
- *   Pencil              (1,500)  COMMON
- *   Pen                 (2,000)  RARE
- *   Ruler               (3,000)  RARE
- *   Highlighter         (4,000)  EPIC
- *   Notes               (5,000)  EPIC
- *   Notebook            (6,500)  LEGENDARY
- *   Kit                 (8,000)  LEGENDARY
- *   Planner             (10,000) MYTHIC
- *   Book Writer Lesson  (12,000) MYTHIC    — anchor; cost doubles each claim
+ * ── Reward cost ladder (points) ──────────────────────────────────────────────
+ *  Costs read on the same scale as the rank ladder (2026-06-19). All flat-cost
+ *  (no per-claim escalation). Rarity rises with cost:
+ *   Book          (715)    COMMON    — entry-level item
+ *   Eraser        (1,000)  COMMON    — the first goal
+ *   Pencil        (1,500)  COMMON
+ *   Pen           (2,000)  RARE
+ *   Ruler         (3,000)  RARE
+ *   Highlighter   (4,000)  EPIC
+ *   Notes         (5,000)  EPIC
+ *   Notebook      (6,500)  LEGENDARY
+ *   Kit           (8,000)  LEGENDARY
+ *   Planner       (10,000) MYTHIC
  *
  *  Tune these freely; the claim API validates against this same list so costs
  *  can never drift between UI and server.
@@ -56,7 +56,7 @@ export const REWARD_ITEMS: RewardItem[] = [
   { id: 1, name: "Notebook",    nameKh: "សៀវភៅកត់ត្រា",      cost: 6500,  color: "#3b82f6", image: "/rewards/notebook.webp" },
   { id: 8, name: "Kit",         nameKh: "ឧបករណ៍គណិត",       cost: 8000,  color: "#ec4899", image: "/rewards/kit.webp" },
   { id: 9, name: "Planner",     nameKh: "ផែនការសិក្សា",      cost: 10000, color: "#84cc16", image: "/rewards/planner.webp" },
-  { id: 10, name: "Book Writer Lesson", nameKh: "មេរៀនសរសេរសៀវភៅ", cost: 12000, color: "#a855f7", image: "/rewards/book_writer_lesson.webp" },
+  { id: 10, name: "Book", nameKh: "សៀវភៅ", cost: 715, color: "#a855f7", image: "/rewards/book_writer_lesson.webp" },
 ];
 
 /**
@@ -87,14 +87,11 @@ export function getRewardItem(id: number): RewardItem | undefined {
 }
 
 /**
- * Calculate the dynamic cost of a reward item for a student based on their claim history.
- * For 'Book Writer Lesson' (id: 10), the cost doubles with each successful claim:
- * 1st claim = 12,000, 2nd claim = 24,000, 3rd claim = 48,000, etc.
+ * Calculate the cost of a reward item for a student. All items are now a flat
+ * cost (no per-claim escalation) — kept as a function so call sites and the
+ * claimCount argument stay stable if dynamic pricing returns later.
  */
-export function calculateDynamicCost(item: RewardItem, claimCount: number): number {
-  if (item.id === 10) {
-    return item.cost * Math.pow(2, claimCount);
-  }
+export function calculateDynamicCost(item: RewardItem, _claimCount: number): number {
   return item.cost;
 }
 

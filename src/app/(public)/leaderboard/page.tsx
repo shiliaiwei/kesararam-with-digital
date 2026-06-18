@@ -27,7 +27,6 @@ import {
   Layers,
   ChevronUp,
   ChevronDown,
-  TriangleAlert,
   Gamepad2,
   ArrowUp,
   Filter,
@@ -589,39 +588,23 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   const meetsRank = canClaimRewards(userLifetimePoints);
   const pointsToGold = Math.max(0, CLAIM_MIN_POINTS - userLifetimePoints);
 
-  // Derive claims from database if logged in, otherwise fall back to localStorage
+  // Claim state is SERVER-AUTHORITATIVE: a logged-in user's claims come ONLY from
+  // the database (reward_claims). We deliberately do NOT read localStorage here —
+  // it leaked the previous account's claims into a new account on the same browser
+  // (a fresh login showed "Claimed: 2x"). `justClaimed` gives instant optimistic
+  // feedback until the parent's claim refetch lands.
   const claimsForItem = dbClaims.filter((c: any) => c.itemId === item.id && c.status !== "rejected");
   const dbClaimCount = claimsForItem.length;
   const dbLastClaimedAt = claimsForItem.length > 0 ? new Date(claimsForItem[0].createdAt).getTime() : null;
 
-  const claimDataKey = `kwd_claim_data_${item.id}`;
-  const [claimData, setClaimData] = useState(() => {
-    if (typeof window === "undefined") return { claimCount: 0, lastClaimedAt: null };
-    const saved = localStorage.getItem(claimDataKey);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        return {
-          claimCount: parsed.claimCount ?? 0,
-          lastClaimedAt: parsed.lastClaimedAt ?? null,
-        };
-      } catch {
-        // fall through
-      }
-    }
-    const legacyClaimed = localStorage.getItem(`kwd_claimed_${item.id}`) === "1";
-    return {
-      claimCount: legacyClaimed ? 1 : 0,
-      lastClaimedAt: legacyClaimed ? Date.now() - 365 * 24 * 60 * 60 * 1000 : null,
-    };
-  });
+  const [justClaimed, setJustClaimed] = useState(false);
 
-  const claimCount = isLoggedIn ? (dbClaimCount > 0 ? dbClaimCount : claimData.claimCount) : 0;
-  const lastClaimedAt = isLoggedIn ? (dbLastClaimedAt !== null ? dbLastClaimedAt : claimData.lastClaimedAt) : null;
+  const claimCount = isLoggedIn ? dbClaimCount : 0;
+  const lastClaimedAt = isLoggedIn ? dbLastClaimedAt : null;
 
   const itemCost = calculateDynamicCost(item, claimCount);
 
-  const claimed = isLoggedIn && lastClaimedAt !== null && (Date.now() - lastClaimedAt < cooldownMs);
+  const claimed = isLoggedIn && (justClaimed || (lastClaimedAt !== null && (Date.now() - lastClaimedAt < cooldownMs)));
   const msRemaining = lastClaimedAt ? (lastClaimedAt + cooldownMs) - Date.now() : 0;
   const daysRemaining = Math.max(0, Math.ceil(msRemaining / (24 * 60 * 60 * 1000)));
 
@@ -668,15 +651,9 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
   function handleClaim() {
     if (!canClaim) return;
-    const nextCount = claimCount + 1;
-    const now = Date.now();
-    const nextData = {
-      claimCount: nextCount,
-      lastClaimedAt: now,
-    };
-    localStorage.setItem(claimDataKey, JSON.stringify(nextData));
-    localStorage.setItem(`kwd_claimed_${item.id}`, "1");
-    setClaimData(nextData);
+    // Optimistic only — the real record is created server-side; the parent then
+    // refetches dbClaims, which becomes the source of truth for the claimed state.
+    setJustClaimed(true);
     setShowBurst(true);
     setTimeout(() => setShowBurst(false), 700);
     onClaim(item);
@@ -852,17 +829,6 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
           )}
         </div>
 
-        {item.id === 10 && (
-          <div className="flex items-start gap-1.5 p-2 bg-purple-50 text-purple-700 border-2 border-black shadow-[2px_2px_0_#000] text-[8.5px] font-black uppercase leading-normal" style={kf}>
-            <TriangleAlert size={10} className="shrink-0 mt-0.5" strokeWidth={3} />
-            <div>
-              {kh 
-                ? "តម្លៃកើនឡើងទ្វេដងរាល់ពេលប្តូរ៖ ៥០០, ១០០០, ២០០០..." 
-                : "Cost doubles with each claim: 500, 1000, 2000..."}
-            </div>
-          </div>
-        )}
-
         {/* Scarcity indicator */}
         {scarcity !== null && !claimed && (
           <div className="flex items-center gap-1.5 self-start bg-red-100 text-red-600 border border-red-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ef4444] animate-pulse">
@@ -993,13 +959,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             >
               <Gift size={15} strokeWidth={3} className="animate-bounce" />
               <span>
-                {item.id === 10 ? (
-                  kh 
-                    ? `ប្តូរឥឡូវនេះ (លើកទី${claimCount + 1}: ${itemCost.toLocaleString()} ពិន្ទុ)` 
-                    : `CLAIM NOW (Claim #${claimCount + 1}: ${itemCost.toLocaleString()} PTS)`
-                ) : (
-                  kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW"
-                )}
+                {kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW"}
               </span>
             </button>
           ) : (
