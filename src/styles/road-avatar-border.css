@@ -1085,32 +1085,6 @@
     75%, 95% { fill: #22c55e; filter: drop-shadow(0 0 6px #22c55e); }
 }
 
-/* Mechanical wheel spin animations */
-.mythic-wheel-left {
-    transform-box: fill-box;
-    transform-origin: center;
-}
-.mythic-avatar--animated .mythic-wheel-left {
-    animation: mythicWheelSpinLeft 12s infinite linear;
-}
-
-.mythic-wheel-right {
-    transform-box: fill-box;
-    transform-origin: center;
-}
-.mythic-avatar--animated .mythic-wheel-right {
-    animation: mythicWheelSpinRight 12s infinite linear;
-}
-
-@keyframes mythicWheelSpinLeft {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(-360deg); }
-}
-
-@keyframes mythicWheelSpinRight {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
 
 /* Sweeping purple/gold luxury shine */
 .mythic-avatar__shine {
