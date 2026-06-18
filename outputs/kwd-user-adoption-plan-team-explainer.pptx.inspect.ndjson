@@ -1,0 +1,583 @@
+{"kind":"deck","id":"pr/fowhcy","name":"Deck"}
+{"kind":"layout","layoutId":"f777c5cf-f017-4234-bd7d-66513b0ff9dc","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"529d89ee-201a-42ad-9880-86f1261d409d","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/rny1qt","slide":1,"title":"TEAM EXPLAINER","textShapes":13}
+{"kind":"shape","id":"sh/j2t83itg","slide":1,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":1,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":1,"text":"TEAM EXPLAINER","textPreview":"TEAM EXPLAINER","textChars":14,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":1,"bbox":[0,72,1280,210]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":1,"text":"យុទ្ធសាស្ត្រ\nទាក់ទាញអ្នកប្រើប្រាស់","textPreview":"យុទ្ធសាស្ត្រ | ទាក់ទាញអ្នកប្រើប្រាស់","textChars":34,"textLines":2,"bbox":[70,82,760,124]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":1,"text":"User Adoption Plan Study","textPreview":"User Adoption Plan Study","textChars":24,"textLines":1,"bbox":[76,214,690,48]}
+{"kind":"shape","id":"sh/ji5snelo","slide":1,"bbox":[80,354,330,190]}
+{"kind":"shape","id":"sh/vu9knih4","slide":1,"bbox":[72,346,330,190]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":1,"bbox":[72,346,330,34]}
+{"kind":"textbox","id":"sh/d0z61032","slide":1,"text":"PURPOSE","textPreview":"PURPOSE","textChars":7,"textLines":1,"bbox":[86,352,302,26]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":1,"text":"Explain the plan","textPreview":"Explain the plan","textChars":16,"textLines":1,"bbox":[90,398,294,78]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":1,"text":"Use this deck to align the team on users, growth, revenue, risks, and judge Q&A.","textPreview":"Use this deck to align the team on users, growth, revenue, risks, and judge Q&A.","textChars":80,"textLines":1,"bbox":[90,484,294,38]}
+{"kind":"shape","id":"sh/2lszqtcj","slide":1,"bbox":[482,354,330,190]}
+{"kind":"shape","id":"sh/d8bat47y","slide":1,"bbox":[474,346,330,190]}
+{"kind":"shape","id":"sh/knih4byh","slide":1,"bbox":[474,346,330,34]}
+{"kind":"textbox","id":"sh/val87ed8","slide":1,"text":"PROJECT","textPreview":"PROJECT","textChars":7,"textLines":1,"bbox":[488,352,302,26]}
+{"kind":"textbox","id":"sh/6psfil0r","slide":1,"text":"The Way of Safety","textPreview":"The Way of Safety","textChars":17,"textLines":1,"bbox":[492,398,294,78]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":1,"text":"A Khmer-English digital road-safety learning platform by Kesararam With Digital.","textPreview":"A Khmer-English digital road-safety learning platform by Kesararam With Digital.","textChars":80,"textLines":1,"bbox":[492,484,294,38]}
+{"kind":"shape","id":"sh/zidonyd0","slide":1,"bbox":[884,354,330,190]}
+{"kind":"shape","id":"sh/s36hcrmh","slide":1,"bbox":[876,346,330,190]}
+{"kind":"shape","id":"sh/hoza1gvy","slide":1,"bbox":[876,346,330,34]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":1,"text":"CONTEXT","textPreview":"CONTEXT","textChars":7,"textLines":1,"bbox":[890,352,302,26]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":1,"text":"Technovation 2026","textPreview":"Technovation 2026","textChars":17,"textLines":1,"bbox":[894,398,294,78]}
+{"kind":"textbox","id":"sh/svu9knih","slide":1,"text":"Team #50777, Siem Reap, Cambodia. Source document KWD-UAP-2026 v1.","textPreview":"Team #50777, Siem Reap, Cambodia. Source document KWD-UAP-2026 v1.","textChars":66,"textLines":1,"bbox":[894,484,294,38]}
+{"kind":"image","id":"im/d8bat47y","slide":1,"name":"","alt":"KWD logo from source document","bbox":[946,88,170,170]}
+{"kind":"notes","id":"nt/rny1qt","slide":1,"text":"Open by saying this is not a feature demo deck. It explains why people will use KWD, why they will return, and how the team will grow adoption.\nMention the source document: User Adoption Plan Study, KWD-UAP-2026 v1, dated 11 June 2026.\nSet the expectation that every slide has a simple team-talking-point, with details in the notes."}
+{"kind":"slide","id":"sl/si5x63","slide":2,"title":"KWD USER ADOPTION PLAN","textShapes":14}
+{"kind":"shape","id":"sh/8z25kb6x","slide":2,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/je9cvixc","slide":2,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":2,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":2,"text":"រឿងទាំងមូលក្នុងប្រយោគតែមួយ","textPreview":"រឿងទាំងមូលក្នុងប្រយោគតែមួយ","textChars":26,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":2,"text":"KWD makes traffic-safety learning useful enough for teachers, fun enough for students, and valuable enough to sustain.","textPreview":"KWD makes traffic-safety learning useful enough for teachers, fun enough for students, and valuable enough to sustain.","textChars":118,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/q1orytsv","slide":2,"bbox":[98,210,1104,142]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":2,"bbox":[88,200,1104,142]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":2,"text":"គ្រូនាំសិស្សចូលថ្នាក់, សិស្សរៀនតាមហ្គេម, ពិន្ទុ និងរង្វាន់ធ្វើឱ្យពួកគេត្រឡប់មកវិញ, ហើយតម្រូវការរបស់សិស្សជំរុញការបន្តគណនី។","textPreview":"គ្រូនាំសិស្សចូលថ្នាក់, សិស្សរៀនតាមហ្គេម, ពិន្ទុ និងរង្វាន់ធ្វើឱ្យពួកគេត្រឡប់មកវិញ, ហើយតម្រូវការរបស់សិស្សជំរុញការបន្តគណនី។","textChars":121,"textLines":1,"bbox":[126,228,1030,92]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":2,"bbox":[96,418,325,170]}
+{"kind":"shape","id":"sh/bat47y1k","slide":2,"bbox":[88,410,325,170]}
+{"kind":"shape","id":"sh/4vmtwra5","slide":2,"bbox":[88,410,325,34]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":2,"text":"PILLAR 1","textPreview":"PILLAR 1","textChars":8,"textLines":1,"bbox":[102,416,297,26]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":2,"text":"Teacher-led entry","textPreview":"Teacher-led entry","textChars":17,"textLines":1,"bbox":[106,462,289,48]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":2,"text":"Class portal and invite codes let teachers bring students in as a group.","textPreview":"Class portal and invite codes let teachers bring students in as a group.","textChars":72,"textLines":1,"bbox":[106,518,289,48]}
+{"kind":"shape","id":"sh/47y1kre1","slide":2,"bbox":[486,418,325,170]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":2,"bbox":[478,410,325,170]}
+{"kind":"shape","id":"sh/m58z25kb","slide":2,"bbox":[478,410,325,34]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":2,"text":"PILLAR 2","textPreview":"PILLAR 2","textChars":8,"textLines":1,"bbox":[492,416,297,26]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":2,"text":"Game-driven return","textPreview":"Game-driven return","textChars":18,"textLines":1,"bbox":[496,462,289,48]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":2,"text":"Leaderboard, streaks, avatar, and quizzes create daily motivation.","textPreview":"Leaderboard, streaks, avatar, and quizzes create daily motivation.","textChars":66,"textLines":1,"bbox":[496,518,289,48]}
+{"kind":"shape","id":"sh/psfil0rq","slide":2,"bbox":[876,418,325,170]}
+{"kind":"shape","id":"sh/w7mp0bi9","slide":2,"bbox":[868,410,325,170]}
+{"kind":"shape","id":"sh/7adsji5s","slide":2,"bbox":[868,410,325,34]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":2,"text":"PILLAR 3","textPreview":"PILLAR 3","textChars":8,"textLines":1,"bbox":[882,416,297,26]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":2,"text":"Subscription pull","textPreview":"Subscription pull","textChars":17,"textLines":1,"bbox":[886,462,289,48]}
+{"kind":"textbox","id":"sh/wval87ed","slide":2,"text":"Students want more play and rewards, which creates demand for renewal.","textPreview":"Students want more play and rewards, which creates demand for renewal.","textChars":70,"textLines":1,"bbox":[886,518,289,48]}
+{"kind":"notes","id":"nt/si5x63","slide":2,"text":"This is the easiest high-level explanation for the team to remember.\nThe plan is not only about advertising. The strongest adoption path is social: teacher creates class, students join together, competition makes it enjoyable, and repeated value supports subscription.\nUse the three pillars as the backbone for later questions."}
+{"kind":"slide","id":"sl/emc8c5","slide":3,"title":"KWD USER ADOPTION PLAN","textShapes":21}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":3,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/i5sneloj","slide":3,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":3,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":3,"text":"បញ្ហា និងបេសកកម្ម","textPreview":"បញ្ហា និងបេសកកម្ម","textChars":17,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":3,"text":"The plan starts from a real traffic-safety education gap, not just an app idea.","textPreview":"The plan starts from a real traffic-safety education gap, not just an app idea.","textChars":79,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/7y1kre1w","slide":3,"bbox":[84,200,250,132]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":3,"bbox":[78,194,250,132]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":3,"text":"3,113","textPreview":"3,113","textChars":5,"textLines":1,"bbox":[90,210,226,50]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":3,"text":"road deaths in Cambodia, 2021, cited from WHO 2023","textPreview":"road deaths in Cambodia, 2021, cited from WHO 2023","textChars":50,"textLines":1,"bbox":[90,266,226,48]}
+{"kind":"shape","id":"sh/83itgfml","slide":3,"bbox":[372,200,250,132]}
+{"kind":"shape","id":"sh/fil0rqd4","slide":3,"bbox":[366,194,250,132]}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":3,"text":"12-18","textPreview":"12-18","textChars":5,"textLines":1,"bbox":[378,210,226,50]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":3,"text":"youth users most exposed to the education gap","textPreview":"youth users most exposed to the education gap","textChars":45,"textLines":1,"bbox":[378,266,226,48]}
+{"kind":"shape","id":"sh/4fu18jqh","slide":3,"bbox":[660,200,250,132]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":3,"bbox":[654,194,250,132]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":3,"text":"KH-EN","textPreview":"KH-EN","textChars":5,"textLines":1,"bbox":[666,210,226,50]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":3,"text":"Khmer-English content built for Cambodia","textPreview":"Khmer-English content built for Cambodia","textChars":40,"textLines":1,"bbox":[666,266,226,48]}
+{"kind":"shape","id":"sh/4r65wjud","slide":3,"bbox":[948,200,250,132]}
+{"kind":"shape","id":"sh/032lszqt","slide":3,"bbox":[942,194,250,132]}
+{"kind":"textbox","id":"sh/tovahoza","slide":3,"text":"SDG 4/11","textPreview":"SDG 4/11","textChars":8,"textLines":1,"bbox":[954,210,226,50]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":3,"text":"education plus sustainable communities","textPreview":"education plus sustainable communities","textChars":38,"textLines":1,"bbox":[954,266,226,48]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":3,"bbox":[108,416,320,176]}
+{"kind":"shape","id":"sh/0fepkzup","slide":3,"bbox":[100,408,320,176]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":3,"bbox":[100,408,320,34]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":3,"text":"GAP","textPreview":"GAP","textChars":3,"textLines":1,"bbox":[114,414,292,26]}
+{"kind":"textbox","id":"sh/bulwval8","slide":3,"text":"Content is hard to use","textPreview":"Content is hard to use","textChars":22,"textLines":1,"bbox":[118,460,284,48]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":3,"text":"Many resources are foreign-language, PDF-based, or not structured for practice.","textPreview":"Many resources are foreign-language, PDF-based, or not structured for practice.","textChars":79,"textLines":1,"bbox":[118,516,284,54]}
+{"kind":"shape","id":"sh/t47y1kre","slide":3,"bbox":[488,416,320,176]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":3,"bbox":[480,408,320,176]}
+{"kind":"shape","id":"sh/65wjudg7","slide":3,"bbox":[480,408,320,34]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":3,"text":"GAP","textPreview":"GAP","textChars":3,"textLines":1,"bbox":[494,414,292,26]}
+{"kind":"textbox","id":"sh/obm58z25","slide":3,"text":"Teachers lack tools","textPreview":"Teachers lack tools","textChars":19,"textLines":1,"bbox":[498,460,284,48]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":3,"text":"Teachers need dashboards, class flow, and progress tracking.","textPreview":"Teachers need dashboards, class flow, and progress tracking.","textChars":60,"textLines":1,"bbox":[498,516,284,54]}
+{"kind":"shape","id":"sh/6xkf6dcb","slide":3,"bbox":[868,416,320,176]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":3,"bbox":[860,408,320,176]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":3,"bbox":[860,408,320,34]}
+{"kind":"textbox","id":"sh/z61032ls","slide":3,"text":"MISSION","textPreview":"MISSION","textChars":7,"textLines":1,"bbox":[874,414,292,26]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":3,"text":"Make safety learnable","textPreview":"Make safety learnable","textChars":21,"textLines":1,"bbox":[878,460,284,48]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":3,"text":"Turn traffic rules and signs into free, clear, mobile-friendly digital learning.","textPreview":"Turn traffic rules and signs into free, clear, mobile-friendly digital learning.","textChars":80,"textLines":1,"bbox":[878,516,284,54]}
+{"kind":"notes","id":"nt/emc8c5","slide":3,"text":"Explain the mission in human language: if young people learn road rules earlier, the community becomes safer.\nThe numbers and SDG links are from the source document and should be presented as the plan's evidence base.\nDo not over-focus on technology here. The user need comes first: Khmer content, teacher tools, and engaging practice."}
+{"kind":"slide","id":"sl/hamh3o","slide":4,"title":"KWD USER ADOPTION PLAN","textShapes":17}
+{"kind":"shape","id":"sh/6psfil0r","slide":4,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/dcbulwva","slide":4,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":4,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/vixczed8","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":4,"text":"អ្នកប្រើគោលដៅ និង Persona","textPreview":"អ្នកប្រើគោលដៅ និង Persona","textChars":25,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":4,"text":"Different users enter for different reasons, so the plan gives each one a clear value.","textPreview":"Different users enter for different reasons, so the plan gives each one a clear value.","textChars":86,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":4,"bbox":[80,198,270,218]}
+{"kind":"shape","id":"sh/vu9knih4","slide":4,"bbox":[72,190,270,218]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":4,"bbox":[72,190,270,34]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":4,"text":"STUDENT","textPreview":"STUDENT","textChars":7,"textLines":1,"bbox":[86,196,242,26]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":4,"text":"ដារ៉ា, 16","textPreview":"ដារ៉ា, 16","textChars":9,"textLines":1,"bbox":[90,242,234,78]}
+{"kind":"textbox","id":"sh/6psfil0r","slide":4,"text":"Uses a phone, dislikes memorizing traffic rules. KWD gives 30-second game-style practice.","textPreview":"Uses a phone, dislikes memorizing traffic rules. KWD gives 30-second game-style practice.","textChars":89,"textLines":1,"bbox":[90,328,234,66]}
+{"kind":"shape","id":"sh/val87ed8","slide":4,"bbox":[384,198,270,218]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":4,"bbox":[376,190,270,218]}
+{"kind":"shape","id":"sh/donyd0z6","slide":4,"bbox":[376,190,270,34]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":4,"text":"TEACHER","textPreview":"TEACHER","textChars":7,"textLines":1,"bbox":[390,196,242,26]}
+{"kind":"textbox","id":"sh/vixczed8","slide":4,"text":"លោកគ្រូ សុខា, 34","textPreview":"លោកគ្រូ សុខា, 34","textChars":16,"textLines":1,"bbox":[394,242,234,78]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":4,"text":"Needs a way to track student progress. KWD gives class management and reports.","textPreview":"Needs a way to track student progress. KWD gives class management and reports.","textChars":78,"textLines":1,"bbox":[394,328,234,66]}
+{"kind":"shape","id":"sh/d0z61032","slide":4,"bbox":[688,198,270,218]}
+{"kind":"shape","id":"sh/dsji5sne","slide":4,"bbox":[680,190,270,218]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":4,"bbox":[680,190,270,34]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":4,"text":"PARENT","textPreview":"PARENT","textChars":6,"textLines":1,"bbox":[694,196,242,26]}
+{"kind":"textbox","id":"sh/61032lsz","slide":4,"text":"អ្នកម្ដាយ ស្រីពៅ, 40","textPreview":"អ្នកម្ដាយ ស្រីពៅ, 40","textChars":20,"textLines":1,"bbox":[698,242,234,78]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":4,"text":"Worries about child road safety. KWD gives family tracking and confidence.","textPreview":"Worries about child road safety. KWD gives family tracking and confidence.","textChars":74,"textLines":1,"bbox":[698,328,234,66]}
+{"kind":"shape","id":"sh/oj2t83it","slide":4,"bbox":[992,198,220,218]}
+{"kind":"shape","id":"sh/vy90je9c","slide":4,"bbox":[984,190,220,218]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":4,"bbox":[984,190,220,34]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":4,"text":"INSTITUTION","textPreview":"INSTITUTION","textChars":11,"textLines":1,"bbox":[998,196,192,26]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":4,"text":"Schools","textPreview":"Schools","textChars":7,"textLines":1,"bbox":[1002,242,184,78]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":4,"text":"Need scalable learning and trusted content.","textPreview":"Need scalable learning and trusted content.","textChars":43,"textLines":1,"bbox":[1002,328,184,66]}
+{"kind":"shape","id":"sh/r65wjudg","slide":4,"bbox":[143,491,1008,102]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":4,"bbox":[136,484,1008,102]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":4,"text":"Team explanation: students create usage, teachers create organized adoption, parents and institutions create trust and payment paths.","textPreview":"Team explanation: students create usage, teachers create organized adoption, parents and institutions create trust and payment paths.","textChars":133,"textLines":1,"bbox":[168,509,944,58]}
+{"kind":"notes","id":"nt/hamh3o","slide":4,"text":"This slide helps the team avoid saying only 'our users are students.'\nStudents are the primary learning users; teachers are early adopters and distribution partners; parents and institutions are trust and payment routes.\nTie every feature back to one persona. Learning journey helps students. Reports help teachers. Family plan helps parents."}
+{"kind":"slide","id":"sl/d5ig68","slide":5,"title":"KWD USER ADOPTION PLAN","textShapes":20}
+{"kind":"shape","id":"sh/9knih4by","slide":5,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/2t83itgf","slide":5,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":5,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":5,"text":"រង្វិលជុំទាក់ទាញអ្នកប្រើ","textPreview":"រង្វិលជុំទាក់ទាញអ្នកប្រើ","textChars":24,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":5,"text":"Adoption is designed as a loop, not a one-time signup.","textPreview":"Adoption is designed as a loop, not a one-time signup.","textChars":54,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":5,"bbox":[76,246,190,190]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":5,"bbox":[70,240,190,190]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":5,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[85,252,42,42]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":5,"text":"Teacher creates class","textPreview":"Teacher creates class","textChars":21,"textLines":1,"bbox":[86,306,158,50]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":5,"text":"Class Portal and invite code","textPreview":"Class Portal and invite code","textChars":28,"textLines":1,"bbox":[88,366,154,42]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":5,"bbox":[268,326,32,18]}
+{"kind":"shape","id":"sh/u18jqh0f","slide":5,"bbox":[314,246,190,190]}
+{"kind":"shape","id":"sh/1032lszq","slide":5,"bbox":[308,240,190,190]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":5,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[323,252,42,42]}
+{"kind":"textbox","id":"sh/judg7ads","slide":5,"text":"Students join together","textPreview":"Students join together","textChars":22,"textLines":1,"bbox":[324,306,158,50]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":5,"text":"Group energy and easier access","textPreview":"Group energy and easier access","textChars":30,"textLines":1,"bbox":[326,366,154,42]}
+{"kind":"shape","id":"sh/54zidony","slide":5,"bbox":[506,326,32,18]}
+{"kind":"shape","id":"sh/cj6tovah","slide":5,"bbox":[552,246,190,190]}
+{"kind":"shape","id":"sh/crmhk3q5","slide":5,"bbox":[546,240,190,190]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":5,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[561,252,42,42]}
+{"kind":"textbox","id":"sh/ulwval87","slide":5,"text":"Practice feels like play","textPreview":"Practice feels like play","textChars":24,"textLines":1,"bbox":[562,306,158,50]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":5,"text":"Quiz, streak, avatar, leaderboard","textPreview":"Quiz, streak, avatar, leaderboard","textChars":33,"textLines":1,"bbox":[564,366,154,42]}
+{"kind":"shape","id":"sh/c3ylc7u5","slide":5,"bbox":[744,326,32,18]}
+{"kind":"shape","id":"sh/1kre1w7m","slide":5,"bbox":[790,246,190,190]}
+{"kind":"shape","id":"sh/uxc3ylc7","slide":5,"bbox":[784,240,190,190]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":5,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[799,252,42,42]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":5,"text":"Value becomes visible","textPreview":"Value becomes visible","textChars":21,"textLines":1,"bbox":[800,306,158,50]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":5,"text":"Progress, AI explanations, rewards","textPreview":"Progress, AI explanations, rewards","textChars":34,"textLines":1,"bbox":[802,366,154,42]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":5,"bbox":[982,326,32,18]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":5,"bbox":[1028,246,190,190]}
+{"kind":"shape","id":"sh/pkzupwb2","slide":5,"bbox":[1022,240,190,190]}
+{"kind":"textbox","id":"sh/0z61032l","slide":5,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1037,252,42,42]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":5,"text":"Renew and refer","textPreview":"Renew and refer","textChars":15,"textLines":1,"bbox":[1038,306,158,50]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":5,"text":"Subscription, referral, school growth","textPreview":"Subscription, referral, school growth","textChars":37,"textLines":1,"bbox":[1040,366,154,42]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":5,"bbox":[195,517,904,82]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":5,"bbox":[188,510,904,82]}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":5,"text":"The loop works because each user helps the next: teacher access creates student activity, student activity creates proof, proof supports subscription and referrals.","textPreview":"The loop works because each user helps the next: teacher access creates student activity, student activity creates proof, proof supports ...","textChars":164,"textLines":1,"bbox":[220,532,840,40]}
+{"kind":"notes","id":"nt/d5ig68","slide":5,"text":"Walk through the loop slowly. It is the core of the adoption plan.\nPoint out that teacher invite codes reduce signup friction, especially for students without email.\nThe team should explain that the product itself supports adoption through competition, rewards, and visible progress."}
+{"kind":"slide","id":"sl/k1kmb2","slide":6,"title":"KWD USER ADOPTION PLAN","textShapes":21}
+{"kind":"shape","id":"sh/epkzupwb","slide":6,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/pg3ex0nu","slide":6,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/wval87ed","slide":6,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":6,"text":"យើងបានធ្វើអ្វីរួចហើយ","textPreview":"យើងបានធ្វើអ្វីរួចហើយ","textChars":20,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":6,"text":"Early validation is small, but appropriate for a pre-launch/Beta project.","textPreview":"Early validation is small, but appropriate for a pre-launch/Beta project.","textChars":73,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/w7mp0bi9","slide":6,"bbox":[84,188,250,132]}
+{"kind":"shape","id":"sh/7u54zido","slide":6,"bbox":[78,182,250,132]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":6,"text":"Beta","textPreview":"Beta","textChars":4,"textLines":1,"bbox":[90,198,226,50]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":6,"text":"pre-launch stage with small tester group","textPreview":"pre-launch stage with small tester group","textChars":40,"textLines":1,"bbox":[90,254,226,48]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":6,"bbox":[372,188,250,132]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":6,"bbox":[366,182,250,132]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":6,"text":"84%","textPreview":"84%","textChars":3,"textLines":1,"bbox":[378,198,226,50]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":6,"text":"survey respondents willing to try the app","textPreview":"survey respondents willing to try the app","textChars":41,"textLines":1,"bbox":[378,254,226,48]}
+{"kind":"shape","id":"sh/dg7adsji","slide":6,"bbox":[660,188,250,132]}
+{"kind":"shape","id":"sh/6tovahoz","slide":6,"bbox":[654,182,250,132]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":6,"text":"Live demo","textPreview":"Live demo","textChars":9,"textLines":1,"bbox":[666,198,226,50]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":6,"text":"school demos and teacher trials","textPreview":"school demos and teacher trials","textChars":31,"textLines":1,"bbox":[666,254,226,48]}
+{"kind":"shape","id":"sh/dsji5sne","slide":6,"bbox":[948,188,250,132]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":6,"bbox":[942,182,250,132]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":6,"text":"Social","textPreview":"Social","textChars":6,"textLines":1,"bbox":[954,198,226,50]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":6,"text":"Facebook, TikTok, YouTube, Telegram","textPreview":"Facebook, TikTok, YouTube, Telegram","textChars":35,"textLines":1,"bbox":[954,254,226,48]}
+{"kind":"shape","id":"sh/6xkf6dcb","slide":6,"bbox":[116,398,318,178]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":6,"bbox":[108,390,318,178]}
+{"kind":"shape","id":"sh/obm58z25","slide":6,"bbox":[108,390,318,34]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":6,"text":"TESTERS","textPreview":"TESTERS","textChars":7,"textLines":1,"bbox":[122,396,290,26]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":6,"text":"Classmates, teachers, family","textPreview":"Classmates, teachers, family","textChars":28,"textLines":1,"bbox":[126,442,282,48]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":6,"text":"The team collected direct feedback from people close enough to test early versions.","textPreview":"The team collected direct feedback from people close enough to test early versions.","textChars":83,"textLines":1,"bbox":[126,498,282,56]}
+{"kind":"shape","id":"sh/sfil0rqd","slide":6,"bbox":[490,398,318,178]}
+{"kind":"shape","id":"sh/ixczed8v","slide":6,"bbox":[482,390,318,178]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":6,"bbox":[482,390,318,34]}
+{"kind":"textbox","id":"sh/032lszqt","slide":6,"text":"METHOD","textPreview":"METHOD","textChars":6,"textLines":1,"bbox":[496,396,290,26]}
+{"kind":"textbox","id":"sh/tovahoza","slide":6,"text":"Demo plus survey","textPreview":"Demo plus survey","textChars":16,"textLines":1,"bbox":[500,442,282,48]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":6,"text":"Live demo, shared links, short survey, and teacher interviews validated needs.","textPreview":"Live demo, shared links, short survey, and teacher interviews validated needs.","textChars":78,"textLines":1,"bbox":[500,498,282,56]}
+{"kind":"shape","id":"sh/bulwval8","slide":6,"bbox":[864,398,318,178]}
+{"kind":"shape","id":"sh/0fepkzup","slide":6,"bbox":[856,390,318,178]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":6,"bbox":[856,390,318,34]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":6,"text":"NEXT MEASURE","textPreview":"NEXT MEASURE","textChars":12,"textLines":1,"bbox":[870,396,290,26]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":6,"text":"Year 1 baseline","textPreview":"Year 1 baseline","textChars":15,"textLines":1,"bbox":[874,442,282,48]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":6,"text":"Use beta metrics as the baseline for growth toward 100 paying subscribers.","textPreview":"Use beta metrics as the baseline for growth toward 100 paying subscribers.","textChars":74,"textLines":1,"bbox":[874,498,282,56]}
+{"kind":"notes","id":"nt/k1kmb2","slide":6,"text":"Be honest: the user count is still small because KWD is pre-launch/Beta.\nThe strength is not big scale yet; the strength is direct learning from testers and a clear plan for Year 1 growth.\nWhen asked about traction, say: small beta testers, 84 percent willingness to try, live demos, and a path to measure Year 1."}
+{"kind":"slide","id":"sl/ny6cby","slide":7,"title":"KWD USER ADOPTION PLAN","textShapes":13}
+{"kind":"shape","id":"sh/bulwval8","slide":7,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/0fepkzup","slide":7,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":7,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":7,"text":"មតិអ្នកប្រើបានប្តូរផលិតផល","textPreview":"មតិអ្នកប្រើបានប្តូរផលិតផល","textChars":25,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/032lszqt","slide":7,"text":"Feedback was turned into concrete product changes.","textPreview":"Feedback was turned into concrete product changes.","textChars":50,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/tovahoza","slide":7,"bbox":[123,195,440,66]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":7,"bbox":[118,190,440,66]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":7,"bbox":[639,195,500,66]}
+{"kind":"shape","id":"sh/32lszqtc","slide":7,"bbox":[634,190,500,66]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":7,"text":"អក្សរតូចពេក","textPreview":"អក្សរតូចពេក","textChars":11,"textLines":1,"bbox":[140,207,396,32]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":7,"text":"Increase Khmer font size and line spacing","textPreview":"Increase Khmer font size and line spacing","textChars":41,"textLines":1,"bbox":[656,206,456,34]}
+{"kind":"shape","id":"sh/sneloj2t","slide":7,"bbox":[574,214,46,18]}
+{"kind":"shape","id":"sh/3ex0nuxc","slide":7,"bbox":[123,289,440,66]}
+{"kind":"shape","id":"sh/at47y1kr","slide":7,"bbox":[118,284,440,66]}
+{"kind":"shape","id":"sh/lkjm1cfa","slide":7,"bbox":[639,289,500,66]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":7,"bbox":[634,284,500,66]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":7,"text":"មិនដឹងចាប់ផ្តើមពីណា","textPreview":"មិនដឹងចាប់ផ្តើមពីណា","textChars":19,"textLines":1,"bbox":[140,301,396,32]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":7,"text":"Add Learning Journey step-by-step guidance","textPreview":"Add Learning Journey step-by-step guidance","textChars":42,"textLines":1,"bbox":[656,300,456,34]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":7,"bbox":[574,308,46,18]}
+{"kind":"shape","id":"sh/bulwval8","slide":7,"bbox":[123,383,440,66]}
+{"kind":"shape","id":"sh/0fepkzup","slide":7,"bbox":[118,378,440,66]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":7,"bbox":[639,383,500,66]}
+{"kind":"shape","id":"sh/ixczed8v","slide":7,"bbox":[634,378,500,66]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":7,"text":"ចង់ដឹងហេតុអ្វីចម្លើយខុស","textPreview":"ចង់ដឹងហេតុអ្វីចម្លើយខុស","textChars":23,"textLines":1,"bbox":[140,395,396,32]}
+{"kind":"textbox","id":"sh/032lszqt","slide":7,"text":"Add instant Suar AI explanation after each question","textPreview":"Add instant Suar AI explanation after each question","textChars":51,"textLines":1,"bbox":[656,394,456,34]}
+{"kind":"shape","id":"sh/tovahoza","slide":7,"bbox":[574,402,46,18]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":7,"bbox":[123,477,440,66]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":7,"bbox":[118,472,440,66]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":7,"bbox":[639,477,500,66]}
+{"kind":"shape","id":"sh/obm58z25","slide":7,"bbox":[634,472,500,66]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":7,"text":"សិស្សខ្លះគ្មានអ៊ីមែល","textPreview":"សិស្សខ្លះគ្មានអ៊ីមែល","textChars":20,"textLines":1,"bbox":[140,489,396,32]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":7,"text":"Add class code joining without email","textPreview":"Add class code joining without email","textChars":36,"textLines":1,"bbox":[656,488,456,34]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":7,"bbox":[574,496,46,18]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":7,"text":"Explain this as evidence of user-centered design: we did not defend the first version; we improved it.","textPreview":"Explain this as evidence of user-centered design: we did not defend the first version; we improved it.","textChars":102,"textLines":1,"bbox":[170,596,940,42]}
+{"kind":"notes","id":"nt/ny6cby","slide":7,"text":"This slide is important for judges and teammates because it proves the team listened.\nUse before/after language: before the app was harder to read or start; after feedback, the team added readability, learning journey, Suar AI explanations, and class codes.\nIf asked what feedback was not implemented, say larger features such as full auto subscription or more Q&A were moved to Year 2 because speed and low data use come first."}
+{"kind":"slide","id":"sl/skzpuh","slide":8,"title":"KWD USER ADOPTION PLAN","textShapes":17}
+{"kind":"shape","id":"sh/dg7adsji","slide":8,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/6tovahoz","slide":8,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":8,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":8,"text":"Go-To-Market: ក្រោមឡើងលើ និងលើចុះក្រោម","textPreview":"Go-To-Market: ក្រោមឡើងលើ និងលើចុះក្រោម","textChars":38,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":8,"text":"Growth combines teacher/community adoption with institutional trust.","textPreview":"Growth combines teacher/community adoption with institutional trust.","textChars":68,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":8,"bbox":[78,196,260,270]}
+{"kind":"shape","id":"sh/oj2t83it","slide":8,"bbox":[70,188,260,270]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":8,"bbox":[70,188,260,34]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":8,"text":"CONTENT","textPreview":"CONTENT","textChars":7,"textLines":1,"bbox":[84,194,232,26]}
+{"kind":"textbox","id":"sh/sji5snel","slide":8,"text":"Short learning media","textPreview":"Short learning media","textChars":20,"textLines":1,"bbox":[88,240,224,78]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":8,"text":"Weekly blog, YouTube KWD Stories, 30-second quiz videos for TikTok and Facebook Reels.","textPreview":"Weekly blog, YouTube KWD Stories, 30-second quiz videos for TikTok and Facebook Reels.","textChars":86,"textLines":1,"bbox":[88,326,224,118]}
+{"kind":"shape","id":"sh/adsji5sn","slide":8,"bbox":[378,196,260,270]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":8,"bbox":[370,188,260,270]}
+{"kind":"shape","id":"sh/s72x4nap","slide":8,"bbox":[370,188,260,34]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":8,"text":"EVENTS","textPreview":"EVENTS","textChars":6,"textLines":1,"bbox":[384,194,232,26]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":8,"text":"School safety week","textPreview":"School safety week","textChars":18,"textLines":1,"bbox":[388,240,224,78]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":8,"text":"Roadshow, Technovation Pitch Day, campaign goal: 300 students and 10 teachers.","textPreview":"Roadshow, Technovation Pitch Day, campaign goal: 300 students and 10 teachers.","textChars":78,"textLines":1,"bbox":[388,326,224,118]}
+{"kind":"shape","id":"sh/s36hcrmh","slide":8,"bbox":[678,196,260,270]}
+{"kind":"shape","id":"sh/4zidonyd","slide":8,"bbox":[670,188,260,270]}
+{"kind":"shape","id":"sh/xkf6dcbu","slide":8,"bbox":[670,188,260,34]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":8,"text":"PARTNERS","textPreview":"PARTNERS","textChars":8,"textLines":1,"bbox":[684,194,232,26]}
+{"kind":"textbox","id":"sh/fepkzupw","slide":8,"text":"Schools, NGOs, driving schools","textPreview":"Schools, NGOs, driving schools","textChars":30,"textLines":1,"bbox":[688,240,224,78]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":8,"text":"Give free tools and practice questions; partners provide classroom access and trust.","textPreview":"Give free tools and practice questions; partners provide classroom access and trust.","textChars":84,"textLines":1,"bbox":[688,326,224,118]}
+{"kind":"shape","id":"sh/xc3ylc7u","slide":8,"bbox":[978,196,240,270]}
+{"kind":"shape","id":"sh/mlkjm1cf","slide":8,"bbox":[970,188,240,270]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":8,"bbox":[970,188,240,34]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":8,"text":"GOVERNMENT","textPreview":"GOVERNMENT","textChars":10,"textLines":1,"bbox":[984,194,212,26]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":8,"text":"MoU pathway","textPreview":"MoU pathway","textChars":11,"textLines":1,"bbox":[988,240,204,78]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":8,"text":"Seek support from education and transport ministries for credibility and scale.","textPreview":"Seek support from education and transport ministries for credibility and scale.","textChars":79,"textLines":1,"bbox":[988,326,204,118]}
+{"kind":"shape","id":"sh/y90je9cv","slide":8,"bbox":[167,543,960,70]}
+{"kind":"shape","id":"sh/5wjudg7a","slide":8,"bbox":[160,536,960,70]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":8,"text":"Referral mechanic: a teacher who introduces 2 more teachers receives 1 free month.","textPreview":"Referral mechanic: a teacher who introduces 2 more teachers receives 1 free month.","textChars":82,"textLines":1,"bbox":[190,554,900,34]}
+{"kind":"notes","id":"nt/skzpuh","slide":8,"text":"Explain the two directions: bottom-up through teachers and students, top-down through institutions and official trust.\nThe team should connect every channel to a real adoption action: content creates awareness, demos create trial, partners create access, government support creates trust.\nThe referral mechanic is simple enough to say in one sentence and should be remembered."}
+{"kind":"slide","id":"sl/ooy8r5","slide":9,"title":"KWD USER ADOPTION PLAN","textShapes":24}
+{"kind":"shape","id":"sh/gbq1oryt","slide":9,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":9,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":9,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":9,"text":"ទីផ្សារ គូប្រកួត និង Moat","textPreview":"ទីផ្សារ គូប្រកួត និង Moat","textChars":25,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":9,"text":"KWD wins by being local, structured, social, and teacher-ready.","textPreview":"KWD wins by being local, structured, social, and teacher-ready.","textChars":63,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/yhgn29gr","slide":9,"bbox":[76,182,470,64]}
+{"kind":"shape","id":"sh/5kb6xkf6","slide":9,"bbox":[72,178,470,64]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":9,"text":"Books/PDF","textPreview":"Books/PDF","textChars":9,"textLines":1,"bbox":[92,190,150,30]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":9,"text":"No practice, feedback, or progress tracking","textPreview":"No practice, feedback, or progress tracking","textChars":43,"textLines":1,"bbox":[252,190,260,30]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":9,"bbox":[76,270,470,64]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":9,"bbox":[72,266,470,64]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":9,"text":"Foreign apps","textPreview":"Foreign apps","textChars":12,"textLines":1,"bbox":[92,278,150,30]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":9,"text":"Not Cambodia-specific and weak Khmer fit","textPreview":"Not Cambodia-specific and weak Khmer fit","textChars":40,"textLines":1,"bbox":[252,278,260,30]}
+{"kind":"shape","id":"sh/ra5gbq1o","slide":9,"bbox":[76,358,470,64]}
+{"kind":"shape","id":"sh/gvy90je9","slide":9,"bbox":[72,354,470,64]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":9,"text":"Driving classes","textPreview":"Driving classes","textChars":15,"textLines":1,"bbox":[92,366,150,30]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":9,"text":"Higher cost, fixed place/time, low digital tracking","textPreview":"Higher cost, fixed place/time, low digital tracking","textChars":51,"textLines":1,"bbox":[252,366,260,30]}
+{"kind":"shape","id":"sh/re1w7mp0","slide":9,"bbox":[76,446,470,64]}
+{"kind":"shape","id":"sh/nap4r65w","slide":9,"bbox":[72,442,470,64]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":9,"text":"Free videos","textPreview":"Free videos","textChars":11,"textLines":1,"bbox":[92,454,150,30]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":9,"text":"Unstructured and hard to measure","textPreview":"Unstructured and hard to measure","textChars":32,"textLines":1,"bbox":[252,454,260,30]}
+{"kind":"shape","id":"sh/cvixczed","slide":9,"bbox":[628,188,250,160]}
+{"kind":"shape","id":"sh/nyd0z610","slide":9,"bbox":[620,180,250,160]}
+{"kind":"shape","id":"sh/udg7adsj","slide":9,"bbox":[620,180,250,34]}
+{"kind":"textbox","id":"sh/54zidony","slide":9,"text":"CONTENT","textPreview":"CONTENT","textChars":7,"textLines":1,"bbox":[634,186,222,26]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":9,"text":"Content moat","textPreview":"Content moat","textChars":12,"textLines":1,"bbox":[638,232,214,48]}
+{"kind":"textbox","id":"sh/judg7ads","slide":9,"text":"3,300+ questions and 8 lesson areas","textPreview":"3,300+ questions and 8 lesson areas","textChars":35,"textLines":1,"bbox":[638,288,214,38]}
+{"kind":"shape","id":"sh/u9knih4b","slide":9,"bbox":[918,188,250,160]}
+{"kind":"shape","id":"sh/83itgfml","slide":9,"bbox":[910,180,250,160]}
+{"kind":"shape","id":"sh/xobm58z2","slide":9,"bbox":[910,180,250,34]}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":9,"text":"NETWORK","textPreview":"NETWORK","textChars":7,"textLines":1,"bbox":[924,186,222,26]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":9,"text":"Network moat","textPreview":"Network moat","textChars":12,"textLines":1,"bbox":[928,232,214,48]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":9,"text":"More teachers and students make KWD more valuable","textPreview":"More teachers and students make KWD more valuable","textChars":49,"textLines":1,"bbox":[928,288,214,38]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":9,"bbox":[628,388,250,160]}
+{"kind":"shape","id":"sh/m94fu18j","slide":9,"bbox":[620,380,250,160]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":9,"bbox":[620,380,250,34]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":9,"text":"SWITCHING","textPreview":"SWITCHING","textChars":9,"textLines":1,"bbox":[634,386,222,26]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":9,"text":"Switching moat","textPreview":"Switching moat","textChars":14,"textLines":1,"bbox":[638,432,214,48]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":9,"text":"Class progress and reports create continuity","textPreview":"Class progress and reports create continuity","textChars":44,"textLines":1,"bbox":[638,488,214,38]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":9,"bbox":[918,388,250,160]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":9,"bbox":[910,380,250,160]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":9,"bbox":[910,380,250,34]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":9,"text":"TRUST","textPreview":"TRUST","textChars":5,"textLines":1,"bbox":[924,386,222,26]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":9,"text":"Trust moat","textPreview":"Trust moat","textChars":10,"textLines":1,"bbox":[928,432,214,48]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":9,"text":"Technovation and Cambodia-specific verified content","textPreview":"Technovation and Cambodia-specific verified content","textChars":51,"textLines":1,"bbox":[928,488,214,38]}
+{"kind":"notes","id":"nt/ooy8r5","slide":9,"text":"Do not attack competitors. Explain the gaps each alternative leaves open.\nKWD's differentiation is not only one feature. It is Khmer-first content, structured learning, gamified practice, teacher tools, AI help, and web access without installation.\nThe moat answer should be: content depth, teacher/student network, saved progress, and local trust."}
+{"kind":"slide","id":"sl/guwk4o","slide":10,"title":"KWD USER ADOPTION PLAN","textShapes":19}
+{"kind":"shape","id":"sh/neloj2t8","slide":10,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/czed8v6p","slide":10,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":10,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/u54zidon","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":10,"text":"មូលដ្ឋានផលិតផល និងបច្ចេកវិទ្យា","textPreview":"មូលដ្ឋានផលិតផល និងបច្ចេកវិទ្យា","textChars":30,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/cbulwval","slide":10,"text":"Technology choices support adoption: fast, mobile-friendly, low data, secure.","textPreview":"Technology choices support adoption: fast, mobile-friendly, low data, secure.","textChars":77,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/5sneloj2","slide":10,"bbox":[89,179,500,62]}
+{"kind":"shape","id":"sh/y90je9cv","slide":10,"bbox":[84,174,500,62]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":10,"text":"Frontend/Backend","textPreview":"Frontend/Backend","textChars":16,"textLines":1,"bbox":[106,188,160,28]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":10,"text":"Next.js 15, TypeScript, Tailwind CSS, Vercel","textPreview":"Next.js 15, TypeScript, Tailwind CSS, Vercel","textChars":44,"textLines":1,"bbox":[268,186,290,32]}
+{"kind":"shape","id":"sh/eloj2t83","slide":10,"bbox":[89,271,500,62]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":10,"bbox":[84,266,500,62]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":10,"text":"Database","textPreview":"Database","textChars":8,"textLines":1,"bbox":[106,280,160,28]}
+{"kind":"textbox","id":"sh/7u54zido","slide":10,"text":"Neon PostgreSQL with Drizzle ORM","textPreview":"Neon PostgreSQL with Drizzle ORM","textChars":32,"textLines":1,"bbox":[268,278,290,32]}
+{"kind":"shape","id":"sh/ed8bat47","slide":10,"bbox":[89,363,500,62]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":10,"bbox":[84,358,500,62]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":10,"text":"AI","textPreview":"AI","textChars":2,"textLines":1,"bbox":[106,372,160,28]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":10,"text":"Claude and Gemini power Suar explanations and analysis","textPreview":"Claude and Gemini power Suar explanations and analysis","textChars":54,"textLines":1,"bbox":[268,370,290,32]}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":10,"bbox":[89,455,500,62]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":10,"bbox":[84,450,500,62]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":10,"text":"Realtime","textPreview":"Realtime","textChars":8,"textLines":1,"bbox":[106,464,160,28]}
+{"kind":"textbox","id":"sh/83itgfml","slide":10,"text":"Pusher for live multi-player competitions","textPreview":"Pusher for live multi-player competitions","textChars":41,"textLines":1,"bbox":[268,462,290,32]}
+{"kind":"shape","id":"sh/xobm58z2","slide":10,"bbox":[659,179,500,62]}
+{"kind":"shape","id":"sh/m94fu18j","slide":10,"bbox":[654,174,500,62]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":10,"text":"Payments","textPreview":"Payments","textChars":8,"textLines":1,"bbox":[676,188,160,28]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":10,"text":"KHQR now, Stripe planned","textPreview":"KHQR now, Stripe planned","textChars":24,"textLines":1,"bbox":[838,186,290,32]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":10,"bbox":[659,271,500,62]}
+{"kind":"shape","id":"sh/mlkjm1cf","slide":10,"bbox":[654,266,500,62]}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":10,"text":"Security","textPreview":"Security","textChars":8,"textLines":1,"bbox":[676,280,160,28]}
+{"kind":"textbox","id":"sh/54zidony","slide":10,"text":"JWT, TOTP 2FA, HTTPS/TLS, Cambodia PDPA","textPreview":"JWT, TOTP 2FA, HTTPS/TLS, Cambodia PDPA","textChars":39,"textLines":1,"bbox":[838,278,290,32]}
+{"kind":"shape","id":"sh/cj6tovah","slide":10,"bbox":[659,363,500,62]}
+{"kind":"shape","id":"sh/nyd0z610","slide":10,"bbox":[654,358,500,62]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":10,"text":"Media/Maps","textPreview":"Media/Maps","textChars":10,"textLines":1,"bbox":[676,372,160,28]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":10,"text":"next-intl, Cloudinary, Mapbox","textPreview":"next-intl, Cloudinary, Mapbox","textChars":29,"textLines":1,"bbox":[838,370,290,32]}
+{"kind":"shape","id":"sh/cvixczed","slide":10,"bbox":[190,580,912,52]}
+{"kind":"shape","id":"sh/nap4r65w","slide":10,"bbox":[184,574,912,52]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":10,"text":"Talking point: tech is not decoration; it reduces friction for mobile users and rural connectivity.","textPreview":"Talking point: tech is not decoration; it reduces friction for mobile users and rural connectivity.","textChars":99,"textLines":1,"bbox":[210,587,860,26]}
+{"kind":"notes","id":"nt/guwk4o","slide":10,"text":"For non-technical teammates, simplify this slide: KWD is web-based, works on phones, uses a database, has AI help, supports live play, and protects user data.\nFor technical questions, mention Next.js, Neon PostgreSQL, Drizzle, Pusher, KHQR, JWT, TOTP 2FA, HTTPS/TLS, and PDPA.\nConnect tech to adoption: speed, low data, mobile access, classroom join, and trust."}
+{"kind":"slide","id":"sl/0biv8c","slide":11,"title":"KWD USER ADOPTION PLAN","textShapes":25}
+{"kind":"shape","id":"sh/u18jqh0f","slide":11,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/1orytsvu","slide":11,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":11,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/judg7ads","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":11,"text":"តម្លៃ និង Upgrade Logic","textPreview":"តម្លៃ និង Upgrade Logic","textChars":23,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/1032lszq","slide":11,"text":"The free tier drives learning; paid tiers unlock tracking, scale, and institution workflows.","textPreview":"The free tier drives learning; paid tiers unlock tracking, scale, and institution workflows.","textChars":92,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/cfa9w3m9","slide":11,"bbox":[63,189,200,310]}
+{"kind":"shape","id":"sh/nyd0z610","slide":11,"bbox":[58,184,200,310]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":11,"text":"Free","textPreview":"Free","textChars":4,"textLines":1,"bbox":[70,202,176,42]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":11,"text":"$0","textPreview":"$0","textChars":2,"textLines":1,"bbox":[76,258,164,46]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":11,"text":"Students","textPreview":"Students","textChars":8,"textLines":1,"bbox":[74,320,168,36]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":11,"text":"Basic learning, practice, and games","textPreview":"Basic learning, practice, and games","textChars":35,"textLines":1,"bbox":[74,372,168,78]}
+{"kind":"shape","id":"sh/neloj2t8","slide":11,"bbox":[303,189,200,310]}
+{"kind":"shape","id":"sh/cbulwval","slide":11,"bbox":[298,184,200,310]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":11,"text":"Family","textPreview":"Family","textChars":6,"textLines":1,"bbox":[310,202,176,42]}
+{"kind":"textbox","id":"sh/u54zidon","slide":11,"text":"$5/mo","textPreview":"$5/mo","textChars":5,"textLines":1,"bbox":[316,258,164,46]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":11,"text":"Parents","textPreview":"Parents","textChars":7,"textLines":1,"bbox":[314,320,168,36]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":11,"text":"Track up to 9 children","textPreview":"Track up to 9 children","textChars":22,"textLines":1,"bbox":[314,372,168,78]}
+{"kind":"shape","id":"sh/5wjudg7a","slide":11,"bbox":[543,189,200,310]}
+{"kind":"shape","id":"sh/t47y1kre","slide":11,"bbox":[538,184,200,310]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":11,"text":"Teacher Pro","textPreview":"Teacher Pro","textChars":11,"textLines":1,"bbox":[550,202,176,42]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":11,"text":"$10/mo","textPreview":"$10/mo","textChars":6,"textLines":1,"bbox":[556,258,164,46]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":11,"text":"Teachers","textPreview":"Teachers","textChars":8,"textLines":1,"bbox":[554,320,168,36]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":11,"text":"Classes, reports, live competition, 50 players","textPreview":"Classes, reports, live competition, 50 players","textChars":46,"textLines":1,"bbox":[554,372,168,78]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":11,"bbox":[783,189,200,310]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":11,"bbox":[778,184,200,310]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":11,"text":"School","textPreview":"School","textChars":6,"textLines":1,"bbox":[790,202,176,42]}
+{"kind":"textbox","id":"sh/tovahoza","slide":11,"text":"$20/mo","textPreview":"$20/mo","textChars":6,"textLines":1,"bbox":[796,258,164,46]}
+{"kind":"textbox","id":"sh/032lszqt","slide":11,"text":"Schools","textPreview":"Schools","textChars":7,"textLines":1,"bbox":[794,320,168,36]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":11,"text":"200 players, 10 teachers, class admin dashboard","textPreview":"200 players, 10 teachers, class admin dashboard","textChars":47,"textLines":1,"bbox":[794,372,168,78]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":11,"bbox":[1023,189,200,310]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":11,"bbox":[1018,184,200,310]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":11,"text":"Academy","textPreview":"Academy","textChars":7,"textLines":1,"bbox":[1030,202,176,42]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":11,"text":"$35/mo","textPreview":"$35/mo","textChars":6,"textLines":1,"bbox":[1036,258,164,46]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":11,"text":"Driving schools","textPreview":"Driving schools","textChars":15,"textLines":1,"bbox":[1034,320,168,36]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":11,"text":"Full features, teacher dashboard, certificates","textPreview":"Full features, teacher dashboard, certificates","textChars":46,"textLines":1,"bbox":[1034,372,168,78]}
+{"kind":"shape","id":"sh/lwval87e","slide":11,"bbox":[151,557,992,66]}
+{"kind":"shape","id":"sh/ahoza1gv","slide":11,"bbox":[144,550,992,66]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":11,"text":"Upgrade appears at the moment of need: more classes, detailed reports, more players, family tracking, or certificates.","textPreview":"Upgrade appears at the moment of need: more classes, detailed reports, more players, family tracking, or certificates.","textChars":118,"textLines":1,"bbox":[174,566,932,32]}
+{"kind":"notes","id":"nt/0biv8c","slide":11,"text":"Explain the pricing as a ladder, not a wall.\nFree helps students start. Paid plans are for adults and institutions who need tracking, management, scale, or certification.\nIf asked how pricing was decided, say the tiers match buyer type and unlock needs: family tracking, teacher reporting, school scale, driving school certificates."}
+{"kind":"slide","id":"sl/18o83c","slide":12,"title":"KWD USER ADOPTION PLAN","textShapes":14}
+{"kind":"shape","id":"sh/at47y1kr","slide":12,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/lkjm1cfa","slide":12,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":12,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":12,"text":"Business Forecast: small targets, clear path","textPreview":"Business Forecast: small targets, clear path","textChars":44,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":12,"text":"The document projects paid subscribers and revenue growth from 2026 to 2028.","textPreview":"The document projects paid subscribers and revenue growth from 2026 to 2028.","textChars":76,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/sneloj2t","slide":12,"bbox":[79,183,520,330]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":12,"bbox":[72,176,520,330]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":12,"text":"Paid subscriber target","textPreview":"Paid subscriber target","textChars":22,"textLines":1,"bbox":[96,194,460,30]}
+{"kind":"shape","id":"sh/xs72x4na","slide":12,"bbox":[695,183,520,330]}
+{"kind":"shape","id":"sh/q1orytsv","slide":12,"bbox":[688,176,520,330]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":12,"text":"ARR, cost, and net profit","textPreview":"ARR, cost, and net profit","textChars":25,"textLines":1,"bbox":[712,194,460,30]}
+{"kind":"shape","id":"sh/1gvy90je","slide":12,"bbox":[96,558,230,104]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":12,"bbox":[90,552,230,104]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":12,"text":"100","textPreview":"100","textChars":3,"textLines":1,"bbox":[102,568,206,50]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":12,"text":"Year 1 paid subscribers","textPreview":"Year 1 paid subscribers","textChars":23,"textLines":1,"bbox":[102,624,206,48]}
+{"kind":"shape","id":"sh/xczed8v6","slide":12,"bbox":[388,558,230,104]}
+{"kind":"shape","id":"sh/hoza1gvy","slide":12,"bbox":[382,552,230,104]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":12,"text":"$12,360","textPreview":"$12,360","textChars":7,"textLines":1,"bbox":[394,568,206,50]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":12,"text":"Year 1 ARR","textPreview":"Year 1 ARR","textChars":10,"textLines":1,"bbox":[394,624,206,48]}
+{"kind":"shape","id":"sh/a1gvy90j","slide":12,"bbox":[680,558,230,104]}
+{"kind":"shape","id":"sh/hgn29gr2","slide":12,"bbox":[674,552,230,104]}
+{"kind":"textbox","id":"sh/svu9knih","slide":12,"text":"~$80","textPreview":"~$80","textChars":4,"textLines":1,"bbox":[686,568,206,50]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":12,"text":"initial monthly operating cost","textPreview":"initial monthly operating cost","textChars":30,"textLines":1,"bbox":[686,624,206,48]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":12,"bbox":[972,558,230,104]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":12,"bbox":[966,552,230,104]}
+{"kind":"textbox","id":"sh/sji5snel","slide":12,"text":"$62,000","textPreview":"$62,000","textChars":7,"textLines":1,"bbox":[978,568,206,50]}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":12,"text":"projected ARR by 2028","textPreview":"projected ARR by 2028","textChars":21,"textLines":1,"bbox":[978,624,206,48]}
+{"kind":"chart","id":"ch/4fu18jqh","slide":12,"name":"","chartType":"bar","bbox":[108,242,430,220]}
+{"kind":"chart","id":"ch/83itgfml","slide":12,"name":"","chartType":"bar","bbox":[712,242,450,220]}
+{"kind":"notes","id":"nt/18o83c","slide":12,"text":"State clearly that these are forward projections from the plan, not completed results.\nThe paid subscriber path is 100 in 2026, 250 in 2027, and 500 in 2028.\nThe ARR path is 12,360 dollars, 31,000 dollars, and 62,000 dollars. The source says costs stay low at roughly 80, 300, and 900 dollars, supporting early break-even."}
+{"kind":"slide","id":"sl/2wzu27","slide":13,"title":"KWD USER ADOPTION PLAN","textShapes":17}
+{"kind":"shape","id":"sh/p8nqxs72","slide":13,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":13,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":13,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/0z61032l","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":13,"text":"Retention: why users come back","textPreview":"Retention: why users come back","textChars":30,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":13,"text":"KWD combines support, motivation, and measurable retention metrics.","textPreview":"KWD combines support, motivation, and measurable retention metrics.","textChars":67,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":13,"bbox":[80,196,250,220]}
+{"kind":"shape","id":"sh/0bi9s36h","slide":13,"bbox":[72,188,250,220]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":13,"bbox":[72,188,250,34]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":13,"text":"SUPPORT","textPreview":"SUPPORT","textChars":7,"textLines":1,"bbox":[86,194,222,26]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":13,"text":"Suar AI and community","textPreview":"Suar AI and community","textChars":21,"textLines":1,"bbox":[90,240,214,78]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":13,"text":"Suar AI, chat, FAQ, Telegram/Facebook groups help users quickly.","textPreview":"Suar AI, chat, FAQ, Telegram/Facebook groups help users quickly.","textChars":64,"textLines":1,"bbox":[90,326,214,68]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":13,"bbox":[376,196,250,220]}
+{"kind":"shape","id":"sh/9gr2p8nq","slide":13,"bbox":[368,188,250,220]}
+{"kind":"shape","id":"sh/gvy90je9","slide":13,"bbox":[368,188,250,34]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":13,"text":"MOTIVATION","textPreview":"MOTIVATION","textChars":10,"textLines":1,"bbox":[382,194,222,26]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":13,"text":"Daily rhythm","textPreview":"Daily rhythm","textChars":12,"textLines":1,"bbox":[386,240,214,78]}
+{"kind":"textbox","id":"sh/9knih4by","slide":13,"text":"Notifications, weekly content, contests, daily challenges, and streaks.","textPreview":"Notifications, weekly content, contests, daily challenges, and streaks.","textChars":71,"textLines":1,"bbox":[386,326,214,68]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":13,"bbox":[672,196,250,220]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":13,"bbox":[664,188,250,220]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":13,"bbox":[664,188,250,34]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":13,"text":"PSYCHOLOGY","textPreview":"PSYCHOLOGY","textChars":10,"textLines":1,"bbox":[678,194,222,26]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":13,"text":"Play with purpose","textPreview":"Play with purpose","textChars":17,"textLines":1,"bbox":[682,240,214,78]}
+{"kind":"textbox","id":"sh/0z61032l","slide":13,"text":"Flow state, variable rewards, self-determination, loss aversion, social proof.","textPreview":"Flow state, variable rewards, self-determination, loss aversion, social proof.","textChars":78,"textLines":1,"bbox":[682,326,214,68]}
+{"kind":"shape","id":"sh/pkzupwb2","slide":13,"bbox":[968,196,250,220]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":13,"bbox":[960,188,250,220]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":13,"bbox":[960,188,250,34]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":13,"text":"MEASURE","textPreview":"MEASURE","textChars":7,"textLines":1,"bbox":[974,194,222,26]}
+{"kind":"textbox","id":"sh/pwb2hwfy","slide":13,"text":"Retention metrics","textPreview":"Retention metrics","textChars":17,"textLines":1,"bbox":[978,240,214,78]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":13,"text":"DAU/WAU, 7-day return, and renewal rate show whether habit is forming.","textPreview":"DAU/WAU, 7-day return, and renewal rate show whether habit is forming.","textChars":70,"textLines":1,"bbox":[978,326,214,68]}
+{"kind":"shape","id":"sh/m94fu18j","slide":13,"bbox":[166,504,964,84]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":13,"bbox":[158,496,964,84]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":13,"text":"Best team sentence: We do not only acquire users; we design reasons for them to return.","textPreview":"Best team sentence: We do not only acquire users; we design reasons for them to return.","textChars":87,"textLines":1,"bbox":[188,520,904,38]}
+{"kind":"notes","id":"nt/2wzu27","slide":13,"text":"This is the answer to questions about keeping users engaged.\nMention the specific retention mechanics: new content, contests, notifications, daily challenge, streaks, leaderboard, badges, Suar AI support.\nMention the metrics: daily and weekly active users, 7-day return, and renewal rate."}
+{"kind":"slide","id":"sl/pxilp4","slide":14,"title":"KWD USER ADOPTION PLAN","textShapes":23}
+{"kind":"shape","id":"sh/lkjm1cfa","slide":14,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/at47y1kr","slide":14,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":14,"text":"KWD USER ADOPTION PLAN","textPreview":"KWD USER ADOPTION PLAN","textChars":22,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/sneloj2t","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":14,"text":"ហានិភ័យ និងផែនការអនាគត ៣ ឆ្នាំ","textPreview":"ហានិភ័យ និងផែនការអនាគត ៣ ឆ្នាំ","textChars":30,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":14,"text":"The plan names risks directly and shows how the team will respond.","textPreview":"The plan names risks directly and shows how the team will respond.","textChars":66,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/32lszqtc","slide":14,"bbox":[74,178,520,48]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":14,"bbox":[70,174,520,48]}
+{"kind":"textbox","id":"sh/lwval87e","slide":14,"text":"Limited internet","textPreview":"Limited internet","textChars":16,"textLines":1,"bbox":[88,184,160,24]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":14,"text":"Low-data design, speed, offline option in Year 2","textPreview":"Low-data design, speed, offline option in Year 2","textChars":48,"textLines":1,"bbox":[254,183,310,26]}
+{"kind":"shape","id":"sh/s36hcrmh","slide":14,"bbox":[74,248,520,48]}
+{"kind":"shape","id":"sh/zidonyd0","slide":14,"bbox":[70,244,520,48]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":14,"text":"Low trust","textPreview":"Low trust","textChars":9,"textLines":1,"bbox":[88,254,160,24]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":14,"text":"Technovation proof, teacher network, ministry MoU","textPreview":"Technovation proof, teacher network, ministry MoU","textChars":49,"textLines":1,"bbox":[254,253,310,26]}
+{"kind":"shape","id":"sh/svu9knih","slide":14,"bbox":[74,318,520,48]}
+{"kind":"shape","id":"sh/za1gvy90","slide":14,"bbox":[70,314,520,48]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":14,"text":"Copycats","textPreview":"Copycats","textChars":8,"textLines":1,"bbox":[88,324,160,24]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":14,"text":"Content moat, network effects, teacher relationships","textPreview":"Content moat, network effects, teacher relationships","textChars":52,"textLines":1,"bbox":[254,323,310,26]}
+{"kind":"shape","id":"sh/sji5snel","slide":14,"bbox":[74,388,520,48]}
+{"kind":"shape","id":"sh/87ed8bat","slide":14,"bbox":[70,384,520,48]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":14,"text":"Team capacity","textPreview":"Team capacity","textChars":13,"textLines":1,"bbox":[88,394,160,24]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":14,"text":"Clear roles and 2 mentors","textPreview":"Clear roles and 2 mentors","textChars":25,"textLines":1,"bbox":[254,393,310,26]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":14,"bbox":[74,458,520,48]}
+{"kind":"shape","id":"sh/8z25kb6x","slide":14,"bbox":[70,454,520,48]}
+{"kind":"textbox","id":"sh/1gvy90je","slide":14,"text":"Hosting cost","textPreview":"Hosting cost","textChars":12,"textLines":1,"bbox":[88,464,160,24]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":14,"text":"Keep costs low and monitor scaling","textPreview":"Keep costs low and monitor scaling","textChars":34,"textLines":1,"bbox":[254,463,310,26]}
+{"kind":"shape","id":"sh/je9cvixc","slide":14,"bbox":[658,180,500,118]}
+{"kind":"shape","id":"sh/8v6psfil","slide":14,"bbox":[650,172,500,118]}
+{"kind":"shape","id":"sh/xczed8v6","slide":14,"bbox":[650,172,500,34]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":14,"text":"2026","textPreview":"2026","textChars":4,"textLines":1,"bbox":[664,178,472,26]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":14,"text":"2026 milestone","textPreview":"2026 milestone","textChars":14,"textLines":1,"bbox":[668,220,464,32]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":14,"text":"Beta for teachers, Suar AI v1, school entry, 100 subscribers","textPreview":"Beta for teachers, Suar AI v1, school entry, 100 subscribers","textChars":60,"textLines":1,"bbox":[668,256,464,20]}
+{"kind":"shape","id":"sh/czed8v6p","slide":14,"bbox":[658,324,500,118]}
+{"kind":"shape","id":"sh/nqxs72x4","slide":14,"bbox":[650,316,500,118]}
+{"kind":"shape","id":"sh/u54zidon","slide":14,"bbox":[650,316,500,34]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":14,"text":"2027","textPreview":"2027","textChars":4,"textLines":1,"bbox":[664,322,472,26]}
+{"kind":"textbox","id":"sh/cbulwval","slide":14,"text":"2027 milestone","textPreview":"2027 milestone","textChars":14,"textLines":1,"bbox":[668,364,464,32]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":14,"text":"Full school launch, AI v2, Ministry of Education partnership, 250 subscribers","textPreview":"Full school launch, AI v2, Ministry of Education partnership, 250 subscribers","textChars":77,"textLines":1,"bbox":[668,400,464,20]}
+{"kind":"shape","id":"sh/y90je9cv","slide":14,"bbox":[658,468,500,118]}
+{"kind":"shape","id":"sh/udg7adsj","slide":14,"bbox":[650,460,500,118]}
+{"kind":"shape","id":"sh/nyd0z610","slide":14,"bbox":[650,460,500,34]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":14,"text":"2028","textPreview":"2028","textChars":4,"textLines":1,"bbox":[664,466,472,26]}
+{"kind":"textbox","id":"sh/54zidony","slide":14,"text":"2028 milestone","textPreview":"2028 milestone","textChars":14,"textLines":1,"bbox":[668,508,464,32]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":14,"text":"Institution expansion, SSO/API, first B2G path, other provinces, 500 subscribers","textPreview":"Institution expansion, SSO/API, first B2G path, other provinces, 500 subscribers","textChars":80,"textLines":1,"bbox":[668,544,464,20]}
+{"kind":"notes","id":"nt/pxilp4","slide":14,"text":"Risks make the plan more credible because the team has thought about what could go wrong.\nFor roadmap, use the three-year ladder: Year 1 beta and feedback, Year 2 school and AI expansion, Year 3 institutions and province expansion.\nIf asked what support is needed, mention mentors, hosting/content budget, and institutional partners for school access."}
+{"kind":"slide","id":"sl/afg5b0","slide":15,"title":"Q&A PRACTICE","textShapes":25}
+{"kind":"shape","id":"sh/p8nqxs72","slide":15,"bbox":[0,0,1280,16]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":15,"bbox":[0,702,1280,18]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":15,"text":"Q&A PRACTICE","textPreview":"Q&A PRACTICE","textChars":12,"textLines":1,"bbox":[54,30,520,28]}
+{"kind":"textbox","id":"sh/0z61032l","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1172,28,54,34]}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":15,"text":"បញ្ជីសំណួរត្រៀមឆ្លើយ","textPreview":"បញ្ជីសំណួរត្រៀមឆ្លើយ","textChars":20,"textLines":1,"bbox":[54,64,850,72]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":15,"text":"Use answer anchors so every teammate can respond clearly under 30 seconds.","textPreview":"Use answer anchors so every teammate can respond clearly under 30 seconds.","textChars":74,"textLines":1,"bbox":[58,134,830,34]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":15,"bbox":[77,181,480,232]}
+{"kind":"shape","id":"sh/0bi9s36h","slide":15,"bbox":[70,174,480,232]}
+{"kind":"textbox","id":"sh/pwb2hwfy","slide":15,"text":"Technique rules","textPreview":"Technique rules","textChars":15,"textLines":1,"bbox":[98,196,420,34]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":15,"text":"1. Decide who answers each type: statistics, tech, business\n2. Pause, breathe, answer under 30 seconds\n3. Repeat the question if unclear\n4. Be honest when unknown and explain the plan to find out","textPreview":"1. Decide who answers each type: statistics, tech, business | 2. Pause, breathe, answer under 30 seconds | 3. Repeat the question if uncl...","textChars":195,"textLines":4,"bbox":[108,248,396,130]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":15,"bbox":[612,182,260,104]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":15,"bbox":[604,174,260,104]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":15,"bbox":[604,174,260,34]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":15,"text":"PROBLEM","textPreview":"PROBLEM","textChars":7,"textLines":1,"bbox":[618,180,232,26]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":15,"text":"Problem","textPreview":"Problem","textChars":7,"textLines":1,"bbox":[622,222,224,32]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":15,"text":"WHO evidence, youth risk, Khmer content gap","textPreview":"WHO evidence, youth risk, Khmer content gap","textChars":43,"textLines":1,"bbox":[622,258,224,14]}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":15,"bbox":[912,182,260,104]}
+{"kind":"shape","id":"sh/9knih4by","slide":15,"bbox":[904,174,260,104]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":15,"bbox":[904,174,260,34]}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":15,"text":"SOLUTION/TECH","textPreview":"SOLUTION/TECH","textChars":13,"textLines":1,"bbox":[918,180,232,26]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":15,"text":"Solution/Tech","textPreview":"Solution/Tech","textChars":13,"textLines":1,"bbox":[922,222,224,32]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":15,"text":"Web app, Suar AI, teacher portal, data safety","textPreview":"Web app, Suar AI, teacher portal, data safety","textChars":45,"textLines":1,"bbox":[922,258,224,14]}
+{"kind":"shape","id":"sh/72x4nap4","slide":15,"bbox":[612,314,260,104]}
+{"kind":"shape","id":"sh/0z61032l","slide":15,"bbox":[604,306,260,104]}
+{"kind":"shape","id":"sh/pkzupwb2","slide":15,"bbox":[604,306,260,34]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":15,"text":"USERS","textPreview":"USERS","textChars":5,"textLines":1,"bbox":[618,312,232,26]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":15,"text":"Users","textPreview":"Users","textChars":5,"textLines":1,"bbox":[622,354,224,32]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":15,"text":"Students, teachers, parents, testers, feedback changes","textPreview":"Students, teachers, parents, testers, feedback changes","textChars":54,"textLines":1,"bbox":[622,390,224,14]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":15,"bbox":[912,314,260,104]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":15,"bbox":[904,306,260,104]}
+{"kind":"shape","id":"sh/m94fu18j","slide":15,"bbox":[904,306,260,34]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":15,"text":"ADOPTION","textPreview":"ADOPTION","textChars":8,"textLines":1,"bbox":[918,312,232,26]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":15,"text":"Adoption","textPreview":"Adoption","textChars":8,"textLines":1,"bbox":[922,354,224,32]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":15,"text":"Teacher invite, referral, content, partners, retention loop","textPreview":"Teacher invite, referral, content, partners, retention loop","textChars":59,"textLines":1,"bbox":[922,390,224,14]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":15,"bbox":[612,446,260,104]}
+{"kind":"shape","id":"sh/xobm58z2","slide":15,"bbox":[604,438,260,104]}
+{"kind":"shape","id":"sh/83itgfml","slide":15,"bbox":[604,438,260,34]}
+{"kind":"textbox","id":"sh/fepkzupw","slide":15,"text":"BUSINESS","textPreview":"BUSINESS","textChars":8,"textLines":1,"bbox":[618,444,232,26]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":15,"text":"Business","textPreview":"Business","textChars":8,"textLines":1,"bbox":[622,486,224,32]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":15,"text":"Pricing ladder, 100 Year 1 subscribers, low cost","textPreview":"Pricing ladder, 100 Year 1 subscribers, low cost","textChars":48,"textLines":1,"bbox":[622,522,224,14]}
+{"kind":"shape","id":"sh/vahoza1g","slide":15,"bbox":[912,446,260,104]}
+{"kind":"shape","id":"sh/ovahoza1","slide":15,"bbox":[904,438,260,104]}
+{"kind":"shape","id":"sh/dg7adsji","slide":15,"bbox":[904,438,260,34]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":15,"text":"FUTURE","textPreview":"FUTURE","textChars":6,"textLines":1,"bbox":[918,444,232,26]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":15,"text":"Future","textPreview":"Future","textChars":6,"textLines":1,"bbox":[922,486,224,32]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":15,"text":"2026-2028 roadmap, support needed, scaling risks","textPreview":"2026-2028 roadmap, support needed, scaling risks","textChars":48,"textLines":1,"bbox":[922,522,224,14]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":15,"bbox":[169,613,952,44]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":15,"bbox":[164,608,952,44]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":15,"text":"Answer formula: direct answer + one proof point + next step.","textPreview":"Answer formula: direct answer + one proof point + next step.","textChars":60,"textLines":1,"bbox":[190,616,900,28]}
+{"kind":"notes","id":"nt/afg5b0","slide":15,"text":"The source document includes judge questions in ten categories: problem, solution/technology, users/testing, adoption, ethics, learning/teamwork, future, business/finance, growth/scaling, and competition.\nPractice answer formula: direct answer, proof point, next step. Example: Our target user is students 12 to 18, but teachers are our early adoption channel because they create classes and invite groups. Our next step is to run more school demos and measure retention.\nRemind the team to keep answers short, clear, and easy to translate."}

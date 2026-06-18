@@ -233,13 +233,15 @@ export async function POST(req: NextRequest) {
         })
         .returning({ id: gameScores.id });
 
-      // Store Points: one capped credit per play (inert until cutover; the guard
-      // in awardStorePoints short-circuits when STORE_POINTS_ENABLED is off). Runs
-      // in parallel with the legacy solo ledger above.
+      // Store Points: solo is NOT claimable in the live-only economy — this call
+      // is rejected by the source="solo" guard in awardStorePoints (and is also
+      // inert until STORE_POINTS_ENABLED). Kept so solo can be re-enabled later
+      // without re-threading the call. Runs alongside the legacy solo ledger.
       try {
         await awardStorePoints({
           userId: session.id,
           gameType: gameMode,
+          source: "solo",
           attemptId: scoreRow ? String(scoreRow.id) : null,
           correctUnits: correctCount,
           totalUnits,

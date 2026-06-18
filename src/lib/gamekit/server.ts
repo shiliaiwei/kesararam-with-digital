@@ -118,6 +118,8 @@ async function tryAwardStorePoints(ctx: {
         await awardStorePoints({
             userId: ctx.userId,
             gameType: ctx.gameType,
+            // All gamekit scorers are solo/practice — never claimable (live-only economy).
+            source: "solo",
             attemptId: ctx.idempotencyKey,
             correctUnits: ctx.correctUnits,
             totalUnits: ctx.totalUnits,

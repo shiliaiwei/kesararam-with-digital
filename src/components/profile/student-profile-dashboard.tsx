@@ -81,6 +81,8 @@ export function StudentProfileDashboard({
   const [editUsername, setEditUsername] = useState(user.username);
   const [displayNameCooldown, setDisplayNameCooldown] = useState<number | null>(null);
   const [usernameCooldown, setUsernameCooldown] = useState<number | null>(null);
+  const [profileEditUnlocked, setProfileEditUnlocked] = useState(false);
+  const [profileEditUnlockDaysLeft, setProfileEditUnlockDaysLeft] = useState(0);
   const [infoSaving, setInfoSaving] = useState(false);
   const [infoSaved, setInfoSaved] = useState(false);
   const [infoError, setInfoError] = useState("");
@@ -159,16 +161,28 @@ export function StudentProfileDashboard({
         });
         setEditUsername(s.username ?? user.username);
         setEditDisplayName(s.displayName ?? user.username);
+        const unlockActive = !!s.profileEditUnlocked;
+        setProfileEditUnlocked(unlockActive);
+        setProfileEditUnlockDaysLeft(
+          unlockActive && s.profileEditUnlockedUntil
+            ? Math.max(1, Math.ceil((new Date(s.profileEditUnlockedUntil).getTime() - Date.now()) / 86400000))
+            : 0
+        );
 
         const ONE_YEAR = 365 * 24 * 60 * 60 * 1000;
         const SIX_MONTHS = 183 * 24 * 60 * 60 * 1000;
-        if (s.usernameChangedAt) {
+        if (unlockActive) {
+          setUsernameCooldown(null);
+          setDisplayNameCooldown(null);
+        } else if (s.usernameChangedAt) {
           const elapsed = Date.now() - new Date(s.usernameChangedAt).getTime();
           setUsernameCooldown(elapsed < ONE_YEAR ? Math.ceil((ONE_YEAR - elapsed) / 86400000) : null);
         } else {
           setUsernameCooldown(null);
         }
-        if (s.displayNameChangedAt) {
+        if (unlockActive) {
+          setDisplayNameCooldown(null);
+        } else if (s.displayNameChangedAt) {
           const elapsed = Date.now() - new Date(s.displayNameChangedAt).getTime();
           setDisplayNameCooldown(elapsed < SIX_MONTHS ? Math.ceil((SIX_MONTHS - elapsed) / 86400000) : null);
         } else {
@@ -668,6 +682,17 @@ export function StudentProfileDashboard({
             {/* ══ PROFILE TAB ══════════════════════════════════════════ */}
             {drawerTab === "profile" && (
               <>
+                {profileEditUnlocked && (
+                  <div className="flex gap-2.5 items-start p-3 border-2 border-[#0284c7] bg-blue-50 shadow-[3px_3px_0_#000]">
+                    <Info size={14} className="text-[#0284c7] flex-shrink-0 mt-0.5" />
+                    <p className="text-[11px] font-semibold text-black leading-relaxed" style={kf}>
+                      {kh
+                        ? `រយៈពេលកែតម្រូវបណ្ដោះអាសន្ននៅសល់ ${profileEditUnlockDaysLeft} ថ្ងៃ។ អ្នកអាចកែព័ត៌មានគណនីឥឡូវនេះ។`
+                        : `Temporary correction window: ${profileEditUnlockDaysLeft} days left. You can correct your profile information now.`}
+                    </p>
+                  </div>
+                )}
+
                 {/* Account info block */}
                 <div className="border-2 border-black shadow-[3px_3px_0_#000]">
                   <div className="bg-yellow-400 border-b-2 border-black px-4 py-1.5">
@@ -866,6 +891,7 @@ export function StudentProfileDashboard({
                       initialName={user.displayName ?? user.username}
                       initialAvatar={user.avatar}
                       initialAvatarChangedAt={user.avatarChangedAt ? new Date(user.avatarChangedAt as any).toISOString() : null}
+                      profileEditUnlocked={profileEditUnlocked}
                       role="student"
                       dark={false}
                     />

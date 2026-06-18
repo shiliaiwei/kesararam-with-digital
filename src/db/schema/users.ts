@@ -29,6 +29,9 @@ export const users = pgTable("users", {
   // ONCE (bypassing the 60-day post-signup cooldown). Consumed on the next
   // name/username change, after which the normal cooldowns resume.
   canChangeNameOnce: boolean("can_change_name_once").default(false).notNull(),
+  // Temporary admin-granted correction window. While active, the user can edit
+  // profile details freely; when it expires, normal profile rules apply again.
+  profileEditUnlockedUntil: timestamp("profile_edit_unlocked_until"),
   audioMuted: boolean("audio_muted").default(false).notNull(),
   isActive: boolean("is_active").default(true).notNull(),
   isSuspended: boolean("is_suspended").default(false).notNull(),

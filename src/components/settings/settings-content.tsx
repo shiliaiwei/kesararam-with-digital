@@ -72,6 +72,8 @@ interface UserSettings {
   isStatsPublic?: boolean;
   createdAt?: string; // Account creation timestamp
   canChangeNameOnce?: boolean; // one-time full-name + username change available
+  profileEditUnlockedUntil?: string | null;
+  profileEditUnlocked?: boolean;
   notifications: {
     email: boolean;
     push: boolean;
@@ -117,6 +119,8 @@ export function SettingsContent() {
     isProvincePublic: true,
     isStatsPublic: true,
     createdAt: "",
+    profileEditUnlockedUntil: null,
+    profileEditUnlocked: false,
     notifications: {
       email: true,
       push: true,
@@ -154,7 +158,7 @@ export function SettingsContent() {
 
     const checkCooldown = () => {
       // A one-time name/username change is allowed even within the 60-day window.
-      if (settings.canChangeNameOnce) { setDaysLeft(0); return; }
+      if (settings.profileEditUnlocked || settings.canChangeNameOnce) { setDaysLeft(0); return; }
       const ageMs = Date.now() - new Date(settings.createdAt!).getTime();
       const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
       if (ageMs < SIXTY_DAYS) {
@@ -168,7 +172,15 @@ export function SettingsContent() {
     // Hourly check is perfectly fine for day calculations
     const interval = setInterval(checkCooldown, 3600000);
     return () => clearInterval(interval);
-  }, [settings.createdAt, settings.canChangeNameOnce]);
+  }, [settings.createdAt, settings.canChangeNameOnce, settings.profileEditUnlocked]);
+
+  const profileEditUnlockDaysLeft =
+    settings.profileEditUnlockedUntil && settings.profileEditUnlocked
+      ? Math.max(
+          1,
+          Math.ceil((new Date(settings.profileEditUnlockedUntil).getTime() - Date.now()) / (24 * 60 * 60 * 1000))
+        )
+      : 0;
 
   const fetchSettings = async () => {
     try {
@@ -302,7 +314,8 @@ export function SettingsContent() {
   };
 
   // Check if student has completed onboarding (making school fields locked)
-  const isStudentAndOnboarded = settings.role === "student" && !!settings.schoolName;
+  const isStudentAndOnboarded =
+    settings.role === "student" && !!settings.schoolName && !settings.profileEditUnlocked;
 
   const tabs = [
     { id: "profile", label: "Profile", icon: User },
@@ -339,6 +352,15 @@ export function SettingsContent() {
           <Lock className="text-[#eab308] flex-shrink-0" size={24} />
           <div className="font-bold text-sm text-black leading-relaxed">
             For security, you must wait <span className="text-orange-600 font-black">{daysLeft} days</span> after signing up before you can modify your profile settings or email. For any trouble, contact support team at <a href="mailto:kesararamwithdigital@gmail.com" className="underline font-black hover:text-blue-700 font-mono">kesararamwithdigital@gmail.com</a>. / ដើម្បីសុវត្ថិភាព អ្នកត្រូវរង់ចាំយ៉ាងហោចណាស់ <span className="text-orange-600 font-black">{daysLeft} ថ្ងៃ</span> បន្ទាប់ពីចុះឈ្មោះ មុននឹងកែប្រែព័ត៌មានគណនី ឬអ៊ីមែល។ បើមានបញ្ហាសូមទាក់ទងក្រុមការងារគាំទ្រ <a href="mailto:kesararamwithdigital@gmail.com" className="underline font-black hover:text-blue-700 font-mono">kesararamwithdigital@gmail.com</a> ៕
+          </div>
+        </div>
+      )}
+
+      {settings.profileEditUnlocked && (
+        <div className="bg-blue-50 border-4 border-[#0284c7] p-4 shadow-[4px_4px_0_#000] flex items-center gap-3">
+          <Info className="text-[#0284c7] flex-shrink-0" size={24} />
+          <div className="font-bold text-sm text-black leading-relaxed">
+            Temporary correction window is active for <span className="text-[#0284c7] font-black">{profileEditUnlockDaysLeft} days</span>. You can correct your profile information now; after this window, the normal KWD profile rules apply again. / រយៈពេលកែតម្រូវបណ្ដោះអាសន្ននៅសល់ <span className="text-[#0284c7] font-black">{profileEditUnlockDaysLeft} ថ្ងៃ</span>។ អ្នកអាចកែព័ត៌មានគណនីឥឡូវនេះ ហើយបន្ទាប់មកនឹងត្រឡប់ទៅតាមលក្ខខណ្ឌធម្មតារបស់ KWD វិញ។
           </div>
         </div>
       )}

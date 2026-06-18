@@ -72,6 +72,12 @@ async function migrate() {
       ADD COLUMN IF NOT EXISTS username_changed_at TIMESTAMP
     `;
 
+    console.log("Running migration: add_profile_edit_unlocked_until");
+    await sql`
+      ALTER TABLE users
+      ADD COLUMN IF NOT EXISTS profile_edit_unlocked_until TIMESTAMP
+    `;
+
     console.log("Running migration: add_class_id_to_invite_codes");
     await sql`
       ALTER TABLE invite_codes 

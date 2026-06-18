@@ -91,6 +91,7 @@ interface ProfileEditorProps {
   initialName: string;
   initialAvatar: string | null;
   initialAvatarChangedAt?: string | null;
+  profileEditUnlocked?: boolean;
   role: "admin" | "teacher" | "student";
   /** dark = dashboard styling, light = public/student styling */
   dark?: boolean;
@@ -100,6 +101,7 @@ export function ProfileEditor({
   initialName,
   initialAvatar,
   initialAvatarChangedAt,
+  profileEditUnlocked = false,
   role,
   dark = true,
 }: ProfileEditorProps) {
@@ -128,7 +130,8 @@ export function ProfileEditor({
     ? new Date(initialAvatarChangedAt)
     : null;
   const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
-  const canChange = !changedAt || Date.now() - changedAt.getTime() > SIXTY_DAYS;
+  const canChange =
+    profileEditUnlocked || !changedAt || Date.now() - changedAt.getTime() > SIXTY_DAYS;
   const daysLeft =
     changedAt && !canChange
       ? Math.ceil((SIXTY_DAYS - (Date.now() - changedAt.getTime())) / 86400000)
@@ -264,6 +267,19 @@ export function ProfileEditor({
                   {daysLeft} more days
                 </strong>{" "}
                 (60-day limit).
+              </p>
+            ) : profileEditUnlocked ? (
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "#f0f2f5",
+                  lineHeight: 1.7,
+                  marginBottom: "20px",
+                }}
+              >
+                Your temporary correction window is active. You can update this
+                avatar now; after the window ends, the normal 60-day avatar rule
+                applies again. Continue?
               </p>
             ) : (
               <p

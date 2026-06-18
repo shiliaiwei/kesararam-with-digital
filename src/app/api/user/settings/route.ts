@@ -22,6 +22,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
+    const profileEditUnlockedUntil = user.profileEditUnlockedUntil
+      ? user.profileEditUnlockedUntil.toISOString()
+      : null;
+    const profileEditUnlocked = user.profileEditUnlockedUntil
+      ? user.profileEditUnlockedUntil.getTime() > Date.now()
+      : false;
+
     // Return user settings
     const settings = {
       displayName: user.displayName || user.username,
@@ -44,6 +51,8 @@ export async function GET(request: NextRequest) {
       usernameChangedAt: user.usernameChangedAt ? user.usernameChangedAt.toISOString() : null,
       displayNameChangedAt: null,
       canChangeNameOnce: user.canChangeNameOnce ?? false,
+      profileEditUnlockedUntil,
+      profileEditUnlocked,
       language: "en", // Default, can be stored in user table
       theme: "light", // Default, can be stored in user table
       notifications: {
@@ -136,13 +145,17 @@ export async function PUT(request: NextRequest) {
       username !== undefined && username.trim().toLowerCase() !== currentUser.username;
     const wantsEmailChange =
       email !== undefined && email.trim().toLowerCase() !== currentUser.email;
+    const isProfileEditUnlocked =
+      currentUser.profileEditUnlockedUntil !== null &&
+      new Date(currentUser.profileEditUnlockedUntil).getTime() > Date.now();
     const isOneTimeNameChange =
       !!currentUser.canChangeNameOnce &&
       (wantsDisplayNameChange || wantsUsernameChange) &&
-      !wantsEmailChange;
+      !wantsEmailChange &&
+      !isProfileEditUnlocked;
 
     // 1. 60-Day Cooldown Gate — only for sensitive field changes, not privacy toggles
-    if (!isOnboarding && !isPurePrivacyUpdate && !isOneTimeNameChange) {
+    if (!isOnboarding && !isPurePrivacyUpdate && !isOneTimeNameChange && !isProfileEditUnlocked) {
       const accountAgeMs = Date.now() - new Date(currentUser.createdAt).getTime();
       const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
       if (accountAgeMs < SIXTY_DAYS) {
@@ -154,7 +167,7 @@ export async function PUT(request: NextRequest) {
     }
 
     // 2. Locked Fields Check for students post-onboarding
-    if (!isOnboarding && currentUser.role === "student" && currentUser.schoolName) {
+    if (!isOnboarding && !isProfileEditUnlocked && currentUser.role === "student" && currentUser.schoolName) {
       if (
         (schoolName !== undefined && schoolName !== currentUser.schoolName) ||
         (province !== undefined && province !== currentUser.province)
@@ -186,7 +199,7 @@ export async function PUT(request: NextRequest) {
 
     // Consume the one-time allowance once it's actually used for a name/username
     // change, so the normal cooldowns resume from here on.
-    if (currentUser.canChangeNameOnce && (wantsDisplayNameChange || wantsUsernameChange)) {
+    if (currentUser.canChangeNameOnce && !isProfileEditUnlocked && (wantsDisplayNameChange || wantsUsernameChange)) {
       updates.canChangeNameOnce = false;
     }
 
@@ -237,7 +250,7 @@ export async function PUT(request: NextRequest) {
       }
 
       // Check 1-Year Cooldown
-      if (currentUser.usernameChangedAt) {
+      if (!isProfileEditUnlocked && currentUser.usernameChangedAt) {
         const usernameAgeMs = Date.now() - new Date(currentUser.usernameChangedAt).getTime();
         const ONE_YEAR = 365 * 24 * 60 * 60 * 1000;
         if (usernameAgeMs < ONE_YEAR) {

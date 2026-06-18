@@ -5,11 +5,18 @@ the system the product records scores against — the single source of truth.
 
 - **Status: FINAL spec** (supersedes the four-value Mastery/XP/Season/Reward model
   in `docs/gamification-system-research.md` for the spendable economy)
-- Maximum earned from one play: 60 Store Points
-- Full 60-point credit requires 30 or more validated learning units
-- Shorter live and solo plays scale down by the actual question/unit count
-- Typical successful play: 8-48 Store Points, depending on length
-- Eligible modes: every current solo and live game
+- **Score model v3 (2026-06-18): one correct answer = exactly ONE Store Point.**
+  No ×60/30 multiplier. The number a learner earns equals the number of questions
+  they got right (subject to the 40% accuracy floor and the per-play cap).
+- Maximum earned from one play: 30 Store Points (i.e. 30 correct answers)
+- Shorter live plays earn proportionally fewer points (one per correct)
+- Typical successful play: 4-24 Store Points, depending on length
+- **LIVE games only earn spendable points (2026-06-18).** Solo/practice records
+  mastery and history but creates NO claimable Store Points — only live score can
+  claim store items. Enforced server-side by a source guard in `awardStorePoints`.
+- **Small "premium" scale (2026-06-18):** balances are kept deliberately low and
+  scarce so each point feels valuable. Reward prices run 3-30; tiers 5-45.
+- Eligible modes: teacher-hosted **LIVE games only** (solo/practice is not claimable)
 - **Eligible users: account `role = 'student'` ONLY** — staff, teachers, and
   admins never earn or store Store Points (see §1.1)
 - **Existing scores: DELETE all and start fresh** (decided 2026-06-16, superseding
@@ -19,6 +26,7 @@ the system the product records scores against — the single source of truth.
 - Research and calibration date: June 15, 2026
 - Spec finalized: June 16, 2026
 - Score model v2: June 17, 2026
+- Score model v3 (1 pt per correct answer): June 18, 2026
 - Product timezone: Asia/Phnom_Penh
 
 This report supersedes the large Store Credit examples in
@@ -29,9 +37,9 @@ history remain separate from the spendable Store Points balance.
 
 Use one simple spendable currency named **Store Points**.
 
-Every authenticated **student** can earn Store Points from every current game type,
-including solo and teacher-hosted live activities, when the result is validated
-by the server.
+Every authenticated **student** can earn Store Points from **teacher-hosted live
+games**, when the result is validated by the server. Solo/practice plays build
+mastery and history but do not create spendable (claimable) Store Points.
 
 ### 1.1 Eligibility — students only (hard rule)
 
@@ -68,13 +76,13 @@ One play must award:
 
 ```text
 Minimum: 0 Store Points
-Maximum: 60 Store Points
-Typical result at about 80% accuracy: 8-48 Store Points, depending on how many
-validated learning units were played.
+Maximum: 30 Store Points (30 correct answers)
+Typical result at about 80% accuracy: 4-24 Store Points, depending on how many
+questions were answered correctly.
 ```
 
 Do not award thousands of points. Do not multiply a question by 600, 800, or
-1,000 for the store economy.
+1,000 for the store economy. One correct answer is worth exactly one point.
 
 Store Points must not depend on:
 
@@ -139,35 +147,38 @@ if the play is incomplete, invalid, or accuracy is below 40%:
   Store Points = 0
 
 otherwise:
-  units = min(valid learning units, 30)
+  correct  = correct learning units
   accuracy = correct learning units / total valid learning units
 
-  performance = round(60 * accuracy * units / 30)
+  performance = correct          (one point per correct answer)
   completion_bonus = 0
   quality_bonus = 0
 
-  Store Points = min(60, performance)
+  Store Points = min(30, performance)
 ```
 
-This v2 formula removes the old completion and quality bonuses. The result is
-more accuracy-based and easier to audit: a perfect short play earns the short
-play's proportional value, while a perfect 30-question play can reach the full
-60-point ceiling.
+This v3 formula removes the ×60/30 multiplier of v2 and the completion/quality
+bonuses. The result is the simplest possible and the hardest to inflate: the
+points a learner earns equal the number of questions they got right, with a 40%
+accuracy floor and a 30-point per-play ceiling. A short play earns its small
+exact value; a perfect 30-question play earns the full 30.
 
 ### 3.3 Result table
 
+Points = round(eligible units × accuracy), one per correct answer, capped at 30.
+
 | Eligible units | 40% accuracy | 60% accuracy | 80% accuracy | 100% accuracy |
 |---:|---:|---:|---:|---:|
-| 5 | 4 | 6 | 8 | 10 |
-| 6 | 5 | 7 | 10 | 12 |
-| 8 | 6 | 10 | 13 | 16 |
-| 9 | 7 | 11 | 14 | 18 |
-| 10 | 8 | 12 | 16 | 20 |
-| 15 | 12 | 18 | 24 | 30 |
-| 20 | 16 | 24 | 32 | 40 |
-| 30 or more | 24 | 36 | 48 | 60 |
+| 5 | 2 | 3 | 4 | 5 |
+| 6 | 2 | 4 | 5 | 6 |
+| 8 | 3 | 5 | 6 | 8 |
+| 9 | 4 | 5 | 7 | 9 |
+| 10 | 4 | 6 | 8 | 10 |
+| 15 | 6 | 9 | 12 | 15 |
+| 20 | 8 | 12 | 16 | 20 |
+| 30 or more | 12 | 18 | 24 | 30 |
 
-This table keeps one play below or equal to 60 points while recognizing that a
+This table keeps one play below or equal to 30 points while recognizing that a
 five-question activity requires less effort than a 30-question activity.
 
 ## 4. Worked examples
@@ -177,13 +188,11 @@ five-question activity requires less effort than a 30-question activity.
 Dara answers 4 of 5 correctly:
 
 ```text
-units = 5
-accuracy = 4 / 5 = 80%
-performance = round(60 * 0.80 * 5 / 30) = 8
-completion bonus = 0
-quality bonus = 0
+correct = 4
+accuracy = 4 / 5 = 80%   (>= 40% floor)
+performance = 4          (one point per correct)
 
-Store Points = 8
+Store Points = 4
 ```
 
 ### Ten-question Quick Quiz
@@ -191,13 +200,11 @@ Store Points = 8
 Dara answers 8 of 10 correctly:
 
 ```text
-units = 10
+correct = 8
 accuracy = 8 / 10 = 80%
-performance = round(60 * 0.80 * 10 / 30) = 16
-completion bonus = 0
-quality bonus = 0
+performance = 8
 
-Store Points = 16
+Store Points = 8
 ```
 
 ### Twenty-question Mixed Practice
@@ -205,24 +212,23 @@ Store Points = 16
 Dara answers 16 of 20 correctly:
 
 ```text
-reward units = min(20, 30) = 20
+correct = 16
 accuracy = 16 / 20 = 80%
-performance = round(60 * 0.80 * 20 / 30) = 32
-completion bonus = 0
-quality bonus = 0
+performance = 16
 
-Store Points = 32
+Store Points = 16
 ```
 
 The longer activity gives stronger mastery evidence, but one play still cannot
-inflate the store economy beyond 60 points.
+inflate the store economy beyond 30 points.
 
 ### Unsuccessful play
 
 Dara answers 3 of 10 correctly:
 
 ```text
-accuracy = 30%
+correct = 3
+accuracy = 3 / 10 = 30%
 accuracy is below the 40% Store Points threshold
 
 Store Points = 0
@@ -238,24 +244,25 @@ The estimates use each mode's current default activity size and approximately
 
 | Game type | Mode | Default validated units | Estimated Store Points | Perfect-play maximum |
 |---|---|---:|---:|---:|
-| Quick Quiz | Solo or live | 10 questions | 16 | 20 |
-| Speed Round | Solo or live | 20 questions | 32 | 40 |
-| Sign Challenge | Solo or live | 15 questions | 24 | 30 |
-| Mixed Practice | Solo or live | 20 questions | 32 | 40 |
-| Daily Challenge | Solo | 5 questions | 8 | 10 |
-| Who Goes First? | Solo | 5 scenes | 8 | 10 |
-| Traffic Commander | Solo | 5 normalized scenes | 8 | 10 |
-| Sign Match | Solo | 6 sign pairs | 10 | 12 |
-| Catch the Sign | Solo | 8 signs | 13 | 16 |
-| Traffic Light Hero | Solo | 9 decisions | 14 | 18 |
-| Safe Street Smart | Solo | 10 questions | 16 | 20 |
-| Road Safety Adventure | Solo | 8 decisions | 13 | 16 |
-| Connect the Signs | Solo | 20 pairs | 32 | 40 |
-| Matching Sign Word Bank | Solo | 16 placements | 26 | 32 |
-| Click the Sign | Solo | 12 worksheet rows | 19 | 24 |
+| Quick Quiz | Solo or live | 10 questions | 8 | 10 |
+| Speed Round | Solo or live | 20 questions | 16 | 20 |
+| Sign Challenge | Solo or live | 15 questions | 12 | 15 |
+| Mixed Practice | Solo or live | 20 questions | 16 | 20 |
+| Daily Challenge | Solo | 5 questions | 4 | 5 |
+| Who Goes First? | Solo | 5 scenes | 4 | 5 |
+| Traffic Commander | Solo | 5 normalized scenes | 4 | 5 |
+| Sign Match | Solo | 6 sign pairs | 5 | 6 |
+| Catch the Sign | Solo | 8 signs | 6 | 8 |
+| Traffic Light Hero | Solo | 9 decisions | 7 | 9 |
+| Safe Street Smart | Solo | 10 questions | 8 | 10 |
+| Road Safety Adventure | Solo | 8 decisions | 6 | 8 |
+| Connect the Signs | Solo | 20 pairs | 16 | 20 |
+| Matching Sign Word Bank | Solo | 16 placements | 13 | 16 |
+| Click the Sign | Solo | 12 worksheet rows | 10 | 12 |
 
-Every listed game is eligible for Store Points. Live and solo use the same
-formula. A live game does not pay more merely because a teacher hosted it.
+The same formula applies whenever a game is played **live**; the figures above
+show what each format pays at its default size. Played solo, these same games
+build mastery but pay **no** spendable Store Points (live-only economy).
 
 ## 6. Replay and anti-farming rules
 
@@ -270,63 +277,72 @@ Recommended rules:
 4. A replay can award only the positive difference.
 5. Example: first result is 30 points, replay result is 45 points, award only
    `+15`.
-6. Replaying after a 60-point result awards no additional Store Points that day.
-7. Recommended initial weekly Store Points cap: 300.
+6. Replaying after a 30-point (max) result awards no additional Store Points that day.
+7. Recommended initial weekly Store Points cap: 150.
 8. Plays after the cap still update mastery, history, streaks, and badges.
 9. A reversed or fraudulent attempt creates a negative ledger event.
 10. All award writes require a unique idempotency key.
 
-A 300-point weekly cap represents approximately:
+A 150-point weekly cap (≈ 150 correct answers per week) represents approximately:
 
-- five perfect standard plays; or
-- six successful standard plays at about 80%; or
-- ten successful five-question activities.
+- seven or eight perfect 20-question plays; or
+- about ten successful 20-question plays at ~80%; or
+- roughly 21 correct answers per day across the week.
 
 This cap should be reviewed after a four-week pilot using actual completion and
 redemption data.
 
 ## 7. Store prices
 
-### 7.1 Production data calibration
+### 7.1 Calibration for the v3 scale
 
-Production snapshot on June 15, 2026:
-
-```text
-Average recorded legacy play: 13,713 points
-Maximum recorded legacy play: 30,498 points
-Target average small-number play: about 45 points
-```
-
-Logical migration ratio:
+Under v3 (one point per correct answer) a typical successful play is worth about
+**8-16 points** and the weekly cap is **150**. Prices are therefore re-derived
+directly from the new earning rate rather than from the old legacy ratio, so the
+store stays meaningful: the cheapest item is about a week of play and the anchor
+trophy is a multi-month goal.
 
 ```text
-13,713 / 45 is approximately 305
-Use a simple conversion ratio of 300 legacy points = 1 Store Point
+Typical successful play:        ~8-16 Store Points
+Weekly cap (hard ceiling):       150 Store Points
+First-goal item target:          ~1 week of play   (Eraser ≈ 80)
+Anchor / trophy item target:     ~2-3 months        (Planner ≈ 2,500)
 ```
 
-This ratio preserves approximately the existing effort required for rewards
-while removing three unnecessary digits.
+### 7.2 Reward prices (small premium scale)
 
-### 7.2 Recommended converted prices
+Tiny scarce numbers, so a few points already buys something and the top trophy
+stays aspirational. Live-only earning keeps supply low.
 
-| Store item | Current legacy price | Recommended Store Points | Estimated successful plays at 45 points |
-|---|---:|---:|---:|
-| Eraser | 75,000 | 250 | 6 |
-| Pencil | 120,000 | 400 | 9 |
-| Pen | 190,000 | 650 | 15 |
-| Ruler | 280,000 | 950 | 22 |
-| Highlighter | 420,000 | 1,400 | 32 |
-| Notes | 600,000 | 2,000 | 45 |
-| Notebook | 880,000 | 3,000 | 67 |
-| Kit | 1,350,000 | 4,500 | 100 |
-| Planner | 2,000,000 | 6,500 | 145 |
+| Store item | Store Points | Rarity |
+|---|---:|---|
+| Eraser | 3 | Common |
+| Pencil | 5 | Common |
+| Pen | 8 | Rare |
+| Ruler | 11 | Rare |
+| Highlighter | 14 | Epic |
+| Notes | 17 | Epic |
+| Notebook | 20 | Legendary |
+| Kit | 24 | Legendary |
+| Planner | 30 | Mythic |
 
-Prices are rounded for readability. Do not use manipulative prices such as 399
-or 999 merely to make an item appear cheaper.
+### 7.3 Rank tiers (lifetime earned)
 
-Because the new proposal allows solo games to earn Store Points, the weekly cap
-is important. Without a cap, reward supply would increase significantly compared
-with the current live-only claim system.
+Tier thresholds use **lifetime-earned** Store Points, so spending in the store
+never lowers a learner's rank. Small premium scale:
+
+| Tier | Lifetime points |
+|---|---:|
+| Rookie | 0 |
+| Rising | 5 |
+| Gold | 12 |
+| Platinum | 20 |
+| Diamond | 30 |
+| Mythic | 45 |
+
+Only live games earn spendable points, which naturally limits supply; the weekly
+cap is a secondary anti-farming backstop. On the small premium scale it rarely
+binds (the whole tier ladder tops out at 45 lifetime points).
 
 ## 8. Balance and level behavior
 
@@ -426,9 +442,9 @@ Use a small, direct result:
 
 ```text
 Accuracy: 8 / 10 (80%)
-Store Points earned: +50
-Store balance: 420
-Next reward: Pencil - 400 points
+Store Points earned: +8
+Store balance: 96
+Next reward: Pencil - 150 points
 Mastery: Traffic Signs 64% to 69%
 ```
 
@@ -451,7 +467,7 @@ The Store Points system is ready when:
 - only `role = 'student'` accounts earn or store Store Points, enforced
   server-side; non-student plays create zero economy events;
 - every current game type can create a server-verified award;
-- one play never awards more than 60;
+- one play never awards more than 30 (one point per correct answer);
 - speed and streak do not change Store Points;
 - activities are normalized into valid learning units;
 - accuracy below 40% awards zero spendable points;

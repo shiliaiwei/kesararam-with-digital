@@ -2,9 +2,10 @@
  * Store Points award path — spec docs/store-points-economy.md (§1.1, §6).
  *
  * The SINGLE writer for earned Store Points. Enforces, server-side:
+ *   - LIVE games only — solo/practice plays write NO spendable event (source guard)
  *   - students only (role = 'student'); any other role writes NO event
  *   - daily best-difference (a replay only earns the positive improvement)
- *   - weekly cap (default 300)
+ *   - weekly cap (default 150)
  *   - idempotency (a unique key per attempt; retries never double-award)
  *
  * Gated behind STORE_POINTS_ENABLED so it stays inert until cutover. No speed,
@@ -19,11 +20,17 @@ import { getStoreBalances } from "./balance";
 import { windowStartDate, todayInPhnomPenh } from "@/lib/gamekit/dates";
 
 export const STORE_POINTS_ENABLED = process.env.STORE_POINTS_ENABLED === "true";
-export const STORE_POINTS_WEEKLY_CAP = 300;
+// v3 scale (1 pt / correct answer): ~150 correct answers/week is a healthy ceiling
+// that blocks grinding a tier in days without binding ordinary daily play.
+export const STORE_POINTS_WEEKLY_CAP = 150;
+
+/** Where the play came from. Only "live" creates spendable Store Points. */
+export type AwardSource = "live" | "solo";
 
 export type AwardReason =
   | "ok"
   | "disabled"
+  | "not_live"
   | "not_student"
   | "no_points"
   | "duplicate";
@@ -31,7 +38,7 @@ export type AwardReason =
 export interface AwardResult {
   awarded: boolean;
   reason: AwardReason;
-  grossPoints: number; // what this play was worth (0..60), pre daily-diff / cap
+  grossPoints: number; // what this play was worth (0..30), pre daily-diff / cap
   delta: number; // Store Points actually credited
   accuracy: number;
   storeBalanceAfter?: number;
@@ -61,6 +68,7 @@ export function resolveDelta(opts: {
 export async function awardStorePoints(ctx: {
   userId: number;
   gameType: string;
+  source: AwardSource;
   attemptId?: string | null;
   totalUnits: number;
   correctUnits: number;
@@ -70,6 +78,12 @@ export async function awardStorePoints(ctx: {
 }): Promise<AwardResult> {
   if (!STORE_POINTS_ENABLED) {
     return { awarded: false, reason: "disabled", grossPoints: 0, delta: 0, accuracy: 0 };
+  }
+
+  // 0. Live games only. Solo/practice plays record mastery/history elsewhere but
+  //    never create spendable Store Points, so only live score can claim rewards.
+  if (ctx.source !== "live") {
+    return { awarded: false, reason: "not_live", grossPoints: 0, delta: 0, accuracy: 0 };
   }
 
   // 1. Students only — decided from the stored role, never the client.
@@ -97,7 +111,7 @@ export async function awardStorePoints(ctx: {
   // 3. Today's best gross for this game type + this week's earned total.
   const [agg] = await db
     .select({
-      todayBest: sql<number>`COALESCE(MAX(CASE WHEN ${storePointEvents.playDate} = ${today} AND ${storePointEvents.gameType} = ${ctx.gameType} AND ${storePointEvents.reason} = 'play' THEN LEAST(60, ${storePointEvents.performancePoints} + ${storePointEvents.completionBonus} + ${storePointEvents.qualityBonus}) ELSE 0 END), 0)::int`,
+      todayBest: sql<number>`COALESCE(MAX(CASE WHEN ${storePointEvents.playDate} = ${today} AND ${storePointEvents.gameType} = ${ctx.gameType} AND ${storePointEvents.reason} = 'play' THEN LEAST(30, ${storePointEvents.performancePoints} + ${storePointEvents.completionBonus} + ${storePointEvents.qualityBonus}) ELSE 0 END), 0)::int`,
       weeklyEarned: sql<number>`COALESCE(SUM(CASE WHEN ${storePointEvents.delta} > 0 AND ${storePointEvents.playDate} >= ${weekStart} THEN ${storePointEvents.delta} ELSE 0 END), 0)::int`,
     })
     .from(storePointEvents)

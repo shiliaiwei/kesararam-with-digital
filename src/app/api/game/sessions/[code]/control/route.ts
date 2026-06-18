@@ -92,6 +92,7 @@ async function syncScoresToUserProfiles(sessionId: number, gameMode: string, tot
           await awardStorePoints({
             userId: participant.userId,
             gameType: gameMode,
+            source: "live",
             attemptId: `live:${sessionId}`,
             correctUnits: participant.correctAnswers,
             totalUnits,
