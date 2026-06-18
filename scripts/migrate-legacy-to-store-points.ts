@@ -23,16 +23,16 @@ const CONFIRM = process.argv.includes("--confirm");
 const MIGRATION_PLAY_DATE = "2026-06-01"; // before the current week → ignored by weekly cap
 const SCORE_VERSION = 2;
 
-// Ordered premium award table (username → Store Points). −2 per rank.
+// Ordered premium award table (username → Store Points). −20 per rank.
 const PREMIUM_AWARDS: { username: string; pt: number }[] = [
-  { username: "kanika", pt: 25 },
-  { username: "sunrunamaragg453", pt: 23 },
-  { username: "danaiyin57527", pt: 21 },
-  { username: "tbeitbc287", pt: 19 },
-  { username: "linmany2025289", pt: 17 },
-  { username: "digitalkesararam566", pt: 15 },
-  { username: "rozaneun104", pt: 13 },
-  { username: "yinminhchou", pt: 11 },
+  { username: "kanika", pt: 250 },
+  { username: "sunrunamaragg453", pt: 230 },
+  { username: "danaiyin57527", pt: 210 },
+  { username: "tbeitbc287", pt: 190 },
+  { username: "linmany2025289", pt: 170 },
+  { username: "digitalkesararam566", pt: 150 },
+  { username: "rozaneun104", pt: 130 },
+  { username: "yinminhchou", pt: 110 },
 ];
 
 async function main() {
@@ -50,9 +50,50 @@ async function main() {
   for (const r of seed) console.log(`  #${r.id} ${r.username}: ${r.pt} pt`);
   console.log(`Total: ${total} pt across ${seed.length} students\n`);
 
+  // Idempotency check: see if the migration has already run.
+  const [alreadyMigrated] = await sql`
+    SELECT COUNT(*)::int n 
+    FROM store_point_events 
+    WHERE reason = 'legacy_migration' AND delta = 250
+  `;
+  const isMigrated = alreadyMigrated && alreadyMigrated.n > 0;
+
+  if (isMigrated) {
+    console.log(">> Database has already been migrated to 10x scores. Skipping users, ledger, and event scaling.");
+  }
+
   if (!CONFIRM) {
     console.log("Dry run only — no rows written. Re-run with -- --confirm to apply.");
     process.exit(0);
+  }
+
+  if (!isMigrated) {
+    console.log("Scaling all student lifetime_points and highest_score in 'users' table by 10x...");
+    const userUpdate = await sql`
+      UPDATE users 
+      SET lifetime_points = lifetime_points * 10,
+          highest_score = highest_score * 10
+      WHERE role = 'student'
+      RETURNING id
+    `;
+    console.log(`Updated ${userUpdate.length} students' scores.`);
+
+    console.log("Scaling all points in 'points_ledger' table by 10x...");
+    const ledgerUpdate = await sql`
+      UPDATE points_ledger 
+      SET points = points * 10
+      RETURNING id
+    `;
+    console.log(`Updated ${ledgerUpdate.length} points_ledger rows.`);
+
+    console.log("Scaling all deltas and performance_points in 'store_point_events' table by 10x...");
+    const eventUpdate = await sql`
+      UPDATE store_point_events 
+      SET delta = delta * 10,
+          performance_points = performance_points * 10
+      RETURNING id
+    `;
+    console.log(`Updated ${eventUpdate.length} store_point_events rows.`);
   }
 
   // Replace any prior legacy_migration seed (makes the script re-runnable).

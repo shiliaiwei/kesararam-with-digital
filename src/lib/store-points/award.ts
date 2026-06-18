@@ -20,9 +20,9 @@ import { getStoreBalances } from "./balance";
 import { windowStartDate, todayInPhnomPenh } from "@/lib/gamekit/dates";
 
 export const STORE_POINTS_ENABLED = process.env.STORE_POINTS_ENABLED === "true";
-// v3 scale (1 pt / correct answer): ~150 correct answers/week is a healthy ceiling
+// v3 scale (1 pt / correct answer * 10): ~150 correct answers/week is a healthy ceiling
 // that blocks grinding a tier in days without binding ordinary daily play.
-export const STORE_POINTS_WEEKLY_CAP = 150;
+export const STORE_POINTS_WEEKLY_CAP = 1500;
 
 /** Where the play came from. Only "live" creates spendable Store Points. */
 export type AwardSource = "live" | "solo";

@@ -207,7 +207,7 @@ export async function GET(req: NextRequest) {
         })
         .from(users)
         .where(sql`${publicFilter}${provinceFilter}`)
-        .orderBy(desc(users.lifetimePoints), desc(users.highestScore))
+        .orderBy(desc(users.lifetimePoints), desc(users.highestScore), desc(users.updatedAt))
         .limit(limit)
         .offset(offset);
     } else {
@@ -277,7 +277,7 @@ export async function GET(req: NextRequest) {
           users.isSectionPublic
         )
         .having(sql`COALESCE(SUM(${pointsLedger.points}), 0) > 0`)
-        .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`))
+        .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`), desc(users.highestScore), desc(users.updatedAt))
         .limit(limit)
         .offset(offset);
     }

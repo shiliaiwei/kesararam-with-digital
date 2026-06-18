@@ -14,6 +14,7 @@
  */
 
 import { getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS } from "@/lib/rank-utils";
+import { PremiumRankedAvatar } from "./premium-ranked-avatar";
 import {
     Sprout,
     PartyPopper,
@@ -253,109 +254,20 @@ export function RankedAvatarRing({
     children: React.ReactNode;
     index?: number;
 }) {
-    const tier = getRank(lifetimePoints);
-
+    const isSmall = size < 50;
     return (
-        <>
-            <style>{RANK_KEYFRAMES}</style>
-            <div
-                className="rank-splash relative inline-flex flex-shrink-0"
-                style={{
-                    padding: 3,
-                    background: "#000",
-                    borderRadius: "50%",
-                    filter: "drop-shadow(2px 2px 0 #000)",
-                    animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both",
-                    animationDelay: `${Math.max(0, index) * 0.06}s`,
-                }}
-            >
-                {/* Tech/Magnetic HUD Ring Overlay */}
-                <svg
-                    className="tech-hud-ring pointer-events-none absolute"
-                    style={{
-                        width: size + 32,
-                        height: size + 32,
-                        top: "50%",
-                        left: "50%",
-                        marginTop: -Math.round((size + 32) / 2),
-                        marginLeft: -Math.round((size + 32) / 2),
-                        animation: "techRingRotate 32s linear infinite",
-                    }}
-                    viewBox="0 0 100 100"
-                >
-                    {/* Outer helper solid ring */}
-                    <circle
-                        cx="50"
-                        cy="50"
-                        r="45"
-                        fill="none"
-                        stroke={tier.accent}
-                        strokeWidth="0.6"
-                        className="opacity-30"
-                    />
-                    {/* Main dashed tactical segments */}
-                    <circle
-                        cx="50"
-                        cy="50"
-                        r="45"
-                        fill="none"
-                        stroke={tier.accent}
-                        strokeWidth="2"
-                        strokeDasharray="80 40"
-                        pathLength="360"
-                        className="opacity-95"
-                        style={{
-                            animation: "magneticSweep 24s linear infinite",
-                        }}
-                    />
-                    {/* Inner tactical tick notches */}
-                    <circle
-                        cx="50"
-                        cy="50"
-                        r="41"
-                        fill="none"
-                        stroke={tier.glow}
-                        strokeWidth="1.2"
-                        strokeDasharray="2 28"
-                        pathLength="360"
-                        className="opacity-80"
-                        style={{
-                            animation: "magneticSweepReverse 30s linear infinite, electricSpark 4s ease-in-out infinite alternate",
-                        }}
-                    />
-                    {/* Center thin helper dashed ring */}
-                    <circle
-                        cx="50"
-                        cy="50"
-                        r="38"
-                        fill="none"
-                        stroke={tier.accent}
-                        strokeWidth="0.5"
-                        strokeDasharray="4 8"
-                        pathLength="360"
-                        className="opacity-40"
-                    />
-                </svg>
-                <div
-                    style={{
-                        padding: 4,
-                        background: tier.accent,
-                        borderRadius: "50%",
-                    }}
-                >
-                    <div
-                        className="overflow-hidden bg-white"
-                        style={{
-                            width: size,
-                            height: size,
-                            borderRadius: "50%",
-                        }}
-                    >
-                        {children}
-                    </div>
-                </div>
-            </div>
-        </>
+        <PremiumRankedAvatar
+            lifetimePoints={lifetimePoints}
+            size={size}
+            showRankBadge={!isSmall}
+            showDivisionBadge={true}
+            showPointsBadge={size >= 80}
+            showSafetyBadge={size >= 80}
+            interactive={size >= 60}
+            framePadding={isSmall ? 10 : 24}
+        >
+            {children}
+        </PremiumRankedAvatar>
     );
 }
 

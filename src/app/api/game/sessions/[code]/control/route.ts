@@ -65,12 +65,13 @@ async function syncScoresToUserProfiles(sessionId: number, gameMode: string, tot
     // cannot inflate accuracy or reach a higher per-play cap.
     // Update each user's profile with their game score
     for (const participant of participants) {
+      const scaledScore = participant.totalScore * 10;
       await db
         .update(users)
         .set({
           totalGamesPlayed: sql`${users.totalGamesPlayed} + 1`,
-          lifetimePoints: sql`${users.lifetimePoints} + ${participant.totalScore}`,
-          highestScore: sql`GREATEST(${users.highestScore}, ${participant.totalScore})`,
+          lifetimePoints: sql`${users.lifetimePoints} + ${scaledScore}`,
+          highestScore: sql`GREATEST(${users.highestScore}, ${scaledScore})`,
           updatedAt: new Date(),
         })
         .where(eq(users.id, participant.userId));
@@ -81,7 +82,7 @@ async function syncScoresToUserProfiles(sessionId: number, gameMode: string, tot
           userId: participant.userId,
           source: `live-session:${sessionId}`,
           gameType: gameMode,
-          points: participant.totalScore,
+          points: scaledScore,
         });
       }
 

@@ -1400,6 +1400,9 @@ export default function LeaderboardPage() {
                             )}
                           </div>
                           <div className="flex items-center gap-1 mt-0.5 flex-wrap">
+                            <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5">
+                              {getRank(user.lifetimePoints).label}
+                            </span>
                             {user.province && (
                               <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
                                 <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
