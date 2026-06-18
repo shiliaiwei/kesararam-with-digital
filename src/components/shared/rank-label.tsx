@@ -263,25 +263,11 @@ export function RankedAvatarRing({
     const rank = getRank(pts);
     const isSmall = size < 50;
 
-    if (rank.id === "mythic") {
-        return (
-            <MythicAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
-                {children}
-            </MythicAvatarBorder>
-        );
-    }
     if (rank.id === "diamond") {
         return (
             <DiamondAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
                 {children}
             </DiamondAvatarBorder>
-        );
-    }
-    if (rank.id === "platinum") {
-        return (
-            <PlatinumAvatarBorder score={pts} size={size} alt="User avatar" animated={true}>
-                {children}
-            </PlatinumAvatarBorder>
         );
     }
     if (rank.id === "gold") {

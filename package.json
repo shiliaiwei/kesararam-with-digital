@@ -96,6 +96,7 @@
     "eslint": "^9",
     "eslint-config-next": "^15.0.3",
     "fast-check": "^3.23.2",
+    "jimp": "^1.6.1",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5",

@@ -70,17 +70,6 @@ export function DivisionBadge({ division }: { division: Division }) {
     );
 }
 
-/** Right-edge traffic-light capsule — the only animated element. */
-export function TrafficLightBadge() {
-    return (
-        <div className="road-traffic" aria-hidden="true">
-            <span className="road-traffic__light road-traffic__light--red" />
-            <span className="road-traffic__light road-traffic__light--yellow" />
-            <span className="road-traffic__light road-traffic__light--green" />
-        </div>
-    );
-}
-
 /** Bottom hexagonal nameplate with the rank label. */
 export function RankLabel({ label }: { label: string }) {
     return <div className="road-avatar__nameplate">{label}</div>;
@@ -190,8 +179,6 @@ export function RoadAvatarBorder({
                 <div className="road-avatar__chevron" aria-hidden="true">
                     <ChevronsRight size={Math.round(24 * scale)} strokeWidth={3.5} />
                 </div>
-
-                <TrafficLightBadge />
                 {displayRankBadge && <RankLabel label={label} />}
             </div>
         </div>

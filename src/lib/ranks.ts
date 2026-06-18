@@ -24,9 +24,7 @@ export type RankName =
     | "Rookie"
     | "Rising"
     | "Gold"
-    | "Platinum"
-    | "Diamond"
-    | "Mythic";
+    | "Diamond";
 
 /** Roman-numeral divisions inside a rank. IV = lowest, I = highest before rank-up. */
 export type Division = "IV" | "III" | "II" | "I";
@@ -188,22 +186,6 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         description: "Knows the warning signs and reads the road with care.",
     },
     {
-        id: "platinum",
-        name: "Platinum",
-        label: "PLATINUM",
-        minPoints: 3500,
-        displayPoints: "3,500 PTS",
-        primaryColor: "#3b82f6",
-        secondaryColor: "#ffffff",
-        accentColor: "#1d4ed8",
-        textColor: "#ffffff",
-        borderClass: "rank-frame--platinum",
-        animationClass: "rank-anim-platinum",
-        icon: "info",
-        safetyTheme: "Official road knowledge",
-        description: "Solid, official road-rule knowledge. Reads every sign.",
-    },
-    {
         id: "diamond",
         name: "Diamond",
         label: "DIAMOND",
@@ -218,25 +200,8 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         icon: "gem",
         safetyTheme: "Expert road-safety player",
         description: "An expert player — sharp, consistent, road-safety smart.",
-    },
-    {
-        id: "mythic",
-        name: "Mythic",
-        label: "MYTHIC",
-        minPoints: 12000,
-        displayPoints: "12,000 PTS",
-        primaryColor: "#a855f7",
-        secondaryColor: "#eab308",
-        accentColor: "#c084fc",
-        textColor: "#ffffff",
-        borderClass: "rank-frame--mythic",
-        animationClass: "rank-anim-mythic",
-        icon: "crown",
-        safetyTheme: "Elite road-safety champion",
-        description: "The highest KWD road-safety rank — the elite champion.",
-        // Mythic divisions are open-ended and NOT even quarters:
-        // IV 12,000+ · III 15,000+ · II 20,000+ · I 30,000+
-        divisionThresholds: [12000, 15000, 20000, 30000],
+        // Diamond divisions are now open-ended as the highest rank:
+        divisionThresholds: [7000, 10000, 15000, 25000],
     },
 ] as const;
 

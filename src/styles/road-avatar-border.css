@@ -197,15 +197,32 @@
     z-index: 4;
     border-bottom-right-radius: calc(26px * var(--s));
     overflow: hidden;
-    background: repeating-linear-gradient(
-        -45deg,
-        var(--accent) 0,
-        var(--accent) calc(7px * var(--s)),
-        #0a0a0a calc(7px * var(--s)),
-        #0a0a0a calc(14px * var(--s))
+    background: linear-gradient(
+        135deg,
+        var(--accent) 25%,
+        #0a0a0a 25%,
+        #0a0a0a 50%,
+        var(--accent) 50%,
+        var(--accent) 75%,
+        #0a0a0a 75%,
+        #0a0a0a 100%
     );
+    background-size: calc(28px * var(--s)) calc(28px * var(--s));
     clip-path: polygon(100% 0, 100% 100%, 0 100%);
     opacity: 0.95;
+}
+
+.road-avatar--animated .road-avatar__caution {
+    animation: roadCautionScroll 1.2s linear infinite;
+}
+
+@keyframes roadCautionScroll {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: calc(28px * var(--s)) 0;
+    }
 }
 
 /* ── Bottom hexagonal nameplate ─────────────────────────────────────────── */
@@ -246,72 +263,17 @@
 .road-avatar__nameplate::before { left: calc(7px * var(--s)); }
 .road-avatar__nameplate::after { right: calc(7px * var(--s)); }
 
-/* ── Right-edge traffic light (the ONLY animated element) ───────────────── */
-.road-traffic {
-    position: absolute;
-    right: calc(-13px * var(--s));
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(6px * var(--s));
-    width: calc(28px * var(--s));
-    padding: calc(7px * var(--s)) 0;
-    border-radius: calc(14px * var(--s));
-    background: linear-gradient(180deg, #20262e 0%, #0a0d12 100%);
-    border: calc(2px * var(--s)) solid #000;
-    box-shadow:
-        inset 0 calc(1px * var(--s)) calc(2px * var(--s)) rgba(255, 255, 255, 0.15),
-        0 calc(3px * var(--s)) calc(7px * var(--s)) rgba(0, 0, 0, 0.6);
+/* Static / reduced-motion: stop scrolling */
+.road-avatar--static .road-avatar__caution {
+    animation: none !important;
 }
-.road-traffic__light {
-    width: calc(15px * var(--s));
-    height: calc(15px * var(--s));
-    border-radius: 50%;
-    border: calc(1.5px * var(--s)) solid rgba(0, 0, 0, 0.6);
-    opacity: 0.15;
-    transform: scale(1);
-}
-.road-traffic__light--red { background: #ef4444; --glow: rgba(239, 68, 68, 0.9); }
-.road-traffic__light--yellow { background: #fbbf24; --glow: rgba(251, 191, 36, 0.9); }
-.road-traffic__light--green { background: #22c55e; --glow: rgba(34, 197, 94, 0.9); }
-
-/* Animated: 15s loop, 5s per light, hard switch. */
-.road-avatar--animated .road-traffic__light--red { animation: roadTLRed 15s linear infinite; }
-.road-avatar--animated .road-traffic__light--yellow { animation: roadTLYellow 15s linear infinite; }
-.road-avatar--animated .road-traffic__light--green { animation: roadTLGreen 15s linear infinite; }
-
-@keyframes roadTLRed {
-    0% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
-    33.33% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
-    33.34% { opacity: 0.15; transform: scale(1); box-shadow: none; }
-    100% { opacity: 0.15; transform: scale(1); box-shadow: none; }
-}
-@keyframes roadTLYellow {
-    0% { opacity: 0.15; transform: scale(1); box-shadow: none; }
-    33.33% { opacity: 0.15; transform: scale(1); box-shadow: none; }
-    33.34% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
-    66.66% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
-    66.67% { opacity: 0.15; transform: scale(1); box-shadow: none; }
-    100% { opacity: 0.15; transform: scale(1); box-shadow: none; }
-}
-@keyframes roadTLGreen {
-    0% { opacity: 0.15; transform: scale(1); box-shadow: none; }
-    66.66% { opacity: 0.15; transform: scale(1); box-shadow: none; }
-    66.67% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
-    100% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
-}
-
-/* Static / reduced-motion: no loop, red stays on, others dimmed. */
-.road-avatar--static .road-traffic__light { animation: none !important; opacity: 0.15; transform: none; box-shadow: none; }
-.road-avatar--static .road-traffic__light--red { opacity: 1; box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
 
 @media (prefers-reduced-motion: reduce) {
-    .road-avatar .road-traffic__light { opacity: 0.15 !important; transform: none !important; box-shadow: none !important; }
-    .road-avatar .road-traffic__light--red { opacity: 1 !important; box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow) !important; }
+    .road-avatar .road-avatar__caution {
+        animation: none !important;
+    }
 }
+
 
 /* ════════════════════════════════════════════════════════════════════════════
    KWD Gold Avatar Border — premium skeuomorphic frame
@@ -449,14 +411,13 @@
     50% { opacity: 0.9; box-shadow: 0 0 calc(9px * var(--s)) rgba(234, 179, 8, 0.9); }
 }
 
-/* Center photo window */
 .gold-avatar__photo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 43.16%;
-    height: 43.16%;
+    width: 40.23%;
+    height: 40.23%;
     border-radius: 50%;
     overflow: hidden;
     background: #e4e4e7;
@@ -487,6 +448,61 @@
 .gold-avatar__custom-photo > * {
     width: 100% !important;
     height: 100% !important;
+}
+
+/* Animated caution tape overlay at the bottom-right corner */
+.gold-avatar__caution {
+    position: absolute;
+    right: calc(14px * var(--s));
+    bottom: calc(14px * var(--s));
+    width: calc(44px * var(--s));
+    height: calc(44px * var(--s));
+    z-index: 3;
+    border-bottom-right-radius: calc(12px * var(--s));
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        #eab308 25%,
+        #0a0a0a 25%,
+        #0a0a0a 50%,
+        #eab308 50%,
+        #eab308 75%,
+        #0a0a0a 75%,
+        #0a0a0a 100%
+    );
+    background-size: calc(28px * var(--s)) calc(28px * var(--s));
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    opacity: 0.95;
+    pointer-events: none;
+}
+
+.gold-avatar--animated .gold-avatar__caution {
+    animation: roadCautionScroll 1.2s linear infinite;
+}
+
+/* Pulsing Red light in the traffic light capsule */
+.gold-avatar__red-light {
+    position: absolute;
+    right: calc(12px * var(--s));
+    top: calc(58px * var(--s));
+    width: calc(14px * var(--s));
+    height: calc(14px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.95) 0%, rgba(239, 68, 68, 0.4) 40%, rgba(239, 68, 68, 0) 70%);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.9;
+    box-shadow: 0 0 calc(6px * var(--s)) rgba(239, 68, 68, 0.8),
+                inset 0 0 calc(2px * var(--s)) rgba(255, 255, 255, 0.5);
+}
+
+.gold-avatar--animated .gold-avatar__red-light {
+    animation: goldRedLightPulse 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes goldRedLightPulse {
+    0% { opacity: 0.5; transform: scale(0.9); box-shadow: 0 0 calc(3px * var(--s)) rgba(239, 68, 68, 0.5); }
+    100% { opacity: 1; transform: scale(1.25); box-shadow: 0 0 calc(10px * var(--s)) rgba(239, 68, 68, 0.95); }
 }
 
 /* ════════════════════════════════════════════════════════════════════════════

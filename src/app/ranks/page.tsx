@@ -49,13 +49,10 @@ const CHECKLIST: { score: number; rank: RankName; division: Division; note?: str
     { score: 250, rank: "Rookie", division: "III" },
     { score: 1000, rank: "Rising", division: "IV" },
     { score: 2500, rank: "Gold", division: "IV" },
-    { score: 3500, rank: "Platinum", division: "IV" },
     { score: 7000, rank: "Diamond", division: "IV" },
-    { score: 12000, rank: "Mythic", division: "IV" },
-    { score: 15000, rank: "Mythic", division: "III" },
-    { score: 30000, rank: "Mythic", division: "I", note: "open-ended top" },
+    { score: 10000, rank: "Diamond", division: "III" },
+    { score: 25000, rank: "Diamond", division: "I", note: "open-ended top" },
     { score: 2499, rank: "Rising", division: "I", note: "just before rank up" },
-    { score: 11999, rank: "Diamond", division: "I", note: "just before rank up" },
 ];
 
 /* ── Small layout helpers (brutalist KWD) ───────────────────────────────── */

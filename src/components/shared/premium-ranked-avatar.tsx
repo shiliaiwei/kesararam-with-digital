@@ -63,10 +63,10 @@ export function PremiumRankedAvatar({
         label: rankIdOverride.toUpperCase(),
         labelKh: rankIdOverride,
         emoji: "",
-        minPoints: rankIdOverride === "rookie" ? 0 : rankIdOverride === "rising" || rankIdOverride === "debut" ? 1000 : rankIdOverride === "gold" ? 2500 : rankIdOverride === "platinum" ? 3500 : rankIdOverride === "diamond" ? 7000 : 12000,
+        minPoints: rankIdOverride === "rookie" ? 0 : rankIdOverride === "rising" || rankIdOverride === "debut" ? 1000 : rankIdOverride === "gold" ? 2500 : 7000,
         labelGradient: "",
         borderGradient: "",
-        accent: rankIdOverride === "rookie" || rankIdOverride === "gold" ? "#eab308" : rankIdOverride === "rising" || rankIdOverride === "debut" ? "#22c55e" : rankIdOverride === "platinum" ? "#3b82f6" : rankIdOverride === "diamond" ? "#06b6d4" : "#a855f7",
+        accent: rankIdOverride === "rookie" || rankIdOverride === "gold" ? "#eab308" : rankIdOverride === "rising" || rankIdOverride === "debut" ? "#22c55e" : "#06b6d4",
         glow: "#fff",
         animated: true,
         textColor: "#000",
@@ -82,13 +82,7 @@ export function PremiumRankedAvatar({
     rising: { label: "RISING", pointsLabel: "1,000 PTS", color: "#22c55e", badgeBg: "bg-green-500 text-black" },
     debut: { label: "RISING", pointsLabel: "1,000 PTS", color: "#22c55e", badgeBg: "bg-green-500 text-black" }, // legacy alias
     gold: { label: "GOLD", pointsLabel: "2,500 PTS", color: "#eab308", badgeBg: "bg-yellow-500 text-black" },
-    platinum: { label: "PLATINUM", pointsLabel: "3,500 PTS", color: "#3b82f6", badgeBg: "bg-blue-600 text-white" },
     diamond: { label: "DIAMOND", pointsLabel: "7,000 PTS", color: "#06b6d4", badgeBg: "bg-cyan-500 text-black" },
-    master: { label: "MYTHIC", pointsLabel: "12,000 PTS", color: "#a855f7", badgeBg: "bg-purple-600 text-white" }, // legacy alias
-    elite: { label: "MYTHIC", pointsLabel: "12,000 PTS", color: "#a855f7", badgeBg: "bg-purple-600 text-white" }, // legacy alias
-    legend: { label: "MYTHIC", pointsLabel: "12,000 PTS", color: "#a855f7", badgeBg: "bg-purple-600 text-white" }, // legacy alias
-    highmaster: { label: "MYTHIC", pointsLabel: "12,000 PTS", color: "#a855f7", badgeBg: "bg-purple-600 text-white" }, // legacy alias
-    mythic: { label: "MYTHIC", pointsLabel: "12,000 PTS", color: "#a855f7", badgeBg: "bg-purple-600 text-white" },
   };
 
   const currentConfig = tierConfigs[rank.id] || tierConfigs.rookie;

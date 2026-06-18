@@ -35,7 +35,7 @@ export function GoldAvatarBorder({
     children,
 }: GoldAvatarBorderProps) {
     const [imgFailed, setImgFailed] = React.useState(false);
-    const scale = typeof size === "number" ? size / 75.65 : SCALE[size];
+    const scale = typeof size === "number" ? size / 68.39 : SCALE[size];
     const showCustomAvatar = Boolean(children);
     const showImage = Boolean(src) && !imgFailed && !showCustomAvatar;
     const initial = username?.trim()?.charAt(0)?.toUpperCase() ?? "";
@@ -63,6 +63,12 @@ export function GoldAvatarBorder({
                     alt="Gold Rank Border Frame"
                     className="gold-avatar__frame-img"
                 />
+
+                {/* Animated caution tape overlay */}
+                <div className="gold-avatar__caution" aria-hidden="true" />
+
+                {/* Animated red traffic light glow */}
+                <div className="gold-avatar__red-light" aria-hidden="true" />
 
                 {/* Sweeping gold shine overlay (masked to diamond) */}
                 <div className="gold-avatar__shine" aria-hidden="true" />

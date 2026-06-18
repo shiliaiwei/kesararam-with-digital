@@ -111,7 +111,7 @@ export default async function Image({ params }: { params: Promise<{ username: st
   // Tier thresholds follow the active economy's scale.
   const TIER = STORE_POINTS_ENABLED
     ? { highmaster: 5000, legend: 3000, elite: 2000, master: 1200, diamond: 700, platinum: 350, gold: 150, rising: 50 }
-    : { highmaster: 50000, legend: 30000, elite: 20000, master: 12000, diamond: 7000, platinum: 3500, gold: 1500, rising: 500 };
+    : { diamond: 7000, gold: 2500, rising: 1000 };
 
   const name = student.displayName || student.username;
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
@@ -119,28 +119,42 @@ export default async function Image({ params }: { params: Promise<{ username: st
   // Determinate rank tier badge name
   const tierName = (() => {
     const pts = student.lifetimePoints;
-    if (pts >= TIER.highmaster) return "HIGHMASTER";
-    if (pts >= TIER.legend) return "LEGEND";
-    if (pts >= TIER.elite) return "ELITE";
-    if (pts >= TIER.master) return "MASTER";
-    if (pts >= TIER.diamond) return "DIAMOND";
-    if (pts >= TIER.platinum) return "PLATINUM";
-    if (pts >= TIER.gold) return "GOLD";
-    if (pts >= TIER.rising) return "RISING";
-    return "ROOKIE";
+    if (STORE_POINTS_ENABLED) {
+      if (pts >= (TIER as any).highmaster) return "HIGHMASTER";
+      if (pts >= (TIER as any).legend) return "LEGEND";
+      if (pts >= (TIER as any).elite) return "ELITE";
+      if (pts >= (TIER as any).master) return "MASTER";
+      if (pts >= TIER.diamond) return "DIAMOND";
+      if (pts >= (TIER as any).platinum) return "PLATINUM";
+      if (pts >= TIER.gold) return "GOLD";
+      if (pts >= TIER.rising) return "RISING";
+      return "ROOKIE";
+    } else {
+      if (pts >= TIER.diamond) return "DIAMOND";
+      if (pts >= TIER.gold) return "GOLD";
+      if (pts >= TIER.rising) return "RISING";
+      return "ROOKIE";
+    }
   })();
 
   const tierColor = (() => {
     const pts = student.lifetimePoints;
-    if (pts >= TIER.highmaster) return "#fbbf24"; // gold sweep
-    if (pts >= TIER.legend) return "#ffd700"; // gold
-    if (pts >= TIER.elite) return "#a855f7"; // purple
-    if (pts >= TIER.master) return "#2563eb"; // blue
-    if (pts >= TIER.diamond) return "#06b6d4"; // cyan
-    if (pts >= TIER.platinum) return "#3b82f6"; // light blue
-    if (pts >= TIER.gold) return "#eab308"; // yellow
-    if (pts >= TIER.rising) return "#eab308"; // yellow
-    return "#71717a"; // zinc
+    if (STORE_POINTS_ENABLED) {
+      if (pts >= (TIER as any).highmaster) return "#fbbf24"; // gold sweep
+      if (pts >= (TIER as any).legend) return "#ffd700"; // gold
+      if (pts >= (TIER as any).elite) return "#a855f7"; // purple
+      if (pts >= (TIER as any).master) return "#2563eb"; // blue
+      if (pts >= TIER.diamond) return "#06b6d4"; // cyan
+      if (pts >= (TIER as any).platinum) return "#3b82f6"; // light blue
+      if (pts >= TIER.gold) return "#eab308"; // yellow
+      if (pts >= TIER.rising) return "#eab308"; // yellow
+      return "#71717a"; // zinc
+    } else {
+      if (pts >= TIER.diamond) return "#06b6d4"; // cyan
+      if (pts >= TIER.gold) return "#eab308"; // yellow
+      if (pts >= TIER.rising) return "#eab308"; // yellow
+      return "#71717a"; // zinc
+    }
   })();
 
   // Parse avatar JSON

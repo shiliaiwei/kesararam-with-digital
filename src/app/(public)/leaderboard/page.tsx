@@ -962,17 +962,9 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             <span className="text-[8.5px] text-yellow-600 font-extrabold block leading-normal animate-pulse" style={kf}>
               {kh ? "⚡ ថ្នាក់មាស៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ១ឆ្នាំ ៦ខែ!" : "⚡ Gold Tier: Claims reset in 1 year 6 months!"}
             </span>
-          ) : userRank.id === "platinum" ? (
-            <span className="text-[8.5px] text-sky-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់ប្លាទីន៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ២ឆ្នាំ!" : "⚡ Platinum Tier: Claims reset in 2 years!"}
-            </span>
-          ) : userRank.id === "diamond" || userRank.id === "master" || userRank.id === "elite" ? (
+          ) : (
             <span className="text-[8.5px] text-cyan-600 font-extrabold block leading-normal animate-pulse" style={kf}>
               {kh ? "⚡ ថ្នាក់ពេជ្រ៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ២ឆ្នាំ ៦ខែ!" : "⚡ Diamond Tier: Claims reset in 2 years 6 months!"}
-            </span>
-          ) : (
-            <span className="text-[8.5px] text-pink-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់រង្វាន់ខ្ពស់៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ៣ឆ្នាំ!" : "⚡ Legend & Highmaster: Claims reset in 3 years!"}
             </span>
           )}
         </div>

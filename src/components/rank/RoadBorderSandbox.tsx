@@ -3,9 +3,7 @@
 import * as React from "react";
 import { RoadAvatarBorder } from "./RoadAvatarBorder";
 import { GoldAvatarBorder } from "./GoldAvatarBorder";
-import { PlatinumAvatarBorder } from "./PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "./DiamondAvatarBorder";
-import { MythicAvatarBorder } from "./MythicAvatarBorder";
 import {
     getRankNameByScore,
     getDivisionForScore,
@@ -62,7 +60,7 @@ export function RoadBorderSandbox() {
                 </div>
 
                 <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wide">
-                    {[0, 250, 750, 1000, 1900, 2500, 3100, 3500, 5600, 7000, 10100, 12000, 25000, 35000].map((v) => (
+                    {[0, 250, 750, 1000, 1900, 2500, 3100, 7000, 10100, 15000, 25000].map((v) => (
                         <button
                             key={v}
                             onClick={() => setScore(v)}
@@ -92,26 +90,8 @@ export function RoadBorderSandbox() {
             <div className="flex flex-wrap items-end justify-center gap-10 border-2 border-black bg-zinc-50 p-8 shadow-[4px_4px_0_0_#000]">
                 {sizes.map((size) => (
                     <div key={size} className="flex flex-col items-center gap-2">
-                        {rank === "Mythic" ? (
-                            <MythicAvatarBorder
-                                src={demoSrc}
-                                alt="Sandbox player"
-                                username="Sophea"
-                                score={score}
-                                size={size}
-                                animated={animated}
-                            />
-                        ) : rank === "Diamond" ? (
+                        {rank === "Diamond" ? (
                             <DiamondAvatarBorder
-                                src={demoSrc}
-                                alt="Sandbox player"
-                                username="Sophea"
-                                score={score}
-                                size={size}
-                                animated={animated}
-                            />
-                        ) : rank === "Platinum" ? (
-                            <PlatinumAvatarBorder
                                 src={demoSrc}
                                 alt="Sandbox player"
                                 username="Sophea"
