@@ -38,8 +38,8 @@ export const SECTIONS = [
     id: "s5",
     num: "៥",
     heading: { kh: "ពិន្ទុ និងរង្វាន់", en: "Points & Rewards" },
-    kh: "ពិន្ទុទទួលបានតែពីការលេងត្រឹមត្រូវ ហើយកំណត់កម្រិតគណនី (Rookie ដល់ Mythic) និងចំណាត់ថ្នាក់ក្នុងតារាងពិន្ទុ។ រង្វាន់ត្រូវប្ដូរតាមរយៈអ្នកគ្រប់គ្រង លោកគ្រូអ្នកគ្រូដើម្បីលើកទឹកចិត្ត ហើយរង្វាន់ដែលប្ដូររួចមិនអាចដកវិញបានទេ។ ពិន្ទុ និងរង្វាន់គ្មានតម្លៃជាសាច់ប្រាក់។ ពិន្ទុដែលទទួលដោយការបន្លំនឹងត្រូវដកហូត។",
-    en: "Points are earned only through fair gameplay and determine your account tier (Rookie through Mythic) and leaderboard ranking. Rewards are redeemed through an administrator or teacher for motivational purposes; once redeemed, they cannot be reversed. Points and rewards have no monetary value. Points obtained through fraudulent means will be forfeited.",
+    kh: "ពិន្ទុទទួលបានតែពីការលេងត្រឹមត្រូវ ហើយកំណត់កម្រិតគណនី (Rookie ដល់ Highmaster) និងចំណាត់ថ្នាក់ក្នុងតារាងពិន្ទុ។ រង្វាន់ត្រូវប្ដូរតាមរយៈអ្នកគ្រប់គ្រង លោកគ្រូអ្នកគ្រូដើម្បីលើកទឹកចិត្ត ហើយរង្វាន់ដែលប្ដូររួចមិនអាចដកវិញបានទេ។ ពិន្ទុ និងរង្វាន់គ្មានតម្លៃជាសាច់ប្រាក់។ ពិន្ទុដែលទទួលដោយការបន្លំនឹងត្រូវដកហូត។",
+    en: "Points are earned only through fair gameplay and determine your account tier (Rookie through Highmaster) and leaderboard ranking. Rewards are redeemed through an administrator or teacher for motivational purposes; once redeemed, they cannot be reversed. Points and rewards have no monetary value. Points obtained through fraudulent means will be forfeited.",
   },
   {
     id: "s6",

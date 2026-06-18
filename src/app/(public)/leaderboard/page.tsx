@@ -539,14 +539,19 @@ function ClaimBurst({ color }: { color: string }) {
   );
 }
 
-// Cooldown durations in milliseconds for each rank tier (Redesigned: Gold: 1.5y, Platinum: 2y, Diamond: 2.5y, Mythic: 3y)
+// Cooldown durations in milliseconds for each rank tier (Redesigned with Legend and Highmaster)
 const TIER_COOLDOWNS: Record<string, number> = {
   rookie: 365 * 24 * 60 * 60 * 1000,                      // 1 year
-  debut: 365 * 24 * 60 * 60 * 1000,                       // 1 year
-  gold: Math.round(1.5 * 365 * 24 * 60 * 60 * 1000),      // 1.5 years (1 year + 6 months)
+  rising: 365 * 24 * 60 * 60 * 1000,                      // 1 year
+  debut: 365 * 24 * 60 * 60 * 1000,                       // 1 year (alias)
+  gold: Math.round(1.5 * 365 * 24 * 60 * 60 * 1000),      // 1.5 years
   platinum: 2 * 365 * 24 * 60 * 60 * 1000,                // 2 years
-  diamond: Math.round(2.5 * 365 * 24 * 60 * 60 * 1000),    // 2.5 years (2 years + 6 months)
-  mythic: 3 * 365 * 24 * 60 * 60 * 1000,                  // 3 years
+  diamond: Math.round(2.5 * 365 * 24 * 60 * 60 * 1000),    // 2.5 years
+  master: Math.round(2.5 * 365 * 24 * 60 * 60 * 1000),     // 2.5 years
+  elite: Math.round(2.5 * 365 * 24 * 60 * 60 * 1000),      // 2.5 years
+  legend: 3 * 365 * 24 * 60 * 60 * 1000,                  // 3 years
+  highmaster: 3 * 365 * 24 * 60 * 60 * 1000,              // 3 years
+  mythic: 3 * 365 * 24 * 60 * 60 * 1000,                  // 3 years (alias)
 };
 
 // ── REWARD CARD (Brutalist Premium Redesign) ──────────────────────────────────
@@ -949,7 +954,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
         {/* Dynamic Cooldown Tier Hint (Psychology of Reward & Progress) */}
         <div className="text-center mt-2 border-t border-zinc-100 pt-2 pointer-events-none">
-          {userRank.id === "rookie" || userRank.id === "debut" ? (
+          {userRank.id === "rookie" || userRank.id === "rising" || userRank.id === "debut" ? (
             <span className="text-[8.5px] text-zinc-400 font-bold block leading-normal" style={kf}>
               {kh ? "💡 ឡើងថ្នាក់មាសដើម្បីទទួលបានការប្តូររង្វាន់ឡើងវិញ (១ឆ្នាំ ៦ខែ)!" : "💡 Level up to Gold to claim items (1 year 6 months reset)!"}
             </span>
@@ -961,13 +966,13 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             <span className="text-[8.5px] text-sky-600 font-extrabold block leading-normal animate-pulse" style={kf}>
               {kh ? "⚡ ថ្នាក់ប្លាទីន៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ២ឆ្នាំ!" : "⚡ Platinum Tier: Claims reset in 2 years!"}
             </span>
-          ) : userRank.id === "diamond" ? (
+          ) : userRank.id === "diamond" || userRank.id === "master" || userRank.id === "elite" ? (
             <span className="text-[8.5px] text-cyan-600 font-extrabold block leading-normal animate-pulse" style={kf}>
               {kh ? "⚡ ថ្នាក់ពេជ្រ៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ២ឆ្នាំ ៦ខែ!" : "⚡ Diamond Tier: Claims reset in 2 years 6 months!"}
             </span>
           ) : (
             <span className="text-[8.5px] text-pink-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់ព្រះ៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ៣ឆ្នាំ!" : "⚡ Mythic Tier: Claims reset in 3 years!"}
+              {kh ? "⚡ ថ្នាក់រង្វាន់ខ្ពស់៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ៣ឆ្នាំ!" : "⚡ Legend & Highmaster: Claims reset in 3 years!"}
             </span>
           )}
         </div>

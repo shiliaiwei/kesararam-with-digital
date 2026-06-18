@@ -108,10 +108,10 @@ export default async function Image({ params }: { params: Promise<{ username: st
   );
   const rank = studentIndex !== -1 ? studentIndex + 1 : 99;
 
-  // Tier thresholds follow the active economy's scale (small numbers post-cutover).
+  // Tier thresholds follow the active economy's scale.
   const TIER = STORE_POINTS_ENABLED
-    ? { mythic: 1500, diamond: 700, platinum: 350, gold: 150, debut: 50 }
-    : { mythic: 10000, diamond: 5000, platinum: 2500, gold: 1000, debut: 300 };
+    ? { highmaster: 5000, legend: 3000, elite: 2000, master: 1200, diamond: 700, platinum: 350, gold: 150, rising: 50 }
+    : { highmaster: 50000, legend: 30000, elite: 20000, master: 12000, diamond: 7000, platinum: 3500, gold: 1500, rising: 500 };
 
   const name = student.displayName || student.username;
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
@@ -119,21 +119,27 @@ export default async function Image({ params }: { params: Promise<{ username: st
   // Determinate rank tier badge name
   const tierName = (() => {
     const pts = student.lifetimePoints;
-    if (pts >= TIER.mythic) return "MYTHIC";
+    if (pts >= TIER.highmaster) return "HIGHMASTER";
+    if (pts >= TIER.legend) return "LEGEND";
+    if (pts >= TIER.elite) return "ELITE";
+    if (pts >= TIER.master) return "MASTER";
     if (pts >= TIER.diamond) return "DIAMOND";
     if (pts >= TIER.platinum) return "PLATINUM";
     if (pts >= TIER.gold) return "GOLD";
-    if (pts >= TIER.debut) return "DEBUT";
+    if (pts >= TIER.rising) return "RISING";
     return "ROOKIE";
   })();
 
   const tierColor = (() => {
     const pts = student.lifetimePoints;
-    if (pts >= TIER.mythic) return "#ec4899"; // pink
+    if (pts >= TIER.highmaster) return "#fbbf24"; // gold sweep
+    if (pts >= TIER.legend) return "#ffd700"; // gold
+    if (pts >= TIER.elite) return "#a855f7"; // purple
+    if (pts >= TIER.master) return "#2563eb"; // blue
     if (pts >= TIER.diamond) return "#06b6d4"; // cyan
-    if (pts >= TIER.platinum) return "#3b82f6"; // blue
+    if (pts >= TIER.platinum) return "#3b82f6"; // light blue
     if (pts >= TIER.gold) return "#eab308"; // yellow
-    if (pts >= TIER.debut) return "#22c55e"; // green
+    if (pts >= TIER.rising) return "#eab308"; // yellow
     return "#71717a"; // zinc
   })();
 

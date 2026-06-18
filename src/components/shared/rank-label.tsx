@@ -20,17 +20,26 @@ import {
     Star,
     Trophy,
     Gem,
+    Shield,
+    Flame,
     Crown,
+    Award,
+    Zap,
     type LucideIcon,
 } from "lucide-react";
 
 export const TIER_ICONS: Record<string, LucideIcon> = {
     rookie: Sprout,
+    rising: Zap,
     debut: PartyPopper,
     gold: Star,
     platinum: Trophy,
     diamond: Gem,
-    mythic: Crown,
+    master: Shield,
+    elite: Flame,
+    legend: Crown,
+    highmaster: Award,
+    mythic: Award,
 };
 
 // ── Keyframe styles injected once ────────────────────────────────────────────
