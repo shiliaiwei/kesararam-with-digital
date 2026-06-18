@@ -57,18 +57,12 @@ export function GoldAvatarBorder({
             style={vars}
         >
             <div className="gold-avatar__plate">
-                {/* Dark asphalt background behind the transparent warning diamond body */}
-                <div className="gold-avatar__bg" aria-hidden="true" />
-
                 {/* The high-resolution GOLD rank border PNG */}
                 <img
                     src="/brand/gold-avatar-border.png"
                     alt="Gold Rank Border Frame"
                     className="gold-avatar__frame-img"
                 />
-
-                {/* Animated caution tape overlay */}
-                <div className="gold-avatar__caution" aria-hidden="true" />
 
                 {/* Animated red traffic light glow */}
                 <div className="gold-avatar__red-light" aria-hidden="true" />

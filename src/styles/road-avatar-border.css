@@ -294,14 +294,6 @@
     border-radius: 50%;
 }
 
-.gold-avatar__bg {
-    position: absolute;
-    inset: 0;
-    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
-    background: radial-gradient(circle at 50% 50%, #1f2937 0%, #0b1220 60%, #030712 100%);
-    pointer-events: none;
-}
-
 .gold-avatar__frame-img {
     position: absolute;
     top: 0;
@@ -456,36 +448,6 @@
 .gold-avatar__custom-photo > * {
     width: 100% !important;
     height: 100% !important;
-}
-
-/* Animated caution tape overlay at the bottom-right corner */
-.gold-avatar__caution {
-    position: absolute;
-    right: calc(14px * var(--s));
-    bottom: calc(14px * var(--s));
-    width: calc(44px * var(--s));
-    height: calc(44px * var(--s));
-    z-index: 3;
-    border-bottom-right-radius: calc(12px * var(--s));
-    overflow: hidden;
-    background: linear-gradient(
-        135deg,
-        #eab308 25%,
-        #0a0a0a 25%,
-        #0a0a0a 50%,
-        #eab308 50%,
-        #eab308 75%,
-        #0a0a0a 75%,
-        #0a0a0a 100%
-    );
-    background-size: calc(28px * var(--s)) calc(28px * var(--s));
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
-    opacity: 0.95;
-    pointer-events: none;
-}
-
-.gold-avatar--animated .gold-avatar__caution {
-    animation: roadCautionScroll 1.2s linear infinite;
 }
 
 /* Pulsing Red light in the traffic light capsule */
