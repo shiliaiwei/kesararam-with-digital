@@ -30,6 +30,8 @@ import type { LucideIcon } from "lucide-react";
 import { CautionTape, SignShape } from "@/components/brand/brand-kit";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { RankedAvatarRing } from "@/components/shared/rank-label";
+import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
+import { calculateRankAndDivision } from "@/lib/ranks";
 
 export interface SerializableStudent {
   id: number;
@@ -360,6 +362,8 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
   const topGame = gameStats[0];
   const topGameMeta = topGame ? gameLabel(topGame.gameType) : null;
   const bestModePoints = Math.max(...gameStats.map((g) => g.points), 1);
+  const profileRank = calculateRankAndDivision(student.lifetimePoints).rank;
+  const hasRoadAvatarBorder = profileRank.id === "rookie" || profileRank.id === "rising";
 
   useEffect(() => {
     try {
@@ -409,15 +413,32 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
               <div className="h-14 border-b-[3px] border-black" style={checkerboardStyle} />
               <div className="flex flex-col items-center gap-5 p-4 text-center sm:p-6 md:p-8">
                 <div className="relative w-fit hover:-translate-y-1 transition-transform duration-200">
-                  <RankedAvatarRing lifetimePoints={student.lifetimePoints} size={118}>
-                    <Avatar
-                      url={student.avatar}
-                      name={isNamePublic ? (student.displayName || student.username) : "S"}
-                      size={118}
-                      changedAt={student.avatarChangedAt}
-                      round={true}
-                    />
-                  </RankedAvatarRing>
+                  {hasRoadAvatarBorder ? (
+                    <RoadAvatarBorder
+                      alt={`${displayName} avatar`}
+                      username={isNamePublic ? (student.displayName || student.username) : "S"}
+                      score={student.lifetimePoints}
+                      size="md"
+                    >
+                      <Avatar
+                        url={student.avatar}
+                        name={isNamePublic ? (student.displayName || student.username) : "S"}
+                        size={96}
+                        changedAt={student.avatarChangedAt}
+                        round={true}
+                      />
+                    </RoadAvatarBorder>
+                  ) : (
+                    <RankedAvatarRing lifetimePoints={student.lifetimePoints} size={118}>
+                      <Avatar
+                        url={student.avatar}
+                        name={isNamePublic ? (student.displayName || student.username) : "S"}
+                        size={118}
+                        changedAt={student.avatarChangedAt}
+                        round={true}
+                      />
+                    </RankedAvatarRing>
+                  )}
                   <div className="absolute -bottom-5 -right-5">
                     <SignShape shape="diamond" body={BRAND.yellow} size={66}>
                       <Crown size={22} className="text-black" strokeWidth={2.6} />

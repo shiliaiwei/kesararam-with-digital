@@ -13,8 +13,10 @@ import {
 } from "@/lib/rank-utils";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { RankBadge, RankedAvatarRing, TIER_ICONS } from "@/components/shared/rank-label";
+import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { useLang } from "@/context/lang-context";
+import { calculateRankAndDivision } from "@/lib/ranks";
 
 interface StudentProfileDashboardProps {
   user: {
@@ -288,6 +290,8 @@ export function StudentProfileDashboard({
   const nextTier = getNextRank(rankStats.lifetimePoints);
   const nextProgress = tierProgress(rankStats.lifetimePoints);
   const pointsRemaining = pointsToNextRank(rankStats.lifetimePoints);
+  const roadFrameRank = calculateRankAndDivision(rankStats.lifetimePoints).rank;
+  const hasRoadAvatarBorder = roadFrameRank.id === "rookie" || roadFrameRank.id === "rising";
 
   // ── Changes-remaining helpers ─────────────────────────────────────────────
   function ChangeBadge({ cooldown }: { cooldown: number | null }) {
@@ -367,9 +371,20 @@ export function StudentProfileDashboard({
 
             {/* Avatar */}
             <div className="relative flex-shrink-0">
-              <RankedAvatarRing lifetimePoints={rankStats.lifetimePoints} size={88}>
-                <AvatarDisplay avatar={user.avatar} name={name} size={88} radius={0} />
-              </RankedAvatarRing>
+              {hasRoadAvatarBorder ? (
+                <RoadAvatarBorder
+                  alt={`${name} avatar`}
+                  username={name}
+                  score={rankStats.lifetimePoints}
+                  size="sm"
+                >
+                  <AvatarDisplay avatar={user.avatar} name={name} size={64} radius={999} />
+                </RoadAvatarBorder>
+              ) : (
+                <RankedAvatarRing lifetimePoints={rankStats.lifetimePoints} size={88}>
+                  <AvatarDisplay avatar={user.avatar} name={name} size={88} radius={0} />
+                </RankedAvatarRing>
+              )}
               <button
                 onClick={() => setDrawerOpen(true)}
                 className="absolute bottom-0.5 right-0.5 w-6 h-6 bg-yellow-400 border-2 border-black flex items-center justify-center hover:bg-yellow-300 transition-colors"

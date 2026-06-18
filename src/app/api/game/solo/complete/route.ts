@@ -167,7 +167,17 @@ export async function POST(req: NextRequest) {
     timeTakenMs: number;
   }[] = [];
 
-  for (const ans of submittedAnswers) {
+  // Defense-in-depth: score at most ONE slot per questionId so duplicate
+  // resubmissions can't inflate rawScore / correctCount / streak.
+  const seenQuestionIds = new Set<number>();
+  const scorableAnswers = submittedAnswers.filter((ans) => {
+    if (typeof ans.questionId !== "number" || !Number.isFinite(ans.questionId)) return false;
+    if (seenQuestionIds.has(ans.questionId)) return false;
+    seenQuestionIds.add(ans.questionId);
+    return true;
+  });
+
+  for (const ans of scorableAnswers) {
     const verified = typeof ans.answerId === "number"
       ? verifiedAnswerById.get(ans.answerId)
       : undefined;
@@ -176,7 +186,12 @@ export async function POST(req: NextRequest) {
     if (isCorrect) streak++;
     else streak = 0;
 
-    const remainingTimeMs = Math.max(0, totalTimeMs - ans.timeTakenMs);
+    // Clamp client-reported time into [0, totalTimeMs]; junk/negative values fall
+    // back to the full time (no speed bonus) so timing can't be gamed.
+    const safeTimeTakenMs = Number.isFinite(ans.timeTakenMs)
+      ? Math.min(Math.max(ans.timeTakenMs, 0), totalTimeMs)
+      : totalTimeMs;
+    const remainingTimeMs = Math.max(0, totalTimeMs - safeTimeTakenMs);
     const scoreResult = calculateScore({
       isCorrect,
       difficulty: ans.difficulty ?? "medium",
@@ -194,7 +209,7 @@ export async function POST(req: NextRequest) {
       isCorrect,
       rawPoints: scoreResult.totalPoints,
       soloPoints: scoreResult.totalPoints,
-      timeTakenMs: ans.timeTakenMs,
+      timeTakenMs: safeTimeTakenMs,
     });
   }
 

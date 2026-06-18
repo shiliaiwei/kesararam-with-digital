@@ -13,7 +13,7 @@
  * Design rules baked in:
  *  • Only `score` is the permanent source of truth — rank & division are ALWAYS
  *    derived from score so they can never drift out of sync.
- *  • English, uppercase rank names. The highest rank is HIGHMASTER (never
+ *  • English, uppercase rank names. The highest rank is MYTHIC (never
  *    "Supreme"). Rank names are never translated to Khmer.
  *  • Old leaderboard scores migrate via a single, easy-to-change multiplier.
  */
@@ -26,10 +26,7 @@ export type RankName =
     | "Gold"
     | "Platinum"
     | "Diamond"
-    | "Master"
-    | "Elite"
-    | "Legend"
-    | "Highmaster";
+    | "Mythic";
 
 /** Roman-numeral divisions inside a rank. IV = lowest, I = highest before rank-up. */
 export type Division = "IV" | "III" | "II" | "I";
@@ -80,6 +77,13 @@ export interface RankConfig {
     safetyTheme: string;
     /** longer description for showcase cards */
     description: string;
+    /**
+     * OPTIONAL custom division lower-bounds [IV, III, II, I]. Use only when the
+     * rank's divisions are NOT even quarters of its point range (e.g. Mythic, the
+     * open-ended top rank). When omitted, divisions are even quarters between this
+     * rank's minPoints and the next rank's minPoints.
+     */
+    divisionThresholds?: readonly [number, number, number, number];
 }
 
 export interface UserRankResult {
@@ -88,7 +92,7 @@ export interface UserRankResult {
     score: number;
     /** minPoints of the current rank */
     currentRankMin: number;
-    /** minPoints of the next rank, or null for Highmaster */
+    /** minPoints of the next rank, or null for the top rank (Mythic) */
     nextRankMin: number | null;
     /** points earned past the current rank threshold */
     pointsIntoRank: number;
@@ -122,16 +126,16 @@ export interface LeaderboardUser {
 export const MIGRATION_MULTIPLIER = 10;
 
 /**
- * Highmaster has no next rank, but still earns divisions. Every
- * `HIGHMASTER_DIVISION_STEP` points past 5000 advances one division (IV→I).
+ * The top rank (Mythic) has no next rank, but still earns divisions. Every
+ * `TOP_RANK_DIVISION_STEP` points past its threshold advances one division (IV→I).
  */
-export const HIGHMASTER_DIVISION_STEP = 500;
+export const TOP_RANK_DIVISION_STEP = 500;
 
 /** Division order, lowest → highest. */
 export const DIVISIONS: readonly Division[] = ["IV", "III", "II", "I"] as const;
 
 /**
- * The 9 ranks, in ascending order. EDIT THIS to re-theme or re-tune the system —
+ * The 6 ranks, in ascending order. EDIT THIS to re-theme or re-tune the system —
  * everything else derives from it. minPoints must stay ascending.
  */
 export const RANK_CONFIGS: readonly RankConfig[] = [
@@ -155,8 +159,8 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         id: "rising",
         name: "Rising",
         label: "RISING",
-        minPoints: 50,
-        displayPoints: "50 PTS",
+        minPoints: 1000,
+        displayPoints: "1,000 PTS",
         primaryColor: "#eab308",
         secondaryColor: "#000000",
         accentColor: "#f59e0b",
@@ -171,8 +175,8 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         id: "gold",
         name: "Gold",
         label: "GOLD",
-        minPoints: 150,
-        displayPoints: "150 PTS",
+        minPoints: 2500,
+        displayPoints: "2,500 PTS",
         primaryColor: "#eab308",
         secondaryColor: "#000000",
         accentColor: "#f97316",
@@ -187,8 +191,8 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         id: "platinum",
         name: "Platinum",
         label: "PLATINUM",
-        minPoints: 350,
-        displayPoints: "350 PTS",
+        minPoints: 3500,
+        displayPoints: "3,500 PTS",
         primaryColor: "#3b82f6",
         secondaryColor: "#ffffff",
         accentColor: "#1d4ed8",
@@ -203,8 +207,8 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         id: "diamond",
         name: "Diamond",
         label: "DIAMOND",
-        minPoints: 700,
-        displayPoints: "700 PTS",
+        minPoints: 7000,
+        displayPoints: "7,000 PTS",
         primaryColor: "#3b82f6",
         secondaryColor: "#06b6d4",
         accentColor: "#22d3ee",
@@ -216,68 +220,23 @@ export const RANK_CONFIGS: readonly RankConfig[] = [
         description: "An expert player — sharp, consistent, road-safety smart.",
     },
     {
-        id: "master",
-        name: "Master",
-        label: "MASTER",
-        minPoints: 1200,
-        displayPoints: "1200 PTS",
-        primaryColor: "#1e3a8a",
-        secondaryColor: "#3b82f6",
-        accentColor: "#60a5fa",
-        textColor: "#ffffff",
-        borderClass: "rank-frame--master",
-        animationClass: "rank-anim-master",
-        icon: "shield-check",
-        safetyTheme: "Skilled traffic-rule master",
-        description: "Commands the traffic rules. A trusted road-safety mind.",
-    },
-    {
-        id: "elite",
-        name: "Elite",
-        label: "ELITE",
-        minPoints: 2000,
-        displayPoints: "2000 PTS",
-        primaryColor: "#ef4444",
-        secondaryColor: "#000000",
-        accentColor: "#f87171",
-        textColor: "#ffffff",
-        borderClass: "rank-frame--elite",
-        animationClass: "rank-anim-elite",
-        icon: "octagon-alert",
-        safetyTheme: "Advanced, fast and accurate",
-        description: "Fast and accurate — stops, looks, and answers right.",
-    },
-    {
-        id: "legend",
-        name: "Legend",
-        label: "LEGEND",
-        minPoints: 3000,
-        displayPoints: "3000 PTS",
-        primaryColor: "#f97316",
-        secondaryColor: "#eab308",
-        accentColor: "#fbbf24",
-        textColor: "#000000",
-        borderClass: "rank-frame--legend",
-        animationClass: "rank-anim-legend",
-        icon: "trophy",
-        safetyTheme: "Trusted top learner",
-        description: "A trusted top road-safety learner. A real example.",
-    },
-    {
-        id: "highmaster",
-        name: "Highmaster",
-        label: "HIGHMASTER",
-        minPoints: 5000,
-        displayPoints: "5000 PTS",
+        id: "mythic",
+        name: "Mythic",
+        label: "MYTHIC",
+        minPoints: 12000,
+        displayPoints: "12,000 PTS",
         primaryColor: "#a855f7",
         secondaryColor: "#eab308",
         accentColor: "#c084fc",
         textColor: "#ffffff",
-        borderClass: "rank-frame--highmaster",
-        animationClass: "rank-anim-highmaster",
+        borderClass: "rank-frame--mythic",
+        animationClass: "rank-anim-mythic",
         icon: "crown",
-        safetyTheme: "Highest KWD road-safety learner",
-        description: "The highest KWD road-safety rank. The road-safety champion.",
+        safetyTheme: "Elite road-safety champion",
+        description: "The highest KWD road-safety rank — the elite champion.",
+        // Mythic divisions are open-ended and NOT even quarters:
+        // IV 12,000+ · III 15,000+ · II 20,000+ · I 30,000+
+        divisionThresholds: [12000, 15000, 20000, 30000],
     },
 ] as const;
 
@@ -312,7 +271,7 @@ export function getRankConfig(rankName: RankName): RankConfig {
     return found ?? RANK_CONFIGS[0];
 }
 
-/** The next rank up, or null if already at Highmaster. */
+/** The next rank up, or null if already at the top rank (Mythic). */
 export function getNextRank(rankName: RankName): RankConfig | null {
     const index = RANK_CONFIGS.findIndex((r) => r.name === rankName);
     if (index < 0 || index >= RANK_CONFIGS.length - 1) return null;
@@ -323,16 +282,27 @@ export function getNextRank(rankName: RankName): RankConfig | null {
  * Division within a given rank, derived from how far the score has progressed
  * between this rank's threshold and the next one.
  *   0–24.99% → IV · 25–49.99% → III · 50–74.99% → II · 75–99.99% → I
- * Highmaster has no next threshold, so it steps a division every
- * HIGHMASTER_DIVISION_STEP points past 5000 (capped at I).
+ * A rank may override this with explicit `divisionThresholds` (e.g. Mythic, whose
+ * divisions are open-ended and uneven). The open-ended top rank without explicit
+ * thresholds falls back to a fixed TOP_RANK_DIVISION_STEP per division.
  */
 export function getDivisionByScore(score: number, rank: RankConfig): Division {
     const s = normalizeScore(score);
+
+    // Explicit per-division lower-bounds (used by the open-ended top rank).
+    if (rank.divisionThresholds) {
+        let index = 0;
+        rank.divisionThresholds.forEach((threshold, i) => {
+            if (s >= threshold) index = i;
+        });
+        return DIVISIONS[index];
+    }
+
     const next = getNextRank(rank.name);
 
     if (!next) {
-        // Highmaster: step-based divisions, capped at the highest (I).
-        const stepsPast = Math.floor((s - rank.minPoints) / HIGHMASTER_DIVISION_STEP);
+        // Open-ended top rank without explicit thresholds: fixed step per division.
+        const stepsPast = Math.floor((s - rank.minPoints) / TOP_RANK_DIVISION_STEP);
         const index = clamp(stepsPast, 0, DIVISIONS.length - 1);
         return DIVISIONS[index];
     }
@@ -349,7 +319,7 @@ export interface RankProgress {
     nextRankMin: number | null;
     pointsIntoRank: number;
     pointsNeededForNextRank: number;
-    /** 0–100 percentage through the current rank (toward next division for Highmaster) */
+    /** 0–100 percentage through the current rank (toward next division for Mythic) */
     progressToNextRank: number;
 }
 
@@ -360,18 +330,39 @@ export function getRankProgress(score: number): RankProgress {
     const next = getNextRank(rank.name);
 
     if (!next) {
-        // Highmaster — show progress toward the next division step instead.
+        // Open-ended top rank (Mythic) — show progress toward the next division.
         const pointsPast = s - rank.minPoints;
-        const intoStep = pointsPast % HIGHMASTER_DIVISION_STEP;
-        const maxedOut = pointsPast >= HIGHMASTER_DIVISION_STEP * (DIVISIONS.length - 1);
+
+        if (rank.divisionThresholds) {
+            const thresholds = rank.divisionThresholds;
+            // current division index = highest threshold reached
+            let idx = 0;
+            thresholds.forEach((t, i) => {
+                if (s >= t) idx = i;
+            });
+            const atTop = idx >= thresholds.length - 1;
+            const lower = thresholds[idx];
+            const upper = atTop ? lower : thresholds[idx + 1];
+            const span = upper - lower;
+            return {
+                currentRankMin: rank.minPoints,
+                nextRankMin: null,
+                pointsIntoRank: pointsPast,
+                pointsNeededForNextRank: atTop ? 0 : Math.max(upper - s, 0),
+                progressToNextRank: atTop ? 100 : clamp(((s - lower) / span) * 100, 0, 100),
+            };
+        }
+
+        const intoStep = pointsPast % TOP_RANK_DIVISION_STEP;
+        const maxedOut = pointsPast >= TOP_RANK_DIVISION_STEP * (DIVISIONS.length - 1);
         return {
             currentRankMin: rank.minPoints,
             nextRankMin: null,
             pointsIntoRank: pointsPast,
-            pointsNeededForNextRank: maxedOut ? 0 : HIGHMASTER_DIVISION_STEP - intoStep,
+            pointsNeededForNextRank: maxedOut ? 0 : TOP_RANK_DIVISION_STEP - intoStep,
             progressToNextRank: maxedOut
                 ? 100
-                : clamp((intoStep / HIGHMASTER_DIVISION_STEP) * 100, 0, 100),
+                : clamp((intoStep / TOP_RANK_DIVISION_STEP) * 100, 0, 100),
         };
     }
 

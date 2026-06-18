@@ -1,0 +1,313 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   KWD Road-Safety Avatar Border — premium skeuomorphic frame (Rookie / Rising)
+   ----------------------------------------------------------------------------
+   Import once (e.g. in src/app/globals.css):  @import "../styles/road-avatar-border.css";
+
+   • Themeable by CSS vars (Rookie = yellow, Rising = green) set inline by the
+     component. Everything scales off --s (sm .65 · md 1 · lg 1.33 · xl 1.66).
+   • CENTER RULE: the circular photo window shows ONLY the user image — no text,
+     glow, or animation ever sits on top of it. The lone animation is the traffic
+     light on the right edge.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+.road-avatar {
+    --s: 1;
+    --accent: #eab308;
+    --accent-l: #facc15;
+    --accent-d: #ca8a04;
+    --accent-deep: #854d0e;
+    --label-bg: #0a0a0a;
+    --label-trim: #eab308;
+    --shield-bg: #111827;
+
+    position: relative;
+    display: inline-block;
+    padding: calc(10px * var(--s)) calc(26px * var(--s)) calc(42px * var(--s)) calc(22px * var(--s));
+    line-height: 0;
+}
+
+/* ── Outer base plate: dark asphalt + bevel + silver edge ───────────────── */
+.road-avatar__plate {
+    position: relative;
+    width: calc(150px * var(--s));
+    height: calc(150px * var(--s));
+    border-radius: calc(28px * var(--s));
+    background: radial-gradient(circle at 50% 38%, #1f2937 0%, #0b1220 60%, #030712 100%);
+    box-shadow:
+        inset 0 calc(2px * var(--s)) calc(3px * var(--s)) rgba(255, 255, 255, 0.12),
+        inset 0 calc(-4px * var(--s)) calc(8px * var(--s)) rgba(0, 0, 0, 0.7),
+        0 calc(6px * var(--s)) calc(14px * var(--s)) rgba(0, 0, 0, 0.55);
+    border: calc(2px * var(--s)) solid #0b0f17;
+    outline: calc(2px * var(--s)) solid #4b5563;
+    outline-offset: calc(-5px * var(--s));
+}
+
+/* Glossy top reflection — kept off the photo (low z, plate only). */
+.road-avatar__gloss {
+    position: absolute;
+    inset: calc(3px * var(--s));
+    border-radius: calc(24px * var(--s));
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 42%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ── Inner circular roadway ring ─────────────────────────────────────────── */
+.road-avatar__ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(130px * var(--s));
+    height: calc(130px * var(--s));
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%);
+    border: calc(6px * var(--s)) solid var(--accent);
+    box-shadow:
+        0 0 0 calc(2px * var(--s)) #000,
+        inset 0 0 calc(10px * var(--s)) rgba(0, 0, 0, 0.8);
+    z-index: 3;
+}
+
+/* White dashed lane ring (inline SVG circle), inside the accent border. */
+.road-avatar__lane {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(122px * var(--s));
+    height: calc(122px * var(--s));
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* ── Protected photo window — opaque, on top, nothing over it ───────────── */
+.road-avatar__photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(96px * var(--s));
+    height: calc(96px * var(--s));
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    overflow: hidden;
+    background: #e4e4e7;
+    border: calc(2px * var(--s)) solid #000;
+    z-index: 5;
+}
+.road-avatar__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.road-avatar__custom-photo,
+.road-avatar__custom-photo > * {
+    width: 100%;
+    height: 100%;
+}
+.road-avatar__fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #d4d4d8;
+    color: #52525b;
+    font-weight: 900;
+    font-size: calc(40px * var(--s));
+}
+
+/* ── Top-left corner bracket + division shield ──────────────────────────── */
+.road-avatar__bracket {
+    position: absolute;
+    top: calc(-6px * var(--s));
+    left: calc(-10px * var(--s));
+    width: calc(62px * var(--s));
+    height: calc(62px * var(--s));
+    z-index: 6;
+    /* diagonal metal plate, cut to a top-left corner triangle */
+    background: linear-gradient(135deg, var(--accent-l) 0%, var(--accent) 45%, var(--accent-d) 100%);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    border-radius: calc(14px * var(--s)) 0 0 0;
+    box-shadow: inset 0 calc(1px * var(--s)) 0 rgba(255, 255, 255, 0.5);
+}
+/* two silver rivets fastening the plate */
+.road-avatar__bracket::before,
+.road-avatar__bracket::after {
+    content: "";
+    position: absolute;
+    width: calc(7px * var(--s));
+    height: calc(7px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #cbd5e1 38%, #64748b 100%);
+    box-shadow: 0 calc(1px * var(--s)) calc(1px * var(--s)) rgba(0, 0, 0, 0.6);
+}
+.road-avatar__bracket::before { top: calc(6px * var(--s)); left: calc(7px * var(--s)); }
+.road-avatar__bracket::after { top: calc(20px * var(--s)); left: calc(5px * var(--s)); }
+
+.road-avatar__shield {
+    position: absolute;
+    top: calc(-2px * var(--s));
+    left: calc(-4px * var(--s));
+    width: calc(34px * var(--s));
+    height: calc(38px * var(--s));
+    z-index: 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: calc(15px * var(--s));
+    font-family: var(--font-mono, ui-monospace, monospace);
+    letter-spacing: 0.02em;
+    background: linear-gradient(180deg, #1f2937 0%, var(--shield-bg) 100%);
+    /* shield / pentagon-down */
+    clip-path: polygon(0 0, 100% 0, 100% 64%, 50% 100%, 0 64%);
+    border: calc(2px * var(--s)) solid var(--accent);
+    box-shadow: 0 calc(2px * var(--s)) calc(4px * var(--s)) rgba(0, 0, 0, 0.6);
+}
+
+/* ── Left-edge highway chevron sign ─────────────────────────────────────── */
+.road-avatar__chevron {
+    position: absolute;
+    left: calc(-12px * var(--s));
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(30px * var(--s));
+    height: calc(40px * var(--s));
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--accent-l), var(--accent-d));
+    border: calc(2px * var(--s)) solid #0b0f17;
+    border-radius: calc(6px * var(--s));
+    box-shadow: 0 calc(3px * var(--s)) calc(6px * var(--s)) rgba(0, 0, 0, 0.5);
+}
+
+/* ── Bottom-right caution hazard corner ─────────────────────────────────── */
+.road-avatar__caution {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(58px * var(--s));
+    height: calc(58px * var(--s));
+    z-index: 4;
+    border-bottom-right-radius: calc(26px * var(--s));
+    overflow: hidden;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--accent) 0,
+        var(--accent) calc(7px * var(--s)),
+        #0a0a0a calc(7px * var(--s)),
+        #0a0a0a calc(14px * var(--s))
+    );
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    opacity: 0.95;
+}
+
+/* ── Bottom hexagonal nameplate ─────────────────────────────────────────── */
+.road-avatar__nameplate {
+    position: absolute;
+    bottom: calc(6px * var(--s));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: calc(108px * var(--s));
+    height: calc(30px * var(--s));
+    padding: 0 calc(18px * var(--s));
+    color: #fff;
+    font-weight: 900;
+    font-size: calc(14px * var(--s));
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #1a1a1a 0%, var(--label-bg) 100%);
+    clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+    border: calc(2px * var(--s)) solid var(--label-trim);
+    text-shadow: 0 calc(1px * var(--s)) calc(2px * var(--s)) rgba(0, 0, 0, 0.8);
+}
+/* two flanking rivets */
+.road-avatar__nameplate::before,
+.road-avatar__nameplate::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: calc(5px * var(--s));
+    height: calc(5px * var(--s));
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ffffff, #cbd5e1 40%, #64748b 100%);
+}
+.road-avatar__nameplate::before { left: calc(7px * var(--s)); }
+.road-avatar__nameplate::after { right: calc(7px * var(--s)); }
+
+/* ── Right-edge traffic light (the ONLY animated element) ───────────────── */
+.road-traffic {
+    position: absolute;
+    right: calc(-13px * var(--s));
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(6px * var(--s));
+    width: calc(28px * var(--s));
+    padding: calc(7px * var(--s)) 0;
+    border-radius: calc(14px * var(--s));
+    background: linear-gradient(180deg, #20262e 0%, #0a0d12 100%);
+    border: calc(2px * var(--s)) solid #000;
+    box-shadow:
+        inset 0 calc(1px * var(--s)) calc(2px * var(--s)) rgba(255, 255, 255, 0.15),
+        0 calc(3px * var(--s)) calc(7px * var(--s)) rgba(0, 0, 0, 0.6);
+}
+.road-traffic__light {
+    width: calc(15px * var(--s));
+    height: calc(15px * var(--s));
+    border-radius: 50%;
+    border: calc(1.5px * var(--s)) solid rgba(0, 0, 0, 0.6);
+    opacity: 0.15;
+    transform: scale(1);
+}
+.road-traffic__light--red { background: #ef4444; --glow: rgba(239, 68, 68, 0.9); }
+.road-traffic__light--yellow { background: #fbbf24; --glow: rgba(251, 191, 36, 0.9); }
+.road-traffic__light--green { background: #22c55e; --glow: rgba(34, 197, 94, 0.9); }
+
+/* Animated: 15s loop, 5s per light, hard switch. */
+.road-avatar--animated .road-traffic__light--red { animation: roadTLRed 15s linear infinite; }
+.road-avatar--animated .road-traffic__light--yellow { animation: roadTLYellow 15s linear infinite; }
+.road-avatar--animated .road-traffic__light--green { animation: roadTLGreen 15s linear infinite; }
+
+@keyframes roadTLRed {
+    0% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
+    33.33% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
+    33.34% { opacity: 0.15; transform: scale(1); box-shadow: none; }
+    100% { opacity: 0.15; transform: scale(1); box-shadow: none; }
+}
+@keyframes roadTLYellow {
+    0% { opacity: 0.15; transform: scale(1); box-shadow: none; }
+    33.33% { opacity: 0.15; transform: scale(1); box-shadow: none; }
+    33.34% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
+    66.66% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
+    66.67% { opacity: 0.15; transform: scale(1); box-shadow: none; }
+    100% { opacity: 0.15; transform: scale(1); box-shadow: none; }
+}
+@keyframes roadTLGreen {
+    0% { opacity: 0.15; transform: scale(1); box-shadow: none; }
+    66.66% { opacity: 0.15; transform: scale(1); box-shadow: none; }
+    66.67% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
+    100% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
+}
+
+/* Static / reduced-motion: no loop, red stays on, others dimmed. */
+.road-avatar--static .road-traffic__light { animation: none !important; opacity: 0.15; transform: none; box-shadow: none; }
+.road-avatar--static .road-traffic__light--red { opacity: 1; box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow); }
+
+@media (prefers-reduced-motion: reduce) {
+    .road-avatar .road-traffic__light { opacity: 0.15 !important; transform: none !important; box-shadow: none !important; }
+    .road-avatar .road-traffic__light--red { opacity: 1 !important; box-shadow: 0 0 calc(10px * var(--s)) calc(2px * var(--s)) var(--glow) !important; }
+}

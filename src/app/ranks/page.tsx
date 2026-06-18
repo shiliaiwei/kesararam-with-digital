@@ -46,16 +46,16 @@ const LEADERBOARD = sortLeaderboardUsers(MIGRATED_USERS);
 // Testing checklist (spec): score → expected rank + division.
 const CHECKLIST: { score: number; rank: RankName; division: Division; note?: string }[] = [
     { score: 0, rank: "Rookie", division: "IV" },
-    { score: 50, rank: "Rising", division: "IV" },
-    { score: 150, rank: "Gold", division: "IV" },
-    { score: 350, rank: "Platinum", division: "IV" },
-    { score: 700, rank: "Diamond", division: "IV" },
-    { score: 1200, rank: "Master", division: "IV" },
-    { score: 2000, rank: "Elite", division: "IV" },
-    { score: 3000, rank: "Legend", division: "IV" },
-    { score: 5000, rank: "Highmaster", division: "IV" },
-    { score: 149, rank: "Rising", division: "I", note: "just before rank up" },
-    { score: 699, rank: "Platinum", division: "I", note: "just before rank up" },
+    { score: 250, rank: "Rookie", division: "III" },
+    { score: 1000, rank: "Rising", division: "IV" },
+    { score: 2500, rank: "Gold", division: "IV" },
+    { score: 3500, rank: "Platinum", division: "IV" },
+    { score: 7000, rank: "Diamond", division: "IV" },
+    { score: 12000, rank: "Mythic", division: "IV" },
+    { score: 15000, rank: "Mythic", division: "III" },
+    { score: 30000, rank: "Mythic", division: "I", note: "open-ended top" },
+    { score: 2499, rank: "Rising", division: "I", note: "just before rank up" },
+    { score: 11999, rank: "Diamond", division: "I", note: "just before rank up" },
 ];
 
 /* ── Small layout helpers (brutalist KWD) ───────────────────────────────── */
@@ -188,13 +188,13 @@ export default function RanksPage() {
                 <div className="flex flex-wrap items-end justify-center gap-8 border-2 border-black bg-white p-8 shadow-[4px_4px_0_0_#000]">
                     {(["sm", "md", "lg", "xl"] as const).map((size) => (
                         <div key={size} className="flex flex-col items-center gap-3">
-                            <AvatarBorder src={null} alt="Sample player" username="Sophea" score={900} size={size} />
+                            <AvatarBorder src={null} alt="Sample player" username="Sophea" score={9500} size={size} />
                             <span className="text-xs font-black uppercase tracking-wider text-zinc-500">{size}</span>
                         </div>
                     ))}
                 </div>
                 <div className="mx-auto mt-8 max-w-md border-2 border-black bg-white p-5 shadow-[4px_4px_0_0_#000]">
-                    <RankProgressBar score={250} />
+                    <RankProgressBar score={9500} />
                 </div>
             </Section>
 

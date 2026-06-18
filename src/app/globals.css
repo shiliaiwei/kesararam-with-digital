@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 /* KWD Road Safety Rank System — avatar border & rank badge animations */
 @import "../styles/avatar-rank-animations.css";
+/* KWD premium skeuomorphic road-frame avatar border (Rookie / Rising) */
+@import "../styles/road-avatar-border.css";
 
 /* KWD official local fonts.
    English -> Roboto. Khmer -> Google Sans.
