@@ -290,16 +290,16 @@
 
 .gold-avatar__plate {
     position: relative;
-    width: calc(170px * var(--s));
-    height: calc(170px * var(--s));
+    width: calc(150px * var(--s));
+    height: calc(150px * var(--s));
     border-radius: 50%;
     background: transparent !important;
 }
 
 .gold-avatar__frame-img {
     position: absolute;
-    top: calc(-15px * var(--s));
-    left: calc(-15px * var(--s));
+    top: calc(-25px * var(--s));
+    left: calc(-25px * var(--s));
     width: calc(200px * var(--s));
     height: calc(200px * var(--s));
     z-index: 1;
@@ -307,45 +307,45 @@
     overflow: visible;
 }
 
-/* Pulsing caution chevrons on left and right side of frame - STATIC */
-.gold-chevron-left {
+/* Alternate flashing / pulsing for left and right lightning bolts */
+.gold-flash-left {
     opacity: 0.85;
 }
-.gold-avatar--animated .gold-chevron-left {
-    /* animation: goldChevronPulseLeft 3s infinite ease-in-out; */
+.gold-avatar--animated .gold-flash-left {
+    animation: goldLightningStrobeLeft 2s infinite ease-in-out;
 }
 
-.gold-chevron-right {
+.gold-flash-right {
     opacity: 0.85;
 }
-.gold-avatar--animated .gold-chevron-right {
-    /* animation: goldChevronPulseRight 3s infinite ease-in-out; */
+.gold-avatar--animated .gold-flash-right {
+    animation: goldLightningStrobeRight 2s infinite ease-in-out;
 }
 
-@keyframes goldChevronPulseLeft {
-    0%, 100% { opacity: 0.55; filter: drop-shadow(0 0 1px rgba(250, 204, 21, 0.4)); }
-    50% { opacity: 1; filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.95)); }
+@keyframes goldLightningStrobeLeft {
+    0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.4)) brightness(0.95); }
+    50% { opacity: 1; filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.95)) brightness(1.25); }
 }
 
-@keyframes goldChevronPulseRight {
-    0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.95)); }
-    50% { opacity: 0.55; filter: drop-shadow(0 0 1px rgba(250, 204, 21, 0.4)); }
+@keyframes goldLightningStrobeRight {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.95)) brightness(1.25); }
+    50% { opacity: 0.6; filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.4)) brightness(0.95); }
 }
 
-/* Sweeping shine (masked inside the warning diamond) */
+/* Sweeping shine (masked inside the warning octagon) */
 .gold-avatar__shine {
     position: absolute;
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
+    clip-path: polygon(30% 5%, 70% 5%, 95% 30%, 95% 70%, 70% 95%, 30% 95%, 5% 70%, 5% 30%);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 70%);
     background-size: 300% 300%;
     background-position: 150% 0;
 }
 
 .gold-avatar--animated .gold-avatar__shine {
-    /* animation: goldShineSweep 6s infinite ease-in-out; */
+    animation: goldShineSweep 6s infinite ease-in-out;
 }
 
 @keyframes goldShineSweep {
@@ -354,73 +354,14 @@
     100% { background-position: -150% 0; }
 }
 
-/* Chevron arrow glows */
-.gold-avatar__chevron-glow {
-    position: absolute;
-    top: 50%;
-    width: calc(30px * var(--s));
-    height: calc(30px * var(--s));
-    transform: translateY(-50%);
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 179, 8, 0.45) 0%, rgba(234, 179, 8, 0) 70%);
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0;
-}
-
-.gold-avatar__chevron-glow--left {
-    left: 10%;
-}
-
-.gold-avatar__chevron-glow--right {
-    right: 10%;
-}
-
-.gold-avatar--animated .gold-avatar__chevron-glow {
-    /* animation: chevronGlowPulse 4s infinite ease-in-out; */
-}
-
-.gold-avatar--animated .gold-avatar__chevron-glow--right {
-    /* animation-delay: 2s; */
-}
-
-@keyframes chevronGlowPulse {
-    0%, 100% { opacity: 0.1; transform: translateY(-50%) scale(0.9); }
-    50% { opacity: 0.85; transform: translateY(-50%) scale(1.25); }
-}
-
-/* Top warning sign beacon glow */
-.gold-avatar__top-glow {
-    position: absolute;
-    top: 13.5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(24px * var(--s));
-    height: calc(24px * var(--s));
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 179, 8, 0.7) 0%, rgba(234, 179, 8, 0) 70%);
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0;
-}
-
-.gold-avatar--animated .gold-avatar__top-glow {
-    /* animation: goldCautionBlink 1.2s infinite ease-in-out; */
-}
-
-@keyframes goldCautionBlink {
-    0%, 30%, 100% { opacity: 0.15; transform: translate(-50%, -50%) scale(0.85); }
-    35%, 55% { opacity: 1; transform: translate(-50%, -50%) scale(1.45); }
-}
-
 /* Ring light breathing around photo */
 .gold-avatar__ring-glow {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 46%;
-    height: 46%;
+    width: 78%;
+    height: 78%;
     border-radius: 50%;
     border: calc(2px * var(--s)) solid rgba(234, 179, 8, 0.45);
     box-shadow: 0 0 calc(5px * var(--s)) rgba(234, 179, 8, 0.75),
@@ -431,7 +372,7 @@
 }
 
 .gold-avatar--animated .gold-avatar__ring-glow {
-    /* animation: ringLightBreathe 5s infinite ease-in-out; */
+    animation: ringLightBreathe 5s infinite ease-in-out;
 }
 
 @keyframes ringLightBreathe {
@@ -444,8 +385,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40.23%;
-    height: 40.23%;
+    width: calc(96px * var(--s));
+    height: calc(96px * var(--s));
     border-radius: 50%;
     overflow: hidden;
     background: #ffffff;
@@ -476,31 +417,6 @@
 .gold-avatar__custom-photo > * {
     width: 100% !important;
     height: 100% !important;
-}
-
-/* Pulsing Red light in the traffic light capsule */
-.gold-avatar__red-light {
-    position: absolute;
-    right: calc(12px * var(--s));
-    top: calc(58px * var(--s));
-    width: calc(14px * var(--s));
-    height: calc(14px * var(--s));
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(239, 68, 68, 0.95) 0%, rgba(239, 68, 68, 0.4) 40%, rgba(239, 68, 68, 0) 70%);
-    z-index: 3;
-    pointer-events: none;
-    opacity: 0.9;
-    box-shadow: 0 0 calc(6px * var(--s)) rgba(239, 68, 68, 0.8),
-                inset 0 0 calc(2px * var(--s)) rgba(255, 255, 255, 0.5);
-}
-
-.gold-avatar--animated .gold-avatar__red-light {
-    /* animation: goldRedLightPulse 1.5s infinite alternate ease-in-out; */
-}
-
-@keyframes goldRedLightPulse {
-    0% { opacity: 0.5; transform: scale(0.9); box-shadow: 0 0 calc(3px * var(--s)) rgba(239, 68, 68, 0.5); }
-    100% { opacity: 1; transform: scale(1.25); box-shadow: 0 0 calc(10px * var(--s)) rgba(239, 68, 68, 0.95); }
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
