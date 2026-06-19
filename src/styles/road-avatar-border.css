@@ -1015,7 +1015,7 @@
 }
 
 .mythic-light-yellow {
-    fill: #713f12;
+    fill: #7c2d12;
 }
 .mythic-avatar--animated .mythic-light-yellow {
     animation: mythicTrafficYellow 6s infinite;
@@ -1034,8 +1034,8 @@
 }
 
 @keyframes mythicTrafficYellow {
-    0%, 40%, 75%, 100% { fill: #713f12; filter: none; }
-    45%, 70% { fill: #eab308; filter: drop-shadow(0 0 6px #eab308); }
+    0%, 40%, 75%, 100% { fill: #7c2d12; filter: none; }
+    45%, 70% { fill: #f97316; filter: drop-shadow(0 0 6px #f97316); }
 }
 
 @keyframes mythicTrafficGreen {
@@ -1051,7 +1051,7 @@
     z-index: 2;
     pointer-events: none;
     clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(168, 85, 247, 0.45) 50%, rgba(250, 204, 21, 0.3) 60%, rgba(255, 255, 255, 0) 80%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(168, 85, 247, 0.45) 50%, rgba(249, 115, 22, 0.3) 60%, rgba(255, 255, 255, 0) 80%);
     background-size: 300% 300%;
     background-position: 150% 0;
 }
@@ -1075,7 +1075,7 @@
     width: calc(32px * var(--s));
     height: calc(32px * var(--s));
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 179, 8, 0.85) 0%, rgba(168, 85, 247, 0.5) 45%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.9) 0%, rgba(168, 85, 247, 0.5) 45%, rgba(255, 255, 255, 0) 70%);
     z-index: 2;
     pointer-events: none;
     opacity: 0;
@@ -1097,7 +1097,7 @@
     width: calc(32px * var(--s));
     height: calc(52px * var(--s));
     transform: translateY(-50%);
-    background: radial-gradient(ellipse, rgba(250, 204, 21, 0.8) 0%, rgba(250, 204, 21, 0) 70%);
+    background: radial-gradient(ellipse, rgba(249, 115, 22, 0.8) 0%, rgba(249, 115, 22, 0) 70%);
     z-index: 2;
     pointer-events: none;
     opacity: 0.4;
@@ -1132,7 +1132,7 @@
     width: calc(22px * var(--s));
     height: calc(22px * var(--s));
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 179, 8, 0.95) 0%, rgba(234, 179, 8, 0) 70%);
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.95) 0%, rgba(249, 115, 22, 0) 70%);
     z-index: 2;
     pointer-events: none;
     opacity: 0.15;
@@ -1155,7 +1155,7 @@
     width: calc(22px * var(--s));
     height: calc(22px * var(--s));
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 179, 8, 0.75) 0%, rgba(234, 179, 8, 0) 70%);
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.75) 0%, rgba(168, 85, 247, 0) 70%);
     z-index: 2;
     pointer-events: none;
     opacity: 0.6;
@@ -1311,7 +1311,7 @@
 .mythic-avatar__division-badge::before { left: calc(2px * var(--s)); }
 .mythic-avatar__division-badge::after { right: calc(2px * var(--s)); }
 .mythic-avatar__division-badge::before, .mythic-avatar__division-badge::after {
-    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #fef08a 40%, #ca8a04 100%);
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #c084fc 40%, #a855f7 100%);
     box-shadow: 0 calc(0.5px * var(--s)) calc(0.5px * var(--s)) rgba(0, 0, 0, 0.5);
 }
 
@@ -1326,7 +1326,7 @@
     left: 50%;
     transform: translateX(-50%);
 }
-.mythic-avatar__division-badge { border: calc(2px * var(--s)) solid #ca8a04; }
+.mythic-avatar__division-badge { border: calc(2px * var(--s)) solid #a855f7; }
 /* Mythic only: the division medallion sits at top-center, on the police cap. */
 .mythic-avatar__division-badge {
     top: calc(-9px * var(--s));
@@ -1490,13 +1490,13 @@
 /* Mythic specific nameplate */
 .mythic-avatar__nameplate {
     background: linear-gradient(180deg, #0c0a14 0%, #040208 100%);
-    border: calc(2px * var(--s)) solid #fbbf24;
+    border: calc(2px * var(--s)) solid #a855f7;
     color: #ffffff;
-    text-shadow: 0 0 calc(4px * var(--s)) rgba(251, 191, 36, 0.5);
+    text-shadow: 0 0 calc(4px * var(--s)) rgba(168, 85, 247, 0.6);
 }
 .mythic-avatar__nameplate::before,
 .mythic-avatar__nameplate::after {
-    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #fde047 40%, #ca8a04 100%);
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #c084fc 40%, #a855f7 100%);
 }
 
 
