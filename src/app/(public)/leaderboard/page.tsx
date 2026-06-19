@@ -1336,13 +1336,49 @@ export default function LeaderboardPage() {
                 
                 <div className="flex flex-col sm:items-end gap-2 p-4 pt-2.5 w-full">
                   <div className="flex items-center justify-between sm:justify-end gap-6 w-full">
-                    <div className="flex flex-col items-start sm:items-end">
-                      <span className="text-white/40 text-[9px] font-black uppercase tracking-widest">Total Score (Rank)</span>
-                      <div className="flex items-center gap-1.5 mt-0.5">
-                        <AnimatedNumber value={currentUser.lifetimePoints ?? 0} className="text-2xl font-black text-white tabular-nums" />
-                        <TierBadge lifetimePoints={currentUser.lifetimePoints ?? 0} size="sm" lang={lang} />
+                    {/* Road Points styled as a Cambodian License Plate */}
+                    <div className="flex flex-col items-start">
+                      <span className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-1">Road Points</span>
+                      
+                      <div
+                        className="relative bg-white border-2 border-black p-1 flex flex-col items-center justify-between select-none shadow-[2px_2px_0_rgba(255,255,255,0.15)]"
+                        style={{
+                          width: "82px",
+                          height: "46px",
+                          borderRadius: "4px",
+                        }}
+                      >
+                        {/* Inner blue border outline */}
+                        <div className="absolute inset-0.5 border border-blue-700 pointer-events-none rounded-[2px]" />
+                        
+                        {/* Top: Province/Cambodia in Khmer */}
+                        <span className="z-10 text-[7.5px] font-black text-blue-900 leading-none scale-90 origin-top">
+                          {currentUser.province ? getProvinceKh(currentUser.province) : "កម្ពុជា"}
+                        </span>
+                        
+                        {/* Center: Score number in deep blue */}
+                        <span className="z-10 font-mono font-black tabular-nums text-xs md:text-sm text-blue-955 leading-none my-0.5 tracking-wide">
+                          {(currentUser.livePoints ?? 0).toLocaleString()}
+                        </span>
+
+                        {/* Horizontal divider line */}
+                        <div className="z-10 w-full h-[1px] bg-blue-800 opacity-60" />
+
+                        {/* Bottom: Province/Cambodia in English Red */}
+                        <span className="z-10 text-[6.5px] font-bold text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom">
+                          {currentUser.province ? currentUser.province.toUpperCase() : "CAMBODIA"}
+                        </span>
+
+                        {/* Tiny QR stamp on the right */}
+                        <div className="absolute right-1 top-[13px] w-2.5 h-2.5 bg-zinc-800 border-[0.5px] border-zinc-900 flex flex-wrap p-[0.5px] opacity-75">
+                          <div className="w-[4px] h-[4px] bg-white" />
+                          <div className="w-[4px] h-[4px] bg-black" />
+                          <div className="w-[4px] h-[4px] bg-black" />
+                          <div className="w-[4px] h-[4px] bg-white" />
+                        </div>
                       </div>
                     </div>
+
                     <div className="flex flex-col items-start sm:items-end">
                       <span className="text-yellow-400/80 text-[9px] font-black uppercase tracking-widest flex items-center gap-1">
                         <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-ping" />
@@ -1354,8 +1390,12 @@ export default function LeaderboardPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="w-full sm:w-56 mt-1.5">
-                    <RankProgressBar lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} compact />
+                  
+                  <div className="w-full sm:w-56 mt-2 flex items-center gap-3 justify-between sm:justify-end">
+                    <TierBadge lifetimePoints={currentUser.lifetimePoints ?? 0} size="sm" lang={lang} />
+                    <div className="flex-1 max-w-[160px]">
+                      <RankProgressBar lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} compact />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1628,19 +1668,44 @@ export default function LeaderboardPage() {
                         </div>
                       </div>
 
-                      {/* Score — Live Score overall, or the player's total score in the
-                          selected game when a mode filter is active. */}
-                      <div className="col-span-4 sm:col-span-3 flex justify-start">
+                      {/* Score — designed like a Cambodian license plate */}
+                      <div className="col-span-4 sm:col-span-3 flex justify-start items-center">
                         <div
-                          className="inline-flex flex-col items-center border-2 border-black px-2 py-0.5 leading-none"
+                          className="relative bg-white border-2 border-black p-1 flex flex-col items-center justify-between select-none shadow-[2px_2px_0_#000]"
                           style={{
-                            background: user.rank === 1 && scoreValue > 0 ? "#facc15" : scoreValue > 0 ? "#fef9c3" : "#f4f4f5",
-                            boxShadow: "2px 2px 0 #000",
-                            borderRadius: 0,
-                            minWidth: 56,
+                            width: "82px",
+                            height: "46px",
+                            borderRadius: "4px",
                           }}
                         >
-                          <span className="font-black tabular-nums text-base md:text-xl" style={{ color: tier.textDark }}>{scoreValue.toLocaleString()}</span>
+                          {/* Inner blue border outline */}
+                          <div className="absolute inset-0.5 border border-blue-700 pointer-events-none rounded-[2px]" />
+                          
+                          {/* Top: Province/Cambodia in Khmer */}
+                          <span className="z-10 text-[7.5px] font-black text-blue-900 leading-none scale-90 origin-top">
+                            {user.province ? getProvinceKh(user.province) : "កម្ពុជា"}
+                          </span>
+                          
+                          {/* Center: Score number in deep blue */}
+                          <span className="z-10 font-mono font-black tabular-nums text-xs md:text-sm text-blue-955 leading-none my-0.5 tracking-wide">
+                            {scoreValue.toLocaleString()}
+                          </span>
+
+                          {/* Horizontal divider line */}
+                          <div className="z-10 w-full h-[1px] bg-blue-800 opacity-60" />
+
+                          {/* Bottom: Province/Cambodia in English Red */}
+                          <span className="z-10 text-[6.5px] font-bold text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom">
+                            {user.province ? user.province.toUpperCase() : "CAMBODIA"}
+                          </span>
+
+                          {/* Tiny QR stamp on the right */}
+                          <div className="absolute right-1 top-[13px] w-2.5 h-2.5 bg-zinc-800 border-[0.5px] border-zinc-900 flex flex-wrap p-[0.5px] opacity-75">
+                            <div className="w-[4px] h-[4px] bg-white" />
+                            <div className="w-[4px] h-[4px] bg-black" />
+                            <div className="w-[4px] h-[4px] bg-black" />
+                            <div className="w-[4px] h-[4px] bg-white" />
+                          </div>
                         </div>
                       </div>
 
