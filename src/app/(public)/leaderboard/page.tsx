@@ -1123,7 +1123,7 @@ export default function LeaderboardPage() {
 
   const fetchLeaderboard = useCallback(async () => {
     try {
-      const params = new URLSearchParams({ limit: "50", window: windowTab });
+      const params = new URLSearchParams({ limit: "52", window: windowTab });
       // Source filter: live, solo, daily, or all
       if (sourceTab !== "all") params.set("source", sourceTab);
       // Game type filter: daily, catch-sign, etc.
@@ -1415,18 +1415,21 @@ export default function LeaderboardPage() {
                     borderRadius: "6px",
                   }}
                 >
+                  {/* Inner blue border outline */}
+                  <div className="absolute inset-[3px] border border-blue-600 pointer-events-none rounded-[4px]" />
+
                   {/* Top: Province/Cambodia in Khmer */}
-                  <span className="z-10 text-[8px] font-black text-zinc-800 leading-none scale-90 origin-top mt-[1.5px]">
+                  <span className="z-10 text-[8px] font-medium text-zinc-500/80 leading-none scale-90 origin-top mt-[4px]">
                     {rowProvince ? getProvinceKh(rowProvince) : "កម្ពុជា"}
                   </span>
                   
                   {/* Center: Score number in premium gold */}
-                  <span className="z-10 font-mono font-black tabular-nums text-[20px] leading-none my-[1px] tracking-tight" style={{ color: "#b8860b" }}>
+                  <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#b8860b" }}>
                     {scoreValue.toLocaleString()}
                   </span>
 
-                  {/* Bottom: Province/Cambodia in English Red */}
-                  <span className="z-10 text-[6.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1.5px]">
+                  {/* Bottom: Province/Cambodia in English */}
+                  <span className="z-10 text-[6.5px] font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
                     {rowProvince ? rowProvince.toUpperCase() : "CAMBODIA"}
                   </span>
                 </div>
@@ -1510,18 +1513,21 @@ export default function LeaderboardPage() {
                           borderRadius: "6px",
                         }}
                       >
+                        {/* Inner blue border outline */}
+                        <div className="absolute inset-[3px] border border-blue-600 pointer-events-none rounded-[4px]" />
+
                         {/* Top: Province/Cambodia in Khmer */}
-                        <span className="z-10 text-[8px] font-black text-zinc-800 leading-none scale-90 origin-top mt-[1.5px]">
+                        <span className="z-10 text-[8px] font-medium text-zinc-500/80 leading-none scale-90 origin-top mt-[4px]">
                           {currentUser.classProvince || currentUser.province ? getProvinceKh(currentUser.classProvince || currentUser.province) : "កម្ពុជា"}
                         </span>
                         
                         {/* Center: Score number in premium gold */}
-                        <span className="z-10 font-mono font-black tabular-nums text-[20px] leading-none my-[1px] tracking-tight" style={{ color: "#b8860b" }}>
+                        <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#b8860b" }}>
                           {(currentUser.livePoints ?? 0).toLocaleString()}
                         </span>
 
-                        {/* Bottom: Province/Cambodia in English Red */}
-                        <span className="z-10 text-[6.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1.5px]">
+                        {/* Bottom: Province/Cambodia in English */}
+                        <span className="z-10 text-[6.5px] font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
                           {currentUser.classProvince || currentUser.province ? (currentUser.classProvince || currentUser.province).toUpperCase() : "CAMBODIA"}
                         </span>
                       </div>
@@ -1758,13 +1764,19 @@ export default function LeaderboardPage() {
               {sortedBoard.length > 10 && (
                 <div className="flex justify-center mt-4">
                   <button
-                    onClick={() => setDisplayLimit(d => d === 10 ? 20 : 10)}
+                    onClick={() => {
+                      setDisplayLimit(d => {
+                        if (d === 10 && sortedBoard.length > 10) return 30;
+                        if (d === 30 && sortedBoard.length > 30) return 52;
+                        return 10;
+                      });
+                    }}
                     className="border-2 border-black bg-yellow-400 text-black px-4 py-2 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0_#000] hover:-translate-y-0.5 transition-transform"
                     style={{ borderRadius: 0 }}
                   >
-                    {displayLimit === 10
-                      ? (kh ? "មើលបន្ថែម (កំពូល ២០)" : "See More (Top 20)")
-                      : (kh ? "បង្ហាញតិចជាងមុន (កំពូល ១០)" : "See Less (Top 10)")}
+                    {displayLimit === 10 && (kh ? "មើលបន្ថែម (កំពូល ៣០)" : "See More (Top 30)")}
+                    {displayLimit === 30 && sortedBoard.length > 30 && (kh ? "មើលបន្ថែម (កំពូល ៥២)" : "See More (Top 52)")}
+                    {(displayLimit === 52 || (displayLimit === 30 && sortedBoard.length <= 30)) && (kh ? "បង្ហាញតិចជាងមុន (កំពូល ១០)" : "See Less (Top 10)")}
                   </button>
                 </div>
               )}
