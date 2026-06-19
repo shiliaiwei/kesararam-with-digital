@@ -28,7 +28,10 @@ import {
     Map as MapIcon,    // safety-adventure — the journey to school
     ShieldCheck,       // safe-street-smart — road-safety rules / protection
     CalendarDays,      // daily — the daily challenge
-    Swords,            // priority-puzzle (legacy) — who goes first?
+    Swords,            // mixed-practice — all question types together (also legacy priority-puzzle)
+    Zap,               // quick-quiz — fast warm-up
+    Flame,             // speed-round — race the clock
+    TriangleAlert,     // sign-challenge — identify signs from images
 } from "lucide-react";
 
 export interface GameCatalogEntry {
@@ -50,6 +53,12 @@ export interface GameCatalogEntry {
  * leaderboard filter chips (after the leading "All games" chip).
  */
 export const GAME_CATALOG: Record<string, GameCatalogEntry> = {
+    // Headline solo quiz modes (play-hub cards 01–04). Slugs match the DB game_type
+    // recorded by /api/game/solo/complete. Colors/icons mirror the play hub.
+    "quick-quiz":        { id: "quick-quiz",        en: "Quick Quiz",         kh: "Quick Quiz",         color: "#eab308", Icon: Zap },
+    "speed-round":       { id: "speed-round",       en: "Speed Round",        kh: "Speed Round",        color: "#ef4444", Icon: Flame },
+    "sign-challenge":    { id: "sign-challenge",    en: "Sign Challenge",     kh: "Sign Challenge",     color: "#06b6d4", Icon: TriangleAlert },
+    "mixed-practice":    { id: "mixed-practice",    en: "Mixed Practice",     kh: "Mixed Practice",     color: "#a855f7", Icon: Swords },
     "daily":             { id: "daily",             en: "Daily Challenge",    kh: "Daily Challenge",    color: "#3b82f6", Icon: CalendarDays },
     "traffic-commander": { id: "traffic-commander", en: "Traffic Commander",  kh: "Traffic Commander",  color: "#06b6d4", Icon: Navigation },
     "catch-sign":        { id: "catch-sign",        en: "Catch the Sign",     kh: "Catch the Sign",     color: "#f97316", Icon: Crosshair },

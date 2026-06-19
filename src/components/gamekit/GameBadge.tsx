@@ -27,6 +27,20 @@ const SIZES: Record<BadgeSize, { box: number; icon: number; border: number; shad
     xl: { box: 72, icon: 38, border: 4, shadow: 5 }, // hero / featured
 };
 
+/**
+ * Pick a readable glyph color for a given badge background. Light bodies (the
+ * brand yellow) get a BLACK glyph per brand rule; saturated/dark bodies get white.
+ */
+function readableGlyph(hex: string): string {
+    const h = hex.replace("#", "");
+    if (h.length < 6) return "#fff";
+    const r = parseInt(h.slice(0, 2), 16);
+    const g = parseInt(h.slice(2, 4), 16);
+    const b = parseInt(h.slice(4, 6), 16);
+    const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return lum > 0.6 ? "#000" : "#fff";
+}
+
 export interface GameBadgeProps {
     /** Game slug (preferred) — resolved through the catalog. */
     slug?: string | null;
@@ -68,7 +82,7 @@ export function GameBadge({ slug, entry, size = "md", shadow = true, className, 
             }}
             aria-hidden
         >
-            <Icon size={s.icon} strokeWidth={2.75} color="#fff" />
+            <Icon size={s.icon} strokeWidth={2.75} color={readableGlyph(game.color)} />
         </span>
     );
 }

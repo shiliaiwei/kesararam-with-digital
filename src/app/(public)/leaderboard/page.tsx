@@ -102,6 +102,14 @@ const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType
   { id: "solo",  en: "Solo Practice",   kh: "ហ្វឹកហាត់",       icon: BookOpen, color: "#22c55e" },
 ];
 
+// Sort options for the rankings table (client-side re-sort of the loaded page).
+const SORT_TABS: { id: "rank" | "live" | "games" | "acc"; en: string; kh: string }[] = [
+  { id: "rank",  en: "Rank",       kh: "ចំណាត់ថ្នាក់" },
+  { id: "live",  en: "Live Score", kh: "ពិន្ទុផ្ទាល់" },
+  { id: "games", en: "Games",      kh: "ហ្គេម" },
+  { id: "acc",   en: "Accuracy",   kh: "ត្រឹមត្រូវ" },
+];
+
 // Game filter chips — derived from the shared GAME_CATALOG so every chip carries
 // the game's iconic badge (GameBadge). "all" leads; then every active game in
 // catalog order. Doubles as the game-type filter (chip id === DB gameType).
@@ -992,6 +1000,10 @@ export default function LeaderboardPage() {
   const kf = kh ? { fontFamily: "var(--font-system)" } : {};
 
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
+  // The podium (top 3) is INTENTIONALLY decoupled from the game-type filter: it
+  // always ranks by the primary LIVE score across all games, so tapping a game
+  // only re-filters the table below — the champions on the podium stay stable.
+  const [podiumBoard, setPodiumBoard] = useState<LeaderboardUser[]>([]);
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<any | null>(null);
@@ -1021,6 +1033,9 @@ export default function LeaderboardPage() {
   const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
   const [sourceTab, setSourceTab] = useState("all");
   const [gameType, setGameType] = useState("all");
+  // Client-side sort of the rankings table (the server returns rank order; this
+  // lets the viewer re-sort the loaded page by another stat without a refetch).
+  const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
   const hasActiveFilters = sourceTab !== "all" || gameType !== "all";
 
   const fetchLeaderboard = useCallback(async () => {
@@ -1047,6 +1062,19 @@ export default function LeaderboardPage() {
     finally { setLoading(false); }
   }, [windowTab, sourceTab, gameType]);
 
+  // Podium fetch — same window + source scope, but NEVER the game-type filter, so
+  // the top 3 stay fixed on the overall live-score ranking when a game is tapped.
+  const fetchPodium = useCallback(async () => {
+    try {
+      const params = new URLSearchParams({ limit: "3", window: windowTab });
+      if (sourceTab !== "all") params.set("source", sourceTab);
+      const res = await fetch(`/api/leaderboard?${params.toString()}`);
+      if (!res.ok) return;
+      const data = await res.json();
+      setPodiumBoard(data.leaderboard || []);
+    } catch { /* silent */ }
+  }, [windowTab, sourceTab]);
+
   const fetchClaimsAndBalance = useCallback((livePoints?: number, lifetimePoints?: number) => {
     fetch("/api/user/claim")
       .then(r => (r.ok ? r.json() : null))
@@ -1072,9 +1100,10 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     fetchLeaderboard();
-    const iv = setInterval(fetchLeaderboard, 60000);
+    fetchPodium();
+    const iv = setInterval(() => { fetchLeaderboard(); fetchPodium(); }, 60000);
     return () => clearInterval(iv);
-  }, [fetchLeaderboard]);
+  }, [fetchLeaderboard, fetchPodium]);
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -1143,7 +1172,19 @@ export default function LeaderboardPage() {
     return () => clearInterval(t);
   }, [leaderboard]);
 
-  const top3 = leaderboard.slice(0, 3);
+  // Podium is fed by the game-independent podiumBoard so it never shifts on a game
+  // tap; fall back to the main board on first paint before podiumBoard arrives.
+  const top3 = (podiumBoard.length > 0 ? podiumBoard : leaderboard).slice(0, 3);
+
+  // Table rows, re-sorted client-side by the active sort key. "rank" keeps the
+  // server's authoritative order; the others sort the loaded page descending.
+  const sortedBoard = sortKey === "rank"
+    ? leaderboard
+    : [...leaderboard].sort((a, b) => {
+        if (sortKey === "live") return (b.priorityPoints ?? 0) - (a.priorityPoints ?? 0);
+        if (sortKey === "games") return (b.totalGamesPlayed ?? 0) - (a.totalGamesPlayed ?? 0);
+        return (b.accuracy ?? 0) - (a.accuracy ?? 0); // "acc"
+      });
 
   // Points, rewards, and tier progression are student-only features.
   // Teachers, admins, and staff host/manage but do not earn points.
@@ -1328,32 +1369,37 @@ export default function LeaderboardPage() {
                   )}
                 </div>
 
-                {/* Game-mode tab bar — the primary filter, one scrollable row */}
-                <div className="flex items-stretch gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
+                {/* Game-mode tab bar — the primary filter. Icon-only chips WRAP onto
+                    multiple rows (no single scrolling row) so every game is visible. */}
+                <div className="flex flex-wrap items-center gap-1.5 pb-1">
                   <span className="flex flex-shrink-0 items-center gap-1 self-center pr-1 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
                     <Gamepad2 size={14} strokeWidth={2.5} />
                     {kh ? "ហ្គេម" : "Mode"}
                   </span>
+                  {/* Icon-only chips — each game is identified by its badge alone
+                      (no text). Game name stays accessible via title + aria-label. */}
                   {GAME_CHIPS.map((g) => {
                     const active = gameType === g.id;
                     return (
                       <button
                         key={g.id}
                         onClick={() => setGameType(g.id)}
-                        className={`flex flex-shrink-0 items-center gap-2 border-2 border-black pl-1.5 pr-3.5 py-1.5 text-xs font-black uppercase tracking-wide transition-all ${active ? "text-yellow-400 shadow-[3px_3px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#000]"}`}
-                        style={{ borderRadius: 0, background: active ? "#000" : "#fff", ...kf }}
+                        title={kh ? g.kh : g.en}
+                        aria-label={kh ? g.kh : g.en}
+                        aria-pressed={active}
+                        className={`flex flex-shrink-0 items-center justify-center border-2 border-black p-1.5 transition-all ${active ? "shadow-[3px_3px_0_#000] -translate-y-0.5" : "hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#000]"}`}
+                        style={{ borderRadius: 0, background: active ? "#000" : "#fff" }}
                       >
                         {g.id === "all" ? (
                           <span
                             className="inline-flex items-center justify-center flex-shrink-0 border-2 border-black"
-                            style={{ width: 30, height: 30, background: "#eab308", borderRadius: 0 }}
+                            style={{ width: 44, height: 44, background: "#eab308", borderRadius: 0 }}
                           >
-                            <Gamepad2 size={17} strokeWidth={2.75} color="#000" />
+                            <Gamepad2 size={24} strokeWidth={2.75} color="#000" />
                           </span>
                         ) : (
-                          <GameBadge slug={g.id} size="sm" shadow={false} />
+                          <GameBadge slug={g.id} size="md" shadow={false} />
                         )}
-                        {kh ? g.kh : g.en}
                       </button>
                     );
                   })}
@@ -1387,6 +1433,28 @@ export default function LeaderboardPage() {
                 )}
               </div>
 
+              {/* Sort control — re-orders the loaded rankings by any stat. Works on
+                  every screen size (mobile included, where header cells are hidden). */}
+              <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                <span className="flex items-center gap-1 pr-0.5 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
+                  <ChevronDown size={12} strokeWidth={3} />{kh ? "តម្រៀប" : "Sort"}
+                </span>
+                {SORT_TABS.map((s) => {
+                  const active = sortKey === s.id;
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => setSortKey(s.id)}
+                      aria-pressed={active}
+                      className={`border-2 border-black px-2.5 py-1 text-[10px] font-black uppercase tracking-wide transition-all ${active ? "bg-black text-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"}`}
+                      style={{ borderRadius: 0, ...kf }}
+                    >
+                      {kh ? s.kh : s.en}
+                    </button>
+                  );
+                })}
+              </div>
+
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 <style>{`@keyframes lbFlash{0%,100%{box-shadow:2px 2px 0 #000;filter:brightness(1)}30%{box-shadow:2px 2px 0 #000,0 0 16px 5px rgba(250,204,21,.95);filter:brightness(1.3)}65%{box-shadow:2px 2px 0 #000,0 0 7px 2px rgba(250,204,21,.55);filter:brightness(1.12)}}.lb-flash{animation:lbFlash .85s ease-in-out}`}</style>
                 {/* Table Header — Live Score is the hero metric and leads the stats
@@ -1402,7 +1470,7 @@ export default function LeaderboardPage() {
                   <span className="col-span-3 text-right text-yellow-400 hidden sm:block">{kh ? "ហ្គេមពេញនិយម" : "Top game"}</span>
                 </div>
 
-                {leaderboard.length > 0 ? leaderboard.map((user, rowIndex) => {
+                {sortedBoard.length > 0 ? sortedBoard.map((user, rowIndex) => {
                   const prev = prevRanks[user.id];
                   const moved = prev !== undefined ? prev - user.rank : 0;
                   // Anonymized (private-username) rows have no public profile.
@@ -1416,15 +1484,17 @@ export default function LeaderboardPage() {
                   const tier = getRank(user.lifetimePoints);
                   // Goal-gradient hook: for the signed-in user, how many LIVE points to
                   // overtake the player ranked directly above.
-                  const above = rowIndex > 0 ? leaderboard[rowIndex - 1] : null;
+                  // Only meaningful in true rank order — skip when re-sorted by another stat.
+                  const above = sortKey === "rank" && rowIndex > 0 ? sortedBoard[rowIndex - 1] : null;
                   const toOvertake = above ? Math.max(0, (above.priorityPoints ?? 0) - live + 1) : 0;
                   return (
                     <div
                       key={user.id}
-                      className={`grid grid-cols-12 items-center px-3 md:px-5 py-2.5 border-t-2 border-black transition-colors ${isMe ? "bg-yellow-50" : "hover:bg-zinc-50"} ${linkable ? "cursor-pointer" : "cursor-default"}`}
+                      className={`border-t-2 border-black transition-colors ${isMe ? "bg-yellow-50" : "hover:bg-zinc-50"} ${linkable ? "cursor-pointer" : "cursor-default"}`}
                       style={{ boxShadow: `inset 5px 0 0 ${medal ?? tier.accent}` }}
                       onClick={linkable ? () => handleSelectUser(user) : undefined}
                     >
+                     <div className="grid grid-cols-12 items-center px-3 md:px-5 py-2.5">
                       {/* Rank + movement */}
                       <div className="col-span-2 sm:col-span-1 flex items-center gap-1">
                         {medal ? (
@@ -1530,6 +1600,37 @@ export default function LeaderboardPage() {
                             <span
                               className="inline-flex items-center gap-1.5 border-2 border-black bg-white pl-1 pr-2 py-0.5 text-[10px] font-black uppercase tracking-wide leading-none max-w-full"
                               style={{ boxShadow: "2px 2px 0 #000", borderRadius: 0 }}
+                              title={kh ? g.kh : g.en}
+                            >
+                              <GameBadge entry={g} size="xs" shadow={false} />
+                              <span className="truncate">{kh ? g.kh : g.en}</span>
+                            </span>
+                          );
+                        })()}
+                      </div>
+                     </div>
+
+                      {/* Mobile stat strip — on phones the Games / Accuracy / Top-game
+                          columns can't sit inline, so they drop to a self-labeled chip
+                          row here. Nothing is hidden on any screen size: ≥sm shows the
+                          inline columns above, <sm shows these chips. */}
+                      <div className="sm:hidden flex items-center gap-1.5 flex-wrap px-3 pb-2.5 -mt-0.5">
+                        <span className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums" style={kf}>
+                          <Gamepad2 size={10} strokeWidth={2.75} />
+                          {(user.totalGamesPlayed ?? 0).toLocaleString()} {kh ? "ហ្គេម" : "Games"}
+                        </span>
+                        <span
+                          className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums"
+                          style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa", ...kf }}
+                        >
+                          {(user.accuracy ?? 0)}% {kh ? "ត្រឹមត្រូវ" : "Acc"}
+                        </span>
+                        {(() => {
+                          const g = getGameMeta(user.bestGame);
+                          if (!g) return null;
+                          return (
+                            <span
+                              className="inline-flex items-center gap-1 border-2 border-black bg-white pl-0.5 pr-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide leading-none max-w-[55%]"
                               title={kh ? g.kh : g.en}
                             >
                               <GameBadge entry={g} size="xs" shadow={false} />
