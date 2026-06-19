@@ -375,15 +375,6 @@ export function RankProgressBar({
                     }}
                 />
             </div>
-            {compact && (
-                <span className="text-[8px] font-bold text-zinc-400 tabular-nums inline-flex items-center gap-1">
-                    <span>{needed.toLocaleString()} pts →</span>
-                    {(() => {
-                        const Icon = TIER_ICONS[next.id] || Star;
-                        return <Icon size={10} className="inline-block" />;
-                    })()}
-                </span>
-            )}
         </div>
     );
 }

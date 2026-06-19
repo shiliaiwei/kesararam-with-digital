@@ -6,6 +6,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
+import { CautionTape } from "@/components/brand/brand-kit";
 import { getRank, canClaimRewards, CLAIM_MIN_POINTS } from "@/lib/rank-utils";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { REWARD_ITEMS, getRewardRarity, RARITY_META, calculateDynamicCost } from "@/lib/rewards";
@@ -1329,28 +1330,33 @@ export default function LeaderboardPage() {
               </div>
             </div>
             {currentUser && isStudent && (
-              <div className="flex flex-col sm:items-end gap-2 bg-zinc-900/60 backdrop-blur-md p-4 border border-zinc-800 shadow-xl rounded-xl">
-                <div className="flex items-center justify-between sm:justify-end gap-6 w-full">
-                  <div className="flex flex-col items-start sm:items-end">
-                    <span className="text-white/40 text-[9px] font-black uppercase tracking-widest">Total Score (Rank)</span>
-                    <div className="flex items-center gap-1.5 mt-0.5">
-                      <AnimatedNumber value={currentUser.lifetimePoints ?? 0} className="text-2xl font-black text-white tabular-nums" />
-                      <TierBadge lifetimePoints={currentUser.lifetimePoints ?? 0} size="sm" lang={lang} />
+              <div className="relative overflow-hidden flex flex-col sm:items-end bg-zinc-950 border-[3px] border-black shadow-[4px_4px_0_#000]" style={{ borderRadius: 0 }}>
+                {/* KWD Branding Stripe */}
+                <CautionTape variant="caution" height={10} />
+                
+                <div className="flex flex-col sm:items-end gap-2 p-4 pt-2.5 w-full">
+                  <div className="flex items-center justify-between sm:justify-end gap-6 w-full">
+                    <div className="flex flex-col items-start sm:items-end">
+                      <span className="text-white/40 text-[9px] font-black uppercase tracking-widest">Total Score (Rank)</span>
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <AnimatedNumber value={currentUser.lifetimePoints ?? 0} className="text-2xl font-black text-white tabular-nums" />
+                        <TierBadge lifetimePoints={currentUser.lifetimePoints ?? 0} size="sm" lang={lang} />
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-start sm:items-end">
+                      <span className="text-yellow-400/80 text-[9px] font-black uppercase tracking-widest flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-ping" />
+                        Claimable Balance
+                      </span>
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <AnimatedNumber value={userPoints} className="text-2xl font-black text-yellow-400 tabular-nums" />
+                        <span className="text-[10px] text-yellow-400 font-bold">PTS</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col items-start sm:items-end">
-                    <span className="text-yellow-400/80 text-[9px] font-black uppercase tracking-widest flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-ping" />
-                      Claimable Balance
-                    </span>
-                    <div className="flex items-center gap-1.5 mt-0.5">
-                      <AnimatedNumber value={userPoints} className="text-2xl font-black text-yellow-400 tabular-nums" />
-                      <span className="text-[10px] text-yellow-400 font-bold">PTS</span>
-                    </div>
+                  <div className="w-full sm:w-56 mt-1.5">
+                    <RankProgressBar lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} compact />
                   </div>
-                </div>
-                <div className="w-full sm:w-56 mt-1">
-                  <RankProgressBar lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} compact />
                 </div>
               </div>
             )}
@@ -1635,11 +1641,6 @@ export default function LeaderboardPage() {
                           }}
                         >
                           <span className="font-black tabular-nums text-base md:text-xl" style={{ color: tier.textDark }}>{scoreValue.toLocaleString()}</span>
-                          <span className="flex items-center gap-0.5 text-[7px] font-black uppercase tracking-wider text-zinc-500">
-                            {gameType === "all"
-                              ? (<><Gift size={7} strokeWidth={3} />live score</>)
-                              : (kh ? "ពិន្ទុ" : "score")}
-                          </span>
                         </div>
                       </div>
 

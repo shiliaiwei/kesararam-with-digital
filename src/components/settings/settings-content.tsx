@@ -957,7 +957,7 @@ export function SettingsContent() {
                         onChange={(e) => setSettings({ ...settings, isProfilePublic: e.target.checked })}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
+                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-black peer-focus:outline-none after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-2 after:border-black after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5 peer-checked:after:bg-[#eab308] rounded-none after:rounded-none"></div>
                     </label>
                   </div>
 
@@ -975,7 +975,7 @@ export function SettingsContent() {
                         onChange={(e) => setSettings({ ...settings, isNamePublic: e.target.checked })}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
+                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-black peer-focus:outline-none after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-2 after:border-black after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5 peer-checked:after:bg-[#eab308] rounded-none after:rounded-none"></div>
                     </label>
                   </div>
 
@@ -983,7 +983,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
                     <div>
                       <h4 className="font-bold text-xs md:text-sm text-black">Username / ឈ្មោះគណនី</h4>
-                      <p className="text-[10px] md:text-xs text-zinc-500">Show username on public pages. / បង្ហាញឈ្មោះគណនីនៅលើទំព័រសា情ណៈ។</p>
+                      <p className="text-[10px] md:text-xs text-zinc-500">Show username on public pages. / បង្ហាញឈ្មោះគណនីនៅលើទំព័រសាធារណៈ។</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                       <input
@@ -992,7 +992,7 @@ export function SettingsContent() {
                         onChange={(e) => setSettings({ ...settings, isUsernamePublic: e.target.checked })}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
+                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-black peer-focus:outline-none after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-2 after:border-black after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5 peer-checked:after:bg-[#eab308] rounded-none after:rounded-none"></div>
                     </label>
                   </div>
 
@@ -1011,7 +1011,7 @@ export function SettingsContent() {
                           onChange={(e) => setSettings({ ...settings, isProvincePublic: e.target.checked })}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
+                        <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-black peer-focus:outline-none after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-2 after:border-black after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5 peer-checked:after:bg-[#eab308] rounded-none after:rounded-none"></div>
                       </label>
                     </div>
                   )}
@@ -1029,7 +1029,7 @@ export function SettingsContent() {
                         onChange={(e) => setSettings({ ...settings, isStatsPublic: e.target.checked })}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
+                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-black peer-focus:outline-none after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-2 after:border-black after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5 peer-checked:after:bg-[#eab308] rounded-none after:rounded-none"></div>
                     </label>
                   </div>
                   </div>
