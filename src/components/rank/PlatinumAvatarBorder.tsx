@@ -157,19 +157,22 @@ export function PlatinumAvatarBorder({
                     <path d="M 25 92 L 31 100 L 25 108" fill="none" stroke="url(#platinum-blue-metal)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M 32 92 L 38 100 L 32 108" fill="none" stroke="url(#platinum-blue-metal)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
 
-                    {/* ── TOP-LEFT DIVISION CORNER PLATE (the HTML badge sits on this) ── */}
-                    <path d="M 18 30 Q 18 18 30 18 L 60 18 L 18 60 Z" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="1.4" strokeLinejoin="round" />
-                    <path d="M 22 28 Q 22 22 28 22 L 50 22" fill="none" stroke="#f8fafc" strokeWidth="1" opacity="0.7" strokeLinecap="round" />
+                    {/* ── TOP-CENTRE CREST (the division medallion sits on this) ── */}
+                    <polygon points="80,30 120,30 114,12 86,12" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="1.6" strokeLinejoin="round" />
+                    <polygon points="82,28 118,28 113,15 87,15" fill="none" stroke="#f8fafc" strokeWidth="0.7" strokeLinejoin="round" opacity="0.6" />
+                    <polygon points="100,2 109,11 100,20 91,11" fill="url(#platinum-blue-metal)" stroke="#1e293b" strokeWidth="1.2" strokeLinejoin="round" />
 
                     {/* ── BOTTOM-RIGHT METAL TAB ── */}
                     <path d="M 152 178 L 178 178 Q 182 178 182 174 L 182 152 Z" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="1.4" strokeLinejoin="round" />
                     <circle cx="171" cy="171" r="2" fill="#334155" stroke="#1e293b" strokeWidth="0.7" />
 
-                    {/* ── PLATINUM NAMEPLATE ── */}
+                    {/* ── PREMIUM PLATINUM NAMEPLATE ── */}
                     <rect x="52" y="150" width="96" height="22" rx="6" fill="#0b1220" transform="translate(1.5,2)" />
                     <rect x="52" y="150" width="96" height="22" rx="6" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="2" />
-                    <rect x="55" y="153" width="90" height="16" rx="4" fill="none" stroke="#f8fafc" strokeWidth="0.7" opacity="0.7" />
-                    <text x="100" y="165" fill="#1e293b" fontSize="11" fontWeight="900" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.5">PLATINUM</text>
+                    <rect x="55" y="153" width="90" height="16" rx="4" fill="none" stroke="#60a5fa" strokeWidth="0.8" opacity="0.7" />
+                    <polygon points="65,161 69,158 69,164" fill="url(#platinum-blue-metal)" />
+                    <polygon points="135,161 131,158 131,164" fill="url(#platinum-blue-metal)" />
+                    <text x="100" y="165" fill="url(#platinum-blue-metal)" stroke="#0b1220" strokeWidth="0.3" fontSize="11" fontWeight="900" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.5">PLATINUM</text>
                 </svg>
 
                 {/* Sweeping silver shine overlay */}

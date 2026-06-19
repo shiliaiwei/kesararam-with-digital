@@ -57,7 +57,7 @@ export function DiamondAvatarBorder({
             style={vars}
         >
             <div className="diamond-avatar__plate">
-                {/* Scalable SVG Frame instead of a static PNG */}
+                {/* Clean premium cyan squircle frame (scalable SVG, no PNG). */}
                 <svg
                     className="diamond-avatar__frame-img"
                     viewBox="0 0 200 200"
@@ -66,165 +66,99 @@ export function DiamondAvatarBorder({
                     aria-hidden="true"
                 >
                     <defs>
-                        {/* Cyan/Blue Metallic Gradient */}
                         <linearGradient id="diamond-cyan-metal" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="#06b6d4" />
                             <stop offset="40%" stopColor="#22d3ee" />
-                            <stop offset="50%" stopColor="#ffffff">
-                                <animate
-                                    attributeName="offset"
-                                    values="0;1;0"
-                                    dur="3s"
-                                    repeatCount="indefinite"
-                                />
+                            <stop offset="50%" stopColor="#ecfeff">
+                                <animate attributeName="offset" values="0;1;0" dur="3.2s" repeatCount="indefinite" />
                             </stop>
-                            <stop offset="60%" stopColor="#e0f7fa" />
-                            <stop offset="100%" stopColor="#0891b2" />
+                            <stop offset="60%" stopColor="#67e8f9" />
+                            <stop offset="100%" stopColor="#0e7490" />
                         </linearGradient>
-
-                        {/* Silver Metallic Gradient for the Outer frame structure */}
-                        <linearGradient id="silver-metallic" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#475569" />
-                            <stop offset="25%" stopColor="#94a3b8" />
+                        <linearGradient id="diamond-cyan-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#cffafe" />
+                            <stop offset="48%" stopColor="#22d3ee" />
+                            <stop offset="100%" stopColor="#0e7490" />
+                        </linearGradient>
+                        <linearGradient id="diamond-silver-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#e2e8f0" />
+                            <stop offset="35%" stopColor="#94a3b8" />
                             <stop offset="50%" stopColor="#ffffff">
-                                <animate
-                                    attributeName="offset"
-                                    values="0;1;0"
-                                    dur="4.5s"
-                                    repeatCount="indefinite"
-                                />
+                                <animate attributeName="offset" values="0;1;0" dur="3.6s" repeatCount="indefinite" />
                             </stop>
-                            <stop offset="75%" stopColor="#cbd5e1" />
-                            <stop offset="100%" stopColor="#1e293b" />
+                            <stop offset="65%" stopColor="#cbd5e1" />
+                            <stop offset="100%" stopColor="#475569" />
                         </linearGradient>
-
-                        {/* Gem Blue Gradient for Crystal facets */}
-                        <linearGradient id="diamond-blue-primary" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#3b82f6" />
-                            <stop offset="50%" stopColor="#06b6d4" />
-                            <stop offset="100%" stopColor="#1d4ed8" />
-                        </linearGradient>
-
-                        {/* Dark blue background for outer ring */}
-                        <radialGradient id="dark-blue-bg" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#0c1524" />
-                            <stop offset="85%" stopColor="#050a12" />
-                            <stop offset="100%" stopColor="#020408" />
+                        <radialGradient id="diamond-bg" cx="50%" cy="38%" r="78%">
+                            <stop offset="0%" stopColor="#0c2230" />
+                            <stop offset="70%" stopColor="#06141f" />
+                            <stop offset="100%" stopColor="#020a10" />
                         </radialGradient>
-
-                        {/* Dark Asphalt radial gradient */}
-                        <radialGradient id="diamond-road-asphalt" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#1e293b" />
-                            <stop offset="75%" stopColor="#0f172a" />
-                            <stop offset="100%" stopColor="#020617" />
+                        <radialGradient id="diamond-asphalt" cx="50%" cy="44%" r="58%">
+                            <stop offset="0%" stopColor="#102733" />
+                            <stop offset="100%" stopColor="#040c12" />
                         </radialGradient>
                     </defs>
 
-                    {/* Brutalist zero-blur shadow for the main frame */}
-                    <rect x="26" y="26" width="152" height="152" rx="4" fill="#000000" />
+                    {/* Hard offset shadow. */}
+                    <rect x="14" y="14" width="172" height="172" rx="28" fill="#000000" transform="translate(3.5,4)" />
 
-                    {/* Main Beveled Silver Outer Frame Body */}
-                    <rect x="22" y="22" width="156" height="156" rx="4" fill="url(#silver-metallic)" stroke="#000000" strokeWidth="4.5" />
+                    {/* ── SILVER SQUIRCLE FRAME + DARK BODY ── */}
+                    <rect x="14" y="14" width="172" height="172" rx="28" fill="url(#diamond-silver-metal)" stroke="#0f172a" strokeWidth="2" />
+                    <rect x="18.5" y="18.5" width="163" height="163" rx="24" fill="none" stroke="#ecfeff" strokeWidth="1" opacity="0.7" />
+                    <rect x="24" y="24" width="152" height="152" rx="20" fill="url(#diamond-bg)" stroke="#06151f" strokeWidth="1.5" />
+                    <rect x="28" y="28" width="144" height="144" rx="17" fill="none" stroke="url(#diamond-cyan-metal)" strokeWidth="2" />
 
-                    {/* Inner Dark Blue Pavement plate */}
-                    <rect x="26" y="26" width="148" height="148" rx="2" fill="url(#dark-blue-bg)" stroke="#000000" strokeWidth="2.5" />
-
-                    {/* ── SYMMETRICAL CORNER CRYSTALS (FACETED 3D GEMS) ── */}
-                    {/* Top-Left Gem */}
-                    <g transform="translate(24, 24)">
-                        <polygon points="-8,-8 16,-16 28,28 -16,16" fill="#000000" />
-                        <polygon points="-8,-8 12,-12 24,24 -12,12" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.5" />
-                        <polygon points="-8,-8 12,-12 2,-2" fill="#ffffff" opacity="0.6" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="-8,-8 -12,12 -2,2" fill="#06b6d4" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="12,-12 24,24 2,-2" fill="#0284c7" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="-12,12 24,24 -2,2" fill="#0891b2" stroke="#000000" strokeWidth="0.8" />
-                    </g>
-
-                    {/* Top-Right Gem */}
-                    <g transform="translate(176, 24)">
-                        <polygon points="8,-8 -16,-16 -28,28 16,16" fill="#000000" />
-                        <polygon points="8,-8 -12,-12 -24,24 12,12" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.5" />
-                        <polygon points="8,-8 -12,-12 -2,-2" fill="#ffffff" opacity="0.6" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="8,-8 12,12 2,2" fill="#06b6d4" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="-12,-12 -24,24 -2,-2" fill="#0284c7" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="12,12 -24,24 2,2" fill="#0891b2" stroke="#000000" strokeWidth="0.8" />
-                    </g>
-
-                    {/* Bottom-Left Gem */}
-                    <g transform="translate(24, 176)">
-                        <polygon points="-8,8 16,16 28,-28 -16,-16" fill="#000000" />
-                        <polygon points="-8,8 12,12 24,-24 -12,-12" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.5" />
-                        <polygon points="-8,8 12,12 2,2" fill="#ffffff" opacity="0.6" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="-8,8 -12,-12 -2,-2" fill="#06b6d4" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="12,12 24,-24 2,2" fill="#0284c7" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="-12,-12 24,-24 -2,-2" fill="#0891b2" stroke="#000000" strokeWidth="0.8" />
-                    </g>
-
-                    {/* Bottom-Right Gem */}
-                    <g transform="translate(176, 176)">
-                        <polygon points="8,8 -16,16 -28,-28 16,-16" fill="#000000" />
-                        <polygon points="8,8 -12,12 -24,-24 12,-12" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.5" />
-                        <polygon points="8,8 -12,12 -2,2" fill="#ffffff" opacity="0.6" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="8,8 12,-12 2,-2" fill="#06b6d4" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="-12,12 -24,-24 -2,2" fill="#0284c7" stroke="#000000" strokeWidth="0.8" />
-                        <polygon points="12,-12 -24,-24 2,-2" fill="#0891b2" stroke="#000000" strokeWidth="0.8" />
-                    </g>
-
-                    {/* ── SIDE TRAFFIC-LIGHT CAPSULES (strobing red/yellow/green) ── */}
-                    {[35, 165].map((cx) => (
-                        <g key={`tl-${cx}`}>
-                            <rect x={cx - 8} y="74" width="16" height="52" rx="7" fill="#06121f" stroke="url(#silver-metallic)" strokeWidth="1.8" />
-                            <circle cx={cx} cy="84" r="4.6" className="diamond-light-red" stroke="#000000" strokeWidth="0.9" />
-                            <circle cx={cx} cy="100" r="4.6" className="diamond-light-yellow" stroke="#000000" strokeWidth="0.9" />
-                            <circle cx={cx} cy="116" r="4.6" className="diamond-light-green" stroke="#000000" strokeWidth="0.9" />
-                            <circle cx={cx - 1.6} cy="82.4" r="1.4" fill="#ffffff" opacity="0.6" />
+                    {/* Corner rivets. */}
+                    {[[34, 34], [166, 34], [34, 166], [166, 166]].map(([cx, cy]) => (
+                        <g key={`rv-${cx}-${cy}`}>
+                            <circle cx={cx} cy={cy} r="3.2" fill="url(#diamond-silver-metal)" stroke="#0f172a" strokeWidth="0.9" />
+                            <circle cx={cx} cy={cy} r="1" fill="#155e75" />
                         </g>
                     ))}
 
-                    {/* Police strobe bar flanking the top crest (red + blue) */}
-                    <rect x="64" y="18" width="11" height="6" rx="1.6" className="diamond-police-red" stroke="#000000" strokeWidth="0.7" />
-                    <rect x="125" y="18" width="11" height="6" rx="1.6" className="diamond-police-blue" stroke="#000000" strokeWidth="0.7" />
+                    {/* ── CYAN ROAD RING (around the photo) ── */}
+                    <circle cx="100" cy="100" r="57" fill="url(#diamond-asphalt)" />
+                    <circle cx="100" cy="100" r="57" fill="none" stroke="url(#diamond-cyan-metal)" strokeWidth="3.4" />
+                    <circle cx="100" cy="100" r="53" fill="none" stroke="#ecfeff" strokeWidth="1" opacity="0.8" />
+                    <circle cx="100" cy="100" r="50.5" fill="none" stroke="#67e8f9" strokeWidth="1.6" strokeDasharray="6 5" opacity="0.95" />
+                    <circle cx="100" cy="100" r="49" fill="none" stroke="url(#diamond-cyan-metal)" strokeWidth="1.4" />
 
-                    {/* ── TOP PREMIUM DIAMOND EMBLEM (WITH ROUNDABOUT ARROWS) ── */}
-                    <polygon points="100,4 120,24 100,44 80,24" fill="url(#silver-metallic)" stroke="#000000" strokeWidth="3" />
-                    <polygon points="100,7 117,24 100,41 83,24" fill="#0b1329" stroke="url(#diamond-cyan-metal)" strokeWidth="1.5" />
-                    {/* Interlocking roundabout arrows inside top crest */}
-                    <g stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" transform="translate(100, 24)">
-                        <path d="M -6,0 A 6,6 0 0,1 3,-5" />
-                        <path d="M 3,-5 A 6,6 0 0,1 3,5" />
-                        <path d="M 3,5 A 6,6 0 0,1 -6,0" />
-                        <path d="M 0,-7 L 3,-5 L 0,-3" fill="#ffffff" strokeWidth="0.8" />
-                        <path d="M 5,2 L 3,5 L 1,2" fill="#ffffff" strokeWidth="0.8" />
-                        <path d="M -5,3 L -6,0 L -8,3" fill="#ffffff" strokeWidth="0.8" />
-                    </g>
+                    {/* ── SIDE TRAFFIC-LIGHT CAPSULES (strobing) ── */}
+                    {[33, 167].map((cx) => (
+                        <g key={`tl-${cx}`}>
+                            <rect x={cx - 7.5} y="78" width="15" height="44" rx="7" fill="#06121f" stroke="url(#diamond-silver-metal)" strokeWidth="1.7" />
+                            <circle cx={cx} cy="87" r="4.3" className="diamond-light-red" stroke="#000000" strokeWidth="0.9" />
+                            <circle cx={cx} cy="100" r="4.3" className="diamond-light-yellow" stroke="#000000" strokeWidth="0.9" />
+                            <circle cx={cx} cy="113" r="4.3" className="diamond-light-green" stroke="#000000" strokeWidth="0.9" />
+                            <circle cx={cx - 1.5} cy="85.6" r="1.3" fill="#ffffff" opacity="0.6" />
+                        </g>
+                    ))}
 
-                    {/* ── BOTTOM ACCENT LICENSE NAMEPLATE ── */}
-                    <rect x="52" y="162" width="96" height="22" rx="4" fill="#0b1329" stroke="url(#silver-metallic)" strokeWidth="2.5" />
-                    <text x="100" y="177" fill="url(#silver-metallic)" fontSize="10.5" fontWeight="950" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.2">DIAMOND</text>
-                    {/* Tiny gemstone on top of nameplate */}
-                    <polygon points="100,154 106,162 100,170 94,162" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1" />
+                    {/* ── TOP CREST (the division medallion sits here) ── */}
+                    <polygon points="80,30 120,30 114,12 86,12" fill="url(#diamond-cyan-bevel)" stroke="#0f172a" strokeWidth="1.6" strokeLinejoin="round" />
+                    <polygon points="100,2 109,11 100,20 91,11" fill="url(#diamond-cyan-metal)" stroke="#0f172a" strokeWidth="1.2" strokeLinejoin="round" />
+                    {/* police strobe lights flanking the crest */}
+                    <rect x="62" y="16" width="11" height="6" rx="1.6" className="diamond-police-red" stroke="#000000" strokeWidth="0.7" />
+                    <rect x="127" y="16" width="11" height="6" rx="1.6" className="diamond-police-blue" stroke="#000000" strokeWidth="0.7" />
 
-                    {/* ── CIRCULAR PHOTO CUTOUT FRAME (Rookie sized r=64) ── */}
-                    {/* Outer Silver Ring */}
-                    <circle cx="100" cy="100" r="78" fill="none" stroke="url(#silver-metallic)" strokeWidth="3" />
-                    {/* Inner Silver Ring */}
-                    <circle cx="100" cy="100" r="74" fill="none" stroke="url(#diamond-cyan-metal)" strokeWidth="1" />
-                    {/* Roadway Surface Ring */}
-                    <circle cx="100" cy="100" r="72" fill="url(#diamond-road-asphalt)" stroke="#000000" strokeWidth="2.5" />
-                    {/* White Lanes */}
-                    <circle cx="100" cy="100" r="68" fill="none" stroke="#ffffff" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.85" />
+                    {/* ── PREMIUM DIAMOND NAMEPLATE ── */}
+                    <rect x="54" y="152" width="92" height="20" rx="6" fill="#06141f" transform="translate(1.5,2)" />
+                    <rect x="54" y="152" width="92" height="20" rx="6" fill="#06141f" stroke="url(#diamond-cyan-metal)" strokeWidth="2.2" />
+                    <rect x="57" y="155" width="86" height="14" rx="4" fill="none" stroke="#67e8f9" strokeWidth="0.7" opacity="0.55" />
+                    <polygon points="66,162 70,159 70,165" fill="url(#diamond-cyan-metal)" />
+                    <polygon points="134,162 130,159 130,165" fill="url(#diamond-cyan-metal)" />
+                    <text x="100" y="166" fill="url(#diamond-cyan-metal)" fontSize="10.5" fontWeight="900" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.6">DIAMOND</text>
                 </svg>
 
                 {/* Sweeping crystal cyan/blue shine overlay */}
                 <div className="diamond-avatar__shine" aria-hidden="true" />
 
-                {/* Top diamond jewel beacon glow */}
+                {/* Top jewel beacon glow */}
                 <div className="diamond-avatar__top-glow" aria-hidden="true" />
 
-                {/* Side crystal shards shimmer/glow */}
+                {/* Side crystal shimmer + side glows */}
                 <div className="diamond-avatar__crystal-shimmer" aria-hidden="true" />
-
-                {/* Side glowing accents */}
                 <div className="diamond-avatar__arrow-glow diamond-avatar__arrow-glow--left" aria-hidden="true" />
                 <div className="diamond-avatar__arrow-glow diamond-avatar__arrow-glow--right" aria-hidden="true" />
 
@@ -250,7 +184,7 @@ export function DiamondAvatarBorder({
                     )}
                 </div>
 
-                {/* Division Badge (Top-Left) */}
+                {/* Division Badge (top-centre, on the crest) */}
                 {division && (
                     <div className="diamond-avatar__division-badge" aria-label={`Division ${division}`}>
                         <span className="diamond-avatar__division-text">{division}</span>
