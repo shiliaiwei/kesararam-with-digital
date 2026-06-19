@@ -555,6 +555,174 @@ export function BrandGuidelineClient() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Point thresholds & division ranges table */}
+                  <div className="mt-8 border-t border-dashed border-zinc-200 dark:border-zinc-800 pt-6">
+                    <h4 className="text-sm font-black uppercase tracking-wider text-zinc-900 dark:text-white mb-3">
+                      {t("Point Thresholds & Division Ranges", "ដែនកំណត់ពិន្ទុ និងជួរផ្នែក")}
+                    </h4>
+                    <div className="overflow-x-auto border-2 border-black dark:border-zinc-800 shadow-[3px_3px_0_#000] dark:shadow-none bg-white dark:bg-zinc-900">
+                      <table className="w-full text-left border-collapse text-[11px] sm:text-xs">
+                        <thead>
+                          <tr className="bg-zinc-100 dark:bg-zinc-800 border-b-2 border-black dark:border-zinc-800">
+                            <th className="p-2.5 font-black uppercase tracking-wider border-r-2 border-black dark:border-zinc-800">{t("Rank", "កម្រិត")}</th>
+                            <th className="p-2.5 font-black uppercase tracking-wider border-r-2 border-black dark:border-zinc-800">{t("Tier Min", "ពិន្ទុអប្បបរមា")}</th>
+                            <th className="p-2.5 font-black uppercase tracking-wider border-r border-black dark:border-zinc-800">{t("Division", "ផ្នែក")}</th>
+                            <th className="p-2.5 font-black uppercase tracking-wider">{t("Points Range", "ចន្លោះពិន្ទុ")}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {/* Rookie */}
+                          <tr>
+                            <td rowSpan={4} className="p-2.5 font-black border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">ROOKIE</td>
+                            <td rowSpan={4} className="p-2.5 font-mono border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">0</td>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">IV</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">0 – 249</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">III</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">250 – 499</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">II</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">500 – 749</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b-2 border-black dark:border-zinc-800 font-mono font-bold">I</td>
+                            <td className="p-2 border-b-2 border-black dark:border-zinc-800 font-mono">750 – 999</td>
+                          </tr>
+
+                          {/* Rising */}
+                          <tr>
+                            <td rowSpan={4} className="p-2.5 font-black border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">RISING</td>
+                            <td rowSpan={4} className="p-2.5 font-mono border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">1,000</td>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">IV</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">1,000 – 1,374</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">III</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">1,375 – 1,749</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">II</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">1,750 – 2,124</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b-2 border-black dark:border-zinc-800 font-mono font-bold">I</td>
+                            <td className="p-2 border-b-2 border-black dark:border-zinc-800 font-mono">2,125 – 2,499</td>
+                          </tr>
+
+                          {/* Gold */}
+                          <tr>
+                            <td rowSpan={4} className="p-2.5 font-black border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">GOLD</td>
+                            <td rowSpan={4} className="p-2.5 font-mono border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">2,500</td>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">IV</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">2,500 – 2,749</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">III</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">2,750 – 2,999</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">II</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">3,000 – 3,249</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b-2 border-black dark:border-zinc-800 font-mono font-bold">I</td>
+                            <td className="p-2 border-b-2 border-black dark:border-zinc-800 font-mono">3,250 – 3,499</td>
+                          </tr>
+
+                          {/* Platinum */}
+                          <tr>
+                            <td rowSpan={4} className="p-2.5 font-black border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">PLATINUM</td>
+                            <td rowSpan={4} className="p-2.5 font-mono border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">3,500</td>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">IV</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">3,500 – 4,374</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">III</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">4,375 – 5,249</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">II</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">5,250 – 6,124</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b-2 border-black dark:border-zinc-800 font-mono font-bold">I</td>
+                            <td className="p-2 border-b-2 border-black dark:border-zinc-800 font-mono">6,125 – 6,999</td>
+                          </tr>
+
+                          {/* Diamond */}
+                          <tr>
+                            <td rowSpan={4} className="p-2.5 font-black border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">DIAMOND</td>
+                            <td rowSpan={4} className="p-2.5 font-mono border-r-2 border-b-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">7,000</td>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">IV</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">7,000 – 8,249</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">III</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">8,250 – 9,499</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">II</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">9,500 – 10,749</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b-2 border-black dark:border-zinc-800 font-mono font-bold">I</td>
+                            <td className="p-2 border-b-2 border-black dark:border-zinc-800 font-mono">10,750 – 11,999</td>
+                          </tr>
+
+                          {/* Mythic */}
+                          <tr>
+                            <td rowSpan={4} className="p-2.5 font-black border-r-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">MYTHIC</td>
+                            <td rowSpan={4} className="p-2.5 font-mono border-r-2 border-black dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">12,000</td>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">IV</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">12,000 – 14,999</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">III</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">15,000 – 19,999</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-b border-black dark:border-zinc-800 font-mono font-bold">II</td>
+                            <td className="p-2 border-b border-black dark:border-zinc-800 font-mono">20,000 – 29,999</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 border-r border-black dark:border-zinc-800 font-mono font-bold">I</td>
+                            <td className="p-2 font-mono">30,000+</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Notes & Frame Styles Info */}
+                    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-zinc-600 dark:text-zinc-400">
+                      <div className="border-2 border-black dark:border-zinc-800 p-3 bg-zinc-50/50 dark:bg-zinc-900/20 shadow-[2px_2px_0_#000] dark:shadow-none">
+                        <span className="font-black block text-zinc-800 dark:text-zinc-200 mb-1.5 uppercase tracking-wide">
+                          {t("Notes", "ចំណាំ")}
+                        </span>
+                        <ul className="list-disc pl-4 space-y-1">
+                          <li>{t("Rookie to Diamond divisions are even quarters of each tier's range.", "កម្រិត Rookie ដល់ Diamond ត្រូវបានបែងចែកជា ៤ ផ្នែកស្មើៗគ្នា នៃចន្លោះពិន្ទុនីមួយៗ។")}</li>
+                          <li>{t("Mythic divisions are open-ended and uneven (Mythic I caps at 30,000+ points).", "ផ្នែកសម្រាប់កម្រិត Mythic មិនស្មើគ្នាទេ (Mythic I កំណត់ចាប់ពី ៣០,០០០ ឡើងទៅ)។")}</li>
+                          <li>{t("Score Migration: A multiplier of ×10 is applied from legacy scores.", "ការផ្ទេរពិន្ទុ៖ ពិន្ទុចាស់នឹងត្រូវគុណនឹង ១០ ដើម្បីផ្ទេរមកពិន្ទុបច្ចុប្បន្ន។")}</li>
+                        </ul>
+                      </div>
+
+                      <div className="border-2 border-black dark:border-zinc-800 p-3 bg-zinc-50/50 dark:bg-zinc-900/20 shadow-[2px_2px_0_#000] dark:shadow-none">
+                        <span className="font-black block text-zinc-800 dark:text-zinc-200 mb-1.5 uppercase tracking-wide">
+                          {t("Frame Style (Per-Rank Brutalist Road-Sign)", "រចនាប័ទ្មស៊ុម (ផ្លាកសញ្ញាចរាចរណ៍តាមកម្រិត)")}
+                        </span>
+                        <ul className="space-y-1">
+                          <li><strong>{t("ROOKIE", "ROOKIE")}:</strong> {t("Black/white road-marker square", "ស៊ុមការ៉េខ្មៅសញ្ញាផ្លូវ")}</li>
+                          <li><strong>{t("RISING", "RISING")}:</strong> {t("Green speed chevrons road-marker square", "ស៊ុមការ៉េបៃតងសញ្ញាព្រួញល្បឿន")}</li>
+                          <li><strong>{t("GOLD", "GOLD")}:</strong> {t("Yellow warning diamond sign", "ស៊ុមរាងការ៉េទ្រេតពណ៌លឿងព្រមាន")}</li>
+                          <li><strong>{t("PLATINUM", "PLATINUM")}:</strong> {t("Blue info shield/capsule sign", "ស៊ុមរាងដបពណ៌ខៀវព័ត៌មាន")}</li>
+                          <li><strong>{t("DIAMOND", "DIAMOND")}:</strong> {t("Blue diamond crystal beacon", "ស៊ុមរាងកញ្ចក់ពេជ្រពណ៌ខៀវលេចធ្លោ")}</li>
+                          <li><strong>{t("MYTHIC", "MYTHIC")}:</strong> {t("Purple elite crown crest with gold accents & sirens", "ស៊ុមមកុដពណ៌ស្វាយអភិជន អមដោយផ្លេកបន្ទោរមាស និងស៊ីរ៉ែន")}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               );
             })()}
