@@ -195,6 +195,9 @@ export function GoldAvatarBorder({
                         <span className="gold-avatar__division-text">{division}</span>
                     </div>
                 )}
+
+                {/* Rank Nameplate (Bottom-Center) */}
+                <div className="gold-avatar__nameplate">GOLD</div>
             </div>
         </div>
     );

@@ -142,13 +142,13 @@ export function DiamondAvatarBorder({
                     <rect x="62" y="16" width="11" height="6" rx="1.6" className="diamond-police-red" stroke="#000000" strokeWidth="0.7" />
                     <rect x="127" y="16" width="11" height="6" rx="1.6" className="diamond-police-blue" stroke="#000000" strokeWidth="0.7" />
 
-                    {/* ── PREMIUM DIAMOND NAMEPLATE ── */}
-                    <rect x="54" y="152" width="92" height="20" rx="6" fill="#06141f" transform="translate(1.5,2)" />
+                    {/* ── PREMIUM DIAMOND NAMEPLATE (Replaced with HTML overlay) ── */}
+                    {/* <rect x="54" y="152" width="92" height="20" rx="6" fill="#06141f" transform="translate(1.5,2)" />
                     <rect x="54" y="152" width="92" height="20" rx="6" fill="#06141f" stroke="url(#diamond-cyan-metal)" strokeWidth="2.2" />
                     <rect x="57" y="155" width="86" height="14" rx="4" fill="none" stroke="#67e8f9" strokeWidth="0.7" opacity="0.55" />
                     <polygon points="66,162 70,159 70,165" fill="url(#diamond-cyan-metal)" />
                     <polygon points="134,162 130,159 130,165" fill="url(#diamond-cyan-metal)" />
-                    <text x="100" y="166" fill="url(#diamond-cyan-metal)" fontSize="10.5" fontWeight="900" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.6">DIAMOND</text>
+                    <text x="100" y="166" fill="url(#diamond-cyan-metal)" fontSize="10.5" fontWeight="900" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.6">DIAMOND</text> */}
                 </svg>
 
                 {/* Sweeping crystal cyan/blue shine overlay */}
@@ -190,6 +190,9 @@ export function DiamondAvatarBorder({
                         <span className="diamond-avatar__division-text">{division}</span>
                     </div>
                 )}
+
+                {/* Rank Nameplate (Bottom-Center) */}
+                <div className="diamond-avatar__nameplate">DIAMOND</div>
             </div>
         </div>
     );

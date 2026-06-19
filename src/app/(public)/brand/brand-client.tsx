@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Award, LayoutGrid } from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
+import { Award, LayoutGrid, ArrowRight, Shield } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import {
   CautionTape,
@@ -12,6 +12,8 @@ import {
   SHAPES,
   type SignShapeName,
 } from "@/components/brand/brand-kit";
+import { AvatarBorder } from "@/components/rank/AvatarBorder";
+import { RANK_CONFIGS, calculateRankAndDivision, type Division } from "@/lib/ranks";
 
 const LOGO_VARIANTS = [
   { src: "/brand/kwd-black_nobackground.png", filename: "kwd-black_nobackground.png", label: { en: "Black (default)", kh: "ពណ៌ខ្មៅ (លំនាំដើម)" }, bg: "bg-white", invert: false },
@@ -79,6 +81,8 @@ export function BrandGuidelineClient() {
   const t = (en: string, k: string) => (kh ? k : en);
 
   const [active, setActive] = useState<string>(SECTIONS[0].id);
+  const [selectedRankId, setSelectedRankId] = useState<string>("gold");
+  const [selectedDivision, setSelectedDivision] = useState<Division>("II");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -376,34 +380,145 @@ export function BrandGuidelineClient() {
             <SectionHeading>{t("Player Ranks & Badges", "កម្រិត និងផ្លាកសញ្ញា")}</SectionHeading>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 max-w-2xl">
               {t(
-                "KWD uses score-derived rank frames for learner profiles and leaderboard highlights. Players climb 6 avatar-border tiers and collect Roman numeral progress divisions (IV to I) from lifetime points.",
-                "KWD ប្រើស៊ុមកម្រិតដែលគណនាពីពិន្ទុសម្រាប់ប្រវត្តិរូបសិស្ស និងការបង្ហាញលំដាប់។ អ្នកលេងអាចឡើងតាមកម្រិតស៊ុមរូបតំណាង ៦ និងប្រមូលផ្នែករ៉ូម៉ាំង (IV ដល់ I) ពីពិន្ទុសរុប។"
+                "KWD uses score-derived rank frames for learner profiles and leaderboard highlights. Players climb 6 avatar-border tiers and collect Roman numeral progress divisions (IV to I) from lifetime points. Select a tier below to view its design and details.",
+                "KWD ប្រើស៊ុមកម្រិតដែលគណនាពីពិន្ទុសម្រាប់ប្រវត្តិរូបសិស្ស និងការបង្ហាញលំដាប់។ អ្នកលេងអាចឡើងតាមកម្រិតស៊ុមរូបតំណាង ៦ និងប្រមូលផ្នែករ៉ូម៉ាំង (IV ដល់ I) ពីពិន្ទុសរុប។ ជ្រើសរើសកម្រិតខាងក្រោមដើម្បីមើលរូបរាង និងព័ត៌មានលម្អិត។"
               )}
             </p>
 
-            <div className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2 shadow-[2px_2px_0_#000] dark:shadow-none mb-6 max-w-3xl">
-              <div className="aspect-[4/3] relative bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 overflow-hidden">
-                <Image
-                  src="/brand/rank-system-showcase.png"
-                  alt="KWD Rank-Frame and Profile-Badge Showcase"
-                  fill
-                  unoptimized
-                  className="object-cover select-none pointer-events-none"
-                  sizes="(max-width: 640px) 100vw, 100vw"
-                  draggable={false}
-                />
-              </div>
-            </div>
+            {/* Interactive Showcase Filter */}
+            {(() => {
+              const DIVISION_ORDER: Division[] = ["IV", "III", "II", "I"];
+              const selectedRankConfig = RANK_CONFIGS.find((r) => r.id === selectedRankId) || RANK_CONFIGS[2];
 
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/brand/ranks"
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-2 border-black dark:border-white px-4 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
-              >
-                <Award size={16} strokeWidth={2.5} aria-hidden="true" />
-                {t("Open Interactive Showcase", "បើកមើលការបង្ហាញអន្តរកម្ម")}
-              </Link>
-            </div>
+              // Calculate preview score
+              const index = DIVISION_ORDER.indexOf(selectedDivision);
+              let previewScore = selectedRankConfig.minPoints;
+              if (selectedRankConfig.divisionThresholds) {
+                previewScore = selectedRankConfig.divisionThresholds[index];
+              } else {
+                const nextTier = RANK_CONFIGS[RANK_CONFIGS.findIndex((item) => item.id === selectedRankConfig.id) + 1];
+                if (!nextTier) {
+                  previewScore = selectedRankConfig.minPoints + (index * 500); // mythic step fallback
+                } else {
+                  const step = (nextTier.minPoints - selectedRankConfig.minPoints) / DIVISION_ORDER.length;
+                  previewScore = Math.floor(selectedRankConfig.minPoints + step * index);
+                }
+              }
+
+              return (
+                <div className="space-y-6 max-w-3xl">
+                  {/* Horizontal Tabs selector */}
+                  <div className="grid grid-cols-3 sm:grid-cols-6 border-2 border-black dark:border-zinc-800 shadow-[3px_3px_0_#000] dark:shadow-none mb-6 overflow-hidden">
+                    {RANK_CONFIGS.map((tier) => {
+                      const isActive = selectedRankId === tier.id;
+                      return (
+                        <button
+                          key={tier.id}
+                          onClick={() => {
+                            setSelectedRankId(tier.id);
+                          }}
+                          className={`py-3 text-xs font-black uppercase tracking-wider text-center border-b border-r border-black dark:border-zinc-800 sm:border-b-0 last:border-r-0 transition-colors ${
+                            isActive
+                              ? "bg-yellow-500 text-black font-black"
+                              : "bg-white hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                          }`}
+                        >
+                          {tier.name}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Showcase Details + Preview Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6 border-2 border-black dark:border-zinc-800 p-5 bg-zinc-50 dark:bg-zinc-900 shadow-[4px_4px_0_#000] dark:shadow-none">
+                    {/* Centered Preview container */}
+                    <div className="flex flex-col items-center">
+                      <div className="relative flex items-center justify-center w-full aspect-square max-w-[200px] border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-950 p-6 mb-4 overflow-hidden">
+                        {/* Grid decorative lines in background */}
+                        <div className="absolute inset-0 opacity-15" style={{
+                          backgroundImage: "linear-gradient(to right, #3b82f6 1px, transparent 1px), linear-gradient(to bottom, #3b82f6 1px, transparent 1px)",
+                          backgroundSize: "20px 20px"
+                        }} />
+                        <AvatarBorder
+                          score={previewScore}
+                          username="brand_preview"
+                          alt={`${selectedRankConfig.name} Showcase Preview`}
+                          size="lg"
+                          animated={true}
+                          showPoints={false}
+                        />
+                      </div>
+
+                      {/* Division buttons */}
+                      <label className="text-[10px] font-black uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                        {t("Division", "ផ្នែក")}
+                      </label>
+                      <div className="flex border-2 border-black dark:border-zinc-700 w-full max-w-[200px] overflow-hidden shadow-[2px_2px_0_#000] dark:shadow-none">
+                        {DIVISION_ORDER.map((div) => (
+                          <button
+                            key={div}
+                            onClick={() => setSelectedDivision(div)}
+                            className={`flex-1 py-1.5 font-mono text-xs font-black transition-colors border-r border-black dark:border-zinc-700 last:border-r-0 ${
+                              selectedDivision === div
+                                ? "bg-yellow-500 text-black"
+                                : "bg-white hover:bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+                            }`}
+                          >
+                            {div}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Right side Detail Panel */}
+                    <div className="flex flex-col justify-between space-y-4">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-2xl font-black uppercase tracking-wider text-zinc-900 dark:text-white">
+                            {selectedRankConfig.name}
+                          </h3>
+                          <span
+                            className="px-2 py-0.5 border border-black dark:border-zinc-700 text-[10px] font-black uppercase tracking-wider text-black bg-yellow-500 shadow-[1px_1px_0_#000] dark:shadow-none"
+                          >
+                            {selectedRankConfig.minPoints === 0 ? t("Start Tier", "កម្រិតចាប់ផ្តើម") : `${selectedRankConfig.minPoints.toLocaleString()} PTS`}
+                          </span>
+                        </div>
+                        <p className="text-sm font-bold uppercase tracking-wide mt-1.5" style={{ color: selectedRankConfig.accentColor }}>
+                          {selectedRankConfig.safetyTheme}
+                        </p>
+                        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mt-3">
+                          {selectedRankConfig.description}
+                        </p>
+                      </div>
+
+                      {/* Detail Table */}
+                      <div className="grid grid-cols-2 gap-3 pt-3 border-t border-dashed border-zinc-200 dark:border-zinc-800 text-xs">
+                        <div className="border-2 border-black dark:border-zinc-800 bg-white dark:bg-zinc-800/50 p-2.5">
+                          <p className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{t("Accents & Theme", "លក្ខណៈពិសេស")}</p>
+                          <p className="font-bold text-zinc-800 dark:text-zinc-200 mt-1 uppercase">
+                            {selectedRankConfig.id === "rookie" && t("Caution Cone / Start", "កោណចរាចរណ៍ / ចាប់ផ្តើម")}
+                            {selectedRankConfig.id === "rising" && t("Go Green / Speed Chevrons", "សញ្ញាព្រួញល្បឿន / ពណ៌បៃតង")}
+                            {selectedRankConfig.id === "gold" && t("Road Warning Diamonds", "សញ្ញាព្រមានជ្រុង / មាស")}
+                            {selectedRankConfig.id === "platinum" && t("Official Blue / Traffic Capsule", "សញ្ញាព័ត៌មាន / ប្លាទីន")}
+                            {selectedRankConfig.id === "diamond" && t("Strobe Beacon / Diamond Gems", "កញ្ចក់ពេជ្រ / ភ្លើងប៉ូលីស")}
+                            {selectedRankConfig.id === "mythic" && t("Elite Crown / Lightning Bolts", "មកុដ / ផ្លេកបន្ទោរពណ៌មាស")}
+                          </p>
+                        </div>
+                        <div className="border-2 border-black dark:border-zinc-800 bg-white dark:bg-zinc-800/50 p-2.5">
+                          <p className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{t("Border Style", "ម៉ូដគែម")}</p>
+                          <div className="flex items-center gap-1.5 mt-1.5">
+                            <span className="w-3.5 h-3.5 border border-black dark:border-zinc-700 inline-block" style={{ backgroundColor: selectedRankConfig.primaryColor }} title="Primary" />
+                            <span className="w-3.5 h-3.5 border border-black dark:border-zinc-700 inline-block" style={{ backgroundColor: selectedRankConfig.secondaryColor }} title="Secondary" />
+                            <span className="w-3.5 h-3.5 border border-black dark:border-zinc-700 inline-block" style={{ backgroundColor: selectedRankConfig.accentColor }} title="Accent" />
+                            <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 ml-1">{selectedRankConfig.primaryColor}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
           </section>
 
           {/* Applications */}

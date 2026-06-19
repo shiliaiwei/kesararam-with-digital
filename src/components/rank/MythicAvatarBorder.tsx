@@ -154,11 +154,11 @@ export function MythicAvatarBorder({
                     <rect x="74" y="33" width="8" height="4.4" rx="1.2" className="mythic-siren-red" stroke="#000000" strokeWidth="0.5" />
                     <rect x="118" y="33" width="8" height="4.4" rx="1.2" className="mythic-siren-blue" stroke="#000000" strokeWidth="0.5" />
 
-                    {/* ── MYTHIC NAMEPLATE BANNER (purple + gold) ── */}
-                    <polygon points="54,150 146,150 152,162 146,174 54,174 48,162" fill="#000000" transform="translate(1.5,2)" />
+                    {/* ── MYTHIC NAMEPLATE BANNER (Replaced with HTML overlay) ── */}
+                    {/* <polygon points="54,150 146,150 152,162 146,174 54,174 48,162" fill="#000000" transform="translate(1.5,2)" />
                     <polygon points="54,150 146,150 152,162 146,174 54,174 48,162" fill="url(#mythic-purple-bevel)" stroke="url(#mythic-gold-metal)" strokeWidth="2.4" strokeLinejoin="round" />
                     <polygon points="57,153 143,153 148,162 143,171 57,171 52,162" fill="none" stroke="#e9d5ff" strokeWidth="0.7" strokeLinejoin="round" opacity="0.6" />
-                    <text x="100" y="166.5" fill="#ffffff" stroke="#3b0764" strokeWidth="0.3" fontSize="12.5" fontWeight="900" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.5">MYTHIC</text>
+                    <text x="100" y="166.5" fill="#ffffff" stroke="#3b0764" strokeWidth="0.3" fontSize="12.5" fontWeight="900" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.5">MYTHIC</text> */}
 
                     {/* Bottom road hint: gold edge lines fanning to the corners. */}
                     <g stroke="url(#mythic-gold-metal)" strokeWidth="2" strokeLinecap="round">
@@ -212,6 +212,9 @@ export function MythicAvatarBorder({
                         <span className="mythic-avatar__division-text">{division}</span>
                     </div>
                 )}
+
+                {/* Rank Nameplate (Bottom-Center) */}
+                <div className="mythic-avatar__nameplate">MYTHIC</div>
             </div>
         </div>
     );
