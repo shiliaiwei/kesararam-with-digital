@@ -475,7 +475,7 @@ export default function RanksShowcasePage() {
                       username={`${tier.id}_demo`}
                       initials={tier.name.slice(0, 2).toUpperCase()}
                       avatarClass={tier.id === "rookie" || tier.id === "mythic" ? "bg-zinc-950 text-white" : "bg-white text-black"}
-                      size={150}
+                      size={96}
                     />
                     <span
                       className="border-2 border-white/20 bg-black px-2 py-1 text-center text-[10px] font-black uppercase tracking-wider"

@@ -305,6 +305,7 @@
     z-index: 1;
     pointer-events: none;
     overflow: visible;
+    max-width: none !important;
 }
 
 /* Alternate flashing / pulsing for left and right lightning bolts */
@@ -447,6 +448,7 @@
     z-index: 1;
     pointer-events: none;
     overflow: visible;
+    max-width: none !important;
 }
 
 /* Sweeping silver/light-blue shine */
@@ -716,6 +718,7 @@
     z-index: 1;
     pointer-events: none;
     overflow: visible;
+    max-width: none !important;
 }
 
 /* Sweeping cyan/blue crystal shine */
@@ -971,6 +974,7 @@
     z-index: 1;
     pointer-events: none;
     overflow: visible;
+    max-width: none !important;
 }
 
 /* Police light bar strobe animations */
