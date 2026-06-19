@@ -55,4 +55,6 @@ Each tier should get its own distinctive road-sign frame shape (not a uniform
 ring): Rookie = black/white road-marker square; Rising = yellow chevron caution
 square; Gold = yellow warning **diamond**; Platinum = blue info **shield**; Diamond
 = blue diamond **crystal**; Mythic = purple elite **crown crest** with gold accents.
-Photo stays clean & centred; badges/effects outside the photo. See [[road-safety-rank-system]].
+Photo stays clean & centred; badges/effects outside the photo. Inspect
+`src/components/rank/*`, `src/app/ranks`, and `src/app/(public)/brand/ranks` before
+changing frame behavior.

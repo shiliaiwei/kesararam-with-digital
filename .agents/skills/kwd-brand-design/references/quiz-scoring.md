@@ -2,7 +2,7 @@
 
 > Source of truth for the **new** scoring engine at `src/lib/quiz-scoring.ts`
 > (tests: `src/lib/quiz-scoring.test.ts`). Feeds the 6-tier rank system —
-> see [[rank-tiers]] / `src/lib/ranks.ts`. Set by the user 2026-06-19.
+> see `references/rank-tiers.md` / `src/lib/ranks.ts`. Set by the user 2026-06-19.
 > Keep scoring logic separate from UI. Coexists with the legacy store-points
 > engine; this is the NEW system, not yet live.
 
@@ -55,7 +55,7 @@ This cap is deliberate (scarce points → each one feels earned). Don't raise it
 ## Rank connection
 
 Total score accumulates into the user's permanent `score`; rank uses the 6 tiers
-in [[rank-tiers]]: ROOKIE 0 · RISING 1,000 · GOLD 2,500 · PLATINUM 3,500 ·
+in `references/rank-tiers.md`: ROOKIE 0 · RISING 1,000 · GOLD 2,500 · PLATINUM 3,500 ·
 DIAMOND 7,000 · MYTHIC 12,000. English names only, never translated.
 
 ## Applies to ALL game types (one scorer)

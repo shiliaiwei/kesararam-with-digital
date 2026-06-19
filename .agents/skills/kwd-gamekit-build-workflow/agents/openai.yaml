@@ -1,0 +1,4 @@
+interface:
+  display_name: "KWD GameKit Workflow"
+  short_description: "Build KWD GameKit modes from project rules"
+  default_prompt: "Use $kwd-gamekit-build-workflow to build or update a KWD GameKit activity from the project spec."

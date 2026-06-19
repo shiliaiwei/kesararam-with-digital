@@ -19,6 +19,13 @@ description: >
 
 # KWD Brand Design System
 
+## Mandatory first step
+
+Before any AI agent creates, edits, rewrites, or reviews visual UI in KWD, it
+must read this skill first and use it as the design source of truth. Do not rely
+on generic UI taste, old screenshots, or memory when this file and its references
+are available.
+
 > **KWD = Kesararam With Digital** — free, bilingual (English + ខ្មែរ) road-safety
 > education built by young Cambodian women. Technovation Girls 2026 · Team #50777 ·
 > Siem Reap, Cambodia. The visual identity is **road safety made into a UI**:
@@ -196,6 +203,35 @@ inverted/white on dark. Min height 24px. Clear space = height of the "K".
 
 ---
 
+## 7 · Rank tiers (the gamification ladder)
+
+KWD has **exactly 6 rank tiers** earned by lifetime score. Each tier holds 4
+**Roman-numeral divisions** (IV -> III -> II -> I; IV lowest). Only `score` is
+stored; tier and division are always derived from it. Names are **English only,
+UPPERCASE on badges, never translated to Khmer**. Source of truth:
+`src/lib/ranks.ts` plus `src/components/rank/*`; full spec:
+`references/rank-tiers.md`.
+
+| Tier | Tier min (pts) | Palette meaning |
+|------|----------------|-----------------|
+| **ROOKIE** | 0 | neutral / start |
+| **RISING** | 1,000 | go / progress |
+| **GOLD** | 2,500 | CTA / warning gold; reward claim gate starts here |
+| **PLATINUM** | 3,500 | info |
+| **DIAMOND** | 7,000 | premium-info |
+| **MYTHIC** | 12,000 | premium / top rank |
+
+Rules for rank UI:
+- Use the score-derived helpers in `src/lib/ranks.ts` / `src/lib/road-rank.ts`.
+- Do not add Master, Elite, Legend, Highmaster, Supreme, or any seventh tier.
+- Keep the profile photo clean and centered; badges/effects stay outside it.
+- Use the existing avatar-frame components before creating new rank visuals.
+- Read `references/rank-tiers.md` before changing rank labels, thresholds, avatar
+  borders, leaderboard/profile rank display, or division ranges.
+- Read `references/quiz-scoring.md` before changing rank-point earning behavior.
+
+---
+
 ## Don'ts — reject these in review or your own output
 
 - ❌ Soft/blurred **structural** shadows (e.g. `shadow-lg`, `shadow-xl` on a card).
@@ -226,6 +262,8 @@ inverted/white on dark. Min height 24px. Clear space = height of the "K".
 
 For copy-paste component blocks → `references/patterns.md`.
 For the full token/hex table → `references/tokens.md`.
+For rank thresholds and score rules → `references/rank-tiers.md` and
+`references/quiz-scoring.md`.
 For the learning/psychology/design **theories the product is built on** (design
 *toward* them) → `references/concepts.md`.
 
