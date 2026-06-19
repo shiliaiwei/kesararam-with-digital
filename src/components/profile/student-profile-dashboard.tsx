@@ -106,10 +106,9 @@ export function StudentProfileDashboard({
     isProfilePublic: true,
     isNamePublic: true,
     isUsernamePublic: true,
-    isSchoolPublic: true,
+    isSchoolPublic: false,
     isProvincePublic: true,
-    isGradePublic: true,
-    isSectionPublic: true,
+    isClassPublic: true,
     isStatsPublic: true,
   });
   const [privacyLoading, setPrivacyLoading] = useState(false);
@@ -159,10 +158,9 @@ export function StudentProfileDashboard({
           isProfilePublic: s.isProfilePublic ?? true,
           isNamePublic: s.isNamePublic ?? true,
           isUsernamePublic: s.isUsernamePublic ?? true,
-          isSchoolPublic: s.isSchoolPublic ?? true,
+          isSchoolPublic: false,
           isProvincePublic: s.isProvincePublic ?? true,
-          isGradePublic: s.isGradePublic ?? true,
-          isSectionPublic: s.isSectionPublic ?? true,
+          isClassPublic: s.isClassPublic ?? true,
           isStatsPublic: s.isStatsPublic ?? true,
         });
         setEditUsername(s.username ?? user.username);
@@ -1004,10 +1002,8 @@ export function StudentProfileDashboard({
                       {privacy.isProfilePublic && ([
                         { field: "isNamePublic", labelEn: "Show Full Name", labelKh: "បង្ហាញឈ្មោះ" },
                         { field: "isUsernamePublic", labelEn: "Show Username", labelKh: "បង្ហាញ Username" },
-                        { field: "isSchoolPublic", labelEn: "Show School", labelKh: "បង្ហាញសាលារៀន" },
+                        { field: "isClassPublic", labelEn: "Show My Classroom", labelKh: "បង្ហាញថ្នាក់រៀនរបស់ខ្ញុំ" },
                         { field: "isProvincePublic", labelEn: "Show Province", labelKh: "បង្ហាញខេត្ត" },
-                        { field: "isGradePublic", labelEn: "Show Grade", labelKh: "បង្ហាញថ្នាក់" },
-                        { field: "isSectionPublic", labelEn: "Show Section", labelKh: "បង្ហាញបន្ទប់" },
                         { field: "isStatsPublic", labelEn: "Show Stats & Rewards", labelKh: "បង្ហាញស្ថិតិ" },
                       ] as { field: keyof typeof privacy; labelEn: string; labelKh: string }[]).map(({ field, labelEn, labelKh: lkh }, idx, arr) => {
                         const val = privacy[field] as boolean;

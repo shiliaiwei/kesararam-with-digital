@@ -28,6 +28,7 @@
     "db:migrate-legacy-to-store-points": "tsx scripts/migrate-legacy-to-store-points.ts",
     "db:seed-priority": "tsx scripts/seed-priority-scenes.ts",
     "db:migrate-tick-sign-live": "tsx scripts/migrate-tick-sign-live.ts",
+    "db:migrate-profile-privacy": "tsx scripts/migrate-profile-privacy.ts",
     "studio": "node node_modules/drizzle-kit/bin.cjs studio",
     "backup": "node node_modules/tsx/dist/cli.mjs scripts/backup-db.ts",
     "restore": "node node_modules/tsx/dist/cli.mjs scripts/restore-db.ts",

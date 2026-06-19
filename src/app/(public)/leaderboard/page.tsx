@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
@@ -23,6 +22,8 @@ import {
   Crown,
   Info,
   MapPin,
+  GraduationCap,
+  Zap,
   ChevronUp,
   ChevronDown,
   Gamepad2,
@@ -170,20 +171,18 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
       {parsed ? (
         <div className="w-full h-full rounded-full overflow-hidden relative flex-shrink-0" style={{ background: "#eab308", border: "2px solid #000" }}>
           {parsed.head && (
-            <Image
+            <img
               src={`/avatar/head/${encodeURIComponent(parsed.head)}`}
               alt=""
               aria-hidden
-              fill
               className="absolute inset-0 w-full h-full object-contain"
             />
           )}
           {parsed.face && (
-            <Image
+            <img
               src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
               alt=""
               aria-hidden
-              fill
               style={getAvatarFaceStyle(parsed.head)}
             />
           )}
@@ -193,12 +192,11 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
           const src = avatarSrc(url, changedAt);
           if (src && !err) {
             return (
-              <Image
+              <img
                 src={src}
                 alt={name}
                 onError={() => setErr(true)}
-                fill
-                className="w-full h-full object-cover rounded-full"
+                className="absolute inset-0 w-full h-full object-cover rounded-full"
                 style={{ border: "2px solid #000" }}
               />
             );
@@ -482,6 +480,12 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             <span className="inline-flex items-center gap-1 border-2 border-black bg-blue-50 px-1.5 py-0.5 text-[8px] font-black uppercase text-blue-700">
               <MapPin size={9} />
               {kh ? getProvinceKh(user.province) : user.province}
+            </span>
+          )}
+          {user?.className && (
+            <span className="inline-flex items-center gap-1 border-2 border-black bg-green-50 px-1.5 py-0.5 text-[8px] font-black uppercase text-green-700">
+              <GraduationCap size={9} />
+              {user.className}
             </span>
           )}
         </div>
@@ -1008,10 +1012,10 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
               style={{ background: "#fef3c7", color: "#92400e", boxShadow: `3px 3px 0 ${rmeta.accent}`, ...kf }}>
               <span className="flex items-center gap-1.5">
                 <Lock size={12} strokeWidth={3} />
-                {kh ? "ឡើងថ្នាក់មាសសិន" : "REACH GOLD TO CLAIM"}
+                {kh ? "ឡើងដល់ GOLD ដើម្បីប្តូរ" : "REACH GOLD TO CLAIM"}
               </span>
               <span className="text-[8px] font-mono tracking-tighter text-yellow-700">
-                {kh ? `ខ្វះ ${pointsToGold.toLocaleString()} ពិន្ទុដើម្បីដល់មាស` : `${pointsToGold.toLocaleString()} pts to Gold`}
+                {kh ? `ខ្វះ ${pointsToGold.toLocaleString()} ពិន្ទុដើម្បីដល់ GOLD` : `${pointsToGold.toLocaleString()} pts to Gold`}
               </span>
             </button>
           ) : canClaim ? (
@@ -1045,16 +1049,14 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
         {/* Dynamic Cooldown Tier Hint (Psychology of Reward & Progress) */}
         <div className="text-center mt-2 border-t border-zinc-100 pt-2 pointer-events-none">
           {userRank.id === "rookie" || userRank.id === "rising" || userRank.id === "debut" ? (
-            <span className="text-[8.5px] text-zinc-400 font-bold block leading-normal" style={kf}>
-              {kh ? "💡 ឡើងថ្នាក់មាសដើម្បីទទួលបានការប្តូររង្វាន់ឡើងវិញ (១ឆ្នាំ ៦ខែ)!" : "💡 Level up to Gold to claim items (1 year 6 months reset)!"}
-            </span>
-          ) : userRank.id === "gold" ? (
-            <span className="text-[8.5px] text-yellow-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់មាស៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ១ឆ្នាំ ៦ខែ!" : "⚡ Gold Tier: Claims reset in 1 year 6 months!"}
+            <span className="flex items-center justify-center gap-1 text-[8.5px] text-zinc-400 font-bold leading-normal" style={kf}>
+              <Info size={10} />
+              {kh ? "ឡើងដល់ GOLD ដើម្បីប្តូររង្វាន់ (កំណត់ឡើងវិញ ១ឆ្នាំ ៦ខែ)" : "Level up to Gold to claim items (1 year 6 months reset)!"}
             </span>
           ) : (
-            <span className="text-[8.5px] text-cyan-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់ពេជ្រ៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ២ឆ្នាំ ៦ខែ!" : "⚡ Diamond Tier: Claims reset in 2 years 6 months!"}
+            <span className="flex items-center justify-center gap-1 text-[8.5px] text-cyan-700 font-extrabold leading-normal animate-pulse" style={kf}>
+              <Zap size={10} />
+              {userRank.label.toUpperCase()} TIER: {kh ? `រង្វាន់ប្តូរឡើងវិញក្នុង ${Math.ceil(cooldownMs / (365 * 24 * 60 * 60 * 1000))} ឆ្នាំ` : `Claims reset in ${Math.ceil(cooldownMs / (365 * 24 * 60 * 60 * 1000))} years`}
             </span>
           )}
         </div>
@@ -1613,6 +1615,11 @@ export default function LeaderboardPage() {
                             {user.province && (
                               <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
                                 <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
+                              </span>
+                            )}
+                            {user.className && (
+                              <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-200 px-1 py-0.5">
+                                <GraduationCap size={8} />{user.className}
                               </span>
                             )}
                             {/* Goal-gradient: only for me, when someone is just ahead */}

@@ -43,10 +43,11 @@ async function storePointsLeaderboard(opts: {
   // The single game type this student has played most (by play count) — drives the
   // "Top game" leaderboard column. NULL when they have no recorded plays.
   const bestGameExpr = sql<string | null>`(SELECT spe.game_type FROM store_point_events spe WHERE spe.user_id = users.id AND spe.reason = 'play'${gameTypeCond} GROUP BY spe.game_type ORDER BY COUNT(*) DESC LIMIT 1)`;
+  const classNameExpr = sql<string | null>`(SELECT c.name FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
 
   const provinceFilter =
-    province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
-  const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student'`;
+    province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
+  const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true`;
 
   const rows = await db
     .select({
@@ -64,8 +65,11 @@ async function storePointsLeaderboard(opts: {
       bestGame: bestGameExpr,
       schoolName: users.schoolName,
       province: users.province,
-      isSchoolPublic: users.isSchoolPublic,
+      isNamePublic: users.isNamePublic,
+      isUsernamePublic: users.isUsernamePublic,
       isProvincePublic: users.isProvincePublic,
+      className: classNameExpr,
+      isClassPublic: users.isClassPublic,
     })
     .from(users)
     .where(sql`${publicFilter}${provinceFilter} AND ${windowExpr} > 0`)
@@ -78,9 +82,9 @@ async function storePointsLeaderboard(opts: {
   const rankedUsers = rows.map((user, index) => ({
     id: user.id,
     rank: offset + index + 1,
-    displayName: user.displayName || user.username,
-    username: user.username,
-    isUsernamePublic: true,
+    displayName: (user.isNamePublic ?? true) ? (user.displayName || user.username) : "Private Student",
+    username: (user.isUsernamePublic ?? true) ? user.username : "",
+    isUsernamePublic: user.isUsernamePublic ?? true,
     avatar: user.avatar,
     avatarChangedAt: user.avatarChangedAt,
     highestScore: user.highestScore,
@@ -90,8 +94,9 @@ async function storePointsLeaderboard(opts: {
     soloPoints: 0,
     accuracy: user.accuracy,
     bestGame: user.bestGame,
-    schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
+    schoolName: null,
     province: (user.isProvincePublic ?? true) ? user.province : null,
+    className: (user.isClassPublic ?? true) ? user.className : null,
   }));
 
   return NextResponse.json({
@@ -149,9 +154,9 @@ export async function GET(req: NextRequest) {
     // (school/province/grade) and isStatsPublic are NOT required — students who
     // played any game appear even with a bare profile. Per-field privacy flags
     // (isNamePublic, isSchoolPublic, …) still anonymize the displayed values below.
-    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.lifetimePoints} > 0`;
+    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true AND ${users.lifetimePoints} > 0`;
     const provinceFilter =
-      province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
+      province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
 
     const gameTypeCondPl =
       gameType !== "all" ? sql` AND pl.game_type = ${gameType}` : sql``;
@@ -167,6 +172,7 @@ export async function GET(req: NextRequest) {
     const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(CASE WHEN gs.total_questions > 0 THEN gs.correct_answers::numeric / gs.total_questions END) * 100) FROM game_scores gs WHERE gs.user_id = users.id${gameTypeCondGs}), 0)::int`;
     // Most-played game mode (by play count) — drives the "Top game" column.
     const bestGameExpr = sql<string | null>`(SELECT gs.game_mode FROM game_scores gs WHERE gs.user_id = users.id${gameTypeCondGs} GROUP BY gs.game_mode ORDER BY COUNT(*) DESC LIMIT 1)`;
+    const classNameExpr = sql<string | null>`(SELECT c.name FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
 
     let rows: {
       id: number;
@@ -183,10 +189,12 @@ export async function GET(req: NextRequest) {
       bestGame: string | null;
       schoolName: string | null;
       province: string | null;
+      className: string | null;
       isNamePublic: boolean | null;
       isUsernamePublic: boolean | null;
       isSchoolPublic: boolean | null;
       isProvincePublic: boolean | null;
+      isClassPublic: boolean | null;
       isGradePublic: boolean | null;
       isSectionPublic: boolean | null;
     }[];
@@ -209,10 +217,12 @@ export async function GET(req: NextRequest) {
           bestGame: bestGameExpr,
           schoolName: users.schoolName,
           province: users.province,
+          className: classNameExpr,
           isNamePublic: users.isNamePublic,
           isUsernamePublic: users.isUsernamePublic,
           isSchoolPublic: users.isSchoolPublic,
           isProvincePublic: users.isProvincePublic,
+          isClassPublic: users.isClassPublic,
           isGradePublic: users.isGradePublic,
           isSectionPublic: users.isSectionPublic,
         })
@@ -257,10 +267,12 @@ export async function GET(req: NextRequest) {
           bestGame: bestGameExpr,
           schoolName: users.schoolName,
           province: users.province,
+          className: classNameExpr,
           isNamePublic: users.isNamePublic,
           isUsernamePublic: users.isUsernamePublic,
           isSchoolPublic: users.isSchoolPublic,
           isProvincePublic: users.isProvincePublic,
+          isClassPublic: users.isClassPublic,
           isGradePublic: users.isGradePublic,
           isSectionPublic: users.isSectionPublic,
         })
@@ -287,6 +299,7 @@ export async function GET(req: NextRequest) {
           users.isUsernamePublic,
           users.isSchoolPublic,
           users.isProvincePublic,
+          users.isClassPublic,
           users.isGradePublic,
           users.isSectionPublic
         )
@@ -307,17 +320,12 @@ export async function GET(req: NextRequest) {
     // Because results are ordered DESC by points and we paginate with offset,
     // rank = offset + index + 1 is correct for the page slice.
     const rankedUsers = rows.map((user, index) => {
-      // Name + username are ALWAYS public on the leaderboard — students cannot
-      // privatize their identity here. School/province/grade still respect their
-      // privacy flags, but when private we omit them (null) rather than show a
-      // "Private" placeholder label.
       return {
         id: user.id,
         rank: offset + index + 1,
-        displayName: user.displayName || user.username,
-        username: user.username,
-        // Always a real, profile-resolvable handle now — every row links to /u/.
-        isUsernamePublic: true,
+        displayName: (user.isNamePublic ?? true) ? (user.displayName || user.username) : "Private Student",
+        username: (user.isUsernamePublic ?? true) ? user.username : "",
+        isUsernamePublic: user.isUsernamePublic ?? true,
         avatar: user.avatar,
         avatarChangedAt: user.avatarChangedAt,
         highestScore: user.highestScore,
@@ -327,8 +335,9 @@ export async function GET(req: NextRequest) {
         soloPoints: user.soloPoints,
         accuracy: user.accuracy,
         bestGame: user.bestGame,
-        schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
+        schoolName: null,
         province: (user.isProvincePublic ?? true) ? user.province : null,
+        className: (user.isClassPublic ?? true) ? user.className : null,
       };
     });
 

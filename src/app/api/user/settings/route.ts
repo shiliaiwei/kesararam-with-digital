@@ -42,8 +42,9 @@ export async function GET(request: NextRequest) {
       isProfilePublic: user.isProfilePublic ?? true,
       isNamePublic: user.isNamePublic ?? true,
       isUsernamePublic: user.isUsernamePublic ?? true,
-      isSchoolPublic: user.isSchoolPublic ?? true,
+      isSchoolPublic: false,
       isProvincePublic: user.isProvincePublic ?? true,
+      isClassPublic: user.isClassPublic ?? true,
       isGradePublic: user.isGradePublic ?? true,
       isSectionPublic: user.isSectionPublic ?? true,
       isStatsPublic: user.isStatsPublic ?? true,
@@ -93,7 +94,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { displayName, username, email, avatar, audioMuted, schoolName, province, isProfilePublic, isNamePublic, isUsernamePublic, isSchoolPublic, isProvincePublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
+    const { displayName, username, email, avatar, audioMuted, schoolName, province, isProfilePublic, isNamePublic, isUsernamePublic, isProvincePublic, isClassPublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
 
     // Determine if the student currently belongs to any class. A student with no
     // enrollment (never joined, or removed/kicked by a teacher) must (re-)join
@@ -131,7 +132,7 @@ export async function PUT(request: NextRequest) {
     const isOnboarding = isStudentOnboarding || isTeacherOnboarding;
 
     // Detect if this is a privacy-only update (safe, no 60-day restriction)
-    const PRIVACY_FIELDS = new Set(['isProfilePublic', 'isNamePublic', 'isUsernamePublic', 'isSchoolPublic', 'isProvincePublic', 'isGradePublic', 'isSectionPublic', 'isStatsPublic']);
+    const PRIVACY_FIELDS = new Set(['isProfilePublic', 'isNamePublic', 'isUsernamePublic', 'isSchoolPublic', 'isProvincePublic', 'isClassPublic', 'isGradePublic', 'isSectionPublic', 'isStatsPublic']);
     const isPurePrivacyUpdate = Object.keys(body).every(k => PRIVACY_FIELDS.has(k));
 
     // One-time name/username change allowance. When granted (canChangeNameOnce),
@@ -186,14 +187,16 @@ export async function PUT(request: NextRequest) {
       audioMuted: audioMuted !== undefined ? audioMuted : currentUser.audioMuted,
       schoolName: schoolName !== undefined ? schoolName : currentUser.schoolName,
       province: province !== undefined ? province : currentUser.province,
-      isProfilePublic: isProfilePublic !== undefined ? !!isProfilePublic : (currentUser.isProfilePublic ?? false),
-      isNamePublic: isNamePublic !== undefined ? !!isNamePublic : (currentUser.isNamePublic ?? false),
-      isUsernamePublic: isUsernamePublic !== undefined ? !!isUsernamePublic : (currentUser.isUsernamePublic ?? false),
-      isSchoolPublic: isSchoolPublic !== undefined ? !!isSchoolPublic : (currentUser.isSchoolPublic ?? false),
-      isProvincePublic: isProvincePublic !== undefined ? !!isProvincePublic : (currentUser.isProvincePublic ?? false),
-      isGradePublic: isGradePublic !== undefined ? !!isGradePublic : (currentUser.isGradePublic ?? false),
-      isSectionPublic: isSectionPublic !== undefined ? !!isSectionPublic : (currentUser.isSectionPublic ?? false),
-      isStatsPublic: isStatsPublic !== undefined ? !!isStatsPublic : (currentUser.isStatsPublic ?? false),
+      isProfilePublic: isProfilePublic !== undefined ? !!isProfilePublic : (currentUser.isProfilePublic ?? true),
+      isNamePublic: isNamePublic !== undefined ? !!isNamePublic : (currentUser.isNamePublic ?? true),
+      isUsernamePublic: isUsernamePublic !== undefined ? !!isUsernamePublic : (currentUser.isUsernamePublic ?? true),
+      // School identity is deliberately excluded from all public student views.
+      isSchoolPublic: false,
+      isProvincePublic: isProvincePublic !== undefined ? !!isProvincePublic : (currentUser.isProvincePublic ?? true),
+      isClassPublic: isClassPublic !== undefined ? !!isClassPublic : (currentUser.isClassPublic ?? true),
+      isGradePublic: isGradePublic !== undefined ? !!isGradePublic : (currentUser.isGradePublic ?? true),
+      isSectionPublic: isSectionPublic !== undefined ? !!isSectionPublic : (currentUser.isSectionPublic ?? true),
+      isStatsPublic: isStatsPublic !== undefined ? !!isStatsPublic : (currentUser.isStatsPublic ?? true),
       updatedAt: new Date(),
     };
 
@@ -401,10 +404,12 @@ export async function PUT(request: NextRequest) {
           audioMuted: updatedUser.audioMuted,
           schoolName: updatedUser.schoolName,
           province: updatedUser.province,
+          isProfilePublic: updatedUser.isProfilePublic,
           isNamePublic: updatedUser.isNamePublic,
           isUsernamePublic: updatedUser.isUsernamePublic,
           isSchoolPublic: updatedUser.isSchoolPublic,
           isProvincePublic: updatedUser.isProvincePublic,
+          isClassPublic: updatedUser.isClassPublic,
           isGradePublic: updatedUser.isGradePublic,
           isSectionPublic: updatedUser.isSectionPublic,
           isStatsPublic: updatedUser.isStatsPublic,
@@ -430,10 +435,12 @@ export async function PUT(request: NextRequest) {
         audioMuted: updatedUser.audioMuted,
         schoolName: updatedUser.schoolName,
         province: updatedUser.province,
+        isProfilePublic: updatedUser.isProfilePublic,
         isNamePublic: updatedUser.isNamePublic,
         isUsernamePublic: updatedUser.isUsernamePublic,
         isSchoolPublic: updatedUser.isSchoolPublic,
         isProvincePublic: updatedUser.isProvincePublic,
+        isClassPublic: updatedUser.isClassPublic,
         isGradePublic: updatedUser.isGradePublic,
         isSectionPublic: updatedUser.isSectionPublic,
         isStatsPublic: updatedUser.isStatsPublic,

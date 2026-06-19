@@ -5,6 +5,7 @@ import { eq, and, sql, desc } from "drizzle-orm";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 import { getStoreBalances } from "@/lib/store-points/balance";
+import { calculateRankAndDivision } from "@/lib/ranks";
 
 export const runtime = "nodejs";
 
@@ -15,41 +16,6 @@ export const size = {
 };
 
 export const contentType = "image/png";
-
-// Seeded province translation
-const CAMBODIA_PROVINCES = [
-  { en: "Siem Reap", kh: "សៀមរាប" },
-  { en: "Phnom Penh", kh: "ភ្នំពេញ" },
-  { en: "Battambang", kh: "បាត់ដំបង" },
-  { en: "Banteay Meanchey", kh: "បន្ទាយមានជ័យ" },
-  { en: "Kampong Cham", kh: "កំពង់ចាម" },
-  { en: "Kampong Chhnang", kh: "កំពង់ឆ្នាំង" },
-  { en: "Kampong Speu", kh: "កំពង់ស្ពឺ" },
-  { en: "Kampong Thom", kh: "កំពង់ធំ" },
-  { en: "Kampot", kh: "កំពត" },
-  { en: "Kandal", kh: "កណ្តាល" },
-  { en: "Kep", kh: "កែប" },
-  { en: "Koh Kong", kh: "កោះកុង" },
-  { en: "Kratie", kh: "ក្រចេះ" },
-  { en: "Mondulkiri", kh: "មណ្ឌលគីរី" },
-  { en: "Oudar Meanchey", kh: "ឧត្តរមានជ័យ" },
-  { en: "Pailin", kh: "ប៉ៃលិន" },
-  { en: "Preah Sihanouk", kh: "ព្រះសីហនុ" },
-  { en: "Preah Vihear", kh: "ព្រះវិហារ" },
-  { en: "Prey Veng", kh: "ព្រៃវែង" },
-  { en: "Pursat", kh: "ពោធិ៍សាត់" },
-  { en: "Ratanakiri", kh: "រតនគីរី" },
-  { en: "Stung Treng", kh: "ស្ទឹងត្រែង" },
-  { en: "Svay Rieng", kh: "ស្វាយរៀង" },
-  { en: "Takeo", kh: "តាកែវ" },
-  { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
-];
-
-function getProvinceKh(provinceEn: string | null | undefined): string {
-  if (!provinceEn) return "—";
-  const found = CAMBODIA_PROVINCES.find(p => p.en.toLowerCase() === provinceEn.toLowerCase());
-  return found ? found.kh : provinceEn;
-}
 
 export default async function Image({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params;
@@ -68,8 +34,10 @@ export default async function Image({ params }: { params: Promise<{ username: st
       totalGamesPlayed: users.totalGamesPlayed,
       lifetimePoints: users.lifetimePoints,
       createdAt: users.createdAt,
-      schoolName: users.schoolName,
       province: users.province,
+      isProfilePublic: users.isProfilePublic,
+      isNamePublic: users.isNamePublic,
+      isProvincePublic: users.isProvincePublic,
     })
     .from(users)
     .where(and(eq(users.username, username), eq(users.isActive, true), eq(users.role, "student")))
@@ -80,6 +48,17 @@ export default async function Image({ params }: { params: Promise<{ username: st
   }
 
   const student = result[0];
+
+  if (!student.isProfilePublic) {
+    return new ImageResponse(
+      <div style={{ width: "1200px", height: "630px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "24px", background: "#18181b", color: "#fff", border: "18px solid #000", fontFamily: "sans-serif" }}>
+        <div style={{ display: "flex", background: "#ef4444", color: "#fff", border: "4px solid #000", boxShadow: "8px 8px 0 #000", padding: "14px 24px", fontSize: "24px", fontWeight: 900 }}>PRIVATE PROFILE</div>
+        <div style={{ display: "flex", fontSize: "54px", fontWeight: 900 }}>KWD STUDENT</div>
+        <div style={{ display: "flex", fontSize: "22px", color: "#a1a1aa" }}>This student has hidden their public profile.</div>
+      </div>,
+      size
+    );
+  }
 
   // Post-cutover: the card shows Store Points lifetime-earned and ranks by it.
   let activeStudents: { username: string }[];
@@ -108,54 +87,12 @@ export default async function Image({ params }: { params: Promise<{ username: st
   );
   const rank = studentIndex !== -1 ? studentIndex + 1 : 99;
 
-  // Tier thresholds follow the active economy's scale.
-  const TIER = STORE_POINTS_ENABLED
-    ? { highmaster: 5000, legend: 3000, elite: 2000, master: 1200, diamond: 700, platinum: 350, gold: 150, rising: 50 }
-    : { diamond: 7000, gold: 2500, rising: 1000 };
-
-  const name = student.displayName || student.username;
+  const name = student.isNamePublic ? (student.displayName || student.username) : "KWD Student";
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
 
-  // Determinate rank tier badge name
-  const tierName = (() => {
-    const pts = student.lifetimePoints;
-    if (STORE_POINTS_ENABLED) {
-      if (pts >= (TIER as any).highmaster) return "HIGHMASTER";
-      if (pts >= (TIER as any).legend) return "LEGEND";
-      if (pts >= (TIER as any).elite) return "ELITE";
-      if (pts >= (TIER as any).master) return "MASTER";
-      if (pts >= TIER.diamond) return "DIAMOND";
-      if (pts >= (TIER as any).platinum) return "PLATINUM";
-      if (pts >= TIER.gold) return "GOLD";
-      if (pts >= TIER.rising) return "RISING";
-      return "ROOKIE";
-    } else {
-      if (pts >= TIER.diamond) return "DIAMOND";
-      if (pts >= TIER.gold) return "GOLD";
-      if (pts >= TIER.rising) return "RISING";
-      return "ROOKIE";
-    }
-  })();
-
-  const tierColor = (() => {
-    const pts = student.lifetimePoints;
-    if (STORE_POINTS_ENABLED) {
-      if (pts >= (TIER as any).highmaster) return "#fbbf24"; // gold sweep
-      if (pts >= (TIER as any).legend) return "#ffd700"; // gold
-      if (pts >= (TIER as any).elite) return "#a855f7"; // purple
-      if (pts >= (TIER as any).master) return "#2563eb"; // blue
-      if (pts >= TIER.diamond) return "#06b6d4"; // cyan
-      if (pts >= (TIER as any).platinum) return "#3b82f6"; // light blue
-      if (pts >= TIER.gold) return "#eab308"; // yellow
-      if (pts >= TIER.rising) return "#eab308"; // yellow
-      return "#71717a"; // zinc
-    } else {
-      if (pts >= TIER.diamond) return "#06b6d4"; // cyan
-      if (pts >= TIER.gold) return "#eab308"; // yellow
-      if (pts >= TIER.rising) return "#eab308"; // yellow
-      return "#71717a"; // zinc
-    }
-  })();
+  const rankResult = calculateRankAndDivision(student.lifetimePoints);
+  const tierName = rankResult.rank.label;
+  const tierColor = rankResult.rank.primaryColor;
 
   // Parse avatar JSON
   const parsedAvatar = (() => {
@@ -287,7 +224,7 @@ export default async function Image({ params }: { params: Promise<{ username: st
               alignItems: "center",
             }}
           >
-            Kesararam Primary School · Siem Reap
+            {student.isProvincePublic && student.province ? student.province : "KWD Road Safety Learning"}
           </div>
 
           {/* Quick Stats Grid */}
@@ -395,10 +332,10 @@ export default async function Image({ params }: { params: Promise<{ username: st
               
               <div style={{ display: "flex", flexDirection: "column", lineHeight: "1" }}>
                 <span style={{ fontSize: "11px", fontWeight: "900", color: "#1e3a8a" }}>
-                  សាលាបឋមសិក្សាកេសរារាម
+                  KWD ROAD SAFETY
                 </span>
                 <span style={{ fontSize: "7.5px", fontWeight: "900", color: "#a1a1aa", marginTop: "2px", letterSpacing: "0.5px" }}>
-                  KESARARAM PRIMARY SCHOOL
+                  PUBLIC STUDENT PROFILE
                 </span>
               </div>
             </div>
@@ -555,8 +492,8 @@ export default async function Image({ params }: { params: Promise<{ username: st
               {[
                 { label: "NAME", value: name },
                 { label: "ROLE", value: "Student" },
-                { label: "SCHOOL", value: "Kesararam Primary School" },
-                { label: "PROVINCE", value: student.province || "Siem Reap" },
+                { label: "TIER", value: tierName },
+                { label: "PROVINCE", value: student.isProvincePublic ? (student.province || "—") : "PRIVATE" },
                 { label: "POINTS", value: `${student.lifetimePoints.toLocaleString()} PTS` },
                 { label: "JOINED", value: `${joinedYear}` },
               ].map((field, idx) => (

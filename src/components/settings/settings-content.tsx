@@ -69,6 +69,7 @@ interface UserSettings {
   isUsernamePublic?: boolean;
   isSchoolPublic?: boolean;
   isProvincePublic?: boolean;
+  isClassPublic?: boolean;
   isStatsPublic?: boolean;
   createdAt?: string; // Account creation timestamp
   canChangeNameOnce?: boolean; // one-time full-name + username change available
@@ -115,8 +116,9 @@ export function SettingsContent() {
     isProfilePublic: true,
     isNamePublic: true,
     isUsernamePublic: true,
-    isSchoolPublic: true,
+    isSchoolPublic: false,
     isProvincePublic: true,
+    isClassPublic: true,
     isStatsPublic: true,
     createdAt: "",
     profileEditUnlockedUntil: null,
@@ -216,7 +218,8 @@ export function SettingsContent() {
   };
 
   const handleSave = async () => {
-    if (daysLeft > 0) {
+    const isPrivacySave = activeTab === "privacy";
+    if (daysLeft > 0 && !isPrivacySave) {
       alert(`Please wait another ${daysLeft} days before saving changes. For any trouble, contact support team at kesararamwithdigital@gmail.com. / សូមរង់ចាំ ${daysLeft} ថ្ងៃទៀត មុនពេលរក្សាទុកការផ្លាស់ប្តូរ។ បើមានបញ្ហាសូមទាក់ទងក្រុមការងារគាំទ្រតាមរយៈ kesararamwithdigital@gmail.com ។`);
       return;
     }
@@ -243,7 +246,16 @@ export function SettingsContent() {
       const response = await fetch("/api/user/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(settings),
+        body: JSON.stringify(isPrivacySave ? {
+          isProfilePublic: settings.isProfilePublic ?? true,
+          isNamePublic: settings.isNamePublic ?? true,
+          isUsernamePublic: settings.isUsernamePublic ?? true,
+          // School names are never exposed on public student surfaces.
+          isSchoolPublic: false,
+          isProvincePublic: settings.isProvincePublic ?? true,
+          isClassPublic: settings.isClassPublic ?? true,
+          isStatsPublic: settings.isStatsPublic ?? true,
+        } : settings),
       });
 
       const data = await response.json();
@@ -366,7 +378,7 @@ export function SettingsContent() {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b-2 border-black overflow-x-auto pb-1">
+      <div className="flex gap-2 border-b-2 border-black overflow-x-auto no-scrollbar pb-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (
@@ -932,6 +944,24 @@ export function SettingsContent() {
                 </p>
 
                 <div className="space-y-3">
+                  {/* Master profile visibility */}
+                  <div className="flex items-center justify-between gap-4 p-4 border-[3px] border-black bg-yellow-50 shadow-[3px_3px_0_#000]" style={{ borderRadius: "0" }}>
+                    <div>
+                      <h4 className="font-black text-sm text-black uppercase tracking-wide">Public Profile / កម្រងព័ត៌មានសាធារណៈ</h4>
+                      <p className="text-[10px] md:text-xs text-zinc-600">Turn off to hide your profile and remove it from the public leaderboard. / បិទដើម្បីលាក់កម្រងព័ត៌មាន និងដកចេញពីតារាងពិន្ទុសាធារណៈ។</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                      <input
+                        type="checkbox"
+                        checked={settings.isProfilePublic ?? true}
+                        onChange={(e) => setSettings({ ...settings, isProfilePublic: e.target.checked })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
+                    </label>
+                  </div>
+
+                  <div className={`space-y-3 ${settings.isProfilePublic === false ? "opacity-45 pointer-events-none" : ""}`}>
                   {/* Name Visibility */}
                   <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
                     <div>
@@ -945,7 +975,7 @@ export function SettingsContent() {
                         onChange={(e) => setSettings({ ...settings, isNamePublic: e.target.checked })}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
                     </label>
                   </div>
 
@@ -962,25 +992,25 @@ export function SettingsContent() {
                         onChange={(e) => setSettings({ ...settings, isUsernamePublic: e.target.checked })}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
                     </label>
                   </div>
 
-                  {/* School Visibility */}
+                  {/* Classroom Visibility */}
                   {settings.role === "student" && (
                     <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
                       <div>
-                        <h4 className="font-bold text-xs md:text-sm text-black">School Name / ឈ្មោះសាលារៀន</h4>
-                        <p className="text-[10px] md:text-xs text-zinc-500">Show school name on public pages. / បង្ហាញឈ្មោះសាលារៀននៅលើទំព័រសាធារណៈ។</p>
+                        <h4 className="font-bold text-xs md:text-sm text-black">My Classroom / ថ្នាក់រៀនរបស់ខ្ញុំ</h4>
+                        <p className="text-[10px] md:text-xs text-zinc-500">Show classroom name publicly. School name always stays private. / បង្ហាញឈ្មោះថ្នាក់រៀនជាសាធារណៈ។ ឈ្មោះសាលានៅតែឯកជនជានិច្ច។</p>
                       </div>
                       <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                         <input
                           type="checkbox"
-                          checked={settings.isSchoolPublic ?? true}
-                          onChange={(e) => setSettings({ ...settings, isSchoolPublic: e.target.checked })}
+                          checked={settings.isClassPublic ?? true}
+                          onChange={(e) => setSettings({ ...settings, isClassPublic: e.target.checked })}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
                       </label>
                     </div>
                   )}
@@ -999,7 +1029,7 @@ export function SettingsContent() {
                           onChange={(e) => setSettings({ ...settings, isProvincePublic: e.target.checked })}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
                       </label>
                     </div>
                   )}
@@ -1017,8 +1047,9 @@ export function SettingsContent() {
                         onChange={(e) => setSettings({ ...settings, isStatsPublic: e.target.checked })}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
                     </label>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -1106,7 +1137,7 @@ export function SettingsContent() {
       <div className="flex justify-end">
         <button
           onClick={handleSave}
-          disabled={saving || daysLeft > 0}
+          disabled={saving || (daysLeft > 0 && activeTab !== "privacy")}
           className="flex items-center gap-2 px-6 py-3 bg-green-400 border-2 border-black font-bold text-sm hover:bg-green-300 hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ borderRadius: "0" }}
         >
@@ -1115,7 +1146,7 @@ export function SettingsContent() {
               <Loader2 size={16} className="animate-spin" />
               Saving...
             </>
-          ) : daysLeft > 0 ? (
+          ) : daysLeft > 0 && activeTab !== "privacy" ? (
             <>
               <Lock size={16} />
               Locked ({daysLeft}d)

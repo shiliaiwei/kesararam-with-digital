@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db } from "@/lib/db";
-import { users } from "@/db/schema/users";
-import { pointsLedger } from "@/db/schema/content";
+import { users, classes, classEnrollments } from "@/db/schema/users";
+import { pointsLedger, rewardClaims } from "@/db/schema/content";
 import { storePointEvents } from "@/db/schema/store-points";
-import { eq, and, sql, desc } from "drizzle-orm";
+import { eq, and, sql, desc, ne } from "drizzle-orm";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 import { getStoreBalances } from "@/lib/store-points/balance";
 import StudentProfileClient, { SerializableStudent } from "./StudentProfileClient";
@@ -22,6 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       .select({
         displayName: users.displayName,
         username: users.username,
+        isProfilePublic: users.isProfilePublic,
+        isNamePublic: users.isNamePublic,
       })
       .from(users)
       .where(and(eq(users.username, username), eq(users.isActive, true), eq(users.role, "student")))
@@ -34,9 +36,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     const student = result[0];
-    const name = student.displayName || student.username;
+    if (!student.isProfilePublic) {
+      return {
+        title: "Private Student Profile — KWD",
+        description: "This KWD student has chosen to keep their profile private.",
+      };
+    }
 
-    const desc = `View ${name}'s Student Identification Card, quiz scores, level progress, and unlocked rewards from Kesararam Primary School.`;
+    const name = student.isNamePublic ? (student.displayName || student.username) : "KWD Student";
+
+    const desc = `View ${name}'s public KWD profile, game scores, rank progress, and claimed rewards.`;
     const url = `https://kesararamwithdigital.tech/u/${student.username}`;
     return {
       title: `${name} — Student Profile`,
@@ -85,6 +94,7 @@ export default async function PublicStudentProfilePage({ params }: Props) {
       isUsernamePublic: users.isUsernamePublic,
       isSchoolPublic: users.isSchoolPublic,
       isProvincePublic: users.isProvincePublic,
+      isClassPublic: users.isClassPublic,
       isStatsPublic: users.isStatsPublic,
     })
     .from(users)
@@ -96,6 +106,21 @@ export default async function PublicStudentProfilePage({ params }: Props) {
   }
 
   const student = result[0];
+
+  const [classRows, claimRows] = await Promise.all([
+    db
+      .select({ name: classes.name })
+      .from(classEnrollments)
+      .innerJoin(classes, eq(classes.id, classEnrollments.classId))
+      .where(eq(classEnrollments.studentId, student.id))
+      .orderBy(desc(classEnrollments.enrolledAt))
+      .limit(1),
+    db
+      .select({ id: rewardClaims.itemId, claimedAt: rewardClaims.createdAt })
+      .from(rewardClaims)
+      .where(and(eq(rewardClaims.studentId, student.id), ne(rewardClaims.status, "rejected")))
+      .orderBy(desc(rewardClaims.createdAt)),
+  ]);
 
   // Post-cutover: the public number is Store Points lifetime-earned, the rank is
   // by that same ledger, and the breakdown comes from store_point_events.
@@ -168,6 +193,10 @@ export default async function PublicStudentProfilePage({ params }: Props) {
   // 3. Serialize Date objects to strings to pass cleanly as client-side props
   const serializableStudent: SerializableStudent = {
     ...student,
+    className: classRows[0]?.name ?? null,
+    claimedRewards: JSON.stringify(
+      claimRows.map((claim) => ({ id: claim.id, claimedAt: claim.claimedAt.getTime() }))
+    ),
     avatarChangedAt: student.avatarChangedAt ? student.avatarChangedAt.toISOString() : null,
     createdAt: student.createdAt ? student.createdAt.toISOString() : new Date().toISOString(),
   };

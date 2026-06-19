@@ -17,7 +17,6 @@ import {
   MapPin,
   GraduationCap,
   Calendar,
-  School,
   Flame,
   Target,
   BookOpen,
@@ -50,12 +49,14 @@ export interface SerializableStudent {
   createdAt: string;
   schoolName: string | null;
   province: string | null;
+  className: string | null;
   claimedRewards: string;
   isProfilePublic?: boolean;
   isNamePublic?: boolean;
   isUsernamePublic?: boolean;
   isSchoolPublic?: boolean;
   isProvincePublic?: boolean;
+  isClassPublic?: boolean;
   isStatsPublic?: boolean;
 }
 
@@ -324,8 +325,8 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
 
   const isNamePublic = student.isNamePublic ?? true;
   const isUsernamePublic = student.isUsernamePublic ?? true;
-  const isSchoolPublic = student.isSchoolPublic ?? true;
   const isProvincePublic = student.isProvincePublic ?? true;
+  const isClassPublic = student.isClassPublic ?? true;
   const isStatsPublic = student.isStatsPublic ?? true;
 
   const displayName = isNamePublic
@@ -345,7 +346,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
         : `Ranked #${rank} with ${student.lifetimePoints.toLocaleString()} points`);
     }
     const loc: string[] = [];
-    if (isSchoolPublic && student.schoolName) loc.push(student.schoolName);
+    if (isClassPublic && student.className) loc.push(student.className);
     if (isProvincePublic && provinceLabel) loc.push(provinceLabel);
     if (loc.length) parts.push(loc.join(" · "));
     parts.push(kh ? `ចូលរួមឆ្នាំ ${joinedYear}` : `Joined ${joinedYear}`);
@@ -377,6 +378,33 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
       setClaimedItems([]);
     }
   }, [student.claimedRewards]);
+
+  if (student.isProfilePublic === false) {
+    return (
+      <div className="min-h-screen bg-[#f4f5f7] text-black">
+        <div className="border-b-[3px] border-black bg-white px-4 py-3">
+          <button onClick={() => router.push("/leaderboard")} className="nb-btn flex items-center gap-2 bg-white px-3 py-2 text-xs font-black uppercase tracking-wider text-black">
+            <ChevronLeft size={17} strokeWidth={2.6} />
+            {t("Back", "ត្រឡប់")}
+          </button>
+        </div>
+        <CautionTape variant="checker" height={14} />
+        <main className="grid-bg grid min-h-[calc(100vh-78px)] place-items-center px-4 py-12">
+          <section className="w-full max-w-2xl border-[3px] border-black bg-white p-8 text-center sm:p-10" style={{ boxShadow: "6px 6px 0 #000" }}>
+            <SignShape shape="octagon" body={BRAND.red} size={92}>
+              <Lock size={30} className="text-white" strokeWidth={2.6} />
+            </SignShape>
+            <h1 className={`mt-6 text-2xl font-black uppercase text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
+              {t("This Profile is Private", "គណនីនេះជាគណនីឯកជន")}
+            </h1>
+            <p className={`mx-auto mt-3 max-w-sm text-sm font-bold leading-relaxed text-zinc-500 ${kh ? "font-google-sans" : ""}`} style={kf}>
+              {t("This student has hidden their public profile.", "សិស្សនេះបានលាក់កម្រងព័ត៌មានសាធារណៈរបស់ពួកគេ។")}
+            </p>
+          </section>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#f4f5f7] text-black">
@@ -512,11 +540,9 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                   <h1 className={`mx-auto max-w-3xl break-words text-[clamp(2.25rem,7vw,4.75rem)] font-black uppercase leading-[0.95] tracking-normal text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
                     {displayName}
                   </h1>
-                  {student.isProfilePublic !== false && (
-                    <p className={`mx-auto mt-4 max-w-3xl break-words text-sm font-bold leading-relaxed text-zinc-700 sm:text-base ${kh ? "font-google-sans" : ""}`} style={kf}>
-                      {bioSentence}
-                    </p>
-                  )}
+                  <p className={`mx-auto mt-4 max-w-3xl break-words text-sm font-bold leading-relaxed text-zinc-700 sm:text-base ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {bioSentence}
+                  </p>
                 </div>
               </div>
             </div>
@@ -593,135 +619,141 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
           </div>
         </section>
 
-        {student.isProfilePublic === false ? (
-          <section className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
-            <div className="border-[3px] border-black bg-white p-8 text-center sm:p-10" style={{ boxShadow: "6px 6px 0 #000" }}>
-              <SignShape shape="octagon" body={BRAND.red} size={92}>
-                <Lock size={30} className="text-white" strokeWidth={2.6} />
-              </SignShape>
-              <h3 className={`mt-6 text-2xl font-black uppercase text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
-                {t("This Profile is Private", "គណនីនេះជាគណនីឯកជន")}
-              </h3>
-              <p className={`mx-auto mt-3 max-w-sm text-sm font-bold leading-relaxed text-zinc-500 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                {t("This student has set their profile to private.", "សិស្សនេះបានកំណត់ព័ត៌មានរបស់ពួកគេជាឯកជន។")}
-              </p>
-            </div>
-          </section>
-        ) : (
-          <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:py-8">
-            {!isStatsPublic ? (
-              <div className="border-[3px] border-black bg-white p-8 text-center" style={{ boxShadow: "5px 5px 0 #000" }}>
-                <Shield size={34} className="mx-auto text-zinc-300" strokeWidth={2.6} />
-                <p className={`mt-3 font-black text-zinc-500 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                  {t("Stats are private", "ស្ថិតិត្រូវបានរក្សាការសម្ងាត់")}
-                </p>
+        <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:py-8">
+            {isStatsPublic ? (
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+                <StatTile icon={Trophy} kh={kh} accent={BRAND.yellow} label={t("Leaderboard Rank", "ចំណាត់ថ្នាក់")} value={`#${rank}`} />
+                <StatTile icon={Gamepad2} kh={kh} accent={BRAND.blue} label={t("Games Played", "ចំនួនលេង")} value={student.totalGamesPlayed.toLocaleString()} />
+                <StatTile icon={Star} kh={kh} accent={BRAND.green} label={t("Highest Score", "ពិន្ទុខ្ពស់បំផុត")} value={student.highestScore.toLocaleString()} />
+                <StatTile icon={Zap} kh={kh} accent={BRAND.orange} label={t("Store Points", "ពិន្ទុរង្វាន់")} value={student.lifetimePoints.toLocaleString()} />
+                <StatTile icon={Award} kh={false} accent={BRAND.purple} label="RANK TIER" value={profileRank.label} />
               </div>
             ) : (
-              <>
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                  <StatTile icon={Trophy} kh={kh} accent={BRAND.yellow} label={t("Leaderboard Rank", "ចំណាត់ថ្នាក់")} value={`#${rank}`} />
-                  <StatTile icon={Gamepad2} kh={kh} accent={BRAND.blue} label={t("Games Played", "ចំនួនលេង")} value={student.totalGamesPlayed.toLocaleString()} />
-                  <StatTile icon={Star} kh={kh} accent={BRAND.green} label={t("Highest Score", "ពិន្ទុខ្ពស់បំផុត")} value={student.highestScore.toLocaleString()} />
-                  <StatTile icon={Zap} kh={kh} accent={BRAND.orange} label={t("Store Points", "ពិន្ទុរង្វាន់")} value={student.lifetimePoints.toLocaleString()} />
+              <div className="border-[3px] border-black bg-white p-4 text-center shadow-[3px_3px_0_#000]" style={{ borderRadius: "0" }}>
+                <div className="flex items-center justify-center gap-2 text-zinc-500">
+                  <Shield size={18} strokeWidth={2.6} />
+                  <p className={`font-black text-xs uppercase tracking-wider ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {t("Stats are private / ស្ថិតិត្រូវបានរក្សាការសម្ងាត់", "Stats are private / ស្ថិតិត្រូវបានរក្សាការសម្ងាត់")}
+                  </p>
                 </div>
+              </div>
+            )}
 
-                <div className="mt-6 grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
-                  <div className="space-y-6">
-                    <Panel title={t("Profile Details", "ព័ត៌មានសិស្ស")} icon={UserRound} kh={kh} kf={kf}>
-                      <div className="space-y-3 p-4">
-                        {isSchoolPublic && student.schoolName && (
-                          <FactRow icon={School} label={t("Studies At", "សិក្សានៅ")} value={student.schoolName} kh={kh} kf={kf} />
-                        )}
-                        {isProvincePublic && student.province && (
-                          <FactRow icon={MapPin} label={t("Province", "ខេត្ត")} value={getBilingualProvince(student.province)} kh={kh} kf={kf} />
-                        )}
-                        <FactRow icon={Calendar} label={t("Joined", "ចូលរួម")} value={`${joinedYear}`} kh={kh} kf={kf} />
-                      </div>
-                    </Panel>
-
-                    <Panel title={t("Rewards Claimed", "រង្វាន់ដែលបានប្តូរ")} icon={Gift} kh={kh} kf={kf} count={claimedItems.length}>
-                      {claimedItems.length === 0 ? (
-                        <EmptyState icon={Gift} title={t("No rewards claimed yet", "មិនទាន់មានការប្តូររង្វាន់")} kh={kh} kf={kf} />
-                      ) : (
-                        <div className="grid gap-3 p-4">
-                          {claimedItems.slice(0, 4).map((item, idx) => (
-                            <div key={idx} className="grid grid-cols-[56px_1fr] border-[3px] border-black bg-zinc-50">
-                              <div className="grid place-items-center border-r-[3px] border-black bg-white">
-                                <img src={item.image} alt={kh ? item.nameKh : item.name} className="h-9 w-9 object-contain" />
-                              </div>
-                              <div className="min-w-0 px-3 py-2.5">
-                                <p className={`truncate text-sm font-black text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
-                                  {kh ? item.nameKh : item.name}
-                                </p>
-                                <div className="mt-1 flex flex-wrap items-center gap-2">
-                                  <span className="font-mono text-xs font-black text-zinc-500">{item.cost} PTS</span>
-                                  <span className="inline-flex items-center gap-1 border-2 border-black bg-[#22c55e] px-1.5 py-0.5 text-[10px] font-black uppercase text-black">
-                                    <CheckCircle2 size={11} strokeWidth={2.8} />
-                                    {t("Claimed", "បានប្តូរ")}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </Panel>
+            <div className="mt-6 grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
+              <div className="space-y-6">
+                <Panel title={t("Profile Details", "ព័ត៌មានសិស្ស")} icon={UserRound} kh={kh} kf={kf}>
+                  <div className="space-y-3 p-4">
+                    {isClassPublic && student.className && (
+                      <FactRow icon={GraduationCap} label={t("My Classroom", "ថ្នាក់រៀនរបស់ខ្ញុំ")} value={student.className} kh={kh} kf={kf} />
+                    )}
+                    {isProvincePublic && student.province && (
+                      <FactRow icon={MapPin} label={t("Province", "ខេត្ត")} value={getBilingualProvince(student.province)} kh={kh} kf={kf} />
+                    )}
+                    <FactRow icon={Calendar} label={t("Joined", "ចូលរួម")} value={`${joinedYear}`} kh={kh} kf={kf} />
                   </div>
+                </Panel>
 
-                  <Panel
-                    title={t("Game Mode Scoreboard", "តារាងពិន្ទុតាមរបៀបលេង")}
-                    icon={Gamepad2}
-                    kh={kh}
-                    kf={kf}
-                    count={gameStats.length}
-                    aside={<span className="hidden border-2 border-black bg-white px-2 py-1 font-mono text-[10px] font-black uppercase text-black sm:inline-block">{t("Score Board", "តារាងពិន្ទុ")}</span>}
-                  >
-                    {gameStats.length === 0 ? (
-                      <EmptyState icon={Gamepad2} title={t("No game-mode scores yet", "មិនទាន់មានពិន្ទុតាមរបៀបលេង")} kh={kh} kf={kf} />
+                {isStatsPublic ? (
+                  <Panel title={t("Rewards Claimed", "រង្វាន់ដែលបានប្តូរ")} icon={Gift} kh={kh} kf={kf} count={claimedItems.length}>
+                    {claimedItems.length === 0 ? (
+                      <EmptyState icon={Gift} title={t("No rewards claimed yet", "មិនទាន់មានការប្តូររង្វាន់")} kh={kh} kf={kf} />
                     ) : (
-                      <div className="divide-y-[3px] divide-black">
-                        {gameStats.map((g, idx) => {
-                          const meta = gameLabel(g.gameType);
-                          const Icon = meta.Icon;
-                          const width = Math.max(8, Math.round((g.points / bestModePoints) * 100));
-                          return (
-                            <div key={g.gameType} className="grid gap-3 p-4 sm:grid-cols-[56px_1fr_auto] sm:items-center">
-                              <div className="flex items-center gap-3 sm:block">
-                                <div className="grid size-12 place-items-center border-[3px] border-black" style={{ background: meta.color, boxShadow: "2px 2px 0 #000" }}>
-                                  <Icon size={20} className={iconTone(meta.color)} strokeWidth={2.6} />
-                                </div>
-                                <span className="border-2 border-black bg-black px-2 py-1 font-mono text-[10px] font-black text-white sm:mt-2 sm:inline-block">
-                                  #{idx + 1}
+                      <div className="grid gap-3 p-4">
+                        {claimedItems.slice(0, 4).map((item, idx) => (
+                          <div key={idx} className="grid grid-cols-[56px_1fr] border-[3px] border-black bg-zinc-50">
+                            <div className="grid place-items-center border-r-[3px] border-black bg-white">
+                              <img src={item.image} alt={kh ? item.nameKh : item.name} className="h-9 w-9 object-contain" />
+                            </div>
+                            <div className="min-w-0 px-3 py-2.5">
+                              <p className={`truncate text-sm font-black text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
+                                {kh ? item.nameKh : item.name}
+                              </p>
+                              <div className="mt-1 flex flex-wrap items-center gap-2">
+                                <span className="font-mono text-xs font-black text-zinc-500">{item.cost} PTS</span>
+                                <span className="inline-flex items-center gap-1 border-2 border-black bg-[#22c55e] px-1.5 py-0.5 text-[10px] font-black uppercase text-black">
+                                  <CheckCircle2 size={11} strokeWidth={2.8} />
+                                  {t("Claimed", "បានប្តូរ")}
                                 </span>
                               </div>
-                              <div className="min-w-0">
-                                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                                  <p className={`min-w-0 break-words text-base font-black text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
-                                    {kh ? meta.kh : meta.en}
-                                  </p>
-                                  <p className="font-mono text-xs font-black uppercase text-zinc-500">
-                                    {g.plays.toLocaleString()} {kh ? "ដង" : g.plays === 1 ? "play" : "plays"}
-                                  </p>
-                                </div>
-                                <div className="mt-3 h-5 border-[3px] border-black bg-white">
-                                  <div className="h-full border-r-[3px] border-black" style={{ width: `${width}%`, background: meta.color }} />
-                                </div>
-                              </div>
-                              <div className="border-[3px] border-black bg-zinc-50 px-4 py-3 text-left sm:text-right">
-                                <p className="font-mono text-2xl font-black leading-none tabular-nums text-black">{g.points.toLocaleString()}</p>
-                                <p className="mt-1 font-mono text-[10px] font-black uppercase text-zinc-500">PTS</p>
-                              </div>
                             </div>
-                          );
-                        })}
+                          </div>
+                        ))}
                       </div>
                     )}
                   </Panel>
+                ) : (
+                  <div className="border-[3px] border-black bg-white p-6 text-center shadow-[3px_3px_0_#000]" style={{ borderRadius: "0" }}>
+                    <Shield size={28} className="mx-auto text-zinc-300" strokeWidth={2.6} />
+                    <p className={`mt-2 font-black text-xs text-zinc-500 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                      {t("Rewards are private", "រង្វាន់ត្រូវបានរក្សាការសម្ងាត់")}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {isStatsPublic ? (
+                <Panel
+                  title={t("Game Mode Scoreboard", "តារាងពិន្ទុតាមរបៀបលេង")}
+                  icon={Gamepad2}
+                  kh={kh}
+                  kf={kf}
+                  count={gameStats.length}
+                  aside={<span className="hidden border-2 border-black bg-white px-2 py-1 font-mono text-[10px] font-black uppercase text-black sm:inline-block">{t("Score Board", "តារាងពិន្ទុ")}</span>}
+                >
+                  {gameStats.length === 0 ? (
+                    <EmptyState icon={Gamepad2} title={t("No game-mode scores yet", "មិនទាន់មានពិន្ទុតាមរបៀបលេង")} kh={kh} kf={kf} />
+                  ) : (
+                    <div className="divide-y-[3px] divide-black">
+                      {gameStats.map((g, idx) => {
+                        const meta = gameLabel(g.gameType);
+                        const Icon = meta.Icon;
+                        const width = Math.max(8, Math.round((g.points / bestModePoints) * 100));
+                        return (
+                          <div key={g.gameType} className="grid gap-3 p-4 sm:grid-cols-[56px_1fr_auto] sm:items-center">
+                            <div className="flex items-center gap-3 sm:block">
+                              <div className="grid size-12 place-items-center border-[3px] border-black" style={{ background: meta.color, boxShadow: "2px 2px 0 #000" }}>
+                                <Icon size={20} className={iconTone(meta.color)} strokeWidth={2.6} />
+                              </div>
+                              <span className="border-2 border-black bg-black px-2 py-1 font-mono text-[10px] font-black text-white sm:mt-2 sm:inline-block">
+                                #{idx + 1}
+                              </span>
+                            </div>
+                            <div className="min-w-0">
+                              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                                <p className={`min-w-0 break-words text-base font-black text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
+                                  {kh ? meta.kh : meta.en}
+                                </p>
+                                <p className="font-mono text-xs font-black uppercase text-zinc-500">
+                                  {g.plays.toLocaleString()} {kh ? "ដង" : g.plays === 1 ? "play" : "plays"}
+                                </p>
+                              </div>
+                              <div className="mt-3 h-5 border-[3px] border-black bg-white">
+                                <div className="h-full border-r-[3px] border-black" style={{ width: `${width}%`, background: meta.color }} />
+                              </div>
+                            </div>
+                            <div className="border-[3px] border-black bg-zinc-50 px-4 py-3 text-left sm:text-right">
+                              <p className="font-mono text-2xl font-black leading-none tabular-nums text-black">{g.points.toLocaleString()}</p>
+                              <p className="mt-1 font-mono text-[10px] font-black uppercase text-zinc-500">PTS</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </Panel>
+              ) : (
+                <div className="border-[3px] border-black bg-white p-12 text-center flex flex-col items-center justify-center min-h-[300px] shadow-[5px_5px_0_#000]" style={{ borderRadius: "0" }}>
+                  <Shield size={38} className="text-zinc-300" strokeWidth={2.6} />
+                  <h3 className={`mt-4 text-lg font-black uppercase text-zinc-500 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {t("Scoreboard Private", "ពិន្ទុត្រូវបានរក្សាការសម្ងាត់")}
+                  </h3>
+                  <p className={`mt-2 max-w-xs text-xs text-zinc-400 font-bold ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {t("This student has set their game statistics to private.", "សិស្សនេះបានកំណត់ព័ត៌មានលម្អិតនៃហ្គេមរបស់ពួកគេជាឯកជន។")}
+                  </p>
                 </div>
-              </>
-            )}
-          </section>
-        )}
+              )}
+            </div>
+        </section>
 
         <div className="mt-4 border-y-[3px] border-black">
           <CautionTape variant="chevron" height={18} />

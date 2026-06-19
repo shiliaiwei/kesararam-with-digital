@@ -91,22 +91,37 @@ async function migrate() {
       ADD COLUMN IF NOT EXISTS is_username_public BOOLEAN DEFAULT true NOT NULL,
       ADD COLUMN IF NOT EXISTS is_school_public BOOLEAN DEFAULT true NOT NULL,
       ADD COLUMN IF NOT EXISTS is_province_public BOOLEAN DEFAULT true NOT NULL,
+      ADD COLUMN IF NOT EXISTS is_class_public BOOLEAN DEFAULT true NOT NULL,
       ADD COLUMN IF NOT EXISTS is_grade_public BOOLEAN DEFAULT true NOT NULL,
       ADD COLUMN IF NOT EXISTS is_section_public BOOLEAN DEFAULT true NOT NULL,
       ADD COLUMN IF NOT EXISTS is_stats_public BOOLEAN DEFAULT true NOT NULL
     `;
 
-    console.log("Running migration: change_individual_privacy_columns_default_to_false");
+    console.log("Running migration: make_student_profiles_public_by_default");
     await sql`
       ALTER TABLE users 
-      ALTER COLUMN is_profile_public SET DEFAULT false,
-      ALTER COLUMN is_name_public SET DEFAULT false,
-      ALTER COLUMN is_username_public SET DEFAULT false,
+      ALTER COLUMN is_profile_public SET DEFAULT true,
+      ALTER COLUMN is_name_public SET DEFAULT true,
+      ALTER COLUMN is_username_public SET DEFAULT true,
       ALTER COLUMN is_school_public SET DEFAULT false,
-      ALTER COLUMN is_province_public SET DEFAULT false,
-      ALTER COLUMN is_grade_public SET DEFAULT false,
-      ALTER COLUMN is_section_public SET DEFAULT false,
-      ALTER COLUMN is_stats_public SET DEFAULT false
+      ALTER COLUMN is_province_public SET DEFAULT true,
+      ALTER COLUMN is_class_public SET DEFAULT true,
+      ALTER COLUMN is_grade_public SET DEFAULT true,
+      ALTER COLUMN is_section_public SET DEFAULT true,
+      ALTER COLUMN is_stats_public SET DEFAULT true
+    `;
+    await sql`
+      UPDATE users
+      SET is_profile_public = true,
+          is_name_public = true,
+          is_username_public = true,
+          is_school_public = false,
+          is_province_public = true,
+          is_class_public = true,
+          is_grade_public = true,
+          is_section_public = true,
+          is_stats_public = true
+      WHERE role = 'student'
     `;
 
     console.log("Running migration: add_class_scope_to_game_sessions");

@@ -74,11 +74,11 @@ export function getRewardRarity(cost: number): RewardRarity {
 }
 
 export const RARITY_META: Record<RewardRarity, { label: string; labelKh: string; accent: string; glow: string }> = {
-  common:    { label: "COMMON",    labelKh: "ធម្មតា",     accent: "#71717a", glow: "rgba(113,113,122,0.35)" },
-  rare:      { label: "RARE",      labelKh: "កម្រ",       accent: "#3b82f6", glow: "rgba(59,130,246,0.45)" },
-  epic:      { label: "EPIC",      labelKh: "អស្ចារ្យ",   accent: "#a855f7", glow: "rgba(168,85,247,0.45)" },
-  legendary: { label: "LEGENDARY", labelKh: "រ៉ាងពិសេស",  accent: "#eab308", glow: "rgba(234,179,8,0.5)" },
-  mythic:    { label: "MYTHIC",    labelKh: "ទេវកថា",     accent: "#ec4899", glow: "rgba(236,72,153,0.55)" },
+  common:    { label: "COMMON",    labelKh: "COMMON",     accent: "#71717a", glow: "rgba(113,113,122,0.35)" },
+  rare:      { label: "RARE",      labelKh: "RARE",       accent: "#3b82f6", glow: "rgba(59,130,246,0.45)" },
+  epic:      { label: "EPIC",      labelKh: "EPIC",       accent: "#a855f7", glow: "rgba(168,85,247,0.45)" },
+  legendary: { label: "LEGENDARY", labelKh: "LEGENDARY",  accent: "#eab308", glow: "rgba(234,179,8,0.5)" },
+  mythic:    { label: "MYTHIC",    labelKh: "MYTHIC",     accent: "#ec4899", glow: "rgba(236,72,153,0.55)" },
 };
 
 /** Look up a reward by id (used by the claim API to validate cost). */

@@ -65,7 +65,7 @@ export function CompleteProfileForm({
   const [province, setProvince] = useState("Siem Reap"); // Default to Siem Reap as requested
   const [face, setFace] = useState("Smile.svg");
   const [head, setHead] = useState("Short 1.svg");
-  const [isProfilePublic, setIsProfilePublic] = useState(false); // Default to Private (false)
+  const [isProfilePublic] = useState(true); // KWD student profiles are public by default.
   const [activeAvatarTab, setActiveAvatarTab] = useState<"head" | "face">("head");
 
   const [loading, setLoading] = useState(false);
