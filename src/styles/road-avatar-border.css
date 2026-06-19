@@ -1319,7 +1319,8 @@
 .platinum-avatar__division-badge { border: calc(2px * var(--s)) solid #3b82f6; }
 .diamond-avatar__division-badge { border: calc(2px * var(--s)) solid #22d3ee; }
 
-/* Platinum + Diamond: division medallion sits at top-centre on a crest. */
+/* Gold + Platinum + Diamond: division medallion sits at top-centre. */
+.gold-avatar__division-badge,
 .platinum-avatar__division-badge,
 .diamond-avatar__division-badge {
     top: calc(-6px * var(--s));

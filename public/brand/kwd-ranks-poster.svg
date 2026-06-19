@@ -1,0 +1,571 @@
+<svg viewBox="0 0 1920 1080" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Grid -->
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(59, 130, 246, 0.07)" stroke-width="1.5"/>
+    </pattern>
+
+    <!-- Caution Tape Pattern -->
+    <pattern id="caution-stripes" width="40" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="20" height="20" fill="#eab308"/>
+      <rect x="20" width="20" height="20" fill="#000000"/>
+    </pattern>
+
+    <!-- Common Rivet Gradient -->
+    <radialGradient id="rivet-grad" cx="35%" cy="30%" r="72%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </radialGradient>
+
+    <!-- Rookie Theme Gradients -->
+    <linearGradient id="rookie-accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#facc15"/>
+      <stop offset="50%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <linearGradient id="rookie-bracket-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#facc15"/>
+      <stop offset="45%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <linearGradient id="rookie-shield-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+
+    <!-- Rising Theme Gradients -->
+    <linearGradient id="rising-accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#84cc16"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="rising-bracket-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#84cc16"/>
+      <stop offset="45%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4d7c0f"/>
+    </linearGradient>
+    <linearGradient id="rising-shield-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#0f2417"/>
+    </linearGradient>
+
+    <!-- Gold Gradients -->
+    <linearGradient id="gold-metallic-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ca8a04" />
+      <stop offset="25%" stop-color="#ffd700" />
+      <stop offset="50%" stop-color="#ffffff">
+        <animate attributeName="offset" values="0;1;0" dur="4s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="75%" stop-color="#ffd700" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+    <linearGradient id="gold-metallic-secondary" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ca8a04" />
+      <stop offset="50%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="gold-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff1b8" />
+      <stop offset="45%" stop-color="#f5c211" />
+      <stop offset="100%" stop-color="#8a5a07" />
+    </linearGradient>
+    <radialGradient id="gold-road-asphalt" cx="50%" cy="44%" r="58%">
+      <stop offset="0%" stop-color="#1c1917" />
+      <stop offset="75%" stop-color="#0c0a09" />
+      <stop offset="100%" stop-color="#020202" />
+    </radialGradient>
+
+    <!-- Platinum Gradients -->
+    <linearGradient id="platinum-silver-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="35%" stop-color="#cbd5e1" />
+      <stop offset="50%" stop-color="#ffffff">
+        <animate attributeName="offset" values="0;1;0" dur="3.2s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="65%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+    <linearGradient id="platinum-silver-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="48%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#64748b" />
+    </linearGradient>
+    <linearGradient id="platinum-blue-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="40%" stop-color="#60a5fa" />
+      <stop offset="50%" stop-color="#dbeafe">
+        <animate attributeName="offset" values="0;1;0" dur="3.2s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="60%" stop-color="#93c5fd" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <radialGradient id="platinum-carbon" cx="50%" cy="38%" r="78%">
+      <stop offset="0%" stop-color="#243244" />
+      <stop offset="70%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+    <radialGradient id="platinum-asphalt" cx="50%" cy="44%" r="58%">
+      <stop offset="0%" stop-color="#1f2937" />
+      <stop offset="100%" stop-color="#070b12" />
+    </radialGradient>
+
+    <!-- Diamond Gradients -->
+    <linearGradient id="diamond-cyan-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="40%" stop-color="#22d3ee" />
+      <stop offset="50%" stop-color="#ecfeff">
+        <animate attributeName="offset" values="0;1;0" dur="3.2s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="60%" stop-color="#67e8f9" />
+      <stop offset="100%" stop-color="#0e7490" />
+    </linearGradient>
+    <linearGradient id="diamond-cyan-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cffafe" />
+      <stop offset="48%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#0e7490" />
+    </linearGradient>
+    <linearGradient id="diamond-silver-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0" />
+      <stop offset="35%" stop-color="#94a3b8" />
+      <stop offset="50%" stop-color="#ffffff">
+        <animate attributeName="offset" values="0;1;0" dur="3.6s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="65%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+    <radialGradient id="diamond-bg" cx="50%" cy="38%" r="78%">
+      <stop offset="0%" stop-color="#0c2230" />
+      <stop offset="70%" stop-color="#06141f" />
+      <stop offset="100%" stop-color="#020a10" />
+    </radialGradient>
+    <radialGradient id="diamond-asphalt" cx="50%" cy="44%" r="58%">
+      <stop offset="0%" stop-color="#102733" />
+      <stop offset="100%" stop-color="#040c12" />
+    </radialGradient>
+
+    <!-- Mythic Gradients (Refined to use exact KWD purple/orange/green/red/blue) -->
+    <linearGradient id="mythic-purple-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7e22ce" />
+      <stop offset="32%" stop-color="#a855f7" />
+      <stop offset="50%" stop-color="#f3e8ff">
+        <animate attributeName="offset" values="0;1;0" dur="3.4s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="68%" stop-color="#9333ea" />
+      <stop offset="100%" stop-color="#4c1d95" />
+    </linearGradient>
+    <linearGradient id="mythic-purple-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="48%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#5b21b6" />
+    </linearGradient>
+    <linearGradient id="mythic-gold-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eab308" />
+      <stop offset="35%" stop-color="#fde047" />
+      <stop offset="50%" stop-color="#fffbe6">
+        <animate attributeName="offset" values="0;1;0" dur="3.4s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="65%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#a16207" />
+    </linearGradient>
+    <linearGradient id="mythic-gold-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="48%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#a16207" />
+    </linearGradient>
+    <radialGradient id="mythic-asphalt" cx="50%" cy="44%" r="58%">
+      <stop offset="0%" stop-color="#1a1625" />
+      <stop offset="100%" stop-color="#050208" />
+    </radialGradient>
+    <linearGradient id="mythic-rivets-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+
+    <!-- Global Styles / Animations -->
+    <style>
+      .title-text { font-family: 'Roboto', 'Inter', sans-serif; font-weight: 900; }
+      .khmer-text { font-family: 'Khmer UI', 'Google Sans Khmer', sans-serif; }
+      .card-bg { filter: drop-shadow(4px 4px 0px #000000); }
+      
+      /* Strobe & Beacon animations */
+      @keyframes strobe-blue {
+        0%, 100% { fill: #1e3a8a; filter: none; }
+        50% { fill: #3b82f6; filter: drop-shadow(0 0 8px #3b82f6); }
+      }
+      @keyframes strobe-red {
+        0%, 100% { fill: #ef4444; filter: drop-shadow(0 0 8px #ef4444); }
+        50% { fill: #7f1d1d; filter: none; }
+      }
+      
+      /* Traffic Light Cycles */
+      @keyframes cycle-red {
+        0%, 35% { fill: #ef4444; filter: drop-shadow(0 0 6px #ef4444); }
+        40%, 100% { fill: #7f1d1d; filter: none; }
+      }
+      @keyframes cycle-orange {
+        0%, 35%, 75%, 100% { fill: #7c2d12; filter: none; }
+        40%, 70% { fill: #f97316; filter: drop-shadow(0 0 6px #f97316); }
+      }
+      @keyframes cycle-green {
+        0%, 70%, 100% { fill: #14532d; filter: none; }
+        75%, 95% { fill: #22c55e; filter: drop-shadow(0 0 6px #22c55e); }
+      }
+
+      .animated-siren-blue { animation: strobe-blue 0.8s infinite alternate; }
+      .animated-siren-red { animation: strobe-red 0.8s infinite alternate; }
+      
+      .animated-light-red { animation: cycle-red 6s infinite; }
+      .animated-light-orange { animation: cycle-orange 6s infinite; }
+      .animated-light-green { animation: cycle-green 6s infinite; }
+
+      .shine-overlay {
+        animation: shine-sweep-anim 5s infinite ease-in-out;
+      }
+      @keyframes shine-sweep-anim {
+        0% { transform: translateX(-150px) translateY(-150px) rotate(45deg); }
+        30%, 100% { transform: translateX(350px) translateY(350px) rotate(45deg); }
+      }
+    </style>
+  </defs>
+
+  <!-- ── BACKGROUND ── -->
+  <rect width="1920" height="1080" fill="#09090b" />
+  <rect width="1920" height="1080" fill="url(#grid)" />
+
+  <!-- ── CAUTION TAPE BORDERS (Top & Bottom) ── -->
+  <rect x="0" y="0" width="1920" height="16" fill="url(#caution-stripes)" />
+  <line x1="0" y1="16" x2="1920" y2="16" stroke="#000000" stroke-width="3" />
+  
+  <rect x="0" y="1064" width="1920" height="16" fill="url(#caution-stripes)" />
+  <line x1="0" y1="1064" x2="1920" y2="1064" stroke="#000000" stroke-width="3" />
+
+  <!-- ── TITLE BANNER (Overhead Highway Sign) ── -->
+  <g transform="translate(0, 0)">
+    <!-- Main Sign Board -->
+    <rect x="260" y="45" width="1400" height="145" rx="10" fill="#020202" stroke="#000000" stroke-width="4" class="card-bg" />
+    <rect x="268" y="53" width="1384" height="129" rx="6" fill="none" stroke="#eab308" stroke-width="2" />
+    
+    <!-- Title Text -->
+    <text x="960" y="100" fill="#eab308" font-size="34" class="title-text" text-anchor="middle" letter-spacing="4">KWD PLAYER PROGRESSION LADDER</text>
+    <text x="960" y="145" fill="#ffffff" font-size="24" class="khmer-text" text-anchor="middle" letter-spacing="1">សុវត្ថិភាពចរាចរណ៍ · ស៊ុមរូបថតគណនីតាមកម្រិតពិន្ទុ</text>
+
+    <!-- Side Decorative Signs -->
+    <polygon points="175,60 215,60 225,90 215,120 175,120 165,90" fill="#ef4444" stroke="#000" stroke-width="2" />
+    <text x="195" y="96" fill="#fff" font-size="16" class="title-text" text-anchor="middle">STOP</text>
+
+    <polygon points="1705,60 1745,60 1755,90 1745,120 1705,120 1695,90" fill="#22c55e" stroke="#000" stroke-width="2" />
+    <text x="1725" y="96" fill="#fff" font-size="16" class="title-text" text-anchor="middle">GO</text>
+  </g>
+
+  <!-- ── 3x2 GRID LAYOUT FOR THE 6 AVATAR BORDERS ── -->
+
+  <!-- ==================== CELL 1: ROOKIE ==================== -->
+  <g transform="translate(150, 230)">
+    <!-- Container Card -->
+    <rect x="0" y="0" width="480" height="360" rx="12" fill="#18181b" stroke="#000000" stroke-width="3" class="card-bg"/>
+    <rect x="8" y="8" width="464" height="344" rx="8" fill="none" stroke="rgba(234,179,8,0.2)" stroke-width="1.5" />
+    <!-- Caution Stripe Accents inside Card -->
+    <rect x="20" y="20" width="440" height="6" fill="url(#caution-stripes)" />
+
+    <!-- Avatar Frame Wrapper -->
+    <g transform="translate(45, 60) scale(1.4)">
+      <!-- Rookie road border -->
+      <rect x="25" y="25" width="150" height="150" rx="28" fill="radial-gradient(circle, #1f2937, #030712)" stroke="#0b0f17" stroke-width="2" />
+      <circle cx="100" cy="100" r="65" fill="none" stroke="#eab308" stroke-width="6" />
+      <circle cx="100" cy="100" r="58" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 5" />
+      <!-- Center Placeholder -->
+      <circle cx="100" cy="100" r="48" fill="#1e293b" stroke="#000" stroke-width="2"/>
+      <circle cx="100" cy="90" r="16" fill="#94a3b8"/>
+      <path d="M 72 134 A 28 28 0 0 1 128 134 Z" fill="#94a3b8"/>
+      <!-- Bracket & Shield -->
+      <path d="M 15 19 L 77 19 L 15 81 Z" fill="url(#rookie-bracket-grad)" stroke="#000" stroke-width="1.5" />
+      <polygon points="21,23 55,23 55,47 38,61 21,47" fill="url(#rookie-shield-grad)" stroke="#eab308" stroke-width="2" />
+      <text x="38" y="47" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle" font-family="monospace">IV</text>
+      <!-- Nameplate -->
+      <polygon points="56,164 144,164 153,175 144,186 56,186 47,175" fill="#1a1a1a" stroke="#eab308" stroke-width="2" />
+      <text x="100" y="180" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle" font-family="sans-serif" letter-spacing="1">ROOKIE</text>
+    </g>
+
+    <!-- Metadata Panel -->
+    <g transform="translate(340, 180)">
+      <rect x="-10" y="-120" width="130" height="260" fill="#111" stroke="#000" stroke-width="2" />
+      <!-- Point Badge -->
+      <rect x="0" y="-105" width="110" height="34" rx="4" fill="#eab308" stroke="#000" stroke-width="2" />
+      <text x="55" y="-82" fill="#000" font-size="13" class="title-text" text-anchor="middle">0 - 999 PTS</text>
+      <!-- Labels -->
+      <text x="55" y="-45" fill="#eab308" font-size="20" class="title-text" text-anchor="middle">ROOKIE</text>
+      <text x="55" y="-15" fill="#a1a1aa" font-size="12" class="title-text" text-anchor="middle">TIER I</text>
+      
+      <text x="55" y="30" fill="#fff" font-size="13" class="title-text" text-anchor="middle">Initial Rank</text>
+      <text x="55" y="50" fill="#71717a" font-size="11" class="title-text" text-anchor="middle">Learning the Road</text>
+      
+      <text x="55" y="90" fill="#fff" font-size="13" class="khmer-text" text-anchor="middle">កម្រិតដំបូង</text>
+      <text x="55" y="110" fill="#71717a" font-size="10.5" class="khmer-text" text-anchor="middle">ចាប់ផ្ដើមស្វែងយល់</text>
+    </g>
+  </g>
+
+  <!-- ==================== CELL 2: RISING ==================== -->
+  <g transform="translate(720, 230)">
+    <rect x="0" y="0" width="480" height="360" rx="12" fill="#18181b" stroke="#000000" stroke-width="3" class="card-bg"/>
+    <rect x="8" y="8" width="464" height="344" rx="8" fill="none" stroke="rgba(34,197,94,0.2)" stroke-width="1.5" />
+    <rect x="20" y="20" width="440" height="6" fill="url(#caution-stripes)" />
+
+    <g transform="translate(45, 60) scale(1.4)">
+      <!-- Rising road border -->
+      <rect x="25" y="25" width="150" height="150" rx="28" fill="radial-gradient(circle, #0f2417, #020604)" stroke="#0b0f17" stroke-width="2" />
+      <circle cx="100" cy="100" r="65" fill="none" stroke="#22c55e" stroke-width="6" />
+      <circle cx="100" cy="100" r="58" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 5" />
+      <!-- Center Placeholder -->
+      <circle cx="100" cy="100" r="48" fill="#0f2417" stroke="#000" stroke-width="2"/>
+      <circle cx="100" cy="90" r="16" fill="#86efac"/>
+      <path d="M 72 134 A 28 28 0 0 1 128 134 Z" fill="#86efac"/>
+      <!-- Bracket & Shield -->
+      <path d="M 15 19 L 77 19 L 15 81 Z" fill="url(#rising-bracket-grad)" stroke="#000" stroke-width="1.5" />
+      <polygon points="21,23 55,23 55,47 38,61 21,47" fill="url(#rising-shield-grad)" stroke="#22c55e" stroke-width="2" />
+      <text x="38" y="47" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle" font-family="monospace">III</text>
+      <!-- Nameplate -->
+      <polygon points="56,164 144,164 153,175 144,186 56,186 47,175" fill="#1a1a1a" stroke="#22c55e" stroke-width="2" />
+      <text x="100" y="180" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle" font-family="sans-serif" letter-spacing="1">RISING</text>
+    </g>
+
+    <g transform="translate(340, 180)">
+      <rect x="-10" y="-120" width="130" height="260" fill="#111" stroke="#000" stroke-width="2" />
+      <rect x="0" y="-105" width="110" height="34" rx="4" fill="#22c55e" stroke="#000" stroke-width="2" />
+      <text x="55" y="-82" fill="#fff" font-size="11.5" class="title-text" text-anchor="middle">1000-2499 PTS</text>
+      <text x="55" y="-45" fill="#22c55e" font-size="20" class="title-text" text-anchor="middle">RISING</text>
+      <text x="55" y="-15" fill="#a1a1aa" font-size="12" class="title-text" text-anchor="middle">TIER II</text>
+      
+      <text x="55" y="30" fill="#fff" font-size="13" class="title-text" text-anchor="middle">Advancing</text>
+      <text x="55" y="50" fill="#71717a" font-size="11" class="title-text" text-anchor="middle">Skill Development</text>
+      
+      <text x="55" y="90" fill="#fff" font-size="13" class="khmer-text" text-anchor="middle">ជំនាញកើនឡើង</text>
+      <text x="55" y="110" fill="#71717a" font-size="10.5" class="khmer-text" text-anchor="middle">អភិវឌ្ឍន៍ជំនាញ</text>
+    </g>
+  </g>
+
+  <!-- ==================== CELL 3: GOLD ==================== -->
+  <g transform="translate(1290, 230)">
+    <rect x="0" y="0" width="480" height="360" rx="12" fill="#18181b" stroke="#000000" stroke-width="3" class="card-bg"/>
+    <rect x="8" y="8" width="464" height="344" rx="8" fill="none" stroke="rgba(202,138,4,0.2)" stroke-width="1.5" />
+    <rect x="20" y="20" width="440" height="6" fill="url(#caution-stripes)" />
+
+    <g transform="translate(45, 60) scale(1.4)">
+      <!-- Gold squircle frame -->
+      <rect x="14" y="14" width="172" height="172" rx="26" fill="url(#gold-metallic-primary)" stroke="#000000" stroke-width="3" />
+      <rect x="24" y="24" width="152" height="152" rx="19" fill="#121212" stroke="url(#gold-metallic-secondary)" stroke-width="2" />
+      <circle cx="100" cy="100" r="58" fill="url(#gold-road-asphalt)" stroke="url(#gold-metallic-primary)" stroke-width="3.5" />
+      <circle cx="100" cy="100" r="52" fill="none" stroke="#ffd700" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.85" />
+      <!-- Center Placeholder -->
+      <circle cx="100" cy="100" r="48" fill="#1a1c1e" stroke="#000" stroke-width="2"/>
+      <circle cx="100" cy="90" r="16" fill="#fef08a"/>
+      <path d="M 72 134 A 28 28 0 0 1 128 134 Z" fill="#fef08a"/>
+      <!-- Warning gems -->
+      <polygon points="100,5 123,28 100,51 77,28" fill="url(#gold-bevel)" stroke="#000" stroke-width="1.5"/>
+      <polygon points="100,149 123,172 100,195 77,172" fill="url(#gold-bevel)" stroke="#000" stroke-width="1.5"/>
+      <polygon points="30,82 48,100 30,118 12,100" fill="url(#gold-bevel)" stroke="#000" stroke-width="1.5"/>
+      <polygon points="170,82 188,100 170,118 152,100" fill="url(#gold-bevel)" stroke="#000" stroke-width="1.5"/>
+      <!-- Division Badge -->
+      <circle cx="100" cy="20" r="11" fill="#111" stroke="#eab308" stroke-width="2" />
+      <text x="100" y="24" fill="#fff" font-size="10" font-weight="900" text-anchor="middle" font-family="monospace">II</text>
+      <!-- Nameplate -->
+      <polygon points="56,164 144,164 153,175 144,186 56,186 47,175" fill="#121212" stroke="#ca8a04" stroke-width="2" />
+      <text x="100" y="180" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle" font-family="sans-serif" letter-spacing="1">GOLD</text>
+    </g>
+
+    <g transform="translate(340, 180)">
+      <rect x="-10" y="-120" width="130" height="260" fill="#111" stroke="#000" stroke-width="2" />
+      <rect x="0" y="-105" width="110" height="34" rx="4" fill="#eab308" stroke="#000" stroke-width="2" />
+      <text x="55" y="-82" fill="#000" font-size="11.5" class="title-text" text-anchor="middle">2500-3499 PTS</text>
+      <text x="55" y="-45" fill="#ffd700" font-size="20" class="title-text" text-anchor="middle">GOLD</text>
+      <text x="55" y="-15" fill="#a1a1aa" font-size="12" class="title-text" text-anchor="middle">TIER III</text>
+      
+      <text x="55" y="30" fill="#fff" font-size="13" class="title-text" text-anchor="middle">Proven Merit</text>
+      <text x="55" y="50" fill="#71717a" font-size="11" class="title-text" text-anchor="middle">Consistent Practice</text>
+      
+      <text x="55" y="90" fill="#fff" font-size="13" class="khmer-text" text-anchor="middle">កម្រិតមាស</text>
+      <text x="55" y="110" fill="#71717a" font-size="10.5" class="khmer-text" text-anchor="middle">អនុវត្តជាប្រចាំ</text>
+    </g>
+  </g>
+
+  <!-- ==================== CELL 4: PLATINUM ==================== -->
+  <g transform="translate(150, 620)">
+    <rect x="0" y="0" width="480" height="360" rx="12" fill="#18181b" stroke="#000000" stroke-width="3" class="card-bg"/>
+    <rect x="8" y="8" width="464" height="344" rx="8" fill="none" stroke="rgba(59,130,246,0.2)" stroke-width="1.5" />
+    <rect x="20" y="20" width="440" height="6" fill="url(#caution-stripes)" />
+
+    <g transform="translate(45, 60) scale(1.4)">
+      <!-- Platinum squircle frame -->
+      <rect x="14" y="14" width="172" height="172" rx="30" fill="url(#platinum-silver-metal)" stroke="#1e293b" stroke-width="2" />
+      <rect x="24" y="24" width="152" height="152" rx="21" fill="url(#platinum-carbon)" stroke="#0b1220" stroke-width="1.5" />
+      <rect x="28" y="28" width="144" height="144" rx="18" fill="none" stroke="url(#platinum-blue-metal)" stroke-width="2" />
+      <circle cx="100" cy="100" r="53" fill="url(#platinum-asphalt)" stroke="url(#platinum-silver-metal)" stroke-width="3.2" />
+      <circle cx="100" cy="100" r="46" fill="none" stroke="#60a5fa" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.95" />
+      <!-- Center Placeholder -->
+      <circle cx="100" cy="100" r="48" fill="#1e293b" stroke="#000" stroke-width="2"/>
+      <circle cx="100" cy="90" r="16" fill="#93c5fd"/>
+      <path d="M 72 134 A 28 28 0 0 1 128 134 Z" fill="#93c5fd"/>
+      <!-- Traffic Light capsule on the right -->
+      <rect x="148" y="66" width="28" height="72" rx="13" fill="#0b1220" stroke="url(#platinum-silver-metal)" stroke-width="2" />
+      <circle cx="162" cy="85" r="6.3" fill="#7f1d1d" class="animated-light-red" stroke="#000000" stroke-width="0.9" />
+      <circle cx="162" cy="102" r="6.3" fill="#7c2d12" class="animated-light-orange" stroke="#000000" stroke-width="0.9" />
+      <circle cx="162" cy="119" r="6.3" fill="#14532d" class="animated-light-green" stroke="#000000" stroke-width="0.9" />
+      <!-- Left Chevron Plate -->
+      <rect x="20" y="86" width="24" height="28" rx="5" fill="url(#platinum-silver-bevel)" stroke="#1e293b" stroke-width="1.4" />
+      <path d="M 25 92 L 31 100 L 25 108 M 32 92 L 38 100 L 32 108" fill="none" stroke="url(#platinum-blue-metal)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+      <!-- Medallion Crest & division badge -->
+      <polygon points="80,30 120,30 114,12 86,12" fill="url(#platinum-silver-bevel)" stroke="#1e293b" stroke-width="1.6" stroke-linejoin="round" />
+      <polygon points="100,2 109,11 100,20 91,11" fill="url(#platinum-blue-metal)" stroke="#1e293b" stroke-width="1.2" stroke-linejoin="round" />
+      <circle cx="100" cy="20" r="11" fill="#0b1220" stroke="#3b82f6" stroke-width="1.8" />
+      <text x="100" y="24" fill="#fff" font-size="10" font-weight="900" text-anchor="middle" font-family="monospace">III</text>
+      <!-- Nameplate -->
+      <polygon points="56,164 144,164 153,175 144,186 56,186 47,175" fill="#0b1220" stroke="#cbd5e1" stroke-width="2" />
+      <text x="100" y="180" fill="url(#platinum-blue-metal)" font-size="11" font-weight="900" text-anchor="middle" font-family="sans-serif" letter-spacing="1">PLATINUM</text>
+    </g>
+
+    <g transform="translate(340, 180)">
+      <rect x="-10" y="-120" width="130" height="260" fill="#111" stroke="#000" stroke-width="2" />
+      <rect x="0" y="-105" width="110" height="34" rx="4" fill="#3b82f6" stroke="#000" stroke-width="2" />
+      <text x="55" y="-82" fill="#fff" font-size="11.5" class="title-text" text-anchor="middle">3500-6999 PTS</text>
+      <text x="55" y="-45" fill="#60a5fa" font-size="18.5" class="title-text" text-anchor="middle">PLATINUM</text>
+      <text x="55" y="-15" fill="#a1a1aa" font-size="12" class="title-text" text-anchor="middle">TIER IV</text>
+      
+      <text x="55" y="30" fill="#fff" font-size="13" class="title-text" text-anchor="middle">Expert Skill</text>
+      <text x="55" y="50" fill="#71717a" font-size="11" class="title-text" text-anchor="middle">Advanced Perf.</text>
+      
+      <text x="55" y="90" fill="#fff" font-size="13" class="khmer-text" text-anchor="middle">កម្រិតប្លាទីន</text>
+      <text x="55" y="110" fill="#71717a" font-size="10.5" class="khmer-text" text-anchor="middle">ជំនាញកម្រិតខ្ពស់</text>
+    </g>
+  </g>
+
+  <!-- ==================== CELL 5: DIAMOND ==================== -->
+  <g transform="translate(720, 620)">
+    <rect x="0" y="0" width="480" height="360" rx="12" fill="#18181b" stroke="#000000" stroke-width="3" class="card-bg"/>
+    <rect x="8" y="8" width="464" height="344" rx="8" fill="none" stroke="rgba(6,182,212,0.2)" stroke-width="1.5" />
+    <rect x="20" y="20" width="440" height="6" fill="url(#caution-stripes)" />
+
+    <g transform="translate(45, 60) scale(1.4)">
+      <!-- Diamond squircle frame -->
+      <rect x="14" y="14" width="172" height="172" rx="28" fill="url(#diamond-silver-metal)" stroke="#0f172a" stroke-width="2" />
+      <rect x="24" y="24" width="152" height="152" rx="20" fill="url(#diamond-bg)" stroke="#06151f" stroke-width="1.5" />
+      <rect x="28" y="28" width="144" height="144" rx="17" fill="none" stroke="url(#diamond-cyan-metal)" stroke-width="2" />
+      <circle cx="100" cy="100" r="57" fill="url(#diamond-asphalt)" stroke="url(#diamond-cyan-metal)" stroke-width="3.4" />
+      <circle cx="100" cy="100" r="50.5" fill="none" stroke="#67e8f9" stroke-width="1.6" stroke-dasharray="6 5" opacity="0.95" />
+      <!-- Center Placeholder -->
+      <circle cx="100" cy="100" r="48" fill="#082f49" stroke="#000" stroke-width="2"/>
+      <circle cx="100" cy="90" r="16" fill="#22d3ee"/>
+      <path d="M 72 134 A 28 28 0 0 1 128 134 Z" fill="#22d3ee"/>
+      <!-- Side Traffic Light Capsules -->
+      <rect x="25.5" y="78" width="15" height="44" rx="7" fill="#06121f" stroke="url(#diamond-silver-metal)" stroke-width="1.7" />
+      <circle cx="33" cy="87" r="4.3" fill="#7f1d1d" class="animated-light-red" stroke="#000000" stroke-width="0.9" />
+      <circle cx="33" cy="100" r="4.3" fill="#7c2d12" class="animated-light-orange" stroke="#000000" stroke-width="0.9" />
+      <circle cx="33" cy="113" r="4.3" fill="#14532d" class="animated-light-green" stroke="#000000" stroke-width="0.9" />
+      <rect x="159.5" y="78" width="15" height="44" rx="7" fill="#06121f" stroke="url(#diamond-silver-metal)" stroke-width="1.7" />
+      <circle cx="167" cy="87" r="4.3" fill="#7f1d1d" class="animated-light-red" stroke="#000000" stroke-width="0.9" />
+      <circle cx="167" cy="100" r="4.3" fill="#7c2d12" class="animated-light-orange" stroke="#000000" stroke-width="0.9" />
+      <circle cx="167" cy="113" r="4.3" fill="#14532d" class="animated-light-green" stroke="#000000" stroke-width="0.9" />
+      <!-- Crest & sirens -->
+      <polygon points="80,30 120,30 114,12 86,12" fill="url(#diamond-cyan-bevel)" stroke="#0f172a" stroke-width="1.6" stroke-linejoin="round" />
+      <polygon points="100,2 109,11 100,20 91,11" fill="url(#diamond-cyan-metal)" stroke="#0f172a" stroke-width="1.2" stroke-linejoin="round" />
+      <rect x="62" y="16" width="11" height="6" rx="1.6" fill="#ef4444" class="animated-siren-red" stroke="#000000" stroke-width="0.7" />
+      <rect x="127" y="16" width="11" height="6" rx="1.6" fill="#3b82f6" class="animated-siren-blue" stroke="#000000" stroke-width="0.7" />
+      <circle cx="100" cy="20" r="11" fill="#06141f" stroke="#22d3ee" stroke-width="1.8" />
+      <text x="100" y="24" fill="#fff" font-size="10" font-weight="900" text-anchor="middle" font-family="monospace">IV</text>
+      <!-- Nameplate -->
+      <polygon points="56,164 144,164 153,175 144,186 56,186 47,175" fill="#06141f" stroke="url(#diamond-cyan-metal)" stroke-width="2.2" />
+      <text x="100" y="180" fill="url(#diamond-cyan-metal)" font-size="11" font-weight="900" text-anchor="middle" font-family="sans-serif" letter-spacing="1">DIAMOND</text>
+    </g>
+
+    <g transform="translate(340, 180)">
+      <rect x="-10" y="-120" width="130" height="260" fill="#111" stroke="#000" stroke-width="2" />
+      <rect x="0" y="-105" width="110" height="34" rx="4" fill="#06b6d4" stroke="#000" stroke-width="2" />
+      <text x="55" y="-82" fill="#fff" font-size="11" class="title-text" text-anchor="middle">7000-11999 PTS</text>
+      <text x="55" y="-45" fill="#22d3ee" font-size="18.5" class="title-text" text-anchor="middle">DIAMOND</text>
+      <text x="55" y="-15" fill="#a1a1aa" font-size="12" class="title-text" text-anchor="middle">TIER V</text>
+      
+      <text x="55" y="30" fill="#fff" font-size="13" class="title-text" text-anchor="middle">Precision</text>
+      <text x="55" y="50" fill="#71717a" font-size="11" class="title-text" text-anchor="middle">Mastery &amp; Standing</text>
+      
+      <text x="55" y="90" fill="#fff" font-size="13" class="khmer-text" text-anchor="middle">កម្រិតពេជ្រ</text>
+      <text x="55" y="110" fill="#71717a" font-size="10.5" class="khmer-text" text-anchor="middle">ស្ទាត់ជំនាញខ្ពស់</text>
+    </g>
+  </g>
+
+  <!-- ==================== CELL 6: MYTHIC ==================== -->
+  <g transform="translate(1290, 620)">
+    <rect x="0" y="0" width="480" height="360" rx="12" fill="#18181b" stroke="#000000" stroke-width="3" class="card-bg"/>
+    <rect x="8" y="8" width="464" height="344" rx="8" fill="none" stroke="rgba(168,85,247,0.2)" stroke-width="1.5" />
+    <rect x="20" y="20" width="440" height="6" fill="url(#caution-stripes)" />
+
+    <g transform="translate(45, 60) scale(1.4)">
+      <!-- Mythic frame with correct brand accent layout -->
+      <polygon points="54,12 146,12 188,54 188,146 146,188 54,188 12,146 12,54" fill="#000" transform="translate(3,3.5)"/>
+      <polygon points="54,12 146,12 188,54 188,146 146,188 54,188 12,146 12,54" fill="#0c0a14" stroke="#000" stroke-width="3" />
+      <polygon points="58,18 142,18 182,58 182,142 142,182 58,182 18,142 18,58" fill="none" stroke="#7e22ce" stroke-width="1.4" opacity="0.8"/>
+      <!-- Lightning bolts behind -->
+      <path d="M 48 64 L 30 100 L 45 100 L 22 150 L 54 104 L 39 104 L 56 72 Z" fill="url(#mythic-gold-bevel)" stroke="#000" stroke-width="2" />
+      <path d="M 152 64 L 170 100 L 155 100 L 178 150 L 146 104 L 161 104 L 144 72 Z" fill="url(#mythic-gold-bevel)" stroke="#000" stroke-width="2" />
+      <!-- Armour panels -->
+      <polygon points="24,56 48,46 54,150 30,160" fill="url(#mythic-purple-bevel)" stroke="#000" stroke-width="1.6" />
+      <polygon points="176,56 152,46 146,150 170,160" fill="url(#mythic-purple-bevel)" stroke="#000" stroke-width="1.6" />
+      <!-- Side Traffic Light Stacks -->
+      <rect x="31.5" y="82" width="13" height="38" rx="6" fill="#0c0a14" stroke="url(#mythic-purple-metal)" stroke-width="1.4" />
+      <circle cx="38" cy="90" r="3.5" fill="#7f1d1d" class="animated-light-red" stroke="#000000" stroke-width="0.7" />
+      <circle cx="38" cy="101" r="3.5" fill="#7c2d12" class="animated-light-orange" stroke="#000000" stroke-width="0.7" />
+      <circle cx="38" cy="112" r="3.5" fill="#14532d" class="animated-light-green" stroke="#000000" stroke-width="0.7" />
+      <rect x="155.5" y="82" width="13" height="38" rx="6" fill="#0c0a14" stroke="url(#mythic-purple-metal)" stroke-width="1.4" />
+      <circle cx="162" cy="90" r="3.5" fill="#7f1d1d" class="animated-light-red" stroke="#000000" stroke-width="0.7" />
+      <circle cx="162" cy="101" r="3.5" fill="#7c2d12" class="animated-light-orange" stroke="#000000" stroke-width="0.7" />
+      <circle cx="162" cy="112" r="3.5" fill="#14532d" class="animated-light-green" stroke="#000000" stroke-width="0.7" />
+      <!-- Road asphalt ring -->
+      <circle cx="100" cy="100" r="54" fill="url(#mythic-asphalt)" stroke="url(#mythic-purple-metal)" stroke-width="3.4" />
+      <circle cx="100" cy="100" r="46.5" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-dasharray="6 6" />
+      <circle cx="100" cy="100" r="41" fill="none" stroke="url(#mythic-gold-metal)" stroke-width="1.6"/>
+      <!-- Center Placeholder -->
+      <circle cx="100" cy="100" r="38" fill="#1e152a" stroke="#000" stroke-width="2"/>
+      <circle cx="100" cy="90" r="14" fill="#d8b4fe"/>
+      <path d="M 76 126 A 24 24 0 0 1 124 126 Z" fill="#d8b4fe"/>
+      <!-- Crown -->
+      <path d="M 64 40 L 61 14 L 80 30 L 100 5 L 120 30 L 139 14 L 136 40 Z" fill="url(#mythic-gold-bevel)" stroke="#000" stroke-width="2" />
+      <circle cx="61" cy="14" r="3" fill="url(#mythic-gold-metal)" stroke="#000" stroke-width="0.8" />
+      <circle cx="100" cy="5" r="3" fill="url(#mythic-gold-metal)" stroke="#000" stroke-width="0.8" />
+      <circle cx="139" cy="14" r="3" fill="url(#mythic-gold-metal)" stroke="#000" stroke-width="0.8" />
+      <rect x="74" y="33" width="8" height="4.4" rx="1.2" fill="#7f1d1d" class="animated-siren-red" stroke="#000000" stroke-width="0.5" />
+      <rect x="118" y="33" width="8" height="4.4" rx="1.2" fill="#1e3a8a" class="animated-siren-blue" stroke="#000000" stroke-width="0.5" />
+      <!-- Medallion Crest & division badge (Refined to Purple borders and rivets) -->
+      <circle cx="100" cy="20" r="11" fill="#0c0a14" stroke="#a855f7" stroke-width="1.8" />
+      <circle cx="92.5" cy="20" r="1.5" fill="url(#mythic-rivets-grad)" />
+      <circle cx="107.5" cy="20" r="1.5" fill="url(#mythic-rivets-grad)" />
+      <text x="100" y="24" fill="#fff" font-size="10" font-weight="900" text-anchor="middle" font-family="monospace">I</text>
+      <!-- Nameplate (Refined to Purple borders and rivets) -->
+      <polygon points="56,164 144,164 153,175 144,186 56,186 47,175" fill="#0c0a14" stroke="#a855f7" stroke-width="2" />
+      <circle cx="63" cy="175" r="2.2" fill="url(#mythic-rivets-grad)" />
+      <circle cx="137" cy="175" r="2.2" fill="url(#mythic-rivets-grad)" />
+      <text x="100" y="180" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle" font-family="sans-serif" letter-spacing="1">MYTHIC</text>
+    </g>
+
+    <g transform="translate(340, 180)">
+      <rect x="-10" y="-120" width="130" height="260" fill="#111" stroke="#000" stroke-width="2" />
+      <rect x="0" y="-105" width="110" height="34" rx="4" fill="#a855f7" stroke="#000" stroke-width="2" />
+      <text x="55" y="-82" fill="#fff" font-size="11.5" class="title-text" text-anchor="middle">12000+ PTS</text>
+      <text x="55" y="-45" fill="#c084fc" font-size="20" class="title-text" text-anchor="middle">MYTHIC</text>
+      <text x="55" y="-15" fill="#a1a1aa" font-size="12" class="title-text" text-anchor="middle">TIER VI</text>
+      
+      <text x="55" y="30" fill="#fff" font-size="13" class="title-text" text-anchor="middle">Road Guardian</text>
+      <text x="55" y="50" fill="#71717a" font-size="11" class="title-text" text-anchor="middle">Ultimate Rank</text>
+      
+      <text x="55" y="90" fill="#fff" font-size="13" class="khmer-text" text-anchor="middle">អាណាព្យាបាលផ្លូវ</text>
+      <text x="55" y="110" fill="#71717a" font-size="10.5" class="khmer-text" text-anchor="middle">សមិទ្ធផលខ្ពស់បំផុត</text>
+    </g>
+  </g>
+
+  <!-- ── FOOTER LOGO AND SUBTITLE ── -->
+  <g transform="translate(0, 0)">
+    <!-- Caution accent divider line -->
+    <line x1="150" y1="1005" x2="1770" y2="1005" stroke="#eab308" stroke-width="2" stroke-dasharray="8 6"/>
+    
+    <!-- Footer Branding -->
+    <text x="960" y="1035" fill="#a1a1aa" font-size="14" class="title-text" text-anchor="middle" letter-spacing="2">KWD · TECHNOVATION GIRLS CAMBODIA 2026 · TEAM #50777</text>
+  </g>
+</svg>
