@@ -1680,35 +1680,40 @@ export default function LeaderboardPage() {
 
                       {/* Score — designed like a Cambodian license plate */}
                       <div className="col-span-4 sm:col-span-3 flex justify-end sm:justify-start items-center">
-                        <div
-                          className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_#000] p-0.5"
-                          style={{
-                            width: "72px",
-                            height: "38px",
-                            borderRadius: "4px",
-                          }}
-                        >
-                          {/* Inner blue border outline */}
-                          <div className="absolute inset-0.5 border border-blue-700 pointer-events-none rounded-[2px]" />
-                          
-                          {/* Top: Province/Cambodia in Khmer */}
-                          <span className="z-10 text-[6.5px] font-black text-blue-900 leading-none scale-90 origin-top mt-[1px]">
-                            {user.province ? getProvinceKh(user.province) : "កម្ពុជា"}
-                          </span>
-                          
-                          {/* Center: Score number in deep blue */}
-                          <span className="z-10 font-mono font-black tabular-nums text-[13px] text-blue-900 leading-none my-[1px] tracking-tight">
-                            {scoreValue.toLocaleString()}
-                          </span>
+                        {(() => {
+                          const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
+                          return (
+                            <div
+                              className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_#000] p-0.5"
+                              style={{
+                                width: "72px",
+                                height: "38px",
+                                borderRadius: "4px",
+                              }}
+                            >
+                              {/* Inner blue border outline */}
+                              <div className="absolute inset-0.5 border border-blue-700 pointer-events-none rounded-[2px]" />
+                              
+                              {/* Top: Province/Cambodia in Khmer */}
+                              <span className="z-10 text-[6.5px] font-black text-blue-900 leading-none scale-90 origin-top mt-[1px]">
+                                {rowProvince ? getProvinceKh(rowProvince) : "កម្ពុជា"}
+                              </span>
+                              
+                              {/* Center: Score number in deep blue */}
+                              <span className="z-10 font-mono font-black tabular-nums text-[13px] text-blue-900 leading-none my-[1px] tracking-tight">
+                                {scoreValue.toLocaleString()}
+                              </span>
 
-                          {/* Horizontal divider line */}
-                          <div className="z-10 w-full h-[1px] bg-blue-800 opacity-40" />
+                              {/* Horizontal divider line */}
+                              <div className="z-10 w-full h-[1px] bg-blue-800 opacity-40" />
 
-                          {/* Bottom: Province/Cambodia in English Red */}
-                          <span className="z-10 text-[5.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1px]">
-                            {user.province ? user.province.toUpperCase() : "CAMBODIA"}
-                          </span>
-                        </div>
+                              {/* Bottom: Province/Cambodia in English Red */}
+                              <span className="z-10 text-[5.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1px]">
+                                {rowProvince ? rowProvince.toUpperCase() : "CAMBODIA"}
+                              </span>
+                            </div>
+                          );
+                        })()}
                       </div>
 
                       {/* Games — total games this player has played (all modes) */}
