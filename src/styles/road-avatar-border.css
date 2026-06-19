@@ -1315,6 +1315,12 @@
 .platinum-avatar__division-badge { border: calc(2px * var(--s)) solid #3b82f6; }
 .diamond-avatar__division-badge { border: calc(2px * var(--s)) solid #22d3ee; }
 .mythic-avatar__division-badge { border: calc(2px * var(--s)) solid #ca8a04; }
+/* Mythic only: the division medallion sits at top-center, on the police cap. */
+.mythic-avatar__division-badge {
+    top: calc(-9px * var(--s));
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 /* Traffic Light stack cycling animations for Diamond */
 .diamond-light-red {
