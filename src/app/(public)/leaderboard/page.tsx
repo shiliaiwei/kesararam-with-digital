@@ -77,6 +77,15 @@ const CAMBODIA_PROVINCES = [
   { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
 ];
 
+// Resolve a game-mode slug to its bilingual label + brand color dot. Falls back to
+// the raw slug if the catalog doesn't know it (keeps the column resilient).
+function getGameMeta(slug: string | null | undefined): { en: string; kh: string; color: string } | null {
+  if (!slug) return null;
+  const label = GAME_LABELS[slug];
+  const chip = GAME_CHIPS.find(c => c.id === slug);
+  return { en: label?.en ?? slug, kh: label?.kh ?? slug, color: chip?.color ?? "#71717a" };
+}
+
 function getProvinceKh(provinceEn: string | null | undefined): string {
   if (!provinceEn) return "—";
   const found = CAMBODIA_PROVINCES.find(p => p.en.toLowerCase() === provinceEn.toLowerCase());
@@ -132,6 +141,7 @@ interface LeaderboardUser {
   priorityPoints?: number;
   soloPoints?: number;
   accuracy?: number;
+  bestGame?: string | null;
   schoolName?: string | null;
   province?: string | null;
   className: string | null;
@@ -1019,6 +1029,9 @@ export default function LeaderboardPage() {
   const [teacherInventory, setTeacherInventory] = useState<any[]>([]);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [countdown, setCountdown] = useState(60);
+  // "Speed-camera flash": every 5s a random row's name plate flashes briefly. Pure
+  // ambient polish — picks one visible player id, lights it for ~0.85s, then clears.
+  const [flashId, setFlashId] = useState<number | null>(null);
 
   // Leaderboard filters: time window, province, game type, score source
   const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
@@ -1139,6 +1152,17 @@ export default function LeaderboardPage() {
     const t = setInterval(() => setCountdown(c => c > 0 ? c - 1 : 60), 1000);
     return () => clearInterval(t);
   }, []);
+
+  // Random speed-camera flash on one row every 5 seconds.
+  useEffect(() => {
+    if (leaderboard.length === 0) return;
+    const t = setInterval(() => {
+      const pick = leaderboard[Math.floor(Math.random() * leaderboard.length)];
+      setFlashId(pick?.id ?? null);
+      setTimeout(() => setFlashId(null), 850);
+    }, 5000);
+    return () => clearInterval(t);
+  }, [leaderboard]);
 
   const top3 = leaderboard.slice(0, 3);
 
@@ -1406,18 +1430,18 @@ export default function LeaderboardPage() {
               </div>
 
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
-                {/* Table Header — football/chess.com columns. LIVE is the hero (gold),
-                    pinned right like a rating; Played / Accuracy / Total are stats. */}
+                <style>{`@keyframes lbFlash{0%,100%{box-shadow:2px 2px 0 #000;filter:brightness(1)}30%{box-shadow:2px 2px 0 #000,0 0 16px 5px rgba(250,204,21,.95);filter:brightness(1.3)}65%{box-shadow:2px 2px 0 #000,0 0 7px 2px rgba(250,204,21,.55);filter:brightness(1.12)}}.lb-flash{animation:lbFlash .85s ease-in-out}`}</style>
+                {/* Table Header — Live Score is the hero metric and leads the stats
+                    right after the player; Games / Acc / Top game follow. */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
                   <span className="col-span-2 sm:col-span-1 text-yellow-400">#</span>
                   <span className="col-span-6 sm:col-span-4 text-yellow-400">{kh ? "សិស្ស" : "Player"}</span>
-                  <span className="col-span-2 text-center text-yellow-400 hidden sm:block">{kh ? "ថ្នាក់" : "Tier"}</span>
-                  <span className="col-span-1 text-center text-zinc-500 hidden sm:block" title={kh ? "ចំនួនលេង" : "Games played"}>{kh ? "លេង" : "P"}</span>
-                  <span className="col-span-1 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
-                  <span className="col-span-1 text-right text-zinc-500 hidden sm:block">{kh ? "សរុប" : "Total"}</span>
-                  <span className="col-span-4 sm:col-span-2 flex items-center justify-end gap-1 text-yellow-400">
-                    <Gift size={11} strokeWidth={3} />{kh ? "ផ្ទាល់" : "Live"}
+                  <span className="col-span-4 sm:col-span-2 flex items-center justify-start gap-1 text-yellow-400">
+                    <Gift size={11} strokeWidth={3} />{kh ? "ពិន្ទុផ្ទាល់" : "Live Score"}
                   </span>
+                  <span className="col-span-1 text-center text-zinc-500 hidden sm:block" title={kh ? "ចំនួនលេងសរុប" : "Total games played"}>{kh ? "ហ្គេម" : "Games"}</span>
+                  <span className="col-span-1 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
+                  <span className="col-span-3 text-right text-yellow-400 hidden sm:block">{kh ? "ហ្គេមពេញនិយម" : "Top game"}</span>
                 </div>
 
                 {leaderboard.length > 0 ? leaderboard.map((user, rowIndex) => {
@@ -1429,7 +1453,8 @@ export default function LeaderboardPage() {
                   const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
                   const rowAvatar = isMe ? currentUser.avatar : user.avatar;
                   const live = user.priorityPoints ?? 0;
-                  // Tier drives the row accent line, the Tier column, and the LIVE color.
+                  // Tier drives the rank accent line, the name-plate background, and
+                  // the Live Score number color.
                   const tier = getRank(user.lifetimePoints);
                   // Goal-gradient hook: for the signed-in user, how many LIVE points to
                   // overtake the player ranked directly above.
@@ -1470,12 +1495,15 @@ export default function LeaderboardPage() {
                         </RankedAvatarRing>
                         <div className="flex flex-1 flex-col min-w-0">
                           <div className="flex items-center gap-2 min-w-0">
-                            <TierBadge
-                              lifetimePoints={user.lifetimePoints}
-                              size="xs"
-                              index={rowIndex}
-                              displayLabel={user.displayName || user.username}
-                            />
+                            {/* Name plate — background colored by rank tier (brand-
+                                sanctioned tier gradient), with the random 5s flash. */}
+                            <span
+                              className={`inline-flex items-center border-[3px] border-black px-2 py-1 font-black truncate min-w-0 ${flashId === user.id ? "lb-flash" : ""}`}
+                              style={{ background: tier.labelGradient, color: tier.textColor, boxShadow: "2px 2px 0 #000", fontSize: 12, letterSpacing: "0.01em", maxWidth: "100%" }}
+                              title={user.displayName || user.username}
+                            >
+                              {user.displayName || user.username}
+                            </span>
                             {isMe && (
                               <span className="text-[8px] font-black uppercase px-1 py-0.5 border border-black bg-yellow-400 text-black flex-shrink-0">
                                 {kh ? "អ្នក" : "You"}
@@ -1502,18 +1530,27 @@ export default function LeaderboardPage() {
                         </div>
                       </div>
 
-                      {/* Tier — its own column, colored by the player's rank tier.
-                          labelGradient is the brand-sanctioned gradient use (rank tiers only). */}
-                      <div className="col-span-2 items-center justify-center hidden sm:flex">
-                        <span
-                          className="inline-flex items-center justify-center border-2 border-black px-2 py-0.5 text-[9px] font-black uppercase tracking-wider leading-none"
-                          style={{ background: tier.labelGradient, color: tier.textColor, boxShadow: "2px 2px 0 #000", borderRadius: 0, minWidth: 62 }}
+                      {/* Live Score — the hero metric, first stat after the player.
+                          Scoreboard chip: gold for the leader, gold-tint when earned,
+                          zinc when none; the number is colored by the player's tier. */}
+                      <div className="col-span-4 sm:col-span-2 flex justify-start">
+                        <div
+                          className="inline-flex flex-col items-center border-2 border-black px-2 py-0.5 leading-none"
+                          style={{
+                            background: user.rank === 1 && live > 0 ? "#facc15" : live > 0 ? "#fef9c3" : "#f4f4f5",
+                            boxShadow: "2px 2px 0 #000",
+                            borderRadius: 0,
+                            minWidth: 56,
+                          }}
                         >
-                          {tier.label}
-                        </span>
+                          <span className="font-black tabular-nums text-base md:text-xl" style={{ color: tier.textDark }}>{live.toLocaleString()}</span>
+                          <span className="flex items-center gap-0.5 text-[7px] font-black uppercase tracking-wider text-zinc-500">
+                            <Gift size={7} strokeWidth={3} />{kh ? "ពិន្ទុផ្ទាល់" : "live score"}
+                          </span>
+                        </div>
                       </div>
 
-                      {/* Played (games) — football "P" stat */}
+                      {/* Games — total games this player has played (all modes) */}
                       <span className="col-span-1 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
                         {(user.totalGamesPlayed ?? 0).toLocaleString()}
                       </span>
@@ -1526,28 +1563,22 @@ export default function LeaderboardPage() {
                         {(user.accuracy ?? 0)}%
                       </span>
 
-                      {/* Total points — secondary stat, demoted from headline */}
-                      <span className="col-span-1 text-right text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
-                        {user.lifetimePoints.toLocaleString()}
-                      </span>
-
-                      {/* LIVE — the hero metric. Scoreboard chip (chess-rating style):
-                          gold for the leader, gold-tint when earned, zinc when none. */}
-                      <div className="col-span-4 sm:col-span-2 flex justify-end">
-                        <div
-                          className="inline-flex flex-col items-center border-2 border-black px-2 py-0.5 leading-none"
-                          style={{
-                            background: user.rank === 1 && live > 0 ? "#facc15" : live > 0 ? "#fef9c3" : "#f4f4f5",
-                            boxShadow: "2px 2px 0 #000",
-                            borderRadius: 0,
-                            minWidth: 56,
-                          }}
-                        >
-                          <span className="font-black tabular-nums text-base md:text-xl" style={{ color: tier.textDark }}>{live.toLocaleString()}</span>
-                          <span className="flex items-center gap-0.5 text-[7px] font-black uppercase tracking-wider text-zinc-500">
-                            <Gift size={7} strokeWidth={3} />{kh ? "ដោះបាន" : "claim"}
-                          </span>
-                        </div>
+                      {/* Top game — the mode this player plays most (from the API). */}
+                      <div className="col-span-3 justify-end items-center hidden sm:flex">
+                        {(() => {
+                          const g = getGameMeta(user.bestGame);
+                          if (!g) return <span className="text-xs font-bold text-zinc-300 tabular-nums">—</span>;
+                          return (
+                            <span
+                              className="inline-flex items-center gap-1.5 border-2 border-black bg-white px-2 py-1 text-[10px] font-black uppercase tracking-wide leading-none max-w-full"
+                              style={{ boxShadow: "2px 2px 0 #000", borderRadius: 0 }}
+                              title={kh ? g.kh : g.en}
+                            >
+                              <span className="w-2.5 h-2.5 border border-black flex-shrink-0" style={{ background: g.color }} />
+                              <span className="truncate">{kh ? g.kh : g.en}</span>
+                            </span>
+                          );
+                        })()}
                       </div>
                     </div>
                   );
@@ -1561,8 +1592,8 @@ export default function LeaderboardPage() {
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "ផ្ទាល់ = អាចដោះបាន · ចំណាត់ថ្នាក់តាមពិន្ទុផ្ទាល់ · សរុប = គ្រប់ហ្គេម · ត្រឹមត្រូវ = មធ្យមភាគ"
-                  : "Live = claimable · Ranked by Live · P = games played · Total = all plays · Acc = avg correct"}
+                  ? "ពិន្ទុផ្ទាល់ = អាចដោះបាន · ចំណាត់ថ្នាក់តាមពិន្ទុផ្ទាល់ · ហ្គេម = ចំនួនលេងសរុប · ត្រឹមត្រូវ = មធ្យមភាគ · ហ្គេមពេញនិយម = លេងញឹកញាប់"
+                  : "Live Score = claimable · Ranked by Live Score · Games = total plays · Acc = avg correct · Top game = most played"}
               </p>
 
             </div>

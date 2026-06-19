@@ -40,6 +40,9 @@ async function storePointsLeaderboard(opts: {
   const liveExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.delta > 0 AND spe.attempt_id LIKE 'live:%'${gameTypeCond}), 0)::int`;
   // Average accuracy across recorded plays (0..100).
   const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(spe.accuracy) * 100) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.reason = 'play'${gameTypeCond}), 0)::int`;
+  // The single game type this student has played most (by play count) — drives the
+  // "Top game" leaderboard column. NULL when they have no recorded plays.
+  const bestGameExpr = sql<string | null>`(SELECT spe.game_type FROM store_point_events spe WHERE spe.user_id = users.id AND spe.reason = 'play'${gameTypeCond} GROUP BY spe.game_type ORDER BY COUNT(*) DESC LIMIT 1)`;
 
   const provinceFilter =
     province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
@@ -58,6 +61,7 @@ async function storePointsLeaderboard(opts: {
       storeBalance: balanceExpr,
       livePoints: liveExpr,
       accuracy: accuracyExpr,
+      bestGame: bestGameExpr,
       schoolName: users.schoolName,
       province: users.province,
       isSchoolPublic: users.isSchoolPublic,
@@ -85,6 +89,7 @@ async function storePointsLeaderboard(opts: {
     priorityPoints: user.livePoints,
     soloPoints: 0,
     accuracy: user.accuracy,
+    bestGame: user.bestGame,
     schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
     province: (user.isProvincePublic ?? true) ? user.province : null,
   }));
@@ -160,6 +165,8 @@ export async function GET(req: NextRequest) {
     const soloExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source = 'solo'${gameTypeCondPl}), 0)::int`;
     // Average accuracy across recorded solo plays (0..100).
     const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(CASE WHEN gs.total_questions > 0 THEN gs.correct_answers::numeric / gs.total_questions END) * 100) FROM game_scores gs WHERE gs.user_id = users.id${gameTypeCondGs}), 0)::int`;
+    // Most-played game mode (by play count) — drives the "Top game" column.
+    const bestGameExpr = sql<string | null>`(SELECT gs.game_mode FROM game_scores gs WHERE gs.user_id = users.id${gameTypeCondGs} GROUP BY gs.game_mode ORDER BY COUNT(*) DESC LIMIT 1)`;
 
     let rows: {
       id: number;
@@ -173,6 +180,7 @@ export async function GET(req: NextRequest) {
       priorityPoints: number;
       soloPoints: number;
       accuracy: number;
+      bestGame: string | null;
       schoolName: string | null;
       province: string | null;
       isNamePublic: boolean | null;
@@ -198,6 +206,7 @@ export async function GET(req: NextRequest) {
           priorityPoints: priorityExpr,
           soloPoints: soloExpr,
           accuracy: accuracyExpr,
+          bestGame: bestGameExpr,
           schoolName: users.schoolName,
           province: users.province,
           isNamePublic: users.isNamePublic,
@@ -245,6 +254,7 @@ export async function GET(req: NextRequest) {
           priorityPoints: priorityExpr,
           soloPoints: soloExpr,
           accuracy: accuracyExpr,
+          bestGame: bestGameExpr,
           schoolName: users.schoolName,
           province: users.province,
           isNamePublic: users.isNamePublic,
@@ -316,6 +326,7 @@ export async function GET(req: NextRequest) {
         priorityPoints: user.priorityPoints,
         soloPoints: user.soloPoints,
         accuracy: user.accuracy,
+        bestGame: user.bestGame,
         schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
         province: (user.isProvincePublic ?? true) ? user.province : null,
       };
