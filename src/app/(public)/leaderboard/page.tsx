@@ -10,6 +10,8 @@ import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase
 import { getRank, canClaimRewards, CLAIM_MIN_POINTS } from "@/lib/rank-utils";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { REWARD_ITEMS, getRewardRarity, RARITY_META, calculateDynamicCost } from "@/lib/rewards";
+import { GAME_FILTER_ORDER, getGameMeta } from "@/lib/gamekit/game-catalog";
+import { GameBadge } from "@/components/gamekit/GameBadge";
 import {
   Trophy,
   Gift,
@@ -75,14 +77,9 @@ const CAMBODIA_PROVINCES = [
   { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
 ];
 
-// Resolve a game-mode slug to its bilingual label + brand color dot. Falls back to
-// the raw slug if the catalog doesn't know it (keeps the column resilient).
-function getGameMeta(slug: string | null | undefined): { en: string; kh: string; color: string } | null {
-  if (!slug) return null;
-  const label = GAME_LABELS[slug];
-  const chip = GAME_CHIPS.find(c => c.id === slug);
-  return { en: label?.en ?? slug, kh: label?.kh ?? slug, color: chip?.color ?? "#71717a" };
-}
+// Game identity (icon + color + label) is resolved from the shared GAME_CATALOG —
+// the single source of truth, so the leaderboard filter, the "Top game" cell, and
+// the play hub all show the exact same iconic badge. (`getGameMeta` is imported.)
 
 function getProvinceKh(provinceEn: string | null | undefined): string {
   if (!provinceEn) return "—";
@@ -105,25 +102,12 @@ const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType
   { id: "solo",  en: "Solo Practice",   kh: "ហ្វឹកហាត់",       icon: BookOpen, color: "#22c55e" },
 ];
 
-const GAME_LABELS: Record<string, { en: string; kh: string }> = {
-  daily: { en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ" },
-  "priority-puzzle": { en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" },
-  "sign-match": { en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា" },
-  "catch-sign": { en: "Catch the Sign", kh: "ចាប់សញ្ញា" },
-  "light-hero": { en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា" },
-  "safety-adventure": { en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព" },
-};
-
-// Game filter chips — semantic color dot per game (brand: Lucide icon + color dot,
-// NO emoji). "all" first, then the catalog above. Doubles as the game-type filter.
-const GAME_CHIPS: { id: string; en: string; kh: string; color: string }[] = [
-  { id: "all", en: "All Games", kh: "ហ្គេមទាំងអស់", color: "#eab308" },
-  { id: "daily", ...GAME_LABELS.daily, color: "#3b82f6" },
-  { id: "priority-puzzle", ...GAME_LABELS["priority-puzzle"], color: "#f97316" },
-  { id: "sign-match", ...GAME_LABELS["sign-match"], color: "#a855f7" },
-  { id: "catch-sign", ...GAME_LABELS["catch-sign"], color: "#22c55e" },
-  { id: "light-hero", ...GAME_LABELS["light-hero"], color: "#ef4444" },
-  { id: "safety-adventure", ...GAME_LABELS["safety-adventure"], color: "#06b6d4" },
+// Game filter chips — derived from the shared GAME_CATALOG so every chip carries
+// the game's iconic badge (GameBadge). "all" leads; then every active game in
+// catalog order. Doubles as the game-type filter (chip id === DB gameType).
+const GAME_CHIPS: { id: string; en: string; kh: string }[] = [
+  { id: "all", en: "All Games", kh: "ហ្គេមទាំងអស់" },
+  ...GAME_FILTER_ORDER.map((g) => ({ id: g.id, en: g.en, kh: g.kh })),
 ];
 
 interface LeaderboardUser {
@@ -1356,10 +1340,19 @@ export default function LeaderboardPage() {
                       <button
                         key={g.id}
                         onClick={() => setGameType(g.id)}
-                        className={`flex flex-shrink-0 items-center gap-2 border-2 border-black px-3 py-1.5 text-[11px] font-black uppercase tracking-wide transition-all ${active ? "text-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"}`}
+                        className={`flex flex-shrink-0 items-center gap-2 border-2 border-black pl-1.5 pr-3.5 py-1.5 text-xs font-black uppercase tracking-wide transition-all ${active ? "text-yellow-400 shadow-[3px_3px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#000]"}`}
                         style={{ borderRadius: 0, background: active ? "#000" : "#fff", ...kf }}
                       >
-                        <span className="h-2.5 w-2.5 flex-shrink-0 border border-black" style={{ background: g.color }} />
+                        {g.id === "all" ? (
+                          <span
+                            className="inline-flex items-center justify-center flex-shrink-0 border-2 border-black"
+                            style={{ width: 30, height: 30, background: "#eab308", borderRadius: 0 }}
+                          >
+                            <Gamepad2 size={17} strokeWidth={2.75} color="#000" />
+                          </span>
+                        ) : (
+                          <GameBadge slug={g.id} size="sm" shadow={false} />
+                        )}
                         {kh ? g.kh : g.en}
                       </button>
                     );
@@ -1379,9 +1372,10 @@ export default function LeaderboardPage() {
                   </span>
                   {gameType !== "all" && (
                     <span
-                      className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 border-2 border-black bg-black text-yellow-400"
+                      className="inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-wider pl-1 pr-2 py-0.5 border-2 border-black bg-black text-yellow-400"
                     >
-                      {kh ? GAME_LABELS[gameType]?.kh || gameType : GAME_LABELS[gameType]?.en || gameType}
+                      <GameBadge slug={gameType} size="xs" shadow={false} />
+                      {kh ? getGameMeta(gameType)?.kh ?? gameType : getGameMeta(gameType)?.en ?? gameType}
                     </span>
                   )}
                 </h2>
@@ -1534,11 +1528,11 @@ export default function LeaderboardPage() {
                           if (!g) return <span className="text-xs font-bold text-zinc-300 tabular-nums">—</span>;
                           return (
                             <span
-                              className="inline-flex items-center gap-1.5 border-2 border-black bg-white px-2 py-1 text-[10px] font-black uppercase tracking-wide leading-none max-w-full"
+                              className="inline-flex items-center gap-1.5 border-2 border-black bg-white pl-1 pr-2 py-0.5 text-[10px] font-black uppercase tracking-wide leading-none max-w-full"
                               style={{ boxShadow: "2px 2px 0 #000", borderRadius: 0 }}
                               title={kh ? g.kh : g.en}
                             >
-                              <span className="w-2.5 h-2.5 border border-black flex-shrink-0" style={{ background: g.color }} />
+                              <GameBadge entry={g} size="xs" shadow={false} />
                               <span className="truncate">{kh ? g.kh : g.en}</span>
                             </span>
                           );

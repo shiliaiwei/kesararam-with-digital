@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Target } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
@@ -75,8 +75,8 @@ export const catchSignFormat: GameFormat<CatchSignRound, KitCompletionResult> = 
         route: "/play/catch-sign",
         title: { en: "Catch the Sign", kh: "Catch the Sign" },
         description: { en: "Tap the correct road sign as fast as you can.", kh: "ប៉ះសញ្ញាចរាចរណ៍ឱ្យបានត្រឹមត្រូវ និងលឿន។" },
-        brandColor: "#f97316",
-        Icon: Target,
+        brandColor: GAME_CATALOG["catch-sign"].color,
+        Icon: GAME_CATALOG["catch-sign"].Icon,
         accessTier: "user",
         badge: { en: "KIDS", kh: "កុមារ" },
     },

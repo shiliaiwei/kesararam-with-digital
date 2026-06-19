@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Map as MapIcon } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
 interface AdventureRound {
@@ -70,8 +70,8 @@ export const safetyAdventureFormat: GameFormat<AdventureRound, KitCompletionResu
         route: "/play/safety-adventure",
         title: { en: "Road Safety", kh: "Road Safety" },
         description: { en: "Make the safe choices on your journey to school.", kh: "ធ្វើការសម្រេចចិត្តប្រកបដោយសុវត្ថិភាពក្នុងដំណើរទៅសាលា។" },
-        brandColor: "#a855f7",
-        Icon: MapIcon,
+        brandColor: GAME_CATALOG["safety-adventure"].color,
+        Icon: GAME_CATALOG["safety-adventure"].Icon,
         accessTier: "user",
         badge: { en: "KIDS", kh: "កុមារ" },
     },

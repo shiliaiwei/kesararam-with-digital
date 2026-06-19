@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { TrafficCone, Hand, Footprints, AlertTriangle } from "lucide-react";
+import { Hand, Footprints, AlertTriangle } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
 interface LightHeroRound {
@@ -98,8 +99,8 @@ export const lightHeroFormat: GameFormat<LightHeroRound, KitCompletionResult> = 
         route: "/play/light-hero",
         title: { en: "Traffic Light Hero", kh: "Traffic Light Hero" },
         description: { en: "Green go, red stop, yellow slow — tap the right action!", kh: "បៃតងទៅ ក្រហមឈប់ លឿងបន្ថយ — ប៉ះសកម្មភាពត្រឹមត្រូវ!" },
-        brandColor: "#ef4444",
-        Icon: TrafficCone,
+        brandColor: GAME_CATALOG["light-hero"].color,
+        Icon: GAME_CATALOG["light-hero"].Icon,
         accessTier: "user",
         badge: { en: "KIDS", kh: "កុមារ" },
     },

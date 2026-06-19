@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef } from "react";
 import { Grid2x2 } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
@@ -128,8 +129,8 @@ export const signMatchFormat: GameFormat<SignMatchRound, KitCompletionResult> = 
         route: "/play/sign-match",
         title: { en: "Sign Match", kh: "Sign Match" },
         description: { en: "Flip cards and match each sign to its meaning.", kh: "ត្រឡប់ប័ណ្ណ ហើយផ្គូផ្គងសញ្ញានីមួយៗទៅនឹងអត្ថន័យ។" },
-        brandColor: "#22c55e",
-        Icon: Grid2x2,
+        brandColor: GAME_CATALOG["sign-match"].color,
+        Icon: GAME_CATALOG["sign-match"].Icon,
         accessTier: "user",
         badge: { en: "KIDS", kh: "កុមារ" },
     },

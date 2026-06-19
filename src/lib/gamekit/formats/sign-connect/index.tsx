@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useRef, useCallback, useLayoutEffect } from "react";
-import { Spline } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
@@ -240,8 +240,8 @@ export const signConnectFormat: GameFormat<SignConnectRound, KitCompletionResult
             en: "Tap a sign, then tap its meaning to connect them.",
             kh: "ប៉ះសញ្ញា រួចប៉ះអត្ថន័យរបស់វា ដើម្បីភ្ជាប់គ្នា។",
         },
-        brandColor: "#2563eb",
-        Icon: Spline,
+        brandColor: GAME_CATALOG["sign-connect"].color,
+        Icon: GAME_CATALOG["sign-connect"].Icon,
         accessTier: "user",
         badge: { en: "KIDS", kh: "កុមារ" },
     },

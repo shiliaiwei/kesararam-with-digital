@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { ListChecks, Check, X } from "lucide-react";
+import { Check, X } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
@@ -151,8 +152,8 @@ export const tickSignFormat: GameFormat<TickSignRound, KitCompletionResult> = {
             en: "Click the correct road sign for each name.",
             kh: "ចុចសញ្ញាចរាចរណ៍ឱ្យត្រូវនឹងឈ្មោះនីមួយៗ។",
         },
-        brandColor: "#14b8a6",
-        Icon: ListChecks,
+        brandColor: GAME_CATALOG["tick-sign"].color,
+        Icon: GAME_CATALOG["tick-sign"].Icon,
         accessTier: "user",
         badge: { en: "OFFICIAL", kh: "ផ្លូវការ" },
         official: true,

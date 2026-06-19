@@ -8,6 +8,7 @@ import {
     CircleUser, Circle, OctagonAlert, Eye, CloudRain,
     type LucideIcon,
 } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -225,8 +226,8 @@ export const safeStreetSmartFormat: GameFormat<SSSRound, KitCompletionResult> = 
             en: "Choose the correct answer about road safety rules.",
             kh: "ជ្រើសរើសចម្លើយត្រឹមត្រូវអំពីច្បាប់សុវត្ថិភាពចរាចរណ៍។",
         },
-        brandColor: "#e91e8c",
-        Icon: ShieldCheck,
+        brandColor: GAME_CATALOG["safe-street-smart"].color,
+        Icon: GAME_CATALOG["safe-street-smart"].Icon,
         accessTier: "user",
         badge: { en: "KIDS", kh: "កុមារ" },
     },

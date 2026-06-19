@@ -1,4 +1,4 @@
-import { Route } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import type { GameFormat } from "@/lib/gamekit/types";
 import type { TrafficRound, TrafficCompletionResult } from "./types";
 import { SceneView } from "./SceneView";
@@ -13,8 +13,8 @@ export const trafficCommanderFormat: GameFormat<TrafficRound, TrafficCompletionR
             en: "Draw each vehicle's path through the junction — in the right order.",
             kh: "គូរផ្លូវរថយន្តកាត់ផ្លូវប្រសព្វ តាមលំដាប់ត្រឹមត្រូវ។",
         },
-        brandColor: "#06b6d4",
-        Icon: Route,
+        brandColor: GAME_CATALOG["traffic-commander"].color,
+        Icon: GAME_CATALOG["traffic-commander"].Icon,
         accessTier: "user",
         badge: { en: "COMMAND", kh: "បញ្ជាការ" },
     },

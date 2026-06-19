@@ -14,7 +14,8 @@ import {
     type DragStartEvent,
     type DragEndEvent,
 } from "@dnd-kit/core";
-import { WalletCards, GripVertical, Check, X } from "lucide-react";
+import { GripVertical, Check, X } from "lucide-react";
+import { GAME_CATALOG } from "@/lib/gamekit/game-catalog";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
@@ -227,8 +228,8 @@ export const wordBankFormat: GameFormat<WordBankRound, KitCompletionResult> = {
             en: "Drag each word onto its matching road sign.",
             kh: "អូសពាក្យនីមួយៗ ទៅដាក់លើសញ្ញាចរាចរណ៍ដែលត្រូវគ្នា។",
         },
-        brandColor: "#ec4899",
-        Icon: WalletCards,
+        brandColor: GAME_CATALOG["word-bank"].color,
+        Icon: GAME_CATALOG["word-bank"].Icon,
         accessTier: "user",
         badge: { en: "KIDS", kh: "កុមារ" },
     },
