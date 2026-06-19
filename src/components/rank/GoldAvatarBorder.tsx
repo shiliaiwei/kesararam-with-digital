@@ -47,6 +47,22 @@ export function GoldAvatarBorder({
         "--s": scale,
     } as React.CSSProperties;
 
+    // Faceted warning-diamond gems (diamond = road warning sign). Top + bottom large,
+    // left + right small — straddling the gold road ring like the reference.
+    const diamonds = [
+        { cx: 100, cy: 28, r: 23 },
+        { cx: 100, cy: 172, r: 23 },
+        { cx: 30, cy: 100, r: 18 },
+        { cx: 170, cy: 100, r: 18 },
+    ];
+    // Beveled "ingot" bars flanking each diamond along the four edges.
+    const bars = [
+        { x: 42, y: 23, w: 34, h: 15 }, { x: 124, y: 23, w: 34, h: 15 },
+        { x: 42, y: 162, w: 34, h: 15 }, { x: 124, y: 162, w: 34, h: 15 },
+        { x: 23, y: 42, w: 15, h: 34 }, { x: 23, y: 124, w: 15, h: 34 },
+        { x: 162, y: 42, w: 15, h: 34 }, { x: 162, y: 124, w: 15, h: 34 },
+    ];
+
     return (
         <div
             className={cn(
@@ -57,7 +73,7 @@ export function GoldAvatarBorder({
             style={vars}
         >
             <div className="gold-avatar__plate">
-                {/* Scalable SVG Frame instead of a static PNG */}
+                {/* Ornate art-deco gold frame (scalable SVG, no PNG). */}
                 <svg
                     className="gold-avatar__frame-img"
                     viewBox="0 0 200 200"
@@ -66,105 +82,83 @@ export function GoldAvatarBorder({
                     aria-hidden="true"
                 >
                     <defs>
-                        {/* Gold Metallic Sweep Gradient */}
                         <linearGradient id="gold-metallic-primary" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="#ca8a04" />
                             <stop offset="25%" stopColor="#ffd700" />
                             <stop offset="50%" stopColor="#ffffff">
-                                <animate
-                                    attributeName="offset"
-                                    values="0;1;0"
-                                    dur="4s"
-                                    repeatCount="indefinite"
-                                />
+                                <animate attributeName="offset" values="0;1;0" dur="4s" repeatCount="indefinite" />
                             </stop>
                             <stop offset="75%" stopColor="#ffd700" />
                             <stop offset="100%" stopColor="#854d0e" />
                         </linearGradient>
-
-                        {/* Secondary Gold Gradient */}
                         <linearGradient id="gold-metallic-secondary" x1="0%" y1="100%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#ca8a04" />
                             <stop offset="50%" stopColor="#fbbf24" />
                             <stop offset="100%" stopColor="#b45309" />
                         </linearGradient>
-
-                        {/* Flash Yellow/Gold Gradient */}
-                        <linearGradient id="flash-yellow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#ffffff" />
-                            <stop offset="40%" stopColor="#fef08a" />
-                            <stop offset="70%" stopColor="#eab308" />
-                            <stop offset="100%" stopColor="#ca8a04" />
+                        {/* Vertical gold bevel for raised bars / diamonds. */}
+                        <linearGradient id="gold-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#fff1b8" />
+                            <stop offset="45%" stopColor="#f5c211" />
+                            <stop offset="100%" stopColor="#8a5a07" />
                         </linearGradient>
-
-                        {/* Dark Asphalt radial gradient */}
-                        <radialGradient id="gold-road-asphalt" cx="50%" cy="50%" r="50%">
+                        <radialGradient id="gold-road-asphalt" cx="50%" cy="44%" r="58%">
                             <stop offset="0%" stopColor="#1c1917" />
                             <stop offset="75%" stopColor="#0c0a09" />
                             <stop offset="100%" stopColor="#020202" />
                         </radialGradient>
                     </defs>
 
-                    {/* ── Outer Plate: Zero-blur Shadow ── */}
-                    <polygon points="50,15 150,15 185,50 185,150 150,185 50,185 15,150 15,50" fill="#000000" transform="translate(4, 4)" />
+                    {/* Hard offset shadow (brutalist, zero blur). */}
+                    <rect x="14" y="14" width="172" height="172" rx="26" fill="#000000" transform="translate(4,4)" />
 
-                    {/* ── Main Outer Beveled Gold Frame ── */}
-                    <polygon points="50,15 150,15 185,50 185,150 150,185 50,185 15,150 15,50" fill="url(#gold-metallic-primary)" stroke="#000000" strokeWidth="5.5" strokeLinejoin="miter" />
+                    {/* ── GOLD SQUIRCLE FRAME + DARK BODY ── */}
+                    <rect x="14" y="14" width="172" height="172" rx="26" fill="url(#gold-metallic-primary)" stroke="#000000" strokeWidth="3" />
+                    <rect x="19" y="19" width="162" height="162" rx="22" fill="none" stroke="#fff3c0" strokeWidth="1" opacity="0.7" />
+                    <rect x="24" y="24" width="152" height="152" rx="19" fill="#121212" stroke="url(#gold-metallic-secondary)" strokeWidth="2" />
 
-                    {/* ── Inner Dark Plate Backing ── */}
-                    <polygon points="52,19 148,19 181,52 181,148 148,181 52,181 19,148 19,52" fill="#121212" stroke="url(#gold-metallic-secondary)" strokeWidth="2.5" strokeLinejoin="miter" />
+                    {/* Beveled edge bars (flank each diamond). */}
+                    {bars.map((b) => (
+                        <g key={`bar-${b.x}-${b.y}`} stroke="#000000">
+                            <rect x={b.x} y={b.y} width={b.w} height={b.h} rx="2" fill="url(#gold-bevel)" strokeWidth="1.3" />
+                            <rect x={b.x + 3} y={b.y + 3} width={b.w - 6} height={b.h - 6} rx="1" fill="url(#gold-metallic-secondary)" strokeWidth="0.7" />
+                            <rect x={b.x + 3} y={b.y + 3} width={b.w - 6} height={(b.h - 6) / 2} rx="1" fill="#fff3c0" opacity="0.32" />
+                        </g>
+                    ))}
 
-                    {/* ── Symmetrical Beveled Corner Plates ── */}
-                    {/* Top-Left Corner Bracket */}
-                    <polygon points="20,53 53,20 48,20 20,48" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.2" />
-                    <circle cx="35" cy="35" r="3" fill="url(#gold-metallic-primary)" stroke="#000000" strokeWidth="1" />
+                    {/* Corner bevel studs. */}
+                    {[[30, 30], [170, 30], [30, 170], [170, 170]].map(([cx, cy]) => (
+                        <g key={`stud-${cx}-${cy}`} stroke="#000000">
+                            <rect x={cx - 7} y={cy - 7} width="14" height="14" rx="2" fill="url(#gold-bevel)" strokeWidth="1.2" transform={`rotate(45 ${cx} ${cy})`} />
+                            <circle cx={cx} cy={cy} r="2.4" fill="url(#gold-metallic-secondary)" strokeWidth="0.7" />
+                        </g>
+                    ))}
 
-                    {/* Top-Right Corner Bracket */}
-                    <polygon points="180,53 147,20 152,20 180,48" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.2" />
-                    <circle cx="165" cy="35" r="3" fill="url(#gold-metallic-primary)" stroke="#000000" strokeWidth="1" />
+                    {/* ── ASPHALT ROAD RING + THICK GOLD RINGS (around the photo) ── */}
+                    <circle cx="100" cy="100" r="58" fill="url(#gold-road-asphalt)" />
+                    <circle cx="100" cy="100" r="58" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="3.5" />
+                    <circle cx="100" cy="100" r="54" fill="none" stroke="url(#gold-metallic-secondary)" strokeWidth="2" />
+                    <circle cx="100" cy="100" r="52" fill="none" stroke="#ffd700" strokeWidth="1.4" strokeDasharray="5 4" opacity="0.85" />
+                    <circle cx="100" cy="100" r="49" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="1.6" />
 
-                    {/* Bottom-Left Corner Bracket */}
-                    <polygon points="20,147 53,180 48,180 20,152" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.2" />
-                    <circle cx="35" cy="165" r="3" fill="url(#gold-metallic-primary)" stroke="#000000" strokeWidth="1" />
-
-                    {/* Bottom-Right Corner Bracket */}
-                    <polygon points="180,147 147,180 152,180 180,152" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.2" />
-                    <circle cx="165" cy="165" r="3" fill="url(#gold-metallic-primary)" stroke="#000000" strokeWidth="1" />
-
-                    {/* ── Left Traffic Light Capsule ── */}
-                    <rect x="8" y="70" width="16" height="60" rx="8" fill="#121212" stroke="#000000" strokeWidth="3" />
-                    <rect x="9" y="71" width="14" height="58" rx="7" fill="#000000" stroke="url(#gold-metallic-secondary)" strokeWidth="1.5" />
-                    <circle cx="16" cy="80" r="4.5" fill="#ef4444" className="gold-light-red" stroke="#000000" strokeWidth="1" />
-                    <circle cx="16" cy="100" r="4.5" fill="#facc15" className="gold-light-yellow" stroke="#000000" strokeWidth="1" />
-                    <circle cx="16" cy="120" r="4.5" fill="#22c55e" className="gold-light-green" stroke="#000000" strokeWidth="1" />
-
-                    {/* ── Right Traffic Light Capsule ── */}
-                    <rect x="176" y="70" width="16" height="60" rx="8" fill="#121212" stroke="#000000" strokeWidth="3" />
-                    <rect x="177" y="71" width="14" height="58" rx="7" fill="#000000" stroke="url(#gold-metallic-secondary)" strokeWidth="1.5" />
-                    <circle cx="184" cy="80" r="4.5" fill="#ef4444" className="gold-light-red" stroke="#000000" strokeWidth="1" />
-                    <circle cx="184" cy="100" r="4.5" fill="#facc15" className="gold-light-yellow" stroke="#000000" strokeWidth="1" />
-                    <circle cx="184" cy="120" r="4.5" fill="#22c55e" className="gold-light-green" stroke="#000000" strokeWidth="1" />
-
-                    {/* ── Top Warning Sign: Straight Up Arrow ── */}
-                    <polygon points="100,3 123,26 100,49 77,26" fill="#000000" />
-                    <polygon points="100,6 120,26 100,46 80,26" fill="url(#flash-yellow-gradient)" stroke="#000000" strokeWidth="2.5" />
-                    <path d="M 100,35 L 100,17 M 94,23 L 100,17 L 106,23" fill="none" stroke="#000000" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-
-                    {/* ── Bottom Badge: Diamond Shape with Gemstone ── */}
-                    <polygon points="100,151 123,174 100,197 77,174" fill="#000000" />
-                    <polygon points="100,154 120,174 100,194 80,174" fill="url(#gold-metallic-primary)" stroke="#000000" strokeWidth="2.5" />
-                    <polygon points="100,162 108,174 100,186 92,174" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.5" />
-                    <polygon points="100,162 108,174 100,174" fill="#ffffff" opacity="0.65" stroke="#000000" strokeWidth="0.8" />
-
-                    {/* ── CIRCULAR PHOTO CUTOUT FRAME (Rookie sized r=64) ── */}
-                    {/* Outer Gold Ring */}
-                    <circle cx="100" cy="100" r="74" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="2" />
-                    {/* Roadway Surface Ring */}
-                    <circle cx="100" cy="100" r="73" fill="url(#gold-road-asphalt)" stroke="#000000" strokeWidth="2" />
-                    {/* Yellow Dashed Lanes */}
-                    <circle cx="100" cy="100" r="62" fill="none" stroke="#ffd700" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.9" />
-                    {/* Inner Gold Ring */}
-                    <circle cx="100" cy="100" r="51" fill="none" stroke="url(#gold-metallic-secondary)" strokeWidth="2.5" />
+                    {/* ── FACETED WARNING-DIAMOND GEMS (drawn on top, straddling the ring) ── */}
+                    {diamonds.map((d) => {
+                        const { cx, cy, r } = d;
+                        const ir = r * 0.62;
+                        const C = `${cx},${cy}`;
+                        const outer = `${cx},${cy - r} ${cx + r},${cy} ${cx},${cy + r} ${cx - r},${cy}`;
+                        const iT = `${cx},${cy - ir}`, iR = `${cx + ir},${cy}`, iB = `${cx},${cy + ir}`, iL = `${cx - ir},${cy}`;
+                        return (
+                            <g key={`gem-${cx}-${cy}`} stroke="#000000" strokeLinejoin="round">
+                                <polygon points={outer} fill="url(#gold-bevel)" strokeWidth="1.6" />
+                                <polygon points={`${iT} ${iR} ${iB} ${iL}`} fill="url(#gold-metallic-secondary)" strokeWidth="0.9" />
+                                <polygon points={`${iT} ${C} ${iR}`} fill="#fff3c0" opacity="0.92" strokeWidth="0.4" />
+                                <polygon points={`${iR} ${C} ${iB}`} fill="#dd9c12" strokeWidth="0.4" />
+                                <polygon points={`${iB} ${C} ${iL}`} fill="#c5860c" strokeWidth="0.4" />
+                                <polygon points={`${iL} ${C} ${iT}`} fill="#ffe79e" strokeWidth="0.4" />
+                            </g>
+                        );
+                    })}
                 </svg>
 
                 {/* Sweeping gold shine overlay */}
