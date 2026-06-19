@@ -702,15 +702,15 @@
 
 .diamond-avatar__plate {
     position: relative;
-    width: calc(170px * var(--s));
-    height: calc(170px * var(--s));
+    width: calc(150px * var(--s));
+    height: calc(150px * var(--s));
     border-radius: 50%;
 }
 
 .diamond-avatar__frame-img {
     position: absolute;
-    top: calc(-15px * var(--s));
-    left: calc(-15px * var(--s));
+    top: calc(-25px * var(--s));
+    left: calc(-25px * var(--s));
     width: calc(200px * var(--s));
     height: calc(200px * var(--s));
     z-index: 1;
@@ -724,7 +724,7 @@
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
+    clip-path: polygon(30% 5%, 70% 5%, 95% 30%, 95% 70%, 70% 95%, 30% 95%, 5% 70%, 5% 30%);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(34, 211, 238, 0.45) 50%, rgba(255, 255, 255, 0) 70%);
     background-size: 300% 300%;
     background-position: 150% 0;
@@ -743,11 +743,11 @@
 /* Top diamond jewel beacon glow */
 .diamond-avatar__top-glow {
     position: absolute;
-    top: 7%;
+    top: 12%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: calc(38px * var(--s));
-    height: calc(38px * var(--s));
+    width: calc(32px * var(--s));
+    height: calc(32px * var(--s));
     border-radius: 50%;
     background: radial-gradient(circle, rgba(34, 211, 238, 0.85) 0%, rgba(34, 211, 238, 0) 70%);
     z-index: 2;
@@ -774,7 +774,7 @@
     z-index: 2;
     pointer-events: none;
     opacity: 0;
-    left: calc(10px * var(--s));
+    left: calc(20px * var(--s));
     bottom: calc(10px * var(--s));
 }
 
@@ -909,8 +909,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 43%;
-    height: 43%;
+    width: calc(96px * var(--s));
+    height: calc(96px * var(--s));
     border-radius: 50%;
     overflow: hidden;
     background: #ffffff;
