@@ -57,3 +57,23 @@ This cap is deliberate (scarce points → each one feels earned). Don't raise it
 Total score accumulates into the user's permanent `score`; rank uses the 6 tiers
 in [[rank-tiers]]: ROOKIE 0 · RISING 1,000 · GOLD 2,500 · PLATINUM 3,500 ·
 DIAMOND 7,000 · MYTHIC 12,000. English names only, never translated.
+
+## Applies to ALL game types (one scorer)
+
+Every game routes through `calculateScore` (`src/lib/game-engine.ts`) → this method,
+so the 0/1/2 rule is universal: Live Class Games, Solo Practice, Daily Challenge
+(5 Q/day, plus a separate consecutive-**day** streak bonus), Who Goes First?,
+Sign Match, Catch the Sign, Traffic Light Hero, Road Safety Adventure, Connect the
+Signs, Word Bank, Tick the Sign, Traffic Commander. Multi-item games score per
+pair/item/row as the unit, with the streak threaded across the whole play. The
+Store-Points claimable economy (`src/lib/store-points`) is separate and OFF.
+Full per-game estimates: `docs/scoring-by-game-report.md`.
+
+## Changelog (score-point rule)
+
+- **2026-06-19** — Speed bonus **removed** from every game type; each question/unit
+  is base + streak, **max 2**. `speedBonus`/`timeBonus` kept at 0 for column shape.
+  Legacy `quiz/answer` + `challenge/answer` time bonus also removed.
+- **2026-06-19** — Teacher host **scoring-mode toggle removed** (Speed vs Equal):
+  it was a no-op after the speed bonus removal and showed twice. `scoringMode` is now
+  a fixed internal constant (`"speed"`) only for create-session payload/DB shape.

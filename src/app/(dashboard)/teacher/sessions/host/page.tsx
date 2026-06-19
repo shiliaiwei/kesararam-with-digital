@@ -345,7 +345,9 @@ export default function HostPage() {
   const [sessionName, setSessionName] = useState("");
   const [selectedMode, setSelectedMode] = useState("quick-quiz");
   const [difficulty, setDifficulty] = useState("mixed");
-  const [scoringMode, setScoringMode] = useState("speed");
+  // Scoring is a fixed rule now (+1 correct, +1 streak, max 2; no speed bonus).
+  // Kept as a constant so the create-session payload/DB column shape is unchanged.
+  const [scoringMode] = useState("speed");
   const [language, setLanguage] = useState("both");
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
@@ -1077,28 +1079,10 @@ export default function HostPage() {
                 )}
               </GlassCard>
 
-              {/* Settings row */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {/* Scoring */}
-                <GlassCard className="p-4">
-                  <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
-                    <Zap size={12} />
-                    <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "ពិន្ទុ" : "Scoring"}</span>
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    {["speed", "equal"].map((s) => (
-                      <button key={s} onClick={() => setScoringMode(s)}
-                        className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${scoringMode === s
-                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                          : "bg-white text-zinc-600 hover:bg-zinc-50"
-                          }`}
-                        style={{ borderRadius: "0px" }}>
-                        {s === "speed" ? (kh ? "ល្បឿន" : "Speed") : (kh ? "ស្មើ" : "Equal")}
-                      </button>
-                    ))}
-                  </div>
-                </GlassCard>
-
+              {/* Settings row — Scoring toggle removed: scoring is now a fixed rule
+                  (+1 correct, +1 streak, max 2) with no speed bonus, so there is no
+                  speed/equal choice to make. */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {/* Advance mode — Manual vs Auto */}
                 <GlassCard className="p-4">
                   <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
@@ -1407,7 +1391,7 @@ export default function HostPage() {
                         {
                           icon: "stars",
                           label: kh ? "ការគណនាពិន្ទុ" : "Scoring Rule",
-                          value: scoringMode === "speed" ? (kh ? "គិតល្បឿន (Speed Bonus)" : "Speed Bonus Score") : (kh ? "ពិន្ទុស្មើគ្នា" : "Equal Points")
+                          value: kh ? "ត្រូវ +1 · ស្ទ្រីក +1 (អតិបរមា ២)" : "+1 correct · +1 streak (max 2)"
                         },
                         {
                           icon: "translate",
@@ -1609,7 +1593,6 @@ export default function HostPage() {
                   },
                   { label: kh ? "សំណួរ" : "Questions", value: `${phase.questionCount}Q` },
                   { label: kh ? "ពេល/Q" : "Time/Q", value: `${phase.timePerQuestion}s` },
-                  { label: kh ? "ពិន្ទុ" : "Scoring", value: phase.scoringMode },
                 ].map((item) => {
                   const isCategory = item.label === (kh ? "ប្រភេទ" : "Category");
                   return (
