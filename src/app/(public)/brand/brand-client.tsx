@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Award, LayoutGrid } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import {
   CautionTape,
@@ -375,8 +376,8 @@ export function BrandGuidelineClient() {
             <SectionHeading>{t("Player Ranks & Badges", "កម្រិត និងផ្លាកសញ្ញា")}</SectionHeading>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 max-w-2xl">
               {t(
-                "KWD features a premium, game-inspired rank-frame and profile-badge progression system. Players unlock 9 custom animated avatar borders and collect Roman numeral progress division badges (IV to I) by earning safety test points.",
-                "KWD មានប្រព័ន្ធកម្រិតស៊ុមរូបតំណាង និងផ្លាកសញ្ញាដែលទទួលបានពីការលេងហ្គេម។ អ្នកលេងអាចដោះសោស៊ុមរូបតំណាងគំនូរជីវចលចំនួន ៩ និងប្រមូលផ្លាកសញ្ញាផ្នែករ៉ូម៉ាំង (IV ដល់ I) ដោយទទួលបានពិន្ទុតេស្តសុវត្ថិភាពចរាចរណ៍។"
+                "KWD uses score-derived rank frames for learner profiles and leaderboard highlights. Players climb 6 avatar-border tiers and collect Roman numeral progress divisions (IV to I) from lifetime points.",
+                "KWD ប្រើស៊ុមកម្រិតដែលគណនាពីពិន្ទុសម្រាប់ប្រវត្តិរូបសិស្ស និងការបង្ហាញលំដាប់។ អ្នកលេងអាចឡើងតាមកម្រិតស៊ុមរូបតំណាង ៦ និងប្រមូលផ្នែករ៉ូម៉ាំង (IV ដល់ I) ពីពិន្ទុសរុប។"
               )}
             </p>
 
@@ -399,9 +400,7 @@ export function BrandGuidelineClient() {
                 href="/brand/ranks"
                 className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-2 border-black dark:border-white px-4 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
               >
-                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
+                <Award size={16} strokeWidth={2.5} aria-hidden="true" />
                 {t("Open Interactive Showcase", "បើកមើលការបង្ហាញអន្តរកម្ម")}
               </Link>
             </div>
@@ -449,10 +448,7 @@ export function BrandGuidelineClient() {
               href="/sitemap"
               className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-2 border-black dark:border-white px-4 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
             >
-              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
-              </svg>
+              <LayoutGrid size={16} strokeWidth={2.5} aria-hidden="true" />
               {t("View Sitemap", "មើលផែនទីគេហទំព័រ")}
             </Link>
           </section>
