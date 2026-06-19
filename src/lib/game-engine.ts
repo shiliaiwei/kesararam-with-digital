@@ -72,8 +72,8 @@ export const SOLO_COMING_SOON_NOTE = {
  * research method — see .claude/skills/kwd-brand-design/references/quiz-scoring.md):
  *
  *   baseScore   = correct ? 1 : 0
- *   streakBonus = correct AND already on a run (currentStreak ≥ 2) → 1   (max +1)
- *   totalPoints = base + streak  →  0, 1, or 2
+ *   streakBonus = correct AND on a run (currentStreak ≥ 3, the 3rd correct on) → 1  (max +1)
+ *   totalPoints = base + streak  →  0, 1, or 2   (run scores 1, 1, 2, 2, 2, …)
  *
  * Difficulty no longer changes the base (every correct answer = 1). The SPEED BONUS
  * was removed (2026-06-19) — timing/scoringMode no longer affect the score, so

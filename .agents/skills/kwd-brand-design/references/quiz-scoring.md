@@ -6,6 +6,14 @@
 > Keep scoring logic separate from UI. Coexists with the legacy store-points
 > engine; this is the NEW system, not yet live.
 
+## Question structure (every game mode)
+
+- **Exactly ONE correct answer per question.** No multi-select.
+- **At most 4 options.** MCQ shows **3–4**; true/false shows **2**. Enforced when
+  questions are served (`src/app/api/game/solo/route.ts`): keep the one correct
+  answer + up to 3 random distractors, then shuffle. The server re-validates the
+  submitted answer independently, so trimming never changes scoring.
+
 ## Core rule: keep points SMALL — each question gives 0, 1, or 2 points
 
 > **Speed bonus REMOVED (2026-06-19).** Timing no longer affects the score on ANY
@@ -16,20 +24,30 @@
 | Component | Value | When |
 |-----------|-------|------|
 | `baseScore` | +1 | answer is correct (else 0) |
-| `streakBonus` | +1 | correct AND already on a streak (`currentCorrectStreak ≥ 1`) — **max +1, never more** |
+| `streakBonus` | +1 | correct AND on a run of **≥3 correct in a row** (`currentCorrectStreak ≥ 2` prior correct) — **max +1, never more** |
 
 ```
 baseScore       = isCorrect ? 1 : 0
-streakBonus     = isCorrect && currentCorrectStreak >= 1 ? 1 : 0
+streakBonus     = isCorrect && currentCorrectStreak >= 2 ? 1 : 0        // 3rd correct onward
 questionScore   = isCorrect ? baseScore + streakBonus : 0                // 0..2
 newCorrectStreak= isCorrect ? currentCorrectStreak + 1 : 0              // wrong → reset to 0
 speedBonus      = 0   // removed; timing no longer scores
 ```
 
+> `currentCorrectStreak` is the run of correct answers **before** this question.
+> The streak bonus begins on the **THIRD** consecutive correct answer.
+
+**A clean run scores `1, 1, 2, 2, 2, …`:**
+
+| Correct in a row | 1 | 2 | 3 | 4 | 5 |
+|------------------|---|---|---|---|---|
+| Points this question | 1 | 1 | 2 | 2 | 2 |
+
 Per-question outcomes:
-- Wrong → **0** (streak resets to 0; next correct starts a fresh streak).
-- Correct, no streak → **1** (regardless of how fast)
-- Correct, with streak → **2** (regardless of how fast)
+- Wrong → **0** — the streak is **cut to 0**; the next correct restarts the run at 1
+  (so it scores `1, 1, 2, …` again).
+- Correct, fewer than 2 prior correct → **1** (regardless of how fast).
+- Correct, on a run of ≥3 → **2** (regardless of how fast).
 
 Edge cases: `answeredInFirstHalf` is still reported (informational) but never adds
 points. Timing is irrelevant to the score. Negative streak coerced to 0.
@@ -47,7 +65,8 @@ points. Timing is irrelevant to the score. Negative streak coerced to 0.
 ## Intended balance — do NOT inflate
 
 40-question live quiz:
-- All correct = `1 + 39×2` = **79** (max — first correct has no streak yet, then +2 each).
+- All correct = `1 + 1 + 38×2` = **78** (max — first **two** correct have no streak
+  bonus yet, then +2 each from the 3rd). General form for N≥2 all-correct: `2N − 2`.
 - Timing has no effect on the total (speed bonus removed).
 
 This cap is deliberate (scarce points → each one feels earned). Don't raise it.
@@ -71,6 +90,11 @@ Full per-game estimates: `docs/scoring-by-game-report.md`.
 
 ## Changelog (score-point rule)
 
+- **2026-06-20** — Streak bonus now begins on the **3rd** consecutive correct (was the
+  2nd): a run scores `1, 1, 2, 2, 2, …` (`streakBonus` needs `currentCorrectStreak ≥ 2`).
+  40-question all-correct max drops `79 → 78`. Also locked the question structure:
+  exactly **one correct answer**, **≤4 options** (MCQ 3–4, true/false 2), enforced at
+  serve time. Full policy: `docs/game-scoring-policy.md`.
 - **2026-06-19** — Speed bonus **removed** from every game type; each question/unit
   is base + streak, **max 2**. `speedBonus`/`timeBonus` kept at 0 for column shape.
   Legacy `quiz/answer` + `challenge/answer` time bonus also removed.

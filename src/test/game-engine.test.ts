@@ -98,11 +98,11 @@ describe("calculateScore (KWD small-score method, 0–2 per question)", () => {
     expect(res.totalPoints).toBe(2);
   });
 
-  it("streak bonus is 0 on the first correct, then 1 for every following correct", () => {
+  it("streak bonus is 0 on the first two correct, then 1 from the third correct on", () => {
     const expected: [number, number][] = [
-      [1, 0],
-      [2, 1],
-      [3, 1],
+      [1, 0], // 1st correct
+      [2, 0], // 2nd correct — base only
+      [3, 1], // 3rd correct — streak bonus begins
       [4, 1],
       [5, 1],
       [7, 1],

@@ -24,17 +24,30 @@ describe("calculateQuestionScore", () => {
         expect(r.newCorrectStreak).toBe(1);
     });
 
-    it("correct + streak → 2 pts (max)", () => {
+    it("correct + 2 prior correct (the 3rd) → 2 pts (max)", () => {
         const r = calculateQuestionScore({
             isCorrect: true,
             answerTimeSeconds: 12,
             questionTimeLimitSeconds: 30,
-            currentCorrectStreak: 1,
+            currentCorrectStreak: 2,
         });
         expect(r.questionScore).toBe(2);
         expect(r.speedBonus).toBe(0);
         expect(r.streakBonus).toBe(1);
         expect(r.wasStreakBonusApplied).toBe(true);
+        expect(r.newCorrectStreak).toBe(3);
+    });
+
+    it("correct + 1 prior correct (the 2nd) → 1 pt, no bonus yet", () => {
+        const r = calculateQuestionScore({
+            isCorrect: true,
+            answerTimeSeconds: 5,
+            questionTimeLimitSeconds: 30,
+            currentCorrectStreak: 1,
+        });
+        expect(r.questionScore).toBe(1);
+        expect(r.streakBonus).toBe(0);
+        expect(r.wasStreakBonusApplied).toBe(false);
         expect(r.newCorrectStreak).toBe(2);
     });
 
@@ -101,35 +114,45 @@ describe("calculateQuestionScore", () => {
 describe("calculateQuizScore", () => {
     it("tracks streak, reset, counts and highest streak", () => {
         const answers: QuizAnswer[] = [
-            { isCorrect: true, answerTimeSeconds: 5, questionTimeLimitSeconds: 30 }, // 1, streak 1
-            { isCorrect: true, answerTimeSeconds: 5, questionTimeLimitSeconds: 30 }, // 2, streak 2
+            { isCorrect: true, answerTimeSeconds: 5, questionTimeLimitSeconds: 30 }, // 1, streak 1 (base only)
+            { isCorrect: true, answerTimeSeconds: 5, questionTimeLimitSeconds: 30 }, // 1, streak 2 (base only, bonus from 3rd)
             { isCorrect: false, answerTimeSeconds: 5, questionTimeLimitSeconds: 30 }, // 0, reset
             { isCorrect: true, answerTimeSeconds: 20, questionTimeLimitSeconds: 30 }, // 1, streak 1
         ];
         const q = calculateQuizScore(answers);
-        expect(q.totalScore).toBe(4);
+        expect(q.totalScore).toBe(3);
         expect(q.correctAnswers).toBe(3);
         expect(q.wrongAnswers).toBe(1);
         expect(q.finalStreak).toBe(1);
         expect(q.highestStreak).toBe(2);
     });
 
-    it("40 questions, all correct → 79 (intended max = 1 + 39×2)", () => {
+    it("run of 1,1,2,2,2 — bonus starts on the 3rd correct", () => {
+        const answers: QuizAnswer[] = Array.from({ length: 5 }, () => ({
+            isCorrect: true, answerTimeSeconds: 5, questionTimeLimitSeconds: 30,
+        }));
+        const q = calculateQuizScore(answers);
+        // 1 + 1 + 2 + 2 + 2 = 8
+        expect(q.totalScore).toBe(8);
+        expect(q.questionResults.map(r => r.questionScore)).toEqual([1, 1, 2, 2, 2]);
+    });
+
+    it("40 questions, all correct → 78 (intended max = 1 + 1 + 38×2)", () => {
         const answers: QuizAnswer[] = Array.from({ length: 40 }, () => ({
             isCorrect: true,
             answerTimeSeconds: 5,
             questionTimeLimitSeconds: 30,
         }));
-        expect(calculateQuizScore(answers).totalScore).toBe(79);
+        expect(calculateQuizScore(answers).totalScore).toBe(78);
     });
 
-    it("timing does not change the quiz total → still 79 when slow", () => {
+    it("timing does not change the quiz total → still 78 when slow", () => {
         const answers: QuizAnswer[] = Array.from({ length: 40 }, () => ({
             isCorrect: true,
             answerTimeSeconds: 29,
             questionTimeLimitSeconds: 30,
         }));
-        expect(calculateQuizScore(answers).totalScore).toBe(79);
+        expect(calculateQuizScore(answers).totalScore).toBe(78);
     });
 });
 

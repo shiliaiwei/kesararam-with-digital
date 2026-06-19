@@ -4,8 +4,13 @@
  * 6-tier Road Safety Rank System (see `src/lib/ranks.ts`).
  *
  * DESIGN INTENT — keep points SMALL and scarce. Each question gives 0–2 points:
- *   base (correct)      +1
- *   streak (correct, already on a run of ≥1)         +1   (never more than +1)
+ *   base (correct)                                   +1
+ *   streak (correct, on a run of ≥3 correct in a row) +1  (never more than +1)
+ *
+ * STREAK RULE (2026-06-20): the +1 streak bonus begins on the THIRD consecutive
+ * correct answer. A clean run therefore scores 1, 1, 2, 2, 2, … — i.e. the 1st and
+ * 2nd correct pay base only, every correct from the 3rd onward pays base + streak.
+ * One wrong answer CUTS the streak to 0; the next correct restarts the run at 1.
  *
  * NOTE: the speed bonus was REMOVED (2026-06-19) — timing no longer affects the
  * score on any game type. `speedBonus` stays in the result shape but is always 0
@@ -35,7 +40,7 @@ export interface QuestionScoreResult {
     baseScore: number;
     /** DEPRECATED — speed bonus removed; always 0 (kept for column compatibility) */
     speedBonus: number;
-    /** +1 if correct AND already on a streak (currentCorrectStreak ≥ 1), else 0 */
+    /** +1 if correct AND already on a run of ≥2 prior correct (i.e. this is the 3rd+), else 0 */
     streakBonus: number;
     /** 0 | 1 | 2 — base + streak (0 if wrong) */
     questionScore: number;
@@ -72,7 +77,7 @@ export interface QuizScoreResult {
 /**
  * Score a single question. 0–2 points:
  *   baseScore   = isCorrect ? 1 : 0
- *   streakBonus = isCorrect && currentCorrectStreak >= 1 ? 1 : 0  (max +1)
+ *   streakBonus = isCorrect && currentCorrectStreak >= 2 ? 1 : 0  (max +1; 3rd correct on)
  *   questionScore = isCorrect ? base + streak : 0
  *   newCorrectStreak = isCorrect ? currentCorrectStreak + 1 : 0
  *
@@ -102,8 +107,9 @@ export function calculateQuestionScore(input: QuestionScoreInput): QuestionScore
     // Rule 2 — speed bonus REMOVED. Always 0 (kept for result-shape compatibility).
     const speedBonus = 0;
 
-    // Rule 3 — streak bonus (only for correct answers already on a run; max +1).
-    const streakBonus = isCorrect && currentCorrectStreak >= 1 ? 1 : 0;
+    // Rule 3 — streak bonus. Begins on the THIRD consecutive correct answer:
+    // needs ≥2 prior correct (run of 1,1,2,2,…). Max +1.
+    const streakBonus = isCorrect && currentCorrectStreak >= 2 ? 1 : 0;
 
     // Rule 4 — final question score (0 if wrong). Max 2 = base + streak.
     const questionScore = isCorrect ? baseScore + streakBonus : 0;

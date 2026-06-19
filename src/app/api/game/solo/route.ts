@@ -168,8 +168,18 @@ export async function POST(req: NextRequest) {
       hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
     });
 
-    // Shuffle answers
-    const shuffled = shuffleArray(ans);
+    // Answer policy (docs/game-scoring-policy.md): every question serves EXACTLY
+    // ONE correct answer and AT MOST 4 options. Keep one correct answer + up to 3
+    // random distractors (so MCQ shows 3–4 options; true/false stays its 2), then
+    // shuffle. The server re-validates the submitted answer independently, so
+    // trimming never affects scoring correctness.
+    const correctAns = ans.filter((a) => a.isCorrect);
+    const wrongAns = ans.filter((a) => !a.isCorrect);
+    const limited =
+      correctAns.length > 0
+        ? [correctAns[0], ...shuffleArray(wrongAns).slice(0, 3)]
+        : ans.slice(0, 4);
+    const shuffled = shuffleArray(limited);
 
     return {
       id: q.id,
