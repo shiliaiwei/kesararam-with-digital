@@ -10,7 +10,6 @@ import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase
 import { getRank, canClaimRewards, CLAIM_MIN_POINTS } from "@/lib/rank-utils";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { REWARD_ITEMS, getRewardRarity, RARITY_META, calculateDynamicCost } from "@/lib/rewards";
-import { BrandSelect } from "@/components/ui/brand-select";
 import {
   Trophy,
   Gift,
@@ -29,7 +28,6 @@ import {
   ChevronDown,
   Gamepad2,
   ArrowUp,
-  Filter,
   X,
 } from "lucide-react";
 
@@ -1033,20 +1031,17 @@ export default function LeaderboardPage() {
   // ambient polish — picks one visible player id, lights it for ~0.85s, then clears.
   const [flashId, setFlashId] = useState<number | null>(null);
 
-  // Leaderboard filters: time window, province, game type, score source
+  // Leaderboard filters: time window, score source, game mode. All inline now —
+  // no province dropdown, no collapse (chess.com-style mode bar). hasActiveFilters
+  // surfaces a reset shortcut.
   const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
-  const [province, setProvince] = useState("all");
   const [sourceTab, setSourceTab] = useState("all");
   const [gameType, setGameType] = useState("all");
-  // Secondary filters (source/province/game) collapse behind a toggle to keep the
-  // default view simple (Hick's law). hasActiveFilters surfaces a reset shortcut.
-  const [filtersOpen, setFiltersOpen] = useState(false);
-  const hasActiveFilters = sourceTab !== "all" || province !== "all" || gameType !== "all";
+  const hasActiveFilters = sourceTab !== "all" || gameType !== "all";
 
   const fetchLeaderboard = useCallback(async () => {
     try {
       const params = new URLSearchParams({ limit: "50", window: windowTab });
-      if (province !== "all") params.set("province", province);
       // Source filter: live, solo, daily, or all
       if (sourceTab !== "all") params.set("source", sourceTab);
       // Game type filter: daily, catch-sign, etc.
@@ -1066,7 +1061,7 @@ export default function LeaderboardPage() {
       setCountdown(60);
     } catch { /* silent */ }
     finally { setLoading(false); }
-  }, [windowTab, province, sourceTab, gameType]);
+  }, [windowTab, sourceTab, gameType]);
 
   const fetchClaimsAndBalance = useCallback((livePoints?: number, lifetimePoints?: number) => {
     fetch("/api/user/claim")
@@ -1297,111 +1292,80 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
-              {/* ── Filters: time window stays visible; source/province/game collapse
-                   behind a single toggle to keep the default view uncluttered. ── */}
-              <div className="mb-3 flex flex-wrap items-center gap-2">
-                {/* Time Window Tabs */}
-                <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
-                  {WINDOW_TABS.map((w, i) => {
-                    const active = windowTab === w.id;
-                    return (
-                      <button
-                        key={w.id}
-                        onClick={() => setWindowTab(w.id)}
-                        className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
-                        style={kf}
-                      >
-                        {kh ? w.kh : w.en}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Filters toggle — reveals the secondary filters panel */}
-                <button
-                  onClick={() => setFiltersOpen((o) => !o)}
-                  aria-expanded={filtersOpen}
-                  className={`flex items-center gap-1.5 border-2 border-black px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${filtersOpen || hasActiveFilters ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
-                  style={{ borderRadius: 0, ...kf }}
-                >
-                  <Filter size={13} strokeWidth={2.5} />
-                  {kh ? "តម្រង" : "Filters"}
-                  {hasActiveFilters && (
-                    <span className="inline-flex h-4 min-w-4 items-center justify-center border border-black bg-yellow-400 px-1 text-[9px] font-black text-black">
-                      {[sourceTab !== "all", province !== "all", gameType !== "all"].filter(Boolean).length}
-                    </span>
-                  )}
-                  <ChevronDown size={12} strokeWidth={3} className={`transition-transform ${filtersOpen ? "rotate-180" : ""}`} />
-                </button>
-
-                {/* Reset shortcut — only when something is filtered */}
-                {hasActiveFilters && (
-                  <button
-                    onClick={() => { setSourceTab("all"); setProvince("all"); setGameType("all"); }}
-                    className="flex items-center gap-1 border-2 border-black bg-white px-2.5 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider text-red-600 transition-colors hover:bg-red-50"
-                    style={{ borderRadius: 0, ...kf }}
-                  >
-                    <X size={12} strokeWidth={3} />
-                    {kh ? "សម្អាត" : "Reset"}
-                  </button>
-                )}
-              </div>
-
-              {/* Collapsible secondary filters */}
-              {filtersOpen && (
-                <div className="mb-3 flex flex-col gap-3 border-2 border-black bg-zinc-50 p-3" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
-                  {/* Source + Province */}
-                  <div className="flex flex-wrap items-center gap-2">
-                    <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
-                      {SOURCE_TABS.map((s, i) => {
-                        const active = sourceTab === s.id;
-                        return (
-                          <button
-                            key={s.id}
-                            onClick={() => setSourceTab(s.id)}
-                            className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
-                            style={kf}
-                          >
-                            {kh ? s.kh : s.en}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    <BrandSelect
-                      ariaLabel={kh ? "ខេត្ត/ក្រុង" : "Province"}
-                      value={province}
-                      onValueChange={setProvince}
-                      fontStyle={kf}
-                      options={[
-                        { value: "all", label: kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces" },
-                        ...CAMBODIA_PROVINCES.map((p) => ({ value: p.en, label: kh ? p.kh : p.en })),
-                      ]}
-                    />
-                  </div>
-
-                  {/* Game chips — what games we have, doubles as the gameType filter */}
-                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
-                    <span className="flex flex-shrink-0 items-center gap-1 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
-                      <Gamepad2 size={13} strokeWidth={2.5} />
-                      {kh ? "ហ្គេម" : "Games"}
-                    </span>
-                    {GAME_CHIPS.map((g) => {
-                      const active = gameType === g.id;
+              {/* ── Filters — chess.com style: everything inline, no dropdowns, no
+                   collapse. Scope line (time window + source) on top; the game-mode
+                   tab bar below is the primary filter. ── */}
+              <div className="mb-3 flex flex-col gap-2">
+                {/* Scope line: time window + score source (+ reset when filtered) */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
+                    {WINDOW_TABS.map((w, i) => {
+                      const active = windowTab === w.id;
                       return (
                         <button
-                          key={g.id}
-                          onClick={() => setGameType(g.id)}
-                          className={`flex flex-shrink-0 items-center gap-1.5 border-2 border-black px-2.5 py-1 text-[10px] font-black uppercase tracking-wide transition-all ${active ? "bg-black text-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"}`}
-                          style={{ borderRadius: 0, ...kf }}
+                          key={w.id}
+                          onClick={() => setWindowTab(w.id)}
+                          className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                          style={kf}
                         >
-                          <span className="h-2 w-2 flex-shrink-0 border border-black" style={{ background: g.color }} />
-                          {kh ? g.kh : g.en}
+                          {kh ? w.kh : w.en}
                         </button>
                       );
                     })}
                   </div>
+
+                  <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
+                    {SOURCE_TABS.map((s, i) => {
+                      const active = sourceTab === s.id;
+                      const Icon = s.icon;
+                      return (
+                        <button
+                          key={s.id}
+                          onClick={() => setSourceTab(s.id)}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                          style={kf}
+                        >
+                          <Icon size={12} strokeWidth={2.5} style={active ? { color: s.color } : undefined} />
+                          {kh ? s.kh : s.en}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {hasActiveFilters && (
+                    <button
+                      onClick={() => { setSourceTab("all"); setGameType("all"); }}
+                      className="flex items-center gap-1 border-2 border-black bg-white px-2.5 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider text-red-600 transition-colors hover:bg-red-50"
+                      style={{ borderRadius: 0, ...kf }}
+                    >
+                      <X size={12} strokeWidth={3} />
+                      {kh ? "សម្អាត" : "Reset"}
+                    </button>
+                  )}
                 </div>
-              )}
+
+                {/* Game-mode tab bar — the primary filter, one scrollable row */}
+                <div className="flex items-stretch gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
+                  <span className="flex flex-shrink-0 items-center gap-1 self-center pr-1 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
+                    <Gamepad2 size={14} strokeWidth={2.5} />
+                    {kh ? "ហ្គេម" : "Mode"}
+                  </span>
+                  {GAME_CHIPS.map((g) => {
+                    const active = gameType === g.id;
+                    return (
+                      <button
+                        key={g.id}
+                        onClick={() => setGameType(g.id)}
+                        className={`flex flex-shrink-0 items-center gap-2 border-2 border-black px-3 py-1.5 text-[11px] font-black uppercase tracking-wide transition-all ${active ? "text-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"}`}
+                        style={{ borderRadius: 0, background: active ? "#000" : "#fff", ...kf }}
+                      >
+                        <span className="h-2.5 w-2.5 flex-shrink-0 border border-black" style={{ background: g.color }} />
+                        {kh ? g.kh : g.en}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
                 <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase flex items-center gap-2" style={kf}>
