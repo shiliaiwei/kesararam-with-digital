@@ -117,7 +117,7 @@ export function SettingsContent() {
     isNamePublic: true,
     isUsernamePublic: true,
     isSchoolPublic: false,
-    isProvincePublic: true,
+    isProvincePublic: false,
     isClassPublic: false,
     isStatsPublic: true,
     createdAt: "",
@@ -252,7 +252,7 @@ export function SettingsContent() {
           isUsernamePublic: settings.isUsernamePublic ?? true,
           // School names are never exposed on public student surfaces.
           isSchoolPublic: false,
-          isProvincePublic: settings.isProvincePublic ?? true,
+          isProvincePublic: settings.isProvincePublic ?? false,
           isClassPublic: settings.isClassPublic ?? true,
           isStatsPublic: settings.isStatsPublic ?? true,
         } : settings),
@@ -1007,7 +1007,7 @@ export function SettingsContent() {
                       <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                         <input
                           type="checkbox"
-                          checked={settings.isProvincePublic ?? true}
+                          checked={settings.isProvincePublic ?? false}
                           onChange={(e) => setSettings({ ...settings, isProvincePublic: e.target.checked })}
                           className="sr-only peer"
                         />

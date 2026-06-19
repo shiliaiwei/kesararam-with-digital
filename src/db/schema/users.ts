@@ -55,7 +55,7 @@ export const users = pgTable("users", {
   isNamePublic: boolean("is_name_public").default(true).notNull(),
   isUsernamePublic: boolean("is_username_public").default(true).notNull(),
   isSchoolPublic: boolean("is_school_public").default(false).notNull(),
-  isProvincePublic: boolean("is_province_public").default(true).notNull(),
+  isProvincePublic: boolean("is_province_public").default(false).notNull(),
   isClassPublic: boolean("is_class_public").default(false).notNull(),
   isGradePublic: boolean("is_grade_public").default(true).notNull(),
   isSectionPublic: boolean("is_section_public").default(true).notNull(),

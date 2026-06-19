@@ -107,7 +107,7 @@ export function StudentProfileDashboard({
     isNamePublic: true,
     isUsernamePublic: true,
     isSchoolPublic: false,
-    isProvincePublic: true,
+    isProvincePublic: false,
     isClassPublic: false,
     isStatsPublic: true,
   });
@@ -159,7 +159,7 @@ export function StudentProfileDashboard({
           isNamePublic: s.isNamePublic ?? true,
           isUsernamePublic: s.isUsernamePublic ?? true,
           isSchoolPublic: false,
-          isProvincePublic: s.isProvincePublic ?? true,
+          isProvincePublic: s.isProvincePublic ?? false,
           isClassPublic: s.isClassPublic ?? false,
           isStatsPublic: s.isStatsPublic ?? true,
         });

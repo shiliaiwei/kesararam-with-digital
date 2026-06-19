@@ -95,7 +95,7 @@ async function storePointsLeaderboard(opts: {
     accuracy: user.accuracy,
     bestGame: user.bestGame,
     schoolName: null,
-    province: (user.isProvincePublic ?? true) ? user.province : null,
+    province: (user.isProvincePublic ?? false) ? user.province : null,
     className: null,
   }));
 
@@ -336,7 +336,7 @@ export async function GET(req: NextRequest) {
         accuracy: user.accuracy,
         bestGame: user.bestGame,
         schoolName: null,
-        province: (user.isProvincePublic ?? true) ? user.province : null,
+        province: (user.isProvincePublic ?? false) ? user.province : null,
         className: null,
       };
     });

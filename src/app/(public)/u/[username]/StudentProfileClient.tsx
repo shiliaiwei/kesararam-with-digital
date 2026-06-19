@@ -325,8 +325,8 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
 
   const isNamePublic = student.isNamePublic ?? true;
   const isUsernamePublic = student.isUsernamePublic ?? true;
-  const isProvincePublic = student.isProvincePublic ?? true;
-  const isClassPublic = student.isClassPublic ?? true;
+  const isProvincePublic = student.isProvincePublic ?? false;
+  const isClassPublic = student.isClassPublic ?? false;
   const isStatsPublic = student.isStatsPublic ?? true;
 
   const displayName = isNamePublic
