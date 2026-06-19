@@ -304,17 +304,17 @@ const PODIUM_CELEBRATION_KEYFRAMES = `
  *   2nd — silver sparkles drifting upward.
  *   3rd — bronze star pop + bronze halo (subtlest).
  */
-function renderPodiumCelebration(rank: number, isFirst: boolean) {
+function renderPodiumCelebration(rank: number, isFirst: boolean, isMobile: boolean) {
   if (rank === 1) {
-    const d = isFirst ? 58 : 50;
+    const d = isFirst ? (isMobile ? 38 : 58) : (isMobile ? 32 : 50);
     return (
       <>
         <style>{PODIUM_CELEBRATION_KEYFRAMES}</style>
-        <span className="lb-ring absolute" style={{ width: isFirst ? 104 : 88, height: isFirst ? 104 : 88, border: "3px solid #eab308" }} />
+        <span className="lb-ring absolute" style={{ width: isFirst ? (isMobile ? 70 : 104) : (isMobile ? 58 : 88), height: isFirst ? (isMobile ? 70 : 104) : (isMobile ? 58 : 88), border: "3px solid #eab308" }} />
         {Array.from({ length: 10 }).map((_, i) => {
           const a = (i / 10) * Math.PI * 2;
           return (
-            <Star key={i} size={isFirst ? 16 : 13} strokeWidth={1.5} className="lb-burst absolute"
+            <Star key={i} size={isFirst ? (isMobile ? 11 : 16) : (isMobile ? 9 : 13)} strokeWidth={1.5} className="lb-burst absolute"
               style={{ ["--dx" as string]: `${Math.cos(a) * d}px`, ["--dy" as string]: `${Math.sin(a) * d}px`, animationDelay: `${i * 0.03}s`, color: "#eab308", fill: "#facc15" } as React.CSSProperties} />
           );
         })}
@@ -326,9 +326,9 @@ function renderPodiumCelebration(rank: number, isFirst: boolean) {
       <>
         <style>{PODIUM_CELEBRATION_KEYFRAMES}</style>
         {Array.from({ length: 7 }).map((_, i) => {
-          const x = (i - 3) * 13;
+          const x = (i - 3) * (isMobile ? 9 : 13);
           return (
-            <Sparkles key={i} size={13} strokeWidth={1.75} className="lb-rise absolute"
+            <Sparkles key={i} size={isMobile ? 9 : 13} strokeWidth={1.75} className="lb-rise absolute"
               style={{ ["--x" as string]: `${x}px`, animationDelay: `${i * 0.1}s`, color: "#64748b", fill: "#cbd5e1" } as React.CSSProperties} />
           );
         })}
@@ -336,15 +336,15 @@ function renderPodiumCelebration(rank: number, isFirst: boolean) {
     );
   }
   // rank 3 — bronze pop + halo
-  const d = 42;
+  const d = isMobile ? 28 : 42;
   return (
     <>
       <style>{PODIUM_CELEBRATION_KEYFRAMES}</style>
-      <span className="lb-ring absolute" style={{ width: 78, height: 78, border: "3px solid #cd7c3a" }} />
+      <span className="lb-ring absolute" style={{ width: isMobile ? 52 : 78, height: isMobile ? 52 : 78, border: "3px solid #cd7c3a" }} />
       {Array.from({ length: 6 }).map((_, i) => {
         const a = (i / 6) * Math.PI * 2;
         return (
-          <Star key={i} size={12} strokeWidth={1.75} className="lb-pop absolute"
+          <Star key={i} size={isMobile ? 8 : 12} strokeWidth={1.75} className="lb-pop absolute"
             style={{ ["--dx" as string]: `${Math.cos(a) * d}px`, ["--dy" as string]: `${Math.sin(a) * d}px`, animationDelay: `${i * 0.05}s`, color: "#cd7c3a", fill: "#cd7c3a" } as React.CSSProperties} />
         );
       })}
@@ -374,6 +374,16 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
   const initials = (name && name !== "—" ? name : "?").slice(0, 2).toUpperCase();
   const linkable = !!user && user.isUsernamePublic !== false;
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const avatarSize = isMobile ? (isFirst ? 58 : 44) : (isFirst ? 82 : 66);
+
   useEffect(() => {
     if (!cardRef.current) return;
     gsap.fromTo(
@@ -391,15 +401,15 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
     >
       {/* Avatar masthead */}
       <div
-        className={`relative z-20 mb-[-30px] flex flex-col items-center select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
+        className={`relative z-20 mb-[-22px] md:mb-[-30px] flex flex-col items-center select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
         onClick={() => { if (linkable && user) onSelect(user); }}
       >
         {isFirst && (
           <div
-            className="absolute -top-9 left-1/2 z-20 flex h-9 w-9 -translate-x-1/2 items-center justify-center border-[3px] border-black bg-yellow-400"
+            className="absolute -top-7 md:-top-9 left-1/2 z-20 flex h-7 w-7 md:h-9 md:w-9 -translate-x-1/2 items-center justify-center border-[3px] border-black bg-yellow-400"
             style={{ boxShadow: "3px 3px 0 #000", transform: "translateX(-50%) rotate(45deg)" }}
           >
-            <Crown size={20} strokeWidth={2.5} className="text-black" style={{ transform: "rotate(-45deg)" }} />
+            <Crown size={isMobile ? 14 : 20} strokeWidth={2.5} className="text-black" style={{ transform: "rotate(-45deg)" }} />
           </div>
         )}
 
@@ -410,19 +420,19 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
                 ticker so it replays on this card's turn. Each rank has its own style. */}
             {isCelebrating && (
               <div key={celebrateTick} aria-hidden className="pointer-events-none absolute left-1/2 top-1/2" style={{ zIndex: 0 }}>
-                {renderPodiumCelebration(cfg.rank, isFirst)}
+                {renderPodiumCelebration(cfg.rank, isFirst, isMobile)}
               </div>
             )}
             <div className="relative z-10">
               <RankedAvatarRing
                 lifetimePoints={user.lifetimePoints}
-                size={isFirst ? 82 : 66}
+                size={avatarSize}
                 index={index}
               >
                 <Avatar
                   url={userAvatar}
                   name={name}
-                  size={isFirst ? 82 : 66}
+                  size={avatarSize}
                   changedAt={user.avatarChangedAt}
                 />
               </RankedAvatarRing>
@@ -432,8 +442,8 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
           <div
             className="flex items-center justify-center border-[3px] border-black bg-zinc-800 font-black text-white"
             style={{
-              width: isFirst ? 94 : 78,
-              height: isFirst ? 94 : 78,
+              width: isMobile ? (isFirst ? 66 : 52) : (isFirst ? 94 : 78),
+              height: isMobile ? (isFirst ? 66 : 52) : (isFirst ? 94 : 78),
               borderRadius: "50%",
               boxShadow: "3px 3px 0 #000",
             }}
@@ -448,7 +458,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
       </div>
 
       <div
-        className={`relative flex w-full flex-col items-center overflow-hidden border-[3px] border-black px-3 pb-5 pt-12 text-center transition-transform duration-200 ${linkable ? "cursor-pointer hover:-translate-y-1" : "cursor-default"}`}
+        className={`relative flex w-full flex-col items-center overflow-hidden border-[3px] border-black px-1.5 pb-4 pt-8 md:px-3 md:pb-5 md:pt-12 text-center transition-transform duration-200 ${linkable ? "cursor-pointer hover:-translate-y-1" : "cursor-default"}`}
         onClick={linkable && user ? () => onSelect(user) : undefined}
         style={{
           backgroundColor: cfg.surfaceColor,
@@ -468,7 +478,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
           }}
         >
           {isFirst ? <Crown size={11} /> : <Trophy size={11} />}
-          {cfg.labelEn}
+          <span className="hidden sm:inline">{cfg.labelEn}</span>
         </div>
 
         <h3 className="z-10 w-full truncate text-sm font-black leading-tight text-black md:text-lg font-kh-header">
@@ -478,7 +488,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
         <div className="z-10 mt-2 flex flex-wrap items-center justify-center gap-1.5">
           {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" index={index} />}
           {user?.province && (
-            <span className="inline-flex items-center gap-1 border-2 border-black bg-blue-50 px-1.5 py-0.5 text-[8px] font-black uppercase text-blue-700">
+            <span className="hidden sm:inline-flex items-center gap-1 border-2 border-black bg-blue-50 px-1.5 py-0.5 text-[8px] font-black uppercase text-blue-700">
               <MapPin size={9} />
               {kh ? getProvinceKh(user.province) : user.province}
             </span>
@@ -489,7 +499,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
 
         <AnimatedNumber
           value={user?.lifetimePoints ?? 0}
-          className={`z-10 font-black tabular-nums text-black ${isFirst ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl"}`}
+          className={`z-10 font-black tabular-nums text-black ${isFirst ? "text-xl md:text-3xl lg:text-4xl" : "text-lg md:text-2xl lg:text-3xl"}`}
         />
         <span className="z-10 mt-0.5 text-[9px] font-black uppercase tracking-[0.18em] text-zinc-500">
           {kh ? "ពិន្ទុសរុប" : "Lifetime points"}
@@ -1341,10 +1351,10 @@ export default function LeaderboardPage() {
                       <span className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-1">Road Points</span>
                       
                       <div
-                        className="relative bg-white border-2 border-black p-1 flex flex-col items-center justify-between select-none shadow-[2px_2px_0_rgba(255,255,255,0.15)]"
+                        className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_rgba(255,255,255,0.15)] p-0.5"
                         style={{
-                          width: "82px",
-                          height: "46px",
+                          width: "72px",
+                          height: "38px",
                           borderRadius: "4px",
                         }}
                       >
@@ -1352,30 +1362,22 @@ export default function LeaderboardPage() {
                         <div className="absolute inset-0.5 border border-blue-700 pointer-events-none rounded-[2px]" />
                         
                         {/* Top: Province/Cambodia in Khmer */}
-                        <span className="z-10 text-[7.5px] font-black text-blue-900 leading-none scale-90 origin-top">
-                          {currentUser.province ? getProvinceKh(currentUser.province) : "កម្ពុជា"}
+                        <span className="z-10 text-[6.5px] font-black text-blue-900 leading-none scale-90 origin-top mt-[1px]">
+                          {currentUser.classProvince || currentUser.province ? getProvinceKh(currentUser.classProvince || currentUser.province) : "កម្ពុជា"}
                         </span>
                         
                         {/* Center: Score number in deep blue */}
-                        <span className="z-10 font-mono font-black tabular-nums text-xs md:text-sm text-blue-955 leading-none my-0.5 tracking-wide">
+                        <span className="z-10 font-mono font-black tabular-nums text-[13px] text-blue-900 leading-none my-[1px] tracking-tight">
                           {(currentUser.livePoints ?? 0).toLocaleString()}
                         </span>
 
                         {/* Horizontal divider line */}
-                        <div className="z-10 w-full h-[1px] bg-blue-800 opacity-60" />
+                        <div className="z-10 w-full h-[1px] bg-blue-800 opacity-40" />
 
                         {/* Bottom: Province/Cambodia in English Red */}
-                        <span className="z-10 text-[6.5px] font-bold text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom">
-                          {currentUser.province ? currentUser.province.toUpperCase() : "CAMBODIA"}
+                        <span className="z-10 text-[5.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1px]">
+                          {currentUser.classProvince || currentUser.province ? (currentUser.classProvince || currentUser.province).toUpperCase() : "CAMBODIA"}
                         </span>
-
-                        {/* Tiny QR stamp on the right */}
-                        <div className="absolute right-1 top-[13px] w-2.5 h-2.5 bg-zinc-800 border-[0.5px] border-zinc-900 flex flex-wrap p-[0.5px] opacity-75">
-                          <div className="w-[4px] h-[4px] bg-white" />
-                          <div className="w-[4px] h-[4px] bg-black" />
-                          <div className="w-[4px] h-[4px] bg-black" />
-                          <div className="w-[4px] h-[4px] bg-white" />
-                        </div>
                       </div>
                     </div>
 
@@ -1563,11 +1565,14 @@ export default function LeaderboardPage() {
                 {/* Table Header — Live Score is the hero metric and leads the stats
                     right after the player; Games / Acc / Top game follow. */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
-                  <span className="col-span-2 sm:col-span-1 text-yellow-400">#</span>
-                  <span className="col-span-6 sm:col-span-5 text-yellow-400">{kh ? "សិស្ស" : "Player"}</span>
+                  <span className="col-span-8 sm:col-span-6 text-yellow-400 flex items-center gap-1 sm:gap-6">
+                    <span className="sm:hidden"># / {kh ? "សិស្ស" : "Player"}</span>
+                    <span className="hidden sm:inline w-6">#</span>
+                    <span className="hidden sm:inline">{kh ? "សិស្ស" : "Player"}</span>
+                  </span>
                   {/* Score column: overall = Road Points; a game filter swaps it to that
                       game's total score. "Road Points" is never translated to Khmer. */}
-                  <span className="col-span-4 sm:col-span-3 flex items-center justify-start gap-1 text-yellow-400">
+                  <span className="col-span-4 sm:col-span-3 flex items-center justify-end sm:justify-start gap-1 text-yellow-400">
                     {gameType === "all"
                       ? (<><Gift size={11} strokeWidth={3} />Road Points</>)
                       : (kh ? "ពិន្ទុ" : "Score")}
@@ -1605,76 +1610,81 @@ export default function LeaderboardPage() {
                       onClick={linkable ? () => handleSelectUser(user) : undefined}
                     >
                      <div className="grid grid-cols-12 items-center px-3 md:px-5 py-2.5">
-                      {/* Rank + movement */}
-                      <div className="col-span-2 sm:col-span-1 flex items-center gap-1">
-                        {medal ? (
-                          <span
-                            className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
-                            style={{ background: medal, color: user.rank === 1 ? "#000" : "#fff" }}
-                          >
-                            {user.rank}
-                          </span>
-                        ) : (
-                          <span className="text-sm font-black text-zinc-400 tabular-nums">{user.rank}</span>
-                        )}
-                        {moved > 0 && <ChevronUp size={12} strokeWidth={4} className="text-green-500" />}
-                        {moved < 0 && <ChevronDown size={12} strokeWidth={4} className="text-red-500" />}
-                      </div>
-
-                      {/* Avatar + name + meta */}
-                      <div className="col-span-6 sm:col-span-5 flex items-center gap-2.5 min-w-0">
-                        <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
-                          <Avatar
-                            url={rowAvatar}
-                            name={user.displayName || user.username}
-                            size={36}
-                            changedAt={user.avatarChangedAt}
-                          />
-                        </RankedAvatarRing>
-                        <div className="flex flex-1 flex-col min-w-0">
-                          <div className="flex items-center gap-2 min-w-0">
-                            {/* Name plate — background colored by rank tier (brand-
-                                sanctioned tier gradient), with the random 5s flash. */}
+                      {/* Rank + Avatar + Name + Meta */}
+                      <div className="col-span-8 sm:col-span-6 flex items-center gap-2 md:gap-3 min-w-0">
+                        {/* Rank + movement */}
+                        <div className="flex items-center gap-1 flex-shrink-0 w-8 sm:w-10">
+                          {medal ? (
                             <span
-                              className={`inline-flex items-center border-[3px] border-black px-2 py-1 font-black truncate min-w-0 ${flashId === user.id ? "lb-flash" : ""}`}
-                              style={{ background: tier.labelGradient, color: tier.textColor, boxShadow: "2px 2px 0 #000", fontSize: 12, letterSpacing: "0.01em", maxWidth: "100%" }}
-                              title={user.displayName || user.username}
+                              className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
+                              style={{ background: medal, color: user.rank === 1 ? "#000" : "#fff" }}
                             >
-                              {user.displayName || user.username}
+                              {user.rank}
                             </span>
-                            {isMe && (
-                              <span className="text-[8px] font-black uppercase px-1 py-0.5 border border-black bg-yellow-400 text-black flex-shrink-0">
-                                {kh ? "អ្នក" : "You"}
-                              </span>
-                            )}
+                          ) : (
+                            <span className="text-sm font-black text-zinc-400 tabular-nums w-6 text-center sm:text-left">{user.rank}</span>
+                          )}
+                          <div className="flex flex-col items-center justify-center flex-shrink-0">
+                            {moved > 0 && <ChevronUp size={11} strokeWidth={4} className="text-green-500" />}
+                            {moved < 0 && <ChevronDown size={11} strokeWidth={4} className="text-red-500" />}
                           </div>
-                          <div className="flex items-center gap-1 mt-0.5 flex-wrap">
-                            <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5 sm:hidden">
-                              {tier.label}
-                            </span>
-                            {user.province && (
-                              <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
-                                <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
+                        </div>
+
+                        {/* Avatar + name + meta */}
+                        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                          <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
+                            <Avatar
+                              url={rowAvatar}
+                              name={user.displayName || user.username}
+                              size={36}
+                              changedAt={user.avatarChangedAt}
+                            />
+                          </RankedAvatarRing>
+                          <div className="flex flex-1 flex-col min-w-0">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              {/* Name plate — background colored by rank tier (brand-
+                                  sanctioned tier gradient), with the random 5s flash. */}
+                              <span
+                                className={`inline-flex items-center border-[3px] border-black px-2 py-1 font-black truncate min-w-0 ${flashId === user.id ? "lb-flash" : ""}`}
+                                style={{ background: tier.labelGradient, color: tier.textColor, boxShadow: "2px 2px 0 #000", fontSize: 12, letterSpacing: "0.01em", maxWidth: "100%" }}
+                                title={user.displayName || user.username}
+                              >
+                                {user.displayName || user.username}
                               </span>
-                            )}
-                            {/* Goal-gradient: only for me, when someone is just ahead */}
-                            {isMe && above && toOvertake > 0 && (
-                              <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-300 px-1 py-0.5">
-                                <ArrowUp size={8} strokeWidth={4} />
-                                {kh ? `ខ្វះ ${toOvertake.toLocaleString()} ដើម្បីលើស #${above.rank}` : `${toOvertake.toLocaleString()} to pass #${above.rank}`}
+                              {isMe && (
+                                <span className="text-[8px] font-black uppercase px-1 py-0.5 border border-black bg-yellow-400 text-black flex-shrink-0">
+                                  {kh ? "អ្នក" : "You"}
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-1 mt-0.5 flex-wrap">
+                              <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5 sm:hidden">
+                                {tier.label}
                               </span>
-                            )}
+                              {user.province && (
+                                <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
+                                  <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
+                                </span>
+                              )}
+                              {/* Goal-gradient: only for me, when someone is just ahead */}
+                              {isMe && above && toOvertake > 0 && (
+                                <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-300 px-1 py-0.5">
+                                  <ArrowUp size={8} strokeWidth={4} />
+                                  {kh ? `ខ្វះ ${toOvertake.toLocaleString()} ដើម្បីលើស #${above.rank}` : `${toOvertake.toLocaleString()} to pass #${above.rank}`}
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
 
                       {/* Score — designed like a Cambodian license plate */}
-                      <div className="col-span-4 sm:col-span-3 flex justify-start items-center">
+                      <div className="col-span-4 sm:col-span-3 flex justify-end sm:justify-start items-center">
                         <div
-                          className="relative bg-white border-2 border-black p-1 flex flex-col items-center justify-between select-none shadow-[2px_2px_0_#000]"
+                          className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_#000] p-0.5"
                           style={{
-                            width: "82px",
-                            height: "46px",
+                            width: "72px",
+                            height: "38px",
                             borderRadius: "4px",
                           }}
                         >
@@ -1682,30 +1692,22 @@ export default function LeaderboardPage() {
                           <div className="absolute inset-0.5 border border-blue-700 pointer-events-none rounded-[2px]" />
                           
                           {/* Top: Province/Cambodia in Khmer */}
-                          <span className="z-10 text-[7.5px] font-black text-blue-900 leading-none scale-90 origin-top">
+                          <span className="z-10 text-[6.5px] font-black text-blue-900 leading-none scale-90 origin-top mt-[1px]">
                             {user.province ? getProvinceKh(user.province) : "កម្ពុជា"}
                           </span>
                           
                           {/* Center: Score number in deep blue */}
-                          <span className="z-10 font-mono font-black tabular-nums text-xs md:text-sm text-blue-955 leading-none my-0.5 tracking-wide">
+                          <span className="z-10 font-mono font-black tabular-nums text-[13px] text-blue-900 leading-none my-[1px] tracking-tight">
                             {scoreValue.toLocaleString()}
                           </span>
 
                           {/* Horizontal divider line */}
-                          <div className="z-10 w-full h-[1px] bg-blue-800 opacity-60" />
+                          <div className="z-10 w-full h-[1px] bg-blue-800 opacity-40" />
 
                           {/* Bottom: Province/Cambodia in English Red */}
-                          <span className="z-10 text-[6.5px] font-bold text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom">
+                          <span className="z-10 text-[5.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1px]">
                             {user.province ? user.province.toUpperCase() : "CAMBODIA"}
                           </span>
-
-                          {/* Tiny QR stamp on the right */}
-                          <div className="absolute right-1 top-[13px] w-2.5 h-2.5 bg-zinc-800 border-[0.5px] border-zinc-900 flex flex-wrap p-[0.5px] opacity-75">
-                            <div className="w-[4px] h-[4px] bg-white" />
-                            <div className="w-[4px] h-[4px] bg-black" />
-                            <div className="w-[4px] h-[4px] bg-black" />
-                            <div className="w-[4px] h-[4px] bg-white" />
-                          </div>
                         </div>
                       </div>
 

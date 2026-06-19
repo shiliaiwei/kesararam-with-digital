@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { users, classEnrollments } from "@/db/schema/users";
+import { users, classEnrollments, classes } from "@/db/schema/users";
 import { pointsLedger } from "@/db/schema/content";
 import { eq, and, sql } from "drizzle-orm";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
@@ -42,6 +42,7 @@ export async function GET() {
   // who was kicked/removed has no enrollment and must re-join before playing.
   let hasClass = true;
   let livePoints = 0;
+  let classProvince: string | null = null;
 
   if (user.role === "student") {
     const enrollment = await db
@@ -50,6 +51,18 @@ export async function GET() {
       .where(eq(classEnrollments.studentId, user.id))
       .limit(1);
     hasClass = enrollment.length > 0;
+
+    if (hasClass) {
+      const [classInfo] = await db
+        .select({ province: classes.province })
+        .from(classEnrollments)
+        .innerJoin(classes, eq(classes.id, classEnrollments.classId))
+        .where(eq(classEnrollments.studentId, user.id))
+        .limit(1);
+      if (classInfo) {
+        classProvince = classInfo.province;
+      }
+    }
 
     if (STORE_POINTS_ENABLED) {
       // Post-cutover: points = Store Points lifetime-earned; the spendable
@@ -77,5 +90,5 @@ export async function GET() {
     }
   }
 
-  return NextResponse.json({ ...user, hasClass, livePoints });
+  return NextResponse.json({ ...user, hasClass, livePoints, classProvince });
 }

@@ -44,6 +44,7 @@ async function storePointsLeaderboard(opts: {
   // "Top game" leaderboard column. NULL when they have no recorded plays.
   const bestGameExpr = sql<string | null>`(SELECT spe.game_type FROM store_point_events spe WHERE spe.user_id = users.id AND spe.reason = 'play'${gameTypeCond} GROUP BY spe.game_type ORDER BY COUNT(*) DESC LIMIT 1)`;
   const classNameExpr = sql<string | null>`(SELECT c.name FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
+  const classProvinceExpr = sql<string | null>`(SELECT c.province FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
 
   const provinceFilter =
     province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
@@ -70,6 +71,7 @@ async function storePointsLeaderboard(opts: {
       isProvincePublic: users.isProvincePublic,
       className: classNameExpr,
       isClassPublic: users.isClassPublic,
+      classProvince: classProvinceExpr,
     })
     .from(users)
     .where(sql`${publicFilter}${provinceFilter} AND ${windowExpr} > 0`)
@@ -95,7 +97,7 @@ async function storePointsLeaderboard(opts: {
     accuracy: user.accuracy,
     bestGame: user.bestGame,
     schoolName: null,
-    province: (user.isProvincePublic ?? false) ? user.province : null,
+    province: (user.isProvincePublic ?? false) ? (user.classProvince || user.province) : null,
     className: null,
   }));
 
@@ -173,6 +175,7 @@ export async function GET(req: NextRequest) {
     // Most-played game mode (by play count) — drives the "Top game" column.
     const bestGameExpr = sql<string | null>`(SELECT gs.game_mode FROM game_scores gs WHERE gs.user_id = users.id${gameTypeCondGs} GROUP BY gs.game_mode ORDER BY COUNT(*) DESC LIMIT 1)`;
     const classNameExpr = sql<string | null>`(SELECT c.name FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
+    const classProvinceExpr = sql<string | null>`(SELECT c.province FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
 
     let rows: {
       id: number;
@@ -225,6 +228,7 @@ export async function GET(req: NextRequest) {
           isClassPublic: users.isClassPublic,
           isGradePublic: users.isGradePublic,
           isSectionPublic: users.isSectionPublic,
+          classProvince: classProvinceExpr,
         })
         .from(users)
         .where(sql`${publicFilter}${provinceFilter}`)
@@ -275,6 +279,7 @@ export async function GET(req: NextRequest) {
           isClassPublic: users.isClassPublic,
           isGradePublic: users.isGradePublic,
           isSectionPublic: users.isSectionPublic,
+          classProvince: classProvinceExpr,
         })
         .from(users)
         .innerJoin(
@@ -336,7 +341,7 @@ export async function GET(req: NextRequest) {
         accuracy: user.accuracy,
         bestGame: user.bestGame,
         schoolName: null,
-        province: (user.isProvincePublic ?? false) ? user.province : null,
+        province: (user.isProvincePublic ?? false) ? (user.classProvince || user.province) : null,
         className: null,
       };
     });
