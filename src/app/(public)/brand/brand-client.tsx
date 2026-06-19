@@ -83,6 +83,7 @@ export function BrandGuidelineClient() {
   const [active, setActive] = useState<string>(SECTIONS[0].id);
   const [selectedRankId, setSelectedRankId] = useState<string>("gold");
   const [selectedDivision, setSelectedDivision] = useState<Division>("II");
+  const [centerStyle, setCenterStyle] = useState<"photo" | "initials">("initials");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -430,10 +431,10 @@ export function BrandGuidelineClient() {
                   </div>
 
                   {/* Showcase Details + Preview Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6 border-2 border-black dark:border-zinc-800 p-5 bg-zinc-50 dark:bg-zinc-900 shadow-[4px_4px_0_#000] dark:shadow-none">
+                  <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 border-2 border-black dark:border-zinc-800 p-5 bg-zinc-50 dark:bg-zinc-900 shadow-[4px_4px_0_#000] dark:shadow-none">
                     {/* Centered Preview container */}
                     <div className="flex flex-col items-center">
-                      <div className="relative flex items-center justify-center w-full aspect-square max-w-[200px] border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-950 p-6 mb-4 overflow-hidden">
+                      <div className="relative flex items-center justify-center w-full min-h-[280px] aspect-square max-w-[280px] border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-950 p-4 mb-4">
                         {/* Grid decorative lines in background */}
                         <div className="absolute inset-0 opacity-15" style={{
                           backgroundImage: "linear-gradient(to right, #3b82f6 1px, transparent 1px), linear-gradient(to bottom, #3b82f6 1px, transparent 1px)",
@@ -441,7 +442,8 @@ export function BrandGuidelineClient() {
                         }} />
                         <AvatarBorder
                           score={previewScore}
-                          username="brand_preview"
+                          username={selectedRankConfig.name}
+                          src={centerStyle === "photo" ? "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" : null}
                           alt={`${selectedRankConfig.name} Showcase Preview`}
                           size="lg"
                           animated={true}
@@ -453,7 +455,7 @@ export function BrandGuidelineClient() {
                       <label className="text-[10px] font-black uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                         {t("Division", "ផ្នែក")}
                       </label>
-                      <div className="flex border-2 border-black dark:border-zinc-700 w-full max-w-[200px] overflow-hidden shadow-[2px_2px_0_#000] dark:shadow-none">
+                      <div className="flex border-2 border-black dark:border-zinc-700 w-full max-w-[200px] overflow-hidden shadow-[2px_2px_0_#000] dark:shadow-none mb-3">
                         {DIVISION_ORDER.map((div) => (
                           <button
                             key={div}
@@ -468,19 +470,56 @@ export function BrandGuidelineClient() {
                           </button>
                         ))}
                       </div>
+
+                      {/* Center Option Toggle */}
+                      <label className="text-[10px] font-black uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                        {t("Center Option", "ជម្រើសកណ្តាល")}
+                      </label>
+                      <div className="flex border-2 border-black dark:border-zinc-700 w-full max-w-[200px] overflow-hidden shadow-[2px_2px_0_#000] dark:shadow-none">
+                        <button
+                          onClick={() => setCenterStyle("photo")}
+                          className={`flex-1 py-1.5 font-mono text-xs font-black transition-colors border-r border-black dark:border-zinc-700 last:border-r-0 ${
+                            centerStyle === "photo"
+                              ? "bg-yellow-500 text-black"
+                              : "bg-white hover:bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+                          }`}
+                        >
+                          {t("Photo", "រូបថត")}
+                        </button>
+                        <button
+                          onClick={() => setCenterStyle("initials")}
+                          className={`flex-1 py-1.5 font-mono text-xs font-black transition-colors border-r border-black dark:border-zinc-700 last:border-r-0 ${
+                            centerStyle === "initials"
+                              ? "bg-yellow-500 text-black"
+                              : "bg-white hover:bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+                          }`}
+                        >
+                          {t("Initials", "អក្សរ")}
+                        </button>
+                      </div>
                     </div>
 
                     {/* Right side Detail Panel */}
                     <div className="flex flex-col justify-between space-y-4">
                       <div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <h3 className="text-2xl font-black uppercase tracking-wider text-zinc-900 dark:text-white">
                             {selectedRankConfig.name}
                           </h3>
                           <span
                             className="px-2 py-0.5 border border-black dark:border-zinc-700 text-[10px] font-black uppercase tracking-wider text-black bg-yellow-500 shadow-[1px_1px_0_#000] dark:shadow-none"
                           >
-                            {selectedRankConfig.minPoints === 0 ? t("Start Tier", "កម្រិតចាប់ផ្តើម") : `${selectedRankConfig.minPoints.toLocaleString()} PTS`}
+                            {(() => {
+                              switch (selectedRankConfig.id) {
+                                case "rookie": return "0 - 999 PTS";
+                                case "rising": return "1,000 - 2,499 PTS";
+                                case "gold": return "2,500 - 3,499 PTS";
+                                case "platinum": return "3,500 - 6,999 PTS";
+                                case "diamond": return "7,000 - 11,999 PTS";
+                                case "mythic": return "12,000+ PTS";
+                                default: return "";
+                              }
+                            })()}
                           </span>
                         </div>
                         <p className="text-sm font-bold uppercase tracking-wide mt-1.5" style={{ color: selectedRankConfig.accentColor }}>
