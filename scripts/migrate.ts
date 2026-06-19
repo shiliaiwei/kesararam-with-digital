@@ -105,7 +105,7 @@ async function migrate() {
       ALTER COLUMN is_username_public SET DEFAULT true,
       ALTER COLUMN is_school_public SET DEFAULT false,
       ALTER COLUMN is_province_public SET DEFAULT true,
-      ALTER COLUMN is_class_public SET DEFAULT true,
+      ALTER COLUMN is_class_public SET DEFAULT false,
       ALTER COLUMN is_grade_public SET DEFAULT true,
       ALTER COLUMN is_section_public SET DEFAULT true,
       ALTER COLUMN is_stats_public SET DEFAULT true
@@ -117,7 +117,7 @@ async function migrate() {
           is_username_public = true,
           is_school_public = false,
           is_province_public = true,
-          is_class_public = true,
+          is_class_public = false,
           is_grade_public = true,
           is_section_public = true,
           is_stats_public = true

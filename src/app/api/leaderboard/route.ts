@@ -96,7 +96,7 @@ async function storePointsLeaderboard(opts: {
     bestGame: user.bestGame,
     schoolName: null,
     province: (user.isProvincePublic ?? true) ? user.province : null,
-    className: (user.isClassPublic ?? true) ? user.className : null,
+    className: null,
   }));
 
   return NextResponse.json({
@@ -337,7 +337,7 @@ export async function GET(req: NextRequest) {
         bestGame: user.bestGame,
         schoolName: null,
         province: (user.isProvincePublic ?? true) ? user.province : null,
-        className: (user.isClassPublic ?? true) ? user.className : null,
+        className: null,
       };
     });
 

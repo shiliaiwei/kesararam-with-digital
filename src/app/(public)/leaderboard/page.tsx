@@ -482,12 +482,6 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
               {kh ? getProvinceKh(user.province) : user.province}
             </span>
           )}
-          {user?.className && (
-            <span className="inline-flex items-center gap-1 border-2 border-black bg-green-50 px-1.5 py-0.5 text-[8px] font-black uppercase text-green-700">
-              <GraduationCap size={9} />
-              {user.className}
-            </span>
-          )}
         </div>
 
         <div className="z-10 my-4 h-[3px] w-12 bg-black" />
@@ -1615,11 +1609,6 @@ export default function LeaderboardPage() {
                             {user.province && (
                               <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
                                 <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
-                              </span>
-                            )}
-                            {user.className && (
-                              <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-200 px-1 py-0.5">
-                                <GraduationCap size={8} />{user.className}
                               </span>
                             )}
                             {/* Goal-gradient: only for me, when someone is just ahead */}

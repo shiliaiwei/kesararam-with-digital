@@ -193,7 +193,7 @@ export default async function PublicStudentProfilePage({ params }: Props) {
   // 3. Serialize Date objects to strings to pass cleanly as client-side props
   const serializableStudent: SerializableStudent = {
     ...student,
-    className: classRows[0]?.name ?? null,
+    className: null,
     claimedRewards: JSON.stringify(
       claimRows.map((claim) => ({ id: claim.id, claimedAt: claim.claimedAt.getTime() }))
     ),

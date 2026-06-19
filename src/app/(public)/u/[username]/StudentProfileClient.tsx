@@ -346,7 +346,6 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
         : `Ranked #${rank} with ${student.lifetimePoints.toLocaleString()} points`);
     }
     const loc: string[] = [];
-    if (isClassPublic && student.className) loc.push(student.className);
     if (isProvincePublic && provinceLabel) loc.push(provinceLabel);
     if (loc.length) parts.push(loc.join(" · "));
     parts.push(kh ? `ចូលរួមឆ្នាំ ${joinedYear}` : `Joined ${joinedYear}`);
@@ -643,9 +642,6 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
               <div className="space-y-6">
                 <Panel title={t("Profile Details", "ព័ត៌មានសិស្ស")} icon={UserRound} kh={kh} kf={kf}>
                   <div className="space-y-3 p-4">
-                    {isClassPublic && student.className && (
-                      <FactRow icon={GraduationCap} label={t("My Classroom", "ថ្នាក់រៀនរបស់ខ្ញុំ")} value={student.className} kh={kh} kf={kf} />
-                    )}
                     {isProvincePublic && student.province && (
                       <FactRow icon={MapPin} label={t("Province", "ខេត្ត")} value={getBilingualProvince(student.province)} kh={kh} kf={kf} />
                     )}

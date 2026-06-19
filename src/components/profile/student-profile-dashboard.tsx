@@ -108,7 +108,7 @@ export function StudentProfileDashboard({
     isUsernamePublic: true,
     isSchoolPublic: false,
     isProvincePublic: true,
-    isClassPublic: true,
+    isClassPublic: false,
     isStatsPublic: true,
   });
   const [privacyLoading, setPrivacyLoading] = useState(false);
@@ -160,7 +160,7 @@ export function StudentProfileDashboard({
           isUsernamePublic: s.isUsernamePublic ?? true,
           isSchoolPublic: false,
           isProvincePublic: s.isProvincePublic ?? true,
-          isClassPublic: s.isClassPublic ?? true,
+          isClassPublic: s.isClassPublic ?? false,
           isStatsPublic: s.isStatsPublic ?? true,
         });
         setEditUsername(s.username ?? user.username);
@@ -1002,7 +1002,6 @@ export function StudentProfileDashboard({
                       {privacy.isProfilePublic && ([
                         { field: "isNamePublic", labelEn: "Show Full Name", labelKh: "បង្ហាញឈ្មោះ" },
                         { field: "isUsernamePublic", labelEn: "Show Username", labelKh: "បង្ហាញ Username" },
-                        { field: "isClassPublic", labelEn: "Show My Classroom", labelKh: "បង្ហាញថ្នាក់រៀនរបស់ខ្ញុំ" },
                         { field: "isProvincePublic", labelEn: "Show Province", labelKh: "បង្ហាញខេត្ត" },
                         { field: "isStatsPublic", labelEn: "Show Stats & Rewards", labelKh: "បង្ហាញស្ថិតិ" },
                       ] as { field: keyof typeof privacy; labelEn: string; labelKh: string }[]).map(({ field, labelEn, labelKh: lkh }, idx, arr) => {

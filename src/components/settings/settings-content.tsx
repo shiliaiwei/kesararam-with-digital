@@ -118,7 +118,7 @@ export function SettingsContent() {
     isUsernamePublic: true,
     isSchoolPublic: false,
     isProvincePublic: true,
-    isClassPublic: true,
+    isClassPublic: false,
     isStatsPublic: true,
     createdAt: "",
     profileEditUnlockedUntil: null,
@@ -996,24 +996,6 @@ export function SettingsContent() {
                     </label>
                   </div>
 
-                  {/* Classroom Visibility */}
-                  {settings.role === "student" && (
-                    <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
-                      <div>
-                        <h4 className="font-bold text-xs md:text-sm text-black">My Classroom / ថ្នាក់រៀនរបស់ខ្ញុំ</h4>
-                        <p className="text-[10px] md:text-xs text-zinc-500">Show classroom name publicly. School name always stays private. / បង្ហាញឈ្មោះថ្នាក់រៀនជាសាធារណៈ។ ឈ្មោះសាលានៅតែឯកជនជានិច្ច។</p>
-                      </div>
-                      <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
-                        <input
-                          type="checkbox"
-                          checked={settings.isClassPublic ?? true}
-                          onChange={(e) => setSettings({ ...settings, isClassPublic: e.target.checked })}
-                          className="sr-only peer"
-                        />
-                        <div className="w-11 h-6 border-2 border-black bg-zinc-200 peer-checked:bg-[#22c55e] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 peer after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-black after:border after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5"></div>
-                      </label>
-                    </div>
-                  )}
 
                   {/* Province Visibility */}
                   {settings.role === "student" && (
