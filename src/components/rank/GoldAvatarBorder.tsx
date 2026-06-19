@@ -89,70 +89,115 @@ export function GoldAvatarBorder({
                             <stop offset="100%" stopColor="#b45309" />
                         </linearGradient>
 
-                        {/* Dark Carbon texture gradient for outer ring */}
-                        <radialGradient id="dark-metal-bg" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#2c2518" />
-                            <stop offset="85%" stopColor="#18140e" />
-                            <stop offset="100%" stopColor="#080705" />
+                        {/* Top Sign Yellow Gradient */}
+                        <linearGradient id="sign-yellow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#fef08a" />
+                            <stop offset="50%" stopColor="#eab308" />
+                            <stop offset="100%" stopColor="#ca8a04" />
+                        </linearGradient>
+
+                        {/* Dark Asphalt radial gradient */}
+                        <radialGradient id="gold-road-asphalt" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stopColor="#1c1917" />
+                            <stop offset="75%" stopColor="#0c0a09" />
+                            <stop offset="100%" stopColor="#020202" />
                         </radialGradient>
                     </defs>
 
                     {/* Brutalist zero-blur shadow for the main frame */}
-                    <rect x="28" y="28" width="148" height="148" rx="16" fill="#000000" />
+                    <polygon
+                        points="44,24 164,24 184,44 184,164 164,184 44,184 24,164 24,44"
+                        fill="#000000"
+                    />
 
-                    {/* Outer Square Handles (Left & Right) */}
-                    {/* Left Handle */}
-                    <path d="M 24 75 L 16 80 L 16 120 L 24 125" fill="none" stroke="#000000" strokeWidth="6" strokeLinecap="round" />
-                    <path d="M 24 75 L 16 80 L 16 120 L 24 125" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="3.5" strokeLinecap="round" />
+                    {/* Main Beveled Frame Body */}
+                    <polygon
+                        points="40,20 160,20 180,40 180,160 160,180 40,180 20,160 20,40"
+                        fill="url(#gold-metallic-primary)"
+                        stroke="#000000"
+                        strokeWidth="4"
+                    />
 
-                    {/* Right Handle */}
-                    <path d="M 176 75 L 184 80 L 184 120 L 176 125" fill="none" stroke="#000000" strokeWidth="6" strokeLinecap="round" />
-                    <path d="M 176 75 L 184 80 L 184 120 L 176 125" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="3.5" strokeLinecap="round" />
+                    {/* Inner Asphalt Road Surface of the square */}
+                    <polygon
+                        points="46,26 154,26 174,46 174,154 154,174 46,174 26,154 26,46"
+                        fill="#1c1917"
+                        stroke="#000000"
+                        strokeWidth="2.5"
+                    />
 
-                    {/* Main Frame Body (Rounded Square) */}
-                    <rect x="24" y="24" width="152" height="152" rx="16" fill="url(#dark-metal-bg)" stroke="#000000" strokeWidth="4" />
+                    {/* Gold Corner Plates with Rivets */}
+                    {/* Top-Left Corner */}
+                    <polygon points="26,46 46,26 46,46" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="35" cy="35" r="2" fill="#cbd5e1" stroke="#000000" strokeWidth="0.8" />
 
-                    {/* Outer Gold Trim */}
-                    <rect x="28" y="28" width="144" height="144" rx="12" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="3.5" />
+                    {/* Top-Right Corner */}
+                    <polygon points="154,26 174,46 154,46" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="165" cy="35" r="2" fill="#cbd5e1" stroke="#000000" strokeWidth="0.8" />
 
-                    {/* Inner Gold Trim */}
-                    <rect x="34" y="34" width="132" height="132" rx="8" fill="none" stroke="url(#gold-metallic-secondary)" strokeWidth="1.5" />
+                    {/* Bottom-Left Corner */}
+                    <polygon points="26,154 46,174 46,154" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="35" cy="165" r="2" fill="#cbd5e1" stroke="#000000" strokeWidth="0.8" />
 
-                    {/* ── VERTICAL DANGER CHEVRON BANDS (Left & Right) ── */}
-                    {/* Left Band Background */}
-                    <rect x="37" y="37" width="14" height="126" fill="#080705" stroke="#000000" strokeWidth="1" />
-                    {/* Left Chevrons */}
-                    <path d="M 37 45 L 44 38 L 51 45 L 51 51 L 44 44 L 37 51 Z M 37 65 L 44 58 L 51 65 L 51 71 L 44 64 L 37 71 Z M 37 85 L 44 78 L 51 85 L 51 91 L 44 84 L 37 91 Z M 37 105 L 44 98 L 51 105 L 51 111 L 44 104 L 37 111 Z M 37 125 L 44 118 L 51 125 L 51 131 L 44 124 L 37 131 Z M 37 145 L 44 138 L 51 145 L 51 151 L 44 144 L 37 151 Z" fill="url(#gold-metallic-primary)" className="gold-chevron-left" />
+                    {/* Bottom-Right Corner */}
+                    <polygon points="154,174 174,154 154,154" fill="url(#gold-metallic-secondary)" stroke="#000000" strokeWidth="1.5" />
+                    <circle cx="165" cy="165" r="2" fill="#cbd5e1" stroke="#000000" strokeWidth="0.8" />
 
-                    {/* Right Band Background */}
-                    <rect x="149" y="37" width="14" height="126" fill="#080705" stroke="#000000" strokeWidth="1" />
-                    {/* Right Chevrons */}
-                    <path d="M 149 45 L 156 38 L 163 45 L 163 51 L 156 44 L 149 51 Z M 149 65 L 156 58 L 163 65 L 163 71 L 156 64 L 149 71 Z M 149 85 L 156 78 L 163 85 L 163 91 L 156 84 L 149 91 Z M 149 105 L 156 98 L 163 105 L 163 111 L 156 104 L 149 111 Z M 149 125 L 156 118 L 163 125 L 163 131 L 156 124 L 149 131 Z M 149 145 L 156 138 L 163 145 L 163 151 L 156 144 L 149 151 Z" fill="url(#gold-metallic-primary)" className="gold-chevron-right" />
+                    {/* ── LEFT TRAFFIC LIGHT CAPSULE ── */}
+                    <rect x="6" y="60" width="18" height="80" rx="9" fill="#000000" stroke="#000000" strokeWidth="4.5" />
+                    <rect x="6" y="60" width="18" height="80" rx="9" fill="#000000" stroke="url(#gold-metallic-primary)" strokeWidth="1.5" />
+                    {/* Left Lights */}
+                    <circle cx="15" cy="73" r="4.2" className="gold-light-red" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="15" cy="100" r="4.2" className="gold-light-yellow" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="15" cy="127" r="4.2" className="gold-light-green" stroke="#000000" strokeWidth="0.8" />
 
-                    {/* ── TOP PENTAGON RANK BADGE ── */}
-                    {/* Shadow */}
-                    <polygon points="82,18 122,18 122,36 102,46 82,36" fill="#000000" />
-                    {/* Pentagon Body */}
-                    <polygon points="80,16 120,16 120,34 100,44 80,34" fill="url(#dark-metal-bg)" stroke="#000000" strokeWidth="2.5" />
-                    {/* Gold Outline */}
-                    <polygon points="82,18 118,18 118,33 100,41 82,33" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="2" />
-                    {/* 3 Rising Chevrons */}
-                    <path d="M 92 24 L 100 18 L 108 24 L 108 28 L 100 22 L 92 28 Z" fill="url(#gold-metallic-primary)" />
-                    <path d="M 92 30 L 100 24 L 108 30 L 108 34 L 100 28 L 92 34 Z" fill="url(#gold-metallic-primary)" />
-                    <path d="M 92 36 L 100 30 L 108 36 L 108 40 L 100 34 L 92 40 Z" fill="url(#gold-metallic-primary)" />
+                    {/* ── RIGHT TRAFFIC LIGHT CAPSULE ── */}
+                    <rect x="176" y="60" width="18" height="80" rx="9" fill="#000000" stroke="#000000" strokeWidth="4.5" />
+                    <rect x="176" y="60" width="18" height="80" rx="9" fill="#000000" stroke="url(#gold-metallic-primary)" strokeWidth="1.5" />
+                    {/* Right Lights */}
+                    <circle cx="185" cy="73" r="4.2" className="gold-light-red" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="185" cy="100" r="4.2" className="gold-light-yellow" stroke="#000000" strokeWidth="0.8" />
+                    <circle cx="185" cy="127" r="4.2" className="gold-light-green" stroke="#000000" strokeWidth="0.8" />
 
-                    {/* ── BOTTOM ACCENT BRACKET ── */}
-                    <path d="M 80 176 L 120 176 L 125 182 L 115 186 L 85 186 L 75 182 Z" fill="url(#gold-metallic-primary)" stroke="#000000" strokeWidth="1.5" />
+                    {/* ── TOP WARNING DIAMOND SIGN ── */}
+                    <polygon points="100,4 118,22 100,40 82,22" fill="url(#sign-yellow-gradient)" stroke="#000000" strokeWidth="3" />
+                    <polygon points="100,7 115,22 100,37 85,22" fill="none" stroke="#000000" strokeWidth="1.2" />
+                    {/* UP Arrow inside top sign */}
+                    <path
+                        d="M 100 30 L 100 16 M 94 21 L 100 14 L 106 21"
+                        stroke="#000000"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                    />
+
+                    {/* ── BOTTOM ACCENT DIAMOND BADGE ── */}
+                    <polygon points="100,158 120,178 100,198 80,178" fill="#0c0a09" stroke="#000000" strokeWidth="3" />
+                    <polygon points="100,161 117,178 100,195 83,178" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="1.5" />
+                    {/* Gold Safety Shield inside bottom badge */}
+                    <path
+                        d="M 94 171 L 106 171 C 106 171 106 179 100 185 C 94 179 94 171 94 171 Z"
+                        fill="url(#gold-metallic-secondary)"
+                        stroke="#000000"
+                        strokeWidth="1"
+                    />
+                    {/* Tiny lightning bolt inside shield */}
+                    <path
+                        d="M 100 173 L 98 177 L 100 177 L 99 181 L 102 176 L 100 176 Z"
+                        fill="#000000"
+                        stroke="none"
+                    />
 
                     {/* ── CIRCULAR PHOTO CUTOUT FRAME ── */}
                     {/* Outer Gold Ring */}
-                    <circle cx="100" cy="100" r="48" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="3.5" />
+                    <circle cx="100" cy="100" r="48" fill="none" stroke="url(#gold-metallic-primary)" strokeWidth="3" />
                     {/* Inner Gold Ring */}
-                    <circle cx="100" cy="100" r="44" fill="none" stroke="url(#gold-metallic-secondary)" strokeWidth="1.5" />
+                    <circle cx="100" cy="100" r="44" fill="none" stroke="url(#gold-metallic-secondary)" strokeWidth="1" />
                     {/* Roadway Surface Ring */}
-                    <circle cx="100" cy="100" r="42" fill="#1c1917" stroke="#000000" strokeWidth="2.5" />
+                    <circle cx="100" cy="100" r="42" fill="url(#gold-road-asphalt)" stroke="#000000" strokeWidth="2" />
                     {/* White Lanes */}
-                    <circle cx="100" cy="100" r="38" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.75" />
+                    <circle cx="100" cy="100" r="38" fill="none" stroke="#ffffff" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.8" />
                 </svg>
 
                 {/* Sweeping gold shine overlay */}

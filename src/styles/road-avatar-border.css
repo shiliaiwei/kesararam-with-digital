@@ -1422,6 +1422,28 @@
     animation: trafficLightCycleGreen 6s infinite;
 }
 
+/* Traffic Light stack cycling animations for Gold */
+.gold-light-red {
+    fill: #7f1d1d;
+}
+.gold-avatar--animated .gold-light-red {
+    animation: trafficLightCycleRed 6s infinite;
+}
+
+.gold-light-yellow {
+    fill: #713f12;
+}
+.gold-avatar--animated .gold-light-yellow {
+    animation: trafficLightCycleYellow 6s infinite;
+}
+
+.gold-light-green {
+    fill: #14532d;
+}
+.gold-avatar--animated .gold-light-green {
+    animation: trafficLightCycleGreen 6s infinite;
+}
+
 /* Shared Traffic Light Delayed Cycle Keyframes */
 @keyframes trafficLightCycleRed {
     0%, 30% { fill: #ef4444; filter: drop-shadow(0 0 6px #ef4444); }
