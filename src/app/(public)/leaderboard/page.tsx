@@ -286,19 +286,90 @@ const PODIUM_CFG = [
   },
 ];
 
-function PodiumCard({ user, cfg, index, currentUser, onSelect, pulse }: {
+// Keyframes shared by all three podium celebrations. Each effect centers on the
+// avatar (the parent point is at its center) and radiates outward from behind it.
+const PODIUM_CELEBRATION_KEYFRAMES = `
+@keyframes lbBurst{0%{transform:translate(-50%,-50%) scale(.2) rotate(0deg);opacity:0}20%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.05) rotate(95deg);opacity:0}}
+.lb-burst{left:50%;top:50%;animation:lbBurst 1.4s cubic-bezier(.16,.85,.3,1.2) forwards}
+@keyframes lbRing{0%{transform:translate(-50%,-50%) scale(.3);opacity:.9}100%{transform:translate(-50%,-50%) scale(1.9);opacity:0}}
+.lb-ring{left:50%;top:50%;border-radius:9999px;animation:lbRing 1.4s ease-out forwards}
+@keyframes lbRise{0%{transform:translate(calc(-50% + var(--x)),-50%) translateY(16px) scale(.3);opacity:0}25%{opacity:1}100%{transform:translate(calc(-50% + var(--x)),-50%) translateY(-58px) scale(1) rotate(18deg);opacity:0}}
+.lb-rise{left:50%;top:50%;animation:lbRise 1.6s ease-out forwards}
+@keyframes lbPop{0%{transform:translate(-50%,-50%) scale(0);opacity:0}30%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.7) rotate(40deg);opacity:0}}
+.lb-pop{left:50%;top:50%;animation:lbPop 1.25s ease-out forwards}
+`;
+
+/**
+ * Distinct celebration per podium rank, all radiating from behind the avatar:
+ *   1st — golden star burst + expanding gold halo (grandest).
+ *   2nd — silver sparkles drifting upward.
+ *   3rd — bronze star pop + bronze halo (subtlest).
+ */
+function renderPodiumCelebration(rank: number, isFirst: boolean) {
+  if (rank === 1) {
+    const d = isFirst ? 58 : 50;
+    return (
+      <>
+        <style>{PODIUM_CELEBRATION_KEYFRAMES}</style>
+        <span className="lb-ring absolute" style={{ width: isFirst ? 104 : 88, height: isFirst ? 104 : 88, border: "3px solid #eab308" }} />
+        {Array.from({ length: 10 }).map((_, i) => {
+          const a = (i / 10) * Math.PI * 2;
+          return (
+            <Star key={i} size={isFirst ? 16 : 13} strokeWidth={1.5} className="lb-burst absolute"
+              style={{ ["--dx" as string]: `${Math.cos(a) * d}px`, ["--dy" as string]: `${Math.sin(a) * d}px`, animationDelay: `${i * 0.03}s`, color: "#eab308", fill: "#facc15" } as React.CSSProperties} />
+          );
+        })}
+      </>
+    );
+  }
+  if (rank === 2) {
+    return (
+      <>
+        <style>{PODIUM_CELEBRATION_KEYFRAMES}</style>
+        {Array.from({ length: 7 }).map((_, i) => {
+          const x = (i - 3) * 13;
+          return (
+            <Sparkles key={i} size={13} strokeWidth={1.75} className="lb-rise absolute"
+              style={{ ["--x" as string]: `${x}px`, animationDelay: `${i * 0.1}s`, color: "#64748b", fill: "#cbd5e1" } as React.CSSProperties} />
+          );
+        })}
+      </>
+    );
+  }
+  // rank 3 — bronze pop + halo
+  const d = 42;
+  return (
+    <>
+      <style>{PODIUM_CELEBRATION_KEYFRAMES}</style>
+      <span className="lb-ring absolute" style={{ width: 78, height: 78, border: "3px solid #cd7c3a" }} />
+      {Array.from({ length: 6 }).map((_, i) => {
+        const a = (i / 6) * Math.PI * 2;
+        return (
+          <Star key={i} size={12} strokeWidth={1.75} className="lb-pop absolute"
+            style={{ ["--dx" as string]: `${Math.cos(a) * d}px`, ["--dy" as string]: `${Math.sin(a) * d}px`, animationDelay: `${i * 0.05}s`, color: "#cd7c3a", fill: "#cd7c3a" } as React.CSSProperties} />
+        );
+      })}
+    </>
+  );
+}
+
+function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, celebrateTick }: {
   user: LeaderboardUser | undefined;
   cfg: typeof PODIUM_CFG[number];
   index: number;
   currentUser: any | null;
   onSelect: (user: LeaderboardUser) => void;
-  /** Increments every 10s — re-keys the star burst so it replays. */
-  pulse: number;
+  /** The rank (1|2|3) currently taking its turn to celebrate. */
+  celebrateRank: number;
+  /** Ticker value — re-keys the celebration so it replays each turn. */
+  celebrateTick: number;
 }) {
   const { lang } = useLang();
   const kh = lang === "kh";
   const cardRef = useRef<HTMLDivElement>(null);
   const isFirst = cfg.rank === 1;
+  // This card's turn to celebrate (one rank at a time, rotated by the parent ticker).
+  const isCelebrating = !!user && cfg.rank === celebrateRank;
   const name = user ? (user.displayName || user.username) : "—";
   const userAvatar = (currentUser && user && user.id === currentUser.id) ? currentUser.avatar : (user?.avatar ?? null);
   const initials = (name && name !== "—" ? name : "?").slice(0, 2).toUpperCase();
@@ -324,39 +395,6 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, pulse }: {
         className={`relative z-20 mb-[-30px] flex flex-col items-center select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
         onClick={() => { if (linkable && user) onSelect(user); }}
       >
-        {/* Premium star burst — re-keyed by `pulse` so it pops outward every 10s. */}
-        {user && (
-          <div
-            key={pulse}
-            aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 z-30"
-            style={{ transform: "translate(-50%, -50%)" }}
-          >
-            <style>{`@keyframes lbStarBurst{0%{transform:translate(0,0) scale(0) rotate(0deg);opacity:0}25%{opacity:1}60%{transform:translate(var(--dx),var(--dy)) scale(1) rotate(35deg);opacity:1}100%{transform:translate(calc(var(--dx)*1.25),calc(var(--dy)*1.25)) scale(.5) rotate(60deg);opacity:0}}.lb-star{animation:lbStarBurst 1.15s cubic-bezier(.18,.9,.32,1.2) forwards}`}</style>
-            {Array.from({ length: 8 }).map((_, i) => {
-              const ang = (i / 8) * Math.PI * 2;
-              const dist = isFirst ? 52 : 44;
-              const dx = Math.cos(ang) * dist;
-              const dy = Math.sin(ang) * dist;
-              return (
-                <Star
-                  key={i}
-                  size={isFirst ? 14 : 11}
-                  strokeWidth={2}
-                  className="lb-star absolute text-yellow-400"
-                  style={{
-                    // CSS custom props consumed by the keyframe
-                    ["--dx" as string]: `${dx}px`,
-                    ["--dy" as string]: `${dy}px`,
-                    animationDelay: `${i * 0.035}s`,
-                    fill: "#facc15",
-                  } as React.CSSProperties}
-                />
-              );
-            })}
-          </div>
-        )}
-
         {isFirst && (
           <div
             className="absolute -top-9 left-1/2 z-20 flex h-9 w-9 -translate-x-1/2 items-center justify-center border-[3px] border-black bg-yellow-400"
@@ -368,18 +406,28 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, pulse }: {
 
         {user ? (
           <div className="relative transition-transform duration-200 hover:-translate-y-1">
-            <RankedAvatarRing
-              lifetimePoints={user.lifetimePoints}
-              size={isFirst ? 82 : 66}
-              index={index}
-            >
-              <Avatar
-                url={userAvatar}
-                name={name}
+            {/* Celebration — rendered BEHIND the avatar (z-0), centered on it, so the
+                effect radiates out from behind the badge border. Re-keyed by the
+                ticker so it replays on this card's turn. Each rank has its own style. */}
+            {isCelebrating && (
+              <div key={celebrateTick} aria-hidden className="pointer-events-none absolute left-1/2 top-1/2" style={{ zIndex: 0 }}>
+                {renderPodiumCelebration(cfg.rank, isFirst)}
+              </div>
+            )}
+            <div className="relative z-10">
+              <RankedAvatarRing
+                lifetimePoints={user.lifetimePoints}
                 size={isFirst ? 82 : 66}
-                changedAt={user.avatarChangedAt}
-              />
-            </RankedAvatarRing>
+                index={index}
+              >
+                <Avatar
+                  url={userAvatar}
+                  name={name}
+                  size={isFirst ? 82 : 66}
+                  changedAt={user.avatarChangedAt}
+                />
+              </RankedAvatarRing>
+            </div>
           </div>
         ) : (
           <div
@@ -1059,8 +1107,10 @@ export default function LeaderboardPage() {
   // Client-side sort of the rankings table (the server returns rank order; this
   // lets the viewer re-sort the loaded page by another stat without a refetch).
   const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
-  // Periodic premium pulse on the podium (star burst) — toggles every 10s.
-  const [podiumPulse, setPodiumPulse] = useState(0);
+  // Podium celebration ticker — advances every 7s and rotates through the ranks
+  // (1 → 2 → 3 → 1 …) so only ONE podium card celebrates at a time, each with its
+  // own style. activeRank = (tick % 3) + 1.
+  const [celebrateTick, setCelebrateTick] = useState(0);
   const hasActiveFilters = gameType !== "all";
 
   const fetchLeaderboard = useCallback(async () => {
@@ -1186,9 +1236,10 @@ export default function LeaderboardPage() {
     return () => clearInterval(t);
   }, []);
 
-  // Premium podium pulse — fire a star burst on the top 3 every 10 seconds.
+  // Premium podium celebration — advance the rank ticker every 7 seconds so the
+  // top 3 take turns celebrating (1st, then 2nd, then 3rd), never all at once.
   useEffect(() => {
-    const t = setInterval(() => setPodiumPulse(p => p + 1), 10000);
+    const t = setInterval(() => setCelebrateTick(p => p + 1), 7000);
     return () => clearInterval(t);
   }, []);
 
@@ -1340,7 +1391,7 @@ export default function LeaderboardPage() {
                   { cfg: PODIUM_CFG[1], user: top3[0] },
                   { cfg: PODIUM_CFG[2], user: top3[2] },
                 ].map(({ cfg, user }, i) => (
-                  <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} pulse={podiumPulse} />
+                  <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} celebrateRank={(celebrateTick % 3) + 1} celebrateTick={celebrateTick} />
                 ))}
                 </div>
               </div>
