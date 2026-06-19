@@ -3,10 +3,13 @@
  * Small-score, per-question scoring for the KWD road-safety quiz, feeding the
  * 6-tier Road Safety Rank System (see `src/lib/ranks.ts`).
  *
- * DESIGN INTENT — keep points SMALL and scarce. Each question gives 0–3 points:
+ * DESIGN INTENT — keep points SMALL and scarce. Each question gives 0–2 points:
  *   base (correct)      +1
- *   speed (correct, first half of the time limit)   +1
  *   streak (correct, already on a run of ≥1)         +1   (never more than +1)
+ *
+ * NOTE: the speed bonus was REMOVED (2026-06-19) — timing no longer affects the
+ * score on any game type. `speedBonus` stays in the result shape but is always 0
+ * for backward compatibility with stored columns. Max per question = 2.
  *
  * Pure TypeScript, no UI, no DB — reusable anywhere. Rank lookup is delegated to
  * `ranks.ts` so thresholds live in exactly one place.
@@ -30,15 +33,15 @@ export interface QuestionScoreInput {
 export interface QuestionScoreResult {
     /** +1 if correct, else 0 */
     baseScore: number;
-    /** +1 if correct AND answered in the first half, else 0 */
+    /** DEPRECATED — speed bonus removed; always 0 (kept for column compatibility) */
     speedBonus: number;
     /** +1 if correct AND already on a streak (currentCorrectStreak ≥ 1), else 0 */
     streakBonus: number;
-    /** 0 | 1 | 2 | 3 — base + speed + streak (0 if wrong) */
+    /** 0 | 1 | 2 — base + streak (0 if wrong) */
     questionScore: number;
     /** streak AFTER this question (currentStreak + 1 if correct, else 0) */
     newCorrectStreak: number;
-    /** did the answer arrive within the first half of the time limit? */
+    /** did the answer arrive within the first half of the time limit? (informational only — no longer scored) */
     answeredInFirstHalf: boolean;
     /** was the +1 streak bonus actually applied? */
     wasStreakBonusApplied: boolean;
@@ -52,7 +55,7 @@ export interface QuizAnswer {
 }
 
 export interface QuizScoreResult {
-    /** sum of every questionScore (0–3 each) */
+    /** sum of every questionScore (0–2 each) */
     totalScore: number;
     correctAnswers: number;
     wrongAnswers: number;
@@ -67,12 +70,14 @@ export interface QuizScoreResult {
 /* ─────────────────────────── Per-question score ────────────────────────── */
 
 /**
- * Score a single question. 0–3 points:
+ * Score a single question. 0–2 points:
  *   baseScore   = isCorrect ? 1 : 0
- *   speedBonus  = isCorrect && answered in first half ? 1 : 0
  *   streakBonus = isCorrect && currentCorrectStreak >= 1 ? 1 : 0  (max +1)
- *   questionScore = isCorrect ? base + speed + streak : 0
+ *   questionScore = isCorrect ? base + streak : 0
  *   newCorrectStreak = isCorrect ? currentCorrectStreak + 1 : 0
+ *
+ * Speed bonus removed (2026-06-19): timing never affects the score. `speedBonus`
+ * is always 0 and `answeredInFirstHalf` is informational only.
  */
 export function calculateQuestionScore(input: QuestionScoreInput): QuestionScoreResult {
     const { isCorrect, answerTimeSeconds, questionTimeLimitSeconds } = input;
@@ -84,8 +89,8 @@ export function calculateQuestionScore(input: QuestionScoreInput): QuestionScore
         ? Math.max(0, Math.floor(input.currentCorrectStreak))
         : 0;
 
-    // First half = answered at or before half the time limit. Non-finite or
-    // out-of-range clocks (NaN, Infinity, negatives) never qualify for the bonus.
+    // First half = answered at or before half the time limit. Informational only —
+    // it no longer changes the score (the speed bonus was removed).
     const safeLimit = Number.isFinite(questionTimeLimitSeconds) ? questionTimeLimitSeconds : 0;
     const safeAnswerTime = Number.isFinite(answerTimeSeconds) ? answerTimeSeconds : Infinity;
     const answeredInFirstHalf =
@@ -94,14 +99,14 @@ export function calculateQuestionScore(input: QuestionScoreInput): QuestionScore
     // Rule 1 — base answer score.
     const baseScore = isCorrect ? 1 : 0;
 
-    // Rule 2 — speed bonus (only for correct, fast answers).
-    const speedBonus = isCorrect && answeredInFirstHalf ? 1 : 0;
+    // Rule 2 — speed bonus REMOVED. Always 0 (kept for result-shape compatibility).
+    const speedBonus = 0;
 
     // Rule 3 — streak bonus (only for correct answers already on a run; max +1).
     const streakBonus = isCorrect && currentCorrectStreak >= 1 ? 1 : 0;
 
-    // Rule 4 — final question score (0 if wrong).
-    const questionScore = isCorrect ? baseScore + speedBonus + streakBonus : 0;
+    // Rule 4 — final question score (0 if wrong). Max 2 = base + streak.
+    const questionScore = isCorrect ? baseScore + streakBonus : 0;
 
     // Streak grows on correct, resets to 0 on wrong.
     const newCorrectStreak = isCorrect ? currentCorrectStreak + 1 : 0;

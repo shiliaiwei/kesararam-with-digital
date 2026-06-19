@@ -6,32 +6,33 @@
 > Keep scoring logic separate from UI. Coexists with the legacy store-points
 > engine; this is the NEW system, not yet live.
 
-## Core rule: keep points SMALL — each question gives 0, 1, 2, or 3 points
+## Core rule: keep points SMALL — each question gives 0, 1, or 2 points
+
+> **Speed bonus REMOVED (2026-06-19).** Timing no longer affects the score on ANY
+> game type (live, solo, daily, priority puzzle, kid arcade, legacy quiz/challenge).
+> Each question is **base + streak**, max **2**. `speedBonus` is kept in the result
+> shape but is always `0` for stored-column compatibility.
 
 | Component | Value | When |
 |-----------|-------|------|
 | `baseScore` | +1 | answer is correct (else 0) |
-| `speedBonus` | +1 | correct AND answered in the **first half** of the time limit |
 | `streakBonus` | +1 | correct AND already on a streak (`currentCorrectStreak ≥ 1`) — **max +1, never more** |
 
 ```
 baseScore       = isCorrect ? 1 : 0
-answeredInFirstHalf = answerTimeSeconds <= questionTimeLimitSeconds / 2   (and limit > 0)
-speedBonus      = isCorrect && answeredInFirstHalf ? 1 : 0
 streakBonus     = isCorrect && currentCorrectStreak >= 1 ? 1 : 0
-questionScore   = isCorrect ? baseScore + speedBonus + streakBonus : 0   // 0..3
-newCorrectStreak= isCorrect ? currentCorrectStreak + 1 : 0               // wrong → reset to 0
+questionScore   = isCorrect ? baseScore + streakBonus : 0                // 0..2
+newCorrectStreak= isCorrect ? currentCorrectStreak + 1 : 0              // wrong → reset to 0
+speedBonus      = 0   // removed; timing no longer scores
 ```
 
 Per-question outcomes:
 - Wrong → **0** (streak resets to 0; next correct starts a fresh streak).
-- Correct, slow, no streak → **1**
-- Correct, fast, no streak → **2**
-- Correct, slow, with streak → **2**
-- Correct, fast, with streak → **3**
+- Correct, no streak → **1** (regardless of how fast)
+- Correct, with streak → **2** (regardless of how fast)
 
-Edge cases: answering exactly at the half mark counts as first-half (≤). Timeout /
-no answer = `answerTimeSeconds ≥ limit` → no speed bonus. Negative streak coerced to 0.
+Edge cases: `answeredInFirstHalf` is still reported (informational) but never adds
+points. Timing is irrelevant to the score. Negative streak coerced to 0.
 
 ## Functions (`src/lib/quiz-scoring.ts`)
 
@@ -46,10 +47,10 @@ no answer = `answerTimeSeconds ≥ limit` → no speed bonus. Negative streak co
 ## Intended balance — do NOT inflate
 
 40-question live quiz:
-- All correct + all fast = `2 + 39×3` = **119** (max).
-- All correct + all slow = `1 + 39×2` = **79**.
+- All correct = `1 + 39×2` = **79** (max — first correct has no streak yet, then +2 each).
+- Timing has no effect on the total (speed bonus removed).
 
-These caps are deliberate (scarce points → each one feels earned). Don't raise them.
+This cap is deliberate (scarce points → each one feels earned). Don't raise it.
 
 ## Rank connection
 

@@ -86,21 +86,9 @@ export async function POST(request: NextRequest) {
     
     const isCorrect = userAnswer === correctAnswerEn || userAnswer === correctAnswerKm;
 
-    // 7. Calculate points
-    let points = 0;
-    if (isCorrect) {
-      // Base points from content configuration
-      points = content.scorePoints;
-
-      // Add time bonus for challenge mode
-      if (attempt.mode === "challenge" && timeSpent && content.timeLimit) {
-        if (timeSpent < content.timeLimit) {
-          const timeRatio = 1 - timeSpent / content.timeLimit;
-          const timeBonus = Math.floor(content.scorePoints * timeRatio * 0.5); // Up to 50% bonus
-          points += timeBonus;
-        }
-      }
-    }
+    // 7. Calculate points — speed/time bonus removed (2026-06-19); timing never
+    // changes the score on any quiz. Correct = base points only.
+    const points = isCorrect ? content.scorePoints : 0;
 
     // 8. Create quiz_answers record
     const [answerRecord] = await db

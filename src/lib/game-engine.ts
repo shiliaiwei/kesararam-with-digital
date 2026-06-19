@@ -67,19 +67,19 @@ export const SOLO_COMING_SOON_NOTE = {
  * type scores through it: live sessions, solo practice, daily challenge, priority
  * puzzle, and kid arcade games — so solo and live share ONE formula.
  *
- * ── KWD small-score method (0–3 per question) ────────────────────────────────
+ * ── KWD small-score method (0–2 per question) ────────────────────────────────
  * Delegates to `calculateQuestionScore` in src/lib/quiz-scoring.ts (the locked
  * research method — see .claude/skills/kwd-brand-design/references/quiz-scoring.md):
  *
  *   baseScore   = correct ? 1 : 0
- *   speedBonus  = correct AND answered in the first half of the time → 1 (speed mode only)
  *   streakBonus = correct AND already on a run (currentStreak ≥ 2) → 1   (max +1)
- *   totalPoints = base + speed + streak  →  0, 1, 2, or 3
+ *   totalPoints = base + streak  →  0, 1, or 2
  *
- * Difficulty no longer changes the base (every correct answer = 1). Equal mode has
- * no timer, so it never grants the speed bonus. Wrong answers are 0 and reset the
- * streak upstream. There is NO variable/dopamine bonus in the score anymore — the
- * field is kept at 0 for shape compatibility. Points accumulate into the user's
+ * Difficulty no longer changes the base (every correct answer = 1). The SPEED BONUS
+ * was removed (2026-06-19) — timing/scoringMode no longer affect the score, so
+ * "speed" and "equal" modes score identically. Wrong answers are 0 and reset the
+ * streak upstream. There is NO variable/dopamine bonus in the score anymore — both
+ * fields are kept at 0 for shape compatibility. Points accumulate into the user's
  * rank score (6-tier system, src/lib/ranks.ts).
  *
  * ⚠️ One legacy path does NOT use it — the old quiz/challenge routes
@@ -135,36 +135,23 @@ export function calculateScore(params: {
   questionId?: string | number | null;
   enableVariableReward?: boolean;
 }): ScoreResult {
-  // Speed bonus only applies in timed "speed" mode. Map the game clock into the
-  // shared per-question method: response time = total − remaining, with the same
-  // 500ms floor so ultra-fast taps don't game the first-half check.
-  const speedApplies = params.scoringMode === "speed" && params.totalTimeMs > 0;
-
-  let answerTimeSeconds = Number.POSITIVE_INFINITY; // equal mode → never "first half"
-  let questionTimeLimitSeconds = 0;
-  if (speedApplies) {
-    const totalTimeMs = Math.max(0, params.totalTimeMs);
-    const safeRemaining = Math.max(0, Math.min(params.remainingTimeMs, totalTimeMs));
-    const responseTimeMs = Math.max(MIN_RESPONSE_MS, totalTimeMs - safeRemaining);
-    answerTimeSeconds = responseTimeMs / 1000;
-    questionTimeLimitSeconds = totalTimeMs / 1000;
-  }
-
+  // Speed bonus removed (2026-06-19): timing and scoringMode no longer affect the
+  // score. Pass non-timed values so the shared method scores base + streak only.
   // currentStreak is 1-based (1 = first correct); the shared method wants the
   // streak BEFORE this answer, so subtract one.
   const q = calculateQuestionScore({
     isCorrect: params.isCorrect,
-    answerTimeSeconds,
-    questionTimeLimitSeconds,
+    answerTimeSeconds: Number.POSITIVE_INFINITY,
+    questionTimeLimitSeconds: 0,
     currentCorrectStreak: Math.max(0, params.currentStreak - 1),
   });
 
   return {
     baseScore: q.baseScore,
-    speedBonus: q.speedBonus,
+    speedBonus: q.speedBonus, // always 0 now
     streakBonus: q.streakBonus,
     variableDopamineBonus: 0, // variable/dopamine bonus no longer affects the score
-    totalPoints: q.questionScore, // 0 | 1 | 2 | 3
+    totalPoints: q.questionScore, // 0 | 1 | 2
   };
 }
 

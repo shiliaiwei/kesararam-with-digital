@@ -116,28 +116,13 @@ export async function POST(request: NextRequest) {
     // 8. Check if answer is correct (case-insensitive comparison)
     const isCorrect = answer.trim().toLowerCase() === content.answerEn.trim().toLowerCase();
 
-    // 9. Calculate points with time bonus
-    let points = 0;
-    let timeBonus = 0;
+    // 9. Calculate points — speed/time bonus removed (2026-06-19); timing never
+    //    changes the score on any game. Correct = base points only.
+    const points = isCorrect ? content.scorePoints : 0;
+    const timeBonus = 0; // kept at 0 for column-shape compatibility
 
-    if (isCorrect) {
-      const basePoints = content.scorePoints;
-      points = basePoints;
-
-      // Calculate time bonus: up to 50% bonus for quick answers
-      // Formula: timeBonus = basePoints * (1 - timeSpent/timeLimit) * 0.5
-      const timeLimit = content.timeLimit;
-      if (timeSpent < timeLimit) {
-        const timeRatio = 1 - (timeSpent / timeLimit);
-        timeBonus = Math.floor(basePoints * timeRatio * 0.5);
-        points += timeBonus;
-      }
-    }
-
-    // 10. Record the answer. Store the FULL points earned (base + time bonus) so
-    //     the per-answer row reconciles with participant.score, which is also
-    //     incremented by `points` below. `timeBonus` is kept as a separate column
-    //     for breakdown/analytics.
+    // 10. Record the answer. `timeBonus` column is retained (always 0) so the
+    //     per-answer row still reconciles with participant.score below.
     await db.insert(sessionAnswers).values({
       sessionId: parseInt(sessionId),
       studentId,
