@@ -127,9 +127,15 @@ export function MythicAvatarBorder({
                             <polygon points={pts} fill="none" stroke="#e9d5ff" strokeWidth="0.7" strokeLinejoin="round" opacity="0.5" />
                         </g>
                     ))}
-                    {/* small lightning glyphs on the side panels */}
-                    <path d="M 40 78 L 35 88 L 39 88 L 37 96 L 44 86 L 40 86 L 43 78 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="0.5" />
-                    <path d="M 160 78 L 165 88 L 161 88 L 163 96 L 156 86 L 160 86 L 157 78 Z" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="0.5" />
+                    {/* traffic-light stacks on the side panels (strobing) */}
+                    {[38, 162].map((cx) => (
+                        <g key={`mtl-${cx}`}>
+                            <rect x={cx - 6.5} y="82" width="13" height="38" rx="6" fill="#0c0a14" stroke="url(#mythic-purple-metal)" strokeWidth="1.4" />
+                            <circle cx={cx} cy="90" r="3.5" className="mythic-light-red" stroke="#000000" strokeWidth="0.7" />
+                            <circle cx={cx} cy="101" r="3.5" className="mythic-light-yellow" stroke="#000000" strokeWidth="0.7" />
+                            <circle cx={cx} cy="112" r="3.5" className="mythic-light-green" stroke="#000000" strokeWidth="0.7" />
+                        </g>
+                    ))}
 
                     {/* ── ASPHALT ROAD RING with white dashed lane (around the photo) ── */}
                     <circle cx="100" cy="100" r="54" fill="url(#mythic-asphalt)" />
@@ -144,6 +150,9 @@ export function MythicAvatarBorder({
                     {[[61, 14], [100, 5], [139, 14]].map(([cx, cy]) => (
                         <circle key={`tip-${cx}`} cx={cx} cy={cy} r="3" fill="url(#mythic-gold-metal)" stroke="#000000" strokeWidth="0.8" />
                     ))}
+                    {/* police strobe lights on the crown band (red + blue) */}
+                    <rect x="74" y="33" width="8" height="4.4" rx="1.2" className="mythic-siren-red" stroke="#000000" strokeWidth="0.5" />
+                    <rect x="118" y="33" width="8" height="4.4" rx="1.2" className="mythic-siren-blue" stroke="#000000" strokeWidth="0.5" />
 
                     {/* ── MYTHIC NAMEPLATE BANNER (purple + gold) ── */}
                     <polygon points="54,150 146,150 152,162 146,174 54,174 48,162" fill="#000000" transform="translate(1.5,2)" />

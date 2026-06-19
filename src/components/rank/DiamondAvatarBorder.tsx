@@ -170,16 +170,20 @@ export function DiamondAvatarBorder({
                         <polygon points="12,-12 -24,-24 2,-2" fill="#0891b2" stroke="#000000" strokeWidth="0.8" />
                     </g>
 
-                    {/* ── SIDE CHEVRONS STACKS (Left & Right) ── */}
-                    {/* Left chevrons pointing down */}
-                    <polygon points="16,70 28,80 40,70 40,76 28,86 16,76" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.2" />
-                    <polygon points="16,90 28,100 40,90 40,96 28,106 16,96" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.2" />
-                    <polygon points="16,110 28,120 40,110 40,116 28,126 16,116" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.2" />
+                    {/* ── SIDE TRAFFIC-LIGHT CAPSULES (strobing red/yellow/green) ── */}
+                    {[35, 165].map((cx) => (
+                        <g key={`tl-${cx}`}>
+                            <rect x={cx - 8} y="74" width="16" height="52" rx="7" fill="#06121f" stroke="url(#silver-metallic)" strokeWidth="1.8" />
+                            <circle cx={cx} cy="84" r="4.6" className="diamond-light-red" stroke="#000000" strokeWidth="0.9" />
+                            <circle cx={cx} cy="100" r="4.6" className="diamond-light-yellow" stroke="#000000" strokeWidth="0.9" />
+                            <circle cx={cx} cy="116" r="4.6" className="diamond-light-green" stroke="#000000" strokeWidth="0.9" />
+                            <circle cx={cx - 1.6} cy="82.4" r="1.4" fill="#ffffff" opacity="0.6" />
+                        </g>
+                    ))}
 
-                    {/* Right chevrons pointing down */}
-                    <polygon points="184,70 172,80 160,70 160,76 172,86 184,76" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.2" />
-                    <polygon points="184,90 172,100 160,90 160,96 172,106 184,96" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.2" />
-                    <polygon points="184,110 172,120 160,110 160,116 172,126 184,116" fill="url(#diamond-blue-primary)" stroke="#000000" strokeWidth="1.2" />
+                    {/* Police strobe bar flanking the top crest (red + blue) */}
+                    <rect x="64" y="18" width="11" height="6" rx="1.6" className="diamond-police-red" stroke="#000000" strokeWidth="0.7" />
+                    <rect x="125" y="18" width="11" height="6" rx="1.6" className="diamond-police-blue" stroke="#000000" strokeWidth="0.7" />
 
                     {/* ── TOP PREMIUM DIAMOND EMBLEM (WITH ROUNDABOUT ARROWS) ── */}
                     <polygon points="100,4 120,24 100,44 80,24" fill="url(#silver-metallic)" stroke="#000000" strokeWidth="3" />
@@ -220,13 +224,9 @@ export function DiamondAvatarBorder({
                 {/* Side crystal shards shimmer/glow */}
                 <div className="diamond-avatar__crystal-shimmer" aria-hidden="true" />
 
-                {/* Side glowing chevrons sliding up */}
+                {/* Side glowing accents */}
                 <div className="diamond-avatar__arrow-glow diamond-avatar__arrow-glow--left" aria-hidden="true" />
                 <div className="diamond-avatar__arrow-glow diamond-avatar__arrow-glow--right" aria-hidden="true" />
-
-                {/* Bottom-left and bottom-right warning sign hazard glows */}
-                <div className="diamond-avatar__left-sign-glow" aria-hidden="true" />
-                <div className="diamond-avatar__right-sign-glow" aria-hidden="true" />
 
                 {/* Protected profile photo window in the center */}
                 <div className="diamond-avatar__photo">

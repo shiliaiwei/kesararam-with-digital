@@ -1344,6 +1344,12 @@
     animation: trafficLightCycleGreen 6s infinite;
 }
 
+/* Diamond police strobe bar (reuses the Mythic strobe keyframes). */
+.diamond-police-red { fill: #7f1d1d; }
+.diamond-avatar--animated .diamond-police-red { animation: mythicPoliceRedStrobe 1.6s infinite; }
+.diamond-police-blue { fill: #1e3a8a; }
+.diamond-avatar--animated .diamond-police-blue { animation: mythicPoliceBlueStrobe 1.6s infinite; }
+
 /* Traffic Light stack cycling animations for Gold */
 .gold-light-red {
     fill: #7f1d1d;
