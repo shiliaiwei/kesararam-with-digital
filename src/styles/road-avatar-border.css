@@ -338,7 +338,7 @@
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    clip-path: polygon(30% 5%, 70% 5%, 95% 30%, 95% 70%, 70% 95%, 30% 95%, 5% 70%, 5% 30%);
+    clip-path: polygon(25% 7.5%, 75% 7.5%, 92.5% 25%, 92.5% 75%, 75% 92.5%, 25% 92.5%, 7.5% 75%, 7.5% 25%);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 70%);
     background-size: 300% 300%;
     background-position: 150% 0;
