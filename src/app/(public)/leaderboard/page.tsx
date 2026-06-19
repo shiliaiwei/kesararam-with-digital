@@ -91,10 +91,10 @@ function getProvinceKh(provinceEn: string | null | undefined): string {
 // all-time, all-sources. The game-mode filter is the only scope control now.
 
 // Sort options for the rankings table (client-side re-sort of the loaded page).
-// "Live Score" is a product term — never translated to Khmer (brand rule).
+// "Road Points" is a product term — never translated to Khmer (brand rule).
 const SORT_TABS: { id: "rank" | "live" | "games" | "acc"; en: string; kh: string }[] = [
   { id: "rank",  en: "Rank",       kh: "ចំណាត់ថ្នាក់" },
-  { id: "live",  en: "Live Score", kh: "Live Score" },
+  { id: "live",  en: "Road Points", kh: "Road Points" },
   { id: "games", en: "Games",      kh: "ហ្គេម" },
   { id: "acc",   en: "Accuracy",   kh: "ត្រឹមត្រូវ" },
 ];
@@ -1525,11 +1525,11 @@ export default function LeaderboardPage() {
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
                   <span className="col-span-2 sm:col-span-1 text-yellow-400">#</span>
                   <span className="col-span-6 sm:col-span-5 text-yellow-400">{kh ? "សិស្ស" : "Player"}</span>
-                  {/* Score column: overall = Live Score; a game filter swaps it to that
-                      game's total score. "Live Score" is never translated to Khmer. */}
+                  {/* Score column: overall = Road Points; a game filter swaps it to that
+                      game's total score. "Road Points" is never translated to Khmer. */}
                   <span className="col-span-4 sm:col-span-3 flex items-center justify-start gap-1 text-yellow-400">
                     {gameType === "all"
-                      ? (<><Gift size={11} strokeWidth={3} />Live Score</>)
+                      ? (<><Gift size={11} strokeWidth={3} />Road Points</>)
                       : (kh ? "ពិន្ទុ" : "Score")}
                   </span>
                   <span className="col-span-1 text-center text-zinc-500 hidden sm:block" title={kh ? "ចំនួនលេងសរុប" : "Total games played"}>{kh ? "ហ្គេម" : "Games"}</span>
@@ -1686,8 +1686,8 @@ export default function LeaderboardPage() {
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "Live Score = អាចដោះបាន · ចំណាត់ថ្នាក់តាម Live Score · ហ្គេម = ចំនួនលេងសរុប · ត្រឹមត្រូវ = មធ្យមភាគ"
-                  : "Live Score = claimable · Ranked by Live Score · Games = total plays · Acc = avg correct"}
+                  ? "Road Points = អាចដោះបាន · ចំណាត់ថ្នាក់តាម Road Points · ហ្គេម = ចំនួនលេងសរុប · ត្រឹមត្រូវ = មធ្យមភាគ"
+                  : "Road Points = claimable · Ranked by Road Points · Games = total plays · Acc = avg correct"}
               </p>
 
             </div>
