@@ -455,7 +455,7 @@
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    clip-path: polygon(15% 5%, 85% 5%, 95% 50%, 85% 95%, 15% 95%, 5% 50%);
+    clip-path: inset(7% round 15%);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 70%);
     background-size: 300% 300%;
     background-position: 150% 0;

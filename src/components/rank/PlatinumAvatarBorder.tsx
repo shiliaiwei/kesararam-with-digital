@@ -57,7 +57,7 @@ export function PlatinumAvatarBorder({
             style={vars}
         >
             <div className="platinum-avatar__plate">
-                {/* Scalable SVG Frame instead of a static PNG */}
+                {/* Premium brushed-silver squircle frame (scalable SVG, no PNG). */}
                 <svg
                     className="platinum-avatar__frame-img"
                     viewBox="0 0 200 200"
@@ -66,85 +66,110 @@ export function PlatinumAvatarBorder({
                     aria-hidden="true"
                 >
                     <defs>
-                        {/* Blue Metallic Gradient */}
+                        {/* Brushed silver/platinum with an animated highlight sweep. */}
+                        <linearGradient id="platinum-silver-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#f8fafc" />
+                            <stop offset="35%" stopColor="#cbd5e1" />
+                            <stop offset="50%" stopColor="#ffffff">
+                                <animate attributeName="offset" values="0;1;0" dur="3.2s" repeatCount="indefinite" />
+                            </stop>
+                            <stop offset="65%" stopColor="#94a3b8" />
+                            <stop offset="100%" stopColor="#475569" />
+                        </linearGradient>
+                        {/* Vertical silver bevel for raised plates. */}
+                        <linearGradient id="platinum-silver-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#f8fafc" />
+                            <stop offset="48%" stopColor="#cbd5e1" />
+                            <stop offset="100%" stopColor="#64748b" />
+                        </linearGradient>
+                        {/* Blue metallic accent with animated sweep. */}
                         <linearGradient id="platinum-blue-metal" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="#3b82f6" />
                             <stop offset="40%" stopColor="#60a5fa" />
-                            <stop offset="50%" stopColor="#ffffff">
-                                <animate
-                                    attributeName="offset"
-                                    values="0;1;0"
-                                    dur="3s"
-                                    repeatCount="indefinite"
-                                />
+                            <stop offset="50%" stopColor="#dbeafe">
+                                <animate attributeName="offset" values="0;1;0" dur="3.2s" repeatCount="indefinite" />
                             </stop>
                             <stop offset="60%" stopColor="#93c5fd" />
                             <stop offset="100%" stopColor="#1d4ed8" />
                         </linearGradient>
-
-                        {/* Dark Carbon texture gradient for outer ring */}
-                        <radialGradient id="platinum-carbon" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#1e293b" />
-                            <stop offset="85%" stopColor="#0f172a" />
+                        {/* Dark slate body + asphalt ring. */}
+                        <radialGradient id="platinum-carbon" cx="50%" cy="38%" r="78%">
+                            <stop offset="0%" stopColor="#243244" />
+                            <stop offset="70%" stopColor="#0f172a" />
                             <stop offset="100%" stopColor="#020617" />
+                        </radialGradient>
+                        <radialGradient id="platinum-asphalt" cx="50%" cy="44%" r="58%">
+                            <stop offset="0%" stopColor="#1f2937" />
+                            <stop offset="100%" stopColor="#070b12" />
+                        </radialGradient>
+                        {/* Glossy gem lenses. */}
+                        <radialGradient id="platinum-lens-red" cx="36%" cy="30%" r="72%">
+                            <stop offset="0%" stopColor="#ffe2e2" /><stop offset="42%" stopColor="#ef4444" /><stop offset="100%" stopColor="#7f1d1d" />
+                        </radialGradient>
+                        <radialGradient id="platinum-lens-yellow" cx="36%" cy="30%" r="72%">
+                            <stop offset="0%" stopColor="#fff3c4" /><stop offset="42%" stopColor="#eab308" /><stop offset="100%" stopColor="#713f12" />
+                        </radialGradient>
+                        <radialGradient id="platinum-lens-green" cx="36%" cy="30%" r="72%">
+                            <stop offset="0%" stopColor="#d9ffe6" /><stop offset="42%" stopColor="#22c55e" /><stop offset="100%" stopColor="#14532d" />
                         </radialGradient>
                     </defs>
 
-                    {/* Brutalist zero-blur shadow for the shield frame */}
-                    <path d="M 40 20 L 160 20 L 165 110 C 165 155, 110 182, 100 185 C 90 182, 35 155, 35 110 Z" fill="#000000" transform="translate(4, 4)"/>
+                    {/* Hard offset shadow (brutalist, zero blur). */}
+                    <rect x="14" y="14" width="172" height="172" rx="30" fill="#000000" transform="translate(3.5,4)" />
 
-                    {/* Shield Outer Frame (Transparent Background) */}
-                    <path d="M 40 20 L 160 20 L 165 110 C 165 155, 110 182, 100 185 C 90 182, 35 155, 35 110 Z" fill="rgba(15, 23, 42, 0.6)" stroke="url(#platinum-blue-metal)" strokeWidth="4.5" strokeLinejoin="round" />
-                    <path d="M 43 23 L 157 23 L 162 109 C 162 151, 109 177, 100 180 C 91 177, 38 151, 38 109 Z" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinejoin="round" />
-                    <path d="M 46 26 L 154 26 L 158 107 C 158 147, 108 172, 100 175 C 92 172, 42 147, 42 107 Z" fill="none" stroke="url(#platinum-blue-metal)" strokeWidth="1" strokeLinejoin="round" />
+                    {/* ── SILVER SQUIRCLE FRAME + DARK BODY ── */}
+                    <rect x="14" y="14" width="172" height="172" rx="30" fill="url(#platinum-silver-metal)" stroke="#1e293b" strokeWidth="2" />
+                    <rect x="18.5" y="18.5" width="163" height="163" rx="26" fill="none" stroke="#f8fafc" strokeWidth="1" opacity="0.7" />
+                    <rect x="24" y="24" width="152" height="152" rx="21" fill="url(#platinum-carbon)" stroke="#0b1220" strokeWidth="1.5" />
+                    <rect x="28" y="28" width="144" height="144" rx="18" fill="none" stroke="url(#platinum-blue-metal)" strokeWidth="2" />
 
-                    {/* Main Outer circle roadway ring */}
-                    <circle cx="100" cy="100" r="51" fill="none" stroke="#ffffff" strokeWidth="3" />
+                    {/* Corner rivets */}
+                    {[[34, 34], [166, 34], [34, 166], [166, 166]].map(([cx, cy]) => (
+                        <g key={`${cx}-${cy}`}>
+                            <circle cx={cx} cy={cy} r="3.4" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="0.9" />
+                            <circle cx={cx} cy={cy} r="1.1" fill="#334155" />
+                        </g>
+                    ))}
 
-                    {/* Inner Ring border */}
-                    <circle cx="100" cy="100" r="43" fill="none" stroke="#ffffff" strokeWidth="1.5" />
+                    {/* ── ASPHALT ROADWAY RING (around the photo window) ── */}
+                    <circle cx="100" cy="100" r="53" fill="url(#platinum-asphalt)" />
+                    <circle cx="100" cy="100" r="53" fill="none" stroke="url(#platinum-silver-metal)" strokeWidth="3.2" />
+                    <circle cx="100" cy="100" r="49" fill="none" stroke="#f8fafc" strokeWidth="1" opacity="0.8" />
+                    <circle cx="100" cy="100" r="46" fill="none" stroke="#60a5fa" strokeWidth="1.6" strokeDasharray="5 5" opacity="0.95" />
+                    <circle cx="100" cy="100" r="43" fill="none" stroke="url(#platinum-blue-metal)" strokeWidth="1.6" />
 
-                    {/* White Dashed Lane Markings */}
-                    <circle cx="100" cy="100" r="39" fill="none" stroke="#ffffff" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.8" />
+                    {/* ── RIGHT TRAFFIC-LIGHT CAPSULE (red / yellow / green) ── */}
+                    <rect x="148" y="66" width="28" height="72" rx="13" fill="#0b1220" stroke="url(#platinum-silver-metal)" strokeWidth="2" />
+                    <rect x="151" y="69" width="22" height="66" rx="10" fill="none" stroke="#1d4ed8" strokeWidth="1" opacity="0.7" />
+                    {[
+                        { cy: 85, cls: "platinum-light-red", lens: "url(#platinum-lens-red)" },
+                        { cy: 102, cls: "platinum-light-yellow", lens: "url(#platinum-lens-yellow)" },
+                        { cy: 119, cls: "platinum-light-green", lens: "url(#platinum-lens-green)" },
+                    ].map((l) => (
+                        <g key={l.cls}>
+                            <circle cx="162" cy={l.cy} r="6.3" className={l.cls} style={{ fill: animated ? undefined : l.lens }} stroke="#000000" strokeWidth="0.9" />
+                            <circle cx="159.6" cy={l.cy - 2.2} r="1.8" fill="#ffffff" opacity="0.6" />
+                        </g>
+                    ))}
 
-                    {/* ── INTEGRATED SIDE LIGHTS & WARNING SIGNS ── */}
-                    {/* Left Traffic Light Stack */}
-                    <rect x="39" y="85" width="11" height="31" rx="2" fill="#0f172a" stroke="#ffffff" strokeWidth="1.2" />
-                    <circle cx="44.5" cy="90.5" r="2.9" className="platinum-light-red" stroke="#000000" strokeWidth="0.8" />
-                    <circle cx="44.5" cy="100.5" r="2.9" className="platinum-light-yellow" stroke="#000000" strokeWidth="0.8" />
-                    <circle cx="44.5" cy="110.5" r="2.9" className="platinum-light-green" stroke="#000000" strokeWidth="0.8" />
+                    {/* ── LEFT BLUE CHEVRON PLATE ── */}
+                    <rect x="20" y="86" width="24" height="28" rx="5" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="1.4" />
+                    <path d="M 25 92 L 31 100 L 25 108" fill="none" stroke="url(#platinum-blue-metal)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M 32 92 L 38 100 L 32 108" fill="none" stroke="url(#platinum-blue-metal)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
 
-                    {/* Upper Left warning sign: Pedestrian crossing */}
-                    <polygon points="29,45 38,54 29,63 20,54" fill="none" stroke="#ffffff" strokeWidth="1.5" />
-                    <circle cx="29" cy="49.5" r="1.2" fill="#ffffff" />
-                    <path d="M 29 50.8 L 29 55.8 L 26 59.4 M 29 55.8 L 32 59.4 M 26.5 53.2 L 31.5 53.2" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" />
+                    {/* ── TOP-LEFT DIVISION CORNER PLATE (the HTML badge sits on this) ── */}
+                    <path d="M 18 30 Q 18 18 30 18 L 60 18 L 18 60 Z" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="1.4" strokeLinejoin="round" />
+                    <path d="M 22 28 Q 22 22 28 22 L 50 22" fill="none" stroke="#f8fafc" strokeWidth="1" opacity="0.7" strokeLinecap="round" />
 
-                    {/* Upper Right warning sign: Car symbol */}
-                    <polygon points="171,45 180,54 171,63 162,54" fill="none" stroke="#ffffff" strokeWidth="1.5" />
-                    <path d="M 166.5 56.5 L 168 53.8 Q 171 52 174 53.8 L 175.5 56.5 Z" fill="#ffffff" />
-                    <rect x="164.5" y="56.5" width="13" height="3" rx="0.7" fill="#ffffff" />
-                    <circle cx="167.5" cy="60" r="1" fill="#ffffff" />
-                    <circle cx="174.5" cy="60" r="1" fill="#ffffff" />
+                    {/* ── BOTTOM-RIGHT METAL TAB ── */}
+                    <path d="M 152 178 L 178 178 Q 182 178 182 174 L 182 152 Z" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="1.4" strokeLinejoin="round" />
+                    <circle cx="171" cy="171" r="2" fill="#334155" stroke="#1e293b" strokeWidth="0.7" />
 
-                    {/* ── TOP INFORMATION SHIELD CREST ── */}
-                    <path d="M 90 15 L 110 15 L 115 25 L 100 35 L 85 25 Z" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinejoin="round" />
-                    <path d="M 100 23 L 100 29" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" />
-                    <circle cx="100" cy="20" r="1" fill="#ffffff" />
-
-                    {/* ── SYMMETRICAL LAUREL LEAVES (BOTTOM SIDES) ── */}
-                    {/* Left Leaves */}
-                    <path d="M 23 130 Q 17 124 20 118 Q 26 124 23 130 Z M 20 117 Q 13 110 16 104 Q 23 110 20 117 Z M 17 101 Q 10 94 13 88 Q 20 94 17 101 Z" fill="#ffffff" stroke="#000000" strokeWidth="1" />
-                    {/* Right Leaves (Reflected) */}
-                    <path d="M 177 130 Q 183 124 180 118 Q 174 124 177 130 Z M 180 117 Q 187 110 184 104 Q 177 110 180 117 Z M 183 101 Q 190 94 187 88 Q 180 94 183 101 Z" fill="#ffffff" stroke="#000000" strokeWidth="1" />
-
-                    {/* ── LICENSE NAMEPLATE ── */}
-                    <rect x="55" y="148" width="90" height="22" rx="4" fill="#0c0a09" stroke="#ffffff" strokeWidth="2" />
-                    <text x="100" y="163" fill="#ffffff" fontSize="11" fontWeight="950" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1">PLATINUM</text>
-
-                    {/* ── WARNING CAUTION TRIANGLE (BOTTOM CENTER) ── */}
-                    <polygon points="100,175 114,195 86,195" fill="none" stroke="#ffffff" strokeWidth="1.8" />
-                    <circle cx="100" cy="191" r="1.2" fill="#ffffff" />
-                    <path d="M 100 181 L 100 188" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
+                    {/* ── PLATINUM NAMEPLATE ── */}
+                    <rect x="52" y="150" width="96" height="22" rx="6" fill="#0b1220" transform="translate(1.5,2)" />
+                    <rect x="52" y="150" width="96" height="22" rx="6" fill="url(#platinum-silver-bevel)" stroke="#1e293b" strokeWidth="2" />
+                    <rect x="55" y="153" width="90" height="16" rx="4" fill="none" stroke="#f8fafc" strokeWidth="0.7" opacity="0.7" />
+                    <text x="100" y="165" fill="#1e293b" fontSize="11" fontWeight="900" fontFamily="Roboto, sans-serif" textAnchor="middle" letterSpacing="1.5">PLATINUM</text>
                 </svg>
 
                 {/* Sweeping silver shine overlay */}
