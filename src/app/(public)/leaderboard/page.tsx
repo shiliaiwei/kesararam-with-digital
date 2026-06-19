@@ -1410,9 +1410,10 @@ export default function LeaderboardPage() {
                     pinned right like a rating; Played / Accuracy / Total are stats. */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
                   <span className="col-span-2 sm:col-span-1 text-yellow-400">#</span>
-                  <span className="col-span-6 sm:col-span-5 text-yellow-400">{kh ? "សិស្ស" : "Player"}</span>
+                  <span className="col-span-6 sm:col-span-4 text-yellow-400">{kh ? "សិស្ស" : "Player"}</span>
+                  <span className="col-span-2 text-center text-yellow-400 hidden sm:block">{kh ? "ថ្នាក់" : "Tier"}</span>
                   <span className="col-span-1 text-center text-zinc-500 hidden sm:block" title={kh ? "ចំនួនលេង" : "Games played"}>{kh ? "លេង" : "P"}</span>
-                  <span className="col-span-2 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
+                  <span className="col-span-1 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
                   <span className="col-span-1 text-right text-zinc-500 hidden sm:block">{kh ? "សរុប" : "Total"}</span>
                   <span className="col-span-4 sm:col-span-2 flex items-center justify-end gap-1 text-yellow-400">
                     <Gift size={11} strokeWidth={3} />{kh ? "ផ្ទាល់" : "Live"}
@@ -1428,6 +1429,8 @@ export default function LeaderboardPage() {
                   const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
                   const rowAvatar = isMe ? currentUser.avatar : user.avatar;
                   const live = user.priorityPoints ?? 0;
+                  // Tier drives the row accent line, the Tier column, and the LIVE color.
+                  const tier = getRank(user.lifetimePoints);
                   // Goal-gradient hook: for the signed-in user, how many LIVE points to
                   // overtake the player ranked directly above.
                   const above = rowIndex > 0 ? leaderboard[rowIndex - 1] : null;
@@ -1436,7 +1439,7 @@ export default function LeaderboardPage() {
                     <div
                       key={user.id}
                       className={`grid grid-cols-12 items-center px-3 md:px-5 py-2.5 border-t-2 border-black transition-colors ${isMe ? "bg-yellow-50" : "hover:bg-zinc-50"} ${linkable ? "cursor-pointer" : "cursor-default"}`}
-                      style={medal ? { boxShadow: `inset 4px 0 0 ${medal}` } : undefined}
+                      style={{ boxShadow: `inset 5px 0 0 ${medal ?? tier.accent}` }}
                       onClick={linkable ? () => handleSelectUser(user) : undefined}
                     >
                       {/* Rank + movement */}
@@ -1456,7 +1459,7 @@ export default function LeaderboardPage() {
                       </div>
 
                       {/* Avatar + name + meta */}
-                      <div className="col-span-6 sm:col-span-5 flex items-center gap-2.5 min-w-0">
+                      <div className="col-span-6 sm:col-span-4 flex items-center gap-2.5 min-w-0">
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
                           <Avatar
                             url={rowAvatar}
@@ -1480,8 +1483,8 @@ export default function LeaderboardPage() {
                             )}
                           </div>
                           <div className="flex items-center gap-1 mt-0.5 flex-wrap">
-                            <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5">
-                              {getRank(user.lifetimePoints).label}
+                            <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5 sm:hidden">
+                              {tier.label}
                             </span>
                             {user.province && (
                               <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
@@ -1499,6 +1502,17 @@ export default function LeaderboardPage() {
                         </div>
                       </div>
 
+                      {/* Tier — its own column, colored by the player's rank tier.
+                          labelGradient is the brand-sanctioned gradient use (rank tiers only). */}
+                      <div className="col-span-2 items-center justify-center hidden sm:flex">
+                        <span
+                          className="inline-flex items-center justify-center border-2 border-black px-2 py-0.5 text-[9px] font-black uppercase tracking-wider leading-none"
+                          style={{ background: tier.labelGradient, color: tier.textColor, boxShadow: "2px 2px 0 #000", borderRadius: 0, minWidth: 62 }}
+                        >
+                          {tier.label}
+                        </span>
+                      </div>
+
                       {/* Played (games) — football "P" stat */}
                       <span className="col-span-1 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
                         {(user.totalGamesPlayed ?? 0).toLocaleString()}
@@ -1506,7 +1520,7 @@ export default function LeaderboardPage() {
 
                       {/* Accuracy across recorded plays */}
                       <span
-                        className="col-span-2 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
+                        className="col-span-1 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
                         style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa" }}
                       >
                         {(user.accuracy ?? 0)}%
@@ -1529,7 +1543,7 @@ export default function LeaderboardPage() {
                             minWidth: 56,
                           }}
                         >
-                          <span className="font-black tabular-nums text-base md:text-xl text-black">{live.toLocaleString()}</span>
+                          <span className="font-black tabular-nums text-base md:text-xl" style={{ color: tier.textDark }}>{live.toLocaleString()}</span>
                           <span className="flex items-center gap-0.5 text-[7px] font-black uppercase tracking-wider text-zinc-500">
                             <Gift size={7} strokeWidth={3} />{kh ? "ដោះបាន" : "claim"}
                           </span>
