@@ -196,6 +196,36 @@ inverted/white on dark. Min height 24px. Clear space = height of the "K".
 
 ---
 
+## 7 · Rank tiers (the gamification ladder)
+
+KWD has **exactly 6 rank tiers** earned by lifetime score. Each tier holds 4
+**Roman-numeral divisions** (IV → III → II → I; IV lowest). Only `score` is stored —
+tier + division are always **derived** from it. Names are **English only, UPPERCASE
+on badges, never translated to Khmer**. Source of truth: `src/lib/rank-utils.ts`
+(UI labels) ↔ `src/lib/ranks.ts` (canonical curve); full spec → [[rank-tiers]].
+
+| Tier | Tier min (pts) | Tier color (gradient family) | Meaning in the palette |
+|------|----------------|------------------------------|------------------------|
+| **ROOKIE**   | 0      | black `#000 → #27272a`            | neutral / start |
+| **RISING**   | 1,000  | green `#15803d → #22c55e`         | go / progress |
+| **GOLD**     | 2,500  | gold `#b45309 → #fbbf24`          | CTA / warning gold (also: claim gate — only Gold+ can claim rewards) |
+| **PLATINUM** | 3,500  | blue `#1d4ed8 → #3b82f6`          | info |
+| **DIAMOND**  | 7,000  | cyan `#0891b2 → #22d3ee`          | premium-info |
+| **MYTHIC**   | 12,000 | purple `#7e22ce → #a855f7` + gold | premium / top rank |
+
+Rules for rank UI:
+- Tier **gradients are the ONE sanctioned use of gradient fills** (see Don'ts) —
+  use the exact `labelGradient` / `borderGradient` per tier from `rank-utils.ts`,
+  never invent new ones. Everything else stays flat.
+- Tier badges keep the brutalist frame: solid black border + hard offset shadow;
+  the gradient lives **inside** the badge body, not as a blurred glow on a card.
+- Rookie is static; Rising→Mythic are `animated`. Mythic adds gold accents on purple.
+- Don't translate tier names; don't add a 7th tier or rename them.
+- Reward-store **claiming is gated at GOLD and above**; scoring that feeds the ladder
+  is the small 0/1/2-per-question rule in [[quiz-scoring]].
+
+---
+
 ## Don'ts — reject these in review or your own output
 
 - ❌ Soft/blurred **structural** shadows (e.g. `shadow-lg`, `shadow-xl` on a card).
