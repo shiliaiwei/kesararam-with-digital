@@ -450,6 +450,45 @@ export default function RanksShowcasePage() {
         </aside>
 
         <main className="space-y-10">
+          {/* Animated border demo — large, live SVG frames for quick viewing. */}
+          <section className="border-3 border-black bg-zinc-900 p-6 text-white shadow-[4px_4px_0_#000]">
+            <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-yellow-400">New · Animated SVG</p>
+                <h2 className="text-xl font-black uppercase tracking-wide">Avatar Border Showcase</h2>
+                <p className="mt-1 max-w-xl text-xs font-medium text-zinc-400">
+                  Live tier frames derived from lifetime score — traffic lights, metal sweeps and glows all animate.
+                </p>
+              </div>
+              <span className="w-fit bg-yellow-500 px-2 py-0.5 font-mono text-[10px] font-black uppercase tracking-wider text-black">
+                {RANK_CONFIGS.length} tiers
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+              {RANK_CONFIGS.map((tier) => {
+                const score = TIER_SAMPLE_SCORES[tier.id] ?? tier.minPoints;
+                return (
+                  <div key={tier.id} className="flex flex-col items-center gap-3">
+                    <TierAvatar
+                      score={score}
+                      username={`${tier.id}_demo`}
+                      initials={tier.name.slice(0, 2).toUpperCase()}
+                      avatarClass={tier.id === "rookie" || tier.id === "mythic" ? "bg-zinc-950 text-white" : "bg-white text-black"}
+                      size={150}
+                    />
+                    <span
+                      className="border-2 border-white/20 bg-black px-2 py-1 text-center text-[10px] font-black uppercase tracking-wider"
+                      style={{ color: tier.accentColor }}
+                    >
+                      {tier.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
           <section>
             <div className="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
               <div>
