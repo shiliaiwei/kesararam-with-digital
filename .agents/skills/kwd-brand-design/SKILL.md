@@ -276,8 +276,7 @@ For the learning/psychology/design **theories the product is built on** (design
 - **Commit only the files you edited.** Stage them by path
   (`git add <path> …`) — never `git add -A`/`.`. Leave unrelated working-tree
   changes (e.g. `.DS_Store`, others' edits) untouched.
-- **Push only when the user explicitly asks** ("push"). Never push (or commit
-  unprompted) on your own, even after finishing a change.
+- **Push only when the user explicitly asks** ("push"). When the user says "push", do not ask for confirmation or clarify — immediately stage the edited files, commit, and push. Never push (or commit unprompted) on your own without the request.
 
 See also memory: [[git-push-discipline]].
 

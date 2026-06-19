@@ -21,3 +21,8 @@ If the work touches GameKit or `/play` activities, read this skill too:
 
 Then inspect the current code before editing and keep changes scoped to the
 requested files or feature.
+
+## Direct Git Push Workflow
+
+When the user says "push" in the chat, do not ask for confirmation or clarify what to commit. Immediately stage the files you edited by path, commit them with a descriptive message, and push the branch.
+
