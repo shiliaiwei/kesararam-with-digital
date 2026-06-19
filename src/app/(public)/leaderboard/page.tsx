@@ -22,10 +22,7 @@ import {
   Flame,
   Crown,
   Info,
-  Wifi,
-  BookOpen,
   MapPin,
-  Layers,
   ChevronUp,
   ChevronDown,
   Gamepad2,
@@ -87,25 +84,15 @@ function getProvinceKh(provinceEn: string | null | undefined): string {
   return found ? found.kh : provinceEn;
 }
 
-// ── Leaderboard time windows + game-type filter ───────────────────────────────
-const WINDOW_TABS: { id: "weekly" | "monthly" | "all"; en: string; kh: string }[] = [
-  { id: "weekly", en: "Weekly", kh: "ប្រចាំសប្តាហ៍" },
-  { id: "monthly", en: "Monthly", kh: "ប្រចាំខែ" },
-  { id: "all", en: "All-Time", kh: "គ្រប់ពេល" },
-];
-
-// Source filter — one segmented control. NO emoji (brand rule): Lucide icon +
-// a semantic color dot per source. Values map to the API `source` param.
-const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType; color: string }[] = [
-  { id: "all",   en: "All Sources",     kh: "ប្រភពទាំងអស់",   icon: Layers,   color: "#eab308" },
-  { id: "live",  en: "Live Games",      kh: "ហ្គេមផ្ទាល់",     icon: Wifi,     color: "#ef4444" },
-  { id: "solo",  en: "Solo Practice",   kh: "ហ្វឹកហាត់",       icon: BookOpen, color: "#22c55e" },
-];
+// ── Leaderboard game-type filter ──────────────────────────────────────────────
+// Time-window + source controls were removed (2026-06-20): the board is always
+// all-time, all-sources. The game-mode filter is the only scope control now.
 
 // Sort options for the rankings table (client-side re-sort of the loaded page).
+// "Live Score" is a product term — never translated to Khmer (brand rule).
 const SORT_TABS: { id: "rank" | "live" | "games" | "acc"; en: string; kh: string }[] = [
   { id: "rank",  en: "Rank",       kh: "ចំណាត់ថ្នាក់" },
-  { id: "live",  en: "Live Score", kh: "ពិន្ទុផ្ទាល់" },
+  { id: "live",  en: "Live Score", kh: "Live Score" },
   { id: "games", en: "Games",      kh: "ហ្គេម" },
   { id: "acc",   en: "Accuracy",   kh: "ត្រឹមត្រូវ" },
 ];
@@ -299,12 +286,14 @@ const PODIUM_CFG = [
   },
 ];
 
-function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
+function PodiumCard({ user, cfg, index, currentUser, onSelect, pulse }: {
   user: LeaderboardUser | undefined;
   cfg: typeof PODIUM_CFG[number];
   index: number;
   currentUser: any | null;
   onSelect: (user: LeaderboardUser) => void;
+  /** Increments every 10s — re-keys the star burst so it replays. */
+  pulse: number;
 }) {
   const { lang } = useLang();
   const kh = lang === "kh";
@@ -335,6 +324,39 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
         className={`relative z-20 mb-[-30px] flex flex-col items-center select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
         onClick={() => { if (linkable && user) onSelect(user); }}
       >
+        {/* Premium star burst — re-keyed by `pulse` so it pops outward every 10s. */}
+        {user && (
+          <div
+            key={pulse}
+            aria-hidden
+            className="pointer-events-none absolute left-1/2 top-1/2 z-30"
+            style={{ transform: "translate(-50%, -50%)" }}
+          >
+            <style>{`@keyframes lbStarBurst{0%{transform:translate(0,0) scale(0) rotate(0deg);opacity:0}25%{opacity:1}60%{transform:translate(var(--dx),var(--dy)) scale(1) rotate(35deg);opacity:1}100%{transform:translate(calc(var(--dx)*1.25),calc(var(--dy)*1.25)) scale(.5) rotate(60deg);opacity:0}}.lb-star{animation:lbStarBurst 1.15s cubic-bezier(.18,.9,.32,1.2) forwards}`}</style>
+            {Array.from({ length: 8 }).map((_, i) => {
+              const ang = (i / 8) * Math.PI * 2;
+              const dist = isFirst ? 52 : 44;
+              const dx = Math.cos(ang) * dist;
+              const dy = Math.sin(ang) * dist;
+              return (
+                <Star
+                  key={i}
+                  size={isFirst ? 14 : 11}
+                  strokeWidth={2}
+                  className="lb-star absolute text-yellow-400"
+                  style={{
+                    // CSS custom props consumed by the keyframe
+                    ["--dx" as string]: `${dx}px`,
+                    ["--dy" as string]: `${dy}px`,
+                    animationDelay: `${i * 0.035}s`,
+                    fill: "#facc15",
+                  } as React.CSSProperties}
+                />
+              );
+            })}
+          </div>
+        )}
+
         {isFirst && (
           <div
             className="absolute -top-9 left-1/2 z-20 flex h-9 w-9 -translate-x-1/2 items-center justify-center border-[3px] border-black bg-yellow-400"
@@ -1027,16 +1049,19 @@ export default function LeaderboardPage() {
   // ambient polish — picks one visible player id, lights it for ~0.85s, then clears.
   const [flashId, setFlashId] = useState<number | null>(null);
 
-  // Leaderboard filters: time window, score source, game mode. All inline now —
-  // no province dropdown, no collapse (chess.com-style mode bar). hasActiveFilters
-  // surfaces a reset shortcut.
-  const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
-  const [sourceTab, setSourceTab] = useState("all");
+  // Window + source controls were removed (2026-06-20): the board is fixed to
+  // all-time / all-sources. These stay as constants so the fetch params are stable.
+  const windowTab = "all";
+  const sourceTab = "all";
+  // Game mode is the only filter now, surfaced through a dropdown.
   const [gameType, setGameType] = useState("all");
+  const [gameMenuOpen, setGameMenuOpen] = useState(false);
   // Client-side sort of the rankings table (the server returns rank order; this
   // lets the viewer re-sort the loaded page by another stat without a refetch).
   const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
-  const hasActiveFilters = sourceTab !== "all" || gameType !== "all";
+  // Periodic premium pulse on the podium (star burst) — toggles every 10s.
+  const [podiumPulse, setPodiumPulse] = useState(0);
+  const hasActiveFilters = gameType !== "all";
 
   const fetchLeaderboard = useCallback(async () => {
     try {
@@ -1158,6 +1183,12 @@ export default function LeaderboardPage() {
   // Countdown ticker
   useEffect(() => {
     const t = setInterval(() => setCountdown(c => c > 0 ? c - 1 : 60), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  // Premium podium pulse — fire a star burst on the top 3 every 10 seconds.
+  useEffect(() => {
+    const t = setInterval(() => setPodiumPulse(p => p + 1), 10000);
     return () => clearInterval(t);
   }, []);
 
@@ -1309,7 +1340,7 @@ export default function LeaderboardPage() {
                   { cfg: PODIUM_CFG[1], user: top3[0] },
                   { cfg: PODIUM_CFG[2], user: top3[2] },
                 ].map(({ cfg, user }, i) => (
-                  <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
+                  <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} pulse={podiumPulse} />
                 ))}
                 </div>
               </div>
@@ -1317,105 +1348,84 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
-              {/* ── Filters — chess.com style: everything inline, no dropdowns, no
-                   collapse. Scope line (time window + source) on top; the game-mode
-                   tab bar below is the primary filter. ── */}
-              <div className="mb-3 flex flex-col gap-2">
-                {/* Scope line: time window + score source (+ reset when filtered) */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
-                    {WINDOW_TABS.map((w, i) => {
-                      const active = windowTab === w.id;
-                      return (
-                        <button
-                          key={w.id}
-                          onClick={() => setWindowTab(w.id)}
-                          className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
-                          style={kf}
-                        >
-                          {kh ? w.kh : w.en}
-                        </button>
-                      );
-                    })}
-                  </div>
+              {/* ── Game-mode filter — a dropdown showing each game's icon + name.
+                   Window/source controls were removed; the board is all-time /
+                   all-sources and the mode dropdown is the only scope control. ── */}
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-zinc-500" style={kf}>
+                  <Gamepad2 size={14} strokeWidth={2.5} />{kh ? "ហ្គេម" : "Mode"}
+                </span>
+                <div className="relative">
+                  <button
+                    onClick={() => setGameMenuOpen((o) => !o)}
+                    aria-haspopup="listbox"
+                    aria-expanded={gameMenuOpen}
+                    className="flex items-center gap-2 border-2 border-black bg-white pl-1.5 pr-2.5 py-1.5 text-xs font-black uppercase tracking-wide shadow-[3px_3px_0_#000] transition-all hover:-translate-y-0.5"
+                    style={{ borderRadius: 0, ...kf }}
+                  >
+                    {gameType === "all" ? (
+                      <span className="inline-flex items-center justify-center flex-shrink-0 border-2 border-black" style={{ width: 30, height: 30, background: "#eab308" }}>
+                        <Gamepad2 size={17} strokeWidth={2.75} color="#000" />
+                      </span>
+                    ) : (
+                      <GameBadge slug={gameType} size="sm" shadow={false} />
+                    )}
+                    <span>{(kh ? getGameMeta(gameType)?.kh : getGameMeta(gameType)?.en) ?? (kh ? "ហ្គេមទាំងអស់" : "All Games")}</span>
+                    <ChevronDown size={16} strokeWidth={3} className={`transition-transform ${gameMenuOpen ? "rotate-180" : ""}`} />
+                  </button>
 
-                  <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
-                    {SOURCE_TABS.map((s, i) => {
-                      const active = sourceTab === s.id;
-                      const Icon = s.icon;
-                      return (
-                        <button
-                          key={s.id}
-                          onClick={() => setSourceTab(s.id)}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
-                          style={kf}
-                        >
-                          <Icon size={12} strokeWidth={2.5} style={active ? { color: s.color } : undefined} />
-                          {kh ? s.kh : s.en}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {hasActiveFilters && (
-                    <button
-                      onClick={() => { setSourceTab("all"); setGameType("all"); }}
-                      className="flex items-center gap-1 border-2 border-black bg-white px-2.5 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider text-red-600 transition-colors hover:bg-red-50"
-                      style={{ borderRadius: 0, ...kf }}
-                    >
-                      <X size={12} strokeWidth={3} />
-                      {kh ? "សម្អាត" : "Reset"}
-                    </button>
+                  {gameMenuOpen && (
+                    <>
+                      {/* click-outside backdrop */}
+                      <div className="fixed inset-0 z-40" onClick={() => setGameMenuOpen(false)} />
+                      <div
+                        role="listbox"
+                        className="absolute left-0 top-full z-50 mt-1 max-h-80 w-60 overflow-y-auto border-[3px] border-black bg-white"
+                        style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}
+                      >
+                        {GAME_CHIPS.map((g) => {
+                          const active = gameType === g.id;
+                          return (
+                            <button
+                              key={g.id}
+                              role="option"
+                              aria-selected={active}
+                              onClick={() => { setGameType(g.id); setGameMenuOpen(false); }}
+                              className={`flex w-full items-center gap-2.5 border-b-2 border-black px-2 py-2 text-left text-xs font-black uppercase tracking-wide transition-colors ${active ? "bg-yellow-300 text-black" : "bg-white text-black hover:bg-zinc-100"}`}
+                              style={kf}
+                            >
+                              {g.id === "all" ? (
+                                <span className="inline-flex items-center justify-center flex-shrink-0 border-2 border-black" style={{ width: 30, height: 30, background: "#eab308" }}>
+                                  <Gamepad2 size={17} strokeWidth={2.75} color="#000" />
+                                </span>
+                              ) : (
+                                <GameBadge slug={g.id} size="sm" shadow={false} />
+                              )}
+                              <span className="flex-1">{kh ? g.kh : g.en}</span>
+                              {active && <Check size={14} strokeWidth={3} />}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </>
                   )}
                 </div>
 
-                {/* Game-mode tab bar — the primary filter. Icon-only chips WRAP onto
-                    multiple rows (no single scrolling row) so every game is visible. */}
-                <div className="flex flex-wrap items-center gap-1.5 pb-1">
-                  <span className="flex flex-shrink-0 items-center gap-1 self-center pr-1 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
-                    <Gamepad2 size={14} strokeWidth={2.5} />
-                    {kh ? "ហ្គេម" : "Mode"}
-                  </span>
-                  {/* Icon-only chips — each game is identified by its badge alone
-                      (no text). Game name stays accessible via title + aria-label. */}
-                  {GAME_CHIPS.map((g) => {
-                    const active = gameType === g.id;
-                    return (
-                      <button
-                        key={g.id}
-                        onClick={() => setGameType(g.id)}
-                        title={kh ? g.kh : g.en}
-                        aria-label={kh ? g.kh : g.en}
-                        aria-pressed={active}
-                        className={`flex flex-shrink-0 items-center justify-center border-2 border-black p-1.5 transition-all ${active ? "shadow-[3px_3px_0_#000] -translate-y-0.5" : "hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#000]"}`}
-                        style={{ borderRadius: 0, background: active ? "#000" : "#fff" }}
-                      >
-                        {g.id === "all" ? (
-                          <span
-                            className="inline-flex items-center justify-center flex-shrink-0 border-2 border-black"
-                            style={{ width: 44, height: 44, background: "#eab308", borderRadius: 0 }}
-                          >
-                            <Gamepad2 size={24} strokeWidth={2.75} color="#000" />
-                          </span>
-                        ) : (
-                          <GameBadge slug={g.id} size="md" shadow={false} />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
+                {hasActiveFilters && (
+                  <button
+                    onClick={() => setGameType("all")}
+                    className="flex items-center gap-1 border-2 border-black bg-white px-2.5 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider text-red-600 transition-colors hover:bg-red-50"
+                    style={{ borderRadius: 0, ...kf }}
+                  >
+                    <X size={12} strokeWidth={3} />{kh ? "សម្អាត" : "Reset"}
+                  </button>
+                )}
               </div>
 
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
                 <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase flex items-center gap-2" style={kf}>
                   <Trophy size={18} strokeWidth={2.5} className="text-yellow-500" />
                   {kh ? "ចំណាត់ថ្នាក់" : "Rankings"}
-                  <span
-                    className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 border-2 border-black"
-                    style={{ background: SOURCE_TABS.find(s => s.id === sourceTab)?.color ?? "#eab308", color: "#000" }}
-                  >
-                    {kh ? SOURCE_TABS.find(s => s.id === sourceTab)?.kh : SOURCE_TABS.find(s => s.id === sourceTab)?.en}
-                  </span>
                   {gameType !== "all" && (
                     <span
                       className="inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-wider pl-1 pr-2 py-0.5 border-2 border-black bg-black text-yellow-400"
@@ -1461,13 +1471,16 @@ export default function LeaderboardPage() {
                     right after the player; Games / Acc / Top game follow. */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
                   <span className="col-span-2 sm:col-span-1 text-yellow-400">#</span>
-                  <span className="col-span-6 sm:col-span-4 text-yellow-400">{kh ? "សិស្ស" : "Player"}</span>
-                  <span className="col-span-4 sm:col-span-2 flex items-center justify-start gap-1 text-yellow-400">
-                    <Gift size={11} strokeWidth={3} />{kh ? "ពិន្ទុផ្ទាល់" : "Live Score"}
+                  <span className="col-span-6 sm:col-span-5 text-yellow-400">{kh ? "សិស្ស" : "Player"}</span>
+                  {/* Score column: overall = Live Score; a game filter swaps it to that
+                      game's total score. "Live Score" is never translated to Khmer. */}
+                  <span className="col-span-4 sm:col-span-3 flex items-center justify-start gap-1 text-yellow-400">
+                    {gameType === "all"
+                      ? (<><Gift size={11} strokeWidth={3} />Live Score</>)
+                      : (kh ? "ពិន្ទុ" : "Score")}
                   </span>
                   <span className="col-span-1 text-center text-zinc-500 hidden sm:block" title={kh ? "ចំនួនលេងសរុប" : "Total games played"}>{kh ? "ហ្គេម" : "Games"}</span>
-                  <span className="col-span-1 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
-                  <span className="col-span-3 text-right text-yellow-400 hidden sm:block">{kh ? "ហ្គេមពេញនិយម" : "Top game"}</span>
+                  <span className="col-span-2 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
                 </div>
 
                 {sortedBoard.length > 0 ? sortedBoard.map((user, rowIndex) => {
@@ -1479,6 +1492,10 @@ export default function LeaderboardPage() {
                   const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
                   const rowAvatar = isMe ? currentUser.avatar : user.avatar;
                   const live = user.priorityPoints ?? 0;
+                  // Score shown in the score column: overall = Live (claimable) score;
+                  // a game filter swaps it to the player's TOTAL score in that game
+                  // (lifetimePoints is game-filtered by the API when a gameType is set).
+                  const scoreValue = gameType === "all" ? live : (user.lifetimePoints ?? 0);
                   // Tier drives the rank accent line, the name-plate background, and
                   // the Live Score number color.
                   const tier = getRank(user.lifetimePoints);
@@ -1512,7 +1529,7 @@ export default function LeaderboardPage() {
                       </div>
 
                       {/* Avatar + name + meta */}
-                      <div className="col-span-6 sm:col-span-4 flex items-center gap-2.5 min-w-0">
+                      <div className="col-span-6 sm:col-span-5 flex items-center gap-2.5 min-w-0">
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
                           <Avatar
                             url={rowAvatar}
@@ -1558,22 +1575,23 @@ export default function LeaderboardPage() {
                         </div>
                       </div>
 
-                      {/* Live Score — the hero metric, first stat after the player.
-                          Scoreboard chip: gold for the leader, gold-tint when earned,
-                          zinc when none; the number is colored by the player's tier. */}
-                      <div className="col-span-4 sm:col-span-2 flex justify-start">
+                      {/* Score — Live Score overall, or the player's total score in the
+                          selected game when a mode filter is active. */}
+                      <div className="col-span-4 sm:col-span-3 flex justify-start">
                         <div
                           className="inline-flex flex-col items-center border-2 border-black px-2 py-0.5 leading-none"
                           style={{
-                            background: user.rank === 1 && live > 0 ? "#facc15" : live > 0 ? "#fef9c3" : "#f4f4f5",
+                            background: user.rank === 1 && scoreValue > 0 ? "#facc15" : scoreValue > 0 ? "#fef9c3" : "#f4f4f5",
                             boxShadow: "2px 2px 0 #000",
                             borderRadius: 0,
                             minWidth: 56,
                           }}
                         >
-                          <span className="font-black tabular-nums text-base md:text-xl" style={{ color: tier.textDark }}>{live.toLocaleString()}</span>
+                          <span className="font-black tabular-nums text-base md:text-xl" style={{ color: tier.textDark }}>{scoreValue.toLocaleString()}</span>
                           <span className="flex items-center gap-0.5 text-[7px] font-black uppercase tracking-wider text-zinc-500">
-                            <Gift size={7} strokeWidth={3} />{kh ? "ពិន្ទុផ្ទាល់" : "live score"}
+                            {gameType === "all"
+                              ? (<><Gift size={7} strokeWidth={3} />live score</>)
+                              : (kh ? "ពិន្ទុ" : "score")}
                           </span>
                         </div>
                       </div>
@@ -1585,35 +1603,17 @@ export default function LeaderboardPage() {
 
                       {/* Accuracy across recorded plays */}
                       <span
-                        className="col-span-1 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
+                        className="col-span-2 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
                         style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa" }}
                       >
                         {(user.accuracy ?? 0)}%
                       </span>
-
-                      {/* Top game — the mode this player plays most (from the API). */}
-                      <div className="col-span-3 justify-end items-center hidden sm:flex">
-                        {(() => {
-                          const g = getGameMeta(user.bestGame);
-                          if (!g) return <span className="text-xs font-bold text-zinc-300 tabular-nums">—</span>;
-                          return (
-                            <span
-                              className="inline-flex items-center gap-1.5 border-2 border-black bg-white pl-1 pr-2 py-0.5 text-[10px] font-black uppercase tracking-wide leading-none max-w-full"
-                              style={{ boxShadow: "2px 2px 0 #000", borderRadius: 0 }}
-                              title={kh ? g.kh : g.en}
-                            >
-                              <GameBadge entry={g} size="xs" shadow={false} />
-                              <span className="truncate">{kh ? g.kh : g.en}</span>
-                            </span>
-                          );
-                        })()}
-                      </div>
                      </div>
 
-                      {/* Mobile stat strip — on phones the Games / Accuracy / Top-game
-                          columns can't sit inline, so they drop to a self-labeled chip
-                          row here. Nothing is hidden on any screen size: ≥sm shows the
-                          inline columns above, <sm shows these chips. */}
+                      {/* Mobile stat strip — on phones the Games / Accuracy columns
+                          can't sit inline, so they drop to a self-labeled chip row
+                          here. Nothing is hidden: ≥sm shows the inline columns above,
+                          <sm shows these chips. */}
                       <div className="sm:hidden flex items-center gap-1.5 flex-wrap px-3 pb-2.5 -mt-0.5">
                         <span className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums" style={kf}>
                           <Gamepad2 size={10} strokeWidth={2.75} />
@@ -1625,19 +1625,6 @@ export default function LeaderboardPage() {
                         >
                           {(user.accuracy ?? 0)}% {kh ? "ត្រឹមត្រូវ" : "Acc"}
                         </span>
-                        {(() => {
-                          const g = getGameMeta(user.bestGame);
-                          if (!g) return null;
-                          return (
-                            <span
-                              className="inline-flex items-center gap-1 border-2 border-black bg-white pl-0.5 pr-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide leading-none max-w-[55%]"
-                              title={kh ? g.kh : g.en}
-                            >
-                              <GameBadge entry={g} size="xs" shadow={false} />
-                              <span className="truncate">{kh ? g.kh : g.en}</span>
-                            </span>
-                          );
-                        })()}
                       </div>
                     </div>
                   );
@@ -1651,8 +1638,8 @@ export default function LeaderboardPage() {
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "ពិន្ទុផ្ទាល់ = អាចដោះបាន · ចំណាត់ថ្នាក់តាមពិន្ទុផ្ទាល់ · ហ្គេម = ចំនួនលេងសរុប · ត្រឹមត្រូវ = មធ្យមភាគ · ហ្គេមពេញនិយម = លេងញឹកញាប់"
-                  : "Live Score = claimable · Ranked by Live Score · Games = total plays · Acc = avg correct · Top game = most played"}
+                  ? "Live Score = អាចដោះបាន · ចំណាត់ថ្នាក់តាម Live Score · ហ្គេម = ចំនួនលេងសរុប · ត្រឹមត្រូវ = មធ្យមភាគ"
+                  : "Live Score = claimable · Ranked by Live Score · Games = total plays · Acc = avg correct"}
               </p>
 
             </div>
