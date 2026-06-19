@@ -1114,6 +1114,7 @@ export default function LeaderboardPage() {
   // Client-side sort of the rankings table (the server returns rank order; this
   // lets the viewer re-sort the loaded page by another stat without a refetch).
   const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
+  const [displayLimit, setDisplayLimit] = useState(10);
   // Podium celebration ticker — advances every 7s and rotates through the ranks
   // (1 → 2 → 3 → 1 …) so only ONE podium card celebrates at a time, each with its
   // own style. activeRank = (tick % 3) + 1.
@@ -1313,6 +1314,157 @@ export default function LeaderboardPage() {
     }
   };
 
+  const renderRow = (user: LeaderboardUser, rowIndex: number, isSticky: boolean = false) => {
+    const prev = prevRanks[user.id];
+    const moved = prev !== undefined ? prev - user.rank : 0;
+    const linkable = user.isUsernamePublic !== false;
+    const isMe = !!currentUser && user.id === currentUser.id;
+    const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
+    const rowAvatar = isMe ? currentUser.avatar : user.avatar;
+    const live = user.priorityPoints ?? 0;
+    const scoreValue = gameType === "all" ? live : (user.lifetimePoints ?? 0);
+    const tier = getRank(user.lifetimePoints);
+    const above = sortKey === "rank" && rowIndex > 0 ? sortedBoard[rowIndex - 1] : null;
+    const toOvertake = above ? Math.max(0, (above.priorityPoints ?? 0) - live + 1) : 0;
+
+    return (
+      <div
+        key={user.id}
+        className={`border-t-2 border-black transition-colors ${isSticky ? "bg-yellow-50/80 border-b-2" : isMe ? "bg-yellow-50" : "hover:bg-zinc-50"} ${linkable ? "cursor-pointer" : "cursor-default"}`}
+        style={{ boxShadow: `inset 5px 0 0 ${medal ?? tier.accent}` }}
+        onClick={linkable ? () => handleSelectUser(user) : undefined}
+      >
+        <div className="grid grid-cols-12 items-center px-3 md:px-5 py-2.5">
+          {/* Rank + Avatar + Name + Meta */}
+          <div className="col-span-8 sm:col-span-6 flex items-center gap-2 md:gap-3 min-w-0">
+            {/* Rank + movement */}
+            <div className="flex items-center gap-1 flex-shrink-0 w-8 sm:w-10">
+              {medal ? (
+                <span
+                  className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
+                  style={{ background: medal, color: user.rank === 1 ? "#000" : "#fff" }}
+                >
+                  {user.rank}
+                </span>
+              ) : (
+                <span className="text-sm font-black text-zinc-400 tabular-nums w-6 text-center sm:text-left">{user.rank}</span>
+              )}
+              <div className="flex flex-col items-center justify-center flex-shrink-0">
+                {moved > 0 && <ChevronUp size={11} strokeWidth={4} className="text-green-500" />}
+                {moved < 0 && <ChevronDown size={11} strokeWidth={4} className="text-red-500" />}
+              </div>
+            </div>
+
+            {/* Avatar + name + meta */}
+            <div className="flex items-center gap-2.5 min-w-0 flex-1">
+              <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
+                <Avatar
+                  url={rowAvatar}
+                  name={user.displayName || user.username}
+                  size={36}
+                  changedAt={user.avatarChangedAt}
+                />
+              </RankedAvatarRing>
+              <div className="flex flex-1 flex-col min-w-0">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  {/* Name plate */}
+                  <span
+                    className={`inline-flex items-center border-[3px] border-black px-2 py-1 font-black truncate min-w-0 ${flashId === user.id ? "lb-flash" : ""}`}
+                    style={{ background: tier.labelGradient, color: tier.textColor, boxShadow: "2px 2px 0 #000", fontSize: 12, letterSpacing: "0.01em", maxWidth: "100%" }}
+                    title={user.displayName || user.username}
+                  >
+                    {user.displayName || user.username}
+                  </span>
+                  {isMe && (
+                    <span className="text-[8px] font-black uppercase px-1 py-0.5 border border-black bg-yellow-400 text-black flex-shrink-0">
+                      {kh ? "អ្នក" : "You"}
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-1 mt-0.5 flex-wrap">
+                  <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5 sm:hidden">
+                    {tier.label}
+                  </span>
+                  {user.province && (
+                    <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
+                      <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
+                    </span>
+                  )}
+                  {/* Goal-gradient: only for me, when someone is just ahead */}
+                  {isMe && above && toOvertake > 0 && (
+                    <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-300 px-1 py-0.5">
+                      <ArrowUp size={8} strokeWidth={4} />
+                      {kh ? `ខ្វះ ${toOvertake.toLocaleString()} ដើម្បីលើស #${above.rank}` : `${toOvertake.toLocaleString()} to pass #${above.rank}`}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Score — designed like a Cambodian license plate */}
+          <div className="col-span-4 sm:col-span-3 flex justify-end sm:justify-start items-center">
+            {(() => {
+              const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
+              return (
+                <div
+                  className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_#000] p-0.5"
+                  style={{
+                    width: "100px",
+                    height: "54px",
+                    borderRadius: "6px",
+                  }}
+                >
+                  {/* Top: Province/Cambodia in Khmer */}
+                  <span className="z-10 text-[8px] font-black text-zinc-800 leading-none scale-90 origin-top mt-[1.5px]">
+                    {rowProvince ? getProvinceKh(rowProvince) : "កម្ពុជា"}
+                  </span>
+                  
+                  {/* Center: Score number in premium gold */}
+                  <span className="z-10 font-mono font-black tabular-nums text-[20px] leading-none my-[1px] tracking-tight" style={{ color: "#b8860b" }}>
+                    {scoreValue.toLocaleString()}
+                  </span>
+
+                  {/* Bottom: Province/Cambodia in English Red */}
+                  <span className="z-10 text-[6.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1.5px]">
+                    {rowProvince ? rowProvince.toUpperCase() : "CAMBODIA"}
+                  </span>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* Games */}
+          <span className="col-span-1 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
+            {(user.totalGamesPlayed ?? 0).toLocaleString()}
+          </span>
+
+          {/* Accuracy */}
+          <span
+            className="col-span-2 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
+            style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa" }}
+          >
+            {(user.accuracy ?? 0)}%
+          </span>
+        </div>
+
+        {/* Mobile stat strip */}
+        <div className="sm:hidden flex items-center gap-1.5 flex-wrap px-3 pb-2.5 -mt-0.5">
+          <span className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums" style={kf}>
+            <Gamepad2 size={10} strokeWidth={2.75} />
+            {(user.totalGamesPlayed ?? 0).toLocaleString()} {kh ? "ហ្គេម" : "Games"}
+          </span>
+          <span
+            className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums"
+            style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa", ...kf }}
+          >
+            {(user.accuracy ?? 0)}% {kh ? "ត្រឹមត្រូវ" : "Acc"}
+          </span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-zinc-50 font-sans pb-16">
 
@@ -1353,29 +1505,23 @@ export default function LeaderboardPage() {
                       <div
                         className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_rgba(255,255,255,0.15)] p-0.5"
                         style={{
-                          width: "72px",
-                          height: "38px",
-                          borderRadius: "4px",
+                          width: "100px",
+                          height: "54px",
+                          borderRadius: "6px",
                         }}
                       >
-                        {/* Inner blue border outline */}
-                        <div className="absolute inset-0.5 border border-blue-700 pointer-events-none rounded-[2px]" />
-                        
                         {/* Top: Province/Cambodia in Khmer */}
-                        <span className="z-10 text-[6.5px] font-black text-blue-900 leading-none scale-90 origin-top mt-[1px]">
+                        <span className="z-10 text-[8px] font-black text-zinc-800 leading-none scale-90 origin-top mt-[1.5px]">
                           {currentUser.classProvince || currentUser.province ? getProvinceKh(currentUser.classProvince || currentUser.province) : "កម្ពុជា"}
                         </span>
                         
-                        {/* Center: Score number in deep blue */}
-                        <span className="z-10 font-mono font-black tabular-nums text-[13px] text-blue-900 leading-none my-[1px] tracking-tight">
+                        {/* Center: Score number in premium gold */}
+                        <span className="z-10 font-mono font-black tabular-nums text-[20px] leading-none my-[1px] tracking-tight" style={{ color: "#b8860b" }}>
                           {(currentUser.livePoints ?? 0).toLocaleString()}
                         </span>
 
-                        {/* Horizontal divider line */}
-                        <div className="z-10 w-full h-[1px] bg-blue-800 opacity-40" />
-
                         {/* Bottom: Province/Cambodia in English Red */}
-                        <span className="z-10 text-[5.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1px]">
+                        <span className="z-10 text-[6.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1.5px]">
                           {currentUser.classProvince || currentUser.province ? (currentUser.classProvince || currentUser.province).toUpperCase() : "CAMBODIA"}
                         </span>
                       </div>
@@ -1581,181 +1727,48 @@ export default function LeaderboardPage() {
                   <span className="col-span-2 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
                 </div>
 
-                {sortedBoard.length > 0 ? sortedBoard.map((user, rowIndex) => {
-                  const prev = prevRanks[user.id];
-                  const moved = prev !== undefined ? prev - user.rank : 0;
-                  // Anonymized (private-username) rows have no public profile.
-                  const linkable = user.isUsernamePublic !== false;
-                  const isMe = !!currentUser && user.id === currentUser.id;
-                  const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
-                  const rowAvatar = isMe ? currentUser.avatar : user.avatar;
-                  const live = user.priorityPoints ?? 0;
-                  // Score shown in the score column: overall = Live (claimable) score;
-                  // a game filter swaps it to the player's TOTAL score in that game
-                  // (lifetimePoints is game-filtered by the API when a gameType is set).
-                  const scoreValue = gameType === "all" ? live : (user.lifetimePoints ?? 0);
-                  // Tier drives the rank accent line, the name-plate background, and
-                  // the Live Score number color.
-                  const tier = getRank(user.lifetimePoints);
-                  // Goal-gradient hook: for the signed-in user, how many LIVE points to
-                  // overtake the player ranked directly above.
-                  // Only meaningful in true rank order — skip when re-sorted by another stat.
-                  const above = sortKey === "rank" && rowIndex > 0 ? sortedBoard[rowIndex - 1] : null;
-                  const toOvertake = above ? Math.max(0, (above.priorityPoints ?? 0) - live + 1) : 0;
-                  return (
-                    <div
-                      key={user.id}
-                      className={`border-t-2 border-black transition-colors ${isMe ? "bg-yellow-50" : "hover:bg-zinc-50"} ${linkable ? "cursor-pointer" : "cursor-default"}`}
-                      style={{ boxShadow: `inset 5px 0 0 ${medal ?? tier.accent}` }}
-                      onClick={linkable ? () => handleSelectUser(user) : undefined}
-                    >
-                     <div className="grid grid-cols-12 items-center px-3 md:px-5 py-2.5">
-                      {/* Rank + Avatar + Name + Meta */}
-                      <div className="col-span-8 sm:col-span-6 flex items-center gap-2 md:gap-3 min-w-0">
-                        {/* Rank + movement */}
-                        <div className="flex items-center gap-1 flex-shrink-0 w-8 sm:w-10">
-                          {medal ? (
-                            <span
-                              className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
-                              style={{ background: medal, color: user.rank === 1 ? "#000" : "#fff" }}
-                            >
-                              {user.rank}
-                            </span>
-                          ) : (
-                            <span className="text-sm font-black text-zinc-400 tabular-nums w-6 text-center sm:text-left">{user.rank}</span>
-                          )}
-                          <div className="flex flex-col items-center justify-center flex-shrink-0">
-                            {moved > 0 && <ChevronUp size={11} strokeWidth={4} className="text-green-500" />}
-                            {moved < 0 && <ChevronDown size={11} strokeWidth={4} className="text-red-500" />}
+                {(() => {
+                  const currentUserInSlice = sortedBoard.slice(0, displayLimit).some(u => u.id === currentUser?.id);
+                  const currentUserRowIndex = currentUser ? sortedBoard.findIndex(u => u.id === currentUser.id) : -1;
+                  const showStickyMe = currentUser && isStudent && !currentUserInSlice && currentUserRowIndex !== -1;
+
+                  return sortedBoard.length > 0 ? (
+                    <>
+                      {sortedBoard.slice(0, displayLimit).map((user, rowIndex) => renderRow(user, rowIndex, false))}
+                      
+                      {showStickyMe && (
+                        <>
+                          <div className="border-t-3 border-black relative overflow-hidden select-none" style={{ height: 12 }}>
+                            <CautionTape variant="caution" height={12} />
                           </div>
-                        </div>
-
-                        {/* Avatar + name + meta */}
-                        <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                          <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
-                            <Avatar
-                              url={rowAvatar}
-                              name={user.displayName || user.username}
-                              size={36}
-                              changedAt={user.avatarChangedAt}
-                            />
-                          </RankedAvatarRing>
-                          <div className="flex flex-1 flex-col min-w-0">
-                            <div className="flex items-center gap-1.5 min-w-0">
-                              {/* Name plate — background colored by rank tier (brand-
-                                  sanctioned tier gradient), with the random 5s flash. */}
-                              <span
-                                className={`inline-flex items-center border-[3px] border-black px-2 py-1 font-black truncate min-w-0 ${flashId === user.id ? "lb-flash" : ""}`}
-                                style={{ background: tier.labelGradient, color: tier.textColor, boxShadow: "2px 2px 0 #000", fontSize: 12, letterSpacing: "0.01em", maxWidth: "100%" }}
-                                title={user.displayName || user.username}
-                              >
-                                {user.displayName || user.username}
-                              </span>
-                              {isMe && (
-                                <span className="text-[8px] font-black uppercase px-1 py-0.5 border border-black bg-yellow-400 text-black flex-shrink-0">
-                                  {kh ? "អ្នក" : "You"}
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex items-center gap-1 mt-0.5 flex-wrap">
-                              <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5 sm:hidden">
-                                {tier.label}
-                              </span>
-                              {user.province && (
-                                <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
-                                  <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
-                                </span>
-                              )}
-                              {/* Goal-gradient: only for me, when someone is just ahead */}
-                              {isMe && above && toOvertake > 0 && (
-                                <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-300 px-1 py-0.5">
-                                  <ArrowUp size={8} strokeWidth={4} />
-                                  {kh ? `ខ្វះ ${toOvertake.toLocaleString()} ដើម្បីលើស #${above.rank}` : `${toOvertake.toLocaleString()} to pass #${above.rank}`}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Score — designed like a Cambodian license plate */}
-                      <div className="col-span-4 sm:col-span-3 flex justify-end sm:justify-start items-center">
-                        {(() => {
-                          const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
-                          return (
-                            <div
-                              className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_#000] p-0.5"
-                              style={{
-                                width: "72px",
-                                height: "38px",
-                                borderRadius: "4px",
-                              }}
-                            >
-                              {/* Inner blue border outline */}
-                              <div className="absolute inset-0.5 border border-blue-700 pointer-events-none rounded-[2px]" />
-                              
-                              {/* Top: Province/Cambodia in Khmer */}
-                              <span className="z-10 text-[6.5px] font-black text-blue-900 leading-none scale-90 origin-top mt-[1px]">
-                                {rowProvince ? getProvinceKh(rowProvince) : "កម្ពុជា"}
-                              </span>
-                              
-                              {/* Center: Score number in deep blue */}
-                              <span className="z-10 font-mono font-black tabular-nums text-[13px] text-blue-900 leading-none my-[1px] tracking-tight">
-                                {scoreValue.toLocaleString()}
-                              </span>
-
-                              {/* Horizontal divider line */}
-                              <div className="z-10 w-full h-[1px] bg-blue-800 opacity-40" />
-
-                              {/* Bottom: Province/Cambodia in English Red */}
-                              <span className="z-10 text-[5.5px] font-black text-red-600 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[1px]">
-                                {rowProvince ? rowProvince.toUpperCase() : "CAMBODIA"}
-                              </span>
-                            </div>
-                          );
-                        })()}
-                      </div>
-
-                      {/* Games — total games this player has played (all modes) */}
-                      <span className="col-span-1 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
-                        {(user.totalGamesPlayed ?? 0).toLocaleString()}
-                      </span>
-
-                      {/* Accuracy across recorded plays */}
-                      <span
-                        className="col-span-2 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
-                        style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa" }}
-                      >
-                        {(user.accuracy ?? 0)}%
-                      </span>
-                     </div>
-
-                      {/* Mobile stat strip — on phones the Games / Accuracy columns
-                          can't sit inline, so they drop to a self-labeled chip row
-                          here. Nothing is hidden: ≥sm shows the inline columns above,
-                          <sm shows these chips. */}
-                      <div className="sm:hidden flex items-center gap-1.5 flex-wrap px-3 pb-2.5 -mt-0.5">
-                        <span className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums" style={kf}>
-                          <Gamepad2 size={10} strokeWidth={2.75} />
-                          {(user.totalGamesPlayed ?? 0).toLocaleString()} {kh ? "ហ្គេម" : "Games"}
-                        </span>
-                        <span
-                          className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums"
-                          style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa", ...kf }}
-                        >
-                          {(user.accuracy ?? 0)}% {kh ? "ត្រឹមត្រូវ" : "Acc"}
-                        </span>
-                      </div>
+                          {renderRow(sortedBoard[currentUserRowIndex], currentUserRowIndex, true)}
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <div className="px-6 py-10 text-center text-zinc-400 text-sm border-t-2 border-black" style={kf}>
+                      {kh
+                        ? "មិនទាន់មានចំណាត់ថ្នាក់ទេ។ លេងសកម្មភាព ឬចូលរួមថ្នាក់ផ្ទាល់ ដើម្បីបង្ហាញនៅទីនេះ។"
+                        : "No rankings yet. Play games or join a live class to appear here."}
                     </div>
                   );
-                }) : (
-                  <div className="px-6 py-10 text-center text-zinc-400 text-sm border-t-2 border-black" style={kf}>
-                    {kh
-                      ? "មិនទាន់មានចំណាត់ថ្នាក់ទេ។ លេងសកម្មភាព ឬចូលរួមថ្នាក់ផ្ទាល់ ដើម្បីបង្ហាញនៅទីនេះ។"
-                      : "No rankings yet. Play games or join a live class to appear here."}
-                  </div>
-                )}
+                })()}
               </div>
+
+              {sortedBoard.length > 10 && (
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={() => setDisplayLimit(d => d === 10 ? 20 : 10)}
+                    className="border-2 border-black bg-yellow-400 text-black px-4 py-2 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0_#000] hover:-translate-y-0.5 transition-transform"
+                    style={{ borderRadius: 0 }}
+                  >
+                    {displayLimit === 10
+                      ? (kh ? "មើលបន្ថែម (កំពូល ២០)" : "See More (Top 20)")
+                      : (kh ? "បង្ហាញតិចជាងមុន (កំពូល ១០)" : "See Less (Top 10)")}
+                  </button>
+                </div>
+              )}
+
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
                   ? "Road Points = អាចដោះបាន · ចំណាត់ថ្នាក់តាម Road Points · ហ្គេម = ចំនួនលេងសរុប · ត្រឹមត្រូវ = មធ្យមភាគ"
