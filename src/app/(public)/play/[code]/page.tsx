@@ -226,11 +226,18 @@ export default function StudentGamePage() {
 
   const [joining, setJoining] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [muted, setMuted] = useState(true); // Default muted for clock ticks
+  const [muted, setMuted] = useState(false); // Default unmuted so sound effects play
   const [joinError, setJoinError] = useState<string | null>(null);
 
-  const mutedRef = useRef(muted);
-  mutedRef.current = muted;
+  useEffect(() => {
+    const saved = typeof window !== "undefined" ? localStorage.getItem("kwd_student_muted") : null;
+    if (saved === "1") setMuted(true);
+    else if (saved === "0") setMuted(false);
+  }, []);
+
+  useEffect(() => {
+    try { localStorage.setItem("kwd_student_muted", muted ? "1" : "0"); } catch { /* ignore */ }
+  }, [muted]);
 
   const [currentUserPoints, setCurrentUserPoints] = useState<number>(0);
   const [currentUserDisplayName, setCurrentUserDisplayName] = useState<string>("");
@@ -265,6 +272,15 @@ export default function StudentGamePage() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [podium, setPodium] = useState<LeaderboardEntry[]>([]);
   const [resultsTab, setResultsTab] = useState<"result" | "leaderboard">("result");
+
+  const mutedRef = useRef(muted);
+  mutedRef.current = muted;
+
+  const selectedAnswerRef = useRef<number | null>(null);
+  selectedAnswerRef.current = selectedAnswer;
+
+  const currentUserIdRef = useRef<number | undefined>(undefined);
+  currentUserIdRef.current = currentUserId;
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -360,10 +376,28 @@ export default function StudentGamePage() {
         if (!mutedRef.current) sounds.question_start();
       } else if (event.type === "question_end") {
         setCorrectAnswerId(event.correctAnswerId);
-        setLeaderboard(event.leaderboard || []);
+        const nextLeaderboard = event.leaderboard || [];
+        setLeaderboard(nextLeaderboard);
         setResultsTab("result");
         setPhase("results");
-        if (!mutedRef.current) sounds.question_end();
+
+        if (!mutedRef.current) {
+          const selAns = selectedAnswerRef.current;
+          const myId = currentUserIdRef.current;
+          const isCorrect = selAns !== null && selAns !== undefined && selAns === event.correctAnswerId;
+          const myStreak = nextLeaderboard.find(e => e.userId === myId)?.currentStreak ?? 0;
+          try {
+            if (isCorrect) {
+              if (myStreak > 2) {
+                sounds.streak();
+              } else {
+                sounds.correct();
+              }
+            } else {
+              sounds.incorrect();
+            }
+          } catch { }
+        }
       } else if (event.type === "leaderboard") {
         setLeaderboard(event.entries || []);
         setPhase("leaderboard");

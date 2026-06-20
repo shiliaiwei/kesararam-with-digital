@@ -533,7 +533,12 @@ export default function HostPage() {
       });
     }
     if (event.type === "question_end") {
-      try { sounds.question_end(); } catch { }
+      try {
+        sounds.question_end();
+        sounds.correct();
+        sounds.cheer();
+        sounds.clapping();
+      } catch { }
       setPhase((p) => {
         if (p.name === "active") {
           return {
