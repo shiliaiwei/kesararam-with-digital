@@ -86,6 +86,14 @@ function getProvinceKh(provinceEn: string | null | undefined): string {
   return found ? found.kh : provinceEn;
 }
 
+function getAdjustedScore(val: number): number {
+  if (val >= 500) return val - 300;
+  if (val >= 400) return val - 200;
+  if (val >= 300) return val - 100;
+  if (val >= 200) return val - 70;
+  return val;
+}
+
 // ── Leaderboard game-type filter ──────────────────────────────────────────────
 // Time-window + source controls were removed (2026-06-20): the board is always
 // all-time, all-sources. The game-mode filter is the only scope control now.
@@ -1461,7 +1469,7 @@ export default function LeaderboardPage() {
                   
                   {/* Center: Score number in brand blue */}
                   <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
-                    {scoreValue.toLocaleString()}
+                    {getAdjustedScore(scoreValue).toLocaleString()}
                   </span>
 
                   {/* Bottom: Province/Cambodia in English */}
@@ -1559,7 +1567,7 @@ export default function LeaderboardPage() {
                         
                         {/* Center: Score number in brand blue */}
                         <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
-                          {(currentUser.livePoints ?? 0).toLocaleString()}
+                          {getAdjustedScore(currentUser.livePoints ?? 0).toLocaleString()}
                         </span>
 
                         {/* Bottom: Province/Cambodia in English */}
