@@ -296,6 +296,30 @@ const PODIUM_CELEBRATION_KEYFRAMES = `
 .lb-rise{left:50%;top:50%;animation:lbRise 1.6s ease-out forwards}
 @keyframes lbPop{0%{transform:translate(-50%,-50%) scale(0);opacity:0}30%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.7) rotate(40deg);opacity:0}}
 .lb-pop{left:50%;top:50%;animation:lbPop 1.25s ease-out forwards}
+
+@keyframes scrollBg {
+  from { background-position: 0 0; }
+  to { background-position: 24px 24px; }
+}
+.animate-scroll-bg {
+  animation: scrollBg 12s linear infinite;
+}
+
+@keyframes scrollPedestal {
+  from { background-position: 0 0; }
+  to { background-position: 28px 0; }
+}
+.animate-pedestal {
+  animation: scrollPedestal 6s linear infinite;
+}
+
+@keyframes podiumShimmer {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  35%, 100% { transform: translateX(180%) skewX(-20deg); }
+}
+.animate-shimmer {
+  animation: podiumShimmer 4s infinite linear;
+}
 `;
 
 /**
@@ -458,7 +482,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
       </div>
 
       <div
-        className={`relative flex w-full flex-col items-center overflow-hidden border-[3px] border-black px-1.5 pb-4 pt-8 md:px-3 md:pb-5 md:pt-12 text-center transition-transform duration-200 ${linkable ? "cursor-pointer hover:-translate-y-1" : "cursor-default"}`}
+        className={`relative flex w-full flex-col items-center overflow-hidden border-[3px] border-black px-1.5 pb-4 pt-8 md:px-3 md:pb-5 md:pt-12 text-center transition-transform duration-200 animate-scroll-bg ${linkable ? "cursor-pointer hover:-translate-y-1" : "cursor-default"}`}
         onClick={linkable && user ? () => onSelect(user) : undefined}
         style={{
           backgroundColor: cfg.surfaceColor,
@@ -468,6 +492,17 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
           borderRadius: 0,
         }}
       >
+        {/* Shimmer sweeping effect */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div 
+            className="absolute inset-0 opacity-[0.12] animate-shimmer"
+            style={{
+              background: `linear-gradient(90deg, transparent, ${cfg.accentColor}, transparent)`,
+              width: "50%",
+              height: "100%",
+            }}
+          />
+        </div>
         <div className="absolute inset-x-0 top-0 h-3 border-b-[3px] border-black" style={{ background: cfg.accentColor }} />
 
         <div
@@ -513,10 +548,11 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
       </div>
 
       <div
-        className={`relative flex w-full items-center justify-center overflow-hidden border-[3px] border-t-0 border-black ${cfg.pedestalHeight}`}
+        className={`relative flex w-full items-center justify-center overflow-hidden border-[3px] border-t-0 border-black animate-pedestal ${cfg.pedestalHeight}`}
         style={{
           background: cfg.pedestalBg,
           boxShadow: isFirst ? "8px 8px 0 #000" : "5px 5px 0 #000",
+          backgroundSize: "28px 28px",
         }}
       >
         <span
@@ -1423,8 +1459,8 @@ export default function LeaderboardPage() {
                     {rowProvince ? getProvinceKh(rowProvince) : "កម្ពុជា"}
                   </span>
                   
-                  {/* Center: Score number in premium gold */}
-                  <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#b8860b" }}>
+                  {/* Center: Score number in brand blue */}
+                  <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
                     {scoreValue.toLocaleString()}
                   </span>
 
@@ -1521,8 +1557,8 @@ export default function LeaderboardPage() {
                           {currentUser.classProvince || currentUser.province ? getProvinceKh(currentUser.classProvince || currentUser.province) : "កម្ពុជា"}
                         </span>
                         
-                        {/* Center: Score number in premium gold */}
-                        <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#b8860b" }}>
+                        {/* Center: Score number in brand blue */}
+                        <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
                           {(currentUser.livePoints ?? 0).toLocaleString()}
                         </span>
 

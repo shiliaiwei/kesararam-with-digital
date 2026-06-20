@@ -45,6 +45,12 @@ async function storePointsLeaderboard(opts: {
   const bestGameExpr = sql<string | null>`(SELECT spe.game_type FROM store_point_events spe WHERE spe.user_id = users.id AND spe.reason = 'play'${gameTypeCond} GROUP BY spe.game_type ORDER BY COUNT(*) DESC LIMIT 1)`;
   const classNameExpr = sql<string | null>`(SELECT c.name FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
   const classProvinceExpr = sql<string | null>`(SELECT c.province FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
+  const gamesPlayedExpr = gameType !== "all"
+    ? sql<number>`(
+        COALESCE((SELECT COUNT(*) FROM game_scores gs WHERE gs.user_id = users.id AND gs.game_mode = ${gameType}), 0) +
+        COALESCE((SELECT COUNT(*) FROM game_participants gp JOIN game_sessions gs ON gs.id = gp.session_id WHERE gp.user_id = users.id AND gs.game_mode = ${gameType}), 0)
+      )::int`
+    : users.totalGamesPlayed;
 
   const provinceFilter =
     province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
@@ -58,7 +64,7 @@ async function storePointsLeaderboard(opts: {
       avatar: users.avatar,
       avatarChangedAt: users.avatarChangedAt,
       highestScore: users.highestScore,
-      totalGamesPlayed: users.totalGamesPlayed,
+      totalGamesPlayed: gamesPlayedExpr,
       windowPoints: windowExpr,
       storeBalance: balanceExpr,
       livePoints: liveExpr,
@@ -176,6 +182,12 @@ export async function GET(req: NextRequest) {
     const bestGameExpr = sql<string | null>`(SELECT gs.game_mode FROM game_scores gs WHERE gs.user_id = users.id${gameTypeCondGs} GROUP BY gs.game_mode ORDER BY COUNT(*) DESC LIMIT 1)`;
     const classNameExpr = sql<string | null>`(SELECT c.name FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
     const classProvinceExpr = sql<string | null>`(SELECT c.province FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
+    const gamesPlayedExpr = gameType !== "all"
+      ? sql<number>`(
+          COALESCE((SELECT COUNT(*) FROM game_scores gs WHERE gs.user_id = users.id AND gs.game_mode = ${gameType}), 0) +
+          COALESCE((SELECT COUNT(*) FROM game_participants gp JOIN game_sessions gs ON gs.id = gp.session_id WHERE gp.user_id = users.id AND gs.game_mode = ${gameType}), 0)
+        )::int`
+      : users.totalGamesPlayed;
 
     let rows: {
       id: number;
@@ -263,7 +275,7 @@ export async function GET(req: NextRequest) {
           avatar: users.avatar,
           avatarChangedAt: users.avatarChangedAt,
           highestScore: users.highestScore,
-          totalGamesPlayed: users.totalGamesPlayed,
+          totalGamesPlayed: gamesPlayedExpr,
           windowPoints: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
           priorityPoints: priorityExpr,
           soloPoints: soloExpr,
