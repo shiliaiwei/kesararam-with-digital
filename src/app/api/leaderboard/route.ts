@@ -64,6 +64,7 @@ async function storePointsLeaderboard(opts: {
       displayName: users.displayName,
       avatar: users.avatar,
       avatarChangedAt: users.avatarChangedAt,
+      scorePlateStyle: users.scorePlateStyle,
       highestScore: users.highestScore,
       totalGamesPlayed: gamesPlayedExpr,
       windowPoints: windowExpr,
@@ -109,6 +110,7 @@ async function storePointsLeaderboard(opts: {
     isUsernamePublic: user.isUsernamePublic ?? true,
     avatar: user.avatar,
     avatarChangedAt: user.avatarChangedAt,
+    scorePlateStyle: user.scorePlateStyle,
     highestScore: user.highestScore,
     totalGamesPlayed: user.totalGamesPlayed,
     lifetimePoints: user.windowPoints,
@@ -210,6 +212,7 @@ export async function GET(req: NextRequest) {
       displayName: string | null;
       avatar: string | null;
       avatarChangedAt: Date | null;
+      scorePlateStyle: string;
       highestScore: number;
       totalGamesPlayed: number;
       windowPoints: number;
@@ -239,6 +242,7 @@ export async function GET(req: NextRequest) {
           displayName: users.displayName,
           avatar: users.avatar,
           avatarChangedAt: users.avatarChangedAt,
+          scorePlateStyle: users.scorePlateStyle,
           highestScore: users.highestScore,
           totalGamesPlayed: users.totalGamesPlayed,
           windowPoints: sql<number>`COALESCE(${users.lifetimePoints} + (SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source = 'solo'), ${users.lifetimePoints})::int`,
@@ -290,6 +294,7 @@ export async function GET(req: NextRequest) {
           displayName: users.displayName,
           avatar: users.avatar,
           avatarChangedAt: users.avatarChangedAt,
+          scorePlateStyle: users.scorePlateStyle,
           highestScore: users.highestScore,
           totalGamesPlayed: gamesPlayedExpr,
           windowPoints: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
@@ -324,6 +329,7 @@ export async function GET(req: NextRequest) {
           users.displayName,
           users.avatar,
           users.avatarChangedAt,
+          users.scorePlateStyle,
           users.highestScore,
           users.totalGamesPlayed,
           users.schoolName,
@@ -360,6 +366,7 @@ export async function GET(req: NextRequest) {
         isUsernamePublic: user.isUsernamePublic ?? true,
         avatar: user.avatar,
         avatarChangedAt: user.avatarChangedAt,
+        scorePlateStyle: user.scorePlateStyle,
         highestScore: user.highestScore,
         totalGamesPlayed: user.totalGamesPlayed,
         lifetimePoints: user.windowPoints,

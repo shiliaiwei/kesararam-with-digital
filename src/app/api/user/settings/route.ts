@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import { users, classes, classEnrollments, inviteCodes } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
+import { getScorePlateEntitlement } from "@/lib/score-plate-entitlement";
+import { isPremiumScorePlate, isScorePlateStyle, normalizeScorePlateStyle } from "@/lib/score-plates";
 
 // GET /api/user/settings - Get user settings
 export async function GET(request: NextRequest) {
@@ -29,6 +31,10 @@ export async function GET(request: NextRequest) {
       ? user.profileEditUnlockedUntil.getTime() > Date.now()
       : false;
 
+    const scorePlateEntitlement = user.role === "student"
+      ? await getScorePlateEntitlement(user.id)
+      : { premiumUnlocked: false, plan: null, source: null };
+
     // Return user settings
     const settings = {
       displayName: user.displayName || user.username,
@@ -54,6 +60,10 @@ export async function GET(request: NextRequest) {
       canChangeNameOnce: user.canChangeNameOnce ?? false,
       profileEditUnlockedUntil,
       profileEditUnlocked,
+      scorePlateStyle: normalizeScorePlateStyle(user.scorePlateStyle),
+      scorePlatePremiumUnlocked: scorePlateEntitlement.premiumUnlocked,
+      scorePlateEntitlementPlan: scorePlateEntitlement.plan,
+      scorePlateEntitlementSource: scorePlateEntitlement.source,
       language: "en", // Default, can be stored in user table
       theme: "light", // Default, can be stored in user table
       notifications: {
@@ -94,7 +104,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { displayName, username, email, avatar, audioMuted, schoolName, province, isProfilePublic, isNamePublic, isUsernamePublic, isProvincePublic, isClassPublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
+    const { displayName, username, email, avatar, audioMuted, schoolName, province, isProfilePublic, isNamePublic, isUsernamePublic, isProvincePublic, isClassPublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode, scorePlateStyle } = body;
 
     // Determine if the student currently belongs to any class. A student with no
     // enrollment (never joined, or removed/kicked by a teacher) must (re-)join
@@ -131,9 +141,11 @@ export async function PUT(request: NextRequest) {
 
     const isOnboarding = isStudentOnboarding || isTeacherOnboarding;
 
-    // Detect if this is a privacy-only update (safe, no 60-day restriction)
+    // Privacy and score-plate cosmetics are safe and do not use the 60-day
+    // identity/security cooldown.
     const PRIVACY_FIELDS = new Set(['isProfilePublic', 'isNamePublic', 'isUsernamePublic', 'isSchoolPublic', 'isProvincePublic', 'isClassPublic', 'isGradePublic', 'isSectionPublic', 'isStatsPublic']);
-    const isPurePrivacyUpdate = Object.keys(body).every(k => PRIVACY_FIELDS.has(k));
+    const COOLDOWN_EXEMPT_FIELDS = new Set([...PRIVACY_FIELDS, 'scorePlateStyle']);
+    const isCooldownExemptUpdate = Object.keys(body).every(k => COOLDOWN_EXEMPT_FIELDS.has(k));
 
     // One-time name/username change allowance. When granted (canChangeNameOnce),
     // the user may change their full name and/or username ONCE, bypassing the
@@ -156,7 +168,7 @@ export async function PUT(request: NextRequest) {
       !isProfileEditUnlocked;
 
     // 1. 60-Day Cooldown Gate — only for sensitive field changes, not privacy toggles
-    if (!isOnboarding && !isPurePrivacyUpdate && !isOneTimeNameChange && !isProfileEditUnlocked) {
+    if (!isOnboarding && !isCooldownExemptUpdate && !isOneTimeNameChange && !isProfileEditUnlocked) {
       const accountAgeMs = Date.now() - new Date(currentUser.createdAt).getTime();
       const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
       if (accountAgeMs < SIXTY_DAYS) {
@@ -199,6 +211,24 @@ export async function PUT(request: NextRequest) {
       isStatsPublic: isStatsPublic !== undefined ? !!isStatsPublic : (currentUser.isStatsPublic ?? true),
       updatedAt: new Date(),
     };
+
+    if (scorePlateStyle !== undefined) {
+      if (currentUser.role !== "student") {
+        return NextResponse.json({ error: "Score plates are available to student profiles only." }, { status: 403 });
+      }
+      if (!isScorePlateStyle(scorePlateStyle)) {
+        return NextResponse.json({ error: "Unknown score plate style." }, { status: 400 });
+      }
+      if (isPremiumScorePlate(scorePlateStyle)) {
+        const entitlement = await getScorePlateEntitlement(currentUser.id);
+        if (!entitlement.premiumUnlocked) {
+          return NextResponse.json({
+            error: "Link to an active Teacher Pro, Family, or School Pro subscription to use this plate. / សូមភ្ជាប់ជាមួយការជាវ Teacher Pro, Family ឬ School Pro ដើម្បីប្រើផ្លាកនេះ។",
+          }, { status: 403 });
+        }
+      }
+      updates.scorePlateStyle = scorePlateStyle;
+    }
 
     // Consume the one-time allowance once it's actually used for a name/username
     // change, so the normal cooldowns resume from here on.
@@ -413,6 +443,7 @@ export async function PUT(request: NextRequest) {
           isGradePublic: updatedUser.isGradePublic,
           isSectionPublic: updatedUser.isSectionPublic,
           isStatsPublic: updatedUser.isStatsPublic,
+          scorePlateStyle: normalizeScorePlateStyle(updatedUser.scorePlateStyle),
         }
       });
       }
@@ -444,6 +475,7 @@ export async function PUT(request: NextRequest) {
         isGradePublic: updatedUser.isGradePublic,
         isSectionPublic: updatedUser.isSectionPublic,
         isStatsPublic: updatedUser.isStatsPublic,
+        scorePlateStyle: normalizeScorePlateStyle(updatedUser.scorePlateStyle),
       }
     });
   } catch (error) {

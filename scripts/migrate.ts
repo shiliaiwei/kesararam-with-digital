@@ -78,6 +78,12 @@ async function migrate() {
       ADD COLUMN IF NOT EXISTS profile_edit_unlocked_until TIMESTAMP
     `;
 
+    console.log("Running migration: add_score_plate_style");
+    await sql`
+      ALTER TABLE users
+      ADD COLUMN IF NOT EXISTS score_plate_style TEXT DEFAULT 'road' NOT NULL
+    `;
+
     console.log("Running migration: add_class_id_to_invite_codes");
     await sql`
       ALTER TABLE invite_codes 

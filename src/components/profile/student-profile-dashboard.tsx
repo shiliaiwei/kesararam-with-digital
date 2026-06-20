@@ -6,7 +6,7 @@ import {
   X, Camera, CheckCircle2, School, Star, Mail, AtSign,
   Info, Globe, Lock, Eye, EyeOff, User, Shield, Pencil,
   ExternalLink, RefreshCw, ChevronRight, Send, KeyRound,
-  Flame, Gamepad2,
+  Flame, Gamepad2, Palette, ShieldCheck,
 } from "lucide-react";
 import {
   getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS,
@@ -21,6 +21,8 @@ import { MythicAvatarBorder } from "@/components/rank/MythicAvatarBorder";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { useLang } from "@/context/lang-context";
 import { calculateRankAndDivision } from "@/lib/ranks";
+import { ScorePlate } from "@/components/shared/score-plate";
+import { SCORE_PLATE_STYLES, normalizeScorePlateStyle, type ScorePlateStyle } from "@/lib/score-plates";
 
 interface StudentProfileDashboardProps {
   user: {
@@ -31,6 +33,7 @@ interface StudentProfileDashboardProps {
     avatarChangedAt: Date | null;
     schoolName: string | null;
     province: string | null;
+    scorePlateStyle: ScorePlateStyle;
   };
   highestScore: number;
   totalGamesPlayed: number;
@@ -92,6 +95,13 @@ export function StudentProfileDashboard({
   const [infoSaving, setInfoSaving] = useState(false);
   const [infoSaved, setInfoSaved] = useState(false);
   const [infoError, setInfoError] = useState("");
+  const [activePlateStyle, setActivePlateStyle] = useState<ScorePlateStyle>(normalizeScorePlateStyle(user.scorePlateStyle));
+  const [draftPlateStyle, setDraftPlateStyle] = useState<ScorePlateStyle>(normalizeScorePlateStyle(user.scorePlateStyle));
+  const [premiumPlatesUnlocked, setPremiumPlatesUnlocked] = useState(false);
+  const [plateEntitlementPlan, setPlateEntitlementPlan] = useState<string | null>(null);
+  const [plateSaving, setPlateSaving] = useState(false);
+  const [plateMessage, setPlateMessage] = useState("");
+  const [plateError, setPlateError] = useState("");
 
   // ── Email change ──────────────────────────────────────────────────────────
   const [emailStep, setEmailStep] = useState<EmailStep>("idle");
@@ -165,6 +175,11 @@ export function StudentProfileDashboard({
         });
         setEditUsername(s.username ?? user.username);
         setEditDisplayName(s.displayName ?? user.username);
+        const savedPlate = normalizeScorePlateStyle(s.scorePlateStyle);
+        setActivePlateStyle(savedPlate);
+        setDraftPlateStyle(savedPlate);
+        setPremiumPlatesUnlocked(!!s.scorePlatePremiumUnlocked);
+        setPlateEntitlementPlan(s.scorePlateEntitlementPlan ?? null);
         const unlockActive = !!s.profileEditUnlocked;
         setProfileEditUnlocked(unlockActive);
         setProfileEditUnlockDaysLeft(
@@ -241,6 +256,30 @@ export function StudentProfileDashboard({
       setPrivacyError(e.message || "Failed to save. Please try again.");
     } finally {
       setPrivacySaving(false);
+    }
+  };
+
+  const saveScorePlate = async () => {
+    setPlateSaving(true);
+    setPlateError("");
+    setPlateMessage("");
+    try {
+      const res = await fetch("/api/user/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ scorePlateStyle: draftPlateStyle }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Failed to save score plate.");
+      const saved = normalizeScorePlateStyle(data.user?.scorePlateStyle ?? draftPlateStyle);
+      setActivePlateStyle(saved);
+      setDraftPlateStyle(saved);
+      setPlateMessage(kh ? "បានរក្សាទុកផ្លាកពិន្ទុ។" : "Score plate saved.");
+      setTimeout(() => setPlateMessage(""), 3000);
+    } catch (error) {
+      setPlateError(error instanceof Error ? error.message : "Failed to save score plate.");
+    } finally {
+      setPlateSaving(false);
     }
   };
 
@@ -455,6 +494,16 @@ export function StudentProfileDashboard({
                     #{rankStats.currentRank}
                   </span>
                 )}
+              </div>
+
+              <div className="mb-4 flex justify-center sm:justify-start">
+                <ScorePlate
+                  value={rankStats.lifetimePoints}
+                  styleId={activePlateStyle}
+                  provinceEn={user.province}
+                  size="md"
+                  shadow
+                />
               </div>
 
               {/* Tier progress */}
@@ -931,6 +980,83 @@ export function StudentProfileDashboard({
                   {infoError && (
                     <p className="text-red-600 text-xs font-bold mt-2" style={kf}>{infoError}</p>
                   )}
+                </div>
+
+                {/* Avatar editor */}
+                <div className="border-[3px] border-black bg-white shadow-[4px_4px_0_#000]">
+                  <div className="flex items-center justify-between gap-3 border-b-[3px] border-black bg-purple-500 px-4 py-2 text-white">
+                    <div className="flex items-center gap-2">
+                      <Palette size={16} strokeWidth={2.6} />
+                      <span className="text-[10px] font-black uppercase tracking-widest" style={kf}>
+                        {kh ? "ជ្រើសផ្លាកពិន្ទុ" : "Choose Score Plate"}
+                      </span>
+                    </div>
+                    <span className="border-2 border-black bg-black px-2 py-0.5 text-[8px] font-black uppercase tracking-wider text-yellow-400">
+                      {premiumPlatesUnlocked ? (kh ? "បានដោះសោ" : "Unlocked") : (kh ? "Pro" : "Pro")}
+                    </span>
+                  </div>
+
+                  <div className="p-4">
+                    <div className={`mb-4 flex items-start gap-2 border-2 p-3 ${premiumPlatesUnlocked ? "border-green-500 bg-green-50" : "border-blue-500 bg-blue-50"}`}>
+                      {premiumPlatesUnlocked
+                        ? <ShieldCheck size={16} className="mt-0.5 shrink-0 text-green-600" strokeWidth={2.6} />
+                        : <Lock size={16} className="mt-0.5 shrink-0 text-blue-600" strokeWidth={2.6} />}
+                      <p className="text-[10px] font-bold leading-relaxed text-black" style={kf}>
+                        {premiumPlatesUnlocked
+                          ? (kh
+                            ? `ផ្លាក Pro ត្រូវបានដោះសោ${plateEntitlementPlan ? ` តាម ${plateEntitlementPlan.replace("_", " ")}` : ""}។`
+                            : `Premium plates unlocked${plateEntitlementPlan ? ` through ${plateEntitlementPlan.replace("_", " ")}` : ""}.`)
+                          : (kh
+                            ? "ផ្លាកផ្លូវឥតគិតថ្លៃ។ ភ្ជាប់ជាមួយ Teacher Pro, Family ឬ School Pro ដើម្បីដោះសោផ្លាកបន្ថែម។"
+                            : "The Road Plate is free. Link to Teacher Pro, Family, or School Pro to unlock more plates.")}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      {SCORE_PLATE_STYLES.map((plate) => {
+                        const locked = plate.premium && !premiumPlatesUnlocked;
+                        const selected = draftPlateStyle === plate.id;
+                        return (
+                          <button
+                            key={plate.id}
+                            type="button"
+                            disabled={locked}
+                            onClick={() => setDraftPlateStyle(plate.id)}
+                            className="relative flex min-h-40 flex-col items-center justify-between gap-3 border-[3px] p-3 text-left transition-transform enabled:hover:-translate-y-0.5 disabled:cursor-not-allowed"
+                            style={{
+                              borderColor: selected ? "#eab308" : "#000",
+                              background: locked ? "#f4f4f5" : "#fff",
+                              boxShadow: selected ? "5px 5px 0 #000" : "3px 3px 0 #000",
+                              opacity: locked ? 0.62 : 1,
+                            }}
+                          >
+                            <ScorePlate value={rankStats.lifetimePoints} styleId={plate.id} provinceEn={user.province} size="md" />
+                            <span className="w-full">
+                              <span className="flex items-center justify-between gap-2 text-[11px] font-black uppercase tracking-wide text-black" style={kf}>
+                                {kh ? plate.nameKh : plate.nameEn}
+                                {locked ? <Lock size={13} /> : selected ? <CheckCircle2 size={13} className="text-green-600" /> : null}
+                              </span>
+                              <span className="mt-1 block text-[9px] font-bold text-zinc-500" style={kf}>
+                                {kh ? plate.descriptionKh : plate.descriptionEn}
+                              </span>
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={saveScorePlate}
+                      disabled={plateSaving || draftPlateStyle === activePlateStyle}
+                      className="mt-4 w-full border-[3px] border-black bg-yellow-400 py-3 text-xs font-black uppercase tracking-wide text-black shadow-[4px_4px_0_#000] transition-all enabled:hover:translate-x-0.5 enabled:hover:translate-y-0.5 enabled:hover:shadow-[2px_2px_0_#000] disabled:cursor-not-allowed disabled:opacity-50"
+                      style={kf}
+                    >
+                      {plateSaving ? (kh ? "កំពុងរក្សាទុក…" : "Saving…") : (kh ? "ប្រើផ្លាកនេះ" : "Use This Plate")}
+                    </button>
+                    {plateMessage && <p className="mt-2 text-xs font-black text-green-600" style={kf}>{plateMessage}</p>}
+                    {plateError && <p className="mt-2 text-xs font-bold text-red-600" style={kf}>{plateError}</p>}
+                  </div>
                 </div>
 
                 {/* Avatar editor */}

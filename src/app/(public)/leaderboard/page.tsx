@@ -12,6 +12,7 @@ import { getAvatarFaceStyle } from "@/lib/utils";
 import { REWARD_ITEMS, getRewardRarity, RARITY_META, calculateDynamicCost } from "@/lib/rewards";
 import { GAME_FILTER_ORDER, getGameMeta } from "@/lib/gamekit/game-catalog";
 import { GameBadge } from "@/components/gamekit/GameBadge";
+import { ScorePlate } from "@/components/shared/score-plate";
 import {
   Trophy,
   Gift,
@@ -116,6 +117,7 @@ interface LeaderboardUser {
   displayName: string | null;
   avatar: string | null;
   avatarChangedAt: string | null;
+  scorePlateStyle: string;
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
@@ -532,35 +534,14 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
 
         {/* Matric number plate for top three */}
         {user ? (
-          <div
-            className="z-10 relative bg-white border-2 border-black flex flex-col items-center justify-between select-none p-0.5"
-            style={{
-              width: isFirst ? "116px" : "100px",
-              height: isFirst ? "60px" : "54px",
-              borderRadius: "6px",
-            }}
-          >
-            {/* Inner blue border outline */}
-            <div className="absolute inset-[3px] border border-blue-600 pointer-events-none rounded-[4px]" />
-
-            {/* Top: Province/Cambodia in Khmer */}
-            <span className={`z-10 font-medium text-zinc-500/80 leading-none scale-90 origin-top mt-[4px] ${isFirst ? "text-[9px]" : "text-[8px]"}`}>
-              {user.province ? getProvinceKh(user.province) : "កម្ពុជា"}
-            </span>
-            
-            {/* Center: Score number in brand blue */}
-            <span className="z-10 font-mono font-black tabular-nums leading-none my-[1px] tracking-tight" style={{ fontSize: isFirst ? "26px" : "22px", color: "#3b82f6" }}>
-              <AnimatedNumber value={scoreValue} />
-            </span>
-
-            {/* Blue line separator */}
-            <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/35 flex-shrink-0" />
-
-            {/* Bottom: Province/Cambodia in English */}
-            <span className={`z-10 font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px] ${isFirst ? "text-[7.5px]" : "text-[6.5px]"}`}>
-              {user.province ? user.province.toUpperCase() : "CAMBODIA"}
-            </span>
-          </div>
+          <ScorePlate
+            value={<AnimatedNumber value={scoreValue} />}
+            styleId={user.scorePlateStyle}
+            provinceEn={user.province}
+            provinceKh={getProvinceKh(user.province)}
+            size={isFirst ? "md" : "sm"}
+            className="z-10"
+          />
         ) : (
           <span className="z-10 font-black text-zinc-400">—</span>
         )}
@@ -1465,36 +1446,15 @@ export default function LeaderboardPage() {
           <div className="col-span-4 sm:col-span-3 flex justify-end sm:justify-start items-center">
             {(() => {
               const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
+              const rowPlateStyle = isMe ? (currentUser?.scorePlateStyle || user.scorePlateStyle) : user.scorePlateStyle;
               return (
-                <div
-                  className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none p-0.5"
-                  style={{
-                    width: "100px",
-                    height: "54px",
-                    borderRadius: "6px",
-                  }}
-                >
-                  {/* Inner blue border outline */}
-                  <div className="absolute inset-[3px] border border-blue-600 pointer-events-none rounded-[4px]" />
-
-                  {/* Top: Province/Cambodia in Khmer */}
-                  <span className="z-10 text-[8px] font-medium text-zinc-500/80 leading-none scale-90 origin-top mt-[4px]">
-                    {rowProvince ? getProvinceKh(rowProvince) : "កម្ពុជា"}
-                  </span>
-                  
-                  {/* Center: Score number in brand blue */}
-                  <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
-                    {scoreValue.toLocaleString()}
-                  </span>
-
-                  {/* Blue line separator */}
-                  <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/35 flex-shrink-0" />
-
-                  {/* Bottom: Province/Cambodia in English */}
-                  <span className="z-10 text-[6.5px] font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
-                    {rowProvince ? rowProvince.toUpperCase() : "CAMBODIA"}
-                  </span>
-                </div>
+                <ScorePlate
+                  value={scoreValue}
+                  styleId={rowPlateStyle}
+                  provinceEn={rowProvince}
+                  provinceKh={getProvinceKh(rowProvince)}
+                  size="sm"
+                />
               );
             })()}
           </div>
@@ -1566,36 +1526,13 @@ export default function LeaderboardPage() {
                     {/* Road Points styled as a Cambodian License Plate */}
                     <div className="flex flex-col items-start">
                       <span className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-1">Road Points</span>
-                      
-                      <div
-                        className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none p-0.5"
-                        style={{
-                          width: "100px",
-                          height: "54px",
-                          borderRadius: "6px",
-                        }}
-                      >
-                        {/* Inner blue border outline */}
-                        <div className="absolute inset-[3px] border border-blue-600 pointer-events-none rounded-[4px]" />
-
-                        {/* Top: Province/Cambodia in Khmer */}
-                        <span className="z-10 text-[8px] font-medium text-zinc-500/80 leading-none scale-90 origin-top mt-[4px]">
-                          {currentUser.classProvince || currentUser.province ? getProvinceKh(currentUser.classProvince || currentUser.province) : "កម្ពុជា"}
-                        </span>
-                        
-                        {/* Center: Score number in brand blue */}
-                        <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
-                          {(currentUser.lifetimePoints ?? 0).toLocaleString()}
-                        </span>
-
-                        {/* Blue line separator */}
-                        <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/35 flex-shrink-0" />
-
-                        {/* Bottom: Province/Cambodia in English */}
-                        <span className="z-10 text-[6.5px] font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
-                          {currentUser.classProvince || currentUser.province ? (currentUser.classProvince || currentUser.province).toUpperCase() : "CAMBODIA"}
-                        </span>
-                      </div>
+                      <ScorePlate
+                        value={currentUser.lifetimePoints ?? 0}
+                        styleId={currentUser.scorePlateStyle}
+                        provinceEn={currentUser.classProvince || currentUser.province}
+                        provinceKh={getProvinceKh(currentUser.classProvince || currentUser.province)}
+                        size="sm"
+                      />
                     </div>
 
                     <div className="flex flex-col items-start sm:items-end">

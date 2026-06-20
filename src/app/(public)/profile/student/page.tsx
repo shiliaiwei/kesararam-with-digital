@@ -9,6 +9,7 @@ import { CompleteProfileForm } from "@/components/profile/complete-profile-form"
 import { StudentProfileDashboard } from "@/components/profile/student-profile-dashboard";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 import { getStoreBalances } from "@/lib/store-points/balance";
+import { normalizeScorePlateStyle, type ScorePlateStyle } from "@/lib/score-plates";
 
 export const metadata: Metadata = {
   title: "My Profile — KWD Quiz",
@@ -38,6 +39,7 @@ export default async function StudentProfilePage({
     avatarChangedAt: Date | null;
     schoolName: string | null;
     province: string | null;
+    scorePlateStyle: ScorePlateStyle;
 
   } = {
     displayName: session.name,
@@ -47,6 +49,7 @@ export default async function StudentProfilePage({
     avatarChangedAt: null,
     schoolName: null,
     province: null,
+    scorePlateStyle: "road",
 
   };
 
@@ -65,6 +68,7 @@ export default async function StudentProfilePage({
         avatarChangedAt: users.avatarChangedAt,
         schoolName: users.schoolName,
         province: users.province,
+        scorePlateStyle: users.scorePlateStyle,
 
       })
       .from(users)
@@ -81,6 +85,7 @@ export default async function StudentProfilePage({
         avatarChangedAt: result[0].avatarChangedAt,
         schoolName: result[0].schoolName,
         province: result[0].province,
+        scorePlateStyle: normalizeScorePlateStyle(result[0].scorePlateStyle),
 
       };
     }

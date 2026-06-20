@@ -7,6 +7,7 @@ import { storePointEvents } from "@/db/schema/store-points";
 import { eq, and, sql, desc, ne } from "drizzle-orm";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 import { getStoreBalances } from "@/lib/store-points/balance";
+import { normalizeScorePlateStyle } from "@/lib/score-plates";
 import StudentProfileClient, { SerializableStudent } from "./StudentProfileClient";
 
 interface Props {
@@ -85,6 +86,7 @@ export default async function PublicStudentProfilePage({ params }: Props) {
       highestScore: users.highestScore,
       totalGamesPlayed: users.totalGamesPlayed,
       lifetimePoints: users.lifetimePoints,
+      scorePlateStyle: users.scorePlateStyle,
       createdAt: users.createdAt,
       schoolName: users.schoolName,
       province: users.province,
@@ -193,6 +195,7 @@ export default async function PublicStudentProfilePage({ params }: Props) {
   // 3. Serialize Date objects to strings to pass cleanly as client-side props
   const serializableStudent: SerializableStudent = {
     ...student,
+    scorePlateStyle: normalizeScorePlateStyle(student.scorePlateStyle),
     className: null,
     claimedRewards: JSON.stringify(
       claimRows.map((claim) => ({ id: claim.id, claimedAt: claim.claimedAt.getTime() }))

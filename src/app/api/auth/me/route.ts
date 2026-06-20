@@ -24,6 +24,7 @@ export async function GET() {
       role: users.role,
       displayName: users.displayName,
       avatar: users.avatar,
+      scorePlateStyle: users.scorePlateStyle,
       lifetimePoints: users.lifetimePoints,
       highestScore: users.highestScore,
       totalGamesPlayed: users.totalGamesPlayed,

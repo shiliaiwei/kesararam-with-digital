@@ -36,6 +36,8 @@ import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
 import { calculateRankAndDivision } from "@/lib/ranks";
 import { REWARD_ITEMS } from "@/lib/rewards";
+import { ScorePlate } from "@/components/shared/score-plate";
+import type { ScorePlateStyle } from "@/lib/score-plates";
 
 export interface SerializableStudent {
   id: number;
@@ -46,6 +48,7 @@ export interface SerializableStudent {
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
+  scorePlateStyle: ScorePlateStyle;
   createdAt: string;
   schoolName: string | null;
   province: string | null;
@@ -565,9 +568,14 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                       </SignShape>
                     </div>
                     <div className="mt-5 grid grid-cols-2 gap-3">
-                      <div className="border-[3px] border-white bg-white px-3 py-3 text-black">
-                        <p className="font-mono text-2xl font-black tabular-nums">{student.lifetimePoints.toLocaleString()}</p>
-                        <p className={`text-[10px] font-black uppercase tracking-wider text-zinc-600 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                      <div className="flex flex-col items-center justify-center border-[3px] border-white bg-white px-2 py-3 text-black">
+                        <ScorePlate
+                          value={student.lifetimePoints}
+                          styleId={student.scorePlateStyle}
+                          provinceEn={student.province}
+                          size="sm"
+                        />
+                        <p className={`mt-2 text-[10px] font-black uppercase tracking-wider text-zinc-600 ${kh ? "font-google-sans" : ""}`} style={kf}>
                           {t("Store Points", "ពិន្ទុរង្វាន់")}
                         </p>
                       </div>
