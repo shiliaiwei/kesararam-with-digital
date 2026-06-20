@@ -147,6 +147,173 @@ export function ScorePlate({
     );
   }
 
+  // --- Cute Kitty Plate (Hello Kitty inspired design with ears, bow, whiskers, and "Hello Friends" badge) ---
+  if (style === "kitty") {
+    const isMini = size === "xs";
+    
+    // Scale font sizes to fit perfectly within the plate dimensions and prevent cut-offs
+    const topFontSize = size === "xs" ? 5 : size === "sm" ? 6.5 : size === "md" ? 8 : 10;
+    const valueFontSize = size === "xs" ? 12 : size === "sm" ? 16 : size === "md" ? 22 : 28;
+    const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 5.5 : size === "md" ? 7 : 8.5;
+
+    // Bow size calculations
+    const bowSize = size === "xs" ? 0.7 : size === "sm" ? 1 : size === "md" ? 1.4 : 1.7;
+
+    return (
+      <div
+        className={`relative flex select-none flex-col items-center justify-center overflow-visible border-black text-black text-center ${className} ${isMini ? "border-2" : "border-[3px]"}`}
+        style={{
+          ...shell,
+          backgroundColor: "#ffffff", // Pure white kitty base
+          borderRadius: size === "xs" ? 6 : size === "sm" ? 8 : size === "md" ? 10 : 12,
+          boxShadow: shadow ? "4px 4px 0 #000" : undefined,
+        }}
+      >
+        {/* Left Kitty Ear */}
+        <div
+          className="absolute bg-white border-black pointer-events-none"
+          style={{
+            width: size === "xs" ? 10 : size === "sm" ? 14 : size === "md" ? 18 : 22,
+            height: size === "xs" ? 10 : size === "sm" ? 14 : size === "md" ? 18 : 22,
+            top: size === "xs" ? -5 : size === "sm" ? -7 : size === "md" ? -10 : -12,
+            left: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
+            borderWidth: isMini ? "2px" : "3px",
+            borderBottomWidth: 0,
+            borderRightWidth: 0,
+            borderRadius: "4px 0 0 0",
+            transform: "rotate(-12deg)",
+          }}
+        />
+
+        {/* Right Kitty Ear */}
+        <div
+          className="absolute bg-white border-black pointer-events-none"
+          style={{
+            width: size === "xs" ? 10 : size === "sm" ? 14 : size === "md" ? 18 : 22,
+            height: size === "xs" ? 10 : size === "sm" ? 14 : size === "md" ? 18 : 22,
+            top: size === "xs" ? -5 : size === "sm" ? -7 : size === "md" ? -10 : -12,
+            right: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
+            borderWidth: isMini ? "2px" : "3px",
+            borderBottomWidth: 0,
+            borderLeftWidth: 0,
+            borderRadius: "0 4px 0 0",
+            transform: "rotate(12deg)",
+          }}
+        />
+
+        {/* Left Whiskers */}
+        <div
+          className="absolute left-[-4px] top-1/2 -translate-y-1/2 flex flex-col gap-1 pointer-events-none z-20"
+          style={{ gap: size === "xs" ? "2px" : size === "sm" ? "3px" : "4px" }}
+        >
+          <div className="bg-black" style={{ width: size === "xs" ? 6 : size === "sm" ? 9 : size === "md" ? 12 : 15, height: size === "xs" ? 1 : 1.5, transform: "rotate(10deg)" }} />
+          <div className="bg-black" style={{ width: size === "xs" ? 8 : size === "sm" ? 11 : size === "md" ? 15 : 18, height: size === "xs" ? 1 : 1.5 }} />
+          <div className="bg-black" style={{ width: size === "xs" ? 6 : size === "sm" ? 9 : size === "md" ? 12 : 15, height: size === "xs" ? 1 : 1.5, transform: "rotate(-10deg)" }} />
+        </div>
+
+        {/* Right Whiskers */}
+        <div
+          className="absolute right-[-4px] top-1/2 -translate-y-1/2 flex flex-col gap-1 pointer-events-none z-20"
+          style={{ gap: size === "xs" ? "2px" : size === "sm" ? "3px" : "4px" }}
+        >
+          <div className="bg-black" style={{ width: size === "xs" ? 6 : size === "sm" ? 9 : size === "md" ? 12 : 15, height: size === "xs" ? 1 : 1.5, transform: "rotate(-10deg)" }} />
+          <div className="bg-black" style={{ width: size === "xs" ? 8 : size === "sm" ? 11 : size === "md" ? 15 : 18, height: size === "xs" ? 1 : 1.5 }} />
+          <div className="bg-black" style={{ width: size === "xs" ? 6 : size === "sm" ? 9 : size === "md" ? 12 : 15, height: size === "xs" ? 1 : 1.5, transform: "rotate(10deg)" }} />
+        </div>
+
+        {/* Inner black border line */}
+        <div 
+          className="pointer-events-none absolute border-black rounded-[inherit]" 
+          style={{
+            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
+            borderWidth: size === "xs" ? "1px" : "1.5px",
+            opacity: 0.85,
+          }}
+        />
+
+        {/* Hello Friends script label at the top center */}
+        <div
+          className="absolute bg-zinc-950 border border-black text-red-500 font-black tracking-wide uppercase px-1 py-0.5 z-20 flex items-center justify-center"
+          style={{
+            fontSize: size === "xs" ? 5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9,
+            top: size === "xs" ? -5 : size === "sm" ? -7 : size === "md" ? -9 : -11,
+            transform: "scale(0.95)",
+            boxShadow: "1px 1px 0 #000",
+            borderRadius: 2,
+          }}
+        >
+          Hello Friends
+        </div>
+
+        {/* Red Bow on Top-Right Ear */}
+        <div
+          className="absolute pointer-events-none z-20"
+          style={{
+            top: size === "xs" ? -6 : size === "sm" ? -8 : size === "md" ? -12 : -15,
+            right: size === "xs" ? -1 : size === "sm" ? -2 : size === "md" ? -3 : -4,
+            transform: `scale(${bowSize}) rotate(15deg)`,
+          }}
+        >
+          <div className="relative w-6 h-5 flex items-center justify-center">
+            {/* Left loop */}
+            <div className="absolute left-[1px] w-3 h-3.5 bg-red-500 border border-black rounded-full rotate-[-15deg] shadow-[inset_0.5px_0.5px_0_rgba(255,255,255,0.4)]" />
+            {/* Right loop */}
+            <div className="absolute right-[1px] w-3 h-3.5 bg-red-500 border border-black rounded-full rotate-[15deg] shadow-[inset_0.5px_0.5px_0_rgba(255,255,255,0.4)]" />
+            {/* Center knot */}
+            <div className="absolute w-2.5 h-2.5 bg-red-600 border border-black rounded-full z-10 shadow-[0.5px_0.5px_0_rgba(0,0,0,0.2)]" />
+          </div>
+        </div>
+
+        {/* Yellow/Green button at the bottom center */}
+        <div
+          className="absolute bg-[#dcfce7] border border-black rounded-full pointer-events-none"
+          style={{
+            width: size === "xs" ? 6 : size === "sm" ? 9 : size === "md" ? 12 : 15,
+            height: size === "xs" ? 3 : size === "sm" ? 4.5 : size === "md" ? 6 : 7.5,
+            bottom: size === "xs" ? 1.5 : size === "sm" ? 2.5 : size === "md" ? 3.5 : 4.5,
+            backgroundColor: "#a3e635", // Bright lime green/yellow button
+          }}
+        />
+
+        {/* Top Text (Province name in pink) */}
+        <span
+          className="absolute font-black leading-none text-center"
+          style={{
+            top: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
+            fontSize: topFontSize,
+            color: "#ec4899", // Cute pink text
+          }}
+        >
+          {kh}
+        </span>
+
+        {/* Middle Text (Score) */}
+        <span
+          className="z-10 font-mono font-black leading-none tabular-nums"
+          style={{
+            fontSize: valueFontSize,
+            color: "#000000",
+            transform: size === "xs" ? "translateY(-1px)" : size === "sm" ? "translateY(-1.5px)" : size === "md" ? "translateY(-2px)" : "translateY(-2.5px)",
+          }}
+        >
+          <PlateValue value={value} />
+        </span>
+
+        {/* Bottom Text (English Province in pink) */}
+        <span
+          className="absolute font-black leading-none tracking-[0.14em]"
+          style={{
+            bottom: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
+            fontSize: bottomFontSize,
+            color: "#db2777", // Darker cute pink text
+          }}
+        >
+          {en}
+        </span>
+      </div>
+    );
+  }
+
   // --- New Yellow/Gold Road Plate (Rounded corners, inner border line, horizontal pill mounting slots) ---
   const isMini = size === "xs";
   
