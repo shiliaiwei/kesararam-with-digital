@@ -3,6 +3,7 @@ import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { gameScores, userStreaks } from "@/db/schema/content";
+import { storePointEvents } from "@/db/schema/store-points";
 import { eq, desc, sql } from "drizzle-orm";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 import { getStoreBalances } from "@/lib/store-points/balance";
@@ -29,6 +30,20 @@ export async function GET() {
     if (STORE_POINTS_ENABLED && userProfile) {
       const balances = await getStoreBalances(user.id);
       userProfile.lifetimePoints = balances.lifetimeEarned;
+    }
+
+    // Live-session score (attempt_id LIKE 'live:%') — the value shown on the score plate.
+    let livePoints = 0;
+    try {
+      const [liveRow] = await db
+        .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
+        .from(storePointEvents)
+        .where(
+          sql`${storePointEvents.userId} = ${user.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
+        );
+      livePoints = liveRow?.total ?? 0;
+    } catch (err) {
+      console.log("Error calculating live points:", err);
     }
 
     // Get streak data (optional - may not exist)
@@ -93,6 +108,7 @@ export async function GET() {
         highestScore: userProfile?.highestScore || 0,
         totalGamesPlayed: userProfile?.totalGamesPlayed || 0,
         lifetimePoints: userProfile?.lifetimePoints || 0,
+        livePoints,
         currentStreak: streakData?.currentStreak || 0,
         longestStreak: streakData?.longestStreak || 0,
         currentRank,

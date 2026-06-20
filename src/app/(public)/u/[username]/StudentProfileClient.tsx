@@ -48,6 +48,7 @@ export interface SerializableStudent {
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
+  livePoints: number;
   scorePlateStyle: ScorePlateStyle;
   createdAt: string;
   schoolName: string | null;
@@ -570,7 +571,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                     <div className="mt-5 grid grid-cols-2 gap-3">
                       <div className="flex flex-col items-center justify-center border-[3px] border-white bg-white px-2 py-3 text-black">
                         <ScorePlate
-                          value={student.lifetimePoints}
+                          value={student.livePoints}
                           styleId={student.scorePlateStyle}
                           provinceEn={student.province}
                           size="sm"

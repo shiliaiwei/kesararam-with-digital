@@ -23,6 +23,7 @@
     "db:migrate-store-points": "tsx scripts/migrate-store-points.ts",
     "db:migrate-drop-student-fields": "tsx scripts/migrate-drop-student-fields.ts",
     "db:migrate-drop-class-fields": "tsx scripts/migrate-drop-class-fields.ts",
+    "db:migrate-default-plate-official": "tsx scripts/migrate-default-plate-official.ts",
     "db:verify": "tsx scripts/verify-migration.ts",
     "db:reset-scores": "tsx scripts/reset-scores.ts",
     "db:migrate-legacy-to-store-points": "tsx scripts/migrate-legacy-to-store-points.ts",

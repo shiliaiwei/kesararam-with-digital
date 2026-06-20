@@ -261,17 +261,17 @@ export function ScorePlate({
   // --- Official MPWT Plate (white card, navy border, QR icon, red province) ---
   if (style === "official") {
     const navy = "#13395f";
-    const insetPx = size === "sm" ? 2 : size === "md" ? 3 : 4;
+    const insetPx = size === "sm" ? 4 : size === "md" ? 5 : 6;
     const innerRadius =
       size === "sm" ? "rounded-[4px]" : size === "md" ? "rounded-md" : "rounded-lg";
     const qrSize = Math.max(10, d.top + 5);
 
     return (
       <div
-        className={`relative flex select-none flex-col items-center justify-between overflow-hidden bg-transparent px-3 py-1 text-center ${className}`}
-        style={{ ...shell, boxShadow: "none", border: "none" }}
+        className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-[2.5px] bg-white px-3 py-1 text-center ${className}`}
+        style={{ ...shell, boxShadow: "none", borderColor: navy }}
       >
-        {/* single thin rounded frame around all content */}
+        {/* inner thin rounded frame around all content */}
         <div
           className={`pointer-events-none absolute border ${innerRadius}`}
           style={{

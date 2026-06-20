@@ -50,7 +50,7 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   createdBy: integer("created_by"),
   claimedRewards: text("claimed_rewards").default("[]").notNull(),
-  scorePlateStyle: text("score_plate_style").default("road").notNull(),
+  scorePlateStyle: text("score_plate_style").default("official").notNull(),
   googleId: text("google_id").unique(),
   isProfilePublic: boolean("is_profile_public").default(true).notNull(),
   isNamePublic: boolean("is_name_public").default(true).notNull(),

@@ -535,7 +535,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
         {/* Matric number plate for top three */}
         {user ? (
           <ScorePlate
-            value={<AnimatedNumber value={scoreValue} />}
+            value={<AnimatedNumber value={user?.priorityPoints ?? 0} />}
             styleId={user.scorePlateStyle}
             provinceEn={user.province}
             provinceKh={getProvinceKh(user.province)}
@@ -1449,7 +1449,7 @@ export default function LeaderboardPage() {
               const rowPlateStyle = isMe ? (currentUser?.scorePlateStyle || user.scorePlateStyle) : user.scorePlateStyle;
               return (
                 <ScorePlate
-                  value={scoreValue}
+                  value={user.priorityPoints ?? 0}
                   styleId={rowPlateStyle}
                   provinceEn={rowProvince}
                   provinceKh={getProvinceKh(rowProvince)}
@@ -1527,7 +1527,7 @@ export default function LeaderboardPage() {
                     <div className="flex flex-col items-start">
                       <span className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-1">Road Points</span>
                       <ScorePlate
-                        value={currentUser.lifetimePoints ?? 0}
+                        value={currentUser.livePoints ?? 0}
                         styleId={currentUser.scorePlateStyle}
                         provinceEn={currentUser.classProvince || currentUser.province}
                         provinceKh={getProvinceKh(currentUser.classProvince || currentUser.province)}

@@ -192,9 +192,24 @@ export default async function PublicStudentProfilePage({ params }: Props) {
     }
   }
 
+  // Live-session score (attempt_id LIKE 'live:%') — the value shown on the score plate.
+  let livePoints = 0;
+  try {
+    const [liveRow] = await db
+      .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
+      .from(storePointEvents)
+      .where(
+        sql`${storePointEvents.userId} = ${student.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
+      );
+    livePoints = liveRow?.total ?? 0;
+  } catch {
+    // Ledger not available yet — no live score.
+  }
+
   // 3. Serialize Date objects to strings to pass cleanly as client-side props
   const serializableStudent: SerializableStudent = {
     ...student,
+    livePoints,
     scorePlateStyle: normalizeScorePlateStyle(student.scorePlateStyle),
     className: null,
     claimedRewards: JSON.stringify(

@@ -131,6 +131,7 @@ export function StudentProfileDashboard({
     highestScore,
     totalGamesPlayed,
     lifetimePoints,
+    livePoints: 0,
     currentRank: null as number | null,
   });
 
@@ -145,6 +146,7 @@ export function StudentProfileDashboard({
             highestScore: data.stats.highestScore || highestScore,
             totalGamesPlayed: data.stats.totalGamesPlayed || totalGamesPlayed,
             lifetimePoints: data.stats.lifetimePoints || lifetimePoints,
+            livePoints: data.stats.livePoints ?? 0,
             currentRank: data.stats.currentRank || null,
           });
         }
@@ -498,7 +500,7 @@ export function StudentProfileDashboard({
 
               <div className="mb-4 flex justify-center sm:justify-start">
                 <ScorePlate
-                  value={rankStats.lifetimePoints}
+                  value={rankStats.livePoints}
                   styleId={activePlateStyle}
                   provinceEn={user.province}
                   size="md"
@@ -1030,7 +1032,7 @@ export function StudentProfileDashboard({
                               opacity: locked ? 0.62 : 1,
                             }}
                           >
-                            <ScorePlate value={rankStats.lifetimePoints} styleId={plate.id} provinceEn={user.province} size="md" />
+                            <ScorePlate value={rankStats.livePoints} styleId={plate.id} provinceEn={user.province} size="md" />
                             <span className="w-full">
                               <span className="flex items-center justify-between gap-2 text-[11px] font-black uppercase tracking-wide text-black" style={kf}>
                                 {kh ? plate.nameKh : plate.nameEn}
