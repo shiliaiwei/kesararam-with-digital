@@ -1699,80 +1699,6 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
-              {/* ── Game-mode filter — a dropdown showing each game's icon + name.
-                   Window/source controls were removed; the board is all-time /
-                   all-sources and the mode dropdown is the only scope control. ── */}
-              <div className="mb-3 flex flex-wrap items-center gap-2">
-                <span className="flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-zinc-500" style={kf}>
-                  <Gamepad2 size={14} strokeWidth={2.5} />{kh ? "ហ្គេម" : "Mode"}
-                </span>
-                <div className="relative">
-                  <button
-                    onClick={() => setGameMenuOpen((o) => !o)}
-                    aria-haspopup="listbox"
-                    aria-expanded={gameMenuOpen}
-                    className="flex items-center gap-2 border-2 border-black bg-white pl-1.5 pr-2.5 py-1.5 text-xs font-black uppercase tracking-wide shadow-[3px_3px_0_#000] transition-all hover:-translate-y-0.5"
-                    style={{ borderRadius: 0, ...kf }}
-                  >
-                    {gameType === "all" ? (
-                      <span className="inline-flex items-center justify-center flex-shrink-0 border-2 border-black" style={{ width: 30, height: 30, background: "#eab308" }}>
-                        <Gamepad2 size={17} strokeWidth={2.75} color="#000" />
-                      </span>
-                    ) : (
-                      <GameBadge slug={gameType} size="sm" shadow={false} />
-                    )}
-                    <span>{(kh ? getGameMeta(gameType)?.kh : getGameMeta(gameType)?.en) ?? (kh ? "ហ្គេមទាំងអស់" : "All Games")}</span>
-                    <ChevronDown size={16} strokeWidth={3} className={`transition-transform ${gameMenuOpen ? "rotate-180" : ""}`} />
-                  </button>
-
-                  {gameMenuOpen && (
-                    <>
-                      {/* click-outside backdrop */}
-                      <div className="fixed inset-0 z-40" onClick={() => setGameMenuOpen(false)} />
-                      <div
-                        role="listbox"
-                        className="absolute left-0 top-full z-50 mt-1 max-h-80 w-60 overflow-y-auto border-[3px] border-black bg-white"
-                        style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}
-                      >
-                        {GAME_CHIPS.map((g) => {
-                          const active = gameType === g.id;
-                          return (
-                            <button
-                              key={g.id}
-                              role="option"
-                              aria-selected={active}
-                              onClick={() => { setGameType(g.id); setGameMenuOpen(false); }}
-                              className={`flex w-full items-center gap-2.5 border-b-2 border-black px-2 py-2 text-left text-xs font-black uppercase tracking-wide transition-colors ${active ? "bg-yellow-300 text-black" : "bg-white text-black hover:bg-zinc-100"}`}
-                              style={kf}
-                            >
-                              {g.id === "all" ? (
-                                <span className="inline-flex items-center justify-center flex-shrink-0 border-2 border-black" style={{ width: 30, height: 30, background: "#eab308" }}>
-                                  <Gamepad2 size={17} strokeWidth={2.75} color="#000" />
-                                </span>
-                              ) : (
-                                <GameBadge slug={g.id} size="sm" shadow={false} />
-                              )}
-                              <span className="flex-1">{kh ? g.kh : g.en}</span>
-                              {active && <Check size={14} strokeWidth={3} />}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </>
-                  )}
-                </div>
-
-                {hasActiveFilters && (
-                  <button
-                    onClick={() => setGameType("all")}
-                    className="flex items-center gap-1 border-2 border-black bg-white px-2.5 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider text-red-600 transition-colors hover:bg-red-50"
-                    style={{ borderRadius: 0, ...kf }}
-                  >
-                    <X size={12} strokeWidth={3} />{kh ? "សម្អាត" : "Reset"}
-                  </button>
-                )}
-              </div>
-
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
                 <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase flex items-center gap-2" style={kf}>
                   <Trophy size={18} strokeWidth={2.5} className="text-yellow-500" />
@@ -1806,24 +1732,78 @@ export default function LeaderboardPage() {
                     <span className="hidden sm:inline w-6">#</span>
                     <span className="hidden sm:inline">{kh ? "សិស្ស" : "Player"}</span>
                   </span>
-                  {/* Clickable Score Header */}
-                  <button
-                    onClick={() => setSortKey("rank")}
-                    className="col-span-4 sm:col-span-3 flex items-center justify-end sm:justify-start gap-1 text-yellow-400 font-black uppercase text-left tracking-widest hover:text-yellow-300 transition-colors focus:outline-none"
+                  {/* Clickable Score Header with Integrated Game Filter Dropdown */}
+                  <div
+                    onMouseEnter={() => setHoveredHeader(true)}
+                    onMouseLeave={() => setHoveredHeader(false)}
+                    className="col-span-4 sm:col-span-3 relative flex items-center"
                   >
-                    {sortKey === "rank" ? (
-                      <><Crown size={11} strokeWidth={3} className="text-yellow-400" />{kh ? "ពិន្ទុសរុប" : "Total Points"}</>
-                    ) : gameType === "all" ? (
-                      <><Gift size={11} strokeWidth={3} />Road Points</>
-                    ) : (
-                      kh ? "ពិន្ទុ" : "Score"
+                    <button
+                      onClick={() => {
+                        setSortKey("rank");
+                        setGameMenuOpen((o) => !o);
+                      }}
+                      className="flex items-center gap-1 text-yellow-400 font-black uppercase text-left tracking-widest hover:text-yellow-300 transition-colors focus:outline-none w-full"
+                    >
+                      {gameType === "all" ? (
+                        <>
+                          <Crown size={11} strokeWidth={3} className="text-yellow-400" />
+                          <span className="truncate">{kh ? "ពិន្ទុសរុប" : "Total Points"}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Gamepad2 size={11} strokeWidth={3} className="text-yellow-400" />
+                          <span className="truncate text-yellow-400">
+                            {(kh ? getGameMeta(gameType)?.kh : getGameMeta(gameType)?.en) ?? gameType}
+                          </span>
+                        </>
+                      )}
+                      <ChevronDown size={10} strokeWidth={3} className={`ml-0.5 text-yellow-400 transition-transform ${gameMenuOpen || hoveredHeader ? "rotate-180" : ""}`} />
+                    </button>
+
+                    {(gameMenuOpen || hoveredHeader) && (
+                      <>
+                        {/* Mobile click-outside backdrop */}
+                        <div className="fixed inset-0 z-40 sm:hidden" onClick={() => setGameMenuOpen(false)} />
+                        <div
+                          role="listbox"
+                          className="absolute right-0 sm:left-0 top-full z-50 mt-1 max-h-80 w-56 overflow-y-auto border-[3px] border-black bg-white"
+                          style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}
+                        >
+                          {GAME_CHIPS.map((g) => {
+                            const active = gameType === g.id;
+                            return (
+                              <button
+                                key={g.id}
+                                role="option"
+                                aria-selected={active}
+                                onClick={() => {
+                                  setGameType(g.id);
+                                  setSortKey("rank");
+                                  setGameMenuOpen(false);
+                                  setHoveredHeader(false);
+                                }}
+                                className={`flex w-full items-center gap-2 border-b-2 border-black px-2 py-1.5 text-left text-[10px] font-black uppercase tracking-wide transition-colors ${
+                                  active ? "bg-yellow-300 text-black" : "bg-white text-black hover:bg-zinc-100"
+                                }`}
+                                style={kf}
+                              >
+                                {g.id === "all" ? (
+                                  <span className="inline-flex items-center justify-center flex-shrink-0 border border-black bg-yellow-400 w-5 h-5">
+                                    <Gamepad2 size={11} strokeWidth={2.75} color="#000" />
+                                  </span>
+                                ) : (
+                                  <GameBadge slug={g.id} size="xs" shadow={false} />
+                                )}
+                                <span className="flex-1 truncate">{kh ? g.kh : g.en}</span>
+                                {active && <Check size={12} strokeWidth={3} className="text-black" />}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </>
                     )}
-                    {sortKey === "rank" ? (
-                      <ChevronDown size={10} strokeWidth={3} className="ml-0.5 text-yellow-400" />
-                    ) : (
-                      <ArrowUpDown size={10} className="ml-0.5 text-zinc-500 opacity-60" />
-                    )}
-                  </button>
+                  </div>
                   {/* Clickable Games Header */}
                   <button
                     onClick={() => setSortKey(sortKey === "games" ? "rank" : "games")}
