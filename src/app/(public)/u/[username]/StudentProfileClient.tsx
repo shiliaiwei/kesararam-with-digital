@@ -150,6 +150,12 @@ function getBilingualProvince(en: string | null | undefined): string {
   return found ? `${found.en} / ${found.kh}` : en;
 }
 
+function getProvinceKh(en: string | null | undefined): string | null {
+  if (!en) return null;
+  const found = CAMBODIA_PROVINCES.find(p => p.en.toLowerCase() === en.toLowerCase());
+  return found ? found.kh : null;
+}
+
 function avatarSrc(url: string | null, changedAt?: string | null): string | null {
   if (!url) return null;
   const base = url.startsWith("https://res.cloudinary.com/")
@@ -339,23 +345,6 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
 
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
 
-  const provinceLabel = student.province
-    ? (kh ? (CAMBODIA_PROVINCES.find((p) => p.en.toLowerCase() === student.province!.toLowerCase())?.kh ?? student.province) : student.province)
-    : null;
-  const bioSentence = (() => {
-    const parts: string[] = [];
-    if (isStatsPublic) {
-      parts.push(kh
-        ? `ចំណាត់ថ្នាក់ទី ${rank} ដោយមាន ${student.lifetimePoints.toLocaleString()} ពិន្ទុ`
-        : `Ranked #${rank} with ${student.lifetimePoints.toLocaleString()} points`);
-    }
-    const loc: string[] = [];
-    if (isProvincePublic && provinceLabel) loc.push(provinceLabel);
-    if (loc.length) parts.push(loc.join(" · "));
-    parts.push(kh ? `ចូលរួមឆ្នាំ ${joinedYear}` : `Joined ${joinedYear}`);
-    return parts.join(" — ");
-  })();
-
   const topGame = gameStats[0];
   const topGameMeta = topGame ? gameLabel(topGame.gameType) : null;
   const bestModePoints = Math.max(...gameStats.map((g) => g.points), 1);
@@ -436,10 +425,10 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
 
       <main className="grid-bg">
         <section className="border-b-[3px] border-black bg-white">
-          <div className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:py-8">
+          <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 lg:py-8">
             <div className="border-[3px] border-black bg-white" style={{ boxShadow: "6px 6px 0 #000" }}>
               <div className="h-14 border-b-[3px] border-black" style={checkerboardStyle} />
-              <div className="flex flex-col items-center gap-5 p-4 text-center sm:p-6 md:p-8">
+              <div className="flex flex-col items-center gap-5 p-6 text-center sm:p-8 md:p-10">
                 <div className="relative w-fit hover:-translate-y-1 transition-transform duration-200">
                    {isMythicBorder ? (
                     <MythicAvatarBorder
@@ -534,96 +523,39 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                   </div>
                 </div>
 
-                <div className="min-w-0">
+                <div className="min-w-0 flex flex-col items-center w-full">
                   <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
                     <span className="border-[3px] border-black bg-[#eab308] px-3 py-1 font-mono text-[11px] font-black uppercase tracking-wider text-black">
                       {isUsernamePublic ? `@${student.username}` : t("Private ID", "លេខសម្គាល់ឯកជន")}
                     </span>
                   </div>
-                  <h1 className={`mx-auto max-w-3xl break-words text-[clamp(2.25rem,7vw,4.75rem)] font-black uppercase leading-[0.95] tracking-normal text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
+                  
+                  <h1 className={`mx-auto max-w-3xl break-words text-3xl sm:text-5xl font-black uppercase leading-tight tracking-normal text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
                     {displayName}
                   </h1>
-                  <p className={`mx-auto mt-4 max-w-3xl break-words text-sm font-bold leading-relaxed text-zinc-700 sm:text-base ${kh ? "font-google-sans" : ""}`} style={kf}>
-                    {bioSentence}
-                  </p>
+
+                  {/* Render the premium ScorePlate and Rank Badge inline/centered directly on their profile */}
+                  {isStatsPublic && (
+                    <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-4">
+                      <ScorePlate
+                        value={student.livePoints}
+                        styleId={student.scorePlateStyle}
+                        provinceEn={student.province}
+                        provinceKh={getProvinceKh(student.province)}
+                        size="md"
+                        shadow
+                      />
+                      <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{t("Rank Tier", "ថ្នាក់គណនី")}</span>
+                        <span className="border-2 border-black bg-purple-500 text-white px-2 py-0.5 text-xs font-black uppercase tracking-wider">
+                          {profileRank.label}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-
-            <aside className="border-[3px] border-black bg-black text-white" style={{ boxShadow: "6px 6px 0 #000" }}>
-              <div className="h-8 border-b-[3px] border-black" style={boardAccentStyle} />
-              <div className="p-5">
-                {isStatsPublic ? (
-                  <>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className={`text-[11px] font-black uppercase tracking-[0.22em] text-[#eab308] ${kh ? "font-google-sans" : ""}`} style={kf}>
-                          {t("Board Rank", "ចំណាត់ថ្នាក់")}
-                        </p>
-                        <p className="mt-2 font-mono text-[clamp(3.5rem,14vw,6.25rem)] font-black leading-none text-white">
-                          #{rank}
-                        </p>
-                      </div>
-                      <SignShape shape="octagon" body={BRAND.yellow} size={72}>
-                        <Medal size={24} className="text-black" strokeWidth={2.6} />
-                      </SignShape>
-                    </div>
-                    <div className="mt-5 grid grid-cols-2 gap-3">
-                      <div className="flex flex-col items-center justify-center border-[3px] border-white bg-white px-2 py-3 text-black">
-                        <ScorePlate
-                          value={student.livePoints}
-                          styleId={student.scorePlateStyle}
-                          provinceEn={student.province}
-                          size="sm"
-                        />
-                        <p className={`mt-2 text-[10px] font-black uppercase tracking-wider text-zinc-600 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                          {t("Store Points", "ពិន្ទុរង្វាន់")}
-                        </p>
-                      </div>
-                      <div className="border-[3px] border-white bg-[#eab308] px-3 py-3 text-black">
-                        <p className="font-mono text-2xl font-black tabular-nums">{student.totalGamesPlayed.toLocaleString()}</p>
-                        <p className={`text-[10px] font-black uppercase tracking-wider text-black/70 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                          {t("Plays", "ដង")}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="mt-5 border-[3px] border-white bg-zinc-950 p-4">
-                      <p className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                        {t("Strongest Mode", "របៀបពិន្ទុខ្ពស់")}
-                      </p>
-                      {topGame && topGameMeta ? (
-                        <div className="mt-3 flex items-center gap-3">
-                          <div className="grid size-11 shrink-0 place-items-center border-[3px] border-white" style={{ background: topGameMeta.color }}>
-                            <topGameMeta.Icon size={20} className={iconTone(topGameMeta.color)} strokeWidth={2.6} />
-                          </div>
-                          <div className="min-w-0">
-                            <p className={`truncate text-sm font-black text-white ${kh ? "font-google-sans" : ""}`} style={kf}>
-                              {kh ? topGameMeta.kh : topGameMeta.en}
-                            </p>
-                            <p className="font-mono text-xs font-black text-[#eab308]">{topGame.points.toLocaleString()} PTS</p>
-                          </div>
-                        </div>
-                      ) : (
-                        <p className={`mt-3 text-sm font-black text-zinc-500 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                          {t("No mode score yet", "មិនទាន់មានពិន្ទុ")}
-                        </p>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <div className="grid min-h-[280px] place-items-center text-center">
-                    <div>
-                      <SignShape shape="octagon" body={BRAND.red} size={86}>
-                        <Lock size={28} className="text-white" strokeWidth={2.6} />
-                      </SignShape>
-                      <p className={`mt-5 text-lg font-black uppercase text-white ${kh ? "font-google-sans" : ""}`} style={kf}>
-                        {t("Stats Private", "ស្ថិតិឯកជន")}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </aside>
           </div>
         </section>
 

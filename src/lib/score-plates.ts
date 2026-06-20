@@ -1,4 +1,4 @@
-export const SCORE_PLATE_STYLE_IDS = ["road", "garden", "sky", "rose", "car", "official", "plain"] as const;
+export const SCORE_PLATE_STYLE_IDS = ["road", "official"] as const;
 
 export type ScorePlateStyle = (typeof SCORE_PLATE_STYLE_IDS)[number];
 
@@ -21,51 +21,11 @@ export const SCORE_PLATE_STYLES: ReadonlyArray<{
     premium: false,
   },
   {
-    id: "garden",
-    nameEn: "Vintage Label",
-    nameKh: "ស្លាកបុរាណបៃតង",
-    descriptionEn: "Ornamental green scalloped label",
-    descriptionKh: "ស្លាកបៃតងលម្អបែបបុរាណ",
-    premium: true,
-  },
-  {
-    id: "sky",
-    nameEn: "Sky Bloom",
-    nameKh: "ផ្កាមេឃខៀវ",
-    descriptionEn: "Blue flower corner plate",
-    descriptionKh: "ផ្លាកជ្រុងផ្កាពណ៌ខៀវ",
-    premium: true,
-  },
-  {
-    id: "rose",
-    nameEn: "Rose Frame",
-    nameKh: "ស៊ុមផ្កាឈូក",
-    descriptionEn: "Rose ornamental score card",
-    descriptionKh: "កាតពិន្ទុលម្អពណ៌ផ្កាឈូក",
-    premium: true,
-  },
-  {
-    id: "car",
-    nameEn: "Car Plate",
-    nameKh: "ផ្លាកលេខឡាន",
-    descriptionEn: "Premium vehicle license plate with capsule holes",
-    descriptionKh: "ផ្លាកលេខរថយន្តបែបទំនើបជាមួយរន្ធវីសវែង",
-    premium: true,
-  },
-  {
     id: "official",
     nameEn: "Official Plate",
     nameKh: "ផ្លាកលេខផ្លូវការ",
     descriptionEn: "Government-style plate with navy border & QR",
     descriptionKh: "ផ្លាកបែបផ្លូវការ ស៊ុមខៀវ និង QR",
-    premium: false,
-  },
-  {
-    id: "plain",
-    nameEn: "Plain Plate",
-    nameKh: "ផ្លាកសាមញ្ញ",
-    descriptionEn: "Minimalist number card with simple borders",
-    descriptionKh: "ផ្លាកលេខសាមញ្ញដែលមានស៊ុមធម្មតា",
     premium: false,
   },
 ];
