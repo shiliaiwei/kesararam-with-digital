@@ -1,4 +1,4 @@
-export const SCORE_PLATE_STYLE_IDS = ["road", "garden", "sky", "rose"] as const;
+export const SCORE_PLATE_STYLE_IDS = ["road", "garden", "sky", "rose", "car"] as const;
 
 export type ScorePlateStyle = (typeof SCORE_PLATE_STYLE_IDS)[number];
 
@@ -42,6 +42,14 @@ export const SCORE_PLATE_STYLES: ReadonlyArray<{
     nameKh: "ស៊ុមផ្កាឈូក",
     descriptionEn: "Rose ornamental score card",
     descriptionKh: "កាតពិន្ទុលម្អពណ៌ផ្កាឈូក",
+    premium: true,
+  },
+  {
+    id: "car",
+    nameEn: "Car Plate",
+    nameKh: "ផ្លាកលេខឡាន",
+    descriptionEn: "Premium vehicle license plate with capsule holes",
+    descriptionKh: "ផ្លាកលេខរថយន្តបែបទំនើបជាមួយរន្ធវីសវែង",
     premium: true,
   },
 ];
