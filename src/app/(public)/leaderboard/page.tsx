@@ -1170,6 +1170,7 @@ export default function LeaderboardPage() {
   // Game mode is the only filter now, surfaced through a dropdown.
   const [gameType, setGameType] = useState("all");
   const [gameMenuOpen, setGameMenuOpen] = useState(false);
+  const [hoveredHeader, setHoveredHeader] = useState(false);
   const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
   const [displayLimit, setDisplayLimit] = useState(10);
   // Podium celebration ticker — advances every 7s and rotates through the ranks
@@ -1409,6 +1410,9 @@ export default function LeaderboardPage() {
     const toOvertake = above ? Math.max(0, (above[scoreKey] ?? 0) - scoreValue + 1) : 0;
     const bestGameMeta = getGameMeta(user.bestGame);
 
+    const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
+    const rowPlateStyle = isMe ? (currentUser?.scorePlateStyle || user.scorePlateStyle) : user.scorePlateStyle;
+
     return (
       <div
         key={user.id}
@@ -1418,7 +1422,7 @@ export default function LeaderboardPage() {
       >
         <div className="grid grid-cols-12 items-center px-3 md:px-5 py-2.5">
           {/* Rank + Avatar + Name + Meta */}
-          <div className="col-span-8 sm:col-span-6 flex items-center gap-2 md:gap-3 min-w-0">
+          <div className="col-span-5 sm:col-span-4 flex items-center gap-2 md:gap-3 min-w-0">
             {/* Rank + movement */}
             <div className="flex items-center gap-1 flex-shrink-0 w-8 sm:w-10">
               {medal ? (
@@ -1503,35 +1507,30 @@ export default function LeaderboardPage() {
             </div>
           </div>
 
-          {/* Score — designed like a Cambodian license plate (only for road/live score when no game filter is active) */}
-          <div className="col-span-4 sm:col-span-3 flex justify-end sm:justify-start items-center">
-            {(() => {
-              const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
-              const rowPlateStyle = isMe ? (currentUser?.scorePlateStyle || user.scorePlateStyle) : user.scorePlateStyle;
-              const isGameSpecific = gameType !== "all";
-
-              if (isGameSpecific) {
-                // Render as a normal display number (flat neubrutalist card style)
-                return (
-                  <span className="font-mono font-black text-xs md:text-sm text-black bg-zinc-100 border-2 border-black px-2.5 py-1 shadow-[2px_2px_0_#000] tabular-nums select-all">
-                    {user.lifetimePoints ?? 0}
-                  </span>
-                );
-              }
-
-              // Otherwise render as Cambodian License Plate
-              return (
-                <ScorePlate
-                  value={user.priorityPoints ?? 0}
-                  styleId={rowPlateStyle}
-                  provinceEn={rowProvince}
-                  provinceKh={getProvinceKh(rowProvince)}
-                  size={isMobile ? "xs" : "sm"}
-                />
-              );
-            })()}
+          {/* Road Points Column (Cambodian License Plate card style always) */}
+          <div className="col-span-3 sm:col-span-2 flex justify-end sm:justify-start items-center">
+            <ScorePlate
+              value={user.priorityPoints ?? 0}
+              styleId={rowPlateStyle}
+              provinceEn={rowProvince}
+              provinceKh={getProvinceKh(rowProvince)}
+              size={isMobile ? "xs" : "sm"}
+            />
           </div>
 
+          {/* State / Province Column */}
+          <div className="col-span-2 sm:col-span-2 flex items-center justify-start text-[10px] md:text-xs font-black uppercase text-zinc-800 tracking-wider truncate">
+            {rowProvince ? (kh ? getProvinceKh(rowProvince) : rowProvince) : "—"}
+          </div>
+
+          {/* Total / Game Mode Score Column */}
+          <div className="col-span-2 sm:col-span-2 flex justify-end sm:justify-start items-center">
+            <span className="font-mono font-black text-xs md:text-sm text-black bg-zinc-100 border-2 border-black px-2 py-0.5 shadow-[2px_2px_0_#000] tabular-nums select-all">
+              {(user.lifetimePoints ?? 0).toLocaleString()}
+            </span>
+          </div>
+
+          {/* Games Column */}
           <span className="col-span-1 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
             {sortKey === "games" ? (
               <div className="w-8 h-8 rounded-full border-2 border-red-500 bg-white flex items-center justify-center font-black text-black text-xs font-mono shadow-[2px_2px_0_#000] mx-auto">
@@ -1544,11 +1543,11 @@ export default function LeaderboardPage() {
             )}
           </span>
 
-          {/* Accuracy */}
+          {/* Accuracy Column */}
           {sortKey === "acc" ? (
-            <div className="col-span-2 flex justify-end hidden sm:flex">
+            <div className="col-span-1 flex justify-end hidden sm:flex">
               <span
-                className="inline-flex items-center gap-1 border-2 border-black px-2.5 py-1 text-xs font-black uppercase tracking-wider font-mono shadow-[2px_2px_0_#000]"
+                className="inline-flex items-center gap-1 border-2 border-black px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wider font-mono shadow-[1.5px_1.5px_0_#000]"
                 style={{
                   background: (user.accuracy ?? 0) >= 80 ? "#22c55e" : (user.accuracy ?? 0) >= 50 ? "#eab308" : "#ef4444",
                   color: (user.accuracy ?? 0) >= 80 || (user.accuracy ?? 0) < 50 ? "#fff" : "#000",
@@ -1559,7 +1558,7 @@ export default function LeaderboardPage() {
             </div>
           ) : (
             <span
-              className="col-span-2 text-right text-xs md:text-sm font-bold tabular-nums hidden sm:block font-mono"
+              className="col-span-1 text-right text-xs md:text-sm font-bold tabular-nums hidden sm:block font-mono"
               style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#ca8a04" : "#ef4444" }}
             >
               {(user.accuracy ?? 0)}%
@@ -1727,16 +1726,27 @@ export default function LeaderboardPage() {
                 {/* Table Header — Live Score is the hero metric and leads the stats
                     right after the player; Games / Acc / Top game follow. */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
-                  <span className="col-span-8 sm:col-span-6 text-yellow-400 flex items-center gap-1 sm:gap-6">
+                  <span className="col-span-5 sm:col-span-4 text-yellow-400 flex items-center gap-1 sm:gap-6">
                     <span className="sm:hidden"># / {kh ? "សិស្ស" : "Player"}</span>
                     <span className="hidden sm:inline w-6">#</span>
                     <span className="hidden sm:inline">{kh ? "សិស្ស" : "Player"}</span>
                   </span>
-                  {/* Clickable Score Header with Integrated Game Filter Dropdown */}
+                  
+                  {/* Always Road Points column header */}
+                  <span className="col-span-3 sm:col-span-2 text-yellow-400 flex items-center font-black uppercase tracking-widest truncate">
+                    Road Points
+                  </span>
+
+                  {/* Province/State column header */}
+                  <span className="col-span-2 text-yellow-400 flex items-center font-black uppercase tracking-widest truncate">
+                    {kh ? "ខេត្ត" : "State"}
+                  </span>
+
+                  {/* Total / Game Mode points header containing the filter dropdown */}
                   <div
                     onMouseEnter={() => setHoveredHeader(true)}
                     onMouseLeave={() => setHoveredHeader(false)}
-                    className="col-span-4 sm:col-span-3 relative flex items-center"
+                    className="col-span-2 relative flex items-center"
                   >
                     <button
                       onClick={() => {
@@ -1747,18 +1757,18 @@ export default function LeaderboardPage() {
                     >
                       {gameType === "all" ? (
                         <>
-                          <Crown size={11} strokeWidth={3} className="text-yellow-400" />
-                          <span className="truncate">{kh ? "ពិន្ទុសរុប" : "Total Points"}</span>
+                          <Crown size={11} strokeWidth={3} className="text-yellow-400 flex-shrink-0" />
+                          <span className="truncate">{kh ? "សរុប" : "Total"}</span>
                         </>
                       ) : (
                         <>
-                          <Gamepad2 size={11} strokeWidth={3} className="text-yellow-400" />
+                          <Gamepad2 size={11} strokeWidth={3} className="text-yellow-400 flex-shrink-0" />
                           <span className="truncate text-yellow-400">
                             {(kh ? getGameMeta(gameType)?.kh : getGameMeta(gameType)?.en) ?? gameType}
                           </span>
                         </>
                       )}
-                      <ChevronDown size={10} strokeWidth={3} className={`ml-0.5 text-yellow-400 transition-transform ${gameMenuOpen || hoveredHeader ? "rotate-180" : ""}`} />
+                      <ChevronDown size={10} strokeWidth={3} className={`ml-0.5 text-yellow-400 flex-shrink-0 transition-transform ${gameMenuOpen || hoveredHeader ? "rotate-180" : ""}`} />
                     </button>
 
                     {(gameMenuOpen || hoveredHeader) && (
@@ -1767,7 +1777,7 @@ export default function LeaderboardPage() {
                         <div className="fixed inset-0 z-40 sm:hidden" onClick={() => setGameMenuOpen(false)} />
                         <div
                           role="listbox"
-                          className="absolute right-0 sm:left-0 top-full z-50 mt-1 max-h-80 w-56 overflow-y-auto border-[3px] border-black bg-white"
+                          className="absolute right-0 top-full z-50 mt-1 max-h-80 w-56 overflow-y-auto border-[3px] border-black bg-white"
                           style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}
                         >
                           {GAME_CHIPS.map((g) => {
@@ -1804,6 +1814,7 @@ export default function LeaderboardPage() {
                       </>
                     )}
                   </div>
+                  
                   {/* Clickable Games Header */}
                   <button
                     onClick={() => setSortKey(sortKey === "games" ? "rank" : "games")}
@@ -1822,7 +1833,7 @@ export default function LeaderboardPage() {
                   {/* Clickable Accuracy Header */}
                   <button
                     onClick={() => setSortKey(sortKey === "acc" ? "rank" : "acc")}
-                    className={`col-span-2 text-right font-black uppercase tracking-widest hover:text-white transition-colors flex items-center justify-end gap-0.5 hidden sm:flex focus:outline-none ${
+                    className={`col-span-1 text-right font-black uppercase tracking-widest hover:text-white transition-colors flex items-center justify-end gap-0.5 hidden sm:flex focus:outline-none ${
                       sortKey === "acc" ? "text-yellow-400" : "text-green-400"
                     }`}
                   >
