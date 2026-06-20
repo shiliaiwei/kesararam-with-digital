@@ -546,7 +546,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
         {/* Matric number plate for top three */}
         {user ? (
           <div
-            className="z-10 relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[3px_3px_0_#000] p-0.5"
+            className="z-10 relative bg-white border-2 border-black flex flex-col items-center justify-between select-none p-0.5"
             style={{
               width: isFirst ? "116px" : "100px",
               height: isFirst ? "60px" : "54px",
@@ -1486,7 +1486,7 @@ export default function LeaderboardPage() {
               const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
               return (
                 <div
-                  className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_#000] p-0.5"
+                  className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none p-0.5"
                   style={{
                     width: "100px",
                     height: "54px",
@@ -1587,7 +1587,7 @@ export default function LeaderboardPage() {
                       <span className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-1">Road Points</span>
                       
                       <div
-                        className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[2px_2px_0_rgba(255,255,255,0.15)] p-0.5"
+                        className="relative bg-white border-2 border-black flex flex-col items-center justify-between select-none p-0.5"
                         style={{
                           width: "100px",
                           height: "54px",
