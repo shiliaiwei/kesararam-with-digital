@@ -259,11 +259,10 @@ export function ScorePlate({
     );
   }
 
-  // --- Official MPWT Plate (Premium Cambodian License Plate look with navy border, red divider/text & QR code) ---
+  // --- Official MPWT Plate (Premium Cambodian License Plate look with navy border, gray labels & bold navy number) ---
   if (style === "official") {
     const navy = "#11355c"; // Premium authentic navy blue
-    const red = "#e2231a";  // Authentic license plate red
-    const qrSize = size === "sm" ? 7 : size === "md" ? 10 : 12;
+    const gray = "#78889b"; // Elegant low-opacity gray-blue for labels
 
     return (
       <div
@@ -276,10 +275,10 @@ export function ScorePlate({
           paddingTop: size === "sm" ? 3 : size === "md" ? 4 : 5,
         }}
       >
-        {/* Top Text (Khmer Province/Country) in Navy */}
+        {/* Top Text (Khmer Province/Country) in Low Opacity Gray */}
         <span
           className="z-10 font-bold leading-none"
-          style={{ fontSize: d.top, color: navy }}
+          style={{ fontSize: d.top, color: gray }}
         >
           {kh}
         </span>
@@ -294,10 +293,10 @@ export function ScorePlate({
 
         {/* Bottom divider & English Province name */}
         <div className="z-10 w-full flex flex-col items-center mt-auto">
-          {/* Full-width red divider */}
-          <div className="w-full border-t border-red-600" />
+          {/* Full-width navy divider */}
+          <div className="w-full border-t border-[#11355c] opacity-35" />
           
-          {/* Bottom text and QR code wrapper */}
+          {/* Bottom text wrapper */}
           <div
             className="w-full flex items-center justify-center relative"
             style={{
@@ -307,45 +306,10 @@ export function ScorePlate({
           >
             <span
               className="font-bold leading-none tracking-[0.14em]"
-              style={{ fontSize: d.bottom, color: red }}
+              style={{ fontSize: d.bottom, color: gray }}
             >
               {en}
             </span>
-
-            {/* Micro QR Code SVG on the bottom right */}
-            <svg
-              width={qrSize}
-              height={qrSize}
-              viewBox="0 0 10 10"
-              fill="none"
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 opacity-90"
-              aria-hidden
-            >
-              {/* Finder pattern top-left */}
-              <rect x="0" y="0" width="3" height="3" fill={navy} />
-              <rect x="0.6" y="0.6" width="1.8" height="1.8" fill="white" />
-              <rect x="1.2" y="1.2" width="0.6" height="0.6" fill={navy} />
-
-              {/* Finder pattern top-right */}
-              <rect x="7" y="0" width="3" height="3" fill={navy} />
-              <rect x="7.6" y="0.6" width="1.8" height="1.8" fill="white" />
-              <rect x="8.2" y="1.2" width="0.6" height="0.6" fill={navy} />
-
-              {/* Finder pattern bottom-left */}
-              <rect x="0" y="7" width="3" height="3" fill={navy} />
-              <rect x="0.6" y="7.6" width="1.8" height="1.8" fill="white" />
-              <rect x="1.2" y="8.2" width="0.6" height="0.6" fill={navy} />
-
-              {/* Random bits */}
-              <rect x="4" y="1" width="1" height="1" fill={navy} />
-              <rect x="5" y="2" width="1" height="1" fill={navy} />
-              <rect x="4" y="4" width="2" height="1" fill={navy} />
-              <rect x="5" y="5" width="1" height="1" fill={navy} />
-              <rect x="8" y="5" width="1" height="1" fill={navy} />
-              <rect x="4" y="7" width="1" height="2" fill={navy} />
-              <rect x="5" y="8" width="2" height="1" fill={navy} />
-              <rect x="8" y="8" width="2" height="2" fill={navy} />
-            </svg>
           </div>
         </div>
       </div>
