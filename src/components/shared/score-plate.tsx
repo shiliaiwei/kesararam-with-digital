@@ -259,38 +259,111 @@ export function ScorePlate({
     );
   }
 
-  // --- Official MPWT Plate (white card, navy border, gray province text) ---
+  // --- Official MPWT Plate (Premium Cambodian License Plate look with navy border, red divider/text & QR code) ---
   if (style === "official") {
-    const navy = "#13395f";
-    const gray = "#6b7280";
+    const navy = "#11355c"; // Premium authentic navy blue
+    const red = "#e2231a";  // Authentic license plate red
+    const qrSize = size === "sm" ? 7 : size === "md" ? 10 : 12;
 
     return (
       <div
-        className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-2 bg-white px-3 py-1 text-center ${className}`}
-        style={{ ...shell, boxShadow: "none", borderColor: navy, borderRadius: 2 }}
+        className={`relative flex select-none flex-col items-center justify-between overflow-hidden bg-white text-center ${className}`}
+        style={{
+          ...shell,
+          boxShadow: shadow ? "4px 4px 0 #000" : undefined,
+          border: `${size === "sm" ? "2px" : "3px"} solid ${navy}`,
+          borderRadius: size === "sm" ? 5 : size === "md" ? 8 : 10,
+          paddingTop: size === "sm" ? 3 : size === "md" ? 4 : 5,
+        }}
       >
+        {/* Top Text (Khmer Province/Country) in Navy */}
         <span
-          className="z-10 font-normal leading-none"
-          style={{ ...topStyle, color: gray }}
+          className="z-10 font-bold leading-none"
+          style={{ fontSize: d.top, color: navy }}
         >
           {kh}
         </span>
+
+        {/* Middle Text (Score) in Bold Navy */}
         <span
           className="z-10 font-mono font-black leading-none tabular-nums"
-          style={{ ...valueStyle, color: navy }}
+          style={{ fontSize: d.value, color: navy }}
         >
           <PlateValue value={value} />
         </span>
-        {/* thin short divider */}
+
+        {/* Bottom divider & English Province name */}
+        <div className="z-10 w-full flex flex-col items-center mt-auto">
+          {/* Full-width red divider */}
+          <div className="w-full border-t border-red-600" />
+          
+          {/* Bottom text and QR code wrapper */}
+          <div
+            className="w-full flex items-center justify-center relative"
+            style={{
+              paddingTop: size === "sm" ? 2 : size === "md" ? 3 : 4,
+              paddingBottom: size === "sm" ? 2 : size === "md" ? 3 : 4,
+            }}
+          >
+            <span
+              className="font-bold leading-none tracking-[0.14em]"
+              style={{ fontSize: d.bottom, color: red }}
+            >
+              {en}
+            </span>
+
+            {/* Micro QR Code SVG on the bottom right */}
+            <svg
+              width={qrSize}
+              height={qrSize}
+              viewBox="0 0 10 10"
+              fill="none"
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 opacity-90"
+              aria-hidden
+            >
+              {/* Finder pattern top-left */}
+              <rect x="0" y="0" width="3" height="3" fill={navy} />
+              <rect x="0.6" y="0.6" width="1.8" height="1.8" fill="white" />
+              <rect x="1.2" y="1.2" width="0.6" height="0.6" fill={navy} />
+
+              {/* Finder pattern top-right */}
+              <rect x="7" y="0" width="3" height="3" fill={navy} />
+              <rect x="7.6" y="0.6" width="1.8" height="1.8" fill="white" />
+              <rect x="8.2" y="1.2" width="0.6" height="0.6" fill={navy} />
+
+              {/* Finder pattern bottom-left */}
+              <rect x="0" y="7" width="3" height="3" fill={navy} />
+              <rect x="0.6" y="7.6" width="1.8" height="1.8" fill="white" />
+              <rect x="1.2" y="8.2" width="0.6" height="0.6" fill={navy} />
+
+              {/* Random bits */}
+              <rect x="4" y="1" width="1" height="1" fill={navy} />
+              <rect x="5" y="2" width="1" height="1" fill={navy} />
+              <rect x="4" y="4" width="2" height="1" fill={navy} />
+              <rect x="5" y="5" width="1" height="1" fill={navy} />
+              <rect x="8" y="5" width="1" height="1" fill={navy} />
+              <rect x="4" y="7" width="1" height="2" fill={navy} />
+              <rect x="5" y="8" width="2" height="1" fill={navy} />
+              <rect x="8" y="8" width="2" height="2" fill={navy} />
+            </svg>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- Plain Minimal Plate (Simple white card, thin black border, clean text) ---
+  if (style === "plain") {
+    return (
+      <div
+        className={`relative flex select-none flex-col items-center justify-center border-2 border-black bg-white px-2 py-1 text-black ${className}`}
+        style={{ ...shell, borderRadius: 2 }}
+      >
         <span
-          className="z-10 w-2/5"
-          style={{ borderTop: `1px solid ${navy}`, marginTop: size === "sm" ? 3 : 4 }}
-        />
-        <span
-          className="z-10 font-normal leading-none tracking-[0.12em]"
-          style={{ ...bottomStyle, marginTop: size === "sm" ? 3 : 4, color: gray }}
+          className="z-10 font-mono font-black leading-none tabular-nums"
+          style={valueStyle}
         >
-          {en}
+          <PlateValue value={value} />
         </span>
       </div>
     );

@@ -60,6 +60,14 @@ export const SCORE_PLATE_STYLES: ReadonlyArray<{
     descriptionKh: "ផ្លាកបែបផ្លូវការ ស៊ុមខៀវ និង QR",
     premium: false,
   },
+  {
+    id: "plain",
+    nameEn: "Plain Plate",
+    nameKh: "ផ្លាកសាមញ្ញ",
+    descriptionEn: "Minimalist number card with simple borders",
+    descriptionKh: "ផ្លាកលេខសាមញ្ញដែលមានស៊ុមធម្មតា",
+    premium: false,
+  },
 ];
 
 export function isScorePlateStyle(value: unknown): value is ScorePlateStyle {
