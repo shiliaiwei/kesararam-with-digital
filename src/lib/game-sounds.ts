@@ -7,14 +7,75 @@
 
 let ctx: AudioContext | null = null;
 
-// Global mute — the host can silence all game audio. Every synthesized sound
-// routes through playTone/playNoise, so guarding those two covers everything.
+// Audio engine settings
 let _muted = false;
+let _sfxMuted = false;
+let _bgmMuted = false;
+let _sfxVolume = 0.5;
+let _bgmVolume = 0.15;
+
+if (typeof window !== "undefined") {
+  try {
+    _muted = localStorage.getItem("kwd_global_muted") === "1";
+    _sfxMuted = localStorage.getItem("kwd_sfx_muted") === "1";
+    _bgmMuted = localStorage.getItem("kwd_bgm_muted") === "1";
+    
+    const savedSfxVol = localStorage.getItem("kwd_sfx_volume");
+    if (savedSfxVol !== null) _sfxVolume = parseFloat(savedSfxVol);
+    
+    const savedBgmVol = localStorage.getItem("kwd_bgm_volume");
+    if (savedBgmVol !== null) _bgmVolume = parseFloat(savedBgmVol);
+  } catch { /* ignore local storage errors */ }
+}
+
 export function setSoundsMuted(m: boolean) {
   _muted = m;
+  if (typeof window !== "undefined") {
+    try { localStorage.setItem("kwd_global_muted", m ? "1" : "0"); } catch {}
+  }
 }
 export function getSoundsMuted(): boolean {
   return _muted;
+}
+
+export function setSFXMuted(m: boolean) {
+  _sfxMuted = m;
+  if (typeof window !== "undefined") {
+    try { localStorage.setItem("kwd_sfx_muted", m ? "1" : "0"); } catch {}
+  }
+}
+export function getSFXMuted(): boolean {
+  return _sfxMuted;
+}
+
+export function setBGMMuted(m: boolean) {
+  _bgmMuted = m;
+  if (typeof window !== "undefined") {
+    try { localStorage.setItem("kwd_bgm_muted", m ? "1" : "0"); } catch {}
+  }
+}
+export function getBGMMuted(): boolean {
+  return _bgmMuted;
+}
+
+export function setSFXVolume(v: number) {
+  _sfxVolume = Math.max(0, Math.min(1, v));
+  if (typeof window !== "undefined") {
+    try { localStorage.setItem("kwd_sfx_volume", _sfxVolume.toString()); } catch {}
+  }
+}
+export function getSFXVolume(): number {
+  return _sfxVolume;
+}
+
+export function setBGMVolume(v: number) {
+  _bgmVolume = Math.max(0, Math.min(1, v));
+  if (typeof window !== "undefined") {
+    try { localStorage.setItem("kwd_bgm_volume", _bgmVolume.toString()); } catch {}
+  }
+}
+export function getBGMVolume(): number {
+  return _bgmVolume;
 }
 
 function getCtx(): AudioContext {
@@ -30,7 +91,7 @@ function playTone(
   gain = 0.3,
   startDelay = 0
 ) {
-  if (_muted) return;
+  if (_muted || _sfxMuted) return;
   try {
     const ac = getCtx();
     const osc = ac.createOscillator();
@@ -39,7 +100,9 @@ function playTone(
     gainNode.connect(ac.destination);
     osc.type = type;
     osc.frequency.setValueAtTime(frequency, ac.currentTime + startDelay);
-    gainNode.gain.setValueAtTime(gain, ac.currentTime + startDelay);
+    
+    // Scale tone volume by sfxVolume setting
+    gainNode.gain.setValueAtTime(gain * _sfxVolume, ac.currentTime + startDelay);
     gainNode.gain.exponentialRampToValueAtTime(
       0.001,
       ac.currentTime + startDelay + duration
@@ -51,7 +114,7 @@ function playTone(
 
 /** Synthesized noise burst — used for clap/snap effects */
 function playNoise(duration: number, gain = 0.15, startDelay = 0) {
-  if (_muted) return;
+  if (_muted || _sfxMuted) return;
   try {
     const ac = getCtx();
     const bufferSize = ac.sampleRate * duration;
@@ -68,7 +131,9 @@ function playNoise(duration: number, gain = 0.15, startDelay = 0) {
     source.connect(filter);
     filter.connect(gainNode);
     gainNode.connect(ac.destination);
-    gainNode.gain.setValueAtTime(gain, ac.currentTime + startDelay);
+    
+    // Scale noise volume by sfxVolume setting
+    gainNode.gain.setValueAtTime(gain * _sfxVolume, ac.currentTime + startDelay);
     gainNode.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + startDelay + duration);
     source.start(ac.currentTime + startDelay);
     source.stop(ac.currentTime + startDelay + duration);
@@ -79,6 +144,149 @@ function playNoise(duration: number, gain = 0.15, startDelay = 0) {
 function clap(delay = 0) {
   playNoise(0.06, 0.25, delay);
   playTone(800, 0.04, "sine", 0.05, delay);
+}
+
+function midiToFreq(note: number): number {
+  return 440 * Math.pow(2, (note - 69) / 12);
+}
+
+// BGM loops data
+const THEME_TEMPO = {
+  lobby: 110,
+  quiz: 125,
+  victory: 135
+};
+
+const MELODIES: Record<string, number[]> = {
+  lobby: [
+    72, 0, 76, 0, 79, 0, 81, 0,
+    79, 0, 76, 0, 74, 0, 72, 0,
+    76, 0, 79, 0, 81, 0, 84, 0,
+    79, 0, 76, 0, 74, 0, 72, 0
+  ],
+  quiz: [
+    76, 0, 77, 0, 79, 79, 81, 0,
+    79, 0, 77, 0, 76, 0, 74, 0,
+    74, 0, 75, 0, 77, 77, 79, 0,
+    77, 0, 76, 0, 74, 0, 72, 0
+  ],
+  victory: [
+    72, 72, 79, 79, 84, 84, 79, 79,
+    81, 84, 79, 84, 88, 86, 84, 84
+  ]
+};
+
+const BASSLINES: Record<string, number[]> = {
+  lobby: [
+    48, 48, 48, 48, 55, 55, 55, 55,
+    53, 53, 53, 53, 55, 55, 55, 55,
+    48, 48, 48, 48, 55, 55, 55, 55,
+    53, 53, 53, 53, 48, 48, 48, 48
+  ],
+  quiz: [
+    48, 48, 55, 55, 41, 41, 48, 48,
+    50, 50, 57, 57, 43, 43, 50, 50
+  ],
+  victory: [
+    48, 48, 48, 48, 41, 41, 41, 41,
+    43, 43, 43, 43, 48, 48, 48, 48
+  ]
+};
+
+let bgmSequencerId: any = null;
+let currentBgmTheme: string | null = null;
+let bgmNextNoteTime = 0.0;
+let bgmStep = 0;
+
+function scheduleBgmStep(step: number, time: number, theme: string) {
+  if (_bgmMuted || _muted) return;
+  try {
+    const ac = getCtx();
+    const melody = MELODIES[theme];
+    const bass = BASSLINES[theme];
+    const tempo = THEME_TEMPO[theme as keyof typeof THEME_TEMPO] ?? 100;
+    const stepDuration = 60 / tempo / 4; // 16th notes
+    
+    // 1. Play bass note
+    const bassNote = bass[step % bass.length];
+    if (bassNote > 0) {
+      const osc = ac.createOscillator();
+      const gainNode = ac.createGain();
+      osc.connect(gainNode);
+      gainNode.connect(ac.destination);
+      
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(midiToFreq(bassNote), time);
+      
+      // Soft bass sound
+      gainNode.gain.setValueAtTime(0.06 * _bgmVolume, time);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, time + stepDuration * 1.5);
+      
+      osc.start(time);
+      osc.stop(time + stepDuration * 1.5);
+    }
+    
+    // 2. Play melody note
+    const melNote = melody[step % melody.length];
+    if (melNote > 0) {
+      const osc = ac.createOscillator();
+      const gainNode = ac.createGain();
+      osc.connect(gainNode);
+      gainNode.connect(ac.destination);
+      
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(midiToFreq(melNote), time);
+      
+      // Bouncy melody sound
+      gainNode.gain.setValueAtTime(0.04 * _bgmVolume, time);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, time + stepDuration * 0.8);
+      
+      osc.start(time);
+      osc.stop(time + stepDuration * 0.8);
+    }
+  } catch {}
+}
+
+export function startBGM(theme: 'lobby' | 'quiz' | 'victory') {
+  if (typeof window === "undefined") return;
+  try {
+    const ac = getCtx();
+    if (currentBgmTheme === theme && bgmSequencerId !== null) return;
+    
+    stopBGM();
+    
+    currentBgmTheme = theme;
+    bgmStep = 0;
+    bgmNextNoteTime = ac.currentTime;
+    
+    const tempo = THEME_TEMPO[theme] ?? 100;
+    const stepDuration = 60 / tempo / 4;
+    
+    const scheduler = () => {
+      const scheduleAheadTime = 0.1;
+      while (bgmNextNoteTime < ac.currentTime + scheduleAheadTime) {
+        scheduleBgmStep(bgmStep, bgmNextNoteTime, theme);
+        bgmNextNoteTime += stepDuration;
+        bgmStep++;
+      }
+    };
+    
+    bgmSequencerId = setInterval(scheduler, 25);
+  } catch (e) {
+    console.error("Failed to start BGM:", e);
+  }
+}
+
+export function stopBGM() {
+  if (bgmSequencerId !== null) {
+    clearInterval(bgmSequencerId);
+    bgmSequencerId = null;
+  }
+  currentBgmTheme = null;
+}
+
+export function getCurrentBGMTheme(): string | null {
+  return currentBgmTheme;
 }
 
 export const sounds = {
@@ -135,13 +343,10 @@ export const sounds = {
 
   /** 1st place — full fanfare + clapping */
   rank1() {
-    // Triumphant fanfare
     const fanfare = [523, 659, 784, 1047, 1319, 1568, 2093];
     fanfare.forEach((f, i) => playTone(f, 0.18, "sine", 0.28, i * 0.13));
-    // Clapping starts after fanfare
     const clapPattern = [1.0, 1.12, 1.24, 1.36, 1.48, 1.6, 1.72, 1.84, 1.96, 2.08, 2.2, 2.32];
     clapPattern.forEach((t) => clap(t));
-    // Final chord
     [523, 659, 784].forEach((f) => playTone(f, 0.6, "sine", 0.15, 2.5));
   },
 
@@ -172,7 +377,6 @@ export const sounds = {
   },
 
   podium() {
-    // Victory fanfare for podium display
     const notes = [523, 659, 784, 1047, 1319, 1568];
     notes.forEach((f, i) => playTone(f, 0.2, "sine", 0.25, i * 0.15));
   },
@@ -194,10 +398,10 @@ export function playSound(name: keyof typeof sounds) {
 }
 
 export function playAudioUrl(url: string | null) {
-  if (!url) return;
+  if (!url || _muted || _sfxMuted) return;
   try {
     const audio = new Audio(url);
-    audio.volume = 0.8;
+    audio.volume = 0.8 * _sfxVolume;
     audio.play().catch(() => {});
   } catch {}
 }

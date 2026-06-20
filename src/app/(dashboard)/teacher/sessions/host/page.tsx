@@ -21,7 +21,22 @@ import { UpgradeButton } from "@/components/pricing/upgrade-button";
 import { Lock } from "lucide-react";
 import QRCode from "react-qr-code";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
-import { sounds, setSoundsMuted, getSoundsMuted } from "@/lib/game-sounds";
+import { 
+  sounds, 
+  setSoundsMuted, 
+  getSoundsMuted, 
+  startBGM, 
+  stopBGM, 
+  setBGMVolume, 
+  getBGMVolume, 
+  setSFXVolume, 
+  getSFXVolume, 
+  setBGMMuted, 
+  getBGMMuted, 
+  setSFXMuted, 
+  getSFXMuted,
+  getCurrentBGMTheme
+} from "@/lib/game-sounds";
 import { getAvatarFaceStyle } from "@/lib/utils";
 
 // ── Answer color config ────────────────────────────────────────────────────
@@ -365,8 +380,15 @@ export default function HostPage() {
   // not change what students see). Defaults to the session's creation language.
   const [displayLang, setDisplayLang] = useState<"both" | "kh" | "en">("both");
   const qaFont = displayLang !== "en" ? { fontFamily: "var(--font-learning)" } : {};
-  // Game audio mute (host SFX). Persisted so it sticks across sessions.
+  // Game audio settings
   const [muted, setMuted] = useState(false);
+  const [sfxMuted, setSfxMutedState] = useState(false);
+  const [bgmMuted, setBgmMutedState] = useState(false);
+  const [sfxVolume, setSfxVolumeState] = useState(0.5);
+  const [bgmVolume, setBgmVolumeState] = useState(0.15);
+  const [showSoundOptions, setShowSoundOptions] = useState(false);
+  const soundPopoverRef = useRef<HTMLDivElement>(null);
+  const lastTickSecondRef = useRef<number>(-1);
   // Advance mode: "manual" = teacher clicks Next Q; "auto" = after the answer is
   // revealed, auto-jump to the next question after AUTO_ADVANCE_MS. Teacher choice,
   // persisted so it sticks across sessions.
@@ -619,6 +641,7 @@ export default function HostPage() {
   useEffect(() => {
     // reset whenever a new question starts
     timeUpFiredRef.current = false;
+    lastTickSecondRef.current = -1;
     setQFillPct(0);
     if (phase.name !== "active" || !activeEndsAt) {
       return;
@@ -646,6 +669,17 @@ export default function HostPage() {
       const elapsed = now - startMs;
       const pct = Math.min(100, Math.max(0, (elapsed / totalMs) * 100));
       setQFillPct(pct);
+
+      const left = Math.max(0, Math.ceil((endMs - now) / 1000));
+      if (left > 0 && left !== lastTickSecondRef.current) {
+        lastTickSecondRef.current = left;
+        if (left <= 5) {
+          sounds.urgent_tick();
+        } else {
+          sounds.countdown_tick();
+        }
+      }
+
       if (now >= endMs && !timeUpFiredRef.current) {
         timeUpFiredRef.current = true;
         autoReveal();
@@ -667,15 +701,203 @@ export default function HostPage() {
     try { localStorage.setItem("kwd_host_advance_mode", mode); } catch { /* ignore */ }
   }
 
-  // ── Mute: load persisted choice, then keep the sound engine in sync ──────────
+  // ── Mute & Sound Engine Sync ─────────────────────────────────────────────────
   useEffect(() => {
-    const saved = typeof window !== "undefined" ? localStorage.getItem("kwd_host_muted") : null;
-    if (saved === "1") setMuted(true);
+    setSfxMutedState(getSFXMuted());
+    setBgmMutedState(getBGMMuted());
+    setSfxVolumeState(getSFXVolume());
+    setBgmVolumeState(getBGMVolume());
+    setMuted(getSoundsMuted());
   }, []);
+
+  const updateSfxMuted = (val: boolean) => {
+    setSFXMuted(val);
+    setSfxMutedState(val);
+  };
+  const updateBgmMuted = (val: boolean) => {
+    setBGMMuted(val);
+    setBgmMutedState(val);
+  };
+  const updateSfxVolume = (val: number) => {
+    setSFXVolume(val);
+    setSfxVolumeState(val);
+  };
+  const updateBgmVolume = (val: number) => {
+    setBGMVolume(val);
+    setBgmVolumeState(val);
+  };
+  const updateGlobalMute = (val: boolean) => {
+    setSoundsMuted(val);
+    setMuted(val);
+  };
+
+  // Close sound options popover on click outside
   useEffect(() => {
-    setSoundsMuted(muted);
-    try { localStorage.setItem("kwd_host_muted", muted ? "1" : "0"); } catch { /* ignore */ }
-  }, [muted]);
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (soundPopoverRef.current && !soundPopoverRef.current.contains(e.target as Node)) {
+        setShowSoundOptions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
+  // BGM playback based on game phase transitions
+  useEffect(() => {
+    if (phase.name === "lobby") {
+      startBGM("lobby");
+    } else if (phase.name === "active") {
+      startBGM("quiz");
+    } else if (phase.name === "ended") {
+      startBGM("victory");
+    } else {
+      stopBGM();
+    }
+    return () => {
+      stopBGM();
+    };
+  }, [phase.name]);
+
+  // Render Sound Settings Popover (reused across lobby and active screen layouts)
+  const renderSoundOptions = () => {
+    if (!showSoundOptions) return null;
+    return (
+      <div 
+        ref={soundPopoverRef}
+        className="fixed md:absolute inset-x-4 md:inset-x-auto md:right-16 top-1/2 md:top-14 mt-2 -translate-y-1/2 md:translate-y-0 w-auto md:w-72 bg-white border-4 border-black p-4 shadow-[6px_6px_0_#000] z-50 text-black text-left rounded-none"
+      >
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-between border-b-2 border-black pb-2">
+            <span className="font-black text-xs uppercase tracking-wider" style={khFont}>
+              {kh ? "ជម្រើសសំឡេង" : "SOUND OPTIONS"}
+            </span>
+            <button 
+              onClick={() => setShowSoundOptions(false)}
+              className="text-xs font-black border border-black px-1.5 py-0.5 bg-zinc-100 active:bg-zinc-200"
+              style={{ borderRadius: "0px" }}
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Master Mute Toggle */}
+          <div className="flex items-center justify-between border-b border-zinc-200 pb-2">
+            <span className="font-bold text-xs uppercase" style={khFont}>
+              {kh ? "បិទសំឡេងទាំងអស់" : "MUTE ALL"}
+            </span>
+            <button
+              onClick={() => updateGlobalMute(!muted)}
+              className={`px-3 py-1 text-[11px] font-black border-2 border-black uppercase tracking-wider transition-colors ${muted ? "bg-red-400 text-black" : "bg-zinc-100 text-black hover:bg-zinc-200"}`}
+              style={{ borderRadius: "0px" }}
+            >
+              {muted ? (kh ? "បិទ" : "ON") : (kh ? "បើក" : "OFF")}
+            </button>
+          </div>
+
+          {/* SFX Controls */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-xs uppercase" style={khFont}>
+                {kh ? "សំឡេងផលប៉ះពាល់ (SFX)" : "SOUND EFFECTS"}
+              </span>
+              <button
+                onClick={() => updateSfxMuted(!sfxMuted)}
+                disabled={muted}
+                className={`px-2.5 py-0.5 text-[10px] font-black border border-black uppercase transition-colors disabled:opacity-50 ${sfxMuted ? "bg-red-300 text-black" : "bg-emerald-300 text-black"}`}
+                style={{ borderRadius: "0px" }}
+              >
+                {sfxMuted ? (kh ? "បិទ" : "MUTED") : (kh ? "បើក" : "ACTIVE")}
+              </button>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-zinc-500 font-bold">0%</span>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={sfxVolume}
+                disabled={muted || sfxMuted}
+                onChange={(e) => updateSfxVolume(parseFloat(e.target.value))}
+                className="flex-1 accent-black h-1 bg-zinc-200 cursor-pointer"
+              />
+              <span className="text-[10px] text-zinc-500 font-mono font-bold w-8 text-right">
+                {Math.round(sfxVolume * 100)}%
+              </span>
+            </div>
+          </div>
+
+          {/* BGM Controls */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-xs uppercase" style={khFont}>
+                {kh ? "តន្ត្រីផ្ទៃក្រោយ (BGM)" : "BACKGROUND MUSIC"}
+              </span>
+              <button
+                onClick={() => updateBgmMuted(!bgmMuted)}
+                disabled={muted}
+                className={`px-2.5 py-0.5 text-[10px] font-black border border-black uppercase transition-colors disabled:opacity-50 ${bgmMuted ? "bg-red-300 text-black" : "bg-emerald-300 text-black"}`}
+                style={{ borderRadius: "0px" }}
+              >
+                {bgmMuted ? (kh ? "បិទ" : "MUTED") : (kh ? "បើក" : "ACTIVE")}
+              </button>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-zinc-500 font-bold">0%</span>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={bgmVolume}
+                disabled={muted || bgmMuted}
+                onChange={(e) => updateBgmVolume(parseFloat(e.target.value))}
+                className="flex-1 accent-black h-1 bg-zinc-200 cursor-pointer"
+              />
+              <span className="text-[10px] text-zinc-500 font-mono font-bold w-8 text-right">
+                {Math.round(bgmVolume * 100)}%
+              </span>
+            </div>
+          </div>
+
+          {/* BGM Theme Selection */}
+          <div className="flex flex-col gap-1.5">
+            <span className="font-bold text-xs uppercase" style={khFont}>
+              {kh ? "ជ្រើសរើសតន្ត្រី" : "SELECT THEME"}
+            </span>
+            <div className="grid grid-cols-3 gap-1">
+              {(["lobby", "quiz", "victory"] as const).map((theme) => {
+                const isCurrent = getCurrentBGMTheme() === theme;
+                return (
+                  <button
+                    key={theme}
+                    onClick={() => startBGM(theme)}
+                    disabled={muted || bgmMuted}
+                    className={`py-1 text-[10px] font-black border border-black uppercase transition-colors disabled:opacity-50 ${isCurrent ? "bg-black text-yellow-400" : "bg-zinc-100 text-black hover:bg-zinc-200"}`}
+                    style={{ borderRadius: "0px" }}
+                  >
+                    {theme === "lobby" ? (kh ? "រង់ចាំ" : "Lobby") : theme === "quiz" ? (kh ? "សំណួរ" : "Quiz") : (kh ? "ជ័យជម្នះ" : "Podium")}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Test Sound Button */}
+          <button
+            onClick={() => {
+              sounds.correct();
+            }}
+            disabled={muted || sfxMuted}
+            className="w-full py-2 bg-yellow-400 hover:bg-yellow-300 text-black font-black text-xs border-2 border-black shadow-[2px_2px_0_#000] active:translate-x-px active:translate-y-px active:shadow-none transition-all disabled:opacity-50 uppercase tracking-wider"
+            style={{ borderRadius: "0px", ...khFont }}
+          >
+            {kh ? "សាកល្បងសំឡេង" : "Test Sound Effect"}
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   // Default the per-question time to the selected mode's default when the mode
   // changes (teacher can still override in setup or live).
@@ -1489,6 +1711,15 @@ export default function HostPage() {
               </p>
             </div>
             <div className="flex items-center gap-3 shrink-0 w-full md:w-auto">
+              {/* Sound settings button in lobby */}
+              <button
+                onClick={() => setShowSoundOptions(!showSoundOptions)}
+                className={`flex items-center justify-center gap-2 px-4 py-3 border-4 border-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 rounded-none cursor-pointer ${muted ? "bg-red-400 text-black" : "bg-white text-black"}`}
+              >
+                {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                <span className="hidden sm:inline" style={khFont}>{kh ? "សំឡេង" : "Sound"}</span>
+              </button>
+
               <button
                 onClick={() => { if (confirm(kh ? "បោះបង់ហ្គេមនេះ?" : "Cancel this game session?")) { control("terminate"); setTimeout(() => setPhase({ name: "setup" }), 500); } }}
                 disabled={controlling}
@@ -1697,6 +1928,9 @@ export default function HostPage() {
         <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
         @keyframes pulse-once { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
         .animate-pulse-once { animation: pulse-once 0.6s ease-in-out; }`}</style>
+        
+        {/* Sound settings overlay popover (centered modal on mobile, absolute below top bar on desktop) */}
+        {renderSoundOptions()}
       </div>
     );
   }
@@ -1796,10 +2030,10 @@ export default function HostPage() {
               ))}
             </div>
 
-            {/* Mute toggle */}
+            {/* Sound options button */}
             <button
-              onClick={() => setMuted((m) => !m)}
-              title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
+              onClick={() => setShowSoundOptions(!showSoundOptions)}
+              title={kh ? "ជម្រើសសំឡេង" : "Sound Options"}
               className={`flex items-center px-3 py-2 border-2 border-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 ${muted ? "bg-red-400 text-black" : "bg-white text-black"}`}
               style={{ borderRadius: "0px" }}
             >
@@ -2007,14 +2241,14 @@ export default function HostPage() {
               {advanceMode === "auto" ? (kh ? "ស្វ័យ" : "Auto") : (kh ? "ដៃ" : "Manual")}
             </button>
 
-            {/* Fullscreen */}
+            {/* Sound Settings */}
             <button
-              onClick={toggleFullscreen}
-              className="flex flex-col items-center justify-center gap-0.5 py-2 border-2 border-black bg-white text-black font-black text-[9px] uppercase tracking-wider shadow-[2px_2px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+              onClick={() => setShowSoundOptions(!showSoundOptions)}
+              className={`flex flex-col items-center justify-center gap-0.5 py-2 border-2 border-black font-black text-[9px] uppercase tracking-wider shadow-[2px_2px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all ${muted ? "bg-red-400 text-black" : "bg-white text-black"}`}
               style={{ borderRadius: "0px" }}
             >
-              {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
-              {isFullscreen ? (kh ? "បង្រួម" : "Min") : (kh ? "ពេញ" : "Full")}
+              {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              {kh ? "សំឡេង" : "Sound"}
             </button>
 
             {/* Exit (STOP) */}
@@ -2059,6 +2293,9 @@ export default function HostPage() {
             </button>
           </div>
         </div>
+
+        {/* Sound settings overlay popover (centered modal on mobile, absolute below top bar on desktop) */}
+        {renderSoundOptions()}
       </div>
     );
   }
