@@ -561,7 +561,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             </span>
 
             {/* Blue line separator */}
-            <div className="z-10 w-[calc(100%-10px)] h-[2px] bg-blue-600 flex-shrink-0" />
+            <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/35 flex-shrink-0" />
 
             {/* Bottom: Province/Cambodia in English */}
             <span className={`z-10 font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px] ${isFirst ? "text-[7.5px]" : "text-[6.5px]"}`}>
@@ -1496,7 +1496,7 @@ export default function LeaderboardPage() {
                   </span>
 
                   {/* Blue line separator */}
-                  <div className="z-10 w-[calc(100%-10px)] h-[2px] bg-blue-600 flex-shrink-0" />
+                  <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/35 flex-shrink-0" />
 
                   {/* Bottom: Province/Cambodia in English */}
                   <span className="z-10 text-[6.5px] font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
@@ -1597,7 +1597,7 @@ export default function LeaderboardPage() {
                         </span>
 
                         {/* Blue line separator */}
-                        <div className="z-10 w-[calc(100%-10px)] h-[2px] bg-blue-600 flex-shrink-0" />
+                        <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/35 flex-shrink-0" />
 
                         {/* Bottom: Province/Cambodia in English */}
                         <span className="z-10 text-[6.5px] font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
