@@ -48,7 +48,15 @@ export async function POST(
   if (!session) return NextResponse.json({ error: "Session not found" }, { status: 404 });
   if (session.status === "ended")
     return NextResponse.json({ error: "Session has ended" }, { status: 410 });
-  if (session.status === "active")
+
+  const existing = await db
+    .select()
+    .from(gameParticipants)
+    .where(eq(gameParticipants.sessionId, session.id));
+
+  const alreadyIn = existing.find((p) => p.userId === user.id);
+
+  if (session.status === "active" && !alreadyIn)
     return NextResponse.json({ error: "Game already started — late join not allowed" }, { status: 403 });
 
   // ── Class-membership gates (students only) ──
@@ -85,15 +93,8 @@ export async function POST(
     }
   }
 
-  const existing = await db
-    .select()
-    .from(gameParticipants)
-    .where(eq(gameParticipants.sessionId, session.id));
-
-  if (existing.length >= (session.maxPlayers ?? 50))
+  if (existing.length >= (session.maxPlayers ?? 50) && !alreadyIn)
     return NextResponse.json({ error: `Session is full (max ${session.maxPlayers ?? 50} players)` }, { status: 409 });
-
-  const alreadyIn = existing.find((p) => p.userId === user.id);
   let participant;
 
   if (alreadyIn) {

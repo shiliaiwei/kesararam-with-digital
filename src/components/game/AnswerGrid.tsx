@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import type { AnswerOption } from "@/lib/game-event-bus";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 
@@ -40,6 +41,15 @@ export function AnswerGrid({
   gameType,
   onSelect,
 }: AnswerGridProps) {
+  const shuffledAnswers = useMemo(() => {
+    if (!Array.isArray(answers)) return [];
+    const shuffled = [...answers];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }, [answers]);
   if (!Array.isArray(answers) || answers.length === 0) {
     return (
       <div style={{ textAlign: "center", padding: "24px", color: "rgba(255,255,255,0.4)", fontWeight: 700 }}>
@@ -64,7 +74,7 @@ export function AnswerGrid({
         gap: "6px",
       }}
     >
-      {answers.map((ans, i) => {
+      {shuffledAnswers.map((ans, i) => {
         const cfg = ANSWER_CONFIG[i % ANSWER_CONFIG.length];
         const isSelected = selectedId === ans.id;
         const isCorrect = revealed && ans.id === correctId;
