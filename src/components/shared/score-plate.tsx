@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Flower2, Leaf, QrCode, Star } from "lucide-react";
+import { Flower2, Leaf, Star } from "lucide-react";
 import { normalizeScorePlateStyle, type ScorePlateStyle } from "@/lib/score-plates";
 
 type ScorePlateSize = "sm" | "md" | "lg";
@@ -258,39 +258,17 @@ export function ScorePlate({
     );
   }
 
-  // --- Official MPWT Plate (white card, navy border, QR icon, red province) ---
+  // --- Official MPWT Plate (white card, single thin rounded navy border, red province) ---
   if (style === "official") {
     const navy = "#13395f";
-    const insetPx = size === "sm" ? 4 : size === "md" ? 5 : 6;
-    const innerRadius =
-      size === "sm" ? "rounded-[4px]" : size === "md" ? "rounded-md" : "rounded-lg";
-    const qrSize = Math.max(10, d.top + 5);
+    const containerRadius =
+      size === "sm" ? "rounded-md" : size === "md" ? "rounded-lg" : "rounded-xl";
 
     return (
       <div
-        className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-[2.5px] bg-white px-3 py-1 text-center ${className}`}
+        className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-2 bg-white px-3 py-1 text-center ${containerRadius} ${className}`}
         style={{ ...shell, boxShadow: "none", borderColor: navy }}
       >
-        {/* inner thin rounded frame around all content */}
-        <div
-          className={`pointer-events-none absolute border ${innerRadius}`}
-          style={{
-            top: `${insetPx}px`,
-            left: `${insetPx}px`,
-            right: `${insetPx}px`,
-            bottom: `${insetPx}px`,
-            borderColor: navy,
-          }}
-        />
-
-        {/* QR code icon top-right */}
-        <QrCode
-          size={qrSize}
-          className="absolute"
-          style={{ top: insetPx + 3, right: insetPx + 3, color: navy }}
-          strokeWidth={1.8}
-        />
-
         <span
           className="z-10 font-black leading-none"
           style={{ ...topStyle, color: navy }}
