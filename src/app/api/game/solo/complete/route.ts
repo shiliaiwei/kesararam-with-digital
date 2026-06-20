@@ -270,7 +270,7 @@ export async function POST(req: NextRequest) {
       // source="solo" → its OWN board column; excluded from claimable balance and
       // from lifetimePoints (live priority points only). Skip zero-point runs.
       if (soloPoints > 0) {
-        const scaledSoloPoints = soloPoints * 10;
+        const scaledSoloPoints = soloPoints;
         await db.insert(pointsLedger).values({
           userId: session.id,
           source: "solo",
@@ -281,7 +281,7 @@ export async function POST(req: NextRequest) {
 
       // NOTE: solo does NOT touch lifetimePoints anymore. We only update the
       // play counter + personal-best (highestScore) for display.
-      const scaledRawScore = rawScore * 10;
+      const scaledRawScore = rawScore;
       const [updatedUser] = await db
         .update(users)
         .set({

@@ -80,9 +80,8 @@ export async function awardStorePoints(ctx: {
     return { awarded: false, reason: "disabled", grossPoints: 0, delta: 0, accuracy: 0 };
   }
 
-  // 0. Live games only. Solo/practice plays record mastery/history elsewhere but
-  //    never create spendable Store Points, so only live score can claim rewards.
-  if (ctx.source !== "live") {
+  // 0. Allow both live sessions and solo/practice modes.
+  if (ctx.source !== "live" && ctx.source !== "solo") {
     return { awarded: false, reason: "not_live", grossPoints: 0, delta: 0, accuracy: 0 };
   }
 

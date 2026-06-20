@@ -400,8 +400,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
   const userAvatar = (currentUser && user && user.id === currentUser.id) ? currentUser.avatar : (user?.avatar ?? null);
   const initials = (name && name !== "—" ? name : "?").slice(0, 2).toUpperCase();
   const linkable = !!user && user.isUsernamePublic !== false;
-  const live = user?.priorityPoints ?? 0;
-  const scoreValue = live;
+  const scoreValue = user?.lifetimePoints ?? 0;
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -1387,11 +1386,10 @@ export default function LeaderboardPage() {
     const isMe = !!currentUser && user.id === currentUser.id;
     const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
     const rowAvatar = isMe ? currentUser.avatar : user.avatar;
-    const live = user.priorityPoints ?? 0;
-    const scoreValue = live;
+    const scoreValue = user.lifetimePoints ?? 0;
     const tier = getRank(user.lifetimePoints);
     const above = sortKey === "rank" && rowIndex > 0 ? sortedBoard[rowIndex - 1] : null;
-    const toOvertake = above ? Math.max(0, (above.priorityPoints ?? 0) - live + 1) : 0;
+    const toOvertake = above ? Math.max(0, (above.lifetimePoints ?? 0) - scoreValue + 1) : 0;
 
     return (
       <div
@@ -1587,7 +1585,7 @@ export default function LeaderboardPage() {
                         
                         {/* Center: Score number in brand blue */}
                         <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
-                          {(currentUser.livePoints ?? 0).toLocaleString()}
+                          {(currentUser.lifetimePoints ?? 0).toLocaleString()}
                         </span>
 
                         {/* Blue line separator */}

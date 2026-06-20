@@ -65,7 +65,7 @@ async function syncScoresToUserProfiles(sessionId: number, gameMode: string, tot
     // cannot inflate accuracy or reach a higher per-play cap.
     // Update each user's profile with their game score
     for (const participant of participants) {
-      const scaledScore = participant.totalScore * 10;
+      const scaledScore = participant.totalScore;
       await db
         .update(users)
         .set({
