@@ -52,7 +52,6 @@ export function ScorePlate({
   // --- Official MPWT Plate (Premium Cambodian License Plate look with navy border, red labels & bold navy number) ---
   if (style === "official") {
     const navy = "#11355c"; // Premium authentic navy blue
-    const redLabel = "rgba(239, 68, 68, 0.75)"; // Low-opacity brand red color
 
     // Scale font sizes to fit perfectly within the plate dimensions and prevent cut-offs
     const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
@@ -61,47 +60,84 @@ export function ScorePlate({
 
     return (
       <div
-        className={`relative flex select-none flex-col items-center justify-between overflow-hidden bg-white text-center ${className}`}
+        className={`relative flex select-none flex-col items-center justify-center overflow-hidden bg-white text-center ${className}`}
         style={{
           ...shell,
-          boxShadow: shadow ? "4px 4px 0 #000" : undefined,
           border: `${(size === "sm" || size === "xs") ? "2px" : "3px"} solid ${navy}`,
-          borderRadius: size === "xs" ? 4 : size === "sm" ? 5 : size === "md" ? 8 : 10,
-          paddingTop: size === "xs" ? 1 : size === "sm" ? 1.5 : size === "md" ? 3 : 4,
+          borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+          boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
-        {/* Top Text (Khmer Province/Country) in Low Opacity Brand Red */}
+        {/* Subtle metal plate sheen */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
+        <div className="absolute inset-[0.5px] border border-zinc-200/40 pointer-events-none rounded-[inherit]" />
+
+        {/* Screws/bolts in top corners */}
+        <div
+          className="absolute rounded-full bg-zinc-300 border border-zinc-500 flex items-center justify-center pointer-events-none"
+          style={{
+            width: size === "xs" ? 3 : size === "sm" ? 4.5 : size === "md" ? 6 : 7,
+            height: size === "xs" ? 3 : size === "sm" ? 4.5 : size === "md" ? 6 : 7,
+            top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6,
+            left: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
+            boxShadow: "inset 0.5px 0.5px 0.5px rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="bg-zinc-600 rounded-full" style={{ width: "35%", height: "35%" }} />
+        </div>
+        <div
+          className="absolute rounded-full bg-zinc-300 border border-zinc-500 flex items-center justify-center pointer-events-none"
+          style={{
+            width: size === "xs" ? 3 : size === "sm" ? 4.5 : size === "md" ? 6 : 7,
+            height: size === "xs" ? 3 : size === "sm" ? 4.5 : size === "md" ? 6 : 7,
+            top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6,
+            right: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
+            boxShadow: "inset 0.5px 0.5px 0.5px rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="bg-zinc-600 rounded-full" style={{ width: "35%", height: "35%" }} />
+        </div>
+
+        {/* Top Text (Khmer Province/Country) in Navy Blue */}
         <span
-          className="z-10 font-bold leading-none"
-          style={{ fontSize: topFontSize, color: redLabel }}
+          className="absolute font-bold leading-none text-center"
+          style={{
+            top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6,
+            fontSize: topFontSize,
+            color: navy,
+          }}
         >
           {kh}
         </span>
 
-        {/* Middle Text (Score) in Bold Navy */}
+        {/* Middle Text (Score) in Bold Navy (centered) */}
         <span
           className="z-10 font-mono font-black leading-none tabular-nums"
-          style={{ fontSize: valueFontSize, color: navy }}
+          style={{
+            fontSize: valueFontSize,
+            color: navy,
+            transform: size === "xs" ? "translateY(-1.5px)" : size === "sm" ? "translateY(-2px)" : size === "md" ? "translateY(-2.5px)" : "translateY(-3.5px)",
+          }}
         >
           <PlateValue value={value} />
         </span>
 
-        {/* Bottom divider & English Province name */}
-        <div className="z-10 w-full flex flex-col items-center mt-auto">
-          {/* Full-width navy divider */}
+        {/* Bottom divider & English Province name in Red */}
+        <div className="absolute left-0 right-0 flex flex-col items-center bottom-0">
           <div className="w-full border-t border-[#11355c] opacity-35" />
-          
-          {/* Bottom text wrapper */}
           <div
             className="w-full flex items-center justify-center relative"
             style={{
-              paddingTop: size === "xs" ? 1 : size === "sm" ? 1.5 : size === "md" ? 2.5 : 3.5,
-              paddingBottom: size === "xs" ? 1.5 : size === "sm" ? 2 : size === "md" ? 3 : 4,
+              paddingTop: size === "xs" ? 1 : size === "sm" ? 2 : size === "md" ? 3 : 4,
+              paddingBottom: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4.5 : 6,
             }}
           >
             <span
               className="font-bold leading-none tracking-[0.14em]"
-              style={{ fontSize: bottomFontSize, color: redLabel }}
+              style={{
+                fontSize: bottomFontSize,
+                color: "#dc2626", // Red text for English label
+              }}
             >
               {en}
             </span>

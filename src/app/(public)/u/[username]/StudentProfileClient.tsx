@@ -28,13 +28,13 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { CautionTape, SignShape } from "@/components/brand/brand-kit";
 import { getAvatarFaceStyle } from "@/lib/utils";
-import { RankedAvatarRing } from "@/components/shared/rank-label";
+import { RankedAvatarRing, TIER_ICONS } from "@/components/shared/rank-label";
 import { RoadAvatarBorder } from "@/components/rank/RoadAvatarBorder";
 import { MythicAvatarBorder } from "@/components/rank/MythicAvatarBorder";
 import { GoldAvatarBorder } from "@/components/rank/GoldAvatarBorder";
 import { PlatinumAvatarBorder } from "@/components/rank/PlatinumAvatarBorder";
 import { DiamondAvatarBorder } from "@/components/rank/DiamondAvatarBorder";
-import { calculateRankAndDivision } from "@/lib/ranks";
+import { calculateRankAndDivision, getNextRank, RANK_CONFIGS } from "@/lib/ranks";
 import { REWARD_ITEMS } from "@/lib/rewards";
 import { ScorePlate } from "@/components/shared/score-plate";
 import type { ScorePlateStyle } from "@/lib/score-plates";
@@ -348,7 +348,13 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
   const topGame = gameStats[0];
   const topGameMeta = topGame ? gameLabel(topGame.gameType) : null;
   const bestModePoints = Math.max(...gameStats.map((g) => g.points), 1);
-  const profileRank = calculateRankAndDivision(student.lifetimePoints).rank;
+  const rankResult = calculateRankAndDivision(student.lifetimePoints);
+  const profileRank = rankResult.rank;
+  const division = rankResult.division;
+  const progressToNextRank = rankResult.progressToNextRank;
+  const pointsNeededForNextRank = rankResult.pointsNeededForNextRank;
+  const nextRank = getNextRank(profileRank.name);
+
   const isMythicBorder = profileRank.id === "mythic";
   const isDiamondBorder = profileRank.id === "diamond";
   const isPlatinumBorder = profileRank.id === "platinum";
@@ -425,209 +431,401 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
 
       <main className="grid-bg">
         <section className="border-b-[3px] border-black bg-white">
-          <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 lg:py-8">
+          <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:py-8">
             <div className="border-[3px] border-black bg-white" style={{ boxShadow: "6px 6px 0 #000" }}>
               <div className="h-14 border-b-[3px] border-black" style={checkerboardStyle} />
-              <div className="flex flex-col items-center gap-5 p-6 text-center sm:p-8 md:p-10">
-                <div className="relative w-fit hover:-translate-y-1 transition-transform duration-200">
-                   {isMythicBorder ? (
-                    <MythicAvatarBorder
-                      alt={`${displayName} avatar`}
-                      username={isNamePublic ? (student.displayName || student.username) : "S"}
-                      score={student.lifetimePoints}
-                      size="md"
-                    >
-                      <Avatar
-                        url={student.avatar}
-                        name={isNamePublic ? (student.displayName || student.username) : "S"}
-                        size={96}
-                        changedAt={student.avatarChangedAt}
-                        round={true}
-                      />
-                    </MythicAvatarBorder>
-                  ) : isDiamondBorder ? (
-                    <DiamondAvatarBorder
-                      alt={`${displayName} avatar`}
-                      username={isNamePublic ? (student.displayName || student.username) : "S"}
-                      score={student.lifetimePoints}
-                      size="md"
-                    >
-                      <Avatar
-                        url={student.avatar}
-                        name={isNamePublic ? (student.displayName || student.username) : "S"}
-                        size={96}
-                        changedAt={student.avatarChangedAt}
-                        round={true}
-                      />
-                    </DiamondAvatarBorder>
-                  ) : isPlatinumBorder ? (
-                    <PlatinumAvatarBorder
-                      alt={`${displayName} avatar`}
-                      username={isNamePublic ? (student.displayName || student.username) : "S"}
-                      score={student.lifetimePoints}
-                      size="md"
-                    >
-                      <Avatar
-                        url={student.avatar}
-                        name={isNamePublic ? (student.displayName || student.username) : "S"}
-                        size={96}
-                        changedAt={student.avatarChangedAt}
-                        round={true}
-                      />
-                    </PlatinumAvatarBorder>
-                  ) : isGoldBorder ? (
-                    <GoldAvatarBorder
-                      alt={`${displayName} avatar`}
-                      username={isNamePublic ? (student.displayName || student.username) : "S"}
-                      score={student.lifetimePoints}
-                      size="md"
-                    >
-                      <Avatar
-                        url={student.avatar}
-                        name={isNamePublic ? (student.displayName || student.username) : "S"}
-                        size={96}
-                        changedAt={student.avatarChangedAt}
-                        round={true}
-                      />
-                    </GoldAvatarBorder>
-                  ) : hasRoadAvatarBorder ? (
-                    <RoadAvatarBorder
-                      alt={`${displayName} avatar`}
-                      username={isNamePublic ? (student.displayName || student.username) : "S"}
-                      score={student.lifetimePoints}
-                      size="md"
-                    >
-                      <Avatar
-                        url={student.avatar}
-                        name={isNamePublic ? (student.displayName || student.username) : "S"}
-                        size={96}
-                        changedAt={student.avatarChangedAt}
-                        round={true}
-                      />
-                    </RoadAvatarBorder>
-                  ) : (
-                    <RankedAvatarRing lifetimePoints={student.lifetimePoints} size={118}>
-                      <Avatar
-                        url={student.avatar}
-                        name={isNamePublic ? (student.displayName || student.username) : "S"}
-                        size={118}
-                        changedAt={student.avatarChangedAt}
-                        round={true}
-                      />
-                    </RankedAvatarRing>
-                  )}
-                  <div className="absolute -bottom-5 -right-5">
-                    <SignShape shape="diamond" body={BRAND.yellow} size={66}>
-                      <Crown size={22} className="text-black" strokeWidth={2.6} />
-                    </SignShape>
-                  </div>
-                </div>
-
-                <div className="min-w-0 flex flex-col items-center w-full">
-                  <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
-                    <span className="border-[3px] border-black bg-[#eab308] px-3 py-1 font-mono text-[11px] font-black uppercase tracking-wider text-black">
-                      {isUsernamePublic ? `@${student.username}` : t("Private ID", "លេខសម្គាល់ឯកជន")}
-                    </span>
+              
+              <div className="flex flex-col md:flex-row items-center md:items-stretch gap-6 p-6 sm:p-8 md:p-10">
+                
+                {/* Left Side: Avatar Column (ID Card Theme) */}
+                <div className="flex flex-col items-center justify-center shrink-0 border-[3px] border-black p-6 bg-zinc-50/50 shadow-[4px_4px_0_#000] relative w-full md:w-[220px]">
+                  <div className="relative w-fit hover:-translate-y-1 transition-transform duration-200">
+                    {isMythicBorder ? (
+                      <MythicAvatarBorder
+                        alt={`${displayName} avatar`}
+                        username={isNamePublic ? (student.displayName || student.username) : "S"}
+                        score={student.lifetimePoints}
+                        size="md"
+                      >
+                        <Avatar
+                          url={student.avatar}
+                          name={isNamePublic ? (student.displayName || student.username) : "S"}
+                          size={96}
+                          changedAt={student.avatarChangedAt}
+                          round={true}
+                        />
+                      </MythicAvatarBorder>
+                    ) : isDiamondBorder ? (
+                      <DiamondAvatarBorder
+                        alt={`${displayName} avatar`}
+                        username={isNamePublic ? (student.displayName || student.username) : "S"}
+                        score={student.lifetimePoints}
+                        size="md"
+                      >
+                        <Avatar
+                          url={student.avatar}
+                          name={isNamePublic ? (student.displayName || student.username) : "S"}
+                          size={96}
+                          changedAt={student.avatarChangedAt}
+                          round={true}
+                        />
+                      </DiamondAvatarBorder>
+                    ) : isPlatinumBorder ? (
+                      <PlatinumAvatarBorder
+                        alt={`${displayName} avatar`}
+                        username={isNamePublic ? (student.displayName || student.username) : "S"}
+                        score={student.lifetimePoints}
+                        size="md"
+                      >
+                        <Avatar
+                          url={student.avatar}
+                          name={isNamePublic ? (student.displayName || student.username) : "S"}
+                          size={96}
+                          changedAt={student.avatarChangedAt}
+                          round={true}
+                        />
+                      </PlatinumAvatarBorder>
+                    ) : isGoldBorder ? (
+                      <GoldAvatarBorder
+                        alt={`${displayName} avatar`}
+                        username={isNamePublic ? (student.displayName || student.username) : "S"}
+                        score={student.lifetimePoints}
+                        size="md"
+                      >
+                        <Avatar
+                          url={student.avatar}
+                          name={isNamePublic ? (student.displayName || student.username) : "S"}
+                          size={96}
+                          changedAt={student.avatarChangedAt}
+                          round={true}
+                        />
+                      </GoldAvatarBorder>
+                    ) : hasRoadAvatarBorder ? (
+                      <RoadAvatarBorder
+                        alt={`${displayName} avatar`}
+                        username={isNamePublic ? (student.displayName || student.username) : "S"}
+                        score={student.lifetimePoints}
+                        size="md"
+                      >
+                        <Avatar
+                          url={student.avatar}
+                          name={isNamePublic ? (student.displayName || student.username) : "S"}
+                          size={96}
+                          changedAt={student.avatarChangedAt}
+                          round={true}
+                        />
+                      </RoadAvatarBorder>
+                    ) : (
+                      <RankedAvatarRing lifetimePoints={student.lifetimePoints} size={118}>
+                        <Avatar
+                          url={student.avatar}
+                          name={isNamePublic ? (student.displayName || student.username) : "S"}
+                          size={118}
+                          changedAt={student.avatarChangedAt}
+                          round={true}
+                        />
+                      </RankedAvatarRing>
+                    )}
+                    <div className="absolute -bottom-5 -right-5">
+                      <SignShape shape="diamond" body={BRAND.yellow} size={66}>
+                        <Crown size={22} className="text-black" strokeWidth={2.6} />
+                      </SignShape>
+                    </div>
                   </div>
                   
-                  <h1 className={`mx-auto max-w-3xl break-words text-3xl sm:text-5xl font-black uppercase leading-tight tracking-normal text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
-                    {displayName}
-                  </h1>
+                  <span className="mt-8 border-[3px] border-black bg-[#eab308] px-3 py-1 font-mono text-[11px] font-black uppercase tracking-wider text-black shadow-[2px_2px_0_#000]">
+                    {isUsernamePublic ? `@${student.username}` : t("Private ID", "លេខសម្គាល់ឯកជន")}
+                  </span>
+                </div>
 
-                  {/* Render the premium ScorePlate and Rank Badge inline/centered directly on their profile */}
-                  {isStatsPublic && (
-                    <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-4">
-                      <ScorePlate
-                        value={student.livePoints}
-                        styleId={student.scorePlateStyle}
-                        provinceEn={student.province}
-                        provinceKh={getProvinceKh(student.province)}
-                        size="md"
-                        shadow
-                      />
-                      <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{t("Rank Tier", "ថ្នាក់គណនី")}</span>
-                        <span className="border-2 border-black bg-purple-500 text-white px-2 py-0.5 text-xs font-black uppercase tracking-wider">
-                          {profileRank.label}
+                {/* Right Side: Identity Details & Rank Progression */}
+                <div className="flex-1 min-w-0 flex flex-col justify-between text-center md:text-left gap-6 pt-4 md:pt-0">
+                  <div>
+                    {/* Role Tag & Details */}
+                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-2.5">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 bg-black text-[#eab308] border-2 border-black">
+                        <GraduationCap size={11} strokeWidth={2.8} />
+                        {t("Student", "សិស្ស")}
+                      </span>
+                      {isProvincePublic && student.province && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 bg-white text-black border-2 border-black">
+                          <MapPin size={11} />
+                          {getBilingualProvince(student.province)}
                         </span>
+                      )}
+                      <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 bg-white text-black border-2 border-black font-mono">
+                        <Calendar size={11} />
+                        {joinedYear}
+                      </span>
+                    </div>
+
+                    <h1 className={`break-words text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-tight tracking-normal text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
+                      {displayName}
+                    </h1>
+
+                    {student.schoolName && student.isSchoolPublic !== false && (
+                      <p className="mt-2 text-xs font-bold text-zinc-500 flex items-center justify-center md:justify-start gap-1">
+                        <span className="inline-block size-2 bg-zinc-400" />
+                        {student.schoolName}
+                      </p>
+                    )}
+                  </div>
+
+                  {isStatsPublic && (
+                    <div className="flex flex-col gap-4 border-t-2 border-dashed border-zinc-200 pt-4">
+                      {/* ScorePlate and Rank Badge inline */}
+                      <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                        <ScorePlate
+                          value={student.livePoints}
+                          styleId={student.scorePlateStyle}
+                          provinceEn={student.province}
+                          provinceKh={getProvinceKh(student.province)}
+                          size="md"
+                          shadow
+                        />
+                        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{t("Rank Tier", "ថ្នាក់គណនី")}</span>
+                          <span className="border-2 border-black bg-purple-500 text-white px-2 py-0.5 text-xs font-black uppercase tracking-wider shadow-[2px_2px_0_#000]">
+                            {profileRank.label} {division}
+                          </span>
+                        </div>
                       </div>
+
+                      {/* Rank Progression Ruler (Goal-Gradient Indicator) */}
+                      {nextRank ? (
+                        <div className="w-full">
+                          <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-zinc-400 mb-1.5">
+                            <span style={kf}>{t(`Next Rank: ${nextRank.label}`, `បន្ទាប់: ${nextRank.label}`)}</span>
+                            <span className="font-mono text-zinc-600 bg-zinc-100 px-1.5 py-0.5 border border-zinc-200">
+                              {pointsNeededForNextRank.toLocaleString()} pts {t("needed", "ទៀត")}
+                            </span>
+                          </div>
+                          <div className="w-full h-4 border-[3px] border-black bg-white shadow-[2px_2px_0_#000] overflow-hidden relative flex items-center">
+                            {/* Ruler ticks overlay */}
+                            <div className="absolute inset-0 flex justify-between px-2 pointer-events-none opacity-30">
+                              {[...Array(10)].map((_, i) => (
+                                <div key={i} className="w-[1px] h-full bg-black" />
+                              ))}
+                            </div>
+                            <div
+                              className="h-full transition-all duration-700 border-r-[2px] border-black"
+                              style={{ width: `${progressToNextRank}%`, backgroundColor: nextRank.accentColor || BRAND.yellow }}
+                            />
+                            <span className="absolute right-2 font-mono text-[9px] font-black text-black bg-white/80 px-1 border border-black/10">
+                              {progressToNextRank}%
+                            </span>
+                          </div>
+                        </div>
+                      ) : (
+                        <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest flex items-center justify-center md:justify-start gap-1">
+                          ✦ {t("MAX RANK REACHED", "កម្រិតខ្ពស់បំផុត")}
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
+
               </div>
+
             </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:py-8">
-            {isStatsPublic ? (
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-                <StatTile icon={Trophy} kh={kh} accent={BRAND.yellow} label={t("Leaderboard Rank", "ចំណាត់ថ្នាក់")} value={`#${rank}`} />
-                <StatTile icon={Gamepad2} kh={kh} accent={BRAND.blue} label={t("Games Played", "ចំនួនលេង")} value={student.totalGamesPlayed.toLocaleString()} />
-                <StatTile icon={Star} kh={kh} accent={BRAND.green} label={t("Highest Score", "ពិន្ទុខ្ពស់បំផុត")} value={student.highestScore.toLocaleString()} />
-                <StatTile icon={Zap} kh={kh} accent={BRAND.orange} label={t("Store Points", "ពិន្ទុរង្វាន់")} value={student.lifetimePoints.toLocaleString()} />
-                <StatTile icon={Award} kh={false} accent={BRAND.purple} label="RANK TIER" value={profileRank.label} />
+        <section className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:py-8">
+          {isStatsPublic ? (
+            <div className="border-[3px] border-black bg-white shadow-[5px_5px_0_#000] overflow-hidden">
+              {/* Stats Matrix header */}
+              <div className="border-b-[3px] border-black bg-black px-4 py-2.5 flex items-center justify-between text-white">
+                <div className="flex items-center gap-2">
+                  <Trophy className="text-[#eab308]" size={16} strokeWidth={2.8} />
+                  <span className="font-mono text-xs font-black uppercase tracking-wider">{t("STUDENT STATS", "ស្ថិតិសិស្ស")}</span>
+                </div>
+                <span className="font-mono text-[9px] font-black text-zinc-400 uppercase tracking-widest">{t("VERIFIED BY KWD", "ផ្ទៀងផ្ទាត់ដោយ KWD")}</span>
               </div>
-            ) : (
-              <div className="border-[3px] border-black bg-white p-4 text-center shadow-[3px_3px_0_#000]" style={{ borderRadius: "0" }}>
-                <div className="flex items-center justify-center gap-2 text-zinc-500">
-                  <Shield size={18} strokeWidth={2.6} />
-                  <p className={`font-black text-xs uppercase tracking-wider ${kh ? "font-google-sans" : ""}`} style={kf}>
-                    {t("Stats are private / ស្ថិតិត្រូវបានរក្សាការសម្ងាត់", "Stats are private / ស្ថិតិត្រូវបានរក្សាការសម្ងាត់")}
+              
+              {/* 4-column divided grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-[3px] bg-black">
+                
+                {/* Slot 1: Leaderboard Rank */}
+                <div className="p-4 flex flex-col justify-between min-h-[110px] bg-white">
+                  <div className="flex justify-between items-start">
+                    <span className="font-mono text-3xl sm:text-4xl font-black text-black leading-none tracking-tight">
+                      #{rank}
+                    </span>
+                    <div className="p-1.5 border-2 border-black bg-yellow-400 text-black shadow-[1.5px_1.5px_0_#000]">
+                      <Trophy size={14} strokeWidth={2.8} />
+                    </div>
+                  </div>
+                  <p className={`text-[10px] font-black uppercase tracking-wider text-zinc-500 mt-2 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {t("Leaderboard Rank", "ចំណាត់ថ្នាក់")}
                   </p>
                 </div>
-              </div>
-            )}
 
-            <div className="mt-6 grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
-              <div className="space-y-6">
-                <Panel title={t("Profile Details", "ព័ត៌មានសិស្ស")} icon={UserRound} kh={kh} kf={kf}>
-                  <div className="space-y-3 p-4">
-                    {isProvincePublic && student.province && (
-                      <FactRow icon={MapPin} label={t("Province", "ខេត្ត")} value={getBilingualProvince(student.province)} kh={kh} kf={kf} />
-                    )}
-                    <FactRow icon={Calendar} label={t("Joined", "ចូលរួម")} value={`${joinedYear}`} kh={kh} kf={kf} />
+                {/* Slot 2: Games Played */}
+                <div className="p-4 flex flex-col justify-between min-h-[110px] bg-white">
+                  <div className="flex justify-between items-start">
+                    <span className="font-mono text-3xl sm:text-4xl font-black text-black leading-none tracking-tight">
+                      {student.totalGamesPlayed.toLocaleString()}
+                    </span>
+                    <div className="p-1.5 border-2 border-black bg-blue-400 text-white shadow-[1.5px_1.5px_0_#000]">
+                      <Gamepad2 size={14} strokeWidth={2.8} />
+                    </div>
                   </div>
-                </Panel>
+                  <p className={`text-[10px] font-black uppercase tracking-wider text-zinc-500 mt-2 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {t("Games Played", "ចំនួនលេង")}
+                  </p>
+                </div>
 
-                {isStatsPublic ? (
-                  <Panel title={t("Rewards Claimed", "រង្វាន់ដែលបានប្តូរ")} icon={Gift} kh={kh} kf={kf} count={claimedItems.length}>
-                    {claimedItems.length === 0 ? (
-                      <EmptyState icon={Gift} title={t("No rewards claimed yet", "មិនទាន់មានការប្តូររង្វាន់")} kh={kh} kf={kf} />
-                    ) : (
-                      <div className="grid gap-3 p-4">
-                        {claimedItems.slice(0, 4).map((item, idx) => (
-                          <div key={idx} className="grid grid-cols-[56px_1fr] border-[3px] border-black bg-zinc-50">
-                            <div className="grid place-items-center border-r-[3px] border-black bg-white">
-                              <img src={item.image} alt={kh ? item.nameKh : item.name} className="h-9 w-9 object-contain" />
-                            </div>
-                            <div className="min-w-0 px-3 py-2.5">
-                              <p className={`truncate text-sm font-black text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
-                                {kh ? item.nameKh : item.name}
-                              </p>
-                              <div className="mt-1 flex flex-wrap items-center gap-2">
-                                <span className="font-mono text-xs font-black text-zinc-500">{item.cost} PTS</span>
-                                <span className="inline-flex items-center gap-1 border-2 border-black bg-[#22c55e] px-1.5 py-0.5 text-[10px] font-black uppercase text-black">
-                                  <CheckCircle2 size={11} strokeWidth={2.8} />
-                                  {t("Claimed", "បានប្តូរ")}
-                                </span>
-                              </div>
+                {/* Slot 3: Highest Score */}
+                <div className="p-4 flex flex-col justify-between min-h-[110px] bg-white">
+                  <div className="flex justify-between items-start">
+                    <span className="font-mono text-3xl sm:text-4xl font-black text-black leading-none tracking-tight">
+                      {student.highestScore.toLocaleString()}
+                    </span>
+                    <div className="p-1.5 border-2 border-black bg-green-500 text-black shadow-[1.5px_1.5px_0_#000]">
+                      <Star size={14} strokeWidth={2.8} />
+                    </div>
+                  </div>
+                  <p className={`text-[10px] font-black uppercase tracking-wider text-zinc-500 mt-2 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {t("Highest Score", "ពិន្ទុខ្ពស់បំផុត")}
+                  </p>
+                </div>
+
+                {/* Slot 4: Store Points */}
+                <div className="p-4 flex flex-col justify-between min-h-[110px] bg-white">
+                  <div className="flex justify-between items-start">
+                    <span className="font-mono text-3xl sm:text-4xl font-black text-black leading-none tracking-tight">
+                      {student.lifetimePoints.toLocaleString()}
+                    </span>
+                    <div className="p-1.5 border-2 border-black bg-orange-500 text-white shadow-[1.5px_1.5px_0_#000]">
+                      <Zap size={14} strokeWidth={2.8} />
+                    </div>
+                  </div>
+                  <p className={`text-[10px] font-black uppercase tracking-wider text-zinc-500 mt-2 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {t("Store Points", "ពិន្ទុរង្វាន់")}
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          ) : (
+            <div className="border-[3px] border-black bg-white p-4 text-center shadow-[3px_3px_0_#000]" style={{ borderRadius: "0" }}>
+              <div className="flex items-center justify-center gap-2 text-zinc-500">
+                <Shield size={18} strokeWidth={2.6} />
+                <p className={`font-black text-xs uppercase tracking-wider ${kh ? "font-google-sans" : ""}`} style={kf}>
+                  {t("Stats are private / ស្ថិតិត្រូវបានរក្សាការសម្ងាត់", "Stats are private / ស្ថិតិត្រូវបានរក្សាការសម្ងាត់")}
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
+            
+            {/* Left Column: Rewards & Achievements */}
+            <div className="space-y-6">
+              
+              {/* Rewards Panel */}
+              {isStatsPublic ? (
+                <Panel title={t("Rewards Claimed", "រង្វាន់ដែលបានប្តូរ")} icon={Gift} kh={kh} kf={kf} count={claimedItems.length}>
+                  {claimedItems.length === 0 ? (
+                    <EmptyState icon={Gift} title={t("No rewards claimed yet", "មិនទាន់មានការប្តូររង្វាន់")} kh={kh} kf={kf} />
+                  ) : (
+                    <div className="grid gap-3 p-4">
+                      {claimedItems.slice(0, 4).map((item, idx) => (
+                        <div key={idx} className="grid grid-cols-[56px_1fr] border-[3px] border-black bg-zinc-50 shadow-[2px_2px_0_#000]">
+                          <div className="grid place-items-center border-r-[3px] border-black bg-white">
+                            <img src={item.image} alt={kh ? item.nameKh : item.name} className="h-9 w-9 object-contain" />
+                          </div>
+                          <div className="min-w-0 px-3 py-2.5">
+                            <p className={`truncate text-sm font-black text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
+                              {kh ? item.nameKh : item.name}
+                            </p>
+                            <div className="mt-1 flex flex-wrap items-center gap-2">
+                              <span className="font-mono text-xs font-black text-zinc-500">{item.cost} PTS</span>
+                              <span className="inline-flex items-center gap-1 border-2 border-black bg-[#22c55e] px-1.5 py-0.5 text-[10px] font-black uppercase text-black">
+                                <CheckCircle2 size={11} strokeWidth={2.8} />
+                                {t("Claimed", "បានប្តូរ")}
+                              </span>
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    )}
-                  </Panel>
-                ) : (
-                  <div className="border-[3px] border-black bg-white p-6 text-center shadow-[3px_3px_0_#000]" style={{ borderRadius: "0" }}>
-                    <Shield size={28} className="mx-auto text-zinc-300" strokeWidth={2.6} />
-                    <p className={`mt-2 font-black text-xs text-zinc-500 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                      {t("Rewards are private", "រង្វាន់ត្រូវបានរក្សាការសម្ងាត់")}
-                    </p>
-                  </div>
-                )}
-              </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </Panel>
+              ) : (
+                <div className="border-[3px] border-black bg-white p-6 text-center shadow-[3px_3px_0_#000]" style={{ borderRadius: "0" }}>
+                  <Shield size={28} className="mx-auto text-zinc-300" strokeWidth={2.6} />
+                  <p className={`mt-2 font-black text-xs text-zinc-500 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                    {t("Rewards are private", "រង្វាន់ត្រូវបានរក្សាការសម្ងាត់")}
+                  </p>
+                </div>
+              )}
 
+              {/* Rank Showcase Achievements */}
+              <Panel title={t("Rank Achievements", "ស្នាដៃថ្នាក់គណនី")} icon={Award} kh={kh} kf={kf}>
+                <div className="p-4 space-y-2.5">
+                  {RANK_CONFIGS.map((tierItem) => {
+                    const unlocked = student.lifetimePoints >= tierItem.minPoints;
+                    const isCurrent = tierItem.id === profileRank.id;
+                    const Icon = TIER_ICONS[tierItem.id] || Star;
+                    return (
+                      <div
+                        key={tierItem.id}
+                        className={`flex items-center justify-between p-2.5 border-[3px] border-black transition-all ${
+                          isCurrent
+                            ? "bg-amber-50 shadow-[2px_2px_0_#000]"
+                            : unlocked
+                            ? "bg-zinc-50"
+                            : "bg-zinc-100/50 opacity-50"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div
+                            className="grid size-8 place-items-center border-2 border-black"
+                            style={{
+                              backgroundColor: unlocked ? tierItem.accentColor : "#d4d4d8",
+                              color: unlocked ? "#000" : "#71717a",
+                            }}
+                          >
+                            <Icon size={14} strokeWidth={2.8} />
+                          </div>
+                          <div>
+                            <p className="text-xs font-black uppercase tracking-wider" style={{ color: unlocked ? "#000" : "#71717a" }}>
+                              {tierItem.label}
+                            </p>
+                            <p className="text-[9px] font-bold text-zinc-500 font-mono">
+                              {tierItem.minPoints === 0 ? "START" : `${tierItem.minPoints.toLocaleString()} PTS`}
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          {isCurrent ? (
+                            <span className="border-2 border-black bg-purple-500 text-white text-[8px] font-black uppercase px-1.5 py-0.5 shadow-[1px_1px_0_#000]">
+                              {t("CURRENT", "បច្ចុប្បន្ន")}
+                            </span>
+                          ) : unlocked ? (
+                            <span className="inline-flex items-center gap-0.5 border-2 border-black bg-[#22c55e] text-black text-[8px] font-black uppercase px-1.5 py-0.5">
+                              <CheckCircle2 size={10} strokeWidth={3} />
+                              {t("UNLOCKED", "បានបើក")}
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-0.5 border-2 border-zinc-300 bg-zinc-200 text-zinc-500 text-[8px] font-black uppercase px-1.5 py-0.5">
+                              <Lock size={10} strokeWidth={3} />
+                              {t("LOCKED", "ចាក់សោ")}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Panel>
+
+            </div>
+
+            {/* Right Column: Game Scoreboard */}
+            <div>
               {isStatsPublic ? (
                 <Panel
                   title={t("Game Mode Scoreboard", "តារាងពិន្ទុតាមរបៀបលេង")}
@@ -655,7 +853,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                                 #{idx + 1}
                               </span>
                             </div>
-                            <div className="min-w-0">
+                            <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-baseline justify-between gap-2">
                                 <p className={`min-w-0 break-words text-base font-black text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
                                   {kh ? meta.kh : meta.en}
@@ -690,6 +888,8 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                 </div>
               )}
             </div>
+
+          </div>
         </section>
 
         <div className="mt-4 border-y-[3px] border-black">
