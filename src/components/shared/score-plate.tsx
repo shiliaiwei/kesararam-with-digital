@@ -259,18 +259,19 @@ export function ScorePlate({
     );
   }
 
-  // --- Official MPWT Plate (white card, square thin navy border, red province) ---
+  // --- Official MPWT Plate (white card, navy border, gray province text) ---
   if (style === "official") {
     const navy = "#13395f";
+    const gray = "#6b7280";
 
     return (
       <div
-        className={`relative flex select-none flex-col items-center justify-between overflow-hidden border bg-white px-3 py-1 text-center ${className}`}
+        className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-2 bg-white px-3 py-1 text-center ${className}`}
         style={{ ...shell, boxShadow: "none", borderColor: navy, borderRadius: 2 }}
       >
         <span
-          className="z-10 font-medium leading-none"
-          style={{ ...topStyle, color: navy }}
+          className="z-10 font-normal leading-none"
+          style={{ ...topStyle, color: gray }}
         >
           {kh}
         </span>
@@ -282,12 +283,12 @@ export function ScorePlate({
         </span>
         {/* thin short divider */}
         <span
-          className="z-10 w-3/5"
+          className="z-10 w-2/5"
           style={{ borderTop: `1px solid ${navy}`, marginTop: size === "sm" ? 3 : 4 }}
         />
         <span
-          className="z-10 font-medium leading-none tracking-[0.12em] text-red-600"
-          style={{ ...bottomStyle, marginTop: size === "sm" ? 3 : 4 }}
+          className="z-10 font-normal leading-none tracking-[0.12em]"
+          style={{ ...bottomStyle, marginTop: size === "sm" ? 3 : 4, color: gray }}
         >
           {en}
         </span>
