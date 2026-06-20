@@ -1308,14 +1308,14 @@ export default function LeaderboardPage() {
     return () => clearInterval(t);
   }, []);
 
-  // Random speed-camera flash on one row every 5 seconds.
+  // Random speed-camera flash on one row every 30 seconds (slow premium gold flash).
   useEffect(() => {
     if (leaderboard.length === 0) return;
     const t = setInterval(() => {
       const pick = leaderboard[Math.floor(Math.random() * leaderboard.length)];
       setFlashId(pick?.id ?? null);
-      setTimeout(() => setFlashId(null), 850);
-    }, 5000);
+      setTimeout(() => setFlashId(null), 2500);
+    }, 30000);
     return () => clearInterval(t);
   }, [leaderboard]);
 
@@ -1424,7 +1424,7 @@ export default function LeaderboardPage() {
           {/* Rank + Avatar + Name + Meta */}
           <div className="col-span-8 sm:col-span-5 flex items-center gap-2 md:gap-3 min-w-0">
             {/* Rank + movement */}
-            <div className="flex items-center gap-1 flex-shrink-0 w-8 sm:w-10">
+            <div className="flex items-center gap-1 flex-shrink-0 w-9 sm:w-12">
               {medal ? (
                 <span
                   className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
@@ -1461,7 +1461,7 @@ export default function LeaderboardPage() {
                     style={{
                       background: tier.labelGradient,
                       color: tier.textColor,
-                      boxShadow: "2px 2px 0 #000",
+                      boxShadow: flashId === user.id ? undefined : "2px 2px 0 #000",
                       fontSize: 12,
                       letterSpacing: "0.01em",
                       maxWidth: "100%",
@@ -1705,7 +1705,7 @@ export default function LeaderboardPage() {
 
 
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
-                <style>{`@keyframes lbFlash{0%,100%{box-shadow:2px 2px 0 #000;filter:brightness(1)}30%{box-shadow:2px 2px 0 #000,0 0 16px 5px rgba(250,204,21,.95);filter:brightness(1.3)}65%{box-shadow:2px 2px 0 #000,0 0 7px 2px rgba(250,204,21,.55);filter:brightness(1.12)}}.lb-flash{animation:lbFlash .85s ease-in-out}`}</style>
+                <style>{`@keyframes lbFlash{0%,100%{box-shadow:2px 2px 0 #000;filter:brightness(1)}30%{box-shadow:2px 2px 0 #000,0 0 24px 8px rgba(255,215,0,0.95);filter:brightness(1.35)}65%{box-shadow:2px 2px 0 #000,0 0 10px 3px rgba(255,215,0,0.65);filter:brightness(1.15)}}.lb-flash{animation:lbFlash 2.5s ease-in-out}@keyframes menuSlowPop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}.menu-slow-pop{animation:menuSlowPop 0.3s cubic-bezier(0.16,1,0.3,1) forwards}`}</style>
                 {/* Table Header — Live Score is the hero metric and leads the stats
                     right after the player; Games / Acc / Top game follow. */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
@@ -1724,14 +1724,14 @@ export default function LeaderboardPage() {
                   <div
                     onMouseEnter={() => setHoveredHeader(true)}
                     onMouseLeave={() => setHoveredHeader(false)}
-                    className="col-span-4 sm:col-span-2 relative flex items-center"
+                    className="col-span-4 sm:col-span-2 relative flex items-center justify-end sm:justify-start"
                   >
                     <button
                       onClick={() => {
                         setSortKey("rank");
                         setGameMenuOpen((o) => !o);
                       }}
-                      className="flex items-center gap-1 text-yellow-400 font-black uppercase text-left tracking-widest hover:text-yellow-300 transition-colors focus:outline-none w-full"
+                      className="flex items-center justify-end sm:justify-start gap-1 text-yellow-400 font-black uppercase text-right sm:text-left tracking-widest hover:text-yellow-300 transition-colors focus:outline-none w-full"
                     >
                       {gameType === "all" ? (
                         <>
@@ -1755,7 +1755,7 @@ export default function LeaderboardPage() {
                         <div className="fixed inset-0 z-40 sm:hidden" onClick={() => setGameMenuOpen(false)} />
                         <div
                           role="listbox"
-                          className="absolute right-0 top-full z-50 mt-1 max-h-80 w-56 overflow-y-auto border-[3px] border-black bg-white"
+                          className="absolute right-0 top-full z-50 mt-1 max-h-80 w-56 overflow-y-auto border-[3px] border-black bg-white menu-slow-pop"
                           style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}
                         >
                           {GAME_CHIPS.map((g) => {
