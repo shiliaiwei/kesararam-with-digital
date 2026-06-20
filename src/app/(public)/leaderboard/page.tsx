@@ -567,10 +567,10 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             </span>
 
             {/* Blue line separator */}
-            <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/75" />
+            <div className="z-10 w-[calc(100%-10px)] h-[1.5px] bg-blue-600" />
 
             {/* Bottom: Province/Cambodia in English */}
-            <span className={`z-10 font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px] ${isFirst ? "text-[7.5px]" : "text-[6.5px]"}`}>
+            <span className={`z-10 font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px] ${isFirst ? "text-[7.5px]" : "text-[6.5px]"}`}>
               {user.province ? user.province.toUpperCase() : "CAMBODIA"}
             </span>
           </div>
@@ -1507,10 +1507,10 @@ export default function LeaderboardPage() {
                   </span>
 
                   {/* Blue line separator */}
-                  <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/75" />
+                  <div className="z-10 w-[calc(100%-10px)] h-[1.5px] bg-blue-600" />
 
                   {/* Bottom: Province/Cambodia in English */}
-                  <span className="z-10 text-[6.5px] font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
+                  <span className="z-10 text-[6.5px] font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
                     {rowProvince ? rowProvince.toUpperCase() : "CAMBODIA"}
                   </span>
                 </div>
@@ -1608,10 +1608,10 @@ export default function LeaderboardPage() {
                         </span>
 
                         {/* Blue line separator */}
-                        <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/75" />
+                        <div className="z-10 w-[calc(100%-10px)] h-[1.5px] bg-blue-600" />
 
                         {/* Bottom: Province/Cambodia in English */}
-                        <span className="z-10 text-[6.5px] font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
+                        <span className="z-10 text-[6.5px] font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
                           {currentUser.classProvince || currentUser.province ? (currentUser.classProvince || currentUser.province).toUpperCase() : "CAMBODIA"}
                         </span>
                       </div>
