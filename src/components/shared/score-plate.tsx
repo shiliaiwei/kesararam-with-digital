@@ -147,6 +147,143 @@ export function ScorePlate({
     );
   }
 
+  // --- Blue Watercolor Ribbon Plate ---
+  if (style === "ribbon") {
+    const isMini = size === "xs";
+    
+    // Scale font sizes to fit perfectly within the plate dimensions and prevent cut-offs
+    const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
+    const valueFontSize = size === "xs" ? 13 : size === "sm" ? 17 : size === "md" ? 23 : 30;
+    const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9;
+
+    // Bow scale calculations
+    const bowScale = size === "xs" ? 0.6 : size === "sm" ? 0.8 : size === "md" ? 1.15 : 1.4;
+
+    return (
+      <div
+        className={`relative flex select-none flex-col items-center justify-center overflow-hidden border-black text-black text-center ${className} ${isMini ? "border-2" : "border-[3px]"}`}
+        style={{
+          ...shell,
+          backgroundColor: "#fafaf7", // High quality textured watercolor paper color
+          borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+          boxShadow: shadow ? "4px 4px 0 #000" : undefined,
+        }}
+      >
+        {/* Soft watercolor paper texture sheen */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-zinc-200/5 via-white/10 to-white/25 pointer-events-none rounded-[inherit]" />
+
+        {/* 1. Watercolor Wavy Border Ribbons (SVG) */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          width="100%"
+          height="100%"
+          viewBox="0 0 100 60"
+          preserveAspectRatio="none"
+        >
+          {/* Top wavy line */}
+          <path d="M 2,3.5 Q 25,6 50,3.5 Q 75,6 98,3.5" fill="none" stroke="rgba(59, 130, 246, 0.28)" strokeWidth="3" strokeLinecap="round" />
+          <path d="M 2,3.5 Q 25,6 50,3.5 Q 75,6 98,3.5" fill="none" stroke="rgba(29, 78, 216, 0.7)" strokeWidth="0.85" strokeLinecap="round" />
+
+          {/* Right wavy line */}
+          <path d="M 98,3.5 Q 95.5,20 97,30 Q 95.5,45 98,56.5" fill="none" stroke="rgba(59, 130, 246, 0.28)" strokeWidth="3" strokeLinecap="round" />
+          <path d="M 98,3.5 Q 95.5,20 97,30 Q 95.5,45 98,56.5" fill="none" stroke="rgba(29, 78, 216, 0.7)" strokeWidth="0.85" strokeLinecap="round" />
+
+          {/* Bottom wavy line */}
+          <path d="M 98,56.5 Q 75,54 50,56.5 Q 25,54 2,56.5" fill="none" stroke="rgba(59, 130, 246, 0.28)" strokeWidth="3" strokeLinecap="round" />
+          <path d="M 98,56.5 Q 75,54 50,56.5 Q 25,54 2,56.5" fill="none" stroke="rgba(29, 78, 216, 0.7)" strokeWidth="0.85" strokeLinecap="round" />
+
+          {/* Left wavy line */}
+          <path d="M 2,56.5 Q 4.5,45 3,30 Q 4.5,20 2,3.5" fill="none" stroke="rgba(59, 130, 246, 0.28)" strokeWidth="3" strokeLinecap="round" />
+          <path d="M 2,56.5 Q 4.5,45 3,30 Q 4.5,20 2,3.5" fill="none" stroke="rgba(29, 78, 216, 0.7)" strokeWidth="0.85" strokeLinecap="round" />
+        </svg>
+
+        {/* 2. Watercolor Ribbon Bow Centered at Top (SVG) */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-20"
+          style={{
+            top: size === "xs" ? -4 : size === "sm" ? -5 : size === "md" ? -6 : -7,
+            width: 120,
+            height: 24,
+            transform: `scale(${bowScale})`,
+            transformOrigin: "top center",
+          }}
+        >
+          <svg className="w-full h-full" viewBox="0 0 120 24">
+            {/* Left large loop */}
+            <path d="M 60,7 C 42,0 32,6 60,7" fill="rgba(59, 130, 246, 0.2)" stroke="rgba(59, 130, 246, 0.35)" strokeWidth="3.5" strokeLinecap="round" />
+            <path d="M 60,7 C 42,0 32,6 60,7" fill="none" stroke="rgba(29, 78, 216, 0.75)" strokeWidth="0.85" strokeLinecap="round" />
+
+            {/* Right large loop */}
+            <path d="M 60,7 C 78,0 88,6 60,7" fill="rgba(59, 130, 246, 0.2)" stroke="rgba(59, 130, 246, 0.35)" strokeWidth="3.5" strokeLinecap="round" />
+            <path d="M 60,7 C 78,0 88,6 60,7" fill="none" stroke="rgba(29, 78, 216, 0.75)" strokeWidth="0.85" strokeLinecap="round" />
+
+            {/* Left secondary inner loop */}
+            <path d="M 60,7 C 50,1.5 40,4.5 60,7" fill="rgba(37, 99, 235, 0.1)" stroke="rgba(59, 130, 246, 0.25)" strokeWidth="2.5" />
+            <path d="M 60,7 C 50,1.5 40,4.5 60,7" fill="none" stroke="rgba(29, 78, 216, 0.65)" strokeWidth="0.7" />
+
+            {/* Right secondary inner loop */}
+            <path d="M 60,7 C 70,1.5 80,4.5 60,7" fill="rgba(37, 99, 235, 0.1)" stroke="rgba(59, 130, 246, 0.25)" strokeWidth="2.5" />
+            <path d="M 60,7 C 70,1.5 80,4.5 60,7" fill="none" stroke="rgba(29, 78, 216, 0.65)" strokeWidth="0.7" />
+
+            {/* Left hanging tail */}
+            <path d="M 60,7 Q 48,15 42,20" fill="none" stroke="rgba(59, 130, 246, 0.35)" strokeWidth="3.5" strokeLinecap="round" />
+            <path d="M 60,7 Q 48,15 42,20" fill="none" stroke="rgba(29, 78, 216, 0.75)" strokeWidth="0.85" strokeLinecap="round" />
+
+            {/* Right hanging tail */}
+            <path d="M 60,7 Q 72,15 78,20" fill="none" stroke="rgba(59, 130, 246, 0.35)" strokeWidth="3.5" strokeLinecap="round" />
+            <path d="M 60,7 Q 72,15 78,20" fill="none" stroke="rgba(29, 78, 216, 0.75)" strokeWidth="0.85" strokeLinecap="round" />
+
+            {/* Center knot */}
+            <circle cx="60" cy="7" r="2" fill="rgba(29, 78, 216, 0.85)" stroke="rgba(29, 78, 216, 0.95)" strokeWidth="0.5" />
+          </svg>
+        </div>
+
+        {/* 3. Text Layout (Centered using flexbox to avoid overlapping top bow & bottom edge) */}
+        <div
+          className="absolute inset-0 flex flex-col justify-between items-center z-10 pointer-events-none"
+          style={{
+            paddingTop: size === "xs" ? 7 : size === "sm" ? 9 : size === "md" ? 12 : 15,
+            paddingBottom: size === "xs" ? 3 : size === "sm" ? 5 : size === "md" ? 7 : 9,
+          }}
+        >
+          {/* Top Text (Khmer Province/Country) in Indigo-Blue */}
+          <span
+            className="font-bold leading-none text-center"
+            style={{
+              fontSize: topFontSize,
+              color: "#1d4ed8",
+            }}
+          >
+            {kh}
+          </span>
+
+          {/* Middle Text (Score) in Indigo-Blue */}
+          <span
+            className="font-mono font-black leading-none tabular-nums"
+            style={{
+              fontSize: valueFontSize,
+              color: "#1e3a8a",
+              transform: size === "xs" ? "translateY(-0.5px)" : size === "sm" ? "translateY(-1px)" : size === "md" ? "translateY(-1.5px)" : "translateY(-2px)",
+            }}
+          >
+            <PlateValue value={value} />
+          </span>
+
+          {/* Bottom Text (English Province/Country) in Indigo-Blue */}
+          <span
+            className="font-bold leading-none tracking-[0.14em]"
+            style={{
+              fontSize: bottomFontSize,
+              color: "#2563eb",
+            }}
+          >
+            {en}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   // --- Cute Kitty Plate (Hello Kitty inspired design with ears, bow, whiskers, and "Hello Friends" badge) ---
   if (style === "kitty") {
     const isMini = size === "xs";

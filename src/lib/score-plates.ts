@@ -1,4 +1,4 @@
-export const SCORE_PLATE_STYLE_IDS = ["road", "official", "kitty"] as const;
+export const SCORE_PLATE_STYLE_IDS = ["road", "official", "kitty", "ribbon"] as const;
 
 export type ScorePlateStyle = (typeof SCORE_PLATE_STYLE_IDS)[number];
 
@@ -34,6 +34,14 @@ export const SCORE_PLATE_STYLES: ReadonlyArray<{
     nameKh: "ផ្លាកគីទី",
     descriptionEn: "Cute kitty plate with pink bow & whiskers",
     descriptionKh: "ផ្លាកលេខកូនឆ្មាគួរឱ្យស្រឡាញ់ជាមួយបូពណ៌ផ្កាឈូក",
+    premium: true,
+  },
+  {
+    id: "ribbon",
+    nameEn: "Ribbon Plate",
+    nameKh: "ផ្លាកខ្សែបូ",
+    descriptionEn: "Artistic blue watercolor ribbon frame",
+    descriptionKh: "ស៊ុមខ្សែបូពណ៌ខៀវបែបគំនូរទឹកពណ៌",
     premium: true,
   },
 ];
