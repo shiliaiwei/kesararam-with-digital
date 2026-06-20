@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { normalizeScorePlateStyle, type ScorePlateStyle } from "@/lib/score-plates";
 
-type ScorePlateSize = "sm" | "md" | "lg";
+type ScorePlateSize = "xs" | "sm" | "md" | "lg";
 
 interface ScorePlateProps {
   value: number | ReactNode;
@@ -17,6 +17,7 @@ const DIMENSIONS: Record<
   ScorePlateSize,
   { width: number; height: number; value: number; top: number; bottom: number }
 > = {
+  xs: { width: 72, height: 38, value: 14, top: 6, bottom: 5 },
   sm: { width: 90, height: 48, value: 20, top: 8, bottom: 7 },
   md: { width: 122, height: 64, value: 27, top: 9, bottom: 8 },
   lg: { width: 150, height: 78, value: 34, top: 10, bottom: 9 },
@@ -54,9 +55,9 @@ export function ScorePlate({
     const gray = "#78889b"; // Elegant low-opacity gray-blue for labels
 
     // Scale font sizes to fit perfectly within the plate dimensions and prevent cut-offs
-    const topFontSize = size === "sm" ? 7 : size === "md" ? 9 : 11;
-    const valueFontSize = size === "sm" ? 17 : size === "md" ? 23 : 30;
-    const bottomFontSize = size === "sm" ? 6 : size === "md" ? 7.5 : 9;
+    const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
+    const valueFontSize = size === "xs" ? 13 : size === "sm" ? 17 : size === "md" ? 23 : 30;
+    const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9;
 
     return (
       <div
@@ -64,9 +65,9 @@ export function ScorePlate({
         style={{
           ...shell,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
-          border: `${size === "sm" ? "2px" : "3px"} solid ${navy}`,
-          borderRadius: size === "sm" ? 5 : size === "md" ? 8 : 10,
-          paddingTop: size === "sm" ? 1.5 : size === "md" ? 3 : 4,
+          border: `${(size === "sm" || size === "xs") ? "2px" : "3px"} solid ${navy}`,
+          borderRadius: size === "xs" ? 4 : size === "sm" ? 5 : size === "md" ? 8 : 10,
+          paddingTop: size === "xs" ? 1 : size === "sm" ? 1.5 : size === "md" ? 3 : 4,
         }}
       >
         {/* Top Text (Khmer Province/Country) in Low Opacity Gray */}
@@ -94,8 +95,8 @@ export function ScorePlate({
           <div
             className="w-full flex items-center justify-center relative"
             style={{
-              paddingTop: size === "sm" ? 1.5 : size === "md" ? 2.5 : 3.5,
-              paddingBottom: size === "sm" ? 2 : size === "md" ? 3 : 4,
+              paddingTop: size === "xs" ? 1 : size === "sm" ? 1.5 : size === "md" ? 2.5 : 3.5,
+              paddingBottom: size === "xs" ? 1.5 : size === "sm" ? 2 : size === "md" ? 3 : 4,
             }}
           >
             <span
@@ -111,19 +112,26 @@ export function ScorePlate({
   }
 
   // --- Default/Original Road Plate (Yellow background, square holes, flat corners) ---
+  const isMini = size === "xs";
   return (
     <div
-      className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-[3px] border-black bg-yellow-400 px-3 py-1 text-black ${className}`}
+      className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-black bg-yellow-400 px-3 py-1 text-black ${className} ${isMini ? "border-2" : "border-[3px]"}`}
       style={shell}
     >
-      <div className="pointer-events-none absolute inset-[5px] border-[3px] border-black" />
+      <div 
+        className="pointer-events-none absolute border-black" 
+        style={{
+          inset: isMini ? "3px" : "5px",
+          borderWidth: isMini ? "2px" : "3px",
+        }}
+      />
       {[
-        ["left-2", "top-1.5"],
-        ["right-2", "top-1.5"],
-        ["left-2", "bottom-1.5"],
-        ["right-2", "bottom-1.5"],
+        [isMini ? "left-1" : "left-2", isMini ? "top-1" : "top-1.5"],
+        [isMini ? "right-1" : "right-2", isMini ? "top-1" : "top-1.5"],
+        [isMini ? "left-1" : "left-2", isMini ? "bottom-1" : "bottom-1.5"],
+        [isMini ? "right-1" : "right-2", isMini ? "bottom-1" : "bottom-1.5"],
       ].map(([x, y]) => (
-        <span key={`${x}-${y}`} className={`absolute ${x} ${y} size-1.5 bg-black`} />
+        <span key={`${x}-${y}`} className={`absolute ${x} ${y} bg-black ${isMini ? "size-1" : "size-1.5"}`} />
       ))}
       <span className="z-10 font-black leading-none" style={topStyle}>
         {kh}

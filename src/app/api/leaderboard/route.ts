@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { pointsLedger } from "@/db/schema/content";
 import { storePointEvents } from "@/db/schema/store-points";
-import { desc, sql, eq, and, gte } from "drizzle-orm";
+import { desc, asc, sql, eq, and, gte } from "drizzle-orm";
 import { windowStartDate } from "@/lib/gamekit/dates";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 
@@ -24,8 +24,9 @@ async function storePointsLeaderboard(opts: {
   windowParam: Window;
   province: string;
   gameType: string;
+  source?: string;
 }): Promise<NextResponse | null> {
-  const { limit, offset, windowParam, province, gameType } = opts;
+  const { limit, offset, windowParam, province, gameType, source = "all" } = opts;
   const start =
     windowParam === "all"
       ? "1970-01-01"
@@ -80,11 +81,17 @@ async function storePointsLeaderboard(opts: {
       className: classNameExpr,
       isClassPublic: users.isClassPublic,
       classProvince: classProvinceExpr,
+      lifetimePoints: users.lifetimePoints,
     })
     .from(users)
-    .where(sql`${publicFilter}${provinceFilter} AND ${windowExpr} > 0`)
-    // Rank by total earned first (solo + live), then live earned, then highest single score.
-    .orderBy(desc(windowExpr), desc(liveExpr), desc(users.highestScore))
+    .where(sql`${publicFilter}${provinceFilter} AND ${source === "live" ? liveExpr : windowExpr} > 0`)
+    // Rank by priority road points first if source === "live", otherwise by window total points.
+    .orderBy(
+      desc(source === "live" ? liveExpr : windowExpr),
+      desc(source === "live" ? windowExpr : liveExpr),
+      desc(users.highestScore),
+      asc(users.id)
+    )
     .limit(limit)
     .offset(offset);
 
@@ -113,7 +120,7 @@ async function storePointsLeaderboard(opts: {
     scorePlateStyle: user.scorePlateStyle,
     highestScore: user.highestScore,
     totalGamesPlayed: user.totalGamesPlayed,
-    lifetimePoints: user.windowPoints,
+    lifetimePoints: user.lifetimePoints ?? user.windowPoints,
     priorityPoints: user.livePoints,
     soloPoints: 0,
     accuracy: user.accuracy,
@@ -171,6 +178,7 @@ export async function GET(req: NextRequest) {
         windowParam,
         province,
         gameType,
+        source,
       });
       if (storePointsResponse) return storePointsResponse;
     }
@@ -233,7 +241,7 @@ export async function GET(req: NextRequest) {
       isSectionPublic: boolean | null;
     }[];
 
-    if (windowParam === "all" && gameType === "all" && source === "all") {
+        if (windowParam === "all" && gameType === "all" && source === "all") {
       // ── All-time, no filter — rank by lifetimePoints (fastest path) ───────
       rows = await db
         .select({
@@ -261,12 +269,13 @@ export async function GET(req: NextRequest) {
           isGradePublic: users.isGradePublic,
           isSectionPublic: users.isSectionPublic,
           classProvince: classProvinceExpr,
+          lifetimePoints: users.lifetimePoints,
         })
         .from(users)
         .where(sql`${publicFilter}${provinceFilter}`)
         // Combined total points (solo + live) are the primary ranking metric;
         // live total + highest score break ties. This path is source=all only.
-        .orderBy(desc(users.lifetimePoints), desc(priorityExpr), desc(users.highestScore))
+        .orderBy(desc(users.lifetimePoints), desc(priorityExpr), desc(users.highestScore), asc(users.id))
         .limit(limit)
         .offset(offset);
     } else {
@@ -313,6 +322,7 @@ export async function GET(req: NextRequest) {
           isGradePublic: users.isGradePublic,
           isSectionPublic: users.isSectionPublic,
           classProvince: classProvinceExpr,
+          lifetimePoints: users.lifetimePoints,
         })
         .from(users)
         .innerJoin(
@@ -340,7 +350,8 @@ export async function GET(req: NextRequest) {
           users.isProvincePublic,
           users.isClassPublic,
           users.isGradePublic,
-          users.isSectionPublic
+          users.isSectionPublic,
+          users.lifetimePoints
         )
         .having(sql`COALESCE(SUM(${pointsLedger.points}), 0) > 0`)
         // Rank by window total first (solo + live points for source=all), then live.
@@ -348,7 +359,7 @@ export async function GET(req: NextRequest) {
           desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`),
           desc(priorityExpr),
           desc(users.highestScore),
-          desc(users.updatedAt)
+          asc(users.id)
         )
         .limit(limit)
         .offset(offset);
@@ -369,7 +380,7 @@ export async function GET(req: NextRequest) {
         scorePlateStyle: user.scorePlateStyle,
         highestScore: user.highestScore,
         totalGamesPlayed: user.totalGamesPlayed,
-        lifetimePoints: user.windowPoints,
+        lifetimePoints: user.lifetimePoints ?? user.windowPoints,
         priorityPoints: user.priorityPoints,
         soloPoints: user.soloPoints,
         accuracy: user.accuracy,

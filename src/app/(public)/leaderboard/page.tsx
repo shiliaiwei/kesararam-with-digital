@@ -263,7 +263,7 @@ const PODIUM_CFG = [
     patternColor: "#cbd5e1",
     pedestalBg: "repeating-linear-gradient(-45deg,#f8fafc 0 10px,#cbd5e1 10px 20px)",
     pedestalHeight: "h-16 md:h-24",
-    order: "order-2 md:order-1",
+    order: "order-1",
   },
   {
     rank: 1 as const,
@@ -274,7 +274,7 @@ const PODIUM_CFG = [
     patternColor: "#facc15",
     pedestalBg: "repeating-linear-gradient(-45deg,#fef08a 0 10px,#facc15 10px 20px)",
     pedestalHeight: "h-20 md:h-32",
-    order: "order-1 md:order-2",
+    order: "order-2",
   },
   {
     rank: 3 as const,
@@ -539,7 +539,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             styleId={user.scorePlateStyle}
             provinceEn={user.province}
             provinceKh={getProvinceKh(user.province)}
-            size={isFirst ? "md" : "sm"}
+            size={isMobile ? (isFirst ? "sm" : "xs") : (isFirst ? "md" : "sm")}
             className="z-10"
           />
         ) : (
@@ -1132,6 +1132,14 @@ export default function LeaderboardPage() {
   const [currentUser, setCurrentUser] = useState<any | null>(null);
   const [soloLimits, setSoloLimits] = useState<any>(null);
   const router = useRouter();
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const handleSelectUser = (user: LeaderboardUser) => {
     // Private usernames are anonymized to `student_<id>` and have no public
     // profile — don't navigate (would 404 on /u/student_<id>).
@@ -1191,18 +1199,17 @@ export default function LeaderboardPage() {
     finally { setLoading(false); }
   }, [windowTab, sourceTab, gameType]);
 
-  // Podium fetch — same window + source scope, but NEVER the game-type filter, so
-  // the top 3 stay fixed on the overall live-score ranking when a game is tapped.
+  // Podium fetch — same window scope, but ALWAYS source="live" (Road Points) and NEVER the game-type filter,
+  // so the top 3 stay fixed on the overall live-score (Road Points) ranking.
   const fetchPodium = useCallback(async () => {
     try {
-      const params = new URLSearchParams({ limit: "3", window: windowTab });
-      if (sourceTab !== "all") params.set("source", sourceTab);
+      const params = new URLSearchParams({ limit: "3", window: windowTab, source: "live" });
       const res = await fetch(`/api/leaderboard?${params.toString()}`);
       if (!res.ok) return;
       const data = await res.json();
       setPodiumBoard(data.leaderboard || []);
     } catch { /* silent */ }
-  }, [windowTab, sourceTab]);
+  }, [windowTab]);
 
   const fetchClaimsAndBalance = useCallback((livePoints?: number, lifetimePoints?: number) => {
     fetch("/api/user/claim")
@@ -1414,8 +1421,17 @@ export default function LeaderboardPage() {
                 <div className="flex items-center gap-1.5 min-w-0">
                   {/* Name plate */}
                   <span
-                    className={`inline-flex items-center border-[3px] border-black px-2 py-1 font-black truncate min-w-0 ${flashId === user.id ? "lb-flash" : ""}`}
-                    style={{ background: tier.labelGradient, color: tier.textColor, boxShadow: "2px 2px 0 #000", fontSize: 12, letterSpacing: "0.01em", maxWidth: "100%" }}
+                    className={`inline-flex items-center font-black truncate min-w-0 ${flashId === user.id ? "lb-flash" : ""}`}
+                    style={{
+                      background: tier.labelGradient,
+                      color: tier.textColor,
+                      boxShadow: "2px 2px 0 #000",
+                      fontSize: 12,
+                      letterSpacing: "0.01em",
+                      maxWidth: "100%",
+                      border: isMobile ? "2px solid #000" : "3px solid #000",
+                      padding: isMobile ? "2px 6px" : "4px 8px",
+                    }}
                     title={user.displayName || user.username}
                   >
                     {user.displayName || user.username}
@@ -1453,7 +1469,7 @@ export default function LeaderboardPage() {
                   styleId={rowPlateStyle}
                   provinceEn={rowProvince}
                   provinceKh={getProvinceKh(rowProvince)}
-                  size="sm"
+                  size={isMobile ? "xs" : "sm"}
                 />
               );
             })()}
