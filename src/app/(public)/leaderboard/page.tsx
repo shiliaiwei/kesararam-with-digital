@@ -384,7 +384,7 @@ function renderPodiumCelebration(rank: number, isFirst: boolean, isMobile: boole
   );
 }
 
-function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, celebrateTick }: {
+function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, celebrateTick, gameType }: {
   user: LeaderboardUser | undefined;
   cfg: typeof PODIUM_CFG[number];
   index: number;
@@ -394,6 +394,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
   celebrateRank: number;
   /** Ticker value — re-keys the celebration so it replays each turn. */
   celebrateTick: number;
+  gameType: string;
 }) {
   const { lang } = useLang();
   const kh = lang === "kh";
@@ -405,6 +406,8 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
   const userAvatar = (currentUser && user && user.id === currentUser.id) ? currentUser.avatar : (user?.avatar ?? null);
   const initials = (name && name !== "—" ? name : "?").slice(0, 2).toUpperCase();
   const linkable = !!user && user.isUsernamePublic !== false;
+  const live = user?.priorityPoints ?? 0;
+  const scoreValue = gameType === "all" ? live : (user?.lifetimePoints ?? 0);
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -540,12 +543,40 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
 
         <div className="z-10 my-4 h-[3px] w-12 bg-black" />
 
-        <AnimatedNumber
-          value={user?.lifetimePoints ?? 0}
-          className={`z-10 font-black tabular-nums text-black ${isFirst ? "text-xl md:text-3xl lg:text-4xl" : "text-lg md:text-2xl lg:text-3xl"}`}
-        />
-        <span className="z-10 mt-0.5 text-[9px] font-black uppercase tracking-[0.18em] text-zinc-500">
-          {kh ? "ពិន្ទុសរុប" : "Lifetime points"}
+        {/* Matric number plate for top three */}
+        {user ? (
+          <div
+            className="z-10 relative bg-white border-2 border-black flex flex-col items-center justify-between select-none shadow-[3px_3px_0_#000] p-0.5"
+            style={{
+              width: isFirst ? "116px" : "100px",
+              height: isFirst ? "60px" : "54px",
+              borderRadius: "6px",
+            }}
+          >
+            {/* Inner blue border outline */}
+            <div className="absolute inset-[3px] border border-blue-600 pointer-events-none rounded-[4px]" />
+
+            {/* Top: Province/Cambodia in Khmer */}
+            <span className={`z-10 font-medium text-zinc-500/80 leading-none scale-90 origin-top mt-[4px] ${isFirst ? "text-[9px]" : "text-[8px]"}`}>
+              {user.province ? getProvinceKh(user.province) : "កម្ពុជា"}
+            </span>
+            
+            {/* Center: Score number in brand blue */}
+            <span className="z-10 font-mono font-black tabular-nums leading-none my-[1px] tracking-tight" style={{ fontSize: isFirst ? "26px" : "22px", color: "#3b82f6" }}>
+              <AnimatedNumber value={getAdjustedScore(scoreValue)} />
+            </span>
+
+            {/* Bottom: Province/Cambodia in English */}
+            <span className={`z-10 font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px] ${isFirst ? "text-[7.5px]" : "text-[6.5px]"}`}>
+              {user.province ? user.province.toUpperCase() : "CAMBODIA"}
+            </span>
+          </div>
+        ) : (
+          <span className="z-10 font-black text-zinc-400">—</span>
+        )}
+
+        <span className="z-10 mt-1.5 text-[9px] font-black uppercase tracking-widest text-zinc-500">
+          Road Points
         </span>
 
         {isFirst && (
@@ -1631,7 +1662,7 @@ export default function LeaderboardPage() {
                   { cfg: PODIUM_CFG[1], user: top3[0] },
                   { cfg: PODIUM_CFG[2], user: top3[2] },
                 ].map(({ cfg, user }, i) => (
-                  <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} celebrateRank={(celebrateTick % 3) + 1} celebrateTick={celebrateTick} />
+                  <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} celebrateRank={(celebrateTick % 3) + 1} celebrateTick={celebrateTick} gameType={gameType} />
                 ))}
                 </div>
               </div>
