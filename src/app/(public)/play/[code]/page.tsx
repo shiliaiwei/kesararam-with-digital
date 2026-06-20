@@ -114,26 +114,28 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
 
   if (parsed) {
     return (
-      <div className="relative w-full h-full" style={{ background: "#FFD700" }}>
-        {parsed.head && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
-        )}
-        {parsed.face && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={getAvatarFaceStyle(parsed.head)} />
-        )}
+      <div className="relative w-full h-full rounded-full overflow-hidden" style={{ background: "#ffffff" }}>
+        <div style={{ position: "absolute", inset: "6%", width: "88%", height: "88%" }}>
+          {parsed.head && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+          )}
+          {parsed.face && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+              style={getAvatarFaceStyle(parsed.head)} />
+          )}
+        </div>
       </div>
     );
   }
 
   if (!src || failed) {
     return (
-      <div className="w-full h-full flex items-center justify-center text-white font-black"
+      <div className="w-full h-full flex items-center justify-center text-black font-black rounded-full"
         style={{
-          background: `linear-gradient(135deg, hsl(${(userId * 61) % 360}, 70%, 45%) 0%, hsl(${(userId * 61 + 45) % 360}, 70%, 35%) 100%)`,
+          background: "#ffffff",
         }}>
         {initials}
       </div>
@@ -144,7 +146,8 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
     <img
       src={src}
       alt={initials}
-      className="w-full h-full object-cover"
+      className="w-full h-full object-cover rounded-full"
+      style={{ background: "#ffffff" }}
       onError={() => setFailed(true)}
     />
   );
@@ -164,31 +167,33 @@ function TeacherAvatar({ src, name }: { src: string | null | undefined; name: st
 
   if (parsed) {
     return (
-      <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-[#FFD700] rounded-none relative">
-        {parsed.head && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
-        )}
-        {parsed.face && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={getAvatarFaceStyle(parsed.head)} />
-        )}
+      <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-white rounded-full relative">
+        <div style={{ position: "absolute", inset: "6%", width: "88%", height: "88%" }}>
+          {parsed.head && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+          )}
+          {parsed.face && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+              style={getAvatarFaceStyle(parsed.head)} />
+          )}
+        </div>
       </div>
     );
   }
 
   if (!src || failed) {
     return (
-      <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] bg-black rounded-none flex items-center justify-center text-yellow-400">
-        <Crown size={28} className="fill-yellow-400" />
+      <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] bg-white rounded-full flex items-center justify-center text-black">
+        <Crown size={28} className="fill-black text-black" />
       </div>
     );
   }
 
   return (
-    <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-white rounded-none">
+    <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-white rounded-full">
       <img
         src={src}
         alt={name}
@@ -798,7 +803,7 @@ export default function StudentGamePage() {
                         : "bg-black border-zinc-800 hover:border-zinc-750"
                         }`}>
                       {/* Neubrutalist Avatar */}
-                      <div className="w-8 h-8 rounded-none border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000] overflow-hidden bg-white">
+                      <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000] overflow-hidden bg-white">
                         <NeubrutalistAvatar src={p.avatar} initials={p.displayName.charAt(0).toUpperCase()} userId={p.userId} />
                         {p.isConnected && (
                           <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-black" />

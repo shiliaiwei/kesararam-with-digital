@@ -38,37 +38,40 @@ export function AvatarDisplay({
         style={{
           width: size,
           height: size,
-          borderRadius: radius,
-          background: "#FFD700",
+          borderRadius: "50%",
+          background: "#ffffff",
           position: "relative",
           overflow: "hidden",
           flexShrink: 0,
+          border: "2px solid #000",
         }}
       >
-        {parsed.head && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={`/avatar/head/${encodeURIComponent(parsed.head)}`}
-            alt=""
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-            }}
-          />
-        )}
-        {parsed.face && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
-            alt=""
-            aria-hidden
-            style={getAvatarFaceStyle(parsed.head)}
-          />
-        )}
+        <div style={{ position: "absolute", inset: "6%", width: "88%", height: "88%" }}>
+          {parsed.head && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={`/avatar/head/${encodeURIComponent(parsed.head)}`}
+              alt=""
+              aria-hidden
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+              }}
+            />
+          )}
+          {parsed.face && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
+              alt=""
+              aria-hidden
+              style={getAvatarFaceStyle(parsed.head)}
+            />
+          )}
+        </div>
       </div>
     );
   }
@@ -78,8 +81,8 @@ export function AvatarDisplay({
       style={{
         width: size,
         height: size,
-        borderRadius: radius,
-        background: "#FFD700",
+        borderRadius: "50%",
+        background: "#ffffff",
         color: "#1a1a1a",
         display: "flex",
         alignItems: "center",
@@ -88,6 +91,7 @@ export function AvatarDisplay({
         fontWeight: 800,
         flexShrink: 0,
         userSelect: "none",
+        border: "2px solid #000",
       }}
     >
       {initials}

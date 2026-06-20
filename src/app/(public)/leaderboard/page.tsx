@@ -174,23 +174,25 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
     <div className="relative flex-shrink-0 animate-fade-in" style={{ width: size, height: size }}>
       {ring && <div className="absolute inset-0 rounded-full pointer-events-none" style={{ border: `3px solid ${ring}`, margin: -3, borderRadius: "50%" }} />}
       {parsed ? (
-        <div className="w-full h-full rounded-full overflow-hidden relative flex-shrink-0" style={{ background: "#eab308", border: "2px solid #000" }}>
-          {parsed.head && (
-            <img
-              src={`/avatar/head/${encodeURIComponent(parsed.head)}`}
-              alt=""
-              aria-hidden
-              className="absolute inset-0 w-full h-full object-contain"
-            />
-          )}
-          {parsed.face && (
-            <img
-              src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
-              alt=""
-              aria-hidden
-              style={getAvatarFaceStyle(parsed.head)}
-            />
-          )}
+        <div className="w-full h-full rounded-full overflow-hidden relative flex-shrink-0" style={{ background: "#ffffff", border: "2px solid #000" }}>
+          <div style={{ position: "absolute", inset: "6%", width: "88%", height: "88%" }}>
+            {parsed.head && (
+              <img
+                src={`/avatar/head/${encodeURIComponent(parsed.head)}`}
+                alt=""
+                aria-hidden
+                className="absolute inset-0 w-full h-full object-contain"
+              />
+            )}
+            {parsed.face && (
+              <img
+                src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
+                alt=""
+                aria-hidden
+                style={getAvatarFaceStyle(parsed.head)}
+              />
+            )}
+          </div>
         </div>
       ) : (
         (() => {
@@ -202,15 +204,16 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
                 alt={name}
                 onError={() => setErr(true)}
                 className="absolute inset-0 w-full h-full object-cover rounded-full"
-                style={{ border: "2px solid #000" }}
+                style={{ border: "2px solid #000", background: "#ffffff" }}
               />
             );
           }
           return (
             <div
-              className="w-full h-full rounded-full flex items-center justify-center font-black text-white"
+              className="w-full h-full rounded-full flex items-center justify-center font-black"
               style={{
-                background: "#27272a",
+                background: "#ffffff",
+                color: "#000000",
                 border: "2px solid #000",
                 fontSize: Math.round(size * 0.36),
               }}
@@ -222,6 +225,7 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
       )}
     </div>
   );
+
 }
 
 // ── Animated number ───────────────────────────────────────────────────────────
@@ -1161,12 +1165,10 @@ export default function LeaderboardPage() {
   // Window + source controls were removed (2026-06-20): the board is fixed to
   // all-time / all-sources. These stay as constants so the fetch params are stable.
   const windowTab = "all";
-  const sourceTab = "all";
+  const sourceTab = "live";
   // Game mode is the only filter now, surfaced through a dropdown.
   const [gameType, setGameType] = useState("all");
   const [gameMenuOpen, setGameMenuOpen] = useState(false);
-  // Client-side sort of the rankings table (the server returns rank order; this
-  // lets the viewer re-sort the loaded page by another stat without a refetch).
   const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
   const [displayLimit, setDisplayLimit] = useState(10);
   // Podium celebration ticker — advances every 7s and rotates through the ranks
@@ -1319,15 +1321,25 @@ export default function LeaderboardPage() {
   // tap; fall back to the main board on first paint before podiumBoard arrives.
   const top3 = (podiumBoard.length > 0 ? podiumBoard : leaderboard).slice(0, 3);
 
-  // Table rows, re-sorted client-side by the active sort key. "rank" keeps the
-  // server's authoritative order; the others sort the loaded page descending.
-  const sortedBoard = sortKey === "rank"
-    ? leaderboard
-    : [...leaderboard].sort((a, b) => {
-        if (sortKey === "live") return (b.priorityPoints ?? 0) - (a.priorityPoints ?? 0);
-        if (sortKey === "games") return (b.totalGamesPlayed ?? 0) - (a.totalGamesPlayed ?? 0);
-        return (b.accuracy ?? 0) - (a.accuracy ?? 0); // "acc"
-      });
+  const sortedBoard = [...leaderboard].sort((a, b) => {
+    if (sortKey === "rank") {
+      if ((b.lifetimePoints ?? 0) !== (a.lifetimePoints ?? 0)) return (b.lifetimePoints ?? 0) - (a.lifetimePoints ?? 0);
+      if ((b.priorityPoints ?? 0) !== (a.priorityPoints ?? 0)) return (b.priorityPoints ?? 0) - (a.priorityPoints ?? 0);
+      return a.rank - b.rank;
+    }
+    if (sortKey === "live") {
+      if ((b.priorityPoints ?? 0) !== (a.priorityPoints ?? 0)) return (b.priorityPoints ?? 0) - (a.priorityPoints ?? 0);
+      if ((b.lifetimePoints ?? 0) !== (a.lifetimePoints ?? 0)) return (b.lifetimePoints ?? 0) - (a.lifetimePoints ?? 0);
+      return a.rank - b.rank;
+    }
+    if (sortKey === "games") {
+      if ((b.totalGamesPlayed ?? 0) !== (a.totalGamesPlayed ?? 0)) return (b.totalGamesPlayed ?? 0) - (a.totalGamesPlayed ?? 0);
+      return a.rank - b.rank;
+    }
+    // "acc"
+    if ((b.accuracy ?? 0) !== (a.accuracy ?? 0)) return (b.accuracy ?? 0) - (a.accuracy ?? 0);
+    return a.rank - b.rank;
+  });
 
   // Points, rewards, and tier progression are student-only features.
   // Teachers, admins, and staff host/manage but do not earn points.
@@ -1372,12 +1384,22 @@ export default function LeaderboardPage() {
     const moved = prev !== undefined ? prev - user.rank : 0;
     const linkable = user.isUsernamePublic !== false;
     const isMe = !!currentUser && user.id === currentUser.id;
-    const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
+    
+    // Dynamic rank matching client-side sort
+    const displayRank = rowIndex + 1;
+    const medal = displayRank === 1 ? "#eab308" : displayRank === 2 ? "#94a3b8" : displayRank === 3 ? "#cd7c3a" : null;
+    
     const rowAvatar = isMe ? currentUser.avatar : user.avatar;
-    const scoreValue = user.lifetimePoints ?? 0;
+    
+    // Dynamic overtake calculation matching client-side sort
+    const isPointsSort = sortKey === "rank" || sortKey === "live";
+    const scoreKey = sortKey === "rank" ? "lifetimePoints" : "priorityPoints";
+    const scoreValue = user[scoreKey] ?? 0;
     const tier = getRank(user.lifetimePoints);
-    const above = sortKey === "rank" && rowIndex > 0 ? sortedBoard[rowIndex - 1] : null;
-    const toOvertake = above ? Math.max(0, (above.lifetimePoints ?? 0) - scoreValue + 1) : 0;
+    
+    const above = isPointsSort && rowIndex > 0 ? sortedBoard[rowIndex - 1] : null;
+    const toOvertake = above ? Math.max(0, (above[scoreKey] ?? 0) - scoreValue + 1) : 0;
+    const bestGameMeta = getGameMeta(user.bestGame);
 
     return (
       <div
@@ -1394,17 +1416,19 @@ export default function LeaderboardPage() {
               {medal ? (
                 <span
                   className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
-                  style={{ background: medal, color: user.rank === 1 ? "#000" : "#fff" }}
+                  style={{ background: medal, color: displayRank === 1 ? "#000" : "#fff" }}
                 >
-                  {user.rank}
+                  {displayRank}
                 </span>
               ) : (
-                <span className="text-sm font-black text-zinc-400 tabular-nums w-6 text-center sm:text-left">{user.rank}</span>
+                <span className="text-sm font-black text-zinc-400 tabular-nums w-6 text-center sm:text-left">{displayRank}</span>
               )}
-              <div className="flex flex-col items-center justify-center flex-shrink-0">
-                {moved > 0 && <ChevronUp size={11} strokeWidth={4} className="text-green-500" />}
-                {moved < 0 && <ChevronDown size={11} strokeWidth={4} className="text-red-500" />}
-              </div>
+              {isPointsSort && moved !== 0 && (
+                <div className="flex flex-col items-center justify-center flex-shrink-0">
+                  {moved > 0 && <ChevronUp size={11} strokeWidth={4} className="text-green-500" />}
+                  {moved < 0 && <ChevronDown size={11} strokeWidth={4} className="text-red-500" />}
+                </div>
+              )}
             </div>
 
             {/* Avatar + name + meta */}
@@ -1446,11 +1470,24 @@ export default function LeaderboardPage() {
                   <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5 sm:hidden">
                     {tier.label}
                   </span>
+                  {bestGameMeta && (
+                    <span
+                      className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase border border-black px-1.5 py-0.5 text-white"
+                      style={{
+                        backgroundColor: bestGameMeta.color,
+                        boxShadow: "1px 1px 0 #000",
+                      }}
+                      title={kh ? `សកម្មភាពពេញនិយម៖ ${bestGameMeta.kh}` : `Top Activity: ${bestGameMeta.en}`}
+                    >
+                      <bestGameMeta.Icon size={8} strokeWidth={3} />
+                      {kh ? bestGameMeta.kh : bestGameMeta.en}
+                    </span>
+                  )}
                   {/* Goal-gradient: only for me, when someone is just ahead */}
                   {isMe && above && toOvertake > 0 && (
                     <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-300 px-1 py-0.5">
                       <ArrowUp size={8} strokeWidth={4} />
-                      {kh ? `ខ្វះ ${toOvertake.toLocaleString()} ដើម្បីលើស #${above.rank}` : `${toOvertake.toLocaleString()} to pass #${above.rank}`}
+                      {kh ? `ខ្វះ ${toOvertake.toLocaleString()} ដើម្បីលើស #${rowIndex}` : `${toOvertake.toLocaleString()} to pass #${rowIndex}`}
                     </span>
                   )}
                 </div>
@@ -1465,7 +1502,11 @@ export default function LeaderboardPage() {
               const rowPlateStyle = isMe ? (currentUser?.scorePlateStyle || user.scorePlateStyle) : user.scorePlateStyle;
               return (
                 <ScorePlate
-                  value={user.priorityPoints ?? 0}
+                  value={
+                    sortKey === "rank"
+                      ? (user.lifetimePoints ?? 0)
+                      : (user.priorityPoints ?? 0)
+                  }
                   styleId={rowPlateStyle}
                   provinceEn={rowProvince}
                   provinceKh={getProvinceKh(rowProvince)}
@@ -1475,29 +1516,67 @@ export default function LeaderboardPage() {
             })()}
           </div>
 
-          {/* Games */}
           <span className="col-span-1 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
-            {(user.totalGamesPlayed ?? 0).toLocaleString()}
+            {sortKey === "games" ? (
+              <div className="w-8 h-8 rounded-full border-2 border-red-500 bg-white flex items-center justify-center font-black text-black text-xs font-mono shadow-[2px_2px_0_#000] mx-auto">
+                {user.totalGamesPlayed}
+              </div>
+            ) : (
+              <div className="w-7 h-7 rounded-full border-2 border-black bg-zinc-50 flex items-center justify-center font-bold text-zinc-500 text-xs font-mono mx-auto">
+                {user.totalGamesPlayed}
+              </div>
+            )}
           </span>
 
           {/* Accuracy */}
-          <span
-            className="col-span-2 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
-            style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa" }}
-          >
-            {(user.accuracy ?? 0)}%
-          </span>
+          {sortKey === "acc" ? (
+            <div className="col-span-2 flex justify-end hidden sm:flex">
+              <span
+                className="inline-flex items-center gap-1 border-2 border-black px-2.5 py-1 text-xs font-black uppercase tracking-wider font-mono shadow-[2px_2px_0_#000]"
+                style={{
+                  background: (user.accuracy ?? 0) >= 80 ? "#22c55e" : (user.accuracy ?? 0) >= 50 ? "#eab308" : "#ef4444",
+                  color: (user.accuracy ?? 0) >= 80 || (user.accuracy ?? 0) < 50 ? "#fff" : "#000",
+                }}
+              >
+                {user.accuracy}%
+              </span>
+            </div>
+          ) : (
+            <span
+              className="col-span-2 text-right text-xs md:text-sm font-bold tabular-nums hidden sm:block font-mono"
+              style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#ca8a04" : "#ef4444" }}
+            >
+              {(user.accuracy ?? 0)}%
+            </span>
+          )}
         </div>
 
         {/* Mobile stat strip */}
         <div className="sm:hidden flex items-center gap-1.5 flex-wrap px-3 pb-2.5 -mt-0.5">
-          <span className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums" style={kf}>
+          <span
+            className={`inline-flex items-center gap-1 border-2 border-black px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums ${
+              sortKey === "games" ? "bg-red-500 text-white shadow-[1.5px_1.5px_0_#000]" : "bg-white text-black"
+            }`}
+            style={kf}
+          >
             <Gamepad2 size={10} strokeWidth={2.75} />
             {(user.totalGamesPlayed ?? 0).toLocaleString()} {kh ? "ហ្គេម" : "Games"}
           </span>
           <span
-            className="inline-flex items-center gap-1 border-2 border-black bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums"
-            style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa", ...kf }}
+            className={`inline-flex items-center gap-1 border-2 border-black px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide tabular-nums ${
+              sortKey === "acc"
+                ? "shadow-[1.5px_1.5px_0_#000]"
+                : "bg-white"
+            }`}
+            style={{
+              backgroundColor: sortKey === "acc"
+                ? ((user.accuracy ?? 0) >= 80 ? "#22c55e" : (user.accuracy ?? 0) >= 50 ? "#eab308" : "#ef4444")
+                : "#ffffff",
+              color: sortKey === "acc"
+                ? (((user.accuracy ?? 0) >= 80 || (user.accuracy ?? 0) < 50) ? "#ffffff" : "#000000")
+                : ((user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#ca8a04" : "#ef4444"),
+              ...kf
+            }}
           >
             {(user.accuracy ?? 0)}% {kh ? "ត្រឹមត្រូវ" : "Acc"}
           </span>
@@ -1699,27 +1778,7 @@ export default function LeaderboardPage() {
                 )}
               </div>
 
-              {/* Sort control — re-orders the loaded rankings by any stat. Works on
-                  every screen size (mobile included, where header cells are hidden). */}
-              <div className="flex flex-wrap items-center gap-1.5 mb-2">
-                <span className="flex items-center gap-1 pr-0.5 text-[9px] font-black uppercase tracking-wider text-zinc-400" style={kf}>
-                  <ChevronDown size={12} strokeWidth={3} />{kh ? "តម្រៀប" : "Sort"}
-                </span>
-                {SORT_TABS.map((s) => {
-                  const active = sortKey === s.id;
-                  return (
-                    <button
-                      key={s.id}
-                      onClick={() => setSortKey(s.id)}
-                      aria-pressed={active}
-                      className={`border-2 border-black px-2.5 py-1 text-[10px] font-black uppercase tracking-wide transition-all ${active ? "bg-black text-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white text-black hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"}`}
-                      style={{ borderRadius: 0, ...kf }}
-                    >
-                      {kh ? s.kh : s.en}
-                    </button>
-                  );
-                })}
-              </div>
+
 
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 <style>{`@keyframes lbFlash{0%,100%{box-shadow:2px 2px 0 #000;filter:brightness(1)}30%{box-shadow:2px 2px 0 #000,0 0 16px 5px rgba(250,204,21,.95);filter:brightness(1.3)}65%{box-shadow:2px 2px 0 #000,0 0 7px 2px rgba(250,204,21,.55);filter:brightness(1.12)}}.lb-flash{animation:lbFlash .85s ease-in-out}`}</style>
@@ -1734,9 +1793,13 @@ export default function LeaderboardPage() {
                   {/* Score column: overall = Road Points; a game filter swaps it to that
                       game's total score. "Road Points" is never translated to Khmer. */}
                   <span className="col-span-4 sm:col-span-3 flex items-center justify-end sm:justify-start gap-1 text-yellow-400">
-                    {gameType === "all"
-                      ? (<><Gift size={11} strokeWidth={3} />Road Points</>)
-                      : (kh ? "ពិន្ទុ" : "Score")}
+                    {sortKey === "rank" ? (
+                      <><Crown size={11} strokeWidth={3} />{kh ? "ពិន្ទុសរុប" : "Total Points"}</>
+                    ) : gameType === "all" ? (
+                      <><Gift size={11} strokeWidth={3} />Road Points</>
+                    ) : (
+                      kh ? "ពិន្ទុ" : "Score"
+                    )}
                   </span>
                   <span className="col-span-1 text-center text-zinc-500 hidden sm:block" title={kh ? "ចំនួនលេងសរុប" : "Total games played"}>{kh ? "ហ្គេម" : "Games"}</span>
                   <span className="col-span-2 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>

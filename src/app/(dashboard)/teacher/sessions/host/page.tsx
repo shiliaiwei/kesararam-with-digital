@@ -84,25 +84,27 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
 
   if (parsed) {
     return (
-      <div className="relative w-full h-full" style={{ background: "#FFD700" }}>
-        {parsed.head && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
-        )}
-        {parsed.face && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={getAvatarFaceStyle(parsed.head)} />
-        )}
+      <div className="relative w-full h-full rounded-full overflow-hidden" style={{ background: "#ffffff" }}>
+        <div style={{ position: "absolute", inset: "6%", width: "88%", height: "88%" }}>
+          {parsed.head && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+          )}
+          {parsed.face && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+              style={getAvatarFaceStyle(parsed.head)} />
+          )}
+        </div>
       </div>
     );
   }
 
   if (!src || failed) {
     return (
-      <div className="w-full h-full flex items-center justify-center text-white font-black"
-        style={{ background: `hsl(${(userId * 47) % 360}, 70%, 45%)` }}>
+      <div className="w-full h-full flex items-center justify-center text-black font-black rounded-full"
+        style={{ background: "#ffffff" }}>
         {initials}
       </div>
     );
@@ -112,7 +114,8 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
     <img
       src={src}
       alt={initials}
-      className="w-full h-full object-cover"
+      className="w-full h-full object-cover rounded-full"
+      style={{ background: "#ffffff" }}
       onError={() => setFailed(true)}
     />
   );
@@ -159,7 +162,7 @@ function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; ra
       </div>
       <div
         className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs flex-shrink-0 text-white overflow-hidden bg-white"
-        style={{ borderRadius: "0px" }}
+        style={{ borderRadius: "50%" }}
       >
         <NeubrutalistAvatar src={entry.avatar} initials={initials} userId={entry.userId} />
       </div>

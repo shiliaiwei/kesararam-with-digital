@@ -186,30 +186,39 @@ function Avatar({ url, name, size = 96, changedAt, round }: {
     return null;
   })();
 
-  const borderRadiusStyle = round ? { borderRadius: "50%" } : undefined;
+  const borderRadiusStyle = { borderRadius: "50%" };
 
   if (parsed) {
     return (
-      <div className="relative h-full w-full overflow-hidden" style={{ background: BRAND.yellow, ...borderRadiusStyle }}>
-        {parsed.head && <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden className="absolute inset-0 h-full w-full object-contain" />}
-        {parsed.face && <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden style={getAvatarFaceStyle(parsed.head)} />}
+      <div className="relative h-full w-full overflow-hidden" style={{ background: "#ffffff", border: "2px solid #000", ...borderRadiusStyle }}>
+        <div style={{ position: "absolute", inset: "6%", width: "88%", height: "88%" }}>
+          {parsed.head && <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden className="absolute inset-0 h-full w-full object-contain" />}
+          {parsed.face && <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden style={getAvatarFaceStyle(parsed.head)} />}
+        </div>
       </div>
     );
   }
 
   const src = avatarSrc(url, changedAt);
   if (src && !err) {
-    return <img src={src} alt={name} onError={() => setErr(true)} className="h-full w-full object-cover" style={borderRadiusStyle} />;
+    return <img src={src} alt={name} onError={() => setErr(true)} className="h-full w-full object-cover" style={{ ...borderRadiusStyle, border: "2px solid #000", background: "#ffffff" }} />;
   }
 
   return (
     <div
-      className="flex h-full w-full items-center justify-center bg-[#1e40af] font-mono font-black text-white"
-      style={{ fontSize: Math.round(size * 0.3), ...borderRadiusStyle }}
+      className="flex h-full w-full items-center justify-center font-mono font-black"
+      style={{
+        background: "#ffffff",
+        color: "#000000",
+        border: "2px solid #000",
+        fontSize: Math.round(size * 0.3),
+        ...borderRadiusStyle
+      }}
     >
       {initials}
     </div>
   );
+
 }
 
 function StatTile({ icon: Icon, label, value, kh, accent = BRAND.yellow, dark = false }: {

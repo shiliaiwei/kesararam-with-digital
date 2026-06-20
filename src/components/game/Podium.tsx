@@ -88,17 +88,19 @@ function NeubrutalistAvatar({ src, initials, userId, size = "md" }: Neubrutalist
 
   if (parsed) {
     return (
-      <div className={`${sizeClasses[size]} border-4 border-black overflow-hidden relative`} style={{ borderRadius: "0px", background: "#FFD700" }}>
-        {parsed.head && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
-        )}
-        {parsed.face && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={getAvatarFaceStyle(parsed.head)} />
-        )}
+      <div className={`${sizeClasses[size]} border-4 border-black overflow-hidden relative`} style={{ borderRadius: "50%", background: "#ffffff" }}>
+        <div style={{ position: "absolute", inset: "6%", width: "88%", height: "88%" }}>
+          {parsed.head && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+          )}
+          {parsed.face && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+              style={getAvatarFaceStyle(parsed.head)} />
+          )}
+        </div>
       </div>
     );
   }
@@ -106,10 +108,10 @@ function NeubrutalistAvatar({ src, initials, userId, size = "md" }: Neubrutalist
   if (!src || failed) {
     return (
       <div
-        className={`${sizeClasses[size]} flex items-center justify-center text-white font-black border-4 border-black`}
+        className={`${sizeClasses[size]} flex items-center justify-center text-black font-black border-4 border-black`}
         style={{
-          background: `linear-gradient(135deg, hsl(${(userId * 61) % 360}, 70%, 45%) 0%, hsl(${(userId * 61 + 45) % 360}, 70%, 35%) 100%)`,
-          borderRadius: "0px",
+          background: "#ffffff",
+          borderRadius: "50%",
         }}>
         {initials}
       </div>
@@ -117,7 +119,7 @@ function NeubrutalistAvatar({ src, initials, userId, size = "md" }: Neubrutalist
   }
 
   return (
-    <div className={`${sizeClasses[size]} border-4 border-black overflow-hidden bg-white`} style={{ borderRadius: "0px" }}>
+    <div className={`${sizeClasses[size]} border-4 border-black overflow-hidden bg-white`} style={{ borderRadius: "50%" }}>
       <img
         src={src}
         alt={initials}
