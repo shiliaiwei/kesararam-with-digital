@@ -1341,6 +1341,13 @@ export default function LeaderboardPage() {
     return a.rank - b.rank;
   });
 
+  const filteredSortedBoard = sortedBoard.filter(u => {
+    if (gameType !== "all") {
+      return (u.totalGamesPlayed ?? 0) > 0;
+    }
+    return true;
+  });
+
   // Points, rewards, and tier progression are student-only features.
   // Teachers, admins, and staff host/manage but do not earn points.
   const isStudent = currentUser?.role === "student";
@@ -1397,7 +1404,7 @@ export default function LeaderboardPage() {
     const scoreValue = user[scoreKey] ?? 0;
     const tier = getRank(user.lifetimePoints);
     
-    const above = isPointsSort && rowIndex > 0 ? sortedBoard[rowIndex - 1] : null;
+    const above = isPointsSort && rowIndex > 0 ? filteredSortedBoard[rowIndex - 1] : null;
     const toOvertake = above ? Math.max(0, (above[scoreKey] ?? 0) - scoreValue + 1) : 0;
     const bestGameMeta = getGameMeta(user.bestGame);
 
@@ -1495,18 +1502,26 @@ export default function LeaderboardPage() {
             </div>
           </div>
 
-          {/* Score — designed like a Cambodian license plate */}
+          {/* Score — designed like a Cambodian license plate (only for road/live score when no game filter is active) */}
           <div className="col-span-4 sm:col-span-3 flex justify-end sm:justify-start items-center">
             {(() => {
               const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
               const rowPlateStyle = isMe ? (currentUser?.scorePlateStyle || user.scorePlateStyle) : user.scorePlateStyle;
+              const isGameSpecific = gameType !== "all";
+
+              if (isGameSpecific || sortKey === "rank") {
+                // Render as a normal display number (flat neubrutalist card style)
+                return (
+                  <span className="font-mono font-black text-xs md:text-sm text-black bg-zinc-100 border-2 border-black px-2.5 py-1 shadow-[2px_2px_0_#000] tabular-nums select-all">
+                    {user.lifetimePoints ?? 0}
+                  </span>
+                );
+              }
+
+              // Otherwise render as Cambodian License Plate
               return (
                 <ScorePlate
-                  value={
-                    sortKey === "rank"
-                      ? (user.lifetimePoints ?? 0)
-                      : (user.priorityPoints ?? 0)
-                  }
+                  value={user.priorityPoints ?? 0}
                   styleId={rowPlateStyle}
                   provinceEn={rowProvince}
                   provinceKh={getProvinceKh(rowProvince)}
@@ -1806,20 +1821,20 @@ export default function LeaderboardPage() {
                 </div>
 
                 {(() => {
-                  const currentUserInSlice = sortedBoard.slice(0, displayLimit).some(u => u.id === currentUser?.id);
-                  const currentUserRowIndex = currentUser ? sortedBoard.findIndex(u => u.id === currentUser.id) : -1;
+                  const currentUserInSlice = filteredSortedBoard.slice(0, displayLimit).some(u => u.id === currentUser?.id);
+                  const currentUserRowIndex = currentUser ? filteredSortedBoard.findIndex(u => u.id === currentUser.id) : -1;
                   const showStickyMe = currentUser && isStudent && !currentUserInSlice && currentUserRowIndex !== -1;
 
-                  return sortedBoard.length > 0 ? (
+                  return filteredSortedBoard.length > 0 ? (
                     <>
-                      {sortedBoard.slice(0, displayLimit).map((user, rowIndex) => renderRow(user, rowIndex, false))}
+                      {filteredSortedBoard.slice(0, displayLimit).map((user, rowIndex) => renderRow(user, rowIndex, false))}
                       
                       {showStickyMe && (
                         <>
                           <div className="border-t-3 border-black relative overflow-hidden select-none" style={{ height: 12 }}>
                             <CautionTape variant="caution" height={12} />
                           </div>
-                          {renderRow(sortedBoard[currentUserRowIndex], currentUserRowIndex, true)}
+                          {renderRow(filteredSortedBoard[currentUserRowIndex], currentUserRowIndex, true)}
                         </>
                       )}
                     </>
