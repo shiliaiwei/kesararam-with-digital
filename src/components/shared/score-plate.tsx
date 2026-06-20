@@ -147,43 +147,99 @@ export function ScorePlate({
     );
   }
 
-  // --- Default/Original Road Plate (Yellow background, square holes, flat corners) ---
+  // --- New Yellow/Gold Road Plate (Rounded corners, inner border line, horizontal pill mounting slots) ---
   const isMini = size === "xs";
+  
+  // Scale font sizes to fit perfectly within the plate dimensions and prevent cut-offs
+  const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
+  const valueFontSize = size === "xs" ? 13 : size === "sm" ? 17 : size === "md" ? 23 : 30;
+  const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9;
+
+  // Mounting slot dimensions
+  const pillW = size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6;
+  const pillH = size === "xs" ? 0.75 : size === "sm" ? 1.25 : size === "md" ? 1.75 : 2.25;
+  const pillY = size === "xs" ? 1.5 : size === "sm" ? 2.5 : size === "md" ? 3.5 : 4.5;
+  const pillX = size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10;
+
   return (
     <div
-      className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-black bg-yellow-400 px-3 py-1 text-black ${className} ${isMini ? "border-2" : "border-[3px]"}`}
-      style={shell}
+      className={`relative flex select-none flex-col items-center justify-center overflow-hidden border-black text-black text-center ${className} ${isMini ? "border-2" : "border-[3px]"}`}
+      style={{
+        ...shell,
+        backgroundColor: "#eab308", // Brand Yellow
+        borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+      }}
     >
+      {/* Inner black border line matching rounded corners */}
       <div 
-        className="pointer-events-none absolute border-black" 
+        className="pointer-events-none absolute border-black rounded-[inherit]" 
         style={{
-          inset: isMini ? "3px" : "5px",
-          borderWidth: isMini ? "2px" : "3px",
+          inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
+          borderWidth: size === "xs" ? "1px" : "2px",
+          opacity: 0.85,
         }}
       />
+
+      {/* Horizontal pill-shaped mounting slots */}
       {[
-        [isMini ? "left-1" : "left-2", isMini ? "top-1" : "top-1.5"],
-        [isMini ? "right-1" : "right-2", isMini ? "top-1" : "top-1.5"],
-        [isMini ? "left-1" : "left-2", isMini ? "bottom-1" : "bottom-1.5"],
-        [isMini ? "right-1" : "right-2", isMini ? "bottom-1" : "bottom-1.5"],
-      ].map(([x, y]) => (
-        <span key={`${x}-${y}`} className={`absolute ${x} ${y} bg-black ${isMini ? "size-1" : "size-1.5"}`} />
+        { top: pillY, left: pillX },
+        { top: pillY, right: pillX },
+        { bottom: pillY, left: pillX },
+        { bottom: pillY, right: pillX },
+      ].map((pos, idx) => (
+        <span
+          key={idx}
+          className="absolute bg-black rounded-full pointer-events-none"
+          style={{
+            width: pillW,
+            height: pillH,
+            ...pos,
+          }}
+        />
       ))}
-      <span className="z-10 font-black leading-none" style={topStyle}>
+
+      {/* Top Text (Khmer Province/Country) */}
+      <span
+        className="absolute font-black leading-none text-center"
+        style={{
+          top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6,
+          fontSize: topFontSize,
+        }}
+      >
         {kh}
       </span>
+
+      {/* Middle Text (Score) */}
       <span
         className="z-10 font-mono font-black leading-none tabular-nums"
-        style={valueStyle}
+        style={{
+          fontSize: valueFontSize,
+          transform: size === "xs" ? "translateY(-1.5px)" : size === "sm" ? "translateY(-2px)" : size === "md" ? "translateY(-2.5px)" : "translateY(-3.5px)",
+        }}
       >
         <PlateValue value={value} />
       </span>
-      <span
-        className="z-10 font-black leading-none tracking-[0.14em]"
-        style={bottomStyle}
-      >
-        {en}
-      </span>
+
+      {/* Bottom divider & English Province name */}
+      <div className="absolute left-0 right-0 flex flex-col items-center bottom-0">
+        <div className="w-full border-t border-black opacity-20" />
+        <div
+          className="w-full flex items-center justify-center relative"
+          style={{
+            paddingTop: size === "xs" ? 1 : size === "sm" ? 2 : size === "md" ? 3 : 4,
+            paddingBottom: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4.5 : 6,
+          }}
+        >
+          <span
+            className="font-black leading-none tracking-[0.14em]"
+            style={{
+              fontSize: bottomFontSize,
+            }}
+          >
+            {en}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
