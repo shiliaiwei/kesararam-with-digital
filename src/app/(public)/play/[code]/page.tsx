@@ -565,7 +565,7 @@ export default function StudentGamePage() {
     const diffColor = DIFF_COLORS[sessionInfo?.difficulty ?? "mixed"] ?? "#a855f7";
 
     return (
-      <div className="h-[100dvh] flex flex-col relative overflow-hidden animate-fade-in"
+      <div className="min-h-screen flex flex-col relative animate-fade-in"
         style={{
           backgroundColor: "#0d0d10",
           backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
@@ -580,10 +580,8 @@ export default function StudentGamePage() {
           {unifiedHeader}
         </div>
 
-        {/* Scrollable container with high-impact neubrutalist cards.
-            min-h-0 lets this flex child shrink below its content so overflow-y-auto
-            actually scrolls (without it the lobby clips and can't scroll). */}
-        <div className="relative z-10 flex-1 min-h-0 overflow-y-auto no-scrollbar px-4.5 py-6 pb-10 flex flex-col items-center justify-start gap-5 max-w-lg mx-auto w-full">
+        {/* Container with high-impact neubrutalist cards. */}
+        <div className="relative z-10 px-4.5 py-6 pb-16 flex flex-col items-center justify-start gap-5 max-w-lg mx-auto w-full">
 
           {/* Header Status Badge */}
           <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-red-500 text-black text-[10px] font-black tracking-widest uppercase shadow-[3px_3px_0_#000] select-none rounded-none animate-pulse">
