@@ -1,4 +1,4 @@
-export const SCORE_PLATE_STYLE_IDS = ["road", "garden", "sky", "rose", "car", "official"] as const;
+export const SCORE_PLATE_STYLE_IDS = ["road", "garden", "sky", "rose", "car", "official", "plain"] as const;
 
 export type ScorePlateStyle = (typeof SCORE_PLATE_STYLE_IDS)[number];
 
@@ -22,10 +22,10 @@ export const SCORE_PLATE_STYLES: ReadonlyArray<{
   },
   {
     id: "garden",
-    nameEn: "Garden Sign",
-    nameKh: "ផ្លាកសួនបៃតង",
-    descriptionEn: "Green heritage sign frame",
-    descriptionKh: "ស៊ុមបៃតងបែបបុរាណ",
+    nameEn: "Vintage Label",
+    nameKh: "ស្លាកបុរាណបៃតង",
+    descriptionEn: "Ornamental green scalloped label",
+    descriptionKh: "ស្លាកបៃតងលម្អបែបបុរាណ",
     premium: true,
   },
   {

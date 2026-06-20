@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Flower2, Leaf, Star } from "lucide-react";
+import { Flower2, Star } from "lucide-react";
 import { normalizeScorePlateStyle, type ScorePlateStyle } from "@/lib/score-plates";
 
 type ScorePlateSize = "sm" | "md" | "lg";
@@ -18,9 +18,9 @@ const DIMENSIONS: Record<
   ScorePlateSize,
   { width: number; height: number; value: number; top: number; bottom: number }
 > = {
-  sm: { width: 100, height: 54, value: 22, top: 8, bottom: 7 },
-  md: { width: 136, height: 72, value: 30, top: 9, bottom: 8 },
-  lg: { width: 168, height: 88, value: 38, top: 10, bottom: 9 },
+  sm: { width: 90, height: 48, value: 20, top: 8, bottom: 7 },
+  md: { width: 122, height: 64, value: 27, top: 9, bottom: 8 },
+  lg: { width: 150, height: 78, value: 34, top: 10, bottom: 9 },
 };
 
 function PlateValue({ value }: { value: number | ReactNode }) {
@@ -49,47 +49,48 @@ export function ScorePlate({
   const topStyle: CSSProperties = { fontSize: d.top };
   const bottomStyle: CSSProperties = { fontSize: d.bottom };
 
-  // --- Original Garden Sign ---
+  // --- Vintage Green Label (ornamental scalloped cartouche) ---
   if (style === "garden") {
-    const clip =
-      "polygon(7% 0,18% 7%,30% 2%,43% 8%,50% 0,57% 8%,70% 2%,82% 7%,93% 0,100% 20%,94% 34%,100% 50%,94% 66%,100% 80%,93% 100%,82% 93%,70% 98%,57% 92%,50% 100%,43% 92%,30% 98%,18% 93%,7% 100%,0 80%,6% 66%,0 50%,6% 34%,0 20%)";
+    const fill = "#bcd89c";
+    const line = "#5f9a3e";
+    const ink = "#2f5d1e";
+    // Symmetric ornamental cartouche outline (viewBox 200x108).
+    const cartouche =
+      "M100,18 C108,18 112,12 126,12 C150,12 156,8 168,10 C184,12 190,20 186,34 " +
+      "C188,42 176,48 176,54 C176,60 188,66 186,74 C190,88 184,96 168,98 " +
+      "C156,100 150,96 126,96 C112,96 108,102 100,102 C92,102 88,96 74,96 " +
+      "C50,96 44,100 32,98 C16,96 10,88 14,74 C12,66 24,60 24,54 " +
+      "C24,48 12,42 14,34 C10,20 16,12 32,10 C44,8 50,12 74,12 C88,12 92,18 100,18 Z";
     return (
       <div
-        className={`relative select-none bg-black p-[3px] ${className}`}
-        style={{ ...shell, clipPath: clip }}
+        className={`relative select-none ${className}`}
+        style={{ ...shell, boxShadow: "none" }}
       >
-        <div
-          className="relative flex h-full w-full flex-col items-center justify-between overflow-hidden bg-green-100 px-3 py-1 text-green-950"
-          style={{ clipPath: clip }}
+        <svg
+          viewBox="0 0 200 108"
+          preserveAspectRatio="none"
+          className="absolute inset-0 h-full w-full"
+          aria-hidden
         >
-          <div
-            className="pointer-events-none absolute inset-[4px] border-2 border-green-600"
-            style={{ clipPath: clip }}
-          />
-          <Leaf
-            size={Math.max(10, d.top + 3)}
-            className="absolute left-2 top-1 text-green-700"
+          <path d={cartouche} fill={fill} />
+          <path d={cartouche} fill="none" stroke={line} strokeWidth={3} />
+          <path
+            d={cartouche}
+            fill="none"
+            stroke={line}
             strokeWidth={2.4}
+            transform="translate(100 54) scale(0.85) translate(-100 -54)"
           />
-          <Leaf
-            size={Math.max(10, d.top + 3)}
-            className="absolute bottom-1 right-2 rotate-180 text-green-700"
-            strokeWidth={2.4}
-          />
-          <span className="z-10 font-black leading-none" style={topStyle}>
-            {kh}
-          </span>
+        </svg>
+        <div
+          className="absolute inset-0 flex items-center justify-center px-4 text-center"
+          style={{ color: ink }}
+        >
           <span
-            className="z-10 font-mono font-black leading-none tabular-nums text-green-950"
+            className="z-10 font-black leading-none tabular-nums"
             style={valueStyle}
           >
             <PlateValue value={value} />
-          </span>
-          <span
-            className="z-10 font-black leading-none tracking-[0.14em] text-green-800"
-            style={bottomStyle}
-          >
-            {en}
           </span>
         </div>
       </div>
@@ -265,10 +266,10 @@ export function ScorePlate({
     return (
       <div
         className={`relative flex select-none flex-col items-center justify-between overflow-hidden border bg-white px-3 py-1 text-center ${className}`}
-        style={{ ...shell, boxShadow: "none", borderColor: navy }}
+        style={{ ...shell, boxShadow: "none", borderColor: navy, borderRadius: 2 }}
       >
         <span
-          className="z-10 font-semibold leading-none"
+          className="z-10 font-medium leading-none"
           style={{ ...topStyle, color: navy }}
         >
           {kh}
@@ -285,7 +286,7 @@ export function ScorePlate({
           style={{ borderTop: `1px solid ${navy}`, marginTop: size === "sm" ? 3 : 4 }}
         />
         <span
-          className="z-10 font-semibold leading-none tracking-[0.12em] text-red-600"
+          className="z-10 font-medium leading-none tracking-[0.12em] text-red-600"
           style={{ ...bottomStyle, marginTop: size === "sm" ? 3 : 4 }}
         >
           {en}

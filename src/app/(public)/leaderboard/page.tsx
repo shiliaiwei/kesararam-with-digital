@@ -82,7 +82,7 @@ const CAMBODIA_PROVINCES = [
 // the play hub all show the exact same iconic badge. (`getGameMeta` is imported.)
 
 function getProvinceKh(provinceEn: string | null | undefined): string {
-  if (!provinceEn) return "—";
+  if (!provinceEn || provinceEn.toLowerCase() === "cambodia") return "កម្ពុជា";
   const found = CAMBODIA_PROVINCES.find(p => p.en.toLowerCase() === provinceEn.toLowerCase());
   return found ? found.kh : provinceEn;
 }
