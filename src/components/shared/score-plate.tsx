@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Flower2, Leaf, Star } from "lucide-react";
+import { Flower2, Leaf, QrCode, Star } from "lucide-react";
 import { normalizeScorePlateStyle, type ScorePlateStyle } from "@/lib/score-plates";
 
 type ScorePlateSize = "sm" | "md" | "lg";
@@ -251,6 +251,63 @@ export function ScorePlate({
         <span
           className="z-10 font-black leading-none tracking-[0.14em] mb-1"
           style={bottomStyle}
+        >
+          {en}
+        </span>
+      </div>
+    );
+  }
+
+  // --- Official MPWT Plate (white card, navy border, QR icon, red province) ---
+  if (style === "official") {
+    const navy = "#13395f";
+    const containerRadius =
+      size === "sm" ? "rounded-md" : size === "md" ? "rounded-[10px]" : "rounded-xl";
+    const innerRadius =
+      size === "sm" ? "rounded-[3px]" : size === "md" ? "rounded-[5px]" : "rounded-md";
+    const insetPx = size === "sm" ? 3 : size === "md" ? 4 : 5;
+    const qrSize = Math.max(10, d.top + 5);
+
+    return (
+      <div
+        className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-[2.5px] bg-white px-3 py-1 text-center ${containerRadius} ${className}`}
+        style={{ ...shell, borderColor: navy }}
+      >
+        {/* inner thin border */}
+        <div
+          className={`pointer-events-none absolute border ${innerRadius}`}
+          style={{
+            top: `${insetPx}px`,
+            left: `${insetPx}px`,
+            right: `${insetPx}px`,
+            bottom: `${insetPx}px`,
+            borderColor: navy,
+          }}
+        />
+
+        {/* QR code icon top-right */}
+        <QrCode
+          size={qrSize}
+          className="absolute"
+          style={{ top: insetPx + 3, right: insetPx + 3, color: navy }}
+          strokeWidth={1.8}
+        />
+
+        <span
+          className="z-10 font-black leading-none"
+          style={{ ...topStyle, color: navy }}
+        >
+          {kh}
+        </span>
+        <span
+          className="z-10 font-mono font-black leading-none tabular-nums"
+          style={{ ...valueStyle, color: navy }}
+        >
+          <PlateValue value={value} />
+        </span>
+        <span
+          className="z-10 w-full font-black leading-none tracking-[0.14em] text-red-600"
+          style={{ ...bottomStyle, borderTop: `1.5px solid ${navy}`, paddingTop: 3 }}
         >
           {en}
         </span>

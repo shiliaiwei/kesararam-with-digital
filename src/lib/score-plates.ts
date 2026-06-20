@@ -1,4 +1,4 @@
-export const SCORE_PLATE_STYLE_IDS = ["road", "garden", "sky", "rose", "car"] as const;
+export const SCORE_PLATE_STYLE_IDS = ["road", "garden", "sky", "rose", "car", "official"] as const;
 
 export type ScorePlateStyle = (typeof SCORE_PLATE_STYLE_IDS)[number];
 
@@ -50,6 +50,14 @@ export const SCORE_PLATE_STYLES: ReadonlyArray<{
     nameKh: "ផ្លាកលេខឡាន",
     descriptionEn: "Premium vehicle license plate with capsule holes",
     descriptionKh: "ផ្លាកលេខរថយន្តបែបទំនើបជាមួយរន្ធវីសវែង",
+    premium: true,
+  },
+  {
+    id: "official",
+    nameEn: "Official Plate",
+    nameKh: "ផ្លាកលេខផ្លូវការ",
+    descriptionEn: "Government-style white plate with navy border & QR",
+    descriptionKh: "ផ្លាកស​ពណ៌សបែបផ្លូវការ ស៊ុមខៀវ និង QR",
     premium: true,
   },
 ];
