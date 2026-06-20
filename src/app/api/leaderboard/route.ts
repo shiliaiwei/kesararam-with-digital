@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { pointsLedger } from "@/db/schema/content";
+import { storePointEvents } from "@/db/schema/store-points";
 import { desc, sql, eq, and, gte } from "drizzle-orm";
 import { windowStartDate } from "@/lib/gamekit/dates";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
@@ -23,7 +24,7 @@ async function storePointsLeaderboard(opts: {
   windowParam: Window;
   province: string;
   gameType: string;
-}) {
+}): Promise<NextResponse | null> {
   const { limit, offset, windowParam, province, gameType } = opts;
   const start =
     windowParam === "all"
@@ -85,6 +86,20 @@ async function storePointsLeaderboard(opts: {
     .orderBy(desc(windowExpr), desc(liveExpr), desc(users.highestScore))
     .limit(limit)
     .offset(offset);
+
+  if (rows.length === 0) {
+    // The feature flag can be enabled before the Store Points cutover has
+    // produced its first earned event. Treat that state as "not ready" instead
+    // of returning an empty board and hiding the top-three podium. Once any
+    // student earns Store Points, the new ledger becomes authoritative.
+    const [earnedEvent] = await db
+      .select({ id: storePointEvents.id })
+      .from(storePointEvents)
+      .where(gte(storePointEvents.delta, 1))
+      .limit(1);
+
+    if (!earnedEvent) return null;
+  }
 
   const rankedUsers = rows.map((user, index) => ({
     id: user.id,
@@ -148,13 +163,14 @@ export async function GET(req: NextRequest) {
   try {
     // Post-cutover: rank by the Store Points ledger (all plays, small numbers).
     if (STORE_POINTS_ENABLED) {
-      return await storePointsLeaderboard({
+      const storePointsResponse = await storePointsLeaderboard({
         limit,
         offset,
         windowParam,
         province,
         gameType,
       });
+      if (storePointsResponse) return storePointsResponse;
     }
 
     // Any active student who has scored shows up. Profile completeness
@@ -204,6 +220,7 @@ export async function GET(req: NextRequest) {
       schoolName: string | null;
       province: string | null;
       className: string | null;
+      classProvince: string | null;
       isNamePublic: boolean | null;
       isUsernamePublic: boolean | null;
       isSchoolPublic: boolean | null;
@@ -224,7 +241,7 @@ export async function GET(req: NextRequest) {
           avatarChangedAt: users.avatarChangedAt,
           highestScore: users.highestScore,
           totalGamesPlayed: users.totalGamesPlayed,
-          windowPoints: sql<number>`COALESCE(users.lifetimePoints + (SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source = 'solo'), users.lifetimePoints)::int`,
+          windowPoints: sql<number>`COALESCE(${users.lifetimePoints} + (SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source = 'solo'), ${users.lifetimePoints})::int`,
           priorityPoints: priorityExpr,
           soloPoints: soloExpr,
           accuracy: accuracyExpr,
