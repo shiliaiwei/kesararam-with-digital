@@ -207,7 +207,9 @@ export function QuizViewer({ questions, language, onComplete }: QuizViewerProps)
                     ) : showWrong ? (
                       <X size={20} className="text-red-600" />
                     ) : (
-                      String.fromCharCode(65 + index)
+                      language === "km"
+                        ? (["ក", "ខ", "គ", "ឃ", "ង", "ច", "ឆ", "ជ", "ឈ", "ញ"][index] ?? String.fromCharCode(65 + index))
+                        : String.fromCharCode(65 + index)
                     )}
                   </span>
                   <span className="flex-1 font-learning">

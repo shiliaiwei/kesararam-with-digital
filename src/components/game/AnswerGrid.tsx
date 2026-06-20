@@ -81,6 +81,7 @@ export function AnswerGrid({
         const isMyWrong = revealed && isSelected && !isCorrect;
         const isOtherWrong = revealed && !isCorrect && !isMyWrong;
         const text = lang === "kh" ? (ans.answerKm || ans.answerEn) : ans.answerEn;
+        const label = lang === "kh" ? (["ក", "ខ", "គ", "ឃ", "ង", "ច", "ឆ", "ជ", "ឈ", "ញ"][i] ?? cfg.label) : cfg.label;
 
         // Active tile color
         const tileBg = isCorrect
@@ -145,7 +146,7 @@ export function AnswerGrid({
                 fontWeight: 955,
                 flexShrink: 0,
               }}>
-                {cfg.label}
+                {label}
               </div>
 
               {/* Sign image area — white background, large image */}
@@ -218,7 +219,7 @@ export function AnswerGrid({
               width: "20px",
               textAlign: "center",
             }}>
-              {cfg.label}
+              {label}
             </span>
 
             {/* Answer text — smaller, left-aligned, wraps cleanly (no mid-word cut) */}

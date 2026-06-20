@@ -181,7 +181,9 @@ export function LiveChallenge({
                 >
                   <div className="flex items-center gap-3">
                     <span className="w-10 h-10 bg-gray-100 border-2 border-black flex items-center justify-center font-black text-xl">
-                      {String.fromCharCode(65 + index)}
+                      {language === "km"
+                        ? (["ក", "ខ", "គ", "ឃ", "ង", "ច", "ឆ", "ជ", "ឈ", "ញ"][index] ?? String.fromCharCode(65 + index))
+                        : String.fromCharCode(65 + index)}
                     </span>
                     <span className="flex-1 font-learning">
                       {language === "en" ? answer.answerEn : answer.answerKm}

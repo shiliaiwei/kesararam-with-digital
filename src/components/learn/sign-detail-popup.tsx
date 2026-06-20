@@ -231,7 +231,11 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
                           className={`px-3 py-2 border-2 text-sm flex gap-2 ${a.is_correct ? "bg-green-100 border-green-500" : "bg-white border-zinc-200"
                             }`}
                         >
-                          <span className="font-bold shrink-0">{String.fromCharCode(65 + ai)}.</span>
+                          <span className="font-bold shrink-0">
+                            {isKh
+                              ? (["ក", "ខ", "គ", "ឃ", "ង", "ច", "ឆ", "ជ", "ឈ", "ញ"][ai] ?? String.fromCharCode(65 + ai))
+                              : String.fromCharCode(65 + ai)}.
+                          </span>
                           <span className="flex-1 break-words" style={kf}>
                             {isKh ? a.answer_km : a.answer_en}
                           </span>
