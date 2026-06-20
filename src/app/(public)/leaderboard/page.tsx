@@ -30,6 +30,7 @@ import {
   ChevronDown,
   Gamepad2,
   ArrowUp,
+  ArrowUpDown,
   X,
 } from "lucide-react";
 
@@ -1323,8 +1324,8 @@ export default function LeaderboardPage() {
 
   const sortedBoard = [...leaderboard].sort((a, b) => {
     if (sortKey === "rank") {
-      if ((b.lifetimePoints ?? 0) !== (a.lifetimePoints ?? 0)) return (b.lifetimePoints ?? 0) - (a.lifetimePoints ?? 0);
       if ((b.priorityPoints ?? 0) !== (a.priorityPoints ?? 0)) return (b.priorityPoints ?? 0) - (a.priorityPoints ?? 0);
+      if ((b.lifetimePoints ?? 0) !== (a.lifetimePoints ?? 0)) return (b.lifetimePoints ?? 0) - (a.lifetimePoints ?? 0);
       return a.rank - b.rank;
     }
     if (sortKey === "live") {
@@ -1805,19 +1806,53 @@ export default function LeaderboardPage() {
                     <span className="hidden sm:inline w-6">#</span>
                     <span className="hidden sm:inline">{kh ? "សិស្ស" : "Player"}</span>
                   </span>
-                  {/* Score column: overall = Road Points; a game filter swaps it to that
-                      game's total score. "Road Points" is never translated to Khmer. */}
-                  <span className="col-span-4 sm:col-span-3 flex items-center justify-end sm:justify-start gap-1 text-yellow-400">
+                  {/* Clickable Score Header */}
+                  <button
+                    onClick={() => setSortKey("rank")}
+                    className="col-span-4 sm:col-span-3 flex items-center justify-end sm:justify-start gap-1 text-yellow-400 font-black uppercase text-left tracking-widest hover:text-yellow-300 transition-colors focus:outline-none"
+                  >
                     {sortKey === "rank" ? (
-                      <><Crown size={11} strokeWidth={3} />{kh ? "ពិន្ទុសរុប" : "Total Points"}</>
+                      <><Crown size={11} strokeWidth={3} className="text-yellow-400" />{kh ? "ពិន្ទុសរុប" : "Total Points"}</>
                     ) : gameType === "all" ? (
                       <><Gift size={11} strokeWidth={3} />Road Points</>
                     ) : (
                       kh ? "ពិន្ទុ" : "Score"
                     )}
-                  </span>
-                  <span className="col-span-1 text-center text-zinc-500 hidden sm:block" title={kh ? "ចំនួនលេងសរុប" : "Total games played"}>{kh ? "ហ្គេម" : "Games"}</span>
-                  <span className="col-span-2 text-right text-green-400 hidden sm:block">{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
+                    {sortKey === "rank" ? (
+                      <ChevronDown size={10} strokeWidth={3} className="ml-0.5 text-yellow-400" />
+                    ) : (
+                      <ArrowUpDown size={10} className="ml-0.5 text-zinc-500 opacity-60" />
+                    )}
+                  </button>
+                  {/* Clickable Games Header */}
+                  <button
+                    onClick={() => setSortKey(sortKey === "games" ? "rank" : "games")}
+                    className={`col-span-1 text-center font-black uppercase tracking-widest hover:text-white transition-colors flex items-center justify-center gap-0.5 hidden sm:flex mx-auto focus:outline-none ${
+                      sortKey === "games" ? "text-yellow-400" : "text-zinc-500"
+                    }`}
+                    title={kh ? "ចំនួនលេងសរុប" : "Total games played"}
+                  >
+                    <span>{kh ? "ហ្គេម" : "Games"}</span>
+                    {sortKey === "games" ? (
+                      <ChevronDown size={10} strokeWidth={3} />
+                    ) : (
+                      <ArrowUpDown size={10} className="opacity-60" />
+                    )}
+                  </button>
+                  {/* Clickable Accuracy Header */}
+                  <button
+                    onClick={() => setSortKey(sortKey === "acc" ? "rank" : "acc")}
+                    className={`col-span-2 text-right font-black uppercase tracking-widest hover:text-white transition-colors flex items-center justify-end gap-0.5 hidden sm:flex focus:outline-none ${
+                      sortKey === "acc" ? "text-yellow-400" : "text-green-400"
+                    }`}
+                  >
+                    <span>{kh ? "ត្រឹមត្រូវ" : "Acc"}</span>
+                    {sortKey === "acc" ? (
+                      <ChevronDown size={10} strokeWidth={3} />
+                    ) : (
+                      <ArrowUpDown size={10} className="opacity-60" />
+                    )}
+                  </button>
                 </div>
 
                 {(() => {

@@ -39,7 +39,7 @@ async function storePointsLeaderboard(opts: {
   // Claimable store balance = lifetime SUM of every delta (earn − spend/hold).
   const balanceExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id), 0)::int`;
   // Live-session Store Points = the "priority" subtotal (attempt_id like 'live:%').
-  const liveExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.delta > 0 AND spe.attempt_id LIKE 'live:%'${gameTypeCond}), 0)::int`;
+  const liveExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.delta > 0 AND spe.attempt_id LIKE 'live:%'), 0)::int`;
   // Average accuracy across recorded plays (0..100).
   const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(spe.accuracy) * 100) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.reason = 'play'${gameTypeCond}), 0)::int`;
   // The single game type this student has played most (by play count) — drives the
@@ -84,7 +84,7 @@ async function storePointsLeaderboard(opts: {
       lifetimePoints: users.lifetimePoints,
     })
     .from(users)
-    .where(sql`${publicFilter}${provinceFilter} AND ${source === "live" ? liveExpr : windowExpr} > 0`)
+    .where(sql`${publicFilter}${provinceFilter}${gameType !== "all" ? sql` AND ${gamesPlayedExpr} > 0` : sql``} AND ${source === "live" ? liveExpr : windowExpr} > 0`)
     // Rank by priority road points first if source === "live", otherwise by window total points.
     .orderBy(
       desc(source === "live" ? liveExpr : windowExpr),
@@ -199,8 +199,8 @@ export async function GET(req: NextRequest) {
     // Per-user point buckets from the single ledger:
     //   priority (live) = the rank + claimable currency
     //   solo            = separate practice currency (not claimable yet)
-    const priorityExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source LIKE 'live-session:%'${gameTypeCondPl}), 0)::int`;
-    const soloExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source = 'solo'${gameTypeCondPl}), 0)::int`;
+    const priorityExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source LIKE 'live-session:%'), 0)::int`;
+    const soloExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source = 'solo'), 0)::int`;
     // Average accuracy across recorded solo plays (0..100).
     const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(CASE WHEN gs.total_questions > 0 THEN gs.correct_answers::numeric / gs.total_questions END) * 100) FROM game_scores gs WHERE gs.user_id = users.id${gameTypeCondGs}), 0)::int`;
     // Most-played game mode (by play count) — drives the "Top game" column.
@@ -279,22 +279,30 @@ export async function GET(req: NextRequest) {
         .limit(limit)
         .offset(offset);
     } else {
-      // ── Windowed or filtered — SUM(pointsLedger.points) within constraints ─
-      // For all-time with gameType/source filter we still use pointsLedger
-      // so we can filter by gameType and source columns.
+      // ── Windowed or filtered — select users with subqueries to match profile game points ─
       const start =
         windowParam !== "all"
           ? windowStartDate(windowParam === "weekly" ? "weekly" : "monthly")
           : "1970-01-01";
 
-      const gameTypeFilter =
-        gameType !== "all" ? sql` AND ${pointsLedger.gameType} = ${gameType}` : sql``;
-      const sourceFilter =
-        source !== "all"
-          ? source === "live"
-            ? sql` AND ${pointsLedger.source} LIKE 'live-session:%'`
-            : sql` AND ${pointsLedger.source} = ${source}`
-          : sql``;
+      const gameCond = gameType !== "all" ? sql` AND pl.game_type = ${gameType}` : sql``;
+      const windowCond = windowParam !== "all" ? sql` AND pl.created_at >= ${start}` : sql``;
+      const sourceCond = source !== "all"
+        ? source === "live"
+          ? sql` AND pl.source LIKE 'live-session:%'`
+          : sql` AND pl.source = ${source}`
+        : sql``;
+
+      // Note: when gameType !== "all", we want the game points from all sources (no sourceCond), matching the profile page.
+      // But if gameType === "all", we want overall points which respect sourceCond and windowCond.
+      const gamePointsExpr = gameType !== "all"
+        ? sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id${gameCond}${windowCond}), 0)::int`
+        : sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id${windowCond}${sourceCond}), 0)::int`;
+
+      // Filter: if gameType !== "all", they must have played the game.
+      const gamePlayFilter = gameType !== "all" ? sql` AND ${gamesPlayedExpr} > 0` : sql``;
+      // If source === "live", show students with overall Road Points (priorityPoints) > 0.
+      const livePointsFilter = source === "live" ? sql` AND ${priorityExpr} > 0` : sql` AND ${gamePointsExpr} > 0`;
 
       rows = await db
         .select({
@@ -306,7 +314,7 @@ export async function GET(req: NextRequest) {
           scorePlateStyle: users.scorePlateStyle,
           highestScore: users.highestScore,
           totalGamesPlayed: gamesPlayedExpr,
-          windowPoints: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
+          windowPoints: gamePointsExpr,
           priorityPoints: priorityExpr,
           soloPoints: soloExpr,
           accuracy: accuracyExpr,
@@ -325,39 +333,10 @@ export async function GET(req: NextRequest) {
           lifetimePoints: users.lifetimePoints,
         })
         .from(users)
-        .innerJoin(
-          pointsLedger,
-          and(
-            eq(pointsLedger.userId, users.id),
-            gte(pointsLedger.createdAt, new Date(`${start}T00:00:00+07:00`))
-          )
-        )
-        .where(sql`${publicFilter}${provinceFilter}${gameTypeFilter}${sourceFilter}`)
-        .groupBy(
-          users.id,
-          users.username,
-          users.displayName,
-          users.avatar,
-          users.avatarChangedAt,
-          users.scorePlateStyle,
-          users.highestScore,
-          users.totalGamesPlayed,
-          users.schoolName,
-          users.province,
-          users.isNamePublic,
-          users.isUsernamePublic,
-          users.isSchoolPublic,
-          users.isProvincePublic,
-          users.isClassPublic,
-          users.isGradePublic,
-          users.isSectionPublic,
-          users.lifetimePoints
-        )
-        .having(sql`COALESCE(SUM(${pointsLedger.points}), 0) > 0`)
-        // Rank by window total first (solo + live points for source=all), then live.
+        .where(sql`${publicFilter}${provinceFilter}${gamePlayFilter}${livePointsFilter}`)
         .orderBy(
-          desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`),
-          desc(priorityExpr),
+          desc(priorityExpr), // Rank by Road Points primary!
+          desc(users.lifetimePoints),
           desc(users.highestScore),
           asc(users.id)
         )
