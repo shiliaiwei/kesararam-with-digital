@@ -86,13 +86,7 @@ function getProvinceKh(provinceEn: string | null | undefined): string {
   return found ? found.kh : provinceEn;
 }
 
-function getAdjustedScore(val: number): number {
-  if (val >= 500) return val - 300;
-  if (val >= 400) return val - 200;
-  if (val >= 300) return val - 100;
-  if (val >= 200) return val - 70;
-  return val;
-}
+
 
 // ── Leaderboard game-type filter ──────────────────────────────────────────────
 // Time-window + source controls were removed (2026-06-20): the board is always
@@ -557,7 +551,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             
             {/* Center: Score number in brand blue */}
             <span className="z-10 font-mono font-black tabular-nums leading-none my-[1px] tracking-tight" style={{ fontSize: isFirst ? "26px" : "22px", color: "#3b82f6" }}>
-              <AnimatedNumber value={getAdjustedScore(scoreValue)} />
+              <AnimatedNumber value={scoreValue} />
             </span>
 
             {/* Blue line separator */}
@@ -1492,7 +1486,7 @@ export default function LeaderboardPage() {
                   
                   {/* Center: Score number in brand blue */}
                   <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
-                    {getAdjustedScore(scoreValue).toLocaleString()}
+                    {scoreValue.toLocaleString()}
                   </span>
 
                   {/* Blue line separator */}
@@ -1593,7 +1587,7 @@ export default function LeaderboardPage() {
                         
                         {/* Center: Score number in brand blue */}
                         <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
-                          {getAdjustedScore(currentUser.livePoints ?? 0).toLocaleString()}
+                          {(currentUser.livePoints ?? 0).toLocaleString()}
                         </span>
 
                         {/* Blue line separator */}
