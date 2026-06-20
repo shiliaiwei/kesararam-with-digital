@@ -533,12 +533,6 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
 
         <div className="z-10 mt-2 flex flex-wrap items-center justify-center gap-1.5">
           {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" index={index} />}
-          {user?.province && (
-            <span className="hidden sm:inline-flex items-center gap-1 border-2 border-black bg-blue-50 px-1.5 py-0.5 text-[8px] font-black uppercase text-blue-700">
-              <MapPin size={9} />
-              {kh ? getProvinceKh(user.province) : user.province}
-            </span>
-          )}
         </div>
 
         <div className="z-10 my-4 h-[3px] w-12 bg-black" />
@@ -567,7 +561,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             </span>
 
             {/* Blue line separator */}
-            <div className="z-10 w-[calc(100%-10px)] h-[1.5px] bg-blue-600" />
+            <div className="z-10 w-[calc(100%-10px)] h-[2px] bg-blue-600 flex-shrink-0" />
 
             {/* Bottom: Province/Cambodia in English */}
             <span className={`z-10 font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px] ${isFirst ? "text-[7.5px]" : "text-[6.5px]"}`}>
@@ -1463,11 +1457,6 @@ export default function LeaderboardPage() {
                   <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5 sm:hidden">
                     {tier.label}
                   </span>
-                  {user.province && (
-                    <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
-                      <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
-                    </span>
-                  )}
                   {/* Goal-gradient: only for me, when someone is just ahead */}
                   {isMe && above && toOvertake > 0 && (
                     <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-300 px-1 py-0.5">
@@ -1507,7 +1496,7 @@ export default function LeaderboardPage() {
                   </span>
 
                   {/* Blue line separator */}
-                  <div className="z-10 w-[calc(100%-10px)] h-[1.5px] bg-blue-600" />
+                  <div className="z-10 w-[calc(100%-10px)] h-[2px] bg-blue-600 flex-shrink-0" />
 
                   {/* Bottom: Province/Cambodia in English */}
                   <span className="z-10 text-[6.5px] font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
@@ -1608,7 +1597,7 @@ export default function LeaderboardPage() {
                         </span>
 
                         {/* Blue line separator */}
-                        <div className="z-10 w-[calc(100%-10px)] h-[1.5px] bg-blue-600" />
+                        <div className="z-10 w-[calc(100%-10px)] h-[2px] bg-blue-600 flex-shrink-0" />
 
                         {/* Bottom: Province/Cambodia in English */}
                         <span className="z-10 text-[6.5px] font-medium text-red-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
