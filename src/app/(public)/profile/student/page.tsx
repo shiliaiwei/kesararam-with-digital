@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { users, classes, classEnrollments } from "@/db/schema/users";
 import { pointsLedger, userStreaks } from "@/db/schema/content";
+import { storePointEvents } from "@/db/schema/store-points";
 import { eq, sql, desc } from "drizzle-orm";
 import { CompleteProfileForm } from "@/components/profile/complete-profile-form";
 import { StudentProfileDashboard } from "@/components/profile/student-profile-dashboard";
@@ -56,6 +57,7 @@ export default async function StudentProfilePage({
   let highestScore = 0;
   let totalGamesPlayed = 0;
   let lifetimePoints = 0;
+  let livePoints = 0;
 
   try {
     // Try to fetch user data
@@ -146,6 +148,19 @@ export default async function StudentProfilePage({
         const balances = await getStoreBalances(session.id);
         lifetimePoints = balances.lifetimeEarned;
       }
+
+      // Calculate live points (Road Points) server-side
+      try {
+        const [liveRow] = await db
+          .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
+          .from(storePointEvents)
+          .where(
+            sql`${storePointEvents.userId} = ${session.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
+          );
+        livePoints = liveRow?.total ?? 0;
+      } catch {
+        // Ledger not available yet — no live score.
+      }
     } catch {
       // Stats columns not available yet — fall back to defaults
     }
@@ -228,6 +243,7 @@ export default async function StudentProfilePage({
       highestScore={highestScore}
       totalGamesPlayed={totalGamesPlayed}
       lifetimePoints={lifetimePoints}
+      livePoints={livePoints}
       studentClassInfo={studentClassInfo}
       gameStats={gameStats}
       currentStreak={currentStreak}

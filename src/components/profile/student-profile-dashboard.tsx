@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   BookOpen, GraduationCap, Award, Zap, Trophy, Target,
   X, Camera, CheckCircle2, School, Star, Mail, AtSign,
@@ -38,6 +39,7 @@ interface StudentProfileDashboardProps {
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
+  livePoints: number;
   studentClassInfo: {
     className: string;
     schoolName: string | null;
@@ -71,11 +73,13 @@ export function StudentProfileDashboard({
   highestScore,
   totalGamesPlayed,
   lifetimePoints,
+  livePoints,
   studentClassInfo,
   gameStats = [],
   currentStreak = 0,
   longestStreak = 0,
 }: StudentProfileDashboardProps) {
+  const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "var(--font-system)" } : {};
@@ -131,7 +135,7 @@ export function StudentProfileDashboard({
     highestScore,
     totalGamesPlayed,
     lifetimePoints,
-    livePoints: 0,
+    livePoints,
     currentRank: null as number | null,
   });
 
@@ -233,6 +237,7 @@ export function StudentProfileDashboard({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed");
       setInfoSaved(true);
+      router.refresh();
       setTimeout(() => setInfoSaved(false), 3000);
     } catch (e: any) {
       setInfoError(e.message || "Failed to save.");
@@ -253,6 +258,7 @@ export function StudentProfileDashboard({
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Failed to save.");
       setPrivacySaved(true);
+      router.refresh();
       setTimeout(() => setPrivacySaved(false), 3000);
     } catch (e: any) {
       setPrivacyError(e.message || "Failed to save. Please try again.");
@@ -276,6 +282,7 @@ export function StudentProfileDashboard({
       const saved = normalizeScorePlateStyle(data.user?.scorePlateStyle ?? draftPlateStyle);
       setActivePlateStyle(saved);
       setDraftPlateStyle(saved);
+      router.refresh();
       setPlateMessage(kh ? "បានរក្សាទុកផ្លាកពិន្ទុ។" : "Score plate saved.");
       setTimeout(() => setPlateMessage(""), 3000);
     } catch (error) {
