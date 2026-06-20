@@ -131,8 +131,8 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             { name: "username", label: "Username *", type: "text", placeholder: "sopheak01", required: true },
             { name: "email", label: "Email *", type: "email", placeholder: "user@kwd.tech", required: true },
             { name: "displayName", label: "Display Name", type: "text", placeholder: "Sopheak Chan", required: false },
-            { name: "schoolName", label: "School Name", type: "text", placeholder: "Kesararam Primary School", required: false },
-            { name: "province", label: "Province", type: "text", placeholder: "Siem Reap", required: false },
+            { name: "schoolName", label: `School Name${role === "student" || role === "teacher" ? " *" : ""}`, type: "text", placeholder: "Kesararam Primary School", required: role === "student" || role === "teacher" },
+            { name: "province", label: `Province${role === "student" || role === "teacher" ? " *" : ""}`, type: "text", placeholder: "Siem Reap", required: role === "student" || role === "teacher" },
             { name: "password", label: "Password *", type: "password", placeholder: "••••••••", required: true },
           ].map(f => (
             <div key={f.name} className="space-y-1">
@@ -201,8 +201,8 @@ function EditUserDialog({ user, onSuccess }: { user: UserRow; onSuccess: () => v
           {([
             { name: "email", label: "Email *", type: "email", defaultValue: user.email, required: true },
             { name: "displayName", label: "Display Name", type: "text", defaultValue: user.displayName ?? "", required: false },
-            { name: "schoolName", label: "School Name", type: "text", defaultValue: user.schoolName ?? "", required: false },
-            { name: "province", label: "Province", type: "text", defaultValue: user.province ?? "", required: false },
+            { name: "schoolName", label: `School Name${role === "student" || role === "teacher" ? " *" : ""}`, type: "text", defaultValue: user.schoolName ?? "", required: role === "student" || role === "teacher" },
+            { name: "province", label: `Province${role === "student" || role === "teacher" ? " *" : ""}`, type: "text", defaultValue: user.province ?? "", required: role === "student" || role === "teacher" },
             { name: "password", label: "New Password", type: "password", defaultValue: "", required: false, placeholder: "Leave blank to keep" },
           ] as Array<{ name: string; label: string; type: string; defaultValue: string; required: boolean; placeholder?: string }>).map(f => (
             <div key={f.name} className="space-y-1">

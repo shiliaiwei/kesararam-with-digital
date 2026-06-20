@@ -320,6 +320,7 @@ export async function autoAssignStudentToMatchingClass(studentId: number, enroll
       teacherEmail: users.email,
     })
     .from(classes)
+    .leftJoin(users, eq(classes.teacherId, users.id))
     .where(
       and(
         ilike(classes.schoolName, student.schoolName ?? ""),
