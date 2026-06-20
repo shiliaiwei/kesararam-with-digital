@@ -1401,7 +1401,7 @@ export default function LeaderboardPage() {
     
     // Dynamic overtake calculation matching client-side sort
     const isPointsSort = sortKey === "rank" || sortKey === "live";
-    const scoreKey = sortKey === "rank" ? "lifetimePoints" : "priorityPoints";
+    const scoreKey = gameType !== "all" ? "lifetimePoints" : "priorityPoints";
     const scoreValue = user[scoreKey] ?? 0;
     const tier = getRank(user.lifetimePoints);
     
@@ -1510,7 +1510,7 @@ export default function LeaderboardPage() {
               const rowPlateStyle = isMe ? (currentUser?.scorePlateStyle || user.scorePlateStyle) : user.scorePlateStyle;
               const isGameSpecific = gameType !== "all";
 
-              if (isGameSpecific || sortKey === "rank") {
+              if (isGameSpecific) {
                 // Render as a normal display number (flat neubrutalist card style)
                 return (
                   <span className="font-mono font-black text-xs md:text-sm text-black bg-zinc-100 border-2 border-black px-2.5 py-1 shadow-[2px_2px_0_#000] tabular-nums select-all">
