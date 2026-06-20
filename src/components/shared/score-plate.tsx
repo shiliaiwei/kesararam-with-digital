@@ -159,6 +159,16 @@ export function ScorePlate({
     // Bow size calculations
     const bowSize = size === "xs" ? 0.7 : size === "sm" ? 1 : size === "md" ? 1.4 : 1.7;
 
+    // Mounting slot dimensions
+    const pillW = size === "xs" ? 3.5 : size === "sm" ? 5.5 : size === "md" ? 7.5 : 9.5;
+    const pillH = size === "xs" ? 1.25 : size === "sm" ? 1.75 : size === "md" ? 2.5 : 3.25;
+    const pillY = size === "xs" ? 1.5 : size === "sm" ? 2.5 : size === "md" ? 3.5 : 4.5;
+    const pillX = size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10;
+
+    // Inside usable flex height padding
+    const padTop = size === "xs" ? 8 : size === "sm" ? 11 : size === "md" ? 14 : 18;
+    const padBot = size === "xs" ? 5 : size === "sm" ? 7 : size === "md" ? 10 : 13;
+
     return (
       <div
         className={`relative flex select-none flex-col items-center justify-center overflow-visible border-black text-black text-center ${className} ${isMini ? "border-2" : "border-[3px]"}`}
@@ -169,6 +179,9 @@ export function ScorePlate({
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
+        {/* Reflective metal plate sheen */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/20 pointer-events-none rounded-[inherit]" />
+
         {/* Left Kitty Ear */}
         <div
           className="absolute bg-white border-black pointer-events-none"
@@ -231,14 +244,20 @@ export function ScorePlate({
           }}
         />
 
+        {/* Horizontal divider line like a real plate */}
+        <div
+          className="absolute left-0 right-0 border-t border-[#ec4899] opacity-20 pointer-events-none"
+          style={{ bottom: padBot + (size === "xs" ? 1 : 2) }}
+        />
+
         {/* Hello Friends script label at the top center */}
         <div
-          className="absolute bg-zinc-950 border border-black text-red-500 font-black tracking-wide uppercase px-1 py-0.5 z-20 flex items-center justify-center"
+          className="absolute bg-zinc-950 border border-black text-red-500 font-black tracking-wide uppercase px-1.5 py-0.5 z-20 flex items-center justify-center"
           style={{
             fontSize: size === "xs" ? 5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9,
             top: size === "xs" ? -5 : size === "sm" ? -7 : size === "md" ? -9 : -11,
             transform: "scale(0.95)",
-            boxShadow: "1px 1px 0 #000",
+            boxShadow: "1.5px 1.5px 0 #000",
             borderRadius: 2,
           }}
         >
@@ -266,7 +285,7 @@ export function ScorePlate({
 
         {/* Yellow/Green button at the bottom center */}
         <div
-          className="absolute bg-[#dcfce7] border border-black rounded-full pointer-events-none"
+          className="absolute bg-[#dcfce7] border border-black rounded-full pointer-events-none z-20"
           style={{
             width: size === "xs" ? 6 : size === "sm" ? 9 : size === "md" ? 12 : 15,
             height: size === "xs" ? 3 : size === "sm" ? 4.5 : size === "md" ? 6 : 7.5,
@@ -275,41 +294,74 @@ export function ScorePlate({
           }}
         />
 
-        {/* Top Text (Province name in pink) */}
-        <span
-          className="absolute font-black leading-none text-center"
-          style={{
-            top: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
-            fontSize: topFontSize,
-            color: "#ec4899", // Cute pink text
-          }}
-        >
-          {kh}
-        </span>
+        {/* Horizontal pill-shaped mounting slots with metal screws inside */}
+        {[
+          { top: pillY, left: pillX },
+          { top: pillY, right: pillX },
+          { bottom: pillY, left: pillX },
+          { bottom: pillY, right: pillX },
+        ].map((pos, idx) => (
+          <span
+            key={idx}
+            className="absolute bg-black rounded-full pointer-events-none flex items-center justify-center z-20"
+            style={{
+              width: pillW,
+              height: pillH,
+              ...pos,
+            }}
+          >
+            {/* Shiny metal screw core inside the mounting slot */}
+            <span
+              className="bg-zinc-400 rounded-full border-[0.5px] border-zinc-600 shadow-[inset_0.5px_0.5px_0_rgba(255,255,255,0.8)]"
+              style={{
+                width: "55%",
+                height: "55%",
+              }}
+            />
+          </span>
+        ))}
 
-        {/* Middle Text (Score) */}
-        <span
-          className="z-10 font-mono font-black leading-none tabular-nums"
+        {/* Vertically centered flexbox for text elements, keeping them perfectly clear of the top banner & bottom button */}
+        <div
+          className="absolute inset-0 flex flex-col justify-between items-center z-10 pointer-events-none"
           style={{
-            fontSize: valueFontSize,
-            color: "#000000",
-            transform: size === "xs" ? "translateY(-1px)" : size === "sm" ? "translateY(-1.5px)" : size === "md" ? "translateY(-2px)" : "translateY(-2.5px)",
+            paddingTop: padTop,
+            paddingBottom: padBot,
           }}
         >
-          <PlateValue value={value} />
-        </span>
+          {/* Top Text (Province name in pink) */}
+          <span
+            className="font-black leading-none text-center"
+            style={{
+              fontSize: topFontSize,
+              color: "#ec4899", // Cute pink text
+            }}
+          >
+            {kh}
+          </span>
 
-        {/* Bottom Text (English Province in pink) */}
-        <span
-          className="absolute font-black leading-none tracking-[0.14em]"
-          style={{
-            bottom: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
-            fontSize: bottomFontSize,
-            color: "#db2777", // Darker cute pink text
-          }}
-        >
-          {en}
-        </span>
+          {/* Middle Text (Score) */}
+          <span
+            className="font-mono font-black leading-none tabular-nums"
+            style={{
+              fontSize: valueFontSize,
+              color: "#000000",
+            }}
+          >
+            <PlateValue value={value} />
+          </span>
+
+          {/* Bottom Text (English Province in pink) */}
+          <span
+            className="font-black leading-none tracking-[0.14em]"
+            style={{
+              fontSize: bottomFontSize,
+              color: "#db2777", // Darker cute pink text
+            }}
+          >
+            {en}
+          </span>
+        </div>
       </div>
     );
   }
