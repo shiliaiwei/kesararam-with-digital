@@ -512,6 +512,7 @@ export default function HostPage() {
       }
     }
     if (event.type === "question_start") {
+      try { sounds.question_start(); } catch { }
       setPhase((p) => {
         if (p.name === "lobby" || p.name === "round_end" || p.name === "active") {
           const prevLeaderboard = p.name === "active" ? p.leaderboard
@@ -532,6 +533,7 @@ export default function HostPage() {
       });
     }
     if (event.type === "question_end") {
+      try { sounds.question_end(); } catch { }
       setPhase((p) => {
         if (p.name === "active") {
           return {
@@ -547,6 +549,7 @@ export default function HostPage() {
       });
     }
     if (event.type === "session_end") {
+      try { sounds.podium(); } catch { }
       setPhase((p) => ({
         name: "ended",
         code: "code" in p ? (p as any).code : "",
@@ -640,7 +643,6 @@ export default function HostPage() {
       setQFillPct(pct);
       if (now >= endMs && !timeUpFiredRef.current) {
         timeUpFiredRef.current = true;
-        try { sounds.question_end(); } catch { }
         autoReveal();
       }
     };

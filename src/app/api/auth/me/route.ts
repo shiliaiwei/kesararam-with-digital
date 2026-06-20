@@ -3,6 +3,7 @@ import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users, classEnrollments, classes } from "@/db/schema/users";
 import { pointsLedger } from "@/db/schema/content";
+import { storePointEvents } from "@/db/schema/store-points";
 import { eq, and, sql } from "drizzle-orm";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 import { getStoreBalances } from "@/lib/store-points/balance";
@@ -65,14 +66,24 @@ export async function GET() {
     }
 
     if (STORE_POINTS_ENABLED) {
-      // Post-cutover: points = Store Points lifetime-earned; the spendable
-      // `livePoints` = claimable balance (lifetime earned − non-rejected claims).
-      const [balances, claim] = await Promise.all([
+      // Post-cutover: points = Store Points lifetime-earned;
+      // `livePoints` = total points earned from live teacher sessions (attempt_id LIKE 'live:%').
+      const [balances, claim, livePointsRow] = await Promise.all([
         getStoreBalances(user.id),
         getClaimBalance(user.id),
+        db
+          .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::integer` })
+          .from(storePointEvents)
+          .where(
+            and(
+              eq(storePointEvents.userId, user.id),
+              sql`${storePointEvents.delta} > 0`,
+              sql`${storePointEvents.attemptId} LIKE 'live:%'`
+            )
+          ),
       ]);
       user.lifetimePoints = balances.lifetimeEarned;
-      livePoints = claim.available;
+      livePoints = livePointsRow[0]?.total ?? 0;
     } else {
       // Fetch sum of claimable live points. Live sessions write
       // source="live-session:{sessionId}", so match the prefix (must stay in sync
