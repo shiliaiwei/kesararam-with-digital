@@ -49,10 +49,10 @@ export function ScorePlate({
   const topStyle: CSSProperties = { fontSize: d.top };
   const bottomStyle: CSSProperties = { fontSize: d.bottom };
 
-  // --- Official MPWT Plate (Premium Cambodian License Plate look with navy border, gray labels & bold navy number) ---
+  // --- Official MPWT Plate (Premium Cambodian License Plate look with navy border, red labels & bold navy number) ---
   if (style === "official") {
     const navy = "#11355c"; // Premium authentic navy blue
-    const gray = "#78889b"; // Elegant low-opacity gray-blue for labels
+    const redLabel = "rgba(239, 68, 68, 0.75)"; // Low-opacity brand red color
 
     // Scale font sizes to fit perfectly within the plate dimensions and prevent cut-offs
     const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
@@ -70,10 +70,10 @@ export function ScorePlate({
           paddingTop: size === "xs" ? 1 : size === "sm" ? 1.5 : size === "md" ? 3 : 4,
         }}
       >
-        {/* Top Text (Khmer Province/Country) in Low Opacity Gray */}
+        {/* Top Text (Khmer Province/Country) in Low Opacity Brand Red */}
         <span
           className="z-10 font-bold leading-none"
-          style={{ fontSize: topFontSize, color: gray }}
+          style={{ fontSize: topFontSize, color: redLabel }}
         >
           {kh}
         </span>
@@ -101,7 +101,7 @@ export function ScorePlate({
           >
             <span
               className="font-bold leading-none tracking-[0.14em]"
-              style={{ fontSize: bottomFontSize, color: gray }}
+              style={{ fontSize: bottomFontSize, color: redLabel }}
             >
               {en}
             </span>
