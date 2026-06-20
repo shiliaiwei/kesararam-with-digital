@@ -1482,19 +1482,7 @@ export default function LeaderboardPage() {
                   <span className="inline-flex items-center text-[8px] font-black uppercase text-zinc-700 bg-zinc-100 border border-zinc-300 px-1 py-0.5 sm:hidden">
                     {tier.label}
                   </span>
-                  {bestGameMeta && (
-                    <span
-                      className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase border border-black px-1.5 py-0.5 text-white"
-                      style={{
-                        backgroundColor: bestGameMeta.color,
-                        boxShadow: "1px 1px 0 #000",
-                      }}
-                      title={kh ? `សកម្មភាពពេញនិយម៖ ${bestGameMeta.kh}` : `Top Activity: ${bestGameMeta.en}`}
-                    >
-                      <bestGameMeta.Icon size={8} strokeWidth={3} />
-                      {kh ? bestGameMeta.kh : bestGameMeta.en}
-                    </span>
-                  )}
+
                   {/* Goal-gradient: only for me, when someone is just ahead */}
                   {isMe && above && toOvertake > 0 && (
                     <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-green-700 bg-green-50 border border-green-300 px-1 py-0.5">
