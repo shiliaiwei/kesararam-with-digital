@@ -2,7 +2,7 @@ export const SCORE_PLATE_STYLE_IDS = ["road", "garden", "sky", "rose", "car", "o
 
 export type ScorePlateStyle = (typeof SCORE_PLATE_STYLE_IDS)[number];
 
-export const DEFAULT_SCORE_PLATE_STYLE: ScorePlateStyle = "road";
+export const DEFAULT_SCORE_PLATE_STYLE: ScorePlateStyle = "official";
 
 export const SCORE_PLATE_STYLES: ReadonlyArray<{
   id: ScorePlateStyle;
@@ -56,9 +56,9 @@ export const SCORE_PLATE_STYLES: ReadonlyArray<{
     id: "official",
     nameEn: "Official Plate",
     nameKh: "ផ្លាកលេខផ្លូវការ",
-    descriptionEn: "Government-style white plate with navy border & QR",
-    descriptionKh: "ផ្លាកស​ពណ៌សបែបផ្លូវការ ស៊ុមខៀវ និង QR",
-    premium: true,
+    descriptionEn: "Government-style plate with navy border & QR",
+    descriptionKh: "ផ្លាកបែបផ្លូវការ ស៊ុមខៀវ និង QR",
+    premium: false,
   },
 ];
 
@@ -71,5 +71,5 @@ export function normalizeScorePlateStyle(value: unknown): ScorePlateStyle {
 }
 
 export function isPremiumScorePlate(value: ScorePlateStyle): boolean {
-  return value !== DEFAULT_SCORE_PLATE_STYLE;
+  return SCORE_PLATE_STYLES.find((p) => p.id === value)?.premium ?? false;
 }

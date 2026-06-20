@@ -261,19 +261,17 @@ export function ScorePlate({
   // --- Official MPWT Plate (white card, navy border, QR icon, red province) ---
   if (style === "official") {
     const navy = "#13395f";
-    const containerRadius =
-      size === "sm" ? "rounded-md" : size === "md" ? "rounded-[10px]" : "rounded-xl";
+    const insetPx = size === "sm" ? 2 : size === "md" ? 3 : 4;
     const innerRadius =
-      size === "sm" ? "rounded-[3px]" : size === "md" ? "rounded-[5px]" : "rounded-md";
-    const insetPx = size === "sm" ? 3 : size === "md" ? 4 : 5;
+      size === "sm" ? "rounded-[4px]" : size === "md" ? "rounded-md" : "rounded-lg";
     const qrSize = Math.max(10, d.top + 5);
 
     return (
       <div
-        className={`relative flex select-none flex-col items-center justify-between overflow-hidden border-[2.5px] bg-white px-3 py-1 text-center ${containerRadius} ${className}`}
-        style={{ ...shell, borderColor: navy }}
+        className={`relative flex select-none flex-col items-center justify-between overflow-hidden bg-transparent px-3 py-1 text-center ${className}`}
+        style={{ ...shell, boxShadow: "none", border: "none" }}
       >
-        {/* inner thin border */}
+        {/* single thin rounded frame around all content */}
         <div
           className={`pointer-events-none absolute border ${innerRadius}`}
           style={{
@@ -307,7 +305,11 @@ export function ScorePlate({
         </span>
         <span
           className="z-10 w-full font-black leading-none tracking-[0.14em] text-red-600"
-          style={{ ...bottomStyle, borderTop: `1.5px solid ${navy}`, paddingTop: 3 }}
+          style={{
+            ...bottomStyle,
+            borderTop: `1.5px solid ${navy}`,
+            paddingTop: size === "sm" ? 5 : size === "md" ? 7 : 9,
+          }}
         >
           {en}
         </span>
