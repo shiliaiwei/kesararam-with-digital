@@ -154,16 +154,17 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#080808] text-white py-8 md:py-16 px-4" style={pf}>
-      {/* ── Ambient premium background glows ── */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-amber-500/10 blur-[140px]" />
-        <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[130px]" />
+      {/* ── Ambient premium background glows (GPU optimized layers to avoid repaint storms) ── */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ transform: "translate3d(0,0,0)" }}>
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-amber-500/10 blur-[140px]" style={{ transform: "translate3d(0,0,0)", willChange: "transform" }} />
+        <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[130px]" style={{ transform: "translate3d(0,0,0)", willChange: "transform" }} />
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
             backgroundSize: "56px 56px",
+            transform: "translate3d(0,0,0)",
           }}
         />
       </div>
@@ -275,7 +276,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         {/* ── Four Pricing Cards Grid ── */}
         <div className="max-w-7xl mx-auto flex md:grid md:grid-cols-4 gap-5 md:items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 mb-16 px-4 -mx-4 md:mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {/* Tier 1: Free (Student) */}
-          <div className="w-[88vw] xs:w-[80vw] md:w-auto shrink-0 snap-center bg-white/[0.03] border border-white/10 hover:border-white/25 rounded-3xl p-4 xs:p-5 md:p-6 flex flex-col transition-all duration-200 group backdrop-blur-sm">
+          <div className="w-[88vw] xs:w-[80vw] md:w-auto shrink-0 snap-center bg-[#121212] border border-white/10 hover:border-white/25 rounded-3xl p-4 xs:p-5 md:p-6 flex flex-col transition-all duration-200 group shadow-md" style={{ transform: "translate3d(0,0,0)" }}>
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-2">
                 <Zap size={20} className="text-zinc-400" />
@@ -337,7 +338,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
 
           {/* Tier 2: Family Plan */}
-          <div className="w-[88vw] xs:w-[80vw] md:w-auto shrink-0 snap-center bg-white/[0.03] border border-white/10 hover:border-green-400/40 rounded-3xl p-4 xs:p-5 md:p-6 flex flex-col transition-all duration-200 group backdrop-blur-sm">
+          <div className="w-[88vw] xs:w-[80vw] md:w-auto shrink-0 snap-center bg-[#121212] border border-white/10 hover:border-green-400/40 rounded-3xl p-4 xs:p-5 md:p-6 flex flex-col transition-all duration-200 group shadow-md" style={{ transform: "translate3d(0,0,0)" }}>
             <div className="mb-4">
               <div className="flex items-center gap-2 mb-2">
                 <Users size={20} className="text-green-400" />
@@ -550,7 +551,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
 
           {/* Tier 4: Academy Plan (road-safety training schools) */}
-          <div className="w-[88vw] xs:w-[80vw] md:w-auto shrink-0 snap-center bg-white/[0.03] border border-white/10 hover:border-blue-400/40 rounded-3xl p-4 xs:p-5 md:p-6 flex flex-col transition-all duration-200 group backdrop-blur-sm">
+          <div className="w-[88vw] xs:w-[80vw] md:w-auto shrink-0 snap-center bg-[#121212] border border-white/10 hover:border-blue-400/40 rounded-3xl p-4 xs:p-5 md:p-6 flex flex-col transition-all duration-200 group shadow-md" style={{ transform: "translate3d(0,0,0)" }}>
             <div className="mb-4">
               <div className="flex items-center gap-2 mb-2">
                 <Car size={20} className="text-blue-400" />
@@ -652,7 +653,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         {/* ── Checkout & KHQR Payment Area ── */}
         <div
           id="checkout-section"
-          className="max-w-4xl mx-auto border border-white/10 bg-zinc-950/80 backdrop-blur-md text-white rounded-3xl overflow-hidden shadow-2xl mb-12 scroll-mt-6"
+          className="max-w-4xl mx-auto border border-white/10 bg-zinc-950 text-white rounded-3xl overflow-hidden shadow-2xl mb-12 scroll-mt-6"
+          style={{ transform: "translate3d(0,0,0)" }}
         >
           <div className="bg-black/60 border-b border-white/10 px-4 py-4 md:px-6 md:py-5 flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
