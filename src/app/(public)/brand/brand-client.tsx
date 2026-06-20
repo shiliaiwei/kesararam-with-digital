@@ -60,6 +60,7 @@ const SECTIONS = [
   { id: "dna", title: { en: "Design DNA", kh: "Design DNA" } },
   { id: "kit", title: { en: "Design Kit", kh: "ឧបករណ៍រចនា" } },
   { id: "ranks", title: { en: "Player Ranks & Badges", kh: "កម្រិត និងផ្លាកសញ្ញា" } },
+  { id: "scoring", title: { en: "Game Scoring Engine", kh: "ប្រព័ន្ធគណនាពិន្ទុនៃសកម្មភាព" } },
   { id: "apply", title: { en: "Applications", kh: "ការប្រើប្រាស់" } },
   { id: "sitemap", title: { en: "Site Architecture", kh: "រចនាសម្ព័ន្ធគេហទំព័រ" } },
 ];
@@ -726,6 +727,280 @@ export function BrandGuidelineClient() {
                 </div>
               );
             })()}
+          </section>
+
+          {/* Game Scoring Engine */}
+          <section id="scoring" className="scroll-mt-24 space-y-6">
+            <SectionHeading>{t("Game Scoring Engine", "ប្រព័ន្ធគណនាពិន្ទុនៃសកម្មភាព")}</SectionHeading>
+            <div className="bg-white dark:bg-zinc-950 border-2 border-black p-6 shadow-[4px_4px_0_#000]" style={{ borderRadius: 0 }}>
+              <p className="text-sm md:text-base text-zinc-700 dark:text-zinc-300 font-medium">
+                {t(
+                  "KWD uses a unified, low-point scoring engine across all games and challenges to maintain progression scarcity and reward consistency. Speed bonuses are fully disabled; points are purely derived from accuracy and consecutive streaks.",
+                  "KWD ប្រើប្រាស់ប្រព័ន្ធគណនាពិន្ទុរួមមួយដែលមានតម្លៃពិន្ទុទាបសម្រាប់គ្រប់សកម្មភាព និងការប្រកួត ដើម្បីរក្សាភាពកម្រនៃពិន្ទុ និងភាពស៊ីសង្វាក់គ្នានៃរង្វាន់។ ពិន្ទុបន្ថែមផ្អែកលើល្បឿនត្រូវបានបិទទាំងស្រុង ដោយពិន្ទុត្រូវបានគណនាផ្អែកលើភាពត្រឹមត្រូវ និងការលេងត្រូវជាប់ៗគ្នា (Streak)។"
+                )}
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t-2 border-dashed border-zinc-200 dark:border-zinc-800">
+                {/* Core Scorer Formulas */}
+                <div className="space-y-4">
+                  <h3 className="font-black text-sm uppercase tracking-wider text-black dark:text-white flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 bg-yellow-400 border border-black inline-block" />
+                    {t("Core Scorer Formula", "រូបមន្តគណនាពិន្ទុស្នូល")}
+                  </h3>
+                  
+                  <div className="border-2 border-black bg-zinc-50 dark:bg-zinc-900/50 p-4 font-mono text-xs space-y-3 text-black dark:text-zinc-300">
+                    <div>
+                      <span className="font-bold text-blue-600 dark:text-blue-400">baseScore</span> = isCorrect ? 1 : 0
+                      <p className="text-[10px] text-zinc-500 mt-0.5">
+                        {t("+1 point for every correct answer.", "+១ ពិន្ទុរាល់ពេលឆ្លើយត្រូវ។")}
+                      </p>
+                    </div>
+                    <div>
+                      <span className="font-bold text-purple-600 dark:text-purple-400">streakBonus</span> = isCorrect && currentCorrectStreak &gt;= 2 ? 1 : 0
+                      <p className="text-[10px] text-zinc-500 mt-0.5">
+                        {t("+1 point for runs starting from the 3rd consecutive correct answer.", "+១ ពិន្ទុបន្ថែមសម្រាប់ការឆ្លើយត្រូវជាប់គ្នាចាប់ពីលើកទី៣ ឡើងទៅ។")}
+                      </p>
+                    </div>
+                    <div>
+                      <span className="font-bold text-green-600 dark:text-green-400">questionScore</span> = baseScore + streakBonus
+                      <p className="text-[10px] text-zinc-500 mt-0.5">
+                        {t("Each question yields exactly 0, 1, or 2 points.", "រាល់សំណួរទទួលបានពិន្ទុយ៉ាងពិតប្រាកដ ០, ១, ឬ ២ ពិន្ទុ។")}
+                      </p>
+                    </div>
+                    <div className="pt-2 border-t border-zinc-200 dark:border-zinc-800">
+                      <span className="font-bold text-red-600">wrongAnswer</span> = streak resets to 0
+                      <p className="text-[10px] text-zinc-500 mt-0.5">
+                        {t("A wrong answer immediately cuts the streak.", "ឆ្លើយខុសនឹងកំណត់ Streak ឡើងវិញមកសូន្យភ្លាមៗ។")}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Clean Run Sequence */}
+                <div className="space-y-4">
+                  <h3 className="font-black text-sm uppercase tracking-wider text-black dark:text-white flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 bg-green-400 border border-black inline-block" />
+                    {t("Clean Run Sequence", "លំដាប់ពិន្ទុនៃការឆ្លើយត្រូវជាប់គ្នា")}
+                  </h3>
+
+                  <div className="border-2 border-black overflow-hidden bg-white dark:bg-zinc-900">
+                    <table className="w-full text-xs text-center border-collapse">
+                      <thead>
+                        <tr className="bg-black text-white border-b-2 border-black">
+                          <th className="p-2.5 font-black uppercase tracking-wider border-r border-black">{t("Correct In A Row", "ឆ្លើយត្រូវជាប់គ្នា")}</th>
+                          <th className="p-2.5 font-black uppercase tracking-wider">{t("Points Awarded", "ពិន្ទុទទួលបាន")}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-black font-mono">
+                        <tr className="divide-x divide-black">
+                          <td className="p-2">1</td>
+                          <td className="p-2 font-bold">1</td>
+                        </tr>
+                        <tr className="divide-x divide-black">
+                          <td className="p-2">2</td>
+                          <td className="p-2 font-bold">1</td>
+                        </tr>
+                        <tr className="divide-x divide-black">
+                          <td className="p-2">3</td>
+                          <td className="p-2 font-bold text-green-600 dark:text-green-400">2 (1 + 1 streak)</td>
+                        </tr>
+                        <tr className="divide-x divide-black">
+                          <td className="p-2">4</td>
+                          <td className="p-2 font-bold text-green-600 dark:text-green-400">2 (1 + 1 streak)</td>
+                        </tr>
+                        <tr className="divide-x divide-black">
+                          <td className="p-2">5+</td>
+                          <td className="p-2 font-bold text-green-600 dark:text-green-400">2 (1 + 1 streak)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p className="text-xs text-zinc-500 font-medium">
+                    {t(
+                      "An all-correct run of N questions (for N >= 2) yields a max score of 2N - 2. For example, a 40-question session has a maximum possible score of 78 points.",
+                      "ការឆ្លើយត្រូវទាំងអស់ចំនួន N សំណួរ (សម្រាប់ N >= ២) ទទួលបានពិន្ទុអតិបរមា ២N - ២។ ឧទាហរណ៍៖ ការឆ្លើយត្រូវទាំង ៤០ សំណួរ ទទួលបានពិន្ទុអតិបរមា ៧៨ ពិន្ទុ។"
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              {/* Game Applicability */}
+              <div className="mt-6 pt-6 border-t-2 border-dashed border-zinc-200 dark:border-zinc-800 space-y-3">
+                <h3 className="font-black text-sm uppercase tracking-wider text-black dark:text-white flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 bg-blue-400 border border-black inline-block" />
+                  {t("Applies to All Game Types", "អនុវត្តចំពោះគ្រប់សកម្មភាព")}
+                </h3>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                  {t(
+                    "This exact scoring algorithm is used across all play activities. Multi-item games evaluate pairs or actions as the unit of scoring, threading the streak across the entire play session:",
+                    "រូបមន្តគណនាពិន្ទុនេះត្រូវបានប្រើប្រាស់ចំពោះគ្រប់ប្រភេទសកម្មភាព។ ហ្គេមដែលមានការផ្គូផ្គងច្រើន ឬសកម្មភាពច្រើន ត្រូវបានរាប់គូ ឬសកម្មភាពជានិមួយៗនៃការពិន្ទុ ដោយ Streak ត្រូវបានតភ្ជាប់ទូទាំងការលេងរបស់សកម្មភាពទាំងមូល៖"
+                  )}
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1.5">
+                  {[
+                    { en: "Live Class Games", kh: "សកម្មភាពថ្នាក់រៀនផ្ទាល់" },
+                    { en: "Solo Practice", kh: "ការហាត់លេងម្នាក់ឯង" },
+                    { en: "Daily Challenge", kh: "ការប្រកួតប្រចាំថ្ងៃ" },
+                    { en: "Sign Match", kh: "សកម្មភាពផ្គូផ្គងសញ្ញា" },
+                    { en: "Catch the Sign", kh: "សកម្មភាពចាប់សញ្ញា" },
+                    { en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងចរាចរណ៍" },
+                    { en: "Road Safety Adventure", kh: "ដំណើរស្វែងយល់សុវត្ថិភាពចរាចរណ៍" },
+                    { en: "Connect the Signs", kh: "សកម្មភាពភ្ជាប់សញ្ញា" },
+                    { en: "Word Bank", kh: "ឃ្លាំងពាក្យ" },
+                    { en: "Tick the Sign", kh: "សកម្មភាពជ្រើសរើសសញ្ញា" },
+                    { en: "Traffic Commander", kh: "បញ្ជាចរាចរណ៍" }
+                  ].map((game, idx) => (
+                    <span key={idx} className="border border-black dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 px-2 py-1 text-[10px] font-black uppercase text-zinc-700 dark:text-zinc-300">
+                      {t(game.en, game.kh)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Example Play Scenario */}
+              <div className="mt-6 pt-6 border-t-2 border-dashed border-zinc-200 dark:border-zinc-800 space-y-4">
+                <h3 className="font-black text-sm uppercase tracking-wider text-black dark:text-white flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 bg-purple-400 border border-black inline-block" />
+                  {t("Step-by-Step Example Scenario", "ឧទាហរណ៍ស្ថានភាពជាក់ស្តែងមួយជំហានម្តងៗ")}
+                </h3>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                  {t(
+                    "Here is a step-by-step 10-question sequence showing how the streak threads through a play session, demonstrating when the streak bonus activates and resets:",
+                    "ខាងក្រោមនេះជាលំដាប់លំដោយនៃសំណួរទាំង ១០ ជំហានម្តងៗ ដែលបង្ហាញពីរបៀបដែល Streak ត្រូវបានតភ្ជាប់ក្នុងវគ្គលេង ដោយបង្ហាញពីពេលដែលពិន្ទុបន្ថែម Streak ត្រូវបានផ្តល់ឱ្យ ឬកំណត់ឡើងវិញ៖"
+                  )}
+                </p>
+
+                <div className="border-2 border-black overflow-hidden bg-white dark:bg-zinc-900 overflow-x-auto">
+                  <table className="w-full text-[11px] md:text-xs text-center border-collapse min-w-[600px]">
+                    <thead>
+                      <tr className="bg-black text-white border-b-2 border-black">
+                        <th className="p-2.5 font-black uppercase tracking-wider border-r border-black">{t("Q#", "សំណួរ #")}</th>
+                        <th className="p-2.5 font-black uppercase tracking-wider border-r border-black">{t("Outcome", "លទ្ធផល")}</th>
+                        <th className="p-2.5 font-black uppercase tracking-wider border-r border-black">{t("Prior Streak", "Streak មុន")}</th>
+                        <th className="p-2.5 font-black uppercase tracking-wider border-r border-black">{t("Base Score", "ពិន្ទុមូលដ្ឋាន")}</th>
+                        <th className="p-2.5 font-black uppercase tracking-wider border-r border-black">{t("Streak Bonus", "ពិន្ទុបន្ថែម Streak")}</th>
+                        <th className="p-2.5 font-black uppercase tracking-wider border-r border-black">{t("Points Awarded", "ពិន្ទុទទួលបាន")}</th>
+                        <th className="p-2.5 font-black uppercase tracking-wider border-r border-black">{t("New Streak", "Streak ថ្មី")}</th>
+                        <th className="p-2.5 font-black uppercase tracking-wider">{t("Session Score", "ពិន្ទុសរុប")}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-black font-mono text-black dark:text-zinc-300">
+                      {/* Q1 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30">
+                        <td className="p-2">Q1</td>
+                        <td className="p-2 font-bold text-green-600 dark:text-green-400">{t("Correct", "ត្រឹមត្រូវ")}</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2 font-bold">1</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2 font-black bg-zinc-50 dark:bg-zinc-800/20">1</td>
+                      </tr>
+                      {/* Q2 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30">
+                        <td className="p-2">Q2</td>
+                        <td className="p-2 font-bold text-green-600 dark:text-green-400">{t("Correct", "ត្រឹមត្រូវ")}</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2 font-bold">1</td>
+                        <td className="p-2">2</td>
+                        <td className="p-2 font-black bg-zinc-50 dark:bg-zinc-800/20">2</td>
+                      </tr>
+                      {/* Q3 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30 bg-purple-50/20 dark:bg-purple-950/10">
+                        <td className="p-2">Q3</td>
+                        <td className="p-2 font-bold text-green-600 dark:text-green-400">{t("Correct", "ត្រឹមត្រូវ")}</td>
+                        <td className="p-2">2</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2 text-purple-600 dark:text-purple-400 font-bold">+1</td>
+                        <td className="p-2 font-black text-purple-700 dark:text-purple-300">2</td>
+                        <td className="p-2">3</td>
+                        <td className="p-2 font-black bg-purple-50/40 dark:bg-purple-900/30">4</td>
+                      </tr>
+                      {/* Q4 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30 bg-red-50/20 dark:bg-red-950/10">
+                        <td className="p-2">Q4</td>
+                        <td className="p-2 font-bold text-red-600 dark:text-red-400">{t("Incorrect", "មិនត្រឹមត្រូវ")}</td>
+                        <td className="p-2">3</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2 font-bold">0</td>
+                        <td className="p-2 text-red-600 dark:text-red-400 font-bold">0</td>
+                        <td className="p-2 font-black bg-zinc-50 dark:bg-zinc-800/20">4</td>
+                      </tr>
+                      {/* Q5 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30">
+                        <td className="p-2">Q5</td>
+                        <td className="p-2 font-bold text-green-600 dark:text-green-400">{t("Correct", "ត្រឹមត្រូវ")}</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2 font-bold">1</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2 font-black bg-zinc-50 dark:bg-zinc-800/20">5</td>
+                      </tr>
+                      {/* Q6 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30">
+                        <td className="p-2">Q6</td>
+                        <td className="p-2 font-bold text-green-600 dark:text-green-400">{t("Correct", "ត្រឹមត្រូវ")}</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2 font-bold">1</td>
+                        <td className="p-2">2</td>
+                        <td className="p-2 font-black bg-zinc-50 dark:bg-zinc-800/20">6</td>
+                      </tr>
+                      {/* Q7 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30 bg-purple-50/20 dark:bg-purple-950/10">
+                        <td className="p-2">Q7</td>
+                        <td className="p-2 font-bold text-green-600 dark:text-green-400">{t("Correct", "ត្រឹមត្រូវ")}</td>
+                        <td className="p-2">2</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2 text-purple-600 dark:text-purple-400 font-bold">+1</td>
+                        <td className="p-2 font-black text-purple-700 dark:text-purple-300">2</td>
+                        <td className="p-2">3</td>
+                        <td className="p-2 font-black bg-purple-50/40 dark:bg-purple-900/30">8</td>
+                      </tr>
+                      {/* Q8 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30 bg-purple-50/20 dark:bg-purple-950/10">
+                        <td className="p-2">Q8</td>
+                        <td className="p-2 font-bold text-green-600 dark:text-green-400">{t("Correct", "ត្រឹមត្រូវ")}</td>
+                        <td className="p-2">3</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2 text-purple-600 dark:text-purple-400 font-bold">+1</td>
+                        <td className="p-2 font-black text-purple-700 dark:text-purple-300">2</td>
+                        <td className="p-2">4</td>
+                        <td className="p-2 font-black bg-purple-50/40 dark:bg-purple-900/30">10</td>
+                      </tr>
+                      {/* Q9 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30 bg-red-50/20 dark:bg-red-950/10">
+                        <td className="p-2">Q9</td>
+                        <td className="p-2 font-bold text-red-600 dark:text-red-400">{t("Incorrect", "មិនត្រឹមត្រូវ")}</td>
+                        <td className="p-2">4</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2 font-bold">0</td>
+                        <td className="p-2 text-red-600 dark:text-red-400 font-bold">0</td>
+                        <td className="p-2 font-black bg-zinc-50 dark:bg-zinc-800/20">10</td>
+                      </tr>
+                      {/* Q10 */}
+                      <tr className="divide-x divide-black hover:bg-zinc-50 dark:hover:bg-zinc-800/30">
+                        <td className="p-2">Q10</td>
+                        <td className="p-2 font-bold text-green-600 dark:text-green-400">{t("Correct", "ត្រឹមត្រូវ")}</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2">0</td>
+                        <td className="p-2 font-bold">1</td>
+                        <td className="p-2">1</td>
+                        <td className="p-2 font-black bg-zinc-50 dark:bg-zinc-800/20">11</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </section>
 
           {/* Applications */}
