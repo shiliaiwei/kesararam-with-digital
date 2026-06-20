@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 import { users, classes, classEnrollments } from "@/db/schema/users";
 import { pointsLedger, userStreaks } from "@/db/schema/content";
 import { storePointEvents } from "@/db/schema/store-points";
-import { eq, sql, desc } from "drizzle-orm";
+import { eq, sql, desc, and } from "drizzle-orm";
 import { CompleteProfileForm } from "@/components/profile/complete-profile-form";
 import { StudentProfileDashboard } from "@/components/profile/student-profile-dashboard";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
@@ -151,13 +151,26 @@ export default async function StudentProfilePage({
 
       // Calculate live points (Road Points) server-side
       try {
-        const [liveRow] = await db
-          .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
-          .from(storePointEvents)
-          .where(
-            sql`${storePointEvents.userId} = ${session.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
-          );
-        livePoints = liveRow?.total ?? 0;
+        if (STORE_POINTS_ENABLED) {
+          const [liveRow] = await db
+            .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
+            .from(storePointEvents)
+            .where(
+              sql`${storePointEvents.userId} = ${session.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
+            );
+          livePoints = liveRow?.total ?? 0;
+        } else {
+          const [liveRow] = await db
+            .select({ total: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int` })
+            .from(pointsLedger)
+            .where(
+              and(
+                eq(pointsLedger.userId, session.id),
+                sql`${pointsLedger.source} LIKE 'live-session:%'`
+              )
+            );
+          livePoints = liveRow?.total ?? 0;
+        }
       } catch {
         // Ledger not available yet — no live score.
       }

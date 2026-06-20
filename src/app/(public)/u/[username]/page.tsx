@@ -192,16 +192,29 @@ export default async function PublicStudentProfilePage({ params }: Props) {
     }
   }
 
-  // Live-session score (attempt_id LIKE 'live:%') — the value shown on the score plate.
+  // Live-session score (attempt_id LIKE 'live:%' or source LIKE 'live-session:%') — the value shown on the score plate.
   let livePoints = 0;
   try {
-    const [liveRow] = await db
-      .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
-      .from(storePointEvents)
-      .where(
-        sql`${storePointEvents.userId} = ${student.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
-      );
-    livePoints = liveRow?.total ?? 0;
+    if (STORE_POINTS_ENABLED) {
+      const [liveRow] = await db
+        .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
+        .from(storePointEvents)
+        .where(
+          sql`${storePointEvents.userId} = ${student.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
+        );
+      livePoints = liveRow?.total ?? 0;
+    } else {
+      const [liveRow] = await db
+        .select({ total: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int` })
+        .from(pointsLedger)
+        .where(
+          and(
+            eq(pointsLedger.userId, student.id),
+            sql`${pointsLedger.source} LIKE 'live-session:%'`
+          )
+        );
+      livePoints = liveRow?.total ?? 0;
+    }
   } catch {
     // Ledger not available yet — no live score.
   }

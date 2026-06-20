@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
-import { gameScores, userStreaks } from "@/db/schema/content";
+import { gameScores, userStreaks, pointsLedger } from "@/db/schema/content";
 import { storePointEvents } from "@/db/schema/store-points";
-import { eq, desc, sql } from "drizzle-orm";
+import { eq, desc, sql, and } from "drizzle-orm";
 import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 import { getStoreBalances } from "@/lib/store-points/balance";
 
@@ -32,16 +32,29 @@ export async function GET() {
       userProfile.lifetimePoints = balances.lifetimeEarned;
     }
 
-    // Live-session score (attempt_id LIKE 'live:%') — the value shown on the score plate.
+    // Live-session score (attempt_id LIKE 'live:%' or source LIKE 'live-session:%') — the value shown on the score plate.
     let livePoints = 0;
     try {
-      const [liveRow] = await db
-        .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
-        .from(storePointEvents)
-        .where(
-          sql`${storePointEvents.userId} = ${user.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
-        );
-      livePoints = liveRow?.total ?? 0;
+      if (STORE_POINTS_ENABLED) {
+        const [liveRow] = await db
+          .select({ total: sql<number>`COALESCE(SUM(${storePointEvents.delta}), 0)::int` })
+          .from(storePointEvents)
+          .where(
+            sql`${storePointEvents.userId} = ${user.id} AND ${storePointEvents.delta} > 0 AND ${storePointEvents.attemptId} LIKE 'live:%'`
+          );
+        livePoints = liveRow?.total ?? 0;
+      } else {
+        const [liveRow] = await db
+          .select({ total: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int` })
+          .from(pointsLedger)
+          .where(
+            and(
+              eq(pointsLedger.userId, user.id),
+              sql`${pointsLedger.source} LIKE 'live-session:%'`
+            )
+          );
+        livePoints = liveRow?.total ?? 0;
+      }
     } catch (err) {
       console.log("Error calculating live points:", err);
     }
