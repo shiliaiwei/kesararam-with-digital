@@ -566,6 +566,9 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
               <AnimatedNumber value={getAdjustedScore(scoreValue)} />
             </span>
 
+            {/* Blue line separator */}
+            <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/75" />
+
             {/* Bottom: Province/Cambodia in English */}
             <span className={`z-10 font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px] ${isFirst ? "text-[7.5px]" : "text-[6.5px]"}`}>
               {user.province ? user.province.toUpperCase() : "CAMBODIA"}
@@ -1503,6 +1506,9 @@ export default function LeaderboardPage() {
                     {getAdjustedScore(scoreValue).toLocaleString()}
                   </span>
 
+                  {/* Blue line separator */}
+                  <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/75" />
+
                   {/* Bottom: Province/Cambodia in English */}
                   <span className="z-10 text-[6.5px] font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
                     {rowProvince ? rowProvince.toUpperCase() : "CAMBODIA"}
@@ -1600,6 +1606,9 @@ export default function LeaderboardPage() {
                         <span className="z-10 font-mono font-black tabular-nums text-[22px] leading-none my-[1px] tracking-tight" style={{ color: "#3b82f6" }}>
                           {getAdjustedScore(currentUser.livePoints ?? 0).toLocaleString()}
                         </span>
+
+                        {/* Blue line separator */}
+                        <div className="z-10 w-[calc(100%-10px)] h-[1px] bg-blue-600/75" />
 
                         {/* Bottom: Province/Cambodia in English */}
                         <span className="z-10 text-[6.5px] font-medium text-zinc-500/80 leading-none uppercase tracking-wider scale-95 origin-bottom mb-[4px]">
