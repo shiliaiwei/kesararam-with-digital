@@ -1006,28 +1006,13 @@ export default function HostPage() {
     "survival-quiz",
     "zen-review",
     "final-practice",
+    "mixed-practice",
   ]);
 
-  // "Click the Sign" (tick-sign) is an official non-MCQ live game sourced from
-  // sign topics (no question bank), so it lives outside GAME_MODE_CONFIG.
-  const TICK_SIGN_MODE = {
-    id: "tick-sign",
-    defaultQuestionCount: 10,
-    allowedQuestionCounts: [6, 10, 15, 20],
-    timePerQuestion: 15,
-    label: "Click the Sign",
-    labelKm: "Click the Sign",
-    color: "#14b8a6",
-    description: "Click the correct road sign for each name.",
-    descriptionKm: "ចុចសញ្ញាចរាចរណ៍ឱ្យត្រូវនឹងឈ្មោះ។",
-  };
-  const GAME_MODES = [
-    ...Object.entries(GAME_MODE_CONFIG)
-      .map(([id, cfg]) => ({ id, ...cfg }))
-      .filter((m) => !HIDDEN_MODES.has(m.id)),
-    TICK_SIGN_MODE,
-  ];
-  const selectedModeConfig = GAME_MODE_CONFIG[selectedMode] ?? GAME_MODES.find((m) => m.id === selectedMode);
+  const GAME_MODES = Object.entries(GAME_MODE_CONFIG)
+    .map(([id, cfg]) => ({ id, ...cfg }))
+    .filter((m) => !HIDDEN_MODES.has(m.id));
+  const selectedModeConfig = GAME_MODE_CONFIG[selectedMode];
 
   const darkBase: React.CSSProperties = {
     minHeight: "100vh",

@@ -133,6 +133,75 @@ describe("Question Selector", () => {
 
             expect(ids.length).toBe(uniqueIds.size);
         });
+
+        it("should select 70% sign questions and restrict other questions to 1-2 categories in mixed-practice mode", () => {
+            const signQuestions = Array.from({ length: 30 }, (_, i) => ({
+                id: i + 1,
+                categoryId: 1,
+                categorySlug: "road-signs",
+                gameType: "image_pick",
+                difficulty: "medium",
+                questionEn: `Sign Question ${i + 1}`,
+                questionKm: `សំណួរសញ្ញា ${i + 1}`,
+            }));
+            const cat2Questions = Array.from({ length: 15 }, (_, i) => ({
+                id: i + 100,
+                categoryId: 2,
+                categorySlug: "road-traffic",
+                gameType: "mcq",
+                difficulty: "medium",
+                questionEn: `Traffic Question ${i + 1}`,
+                questionKm: `សំណួរចរាចរណ៍ ${i + 1}`,
+            }));
+            const cat3Questions = Array.from({ length: 15 }, (_, i) => ({
+                id: i + 200,
+                categoryId: 3,
+                categorySlug: "technical",
+                gameType: "mcq",
+                difficulty: "medium",
+                questionEn: `Tech Question ${i + 1}`,
+                questionKm: `សំណួរបច្ចេកទេស ${i + 1}`,
+            }));
+            const cat4Questions = Array.from({ length: 15 }, (_, i) => ({
+                id: i + 300,
+                categoryId: 4,
+                categorySlug: "general-knowledge",
+                gameType: "mcq",
+                difficulty: "medium",
+                questionEn: `General Question ${i + 1}`,
+                questionKm: `សំណួរទូទៅ ${i + 1}`,
+            }));
+
+            const allQuestions = [...signQuestions, ...cat2Questions, ...cat3Questions, ...cat4Questions];
+
+            const selected = selectRandomQuestions({
+                questions: allQuestions,
+                questionCount: 10,
+                categoryIds: [1, 2, 3, 4],
+                gameMode: "mixed-practice",
+            });
+
+            expect(selected).toHaveLength(10);
+
+            // 70% of 10 should be sign questions (7)
+            const signCount = selected.filter(
+                q => q.categorySlug === "road-signs" || q.gameType === "image_pick"
+            ).length;
+            expect(signCount).toBe(7);
+
+            // 30% should be other categories (3)
+            const otherCount = selected.filter(
+                q => q.categorySlug !== "road-signs" && q.gameType !== "image_pick"
+            ).length;
+            expect(otherCount).toBe(3);
+
+            // Other questions must belong to at most 2 distinct category IDs
+            const otherCategoryIds = selected
+                .filter(q => q.categorySlug !== "road-signs" && q.gameType !== "image_pick")
+                .map(q => q.categoryId);
+            const uniqueOtherCats = new Set(otherCategoryIds);
+            expect(uniqueOtherCats.size).toBeLessThanOrEqual(2);
+        });
     });
 
     describe("selectBalancedQuestions", () => {
@@ -224,10 +293,9 @@ describe("Question Selector", () => {
 
             const score = calculateUniquenessScore(set1, set2);
 
-            // 5 questions overlap, 15 are different
-            // Score = (15 / 20) * 100 = 75%
-            expect(score).toBeGreaterThan(70);
-            expect(score).toBeLessThan(80);
+            // 5 questions overlap, 10 are different (5 unique to set1, 5 unique to set2)
+            // Score = (10 / 20) * 100 = 50%
+            expect(score).toBe(50);
         });
 
         it("should handle empty sets", () => {

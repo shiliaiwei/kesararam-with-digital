@@ -22,6 +22,7 @@ interface SelectionOptions {
     categoryIds: number[];
     userId?: number;
     sessionTime?: number;
+    gameMode?: string;
 }
 
 /**
@@ -158,7 +159,7 @@ function distributeAcrossCategories(
  * - No predictable patterns
  */
 export function selectRandomQuestions(options: SelectionOptions): QuestionCandidate[] {
-    const { questions, questionCount, categoryIds } = options;
+    const { questions, questionCount, categoryIds, gameMode } = options;
 
     if (questions.length === 0) {
         return [];
@@ -167,6 +168,47 @@ export function selectRandomQuestions(options: SelectionOptions): QuestionCandid
     if (questions.length <= questionCount) {
         // Not enough questions, return all shuffled
         return shuffleArray(questions);
+    }
+
+    // Special logic for Mixed Practice
+    if (gameMode === "mixed-practice") {
+        const signQuestions = questions.filter(
+            (q) => q.categorySlug === "road-signs" || q.gameType === "image_pick"
+        );
+        const otherQuestions = questions.filter(
+            (q) => q.categorySlug !== "road-signs" && q.gameType !== "image_pick"
+        );
+
+        const signTarget = Math.round(questionCount * 0.7);
+        const otherTarget = questionCount - signTarget;
+
+        const selectedSigns = shuffleArray(signQuestions).slice(0, signTarget);
+
+        let selectedOthers: QuestionCandidate[] = [];
+        if (otherQuestions.length > 0 && otherTarget > 0) {
+            const distinctCatIds = Array.from(new Set(otherQuestions.map((q) => q.categoryId)));
+            const shuffledCats = shuffleArray(distinctCatIds);
+            
+            // "random one or two base on total question"
+            // if otherTarget <= 3, pick 1 category, else pick 2 (or 1 if only 1 is available)
+            const numCatsToPick = otherTarget <= 3 ? 1 : Math.min(2, shuffledCats.length);
+            const pickedCatIds = shuffledCats.slice(0, numCatsToPick);
+
+            const filteredOthers = otherQuestions.filter((q) => pickedCatIds.includes(q.categoryId));
+            selectedOthers = shuffleArray(filteredOthers).slice(0, otherTarget);
+        }
+
+        const combined = [...selectedSigns, ...selectedOthers];
+
+        // Backfill if needed
+        if (combined.length < questionCount) {
+            const usedIds = new Set(combined.map((q) => q.id));
+            const remaining = questions.filter((q) => !usedIds.has(q.id));
+            const extra = shuffleArray(remaining).slice(0, questionCount - combined.length);
+            combined.push(...extra);
+        }
+
+        return shuffleArray(combined);
     }
 
     // Distribute across categories for variety

@@ -135,9 +135,11 @@ export async function POST(req: NextRequest) {
       audioUrlKm: questions.audioUrlKm,
       difficulty: questions.difficulty,
       categoryId: topics.categoryId,
+      categorySlug: categories.slug,
     })
     .from(questions)
     .innerJoin(topics, eq(questions.topicId, topics.id))
+    .innerJoin(categories, eq(topics.categoryId, categories.id))
     .where(
       and(
         inArray(questions.status, ["approved", "draft", "published"]),
@@ -177,6 +179,7 @@ export async function POST(req: NextRequest) {
       hasImage: stats.hasImage,
       hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
     });
+    (q as any).gameType = gt;
     return allowedTypes.includes(gt);
   });
 
@@ -195,6 +198,7 @@ export async function POST(req: NextRequest) {
     categoryIds,
     userId: user.id,
     sessionTime: Date.now(),
+    gameMode: gameType,
   });
 
   const questionIds = selectedQuestions.map((q) => q.id);

@@ -119,6 +119,7 @@ export async function POST(req: NextRequest) {
         hasImage: stats.hasImage,
         hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
       });
+      (q as any).gameType = gt;
       return allowedTypes.includes(gt);
     });
   }
@@ -137,6 +138,7 @@ export async function POST(req: NextRequest) {
     categoryIds,
     userId: user?.id,
     sessionTime: Date.now(),
+    gameMode,
   });
 
   // Fetch answers for each question
