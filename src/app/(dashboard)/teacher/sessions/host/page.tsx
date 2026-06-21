@@ -1006,7 +1006,6 @@ export default function HostPage() {
     "survival-quiz",
     "zen-review",
     "final-practice",
-    "mixed-practice",
   ]);
 
   const GAME_MODES = Object.entries(GAME_MODE_CONFIG)
@@ -1572,7 +1571,8 @@ export default function HostPage() {
                               "quick-quiz": "bolt",
                               "speed-round": "rocket",
                               "sign-challenge": "signpost",
-                              "mixed-practice": "swords"
+                              "mixed-practice": "swords",
+                              "tick-sign": "task_alt"
                             }[selectedMode] || "sports_esports"
                           }
                         </span>

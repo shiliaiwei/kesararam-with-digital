@@ -173,10 +173,10 @@ export function selectRandomQuestions(options: SelectionOptions): QuestionCandid
     // Special logic for Mixed Practice
     if (gameMode === "mixed-practice") {
         const signQuestions = questions.filter(
-            (q) => q.categorySlug === "road-signs" || q.gameType === "image_pick"
+            (q) => q.categorySlug === "road-sign" || q.categorySlug === "road-signs" || q.gameType === "image_pick"
         );
         const otherQuestions = questions.filter(
-            (q) => q.categorySlug !== "road-signs" && q.gameType !== "image_pick"
+            (q) => q.categorySlug !== "road-sign" && q.categorySlug !== "road-signs" && q.gameType !== "image_pick"
         );
 
         const signTarget = Math.round(questionCount * 0.7);
