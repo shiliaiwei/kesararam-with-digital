@@ -218,19 +218,19 @@ function flattenRoutes(group: DomainGroup) {
   return rows;
 }
 
-const ACCENT_GOLD = "#ffd700";
-const ACCENT_CYAN = "#06b6d4";
+const ACCENT_GOLD = "#eab308";
+const ACCENT_CYAN = "#3b82f6";
 
 /* Status Badge Component */
 function Tag({ kind, kh }: { kind: "live" | "dynamic" | "auth"; kh: boolean }) {
   const map = {
-    live: { t: kh ? "ដំណើរការ" : "LIVE", c: "border-emerald-500 text-emerald-400 bg-emerald-950/20" },
-    dynamic: { t: kh ? "ថាមវន្ត" : "DYNAMIC", c: "border-cyan-500 text-cyan-400 bg-cyan-950/20" },
-    auth: { t: kh ? "ត្រូវចូល" : "AUTH", c: "border-amber-500 text-amber-400 bg-amber-950/20" },
+    live: { t: kh ? "ដំណើរការ" : "LIVE", c: "border-emerald-600 text-emerald-700 bg-emerald-50" },
+    dynamic: { t: kh ? "ថាមវន្ត" : "DYNAMIC", c: "border-cyan-600 text-cyan-700 bg-cyan-50" },
+    auth: { t: kh ? "ត្រូវចូល" : "AUTH", c: "border-amber-600 text-amber-700 bg-amber-50" },
   } as const;
   const { t, c } = map[kind];
   return (
-    <span className={`text-[9px] font-black uppercase tracking-widest border px-1.5 py-0.5 font-mono ${c}`}>
+    <span className={`text-[9px] font-black uppercase tracking-widest border-2 border-black px-1.5 py-0.5 font-mono ${c}`}>
       {t}
     </span>
   );
@@ -255,25 +255,25 @@ function TreeRow({
   const isOpen = !!openMap[node.path];
 
   const header = (
-    <div className="flex items-center gap-3 px-4 py-3 flex-wrap bg-zinc-900/40 hover:bg-zinc-900 border border-zinc-800 transition-colors">
+    <div className="flex items-center gap-3 px-4 py-3 flex-wrap bg-white hover:bg-zinc-50 border-2 border-black transition-all shadow-[3px_3px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5">
       {hasChildren && (
         <span
-          className="inline-block text-zinc-500 transition-transform duration-300 select-none font-bold"
+          className="inline-block text-black transition-transform duration-300 select-none font-bold"
           style={{ transform: isOpen ? "rotate(90deg)" : "rotate(0deg)" }}
           aria-hidden
         >
           ▸
         </span>
       )}
-      <span className="text-sm sm:text-base font-black uppercase tracking-wider text-zinc-100">{label}</span>
-      <code className="text-xs font-mono text-zinc-500 bg-zinc-950/40 px-1 py-0.5 border border-zinc-800/40">{node.path}</code>
+      <span className="text-sm sm:text-base font-black uppercase tracking-wider text-black">{label}</span>
+      <code className="text-xs font-mono text-zinc-650 bg-zinc-100 px-1.5 py-0.5 border border-zinc-300">{node.path}</code>
       <div className="flex gap-1.5 flex-wrap">
         {node.live && <Tag kind="live" kh={kh} />}
         {node.dynamic && <Tag kind="dynamic" kh={kh} />}
         {node.auth && <Tag kind="auth" kh={kh} />}
       </div>
       {node.priority !== undefined && (
-        <span className="text-[10px] font-mono text-zinc-500 ml-auto">
+        <span className="text-[10px] font-mono text-zinc-700 ml-auto font-bold uppercase">
           {kh ? "អាទិភាព" : "prio"} {node.priority.toFixed(1)}
         </span>
       )}
@@ -304,21 +304,21 @@ function TreeRow({
         >
           <div className="overflow-hidden">
             <div
-              className="ml-5 pl-4 pb-2 mt-1 border-l-2 border-dashed border-zinc-800"
+              className="ml-5 pl-4 pb-2 mt-1 border-l-2 border-dashed border-black"
             >
               {node.children!.map((c, ci) => {
                 const cLabel = kh ? c.label.kh : c.label.en;
                 const inner = (
                   <div
-                    className="flex items-center gap-3 py-2 px-3 bg-zinc-950/20 border border-zinc-900 hover:bg-zinc-900/60 transition-colors flex-wrap"
+                    className="flex items-center gap-3 py-2 px-3 bg-white border-2 border-black hover:bg-zinc-50 transition-all shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 flex-wrap"
                     style={{
                       animation: isOpen ? `kwdSlideIn 0.3s ease both` : undefined,
                       animationDelay: `${ci * 35}ms`,
                     }}
                   >
-                    <span className="text-zinc-600 font-mono">└─</span>
-                    <span className="text-xs sm:text-sm font-bold text-zinc-300">{cLabel}</span>
-                    <code className="text-[10px] sm:text-xs font-mono text-zinc-500">{c.path}</code>
+                    <span className="text-zinc-400 font-mono">└─</span>
+                    <span className="text-xs sm:text-sm font-bold text-zinc-800">{cLabel}</span>
+                    <code className="text-[10px] sm:text-xs font-mono text-zinc-650 bg-zinc-100 px-1 py-0.5 border border-zinc-300">{c.path}</code>
                     {c.live && <Tag kind="live" kh={kh} />}
                     {c.dynamic && <Tag kind="dynamic" kh={kh} />}
                     {c.auth && <Tag kind="auth" kh={kh} />}
@@ -366,37 +366,37 @@ function TreeView({
 function TableView({ group, kh }: { group: DomainGroup; kh: boolean }) {
   const rows = flattenRoutes(group);
   return (
-    <div className="border-2 border-zinc-800 overflow-x-auto bg-zinc-950 shadow-[4px_4px_0_rgba(6,182,212,0.15)] rounded-none">
+    <div className="border-2 border-black overflow-x-auto bg-white shadow-[4px_4px_0_#000] rounded-none">
       <table className="w-full border-collapse text-left text-xs font-mono">
         <thead>
-          <tr className="border-b-2 border-zinc-800 bg-zinc-900/60">
-            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest text-cyan-400">{kh ? "ទំព័រ" : "Page"}</th>
-            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest text-cyan-400">{kh ? "ផ្លូវ (URL)" : "Path"}</th>
-            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest hidden sm:table-cell text-cyan-400">{kh ? "កម្រិត" : "Level"}</th>
-            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest text-cyan-400">{kh ? "ស្ថានភាព" : "Status"}</th>
-            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest hidden md:table-cell text-cyan-400">{kh ? "អាទិភាព" : "Priority"}</th>
+          <tr className="border-b-2 border-black bg-zinc-50">
+            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest text-black">{kh ? "ទំព័រ" : "Page"}</th>
+            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest text-black">{kh ? "ផ្លូវ (URL)" : "Path"}</th>
+            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest hidden sm:table-cell text-black">{kh ? "កម្រិត" : "Level"}</th>
+            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest text-black">{kh ? "ស្ថានភាព" : "Status"}</th>
+            <th className="px-4 py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest hidden md:table-cell text-black">{kh ? "អាទិភាព" : "Priority"}</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-zinc-900">
+        <tbody className="divide-y-2 divide-black">
           {rows.map(({ node, depth }, i) => {
             const label = kh ? node.label.kh : node.label.en;
             return (
               <tr
                 key={node.path}
-                className="hover:bg-zinc-900/40 transition-colors"
-                style={depth > 0 ? { borderLeft: `3px solid ${ACCENT_GOLD}` } : undefined}
+                className="hover:bg-zinc-50 transition-colors"
+                style={depth > 0 ? { borderLeft: `4px solid ${ACCENT_GOLD}` } : undefined}
               >
                 <td className="px-4 py-3 align-middle font-sans">
                   <span
-                    className={`text-zinc-200 ${depth > 0 ? "text-xs font-medium" : "text-sm font-black"}`}
+                    className={`text-zinc-800 ${depth > 0 ? "text-xs font-medium" : "text-sm font-black"}`}
                     style={{ paddingLeft: depth * 14 }}
                   >
-                    {depth > 0 && <span className="text-zinc-600 mr-2">└─</span>}
+                    {depth > 0 && <span className="text-zinc-400 mr-2">└─</span>}
                     {label}
                   </span>
                 </td>
-                <td className="px-4 py-3 align-middle"><code className="text-[11px] font-mono text-zinc-400">{node.path}</code></td>
-                <td className="px-4 py-3 align-middle hidden sm:table-cell"><span className="text-xs font-mono text-zinc-500">{depth === 0 ? (kh ? "ចម្បង" : "Main") : (kh ? "រង" : "Sub")}</span></td>
+                <td className="px-4 py-3 align-middle"><code className="text-[11px] font-mono text-zinc-700 bg-zinc-100 px-1 py-0.5 border border-zinc-200">{node.path}</code></td>
+                <td className="px-4 py-3 align-middle hidden sm:table-cell"><span className="text-xs font-mono text-zinc-600">{depth === 0 ? (kh ? "ចម្បង" : "Main") : (kh ? "រង" : "Sub")}</span></td>
                 <td className="px-4 py-3 align-middle">
                   <div className="flex gap-1.5 flex-wrap">
                     {node.live && <Tag kind="live" kh={kh} />}
@@ -404,7 +404,7 @@ function TableView({ group, kh }: { group: DomainGroup; kh: boolean }) {
                     {node.auth && <Tag kind="auth" kh={kh} />}
                   </div>
                 </td>
-                <td className="px-4 py-3 align-middle hidden md:table-cell"><span className="text-xs font-mono text-zinc-400">{node.priority !== undefined ? node.priority.toFixed(1) : "—"}</span></td>
+                <td className="px-4 py-3 align-middle hidden md:table-cell"><span className="text-xs font-mono text-zinc-700">{node.priority !== undefined ? node.priority.toFixed(1) : "—"}</span></td>
               </tr>
             );
           })}
@@ -419,18 +419,18 @@ function TableView({ group, kh }: { group: DomainGroup; kh: boolean }) {
    ─────────────────────────────────────────────────────────── */
 function FlowView({ group, kh }: { group: DomainGroup; kh: boolean }) {
   return (
-    <div className="border-2 border-zinc-800 p-6 overflow-x-auto bg-zinc-950 shadow-[4px_4px_0_rgba(6,182,212,0.15)] rounded-none">
+    <div className="border-2 border-black p-6 overflow-x-auto bg-white shadow-[4px_4px_0_#000] rounded-none">
       <div className="flex flex-col items-center min-w-[760px] py-6">
         
         {/* Domain Root Card */}
-        <div className="inline-flex flex-col items-center border-2 border-cyan-500 bg-zinc-900 px-6 py-3 text-center shadow-[4px_4px_0_#06b6d4]">
-          <span className="text-xs font-black uppercase tracking-widest text-cyan-400 font-mono">{kh ? "ប្រព័ន្ធដែន" : "Domain Root"}</span>
-          <span className="text-sm font-black text-white mt-1">{kh ? group.label.kh : group.label.en}</span>
-          <code className="text-[10px] font-mono text-zinc-500 mt-1 bg-zinc-950 px-2 py-0.5 border border-zinc-800">{group.domain}</code>
+        <div className="inline-flex flex-col items-center border-2 border-black bg-yellow-400 px-6 py-3 text-center shadow-[4px_4px_0_#000]">
+          <span className="text-xs font-black uppercase tracking-widest text-black font-mono">{kh ? "ប្រព័ន្ធដែន" : "Domain Root"}</span>
+          <span className="text-sm font-black text-black mt-1">{kh ? group.label.kh : group.label.en}</span>
+          <code className="text-[10px] font-mono text-zinc-700 mt-1 bg-zinc-100 px-2 py-0.5 border border-black">{group.domain}</code>
         </div>
 
         {/* Stem down from root */}
-        <div className="w-[3px] h-8 bg-cyan-500" />
+        <div className="w-[3px] h-8 bg-black" />
         
         {/* Horizontal branch connector spanning children */}
         <div className="w-full flex items-start justify-center gap-6 flex-wrap">
@@ -439,22 +439,22 @@ function FlowView({ group, kh }: { group: DomainGroup; kh: boolean }) {
             return (
               <div key={r.path} className="flex flex-col items-center min-w-[160px] mt-2">
                 {/* Branch vertical line */}
-                <div className="w-[2.5px] h-4 bg-zinc-700" />
+                <div className="w-[2.5px] h-4 bg-black" />
                 
                 {/* Node Card */}
-                <div className="border-2 border-zinc-700 bg-zinc-900 px-4 py-2.5 text-center w-full shadow-[3px_3px_0_rgba(255,255,255,0.05)]">
-                  <span className="text-xs font-black text-zinc-100 uppercase tracking-wide block">{label}</span>
-                  <code className="text-[9px] font-mono text-zinc-500 block mt-1 truncate">{r.path}</code>
+                <div className="border-2 border-black bg-white px-4 py-2.5 text-center w-full shadow-[3px_3px_0_#000]">
+                  <span className="text-xs font-black text-black uppercase tracking-wide block">{label}</span>
+                  <code className="text-[9px] font-mono text-zinc-650 block mt-1 truncate">{r.path}</code>
                 </div>
 
                 {r.children && r.children.length > 0 && (
                   <>
-                    <div className="w-[2.5px] h-4 bg-zinc-700" />
-                    <div className="flex flex-col gap-2 pl-3 border-l-2 border-dashed border-zinc-800">
+                    <div className="w-[2.5px] h-4 bg-black" />
+                    <div className="flex flex-col gap-2 pl-3 border-l-2 border-dashed border-black">
                       {r.children.map((c) => (
-                        <div key={c.path} className="border border-zinc-800 bg-zinc-950/40 px-3 py-1.5 text-left w-36 shadow-[1.5px_1.5px_0_#000]">
-                          <span className="text-[10px] font-bold text-zinc-400 block line-clamp-1">{kh ? c.label.kh : c.label.en}</span>
-                          <code className="text-[8px] font-mono text-zinc-600 truncate block mt-0.5">{c.path}</code>
+                        <div key={c.path} className="border-2 border-black bg-zinc-50 px-3 py-1.5 text-left w-36 shadow-[2px_2px_0_#000]">
+                          <span className="text-[10px] font-bold text-zinc-800 block line-clamp-1">{kh ? c.label.kh : c.label.en}</span>
+                          <code className="text-[8px] font-mono text-zinc-500 truncate block mt-0.5">{c.path}</code>
                         </div>
                       ))}
                     </div>
@@ -521,19 +521,18 @@ export default function SitemapPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 hero-dot-bg pb-24" style={khFont}>
+    <div className="min-h-screen bg-white text-black pb-24" style={khFont}>
       {/* CSS Animation keyframe key */}
       <style>{`@keyframes kwdSlideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}`}</style>
 
       {/* Header */}
-      <header className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-40">
+      <header className="border-b-4 border-black bg-white sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-[10px] font-mono font-black uppercase text-yellow-500 tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
+            <div className="inline-block bg-yellow-400 text-black border-2 border-black px-2 py-0.5 text-[10px] font-mono font-black uppercase tracking-wider">
               HUD CONTROL CENTER
             </div>
-            <h1 className="text-2xl font-black uppercase tracking-tight text-white mt-1">
+            <h1 className="text-2xl font-black uppercase tracking-tight text-black mt-2">
               {t("Site Architecture", "ផែនទីស្ថាបត្យកម្មគេហទំព័រ")}
             </h1>
           </div>
@@ -541,7 +540,7 @@ export default function SitemapPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setLang(kh ? "en" : "kh")}
-              className="text-xs font-black uppercase tracking-widest border-2 border-zinc-700 hover:border-white px-3 py-1.5 transition-colors cursor-pointer bg-zinc-900"
+              className="text-xs font-black uppercase tracking-widest border-2 border-black bg-white hover:bg-zinc-100 px-3 py-1.5 transition-colors cursor-pointer text-black shadow-[2px_2px_0_#000]"
             >
               {kh ? "EN" : "ខ្មែរ"}
             </button>
@@ -550,7 +549,6 @@ export default function SitemapPage() {
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-8 space-y-8">
-        
         
         {/* HUD statistics panels */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
@@ -561,9 +559,9 @@ export default function SitemapPage() {
             { v: stats.live, l: t("Live Status", "ដំណើរការ") },
             { v: stats.dynamic, l: t("Dynamic URL", "ថាមវន្ត") },
           ].map((s, i) => (
-            <div key={i} className="border-2 border-zinc-800 bg-zinc-900/30 p-4 shadow-[2px_2px_0_rgba(6,182,212,0.1)]" style={{ borderTop: `4px solid ${ACCENT_CYAN}` }}>
-              <div className="text-3xl font-black font-mono leading-none text-white">{String(s.v).padStart(2, "0")}</div>
-              <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mt-2 font-mono">{s.l}</div>
+            <div key={i} className="border-2 border-black bg-white p-4 shadow-[4px_4px_0_#000]">
+              <div className="text-3xl font-black font-mono leading-none text-black">{String(s.v).padStart(2, "0")}</div>
+              <div className="text-[10px] font-black uppercase tracking-widest text-zinc-700 mt-2 font-mono">{s.l}</div>
             </div>
           ))}
         </div>
@@ -578,8 +576,8 @@ export default function SitemapPage() {
                 onClick={() => selectDomain(g.id)}
                 className={`text-[11px] sm:text-xs font-black uppercase tracking-widest border-2 border-black px-4 py-2 transition-all cursor-pointer ${
                   active 
-                    ? "bg-cyan-500 text-black border-cyan-500 shadow-[2px_2px_0_rgba(255,255,255,0.15)]" 
-                    : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                    ? "bg-cyan-500 text-black border-cyan-500 shadow-[2px_2px_0_#000]" 
+                    : "bg-white text-zinc-600 hover:border-black hover:text-black hover:shadow-[2px_2px_0_#000]"
                 }`}
               >
                 {t(g.label.en, g.label.kh)}
@@ -589,16 +587,16 @@ export default function SitemapPage() {
         </div>
 
         {/* domain description */}
-        <div className="border-2 border-zinc-800 p-4 bg-zinc-900/20 backdrop-blur-xs flex items-center justify-between" style={{ borderLeft: `5px solid ${ACCENT_GOLD}` }}>
+        <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000]" style={{ borderLeft: `8px solid ${ACCENT_GOLD}` }}>
           <div>
             <code className="text-xs font-mono text-zinc-500 block uppercase tracking-wider">{group.domain}</code>
-            <p className="text-sm font-medium text-zinc-300 mt-1">{t(group.desc.en, group.desc.kh)}</p>
+            <p className="text-sm font-medium text-zinc-700 mt-1">{t(group.desc.en, group.desc.kh)}</p>
           </div>
         </div>
 
         {/* controls: view switch + expand/collapse */}
-        <div className="flex items-center justify-between gap-4 flex-wrap pt-2 border-t border-zinc-800/80">
-          <div className="flex items-center border-2 border-black bg-zinc-900">
+        <div className="flex items-center justify-between gap-4 flex-wrap pt-2 border-t-2 border-zinc-200">
+          <div className="flex items-center border-2 border-black bg-white">
             {VIEWS.map((v, i) => {
               const active = view === v.id;
               const Icon = v.icon;
@@ -610,8 +608,8 @@ export default function SitemapPage() {
                     i > 0 ? "border-l-2 border-black" : ""
                   } ${
                     active 
-                      ? "bg-zinc-800 text-white border-y-0" 
-                      : "text-zinc-500 hover:text-zinc-300"
+                      ? "bg-zinc-100 text-black border-y-0" 
+                      : "text-zinc-500 hover:text-zinc-900"
                   }`}
                 >
                   <Icon size={12} />
@@ -625,13 +623,13 @@ export default function SitemapPage() {
             <div className="flex items-center gap-2">
               <button 
                 onClick={expandAll} 
-                className="text-[10px] font-black uppercase tracking-widest border-2 border-black bg-zinc-900 text-zinc-400 hover:text-white px-3 py-1.5 transition-colors cursor-pointer"
+                className="text-[10px] font-black uppercase tracking-widest border-2 border-black bg-white text-zinc-600 hover:text-black px-3 py-1.5 transition-colors cursor-pointer shadow-[2px_2px_0_#000]"
               >
                 {t("Expand All", "បើកទាំងអស់")}
               </button>
               <button 
                 onClick={collapseAll} 
-                className="text-[10px] font-black uppercase tracking-widest border-2 border-black bg-zinc-900 text-zinc-400 hover:text-white px-3 py-1.5 transition-colors cursor-pointer"
+                className="text-[10px] font-black uppercase tracking-widest border-2 border-black bg-white text-zinc-600 hover:text-black px-3 py-1.5 transition-colors cursor-pointer shadow-[2px_2px_0_#000]"
               >
                 {t("Collapse", "បិទទាំងអស់")}
               </button>
@@ -648,12 +646,12 @@ export default function SitemapPage() {
       </main>
 
       {/* footer */}
-      <footer className="border-t border-zinc-900 mt-20 py-8 bg-zinc-950">
+      <footer className="border-t-2 border-zinc-200 mt-20 py-8 bg-zinc-50 text-zinc-500">
         <div className="max-w-5xl mx-auto px-6 flex items-center justify-between gap-4 flex-wrap">
           <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-600">
             {t("Kesararam With Digital · Sitemap Architecture", "Kesararam With Digital · ផែនទីស្ថាបត្យកម្មគេហទំព័រ")}
           </span>
-          <Link href="/" className="text-xs font-black uppercase tracking-widest border-2 border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-white px-4 py-2 transition-all cursor-pointer">
+          <Link href="/" className="text-xs font-black uppercase tracking-widest border-2 border-black bg-white text-zinc-800 hover:bg-zinc-50 px-4 py-2 transition-all cursor-pointer shadow-[2px_2px_0_#000]">
             {t("Back Home", "ត្រឡប់ទៅដើម")}
           </Link>
         </div>
