@@ -6,7 +6,7 @@ import { useLang } from "@/context/lang-context";
 import { 
   BarChart2, BookOpen, Building2, Cpu, ExternalLink, Globe, 
   Landmark, Layers, LayoutGrid, Network, ShieldCheck, Smartphone, 
-  Type, Zap, ChevronRight, LayoutList, Eye, EyeOff 
+  Type, Zap, ChevronRight, LayoutList
 } from "lucide-react";
 import { SiGoogleplay } from "react-icons/si";
 
@@ -187,95 +187,7 @@ const DASHBOARD: DomainGroup[] = [
       { path: "/teacher/profile", label: { en: "Teacher Profile", kh: "ទម្រង់គ្រូ" }, live: true, auth: true },
     ],
   },
-  {
-    id: "staff",
-    domain: "/staff",
-    label: { en: "Staff Panel", kh: "ផ្ទាំងបុគ្គលិក" },
-    desc: {
-      en: "Content authoring — topics, learning resources, submissions",
-      kh: "បង្កើតមាតិកា — ប្រធានបទ ធនធានរៀន ការដាក់ស្នើ",
-    },
-    routes: [
-      { path: "/staff", label: { en: "Staff Home", kh: "ទំព័របុគ្គលិក" }, live: true, auth: true },
-      {
-        path: "/staff/content",
-        label: { en: "Content", kh: "មាតិកា" },
-        live: true,
-        auth: true,
-        children: [
-          { path: "/staff/content/create", label: { en: "Create Content", kh: "បង្កើតមាតិកា" }, live: true, auth: true },
-          { path: "/staff/content/[categorySlug]/[id]", label: { en: "Edit Item (dynamic)", kh: "កែមាតិកា (ថាមវន្ត)" }, dynamic: true },
-          { path: "/staff/content/road-sign", label: { en: "Road Signs", kh: "សញ្ញាចរាចរណ៍" }, live: true, auth: true },
-          { path: "/staff/content/priority", label: { en: "Priority", kh: "អាទិភាព" }, live: true, auth: true },
-          { path: "/staff/content/emergency", label: { en: "Emergency", kh: "អាសន្ន" }, live: true, auth: true },
-        ],
-      },
-      {
-        path: "/staff/topics",
-        label: { en: "Topics", kh: "ប្រធានបទ" },
-        live: true,
-        auth: true,
-        children: [
-          { path: "/staff/topics/create", label: { en: "Create Topic", kh: "បង្កើតប្រធានបទ" }, live: true, auth: true },
-        ],
-      },
-      {
-        path: "/staff/learning-resources",
-        label: { en: "Learning Resources", kh: "ធនធានរៀន" },
-        live: true,
-        auth: true,
-        children: [
-          { path: "/staff/learning-resources/create", label: { en: "Create Resource", kh: "បង្កើតធនធាន" }, live: true, auth: true },
-        ],
-      },
-      { path: "/staff/classes", label: { en: "Classes", kh: "ថ្នាក់រៀន" }, live: true, auth: true },
-      { path: "/staff/submissions", label: { en: "Submissions", kh: "ការដាក់ស្នើ" }, live: true, auth: true },
-      { path: "/staff/media", label: { en: "Media", kh: "មេឌៀ" }, live: true, auth: true },
-      { path: "/staff/profile", label: { en: "Staff Profile", kh: "ទម្រង់បុគ្គលិក" }, live: true, auth: true },
-    ],
-  },
-  {
-    id: "admin",
-    domain: "/admin",
-    label: { en: "Admin Panel", kh: "ផ្ទាំងគ្រប់គ្រងប្រព័ន្ធ" },
-    desc: {
-      en: "System administration — content, users, media, logs, subscriptions",
-      kh: "គ្រប់គ្រងប្រព័ន្ធ — មាតិកា អ្នកប្រើ មេឌៀ កំណត់ត្រា ការជាវ",
-    },
-    routes: [
-      { path: "/admin", label: { en: "Admin Home", kh: "ទំព័រគ្រប់គ្រង" }, live: true, auth: true },
-      { path: "/admin/overview", label: { en: "Overview", kh: "ទិដ្ឋភាពទូទៅ" }, live: true, auth: true },
-      {
-        path: "/admin/content",
-        label: { en: "Content", kh: "មាតិកា" },
-        live: true,
-        auth: true,
-        children: [
-          { path: "/admin/content/road-sign", label: { en: "Road Signs", kh: "សញ្ញាចរាចរណ៍" }, live: true, auth: true },
-          { path: "/admin/content/road-traffic", label: { en: "Road Traffic", kh: "ចរាចរណ៍ផ្លូវ" }, live: true, auth: true },
-          { path: "/admin/content/priority", label: { en: "Priority", kh: "អាទិភាព" }, live: true, auth: true },
-          { path: "/admin/content/driving", label: { en: "Road Safety", kh: "សុវត្ថិភាពចរាចរណ៍" }, live: true, auth: true },
-          { path: "/admin/content/technical", label: { en: "Technical", kh: "បច្ចេកទេស" }, live: true, auth: true },
-          { path: "/admin/content/loading-people-goods", label: { en: "Loading People & Goods", kh: "ផ្ទុកមនុស្ស និងទំនិញ" }, live: true, auth: true },
-          { path: "/admin/content/general-knowledge", label: { en: "General Knowledge", kh: "ចំណេះដឹងទូទៅ" }, live: true, auth: true },
-          { path: "/admin/content/emergency", label: { en: "Emergency", kh: "អាសន្ន" }, live: true, auth: true },
-          { path: "/admin/content/questions", label: { en: "Questions", kh: "សំណួរ" }, live: true, auth: true },
-        ],
-      },
-      { path: "/admin/questions", label: { en: "Questions Bank", kh: "ឃ្លាំងសំណួរ" }, live: true, auth: true },
-      { path: "/admin/review", label: { en: "Review Queue", kh: "ជួរត្រួតពិនិត្យ" }, live: true, auth: true },
-      { path: "/admin/road-markings", label: { en: "Road Markings", kh: "សញ្ញាសម្គាល់ផ្លូវ" }, live: true, auth: true },
-      { path: "/admin/media", label: { en: "Media Library", kh: "បណ្ណាល័យមេឌៀ" }, live: true, auth: true },
-      { path: "/admin/users", label: { en: "Users", kh: "អ្នកប្រើប្រាស់" }, live: true, auth: true },
-      { path: "/admin/subscriptions", label: { en: "Subscriptions", kh: "ការជាវ" }, live: true, auth: true },
-      { path: "/admin/game-sessions", label: { en: "Game Sessions", kh: "សម័យហ្គេម" }, live: true, auth: true },
-      { path: "/admin/logs", label: { en: "Audit Logs", kh: "កំណត់ត្រាសវនកម្ម" }, live: true, auth: true },
-      { path: "/admin/profile", label: { en: "Admin Profile", kh: "ទម្រង់អ្នកគ្រប់គ្រង" }, live: true, auth: true },
-    ],
-  },
 ];
-
-const PUBLIC_HIDDEN_DOMAIN_IDS = ["admin", "staff"];
 
 /* ──────────────────────────────────────────────────────────
    STATS + HELPERS
@@ -569,13 +481,7 @@ export default function SitemapPage() {
   const [view, setView] = useState<ViewMode>("tree");
   const [activeDomain, setActiveDomain] = useState("public");
   
-  // Flag to toggle full platform structure (Admin + Staff areas)
-  const [showFullArchitecture, setShowFullArchitecture] = useState(false);
-
-  // Filter routes based on toggle
-  const currentDomains = [...SITEMAP, ...DASHBOARD].filter(
-    (g) => showFullArchitecture || !PUBLIC_HIDDEN_DOMAIN_IDS.includes(g.id)
-  );
+  const currentDomains = [...SITEMAP, ...DASHBOARD];
 
   // Expanded by default
   const initialOpen = (): Record<string, boolean> => {
@@ -645,49 +551,7 @@ export default function SitemapPage() {
 
       <main className="max-w-5xl mx-auto px-6 py-8 space-y-8">
         
-        {/* Toggle Panel for Full Architecture View */}
-        <div className="border-2 border-black dark:border-zinc-800 p-4 bg-zinc-900/60 backdrop-blur-xs flex flex-col md:flex-row items-center justify-between gap-4 shadow-[3px_3px_0_rgba(6,182,212,0.15)]">
-          <div className="flex items-start gap-3">
-            <span className="p-2 bg-zinc-800 border border-zinc-700 text-yellow-500 shrink-0 mt-0.5">
-              <Zap size={18} />
-            </span>
-            <div className="flex flex-col">
-              <span className="text-xs font-black uppercase font-mono tracking-wider text-zinc-300">
-                {t("Platform Architecture Visibility", "កម្រិតបង្ហាញស្ថាបត្យកម្មប្រព័ន្ធ")}
-              </span>
-              <span className="text-xs text-zinc-500 max-w-md mt-0.5 leading-relaxed">
-                {t(
-                  "By default, sitemap lists public user routes. Turn on visibility to inspect the complete platform hierarchy including Staff content boards and Admin management consoles.",
-                  "ផែនទីគេហទំព័របង្ហាញតែផ្លូវសាធារណៈ។ បើកការបង្ហាញនេះដើម្បីពិនិត្យមើលស្ថាបត្យកម្មប្រព័ន្ធទាំងមូល រួមទាំងផ្ទាំងការងារបុគ្គលិក និងអ្នកគ្រប់គ្រង។"
-                )}
-              </span>
-            </div>
-          </div>
-          
-          <button
-            onClick={() => {
-              const nextVal = !showFullArchitecture;
-              setShowFullArchitecture(nextVal);
-              // Recalculate domains list
-              const nextDomains = [...SITEMAP, ...DASHBOARD].filter(
-                (g) => nextVal || !PUBLIC_HIDDEN_DOMAIN_IDS.includes(g.id)
-              );
-              // Auto reset active domain if current is filtered
-              if (!nextDomains.some((d) => d.id === activeDomain)) {
-                setActiveDomain(nextDomains[0].id);
-              }
-            }}
-            className={`flex items-center gap-2 px-4 py-2 font-black uppercase text-xs border-2 border-black transition-all cursor-pointer ${
-              showFullArchitecture
-                ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000]"
-                : "bg-zinc-800 text-zinc-400 border-zinc-700"
-            }`}
-          >
-            {showFullArchitecture ? <Eye size={14} /> : <EyeOff size={14} />}
-            {showFullArchitecture ? t("Full Platform Enabled", "បានបើកស្ថាបត្យកម្មពេញ") : t("Show Full Platform", "បង្ហាញស្ថាបត្យកម្មពេញ")}
-          </button>
-        </div>
-
+        
         {/* HUD statistics panels */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
           {[
