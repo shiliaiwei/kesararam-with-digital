@@ -1,4 +1,4 @@
-export const SCORE_PLATE_STYLE_IDS = ["road", "official", "kitty", "ribbon"] as const;
+export const SCORE_PLATE_STYLE_IDS = ["road", "official", "kitty", "ribbon", "heritage", "eco", "cyber", "vintage"] as const;
 
 export type ScorePlateStyle = (typeof SCORE_PLATE_STYLE_IDS)[number];
 
@@ -42,6 +42,38 @@ export const SCORE_PLATE_STYLES: ReadonlyArray<{
     nameKh: "ផ្លាកខ្សែបូ",
     descriptionEn: "Artistic blue watercolor ribbon frame",
     descriptionKh: "ស៊ុមខ្សែបូពណ៌ខៀវបែបគំនូរទឹកពណ៌",
+    premium: true,
+  },
+  {
+    id: "heritage",
+    nameEn: "Angkor Heritage",
+    nameKh: "ផ្លាកបេតិកភណ្ឌអង្គរ",
+    descriptionEn: "Brushed gold plate with Angkor Wat silhouette",
+    descriptionKh: "ផ្លាកពណ៌មាសដុសខាត់ជាមួយរូបស្រមោលប្រាសាទអង្គរវត្ត",
+    premium: true,
+  },
+  {
+    id: "eco",
+    nameEn: "Eco-Green",
+    nameKh: "ផ្លាកបៃតងធម្មជាតិ",
+    descriptionEn: "Emerald green plate with leaf details",
+    descriptionKh: "ផ្លាកពណ៌បៃតងចាស់ជាមួយរូបស្លឹកឈើ",
+    premium: true,
+  },
+  {
+    id: "cyber",
+    nameEn: "Cyberpunk",
+    nameKh: "ផ្លាកបច្ចេកវិទ្យា",
+    descriptionEn: "Neon pink & cyan double glowing borders",
+    descriptionKh: "ផ្លាកបែបយុគសម័យថ្មី ជាមួយស៊ុមភ្លឺផ្កាឈូក និងខៀវ",
+    premium: true,
+  },
+  {
+    id: "vintage",
+    nameEn: "Vintage Classic",
+    nameKh: "ផ្លាកបុរាណ",
+    descriptionEn: "Matte black with cream pressed lettering",
+    descriptionKh: "ផ្លាកពណ៌ខ្មៅស្រអាប់ជាមួយអក្សរផុសពណ៌ក្រែម",
     premium: true,
   },
 ];

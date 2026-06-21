@@ -526,6 +526,536 @@ export function ScorePlate({
     );
   }
 
+  // --- Angkor Heritage Plate (Premium brushed gold plate with Angkor Wat silhouette, bronze borders & screws) ---
+  if (style === "heritage") {
+    const isMini = size === "xs";
+    const bronze = "#42310c"; // Deep bronze color
+    
+    const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
+    const valueFontSize = size === "xs" ? 13 : size === "sm" ? 17 : size === "md" ? 23 : 30;
+    const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9;
+
+    const pillW = size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6;
+    const pillH = size === "xs" ? 0.75 : size === "sm" ? 1.25 : size === "md" ? 1.75 : 2.25;
+    const pillY = size === "xs" ? 1.5 : size === "sm" ? 2.5 : size === "md" ? 3.5 : 4.5;
+    const pillX = size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10;
+
+    return (
+      <div
+        className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className} ${isMini ? "border-2" : "border-[3px]"}`}
+        style={{
+          ...shell,
+          background: "linear-gradient(135deg, #e8c86b 0%, #f7df94 50%, #c49928 100%)", // brushed gold
+          borderColor: bronze,
+          color: bronze,
+          borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+        }}
+      >
+        {/* Metal reflection sheen */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/20 pointer-events-none rounded-[inherit]" />
+        <div className="absolute inset-[0.5px] border border-white/30 pointer-events-none rounded-[inherit]" />
+
+        {/* Embossed inner border line */}
+        <div 
+          className="pointer-events-none absolute rounded-[inherit]" 
+          style={{
+            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
+            border: `${size === "xs" ? "1px" : "2px"} solid ${bronze}`,
+            opacity: 0.85,
+            boxShadow: "inset 1px 1px 0px rgba(255,255,255,0.4)"
+          }}
+        />
+
+        {/* Angkor Wat Silhouette Watermark (SVG) */}
+        <svg
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.14]"
+          style={{
+            width: size === "xs" ? 28 : size === "sm" ? 38 : size === "md" ? 52 : 68,
+            height: size === "xs" ? 14 : size === "sm" ? 19 : size === "md" ? 26 : 34,
+            transform: "translate(-50%, -60%)",
+          }}
+          viewBox="0 0 100 50"
+          fill={bronze}
+        >
+          {/* Detailed Angkor Wat silhouette */}
+          <path d="M 50 10 L 52 14 L 54 14 L 54 22 L 46 22 L 46 14 L 48 14 Z M 40 18 L 42 22 L 44 22 L 44 32 L 36 32 L 36 22 L 38 22 Z M 60 18 L 62 22 L 64 22 L 64 32 L 56 32 L 56 22 L 58 22 Z M 30 25 L 32 28 L 34 28 L 34 40 L 26 40 L 26 28 L 28 28 Z M 70 25 L 72 28 L 74 28 L 74 40 L 66 40 L 66 28 L 68 28 Z M 20 40 L 80 40 L 80 44 L 20 44 Z" />
+        </svg>
+
+        {/* Gold/Bronze mounting slots and screws */}
+        {[
+          { top: pillY, left: pillX },
+          { top: pillY, right: pillX },
+          { bottom: pillY, left: pillX },
+          { bottom: pillY, right: pillX },
+        ].map((pos, idx) => (
+          <span
+            key={idx}
+            className="absolute rounded-full pointer-events-none flex items-center justify-center"
+            style={{
+              width: pillW,
+              height: pillH,
+              backgroundColor: bronze,
+              ...pos,
+            }}
+          >
+            {/* Shiny gold/brass screw core */}
+            <span
+              className="bg-yellow-100 rounded-full border-[0.5px] border-amber-600 shadow-[inset_0.5px_0.5px_0_rgba(255,255,255,0.8)]"
+              style={{
+                width: "55%",
+                height: "55%",
+              }}
+            />
+          </span>
+        ))}
+
+        {/* Top Text (Khmer Province/Country) with stamped look */}
+        <span
+          className="absolute font-black leading-none text-center"
+          style={{
+            top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6,
+            fontSize: topFontSize,
+            color: bronze,
+            textShadow: "0.5px 0.5px 0px rgba(255, 255, 255, 0.45)",
+          }}
+        >
+          {kh}
+        </span>
+
+        {/* Middle Text (Score) with stamped look */}
+        <span
+          className="z-10 font-mono font-black leading-none tabular-nums"
+          style={{
+            fontSize: valueFontSize,
+            color: bronze,
+            transform: size === "xs" ? "translateY(-1.5px)" : size === "sm" ? "translateY(-2px)" : size === "md" ? "translateY(-2.5px)" : "translateY(-3.5px)",
+            textShadow: "0.5px 0.5px 0px rgba(255, 255, 255, 0.45)",
+          }}
+        >
+          <PlateValue value={value} />
+        </span>
+
+        {/* Bottom divider & English Province name */}
+        <div className="absolute left-0 right-0 flex flex-col items-center bottom-0">
+          <div className="w-full border-t opacity-25" style={{ borderColor: bronze }} />
+          <div
+            className="w-full flex items-center justify-center relative"
+            style={{
+              paddingTop: size === "xs" ? 1 : size === "sm" ? 2 : size === "md" ? 3 : 4,
+              paddingBottom: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4.5 : 6,
+            }}
+          >
+            <span
+              className="font-black leading-none tracking-[0.14em]"
+              style={{
+                fontSize: bottomFontSize,
+                color: bronze,
+                textShadow: "0.5px 0.5px 0px rgba(255, 255, 255, 0.45)",
+              }}
+            >
+              {en}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- Eco-Green Plate (Emerald green base with white double-border, leaf motifs and steel screws) ---
+  if (style === "eco") {
+    const isMini = size === "xs";
+    const darkGreen = "#064e3b";
+    const forestGreen = "#047857";
+    
+    const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
+    const valueFontSize = size === "xs" ? 13 : size === "sm" ? 17 : size === "md" ? 23 : 30;
+    const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9;
+
+    const pillW = size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6;
+    const pillH = size === "xs" ? 0.75 : size === "sm" ? 1.25 : size === "md" ? 1.75 : 2.25;
+    const pillY = size === "xs" ? 1.5 : size === "sm" ? 2.5 : size === "md" ? 3.5 : 4.5;
+    const pillX = size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10;
+
+    return (
+      <div
+        className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className} ${isMini ? "border-2" : "border-[3px]"}`}
+        style={{
+          ...shell,
+          backgroundColor: forestGreen,
+          borderColor: darkGreen,
+          color: "#ffffff",
+          borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+        }}
+      >
+        {/* Metal reflection sheen */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/15 pointer-events-none rounded-[inherit]" />
+        <div className="absolute inset-[0.5px] border border-white/20 pointer-events-none rounded-[inherit]" />
+
+        {/* Embossed white inner border line */}
+        <div 
+          className="pointer-events-none absolute rounded-[inherit]" 
+          style={{
+            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
+            border: `${size === "xs" ? "1px" : "2px"} solid #ffffff`,
+            opacity: 0.9,
+            boxShadow: `inset 1px 1px 0px ${darkGreen}`
+          }}
+        />
+
+        {/* Cute Leaf watermarks in corner (SVG) */}
+        <svg
+          className="absolute opacity-25 pointer-events-none"
+          style={{
+            width: size === "xs" ? 8 : size === "sm" ? 12 : size === "md" ? 16 : 20,
+            height: size === "xs" ? 8 : size === "sm" ? 12 : size === "md" ? 16 : 20,
+            bottom: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+            right: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+          }}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#ffffff"
+          strokeWidth="2"
+        >
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-9 8.2z" />
+          <path d="M9 22v-4h4" />
+        </svg>
+
+        {/* Steel mounting slots and screws */}
+        {[
+          { top: pillY, left: pillX },
+          { top: pillY, right: pillX },
+          { bottom: pillY, left: pillX },
+          { bottom: pillY, right: pillX },
+        ].map((pos, idx) => (
+          <span
+            key={idx}
+            className="absolute rounded-full pointer-events-none flex items-center justify-center"
+            style={{
+              width: pillW,
+              height: pillH,
+              backgroundColor: darkGreen,
+              ...pos,
+            }}
+          >
+            {/* Shiny zinc/steel screw core */}
+            <span
+              className="bg-zinc-300 rounded-full border-[0.5px] border-zinc-600 shadow-[inset_0.5px_0.5px_0_rgba(255,255,255,0.8)]"
+              style={{
+                width: "55%",
+                height: "55%",
+              }}
+            />
+          </span>
+        ))}
+
+        {/* Top Text (Khmer Province/Country) */}
+        <span
+          className="absolute font-black leading-none text-center"
+          style={{
+            top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6,
+            fontSize: topFontSize,
+            color: "#ffffff",
+            textShadow: `0.5px 0.5px 0px ${darkGreen}`,
+          }}
+        >
+          {kh}
+        </span>
+
+        {/* Middle Text (Score) */}
+        <span
+          className="z-10 font-mono font-black leading-none tabular-nums"
+          style={{
+            fontSize: valueFontSize,
+            color: "#ffffff",
+            transform: size === "xs" ? "translateY(-1.5px)" : size === "sm" ? "translateY(-2px)" : size === "md" ? "translateY(-2.5px)" : "translateY(-3.5px)",
+            textShadow: `1px 1px 0px ${darkGreen}`,
+          }}
+        >
+          <PlateValue value={value} />
+        </span>
+
+        {/* Bottom divider & English Province name */}
+        <div className="absolute left-0 right-0 flex flex-col items-center bottom-0">
+          <div className="w-full border-t opacity-30 border-[#ffffff]" />
+          <div
+            className="w-full flex items-center justify-center relative"
+            style={{
+              paddingTop: size === "xs" ? 1 : size === "sm" ? 2 : size === "md" ? 3 : 4,
+              paddingBottom: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4.5 : 6,
+            }}
+          >
+            <span
+              className="font-black leading-none tracking-[0.14em]"
+              style={{
+                fontSize: bottomFontSize,
+                color: "#ffffff",
+                textShadow: `0.5px 0.5px 0px ${darkGreen}`,
+              }}
+            >
+              {en}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- Cyberpunk Plate (Dark matte charcoal base, neon pink and cyan double borders and screws) ---
+  if (style === "cyber") {
+    const isMini = size === "xs";
+    const neonPink = "#ec4899";
+    const neonCyan = "#06b6d4";
+    
+    const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
+    const valueFontSize = size === "xs" ? 13 : size === "sm" ? 17 : size === "md" ? 23 : 30;
+    const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9;
+
+    const pillW = size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6;
+    const pillH = size === "xs" ? 0.75 : size === "sm" ? 1.25 : size === "md" ? 1.75 : 2.25;
+    const pillY = size === "xs" ? 1.5 : size === "sm" ? 2.5 : size === "md" ? 3.5 : 4.5;
+    const pillX = size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10;
+
+    return (
+      <div
+        className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className} ${isMini ? "border-2" : "border-[3px]"}`}
+        style={{
+          ...shell,
+          backgroundColor: "#111827", // Matte black
+          borderColor: "#374151",
+          color: neonCyan,
+          borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+        }}
+      >
+        {/* Glow backdrop grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:10px_10px] pointer-events-none" />
+
+        {/* Double Neon Border (Pink outer, Cyan inner) */}
+        <div 
+          className="pointer-events-none absolute rounded-[inherit]" 
+          style={{
+            inset: size === "xs" ? "1px" : "2px",
+            border: `1.5px solid ${neonPink}`,
+            opacity: 0.8,
+            boxShadow: `0 0 4px ${neonPink}`,
+          }}
+        />
+        <div 
+          className="pointer-events-none absolute rounded-[inherit]" 
+          style={{
+            inset: size === "xs" ? "2.5px" : "4.5px",
+            border: `1px solid ${neonCyan}`,
+            opacity: 0.85,
+            boxShadow: `0 0 3px ${neonCyan}`,
+          }}
+        />
+
+        {/* Glowing corner brackets (SVGs or absolute shapes) */}
+        <div className="absolute top-[6px] left-[6px] w-[5px] h-[5px] border-t border-l border-white opacity-40 pointer-events-none" />
+        <div className="absolute top-[6px] right-[6px] w-[5px] h-[5px] border-t border-r border-white opacity-40 pointer-events-none" />
+
+        {/* Glowing neon screws */}
+        {[
+          { top: pillY, left: pillX },
+          { top: pillY, right: pillX },
+          { bottom: pillY, left: pillX },
+          { bottom: pillY, right: pillX },
+        ].map((pos, idx) => (
+          <span
+            key={idx}
+            className="absolute rounded-full pointer-events-none flex items-center justify-center"
+            style={{
+              width: pillW,
+              height: pillH,
+              backgroundColor: neonPink,
+              boxShadow: `0 0 3px ${neonPink}`,
+              ...pos,
+            }}
+          >
+            {/* Glowing cyan core */}
+            <span
+              className="bg-cyan-300 rounded-full"
+              style={{
+                width: "55%",
+                height: "55%",
+                boxShadow: `0 0 2px ${neonCyan}`,
+              }}
+            />
+          </span>
+        ))}
+
+        {/* Top Text (Khmer Province/Country) */}
+        <span
+          className="absolute font-black leading-none text-center"
+          style={{
+            top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6,
+            fontSize: topFontSize,
+            color: neonCyan,
+            textShadow: `0 0 3px ${neonCyan}`,
+          }}
+        >
+          {kh}
+        </span>
+
+        {/* Middle Text (Score) */}
+        <span
+          className="z-10 font-mono font-black leading-none tabular-nums"
+          style={{
+            fontSize: valueFontSize,
+            color: neonPink,
+            transform: size === "xs" ? "translateY(-1.5px)" : size === "sm" ? "translateY(-2px)" : size === "md" ? "translateY(-2.5px)" : "translateY(-3.5px)",
+            textShadow: `0 0 4px ${neonPink}`,
+          }}
+        >
+          <PlateValue value={value} />
+        </span>
+
+        {/* Bottom divider & English Province name */}
+        <div className="absolute left-0 right-0 flex flex-col items-center bottom-0">
+          <div className="w-full border-t opacity-40 border-cyan-800" />
+          <div
+            className="w-full flex items-center justify-center relative"
+            style={{
+              paddingTop: size === "xs" ? 1 : size === "sm" ? 2 : size === "md" ? 3 : 4,
+              paddingBottom: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4.5 : 6,
+            }}
+          >
+            <span
+              className="font-black leading-none tracking-[0.14em]"
+              style={{
+                fontSize: bottomFontSize,
+                color: neonCyan,
+                textShadow: `0 0 3px ${neonCyan}`,
+              }}
+            >
+              {en}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- Vintage Classic Plate (Retro matte black plate with cream pressed lettering, borders and aged screws) ---
+  if (style === "vintage") {
+    const isMini = size === "xs";
+    const cream = "#fef3c7"; // Warm vintage cream/yellow-100
+    const borderZinc = "#27272a";
+    
+    const topFontSize = size === "xs" ? 5.5 : size === "sm" ? 7 : size === "md" ? 9 : 11;
+    const valueFontSize = size === "xs" ? 13 : size === "sm" ? 17 : size === "md" ? 23 : 30;
+    const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 6 : size === "md" ? 7.5 : 9;
+
+    const pillW = size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6;
+    const pillH = size === "xs" ? 0.75 : size === "sm" ? 1.25 : size === "md" ? 1.75 : 2.25;
+    const pillY = size === "xs" ? 1.5 : size === "sm" ? 2.5 : size === "md" ? 3.5 : 4.5;
+    const pillX = size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10;
+
+    return (
+      <div
+        className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className} ${isMini ? "border-2" : "border-[3px]"}`}
+        style={{
+          ...shell,
+          backgroundColor: "#18181b", // Distressed black
+          borderColor: borderZinc,
+          color: cream,
+          borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+        }}
+      >
+        {/* Subtle vintage texture card grain */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-white/5 to-white/10 pointer-events-none rounded-[inherit]" />
+        <div className="absolute inset-[0.5px] border border-white/5 pointer-events-none rounded-[inherit]" />
+
+        {/* Vintage cream border line with letterpress effect */}
+        <div 
+          className="pointer-events-none absolute rounded-[inherit]" 
+          style={{
+            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
+            border: `${size === "xs" ? "1px" : "2.5px"} solid ${cream}`,
+            opacity: 0.8,
+            boxShadow: "inset 0.5px 0.5px 1px rgba(0,0,0,0.8)"
+          }}
+        />
+
+        {/* Aged bronze/iron mounting slots and screws */}
+        {[
+          { top: pillY, left: pillX },
+          { top: pillY, right: pillX },
+          { bottom: pillY, left: pillX },
+          { bottom: pillY, right: pillX },
+        ].map((pos, idx) => (
+          <span
+            key={idx}
+            className="absolute rounded-full pointer-events-none flex items-center justify-center"
+            style={{
+              width: pillW,
+              height: pillH,
+              backgroundColor: "#27272a",
+              ...pos,
+            }}
+          >
+            {/* Distressed bronze screw core */}
+            <span
+              className="bg-[#d97706]/40 rounded-full border-[0.5px] border-zinc-900 shadow-[inset_0.5px_0.5px_0.5px_rgba(255,255,255,0.1)]"
+              style={{
+                width: "55%",
+                height: "55%",
+              }}
+            />
+          </span>
+        ))}
+
+        {/* Top Text (Khmer Province/Country) with stamped look */}
+        <span
+          className="absolute font-bold leading-none text-center"
+          style={{
+            top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6,
+            fontSize: topFontSize,
+            color: cream,
+            textShadow: "1px 1px 0px rgba(0,0,0,0.8)",
+          }}
+        >
+          {kh}
+        </span>
+
+        {/* Middle Text (Score) with stamped look */}
+        <span
+          className="z-10 font-mono font-black leading-none tabular-nums"
+          style={{
+            fontSize: valueFontSize,
+            color: cream,
+            transform: size === "xs" ? "translateY(-1.5px)" : size === "sm" ? "translateY(-2px)" : size === "md" ? "translateY(-2.5px)" : "translateY(-3.5px)",
+            textShadow: "1.5px 1.5px 0px rgba(0,0,0,0.9)",
+          }}
+        >
+          <PlateValue value={value} />
+        </span>
+
+        {/* Bottom divider & English Province name */}
+        <div className="absolute left-0 right-0 flex flex-col items-center bottom-0">
+          <div className="w-full border-t opacity-15 border-white" />
+          <div
+            className="w-full flex items-center justify-center relative"
+            style={{
+              paddingTop: size === "xs" ? 1 : size === "sm" ? 2 : size === "md" ? 3 : 4,
+              paddingBottom: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4.5 : 6,
+            }}
+          >
+            <span
+              className="font-bold leading-none tracking-[0.14em]"
+              style={{
+                fontSize: bottomFontSize,
+                color: cream,
+                textShadow: "1px 1px 0px rgba(0,0,0,0.8)",
+              }}
+            >
+              {en}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // --- New Yellow/Gold Road Plate (Rounded corners, inner border line, horizontal pill mounting slots) ---
   const isMini = size === "xs";
   
