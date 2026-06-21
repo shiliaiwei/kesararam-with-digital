@@ -69,10 +69,12 @@ export async function GET(
               // Import what we need for catch-up
               const { questions, answers } = await import("@/db/schema/content");
               const { mapContentToGameType } = await import("@/lib/game-engine");
-              const { seededShuffle } = await import("@/lib/question-selector");
+              const { seededShuffle, adaptQuestionsForMixedPractice } = await import("@/lib/question-selector");
               const { eq: eqFn, asc } = await import("drizzle-orm");
 
-              const qId = session.questionIds[session.currentQuestionIndex ?? 0];
+              const qIds = session.questionIds;
+              const currentIndex = session.currentQuestionIndex ?? 0;
+              const qId = qIds[currentIndex];
               const [q] = await db.select({
                 id: questions.id, questionEn: questions.questionEn,
                 questionKm: questions.questionKm, imageUrl: questions.imageUrl,
@@ -85,6 +87,25 @@ export async function GET(
               }).from(answers).where(eqFn(answers.questionId, qId)).orderBy(asc(answers.sortOrder));
 
               if (q && ans.length > 0) {
+                let finalQuestionEn = q.questionEn;
+                let finalQuestionKm = q.questionKm;
+
+                if (session.gameMode === "mixed-practice") {
+                  const { inArray } = await import("drizzle-orm");
+                  const allSessQs = await db
+                    .select({ id: questions.id, questionEn: questions.questionEn, questionKm: questions.questionKm })
+                    .from(questions)
+                    .where(inArray(questions.id, qIds));
+                  const qMap = new Map(allSessQs.map(item => [item.id, item]));
+                  const orderedQs = qIds.map(id => qMap.get(id)).filter(Boolean) as { id: number; questionEn: string; questionKm: string }[];
+                  const adaptedQs = adaptQuestionsForMixedPractice(orderedQs, session.sessionCode);
+                  const adapted = adaptedQs.find(item => item.id === qId);
+                  if (adapted) {
+                    finalQuestionEn = adapted.questionEn;
+                    finalQuestionKm = adapted.questionKm;
+                  }
+                }
+
                 const endsAt = session.questionStartedAt
                   ? new Date(session.questionStartedAt.getTime() + session.timePerQuestion * 1000).toISOString()
                   : new Date(Date.now() + session.timePerQuestion * 1000).toISOString();
@@ -92,7 +113,7 @@ export async function GET(
                 ctrl.enqueue(`data: ${JSON.stringify({
                   type: "question_start",
                   question: {
-                    id: q.id, questionEn: q.questionEn, questionKm: q.questionKm,
+                    id: q.id, questionEn: finalQuestionEn, questionKm: finalQuestionKm,
                     imageUrl: q.imageUrl ?? null, audioUrlEn: q.audioUrlEn ?? null,
                     audioUrlKm: q.audioUrlKm ?? null,
                     gameType: mapContentToGameType({ answerCount: ans.length, hasImage: ans.some(a => !!a.imageUrl), hasAudio: !!(q.audioUrlEn || q.audioUrlKm) }),

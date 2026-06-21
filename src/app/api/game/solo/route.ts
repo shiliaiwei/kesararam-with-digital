@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { questions, answers, topics, categories } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
-import { selectRandomQuestions, shuffleArray } from "@/lib/question-selector";
+import { selectRandomQuestions, shuffleArray, adaptQuestionsForMixedPractice } from "@/lib/question-selector";
 import { eq, and, inArray, sql } from "drizzle-orm";
 
 export async function POST(req: NextRequest) {
@@ -161,7 +161,7 @@ export async function POST(req: NextRequest) {
   // Get first category name for session record
   const firstCatSlug = allQuestions[0]?.categorySlug ?? "";
 
-  const questionsPayload = selectedQuestions.map((q) => {
+  let questionsPayload = selectedQuestions.map((q) => {
     const ans = answersByQ.get(q.id) ?? [];
     const isTextOnly = TEXT_ONLY_SLUGS.has(q.categorySlug ?? "");
     const gt = mapContentToGameType({
@@ -205,6 +205,10 @@ export async function POST(req: NextRequest) {
         })),
     };
   });
+
+  if (gameMode === "mixed-practice") {
+    questionsPayload = adaptQuestionsForMixedPractice(questionsPayload, "SOLO");
+  }
 
   return NextResponse.json({
     sessionId: user ? Date.now() : 0, // Temporary ID for non-authenticated users

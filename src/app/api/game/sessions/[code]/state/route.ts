@@ -4,9 +4,9 @@ import { gameSessions, gameParticipants } from "@/db/schema/game";
 import { questions, answers } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { mapContentToGameType } from "@/lib/game-engine";
-import { seededShuffle } from "@/lib/question-selector";
+import { seededShuffle, adaptQuestionsForMixedPractice } from "@/lib/question-selector";
 import { tickRowToQuestion, type TickLiveRoundData } from "@/lib/gamekit/live-tick-sign";
-import { eq, and } from "drizzle-orm";
+import { eq, and, inArray } from "drizzle-orm";
 
 export async function GET(
   req: NextRequest,
@@ -35,7 +35,9 @@ export async function GET(
     const row = rd.rows?.[session.currentQuestionIndex ?? 0];
     if (row) currentQuestion = tickRowToQuestion(row);
   } else if (session.status === "active" && session.questionIds?.length) {
-    const qId = session.questionIds[session.currentQuestionIndex ?? 0];
+    const qIds = session.questionIds;
+    const currentIndex = session.currentQuestionIndex ?? 0;
+    const qId = qIds[currentIndex];
     const [q] = await db.select().from(questions).where(eq(questions.id, qId));
     const ans = await db
       .select()
@@ -44,10 +46,32 @@ export async function GET(
       .orderBy(answers.sortOrder);
 
     if (q) {
+      let finalQuestionEn = q.questionEn;
+      let finalQuestionKm = q.questionKm;
+
+      if (session.gameMode === "mixed-practice") {
+        // Fetch all questions in this session to deterministically find which ones to adapt
+        const allSessQs = await db
+          .select({ id: questions.id, questionEn: questions.questionEn, questionKm: questions.questionKm })
+          .from(questions)
+          .where(inArray(questions.id, qIds));
+
+        // Map to keep the exact order of qIds
+        const qMap = new Map(allSessQs.map(item => [item.id, item]));
+        const orderedQs = qIds.map(id => qMap.get(id)).filter(Boolean) as { id: number; questionEn: string; questionKm: string }[];
+
+        const adaptedQs = adaptQuestionsForMixedPractice(orderedQs, session.sessionCode);
+        const adapted = adaptedQs.find(item => item.id === qId);
+        if (adapted) {
+          finalQuestionEn = adapted.questionEn;
+          finalQuestionKm = adapted.questionKm;
+        }
+      }
+
       currentQuestion = {
         id: q.id,
-        questionEn: q.questionEn,
-        questionKm: q.questionKm,
+        questionEn: finalQuestionEn,
+        questionKm: finalQuestionKm,
         imageUrl: q.imageUrl,
         audioUrlEn: q.audioUrlEn,
         audioUrlKm: q.audioUrlKm,

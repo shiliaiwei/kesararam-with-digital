@@ -173,32 +173,31 @@ export function selectRandomQuestions(options: SelectionOptions): QuestionCandid
     // Special logic for Mixed Practice
     if (gameMode === "mixed-practice") {
         const signQuestions = questions.filter(
-            (q) => q.categorySlug === "road-sign" || q.categorySlug === "road-signs" || q.gameType === "image_pick"
+            (q) => q.categorySlug === "road-sign" || q.categorySlug === "road-signs"
+        );
+        const priorityQuestions = questions.filter(
+            (q) => q.categorySlug === "priority"
         );
         const otherQuestions = questions.filter(
-            (q) => q.categorySlug !== "road-sign" && q.categorySlug !== "road-signs" && q.gameType !== "image_pick"
+            (q) => q.categorySlug !== "road-sign" && q.categorySlug !== "road-signs" && q.categorySlug !== "priority"
         );
 
-        const signTarget = Math.round(questionCount * 0.7);
-        const otherTarget = questionCount - signTarget;
-
-        const selectedSigns = shuffleArray(signQuestions).slice(0, signTarget);
-
-        let selectedOthers: QuestionCandidate[] = [];
-        if (otherQuestions.length > 0 && otherTarget > 0) {
-            const distinctCatIds = Array.from(new Set(otherQuestions.map((q) => q.categoryId)));
-            const shuffledCats = shuffleArray(distinctCatIds);
-            
-            // "random one or two base on total question"
-            // if otherTarget <= 3, pick 1 category, else pick 2 (or 1 if only 1 is available)
-            const numCatsToPick = otherTarget <= 3 ? 1 : Math.min(2, shuffledCats.length);
-            const pickedCatIds = shuffledCats.slice(0, numCatsToPick);
-
-            const filteredOthers = otherQuestions.filter((q) => pickedCatIds.includes(q.categoryId));
-            selectedOthers = shuffleArray(filteredOthers).slice(0, otherTarget);
+        let roadSignTarget = Math.round(questionCount * 0.40);
+        let priorityTarget = Math.round(questionCount * 0.05);
+        if (priorityTarget === 0 && questionCount >= 10) {
+            priorityTarget = 1;
+        }
+        let otherTarget = questionCount - roadSignTarget - priorityTarget;
+        if (otherTarget < 0) {
+            otherTarget = 0;
+            roadSignTarget = questionCount - priorityTarget;
         }
 
-        const combined = [...selectedSigns, ...selectedOthers];
+        const selectedSigns = shuffleArray(signQuestions).slice(0, roadSignTarget);
+        const selectedPriority = shuffleArray(priorityQuestions).slice(0, priorityTarget);
+        const selectedOthers = shuffleArray(otherQuestions).slice(0, otherTarget);
+
+        const combined = [...selectedSigns, ...selectedPriority, ...selectedOthers];
 
         // Backfill if needed
         if (combined.length < questionCount) {
@@ -341,4 +340,91 @@ export function calculateUniquenessScore(
 
     const total = ids1.size + ids2.size;
     return total > 0 ? (different / total) * 100 : 0;
+}
+
+export const MIXED_PRACTICE_GAMES = [
+    {
+        id: "word-bank",
+        titleEn: "Matching Sign",
+        titleKm: "Matching Sign",
+        descEn: "Drag each word onto its matching road sign.",
+        descKm: "អូសពាក្យនីមួយៗ ទៅដាក់លើសញ្ញាចរាចរណ៍ដែលត្រូវគ្នា។",
+    },
+    {
+        id: "sign-connect",
+        titleEn: "KIDS Connect the Signs",
+        titleKm: "កុមារ Connect the Signs",
+        descEn: "Tap a sign, then tap its meaning to connect them.",
+        descKm: "ប៉ះសញ្ញា រួចប៉ះអត្ថន័យរបស់វា ដើម្បីភ្ជាប់គ្នា។",
+    },
+    {
+        id: "catch-sign",
+        titleEn: "Catch the Sign",
+        titleKm: "Catch the Sign",
+        descEn: "Tap the correct road sign as fast as you can.",
+        descKm: "ប៉ះសញ្ញាចរាចរណ៍ឱ្យបានត្រឹមត្រូវ និងលឿន។",
+    },
+    {
+        id: "tick-sign",
+        titleEn: "OFFICIAL Click the Sign",
+        titleKm: "ផ្លូវការ Click the Sign",
+        descEn: "Click the correct road sign for each name.",
+        descKm: "ចុចសញ្ញាចរាចរណ៍ឱ្យត្រូវនឹងឈ្មោះនីមួយៗ។",
+    },
+    {
+        id: "safety-adventure",
+        titleEn: "Road Safety",
+        titleKm: "Road Safety",
+        descEn: "Make the safe choices on your journey to school.",
+        descKm: "ធ្វើការសម្រេចចិត្តប្រកបដោយសុវត្ថិភាពក្នុងដំណើរទៅសាលា។",
+    },
+    {
+        id: "safe-street-smart",
+        titleEn: "Safe Street Smart",
+        titleKm: "Safe Street Smart",
+        descEn: "Choose the correct answer about road safety rules.",
+        descKm: "ជ្រើសរើសចម្លើយត្រឹមត្រូវអំពីច្បាប់សុវត្ថិភាពចរាចរណ៍។",
+    },
+];
+
+export function adaptQuestionsForMixedPractice<
+    T extends { id: number; questionEn: string; questionKm: string }
+>(questionsList: T[], seedSource: string): T[] {
+    if (questionsList.length === 0) return questionsList;
+
+    const seed = hashSeed(seedSource);
+    const rand = mulberry32(seed);
+
+    const numToModify = questionsList.length <= 10 ? 1 : 2;
+
+    // Generate a list of indices and shuffle them deterministically
+    const indices = Array.from({ length: questionsList.length }, (_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    const targetIndices = new Set(indices.slice(0, numToModify));
+
+    return questionsList.map((q, idx) => {
+        if (targetIndices.has(idx)) {
+            // Pick a game mode deterministically
+            const gameIdx = Math.floor(rand() * MIXED_PRACTICE_GAMES.length);
+            const game = MIXED_PRACTICE_GAMES[gameIdx];
+
+            const prefixEn = `${game.titleEn}\n${game.descEn}\n\n`;
+            const prefixKm = `${game.titleKm}\n${game.descKm}\n\n`;
+
+            return {
+                ...q,
+                questionEn: q.questionEn.startsWith(game.titleEn)
+                    ? q.questionEn
+                    : prefixEn + q.questionEn,
+                questionKm: q.questionKm.startsWith(game.titleKm)
+                    ? q.questionKm
+                    : prefixKm + q.questionKm,
+            };
+        }
+        return q;
+    });
 }

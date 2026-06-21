@@ -4,6 +4,7 @@ import { gameSessions, gameParticipants, gameSessionAnswers } from "@/db/schema/
 import { questions, answers } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { eq, and, sql, inArray } from "drizzle-orm";
+import { adaptQuestionsForMixedPractice } from "@/lib/question-selector";
 
 export async function GET(
   req: NextRequest,
@@ -48,8 +49,24 @@ export async function GET(
   const avgAccuracy =
     totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
 
-  // Per-question stats
   const qIds = session.questionIds ?? [];
+
+  // Pre-load and optionally adapt all questions in the session
+  const rawQuestions = qIds.length
+    ? await db
+        .select({ id: questions.id, questionEn: questions.questionEn, questionKm: questions.questionKm })
+        .from(questions)
+        .where(inArray(questions.id, qIds))
+    : [];
+
+  const qRawMap = new Map(rawQuestions.map(item => [item.id, item]));
+  const orderedQs = qIds.map(id => qRawMap.get(id)).filter(Boolean) as { id: number; questionEn: string; questionKm: string }[];
+  const finalQuestions = session.gameMode === "mixed-practice"
+    ? adaptQuestionsForMixedPractice(orderedQs, session.sessionCode)
+    : orderedQs;
+
+  const adaptedQuestionsMap = new Map(finalQuestions.map(q => [q.id, q]));
+
   const perQuestion = await Promise.all(
     qIds.map(async (qId, idx) => {
       const qAnswers = allAnswers.filter((a) => a.questionId === qId);
@@ -57,10 +74,7 @@ export async function GET(
       const total = qAnswers.length;
       const correctRate = total > 0 ? correct / total : 0;
 
-      const [q] = await db
-        .select({ questionEn: questions.questionEn, questionKm: questions.questionKm })
-        .from(questions)
-        .where(eq(questions.id, qId));
+      const q = adaptedQuestionsMap.get(qId);
 
       const avgTime =
         total > 0
@@ -94,13 +108,7 @@ export async function GET(
   // ── Question text + answer options lookup (once) ─────────────────────────────
   // Powers the per-student question-by-question breakdown: which option each
   // student picked vs. the correct one, per question.
-  const qRows = qIds.length
-    ? await db
-        .select({ id: questions.id, en: questions.questionEn, km: questions.questionKm })
-        .from(questions)
-        .where(inArray(questions.id, qIds))
-    : [];
-  const qTextById = new Map(qRows.map((q) => [q.id, q]));
+  const qTextById = new Map(finalQuestions.map((q) => [q.id, { id: q.id, en: q.questionEn, km: q.questionKm }]));
 
   const optRows = qIds.length
     ? await db

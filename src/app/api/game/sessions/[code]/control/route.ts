@@ -8,9 +8,9 @@ import { LeaderboardEntry } from "@/lib/game-event-bus";
 import { broadcastEvent } from "@/lib/realtime-bus";
 import { mapContentToGameType, type GameStatus } from "@/lib/game-engine";
 import { awardStorePoints } from "@/lib/store-points/award";
-import { seededShuffle } from "@/lib/question-selector";
+import { seededShuffle, adaptQuestionsForMixedPractice } from "@/lib/question-selector";
 import { tickRowToQuestion, type TickLiveRoundData } from "@/lib/gamekit/live-tick-sign";
-import { eq, and, asc, sql } from "drizzle-orm";
+import { eq, and, asc, sql, inArray } from "drizzle-orm";
 
 async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number>): Promise<LeaderboardEntry[]> {
   const participants = await db
@@ -595,7 +595,7 @@ async function getQuestionPayload(questionId: number, sessionCode: string) {
     // Click the Sign (tick-sign): build the image-pick payload from the session's
     // stored rows instead of the question bank.
     const [liveSess] = await db
-      .select({ gameMode: gameSessions.gameMode, roundData: gameSessions.roundData })
+      .select({ gameMode: gameSessions.gameMode, roundData: gameSessions.roundData, questionIds: gameSessions.questionIds })
       .from(gameSessions)
       .where(eq(gameSessions.sessionCode, sessionCode.toUpperCase()));
     if (liveSess?.gameMode === "tick-sign" && liveSess.roundData) {
@@ -666,10 +666,30 @@ async function getQuestionPayload(questionId: number, sessionCode: string) {
       hasAudio: !!(q.audioUrlEn || q.audioUrlKm)
     });
 
+    let finalQuestionEn = q.questionEn;
+    let finalQuestionKm = q.questionKm;
+
+    if (liveSess?.gameMode === "mixed-practice" && liveSess.questionIds?.length) {
+      const qIds = liveSess.questionIds;
+      const allSessQs = await db
+        .select({ id: questions.id, questionEn: questions.questionEn, questionKm: questions.questionKm })
+        .from(questions)
+        .where(inArray(questions.id, qIds));
+
+      const qMap = new Map(allSessQs.map(item => [item.id, item]));
+      const orderedQs = qIds.map(id => qMap.get(id)).filter(Boolean) as { id: number; questionEn: string; questionKm: string }[];
+      const adaptedQs = adaptQuestionsForMixedPractice(orderedQs, sessionCode);
+      const adapted = adaptedQs.find(item => item.id === questionId);
+      if (adapted) {
+        finalQuestionEn = adapted.questionEn;
+        finalQuestionKm = adapted.questionKm;
+      }
+    }
+
     const payload = {
       id: q.id,
-      questionEn: q.questionEn,
-      questionKm: q.questionKm,
+      questionEn: finalQuestionEn,
+      questionKm: finalQuestionKm,
       imageUrl: q.imageUrl ?? null,
       audioUrlEn: q.audioUrlEn ?? null,
       audioUrlKm: q.audioUrlKm ?? null,

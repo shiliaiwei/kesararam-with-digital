@@ -4,6 +4,7 @@ import {
     selectBalancedQuestions,
     areQuestionSetsDifferent,
     calculateUniquenessScore,
+    adaptQuestionsForMixedPractice,
 } from "@/lib/question-selector";
 
 // Mock question data
@@ -134,7 +135,7 @@ describe("Question Selector", () => {
             expect(ids.length).toBe(uniqueIds.size);
         });
 
-        it("should select 70% sign questions and restrict other questions to 1-2 categories in mixed-practice mode", () => {
+        it("should select 40% sign, 5% priority, and 55% other questions in mixed-practice mode", () => {
             const signQuestions = Array.from({ length: 30 }, (_, i) => ({
                 id: i + 1,
                 categoryId: 1,
@@ -156,11 +157,11 @@ describe("Question Selector", () => {
             const cat3Questions = Array.from({ length: 15 }, (_, i) => ({
                 id: i + 200,
                 categoryId: 3,
-                categorySlug: "technical",
+                categorySlug: "priority",
                 gameType: "mcq",
                 difficulty: "medium",
-                questionEn: `Tech Question ${i + 1}`,
-                questionKm: `សំណួរបច្ចេកទេស ${i + 1}`,
+                questionEn: `Priority Question ${i + 1}`,
+                questionKm: `សំណួរអាទិភាព ${i + 1}`,
             }));
             const cat4Questions = Array.from({ length: 15 }, (_, i) => ({
                 id: i + 300,
@@ -183,24 +184,54 @@ describe("Question Selector", () => {
 
             expect(selected).toHaveLength(10);
 
-            // 70% of 10 should be sign questions (7)
+            // 40% of 10 should be sign questions (4)
             const signCount = selected.filter(
-                q => q.categorySlug === "road-signs" || q.gameType === "image_pick"
+                q => q.categorySlug === "road-signs" || q.categorySlug === "road-sign"
             ).length;
-            expect(signCount).toBe(7);
+            expect(signCount).toBe(4);
 
-            // 30% should be other categories (3)
+            // 5% of 10 should be priority questions (1, rounded/forced to at least 1)
+            const priorityCount = selected.filter(
+                q => q.categorySlug === "priority"
+            ).length;
+            expect(priorityCount).toBe(1);
+
+            // 55% should be other categories (5)
             const otherCount = selected.filter(
-                q => q.categorySlug !== "road-signs" && q.gameType !== "image_pick"
+                q => q.categorySlug !== "road-signs" && q.categorySlug !== "road-sign" && q.categorySlug !== "priority"
             ).length;
-            expect(otherCount).toBe(3);
+            expect(otherCount).toBe(5);
+        });
 
-            // Other questions must belong to at most 2 distinct category IDs
-            const otherCategoryIds = selected
-                .filter(q => q.categorySlug !== "road-signs" && q.gameType !== "image_pick")
-                .map(q => q.categoryId);
-            const uniqueOtherCats = new Set(otherCategoryIds);
-            expect(uniqueOtherCats.size).toBeLessThanOrEqual(2);
+        it("should adapt questions for mixed practice with game names and descriptions", () => {
+            const sampleQs = Array.from({ length: 12 }, (_, i) => ({
+                id: i + 1,
+                questionEn: `Question ${i + 1}`,
+                questionKm: `សំណួរ ${i + 1}`,
+            }));
+
+            const adapted = adaptQuestionsForMixedPractice(sampleQs, "TEST_SESSION");
+
+            expect(adapted).toHaveLength(12);
+
+            // Since length is 12 (> 10), it should adapt exactly 2 questions.
+            const adaptedCount = adapted.filter(
+                q => q.questionEn.includes("\n")
+            ).length;
+            expect(adaptedCount).toBe(2);
+
+            // Check that game titles and descriptions are prepended
+            const adaptedQs = adapted.filter(q => q.questionEn.includes("\n"));
+            for (const q of adaptedQs) {
+                // Must have prefix format: titleEn\ndescEn\n\noriginal
+                const partsEn = q.questionEn.split("\n");
+                expect(partsEn.length).toBeGreaterThanOrEqual(4);
+                expect(partsEn[2]).toBe(""); // Double newline separates prefix
+                
+                const partsKm = q.questionKm.split("\n");
+                expect(partsKm.length).toBeGreaterThanOrEqual(4);
+                expect(partsKm[2]).toBe("");
+            }
         });
     });
 

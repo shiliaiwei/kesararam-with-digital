@@ -618,7 +618,7 @@ export default function SoloPage() {
 
         {/* Question text card (compact & smaller) */}
         <div
-          className="shrink-0 w-full min-h-[4rem] h-auto bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
+          className="shrink-0 w-full min-h-[4rem] h-auto bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in whitespace-pre-line"
           style={{
             fontSize: "clamp(0.95rem, 3.5vw, 1.4rem)",
             lineHeight: "1.3",
