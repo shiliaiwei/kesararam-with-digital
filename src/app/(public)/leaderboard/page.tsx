@@ -1420,11 +1420,11 @@ export default function LeaderboardPage() {
         style={{ boxShadow: `inset 5px 0 0 ${medal ?? tier.accent}` }}
         onClick={linkable ? () => handleSelectUser(user) : undefined}
       >
-        <div className="grid grid-cols-12 items-center px-3 md:px-5 py-2.5">
+        <div className="grid grid-cols-12 items-center px-2 sm:px-5 py-2 sm:py-2.5">
           {/* Rank + Avatar + Name + Meta */}
-          <div className="col-span-6 sm:col-span-5 flex items-center gap-2 md:gap-3 min-w-0">
+          <div className="col-span-7 sm:col-span-5 flex items-center gap-1.5 sm:gap-3 min-w-0">
             {/* Rank + movement */}
-            <div className="flex items-center gap-1 flex-shrink-0 w-9 sm:w-12">
+            <div className="flex items-center gap-1 flex-shrink-0 w-7 sm:w-12">
               {medal ? (
                 <span
                   className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
@@ -1444,12 +1444,12 @@ export default function LeaderboardPage() {
             </div>
 
             {/* Avatar + name + meta */}
-            <div className="flex items-center gap-2.5 min-w-0 flex-1">
-              <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
+            <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-1">
+              <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={isMobile ? 26 : 36} index={rowIndex}>
                 <Avatar
                   url={rowAvatar}
                   name={user.displayName || user.username}
-                  size={36}
+                  size={isMobile ? 26 : 36}
                   changedAt={user.avatarChangedAt}
                 />
               </RankedAvatarRing>
@@ -1466,7 +1466,7 @@ export default function LeaderboardPage() {
                       letterSpacing: "0.01em",
                       maxWidth: "100%",
                       border: isMobile ? "2px solid #000" : "3px solid #000",
-                      padding: isMobile ? "2px 6px" : "4px 8px",
+                      padding: isMobile ? "2px 4px" : "4px 8px",
                     }}
                     title={user.displayName || user.username}
                   >
@@ -1507,7 +1507,7 @@ export default function LeaderboardPage() {
           </div>
 
           {/* Total / Game Mode Score Column */}
-          <div className="col-span-3 sm:col-span-2 flex justify-end sm:justify-start items-center">
+          <div className="col-span-2 sm:col-span-2 flex justify-end sm:justify-start items-center">
             <span className="font-mono font-black text-xs md:text-sm text-black bg-zinc-100 border-2 border-black px-2 py-0.5 shadow-[2px_2px_0_#000] tabular-nums select-all">
               {(user.lifetimePoints ?? 0).toLocaleString()}
             </span>
@@ -1708,8 +1708,8 @@ export default function LeaderboardPage() {
                 <style>{`@keyframes lbFlash{0%,100%{box-shadow:2px 2px 0 #000;filter:brightness(1)}30%{box-shadow:2px 2px 0 #000,0 0 24px 8px rgba(255,215,0,0.95);filter:brightness(1.35)}65%{box-shadow:2px 2px 0 #000,0 0 10px 3px rgba(255,215,0,0.65);filter:brightness(1.15)}}.lb-flash{animation:lbFlash 2.5s ease-in-out}@keyframes menuSlowPop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}.menu-slow-pop{animation:menuSlowPop 0.3s cubic-bezier(0.16,1,0.3,1) forwards}`}</style>
                 {/* Table Header — Live Score is the hero metric and leads the stats
                     right after the player; Games / Acc / Top game follow. */}
-                <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
-                  <span className="col-span-6 sm:col-span-5 text-yellow-400 flex items-center gap-1 sm:gap-6">
+                <div className="grid grid-cols-12 bg-black px-2 sm:px-5 py-2 sm:py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
+                  <span className="col-span-7 sm:col-span-5 text-yellow-400 flex items-center gap-1 sm:gap-6">
                     <span className="sm:hidden"># / {kh ? "សិស្ស" : "Player"}</span>
                     <span className="hidden sm:inline w-6">#</span>
                     <span className="hidden sm:inline">{kh ? "សិស្ស" : "Player"}</span>
@@ -1724,7 +1724,7 @@ export default function LeaderboardPage() {
                   <div
                     onMouseEnter={() => setHoveredHeader(true)}
                     onMouseLeave={() => setHoveredHeader(false)}
-                    className="col-span-3 sm:col-span-2 relative flex items-center justify-end sm:justify-start"
+                    className="col-span-2 sm:col-span-2 relative flex items-center justify-end sm:justify-start"
                   >
                     <button
                       onClick={() => {
