@@ -66,8 +66,8 @@ __pycache__/
 
 # documentation archives (backups and exports)
 /docs/archive/
-/docs/business-plans/*
-!/docs/business-plans/.gitkeep
+/docs/business-plans/*.docx
+/docs/business-plans/*.txt
 
 # auto-organized content (legacy)
 /docs/auto-organized/
