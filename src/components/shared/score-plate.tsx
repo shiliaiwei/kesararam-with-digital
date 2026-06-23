@@ -72,7 +72,7 @@ const DIMENSIONS: Record<
 };
 
 function PlateValue({ value }: { value: number | ReactNode }) {
-  return <>{typeof value === "number" ? value.toLocaleString() : value}</>;
+  return <>{typeof value === "number" ? value.toString() : value}</>;
 }
 
 export function ScorePlate({
@@ -112,7 +112,7 @@ export function ScorePlate({
         style={{
           ...shell,
           border: `${(size === "sm" || size === "xs") ? "2px" : "3px"} solid ${navy}`,
-          borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
+          borderRadius: 0,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
@@ -199,18 +199,8 @@ export function ScorePlate({
   if (style === "ribbon") {
     const isMini = size === "xs";
     
-    // Format the score as a 3-digit padded number (e.g., 002, 125)
-    const formatDiplomaticNumber = (val: number | ReactNode) => {
-      if (typeof val !== "number") return val;
-      const s = val.toString();
-      if (s.length === 1) return `00${s}`;
-      if (s.length === 2) return `0${s}`;
-      return s;
-    };
-    
     // Deterministic country code (e.g., 76 for Thailand, 34 for Indonesia, 40 for Japan)
     const countryCode = typeof value === "number" ? ((value % 90) + 10) : 76;
-    const formattedScore = formatDiplomaticNumber(value);
 
     // Font sizes scaled according to size
     const labelFontSize = size === "xs" ? 5 : size === "sm" ? 6.5 : size === "md" ? 8 : 10;
@@ -228,7 +218,7 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #fcd34d 0%, #fbbf24 50%, #f59e0b 100%)", // Rich gold-yellow metal
           borderColor: "#d97706", // Amber border edge
-          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
+          borderRadius: 0,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
@@ -298,7 +288,7 @@ export function ScorePlate({
               textShadow: "1px 1px 1px rgba(255, 255, 255, 0.4), -0.75px -0.75px 0.5px rgba(0, 0, 0, 0.45)",
             }}
           >
-            CD.{countryCode}.{formattedScore}
+            <PlateValue value={value} />
           </span>
 
           {/* Bottom English Province (Small pressed blue) */}
@@ -308,222 +298,6 @@ export function ScorePlate({
               fontFamily: "var(--font-roboto)",
               fontSize: labelFontSize * 0.9,
               textShadow: "0.5px 0.5px 0px rgba(255, 255, 255, 0.4)",
-            }}
-          >
-            {en}
-          </span>
-        </div>
-      </div>
-    );
-  }
-
-  // --- Cute Kitty Plate (Hello Kitty inspired design with ears, bow, whiskers, and "Hello Friends" badge) ---
-  if (style === "kitty") {
-    const isMini = size === "xs";
-    
-    // Scale font sizes to fit perfectly within the plate dimensions and prevent cut-offs
-    const topFontSize = size === "xs" ? 5 : size === "sm" ? 6.5 : size === "md" ? 8 : 10;
-    const valueFontSize = size === "xs" ? 12 : size === "sm" ? 16 : size === "md" ? 22 : 28;
-    const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 5.5 : size === "md" ? 7 : 8.5;
-
-    return (
-      <div
-        className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className}`}
-        style={{
-          ...shell,
-          backgroundColor: "#ffffff", // Pure white kitty base
-          border: `${isMini ? "2px" : "3px"} solid #000000`, // Brutalist solid black border
-          borderRadius: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 10,
-          boxShadow: shadow ? "4px 4px 0 #000" : undefined, // Hard offset shadow
-        }}
-      >
-        {/* Subtle metal plate sheen */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none rounded-[inherit]" />
-        <div className="absolute inset-[0.5px] border border-zinc-200/40 pointer-events-none rounded-[inherit]" />
-
-        {/* Inner pink border frame */}
-        <div 
-          className="pointer-events-none absolute border-[#ec4899] rounded-[inherit]" 
-          style={{
-            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
-            borderWidth: size === "xs" ? "1.5px" : size === "sm" ? "2px" : "2.5px",
-            opacity: 0.9,
-          }}
-        />
-
-        {/* Left Kitty Ear (Brutalist sharp style, fully inside) */}
-        <div
-          className="absolute bg-white border-2 border-black pointer-events-none z-10"
-          style={{
-            width: size === "xs" ? 8 : size === "sm" ? 12 : size === "md" ? 16 : 20,
-            height: size === "xs" ? 8 : size === "sm" ? 12 : size === "md" ? 16 : 20,
-            top: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4.5 : 6,
-            left: size === "xs" ? 2.5 : size === "sm" ? 4 : size === "md" ? 6 : 8,
-            borderRadius: "2px",
-            transform: "rotate(-12deg)",
-          }}
-        >
-          {/* Pink inner ear patch */}
-          <div 
-            className="bg-pink-100 border border-pink-300"
-            style={{
-              width: "50%",
-              height: "50%",
-              margin: "12%",
-              borderRadius: "1px",
-            }}
-          />
-        </div>
-
-        {/* Right Kitty Ear (Brutalist sharp style, fully inside) */}
-        <div
-          className="absolute bg-white border-2 border-black pointer-events-none z-10"
-          style={{
-            width: size === "xs" ? 8 : size === "sm" ? 12 : size === "md" ? 16 : 20,
-            height: size === "xs" ? 8 : size === "sm" ? 12 : size === "md" ? 16 : 20,
-            top: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4.5 : 6,
-            right: size === "xs" ? 2.5 : size === "sm" ? 4 : size === "md" ? 6 : 8,
-            borderRadius: "2px",
-            transform: "rotate(12deg)",
-          }}
-        >
-          {/* Pink inner ear patch */}
-          <div 
-            className="bg-pink-100 border border-pink-300"
-            style={{
-              width: "50%",
-              height: "50%",
-              margin: "12%",
-              borderRadius: "1px",
-            }}
-          />
-        </div>
-
-        {/* Red Bow on Top-Right (Brutalist triangles, fully visible, zero overlap with slots) */}
-        <div
-          className="absolute pointer-events-none z-20 flex items-center justify-center"
-          style={{
-            top: size === "xs" ? 2.5 : size === "sm" ? 4 : size === "md" ? 5.5 : 7,
-            right: size === "xs" ? 1.5 : size === "sm" ? 2.5 : size === "md" ? 4 : 5.5,
-            transform: `scale(${size === "xs" ? 0.65 : size === "sm" ? 0.85 : size === "md" ? 1.15 : 1.45})`,
-          }}
-        >
-          <div className="relative w-8 h-4 flex items-center justify-center">
-            {/* Left Loop (Brutalist Red Triangle) */}
-            <div 
-              className="w-0 h-0 border-t-[7px] border-b-[7px] border-l-[11px] border-t-transparent border-b-transparent border-l-red-500 filter drop-shadow-[0.5px_0.5px_0_#000] rotate-12"
-              style={{ borderLeftColor: "#ef4444" }}
-            />
-            {/* Center Knot (Brutalist Black Square) */}
-            <div className="w-2.5 h-2.5 bg-black border border-white rounded-[1px] z-10 mx-[-2.5px]" />
-            {/* Right Loop (Brutalist Red Triangle) */}
-            <div 
-              className="w-0 h-0 border-t-[7px] border-b-[7px] border-r-[11px] border-t-transparent border-b-transparent border-r-red-500 filter drop-shadow-[0.5px_0.5px_0_#000] -rotate-12"
-              style={{ borderRightColor: "#ef4444" }}
-            />
-          </div>
-        </div>
-
-        {/* Left Whiskers (shifted outer, zero overlap with center text) */}
-        <div
-          className="absolute left-1.5 top-1/2 -translate-y-1/2 flex flex-col pointer-events-none z-10"
-          style={{ gap: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : "3.5px" }}
-        >
-          <div className="bg-black" style={{ width: size === "xs" ? 3.5 : size === "sm" ? 5.5 : size === "md" ? 8 : 10, height: size === "xs" ? 0.75 : 1.25, transform: "rotate(12deg)", borderRadius: 1 }} />
-          <div className="bg-black" style={{ width: size === "xs" ? 4.5 : size === "sm" ? 7 : size === "md" ? 10 : 13, height: size === "xs" ? 0.75 : 1.25, borderRadius: 1 }} />
-          <div className="bg-black" style={{ width: size === "xs" ? 3.5 : size === "sm" ? 5.5 : size === "md" ? 8 : 10, height: size === "xs" ? 0.75 : 1.25, transform: "rotate(-12deg)", borderRadius: 1 }} />
-        </div>
-
-        {/* Right Whiskers (shifted outer, zero overlap with center text) */}
-        <div
-          className="absolute right-1.5 top-1/2 -translate-y-1/2 flex flex-col pointer-events-none z-10"
-          style={{ gap: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : "3.5px" }}
-        >
-          <div className="bg-black" style={{ width: size === "xs" ? 3.5 : size === "sm" ? 5.5 : size === "md" ? 8 : 10, height: size === "xs" ? 0.75 : 1.25, transform: "rotate(-12deg)", borderRadius: 1 }} />
-          <div className="bg-black" style={{ width: size === "xs" ? 4.5 : size === "sm" ? 7 : size === "md" ? 10 : 13, height: size === "xs" ? 0.75 : 1.25, borderRadius: 1 }} />
-          <div className="bg-black" style={{ width: size === "xs" ? 3.5 : size === "sm" ? 5.5 : size === "md" ? 8 : 10, height: size === "xs" ? 0.75 : 1.25, transform: "rotate(12deg)", borderRadius: 1 }} />
-        </div>
-
-        {/* Inset Screw Holes (drilled-through look, shifted inwards to prevent any corner overlap) */}
-        {[
-          { top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6, left: size === "xs" ? 16 : size === "sm" ? 22 : size === "md" ? 30 : 38 },
-          { top: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 5 : 6, right: size === "xs" ? 16 : size === "sm" ? 22 : size === "md" ? 30 : 38 },
-        ].map((pos, idx) => (
-          <div
-            key={idx}
-            className="absolute rounded-full bg-zinc-950 pointer-events-none border border-zinc-400/40 z-20"
-            style={{
-              width: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 4.5 : 5.5,
-              height: size === "xs" ? 2.5 : size === "sm" ? 3.5 : size === "md" ? 4.5 : 5.5,
-              ...pos,
-              boxShadow: "inset 0.5px 0.5px 1px rgba(0,0,0,0.8), 0.5px 0.5px 0px rgba(255,255,255,0.6)",
-            }}
-          />
-        ))}
-
-        {/* Vertical flexbox layout to distribute elements evenly and prevent overlaps */}
-        <div
-          className="absolute inset-0 flex flex-col items-center justify-between pointer-events-none z-10"
-          style={{
-            paddingTop: size === "xs" ? 4 : size === "sm" ? 6 : size === "md" ? 8 : 11,
-            paddingBottom: size === "xs" ? 3 : size === "sm" ? 4.5 : size === "md" ? 6.5 : 9,
-          }}
-        >
-          {/* Hello Friends Brutalist Badge (hidden on smallest size to save vertical space) */}
-          {!isMini ? (
-            <div
-              className="bg-black border border-black text-[#ec4899] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-[1px] select-none"
-              style={{
-                fontSize: size === "sm" ? 5.5 : size === "md" ? 7 : 8.5,
-                boxShadow: "1px 1px 0 #000",
-                transform: "scale(0.9)",
-              }}
-            >
-              Hello Friends
-            </div>
-          ) : (
-            <div className="h-1.5" />
-          )}
-
-          {/* Khmer Province Name */}
-          <span
-            className="font-black leading-none text-center select-none"
-            style={{
-              fontFamily: "var(--font-kh-ui)",
-              fontSize: topFontSize,
-              color: "#ec4899",
-            }}
-          >
-            {kh}
-          </span>
-
-          {/* Score Value */}
-          <span
-            className="font-mono font-black leading-none tabular-nums text-black"
-            style={{
-              fontSize: valueFontSize,
-            }}
-          >
-            <PlateValue value={value} />
-          </span>
-
-          {/* Brand-Yellow Nose (placed cleanly below score, above bottom text) */}
-          <div
-            className="bg-[#eab308] border border-black rounded-full"
-            style={{
-              width: size === "xs" ? 4.5 : size === "sm" ? 6 : size === "md" ? 8 : 10,
-              height: size === "xs" ? 3 : size === "sm" ? 4 : size === "md" ? 5.5 : 7,
-              boxShadow: "0.5px 0.5px 0 #000",
-            }}
-          />
-
-          {/* English Province Name */}
-          <span
-            className="font-bold leading-none tracking-[0.16em] uppercase select-none"
-            style={{
-              fontFamily: "var(--font-roboto)",
-              fontSize: bottomFontSize,
-              color: "#ec4899",
             }}
           >
             {en}
@@ -550,16 +324,6 @@ export function ScorePlate({
     // Khmer province abbreviation mapping
     const khAbbr = PROVINCE_ABBRS[en.toLowerCase()] || kh.substring(0, 2);
 
-    const formatFourDigits = (val: number | ReactNode) => {
-      if (typeof val !== "number") return val;
-      const s = val.toString();
-      if (s.length === 1) return `000${s}`;
-      if (s.length === 2) return `00${s}`;
-      if (s.length === 3) return `0${s}`;
-      return s;
-    };
-    const formattedScore = formatFourDigits(value);
-
     return (
       <div
         className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className} ${isMini ? "border" : "border-2"}`}
@@ -567,7 +331,7 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #b91c1c 0%, #991b1b 50%, #7f1d1d 100%)", // Royal Crimson Red
           borderColor: "#991b1b",
-          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
+          borderRadius: 0,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
@@ -652,7 +416,7 @@ export function ScorePlate({
               textShadow: "1.5px 1.5px 1.5px rgba(0,0,0,0.9), -0.5px -0.5px 0px rgba(255,255,255,0.2)",
             }}
           >
-            {formattedScore}
+            <PlateValue value={value} />
           </span>
 
           {/* Bottom Label (English Province name) in Gold */}
@@ -692,16 +456,6 @@ export function ScorePlate({
     else if (provEnLower.includes("kampot")) stateCode = "០៧";
     else if (provEnLower.includes("kandal")) stateCode = "០៨";
     else if (provEnLower.includes("svay")) stateCode = "២០";
-    
-    const formatFourDigits = (val: number | ReactNode) => {
-      if (typeof val !== "number") return val;
-      const s = val.toString();
-      if (s.length === 1) return `000${s}`;
-      if (s.length === 2) return `00${s}`;
-      if (s.length === 3) return `0${s}`;
-      return s;
-    };
-    const formattedScore = formatFourDigits(value);
 
     return (
       <div
@@ -710,7 +464,7 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%)", // State Teal-Green Metal
           borderColor: "#0f766e",
-          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
+          borderRadius: 0,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
@@ -797,7 +551,7 @@ export function ScorePlate({
               textShadow: "1px 1px 1.5px rgba(0,0,0,0.7), -0.5px -0.5px 0px rgba(255,255,255,0.3)",
             }}
           >
-            2-{formattedScore}
+            <PlateValue value={value} />
           </span>
 
           {/* Bottom Label (STATE) */}
@@ -830,16 +584,6 @@ export function ScorePlate({
     const screwY = size === "xs" ? 3.5 : size === "sm" ? 4.5 : size === "md" ? 6.5 : 8;
     const screwX = size === "xs" ? 7 : size === "sm" ? 10 : size === "md" ? 14 : 18;
 
-    const formatFourDigits = (val: number | ReactNode) => {
-      if (typeof val !== "number") return val;
-      const s = val.toString();
-      if (s.length === 1) return `000${s}`;
-      if (s.length === 2) return `00${s}`;
-      if (s.length === 3) return `0${s}`;
-      return s;
-    };
-    const formattedScore = formatFourDigits(value);
-
     return (
       <div
         className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className} ${isMini ? "border" : "border-2"}`}
@@ -847,7 +591,7 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 50%, #172554 100%)", // UN Blue Metal
           borderColor: "#2563eb",
-          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
+          borderRadius: 0,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
@@ -929,7 +673,7 @@ export function ScorePlate({
             UNTAC
           </span>
 
-          {/* Stenciled Neon Pink Value: UN-[Score] */}
+          {/* Stenciled Neon Pink Value */}
           <span
             className="font-mono font-black leading-none tabular-nums"
             style={{
@@ -938,7 +682,7 @@ export function ScorePlate({
               textShadow: `0 0 4px ${neonPink}, 0 0 8px ${neonPink}, -0.5px -0.5px 0px rgba(0,0,0,0.4)`,
             }}
           >
-            UN-{formattedScore}
+            <PlateValue value={value} />
           </span>
 
           {/* Bottom Label (UN.DEV.PROG) in Neon Cyan */}
@@ -971,16 +715,6 @@ export function ScorePlate({
     const screwY = size === "xs" ? 3.5 : size === "sm" ? 4.5 : size === "md" ? 6.5 : 8;
     const screwX = size === "xs" ? 7 : size === "sm" ? 10 : size === "md" ? 14 : 18;
 
-    const formatFourDigits = (val: number | ReactNode) => {
-      if (typeof val !== "number") return val;
-      const s = val.toString();
-      if (s.length === 1) return `000${s}`;
-      if (s.length === 2) return `00${s}`;
-      if (s.length === 3) return `0${s}`;
-      return s;
-    };
-    const formattedScore = formatFourDigits(value);
-
     return (
       <div
         className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className} ${isMini ? "border" : "border-2"}`}
@@ -988,7 +722,7 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #fcfcfc 0%, #f4f4f5 50%, #e4e4e7 100%)", // Pressed white metal
           borderColor: "#d4d4d8",
-          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
+          borderRadius: 0,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
@@ -1056,7 +790,7 @@ export function ScorePlate({
             នគរបាល
           </span>
 
-          {/* Stenciled Red Value: 2-[Score] */}
+          {/* Stenciled Red Value */}
           <span
             className="font-mono font-black leading-none tabular-nums"
             style={{
@@ -1065,7 +799,7 @@ export function ScorePlate({
               textShadow: "1px 1px 1px rgba(255,255,255,0.8), -0.5px -0.5px 0px rgba(0,0,0,0.15)",
             }}
           >
-            2-{formattedScore}
+            <PlateValue value={value} />
           </span>
 
           {/* Bottom Label (POLICE) in Red */}
@@ -1088,20 +822,6 @@ export function ScorePlate({
   // --- Vintage 1990 Series Cambodian Plate (Redesigned from brand yellow road plate) ---
   const isMini = size === "xs";
   
-  // Format the number in 1990 Cambodian license plate style (e.g. 2.0556)
-  const formatPlateNumber = (val: number | ReactNode) => {
-    if (typeof val !== "number") return val;
-    const s = val.toString();
-    if (s.length <= 1) return `0.000${s}`;
-    if (s.length === 2) return `0.00${s}`;
-    if (s.length === 3) return `0.0${s}`;
-    if (s.length === 4) return `${s[0]}.${s.substring(1)}`;
-    if (s.length === 5) return `${s.substring(0, 2)}.${s.substring(2)}`;
-    return `${s.substring(0, s.length - 4)}.${s.substring(s.length - 4)}`;
-  };
-  
-  const formattedNumber = formatPlateNumber(value);
-
   // Dynamic Khmer province abbreviation and series letter
   let khAbbr = "សរ"; // Default to Siem Reap (សរ)
   let seriesLetter = "ក"; // Default to series consonant (ក)
@@ -1147,7 +867,7 @@ export function ScorePlate({
         ...shell,
         background: "linear-gradient(135deg, #f5f1e4 0%, #ebe5d3 50%, #dfd8c2 100%)", // Vintage cream metal
         borderColor: "#b5ae95", // Aged cut metal edge
-        borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5, // Slightly rounded rectangular corners
+        borderRadius: 0, // Sharp corners
       }}
     >
       {/* Pressed metal plate sheen & shadow vignette */}
@@ -1236,7 +956,7 @@ export function ScorePlate({
             textShadow: "1px 1px 1.5px rgba(0,0,0,0.45), -0.75px -0.75px 0px rgba(255,255,255,0.4)",
           }}
         >
-          {formattedNumber}
+          <PlateValue value={value} />
         </span>
       </div>
 

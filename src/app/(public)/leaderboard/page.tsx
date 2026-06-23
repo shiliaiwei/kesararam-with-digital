@@ -1422,7 +1422,7 @@ export default function LeaderboardPage() {
       >
         <div className="grid grid-cols-12 items-center px-2 sm:px-5 py-2 sm:py-2.5">
           {/* Rank + Avatar + Name + Meta */}
-          <div className="col-span-7 sm:col-span-5 flex items-center gap-1.5 sm:gap-3 min-w-0">
+          <div className="col-span-4 sm:col-span-4 flex items-center gap-1.5 sm:gap-3 min-w-0">
             {/* Rank + movement */}
             <div className="flex items-center gap-1 flex-shrink-0 w-7 sm:w-12">
               {medal ? (
@@ -1496,10 +1496,21 @@ export default function LeaderboardPage() {
           </div>
 
           {/* Road Points Column (Cambodian License Plate card style always) */}
-          <div className="flex col-span-3 justify-end sm:justify-start items-center">
+          <div className="flex col-span-3 sm:col-span-2 justify-end sm:justify-start items-center">
             <ScorePlate
               value={user.priorityPoints ?? 0}
               styleId={rowPlateStyle}
+              provinceEn={rowProvince}
+              provinceKh={getProvinceKh(rowProvince)}
+              size={isMobile ? "xs" : "sm"}
+            />
+          </div>
+
+          {/* Solo Practice Column */}
+          <div className="flex col-span-3 sm:col-span-2 justify-end sm:justify-start items-center">
+            <ScorePlate
+              value={user.soloPoints ?? 0}
+              styleId="road"
               provinceEn={rowProvince}
               provinceKh={getProvinceKh(rowProvince)}
               size={isMobile ? "xs" : "sm"}
@@ -1709,15 +1720,20 @@ export default function LeaderboardPage() {
                 {/* Table Header — Live Score is the hero metric and leads the stats
                     right after the player; Games / Acc / Top game follow. */}
                 <div className="grid grid-cols-12 bg-black px-2 sm:px-5 py-2 sm:py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
-                  <span className="col-span-7 sm:col-span-5 text-yellow-400 flex items-center gap-1 sm:gap-6">
+                  <span className="col-span-4 sm:col-span-4 text-yellow-400 flex items-center gap-1 sm:gap-6">
                     <span className="sm:hidden"># / {kh ? "សិស្ស" : "Player"}</span>
                     <span className="hidden sm:inline w-6">#</span>
                     <span className="hidden sm:inline">{kh ? "សិស្ស" : "Player"}</span>
                   </span>
                   
                   {/* Always Road Points column header */}
-                  <span className="text-yellow-400 flex items-center font-black uppercase tracking-widest truncate col-span-3 sm:col-span-3">
+                  <span className="text-yellow-400 flex items-center font-black uppercase tracking-widest truncate col-span-3 sm:col-span-2">
                     Road Points
+                  </span>
+
+                  {/* Solo Practice column header */}
+                  <span className="text-yellow-400 flex items-center font-black uppercase tracking-widest truncate col-span-3 sm:col-span-2">
+                    {kh ? "ហាត់លេង" : "Solo Practice"}
                   </span>
 
                   {/* Total / Game Mode points header containing the filter dropdown */}

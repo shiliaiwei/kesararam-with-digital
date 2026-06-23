@@ -187,7 +187,7 @@ export async function GET(req: NextRequest) {
     // (school/province/grade) and isStatsPublic are NOT required — students who
     // played any game appear even with a bare profile. Per-field privacy flags
     // (isNamePublic, isSchoolPublic, …) still anonymize the displayed values below.
-    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true AND ${users.lifetimePoints} > 0`;
+    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true AND (${users.lifetimePoints} > 0 OR EXISTS (SELECT 1 FROM points_ledger pl WHERE pl.user_id = users.id AND pl.source = 'solo' AND pl.points > 0))`;
     const provinceFilter =
       province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
 

@@ -460,5 +460,5 @@ export function sortLeaderboardUsers<T extends LeaderboardUser>(users: readonly 
 
 /** Format a point total with thousands separators, e.g. 5000 → "5,000". */
 export function formatPoints(points: number): string {
-    return normalizeScore(points).toLocaleString("en-US");
+    return normalizeScore(points).toString();
 }
