@@ -587,8 +587,8 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                         <ScorePlate
                           value={student.livePoints}
                           styleId={student.scorePlateStyle}
-                          provinceEn={student.province}
-                          provinceKh={getProvinceKh(student.province)}
+                          provinceEn={isProvincePublic ? student.province : null}
+                          provinceKh={isProvincePublic ? getProvinceKh(student.province) : null}
                           size="md"
                           shadow
                         />

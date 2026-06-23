@@ -1,5 +1,8 @@
+"use client";
+
 import type { CSSProperties, ReactNode } from "react";
 import { normalizeScorePlateStyle, type ScorePlateStyle } from "@/lib/score-plates";
+import { useLang } from "@/context/lang-context";
 
 type ScorePlateSize = "xs" | "sm" | "md" | "lg";
 
@@ -49,6 +52,54 @@ const PROVINCE_ABBRS: Record<string, string> = {
   "tboung khmum": "តឃ",
   "tboungkhmum": "តឃ",
   "cambodia": "កម",
+};
+
+// Comprehensive English province abbreviation lookup
+const EN_PROVINCE_ABBRS: Record<string, string> = {
+  "siem reap": "SR",
+  "siemreap": "SR",
+  "phnom penh": "PP",
+  "phnompenh": "PP",
+  "battambang": "BTB",
+  "banteay meanchey": "BMC",
+  "banteaymeanchey": "BMC",
+  "kampong cham": "KC",
+  "kampongcham": "KC",
+  "kampong chhnang": "KCH",
+  "kampongchhnang": "KCH",
+  "kampong speu": "KS",
+  "kampongspeu": "KS",
+  "kampong thom": "KT",
+  "kampongthom": "KT",
+  "kampot": "KP",
+  "kandal": "KD",
+  "koh kong": "KK",
+  "kohkong": "KK",
+  "kratie": "KRT",
+  "kratié": "KRT",
+  "mondulkiri": "MK",
+  "preah vihear": "PV",
+  "preahvihear": "PV",
+  "prey veng": "PVG",
+  "preyveng": "PVG",
+  "pursat": "PS",
+  "ratanakiri": "RK",
+  "preah sihanouk": "SHV",
+  "sihanoukville": "SHV",
+  "stung treng": "STR",
+  "stungtreng": "STR",
+  "svay rieng": "SVR",
+  "svayrieng": "SVR",
+  "takeo": "TK",
+  "takéo": "TK",
+  "otdar meanchey": "OMC",
+  "oddar meanchey": "OMC",
+  "oddarmeanchey": "OMC",
+  "kep": "KEP",
+  "pailin": "PL",
+  "tboung khmum": "TBK",
+  "tboungkhmum": "TBK",
+  "cambodia": "KH",
 };
 
 interface ScorePlateProps {
@@ -603,9 +654,8 @@ export function ScorePlate({
   // --- Vintage 1990 Series Cambodian Plate (Redesigned from brand yellow road plate) ---
   const isMini = size === "xs";
   
-  // Dynamic Khmer province abbreviation and series letter
+  // Dynamic province abbreviations
   let khAbbr = "សរ"; // Default to Siem Reap (សរ)
-  
   const provEnLower = en.toLowerCase();
 
   // Find matching abbreviation
@@ -624,15 +674,29 @@ export function ScorePlate({
     khAbbr = kh.substring(0, 2);
   }
 
+  // Find matching English abbreviation
+  let enAbbr = "KH"; // Default to KH
+  for (const [key, value] of Object.entries(EN_PROVINCE_ABBRS)) {
+    if (provEnLower.includes(key)) {
+      enAbbr = value;
+      break;
+    }
+  }
+
+  // Determine active language safely
+  let isKh = true;
+  try {
+    const context = useLang();
+    if (context && context.lang === "en") {
+      isKh = false;
+    }
+  } catch {
+    // fallback to kh
+  }
+
   // Font sizes scaled according to size
   const khAbbrFontSize = size === "xs" ? 9 : size === "sm" ? 12 : size === "md" ? 17 : 21;
   const numberFontSize = size === "xs" ? 12 : size === "sm" ? 16 : size === "md" ? 22 : 28;
-  const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 5.5 : size === "md" ? 7.5 : 9;
-
-  // Screws positioning
-  const screwY = size === "xs" ? 3.5 : size === "sm" ? 4.5 : size === "md" ? 6.5 : 8;
-  const screwX = size === "xs" ? 7 : size === "sm" ? 10 : size === "md" ? 14 : 18;
-  const screwSize = size === "xs" ? 3 : size === "sm" ? 4.5 : size === "md" ? 6 : 7;
 
   return (
     <div
@@ -650,25 +714,31 @@ export function ScorePlate({
 
       {/* Single line horizontal layout of vintage stamped characters */}
       <div 
-        className="flex flex-row items-center justify-center gap-1.5 sm:gap-2.5 z-10"
-        style={{
-          transform: size === "xs" ? "translateY(-1px)" : size === "sm" ? "translateY(-1.5px)" : size === "md" ? "translateY(-2px)" : "translateY(-2.5px)",
-        }}
+        className="flex flex-row items-center justify-center z-10"
       >
-        {/* Khmer Province Abbreviation */}
+        {/* Province Abbreviation */}
         <span
           className="font-black text-black select-none"
           style={{
-            fontFamily: "var(--font-kh-ui)",
+            fontFamily: isKh ? "var(--font-kh-ui)" : "var(--font-roboto)",
             fontSize: khAbbrFontSize,
             textShadow: "1px 1px 1px rgba(0,0,0,0.4), -0.5px -0.5px 0px rgba(255,255,255,0.4)",
           }}
         >
-          {khAbbr}
+          {isKh ? khAbbr : enAbbr}
         </span>
 
-        {/* Space separator */}
-        <span className="mx-1" />
+        {/* Hyphen */}
+        <span
+          className="font-black text-black select-none font-mono"
+          style={{
+            fontSize: khAbbrFontSize,
+            textShadow: "1px 1px 1px rgba(0,0,0,0.4), -0.5px -0.5px 0px rgba(255,255,255,0.4)",
+            margin: size === "xs" ? "0 1px" : "0 2px",
+          }}
+        >
+          -
+        </span>
 
         {/* Plate Number (Score) */}
         <span
@@ -679,20 +749,6 @@ export function ScorePlate({
           }}
         >
           <PlateValue value={value} />
-        </span>
-      </div>
-
-      {/* Subtle stamped English province name at the bottom center to preserve bilingual accessibility */}
-      <div className="absolute left-0 right-0 flex justify-center bottom-1.5 sm:bottom-2 pointer-events-none">
-        <span
-          className="font-bold leading-none tracking-[0.2em] text-black/55 uppercase"
-          style={{
-            fontFamily: "var(--font-roboto)",
-            fontSize: bottomFontSize,
-            textShadow: "0.5px 0.5px 0px rgba(255, 255, 255, 0.5)",
-          }}
-        >
-          {en}
         </span>
       </div>
     </div>

@@ -1410,7 +1410,9 @@ export default function LeaderboardPage() {
     const toOvertake = above ? Math.max(0, (above[scoreKey] ?? 0) - scoreValue + 1) : 0;
     const bestGameMeta = getGameMeta(user.bestGame);
 
-    const rowProvince = isMe ? (currentUser?.classProvince || currentUser?.province) : user.province;
+    const rowProvince = isMe 
+      ? ((currentUser?.isProvincePublic ?? false) ? (currentUser?.classProvince || currentUser?.province) : null)
+      : user.province;
     const rowPlateStyle = isMe ? (currentUser?.scorePlateStyle || user.scorePlateStyle) : user.scorePlateStyle;
 
     return (
@@ -1629,8 +1631,8 @@ export default function LeaderboardPage() {
                       <ScorePlate
                         value={currentUser.livePoints ?? 0}
                         styleId={currentUser.scorePlateStyle}
-                        provinceEn={currentUser.classProvince || currentUser.province}
-                        provinceKh={getProvinceKh(currentUser.classProvince || currentUser.province)}
+                        provinceEn={(currentUser.isProvincePublic ?? false) ? (currentUser.classProvince || currentUser.province) : null}
+                        provinceKh={getProvinceKh((currentUser.isProvincePublic ?? false) ? (currentUser.classProvince || currentUser.province) : null)}
                         size="sm"
                       />
                     </div>

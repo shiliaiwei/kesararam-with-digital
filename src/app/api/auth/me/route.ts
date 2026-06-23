@@ -31,6 +31,7 @@ export async function GET() {
       claimedRewards: users.claimedRewards,
       schoolName: users.schoolName,
       province: users.province,
+      isProvincePublic: users.isProvincePublic,
     })
     .from(users)
     .where(eq(users.id, session.id))
