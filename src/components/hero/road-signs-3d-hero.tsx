@@ -245,6 +245,18 @@ export function RoadSigns3DHero() {
   const kh = lang === "kh";
   const kf = { fontFamily: "var(--font-system)" };
 
+  // FCP: the marquee mounts ~240 Cloudinary sign <img>s + 4 requestAnimationFrame
+  // loops. Rendering them in the initial paint floods the mobile connection and
+  // delays first contentful paint. We defer the rows until after the first paint
+  // (post-hydration), keeping the heading text instantly visible. A reserved-height
+  // placeholder holds the layout so deferring costs zero layout shift.
+  const [showRows, setShowRows] = useState(false);
+  useEffect(() => {
+    // rAF → runs after the browser has painted the first frame.
+    const id = requestAnimationFrame(() => setShowRows(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   return (
     <section className="relative w-full overflow-hidden bg-white py-10 select-none">
       {/* Edge fades */}
@@ -273,12 +285,18 @@ export function RoadSigns3DHero() {
         </h2>
       </div>
 
-      {/* 4 rows — alternating direction, different speeds, size offsets */}
-      <div className="relative z-10 flex flex-col gap-1">
-        <DragRow signs={ROW1} speed={80} reverse={false} sizeOffset={0} />
-        <DragRow signs={ROW2} speed={60} reverse={true} sizeOffset={7} />
-        <DragRow signs={ROW3} speed={100} reverse={false} sizeOffset={3} />
-        <DragRow signs={ROW4} speed={70} reverse={true} sizeOffset={11} />
+      {/* 4 rows — alternating direction, different speeds, size offsets.
+          Deferred until after first paint; the min-height placeholder reserves the
+          exact row-block height so there is no layout shift when they mount. */}
+      <div className="relative z-10 flex flex-col gap-1" style={{ minHeight: 300 }}>
+        {showRows && (
+          <>
+            <DragRow signs={ROW1} speed={80} reverse={false} sizeOffset={0} />
+            <DragRow signs={ROW2} speed={60} reverse={true} sizeOffset={7} />
+            <DragRow signs={ROW3} speed={100} reverse={false} sizeOffset={3} />
+            <DragRow signs={ROW4} speed={70} reverse={true} sizeOffset={11} />
+          </>
+        )}
       </div>
 
     </section>

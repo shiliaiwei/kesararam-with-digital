@@ -253,7 +253,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="lang-en" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
@@ -261,14 +261,27 @@ export default function RootLayout({
         {/* Preconnect to Cloudinary — reduces LCP for sign images */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        {/* Preload official local KWD font stack */}
+        {/* Preload ONLY the FCP-critical font: Roboto (Latin body/UI text). The
+            Khmer faces (Google Sans ~1.4 MB, Kantumruy) are NOT preloaded — they
+            carry only Khmer glyphs, are gated by unicode-range, and use
+            font-display:swap, so English-first paint never waits on them. Loading
+            them here used to saturate the mobile connection before first paint. */}
         <link rel="preload" href="/Roboto/Roboto-VariableFont_wdth,wght.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/Kantumruy_Pro/static/KantumruyPro-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/Kantumruy_Pro/static/KantumruyPro-Bold.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        {/* Material Symbols icon font */}
+        {/* Material Symbols icon font — loaded ASYNCHRONOUSLY so it never blocks
+            first paint. It is only used on dashboard/teacher/register screens, not
+            the public FCP routes, so the icons can stream in after paint. The
+            inline injector adds the stylesheet with media="print", then flips it to
+            "all" on load — the canonical non-render-blocking CSS pattern. */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();",
+          }}
+        />
+        <noscript>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        </noscript>
         {/* Schema.org structured data (Organization + WebSite) */}
         <script
           type="application/ld+json"
