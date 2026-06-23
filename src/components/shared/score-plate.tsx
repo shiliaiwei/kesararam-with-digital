@@ -495,7 +495,7 @@ export function ScorePlate({
             paddingBottom: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
           }}
         >
-          {/* Top Label (រដ្ឋ + Code) */}
+          {/* Top Label (រង្វាន់ + Code) */}
           <span
             className="font-black leading-none text-center select-none text-white"
             style={{
@@ -504,7 +504,7 @@ export function ScorePlate({
               textShadow: "1px 1px 1px rgba(0,0,0,0.6)",
             }}
           >
-            រដ្ឋ {stateCode}
+            រង្វាន់ {stateCode}
           </span>
 
           {/* Stenciled/Embossed White Score */}
@@ -518,7 +518,7 @@ export function ScorePlate({
             <PlateValue value={value} />
           </span>
 
-          {/* Bottom Label (STATE) */}
+          {/* Bottom Label (AWARD) */}
           <span
             className="font-bold leading-none tracking-[0.2em] uppercase select-none text-white"
             style={{
@@ -527,7 +527,7 @@ export function ScorePlate({
               textShadow: "1px 1px 1px rgba(0,0,0,0.6)",
             }}
           >
-            STATE
+            AWARD
           </span>
         </div>
       </div>
@@ -604,7 +604,7 @@ export function ScorePlate({
             paddingBottom: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
           }}
         >
-          {/* Top Label (UNTAC) in Neon Cyan */}
+          {/* Top Label (GLOBAL) in Neon Cyan */}
           <span
             className="font-black leading-none text-center select-none"
             style={{
@@ -614,7 +614,7 @@ export function ScorePlate({
               textShadow: `0 0 3px ${neonCyan}, 0 0 6px ${neonCyan}`,
             }}
           >
-            UNTAC
+            GLOBAL
           </span>
 
           {/* Stenciled Neon Pink Value */}
@@ -629,7 +629,7 @@ export function ScorePlate({
             <PlateValue value={value} />
           </span>
 
-          {/* Bottom Label (UN.DEV.PROG) in Neon Cyan */}
+          {/* Bottom Label (EDU.REWARD) in Neon Cyan */}
           <span
             className="font-bold leading-none tracking-[0.16em] uppercase select-none"
             style={{
@@ -639,7 +639,7 @@ export function ScorePlate({
               textShadow: `0 0 3px ${neonCyan}`,
             }}
           >
-            UN.DEV.PROG
+            EDU.REWARD
           </span>
         </div>
       </div>
@@ -709,7 +709,7 @@ export function ScorePlate({
             paddingBottom: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
           }}
         >
-          {/* Top Label (Khmer: នគរបាល - Police) in Red */}
+          {/* Top Label (Khmer: សុវត្ថិភាព - Safety) in Red */}
           <span
             className="font-black leading-none text-center select-none"
             style={{
@@ -719,7 +719,7 @@ export function ScorePlate({
               textShadow: "0.5px 0.5px 0px rgba(255,255,255,0.8)",
             }}
           >
-            នគរបាល
+            សុវត្ថិភាព
           </span>
 
           {/* Stenciled Red Value */}
@@ -734,7 +734,7 @@ export function ScorePlate({
             <PlateValue value={value} />
           </span>
 
-          {/* Bottom Label (POLICE) in Red */}
+          {/* Bottom Label (SAFETY) in Red */}
           <span
             className="font-bold leading-none tracking-[0.2em] uppercase select-none"
             style={{
@@ -744,7 +744,7 @@ export function ScorePlate({
               textShadow: "0.5px 0.5px 0px rgba(255,255,255,0.8)",
             }}
           >
-            POLICE
+            SAFETY
           </span>
         </div>
       </div>
@@ -756,7 +756,6 @@ export function ScorePlate({
   
   // Dynamic Khmer province abbreviation and series letter
   let khAbbr = "សរ"; // Default to Siem Reap (សរ)
-  let seriesLetter = "ក"; // Default to series consonant (ក)
   
   const provEnLower = en.toLowerCase();
 
@@ -776,14 +775,8 @@ export function ScorePlate({
     khAbbr = kh.substring(0, 2);
   }
 
-  // Deterministic series letter from the consonant list
-  const seriesConsonants = ["ក", "ខ", "គ", "ឃ", "ង", "ច", "ឆ", "ជ", "ឈ", "ញ", "ដ", "ឋ", "ឌ", "ឍ", "ណ", "ត", "ថ", "ទ", "ធ", "ន", "ប", "ផ", "ព", "ភ", "ម", "យ", "រ", "ល", "វ", "ស", "ហ", "ឡ", "អ"];
-  const idx = typeof value === "number" ? (value % seriesConsonants.length) : 0;
-  seriesLetter = seriesConsonants[idx];
-
   // Font sizes scaled according to size
   const khAbbrFontSize = size === "xs" ? 9 : size === "sm" ? 12 : size === "md" ? 17 : 21;
-  const seriesFontSize = size === "xs" ? 8 : size === "sm" ? 11 : size === "md" ? 15 : 19;
   const numberFontSize = size === "xs" ? 12 : size === "sm" ? 16 : size === "md" ? 22 : 28;
   const bottomFontSize = size === "xs" ? 4.5 : size === "sm" ? 5.5 : size === "md" ? 7.5 : 9;
 
@@ -847,18 +840,6 @@ export function ScorePlate({
           }}
         >
           {khAbbr}
-        </span>
-
-        {/* Khmer Series Consonant */}
-        <span
-          className="font-bold text-black select-none"
-          style={{
-            fontFamily: "var(--font-kh-ui)",
-            fontSize: seriesFontSize,
-            textShadow: "1px 1px 1px rgba(0,0,0,0.4), -0.5px -0.5px 0px rgba(255,255,255,0.4)",
-          }}
-        >
-          {seriesLetter}
         </span>
 
         {/* Dynamic separator spacing */}
