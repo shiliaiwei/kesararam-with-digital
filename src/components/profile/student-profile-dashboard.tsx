@@ -1016,8 +1016,8 @@ export function StudentProfileDashboard({
                             ? `ផ្លាក Pro ត្រូវបានដោះសោ${plateEntitlementPlan ? ` តាម ${plateEntitlementPlan.replace("_", " ")}` : ""}។`
                             : `Premium plates unlocked${plateEntitlementPlan ? ` through ${plateEntitlementPlan.replace("_", " ")}` : ""}.`)
                           : (kh
-                            ? "ផ្លាកផ្លូវឥតគិតថ្លៃ។ ភ្ជាប់ជាមួយ Teacher Pro, Family ឬ School Pro ដើម្បីដោះសោផ្លាកបន្ថែម។"
-                            : "The Road Plate is free. Link to Teacher Pro, Family, or School Pro to unlock more plates.")}
+                            ? "ផ្លាកបុរាណឆ្នាំ ១៩៩០ ឥតគិតថ្លៃ។ ភ្ជាប់ជាមួយ Teacher Pro, Family ឬ School Pro ដើម្បីដោះសោផ្លាកបន្ថែម។"
+                            : "The Vintage 1990 Plate is free. Link to Teacher Pro, Family, or School Pro to unlock more plates.")}
                       </p>
                     </div>
 
