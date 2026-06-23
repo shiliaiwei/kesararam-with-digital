@@ -224,29 +224,7 @@ export function ScorePlate({
         {/* Metal sheen and vignetting */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-white/20 pointer-events-none rounded-[inherit]" />
 
-        {/* Left Screw Hole */}
-        <div
-          className="absolute rounded-full bg-zinc-950 pointer-events-none border border-zinc-400/30"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            left: screwX,
-            boxShadow: "inset 1.5px 1.5px 2px rgba(0,0,0,0.9), 0.5px 0.5px 0px rgba(255,255,255,0.7)",
-          }}
-        />
 
-        {/* Right Screw Hole */}
-        <div
-          className="absolute rounded-full bg-zinc-950 pointer-events-none border border-zinc-400/30"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            right: screwX,
-            boxShadow: "inset 1.5px 1.5px 2px rgba(0,0,0,0.9), 0.5px 0.5px 0px rgba(255,255,255,0.7)",
-          }}
-        />
 
         {/* Vertically spaced flex layout for clean non-overlapping elements */}
         <div
@@ -340,28 +318,6 @@ export function ScorePlate({
           <path d="M 50 10 L 52 14 L 54 14 L 54 22 L 46 22 L 46 14 L 48 14 Z M 40 18 L 42 22 L 44 22 L 44 32 L 36 32 L 36 22 L 38 22 Z M 60 18 L 62 22 L 64 22 L 64 32 L 56 32 L 56 22 L 58 22 Z M 30 25 L 32 28 L 34 28 L 34 40 L 26 40 L 26 28 L 28 28 Z M 70 25 L 72 28 L 74 28 L 74 40 L 66 40 L 66 28 L 68 28 Z M 20 40 L 80 40 L 80 44 L 20 44 Z" />
         </svg>
 
-        {/* Gold mounting holes */}
-        <div
-          className="absolute rounded-full bg-zinc-950 pointer-events-none border border-amber-600/60"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            left: screwX,
-            boxShadow: "inset 1px 1px 1.5px rgba(0,0,0,0.9), 0.5px 0.5px 0px rgba(255,255,255,0.3)",
-          }}
-        />
-        <div
-          className="absolute rounded-full bg-zinc-950 pointer-events-none border border-amber-600/60"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            right: screwX,
-            boxShadow: "inset 1px 1px 1.5px rgba(0,0,0,0.9), 0.5px 0.5px 0px rgba(255,255,255,0.3)",
-          }}
-        />
-
         {/* Vertically spaced flex layout to prevent any overlapping */}
         <div
           className="absolute inset-0 flex flex-col justify-between items-center z-10 pointer-events-none"
@@ -370,18 +326,8 @@ export function ScorePlate({
             paddingBottom: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
           }}
         >
-          {/* Top Label (Khmer Province & Royal Code) in Gold */}
-          <span
-            className="font-black leading-none text-center select-none"
-            style={{
-              fontFamily: "var(--font-kh-ui)",
-              fontSize: labelFontSize,
-              color: gold,
-              textShadow: "1px 1px 1px rgba(0,0,0,0.8)",
-            }}
-          >
-            ៧២ {khAbbr}
-          </span>
+          {/* Top spacer instead of label to keep flex layout balanced */}
+          <div style={{ height: labelFontSize }} />
 
           {/* Stenciled Gold Value */}
           <span
@@ -465,28 +411,6 @@ export function ScorePlate({
           <path d="M9 22v-4h4" />
         </svg>
 
-        {/* Screw holes */}
-        <div
-          className="absolute rounded-full bg-zinc-950 pointer-events-none border border-zinc-500/40"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            left: screwX,
-            boxShadow: "inset 1px 1px 1.5px rgba(0,0,0,0.9), 0.5px 0.5px 0px rgba(255,255,255,0.4)",
-          }}
-        />
-        <div
-          className="absolute rounded-full bg-zinc-950 pointer-events-none border border-zinc-500/40"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            right: screwX,
-            boxShadow: "inset 1px 1px 1.5px rgba(0,0,0,0.9), 0.5px 0.5px 0px rgba(255,255,255,0.4)",
-          }}
-        />
-
         {/* Vertically spaced flex layout */}
         <div
           className="absolute inset-0 flex flex-col justify-between items-center z-10 pointer-events-none"
@@ -495,17 +419,8 @@ export function ScorePlate({
             paddingBottom: size === "xs" ? 3.5 : size === "sm" ? 5 : size === "md" ? 7 : 9,
           }}
         >
-          {/* Top Label (រង្វាន់ + Code) */}
-          <span
-            className="font-black leading-none text-center select-none text-white"
-            style={{
-              fontFamily: "var(--font-kh-ui)",
-              fontSize: labelFontSize,
-              textShadow: "1px 1px 1px rgba(0,0,0,0.6)",
-            }}
-          >
-            រង្វាន់ {stateCode}
-          </span>
+          {/* Top spacer instead of label to keep flex layout balanced */}
+          <div style={{ height: labelFontSize }} />
 
           {/* Stenciled/Embossed White Score */}
           <span
@@ -566,36 +481,6 @@ export function ScorePlate({
         <div className="absolute top-[5px] left-[5px] w-[4px] h-[4px] border-t border-l border-white/40 pointer-events-none" />
         <div className="absolute top-[5px] right-[5px] w-[4px] h-[4px] border-t border-r border-white/40 pointer-events-none" />
 
-        {/* Glowing neon screws */}
-        <div
-          className="absolute rounded-full pointer-events-none flex items-center justify-center"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            left: screwX,
-            backgroundColor: "#27272a",
-            border: `1px solid ${neonCyan}`,
-            boxShadow: `0 0 3px ${neonCyan}`,
-          }}
-        >
-          <div className="rounded-full" style={{ width: "35%", height: "35%", backgroundColor: neonPink }} />
-        </div>
-        <div
-          className="absolute rounded-full pointer-events-none flex items-center justify-center"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            right: screwX,
-            backgroundColor: "#27272a",
-            border: `1px solid ${neonCyan}`,
-            boxShadow: `0 0 3px ${neonCyan}`,
-          }}
-        >
-          <div className="rounded-full" style={{ width: "35%", height: "35%", backgroundColor: neonPink }} />
-        </div>
-
         {/* Vertically spaced flex layout to prevent any overlapping */}
         <div
           className="absolute inset-0 flex flex-col justify-between items-center z-10 pointer-events-none"
@@ -629,18 +514,8 @@ export function ScorePlate({
             <PlateValue value={value} />
           </span>
 
-          {/* Bottom Label (EDU.REWARD) in Neon Cyan */}
-          <span
-            className="font-bold leading-none tracking-[0.16em] uppercase select-none"
-            style={{
-              fontFamily: "var(--font-roboto)",
-              fontSize: bottomFontSize,
-              color: neonCyan,
-              textShadow: `0 0 3px ${neonCyan}`,
-            }}
-          >
-            EDU.REWARD
-          </span>
+          {/* Bottom spacer instead of label to keep flex layout balanced */}
+          <div style={{ height: bottomFontSize }} />
         </div>
       </div>
     );
@@ -673,33 +548,7 @@ export function ScorePlate({
         {/* Metal reflections & highlights */}
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/20 pointer-events-none rounded-[inherit]" />
 
-        {/* Yellow screw caps in top corners (matching photo's yellow capped pins) */}
-        <div
-          className="absolute rounded-full pointer-events-none border border-amber-600 flex items-center justify-center"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            left: screwX,
-            backgroundColor: "#eab308", // Brand Yellow screw caps
-            boxShadow: "1px 1px 1px rgba(0, 0, 0, 0.25), inset 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.6)",
-          }}
-        >
-          <div className="bg-amber-400 rounded-full" style={{ width: "30%", height: "30%", transform: "translate(-0.5px, -0.5px)" }} />
-        </div>
-        <div
-          className="absolute rounded-full pointer-events-none border border-amber-600 flex items-center justify-center"
-          style={{
-            width: screwSize,
-            height: screwSize,
-            top: screwY,
-            right: screwX,
-            backgroundColor: "#eab308", // Brand Yellow screw caps
-            boxShadow: "1px 1px 1px rgba(0, 0, 0, 0.25), inset 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.6)",
-          }}
-        >
-          <div className="bg-amber-400 rounded-full" style={{ width: "30%", height: "30%", transform: "translate(-0.5px, -0.5px)" }} />
-        </div>
+
 
         {/* Vertically spaced flex layout to prevent any overlapping */}
         <div
@@ -799,30 +648,6 @@ export function ScorePlate({
       <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-white/15 pointer-events-none rounded-[inherit]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/5 pointer-events-none rounded-[inherit]" />
 
-      {/* Left empty screw hole (showing background through shadow) */}
-      <div
-        className="absolute rounded-full bg-zinc-950 pointer-events-none border border-zinc-400/40"
-        style={{
-          width: screwSize,
-          height: screwSize,
-          top: screwY,
-          left: screwX,
-          boxShadow: "inset 1px 1px 1.5px rgba(0,0,0,0.85), 0.5px 0.5px 0px rgba(255,255,255,0.75)",
-        }}
-      />
-
-      {/* Right empty screw hole (showing background through shadow) */}
-      <div
-        className="absolute rounded-full bg-zinc-950 pointer-events-none border border-zinc-400/40"
-        style={{
-          width: screwSize,
-          height: screwSize,
-          top: screwY,
-          right: screwX,
-          boxShadow: "inset 1px 1px 1.5px rgba(0,0,0,0.85), 0.5px 0.5px 0px rgba(255,255,255,0.75)",
-        }}
-      />
-
       {/* Single line horizontal layout of vintage stamped characters */}
       <div 
         className="flex flex-row items-center justify-center gap-1.5 sm:gap-2.5 z-10"
@@ -842,13 +667,8 @@ export function ScorePlate({
           {khAbbr}
         </span>
 
-        {/* Dynamic separator spacing */}
-        <span 
-          className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-black rounded-full mx-0.5"
-          style={{
-            boxShadow: "1px 1px 1px rgba(0,0,0,0.4), -0.5px -0.5px 0px rgba(255,255,255,0.4)",
-          }}
-        />
+        {/* Space separator */}
+        <span className="mx-1" />
 
         {/* Plate Number (Score) */}
         <span
