@@ -9,24 +9,33 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "KWD — Learn Cambodia's Road Signs & Traffic Rules | Khmer & English",
-    template: "%s | KWD — Kesararam With Digital",
+    default: "Learn Road Safety in Cambodia — Road Signs & Traffic Rules, Free & Bilingual | Kesararam With Digital",
+    template: "%s | Kesararam With Digital — The Way of Safety (វិថីសុវត្ថិភាព)",
   },
   description:
-    "KWD is Cambodia's free, fully bilingual (ខ្មែរ / English) road-safety education platform. Learn traffic signs, road rules, and safe road-use theory through interactive lessons, quizzes, and live multiplayer games — on any phone or computer, anytime.",
-  applicationName: "KWD — Kesararam With Digital",
+    "Learn road safety in Cambodia, free and fully bilingual (ខ្មែរ / English). Kesararam With Digital — វិថីសុវត្ថិភាព, The Way of Safety — teaches road signs, traffic signs, traffic rules and safe road-use theory through interactive lessons, quizzes, games and live class practice, on any phone or computer.",
+  applicationName: "Kesararam With Digital — The Way of Safety",
   manifest: "/manifest.webmanifest",
   authors: [{ name: "Kesararam With Digital", url: "https://www.kesararamwithdigital.tech" }],
   creator: "Kesararam With Digital (Technovation Girls 2026, Team #50777)",
   publisher: "Kesararam With Digital",
   category: "education",
   keywords: [
-    // English — intent & topic
+    // English — high-intent search phrases (what people type)
+    "learn road safety",
+    "learn road safety online",
+    "learn road safety Cambodia",
+    "how to learn road safety",
+    "road safety lessons",
+    "road safety course free",
+    "learn traffic signs",
+    "learn traffic rules Cambodia",
+    "learn traffic signs online",
+    // English — topic
     "Cambodia road signs",
     "Cambodia traffic rules",
     "traffic signs Cambodia",
     "road safety Cambodia",
-    "learn traffic rules Cambodia",
     "Khmer road safety theory",
     "traffic law Cambodia",
     "road sign quiz",
@@ -36,17 +45,19 @@ export const metadata: Metadata = {
     "bilingual education Cambodia",
     "free education platform",
     "road safety education",
-    "learn traffic signs online",
-    // Brand
-    "KWD",
+    // Brand & project names
     "Kesararam With Digital",
+    "The Way of Safety",
+    "វិថីសុវត្ថិភាព",
+    "Kesararam With Digital road safety",
+    "KWD",
     // Khmer (ខ្មែរ)
+    "រៀនសុវត្ថិភាពចរាចរណ៍",
+    "សុវត្ថិភាពចរាចរណ៍",
     "ច្បាប់ចរាចរណ៍",
     "ផ្លាកសញ្ញាចរាចរណ៍",
     "សញ្ញាចរាចរណ៍",
-    "សុវត្ថិភាពចរាចរណ៍",
     "សញ្ញាផ្លូវ",
-    "រៀនសុវត្ថិភាពចរាចរណ៍",
     "តេស្តសញ្ញាចរាចរណ៍",
     "ច្បាប់ផ្លូវគោក",
     "ការអប់រំ",
@@ -77,26 +88,26 @@ export const metadata: Metadata = {
     address: false,
   },
   openGraph: {
-    siteName: "KWD — Kesararam With Digital",
+    siteName: "Kesararam With Digital — The Way of Safety",
     locale: "en_US",
     alternateLocale: "km_KH",
     type: "website",
     url: "https://www.kesararamwithdigital.tech",
-    title: "KWD — Learn Cambodia's Road Signs & Traffic Rules, Free & Bilingual",
+    title: "Learn Road Safety in Cambodia — Road Signs & Traffic Rules, Free & Bilingual",
     description:
-      "Free bilingual (ខ្មែរ / English) road-safety learning for Cambodia: traffic signs, road rules, interactive quizzes, and live multiplayer games. Learn on any device, anytime.",
+      "Learn road safety in Cambodia, free and bilingual (ខ្មែរ / English). Kesararam With Digital — The Way of Safety (វិថីសុវត្ថិភាព) — teaches road signs, traffic rules and safe road use with lessons, quizzes, games and live classes.",
     images: [{
       url: "/brand/og-cover.png",
       width: 1200,
       height: 630,
-      alt: "KWD — Kesararam With Digital, bilingual road-safety learning for Cambodia",
+      alt: "Kesararam With Digital — The Way of Safety: bilingual road-safety learning for Cambodia",
     }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "KWD — Learn Cambodia's Road Signs & Traffic Rules, Free & Bilingual",
+    title: "Learn Road Safety in Cambodia — Road Signs & Traffic Rules | Kesararam With Digital",
     description:
-      "Cambodia's free bilingual road-safety platform: traffic signs, road rules, quizzes, and live games in Khmer & English.",
+      "Free bilingual (ខ្មែរ / English) road-safety learning for Cambodia: road signs, traffic rules, quizzes and live classes — by Kesararam With Digital, The Way of Safety.",
     images: ["/brand/og-cover.png"],
   },
 };
@@ -120,7 +131,7 @@ const structuredData = {
       "@type": ["Organization", "EducationalOrganization"],
       "@id": `${SITE_URL}/#organization`,
       name: "Kesararam With Digital",
-      alternateName: ["KWD", "Kesararam With Digital"],
+      alternateName: ["The Way of Safety", "វិថីសុវត្ថិភាព", "Kesararam With Digital — The Way of Safety", "KWD"],
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
