@@ -237,10 +237,10 @@ function AnimatedNumber({ value, className, style }: { value: number; className?
   useEffect(() => {
     if (!ref.current) return;
     const obj = { val: prev.current };
-    gsap.to(obj, { val: value, duration: 0.8, ease: "power2.out", onUpdate: () => { if (ref.current) ref.current.textContent = Math.round(obj.val).toLocaleString(); } });
+    gsap.to(obj, { val: value, duration: 0.8, ease: "power2.out", onUpdate: () => { if (ref.current) ref.current.textContent = Math.round(obj.val).toString(); } });
     prev.current = value;
   }, [value]);
-  return <span ref={ref} className={className} style={style}>{value.toLocaleString()}</span>;
+  return <span ref={ref} className={className} style={style}>{value.toString()}</span>;
 }
 
 // ── Rank badge SVG ────────────────────────────────────────────────────────────
@@ -1507,20 +1507,16 @@ export default function LeaderboardPage() {
           </div>
 
           {/* Solo Practice Column */}
-          <div className="flex col-span-3 sm:col-span-2 justify-end sm:justify-start items-center">
-            <ScorePlate
-              value={user.soloPoints ?? 0}
-              styleId="road"
-              provinceEn={rowProvince}
-              provinceKh={getProvinceKh(rowProvince)}
-              size={isMobile ? "xs" : "sm"}
-            />
+          <div className="col-span-3 sm:col-span-2 flex justify-end sm:justify-start items-center">
+            <span className="font-mono font-black text-xs md:text-sm text-black tabular-nums">
+              {user.soloPoints ?? 0}
+            </span>
           </div>
 
           {/* Total / Game Mode Score Column */}
           <div className="col-span-2 sm:col-span-2 flex justify-end sm:justify-start items-center">
-            <span className="font-mono font-black text-xs md:text-sm text-black bg-zinc-100 border-2 border-black px-2 py-0.5 shadow-[2px_2px_0_#000] tabular-nums select-all">
-              {(user.lifetimePoints ?? 0).toLocaleString()}
+            <span className="font-mono font-black text-xs md:text-sm text-black tabular-nums">
+              {user.lifetimePoints ?? 0}
             </span>
           </div>
 
@@ -1657,8 +1653,37 @@ export default function LeaderboardPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-8 flex flex-col gap-10">
         {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="w-10 h-10 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin" />
+          // Lightweight brutalist skeleton — paints the leaderboard's shape
+          // immediately while the Top-50 data loads, instead of a bare spinner.
+          // Avatars/badges/plates are intentionally NOT loaded here.
+          <div className="flex flex-col gap-10" aria-hidden="true">
+            {/* Podium skeleton (3 columns) */}
+            <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full pt-12">
+              {[44, 58, 44].map((h, i) => (
+                <div key={i} className={`flex flex-col items-center ${i === 1 ? "order-2" : i === 0 ? "order-1" : "order-3"}`}>
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-zinc-200 border-[3px] border-black animate-pulse" />
+                  <div className="w-full mt-3 border-[3px] border-black bg-white" style={{ boxShadow: "5px 5px 0 #000" }}>
+                    <div className="h-3 bg-zinc-300" />
+                    <div className="p-3 flex flex-col items-center gap-2">
+                      <div className="h-3 w-16 bg-zinc-200 animate-pulse" />
+                      <div className="h-6 w-20 bg-zinc-200 animate-pulse" />
+                    </div>
+                    <div className={`${i === 1 ? "h-20 md:h-32" : i === 0 ? "h-16 md:h-24" : "h-14 md:h-20"} bg-zinc-100 border-t-[3px] border-black animate-pulse`} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Table rows skeleton */}
+            <div className="flex flex-col gap-2">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="flex items-center gap-3 border-2 border-black bg-white px-3 py-2.5" style={{ boxShadow: "3px 3px 0 #000" }}>
+                  <div className="w-6 h-6 bg-zinc-200 animate-pulse" />
+                  <div className="w-9 h-9 rounded-full bg-zinc-200 border-2 border-black animate-pulse" />
+                  <div className="h-3 flex-1 max-w-[160px] bg-zinc-200 animate-pulse" />
+                  <div className="ml-auto h-3 w-14 bg-zinc-200 animate-pulse" />
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <>

@@ -112,13 +112,12 @@ export function ScorePlate({
         style={{
           ...shell,
           border: `${(size === "sm" || size === "xs") ? "2px" : "3px"} solid ${navy}`,
-          borderRadius: 0,
+          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
         {/* Subtle metal plate sheen */}
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
-        <div className="absolute inset-[0.5px] border border-zinc-200/40 pointer-events-none rounded-[inherit]" />
 
         {/* Screws/bolts in top corners */}
         <div
@@ -218,23 +217,12 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #fcd34d 0%, #fbbf24 50%, #f59e0b 100%)", // Rich gold-yellow metal
           borderColor: "#d97706", // Amber border edge
-          borderRadius: 0,
+          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
         {/* Metal sheen and vignetting */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-white/20 pointer-events-none rounded-[inherit]" />
-        <div className="absolute inset-[0.5px] border border-white/30 pointer-events-none rounded-[inherit]" />
-
-        {/* Embossed inner ridge */}
-        <div 
-          className="pointer-events-none absolute rounded-[inherit]" 
-          style={{
-            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
-            border: `${size === "xs" ? "1px" : "2px"} solid #fcd34d`,
-            boxShadow: "inset 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.9), 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.15)",
-          }}
-        />
 
         {/* Left Screw Hole */}
         <div
@@ -331,24 +319,12 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #b91c1c 0%, #991b1b 50%, #7f1d1d 100%)", // Royal Crimson Red
           borderColor: "#991b1b",
-          borderRadius: 0,
+          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
         {/* Metal reflection sheen */}
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none rounded-[inherit]" />
-        <div className="absolute inset-[0.5px] border border-white/20 pointer-events-none rounded-[inherit]" />
-
-        {/* Embossed inner border line in Gold */}
-        <div 
-          className="pointer-events-none absolute rounded-[inherit]" 
-          style={{
-            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
-            border: `${size === "xs" ? "1px" : "2px"} solid ${gold}`,
-            opacity: 0.9,
-            boxShadow: "inset 0.5px 0.5px 0.5px rgba(255,255,255,0.3)"
-          }}
-        />
 
         {/* Angkor Wat Silhouette Watermark (SVG, Gold) */}
         <svg
@@ -464,24 +440,12 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%)", // State Teal-Green Metal
           borderColor: "#0f766e",
-          borderRadius: 0,
+          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
         {/* Metal reflection */}
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none rounded-[inherit]" />
-        <div className="absolute inset-[0.5px] border border-white/20 pointer-events-none rounded-[inherit]" />
-
-        {/* Embossed inner border line in White */}
-        <div 
-          className="pointer-events-none absolute rounded-[inherit]" 
-          style={{
-            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
-            border: `${size === "xs" ? "1px" : "2px"} solid #ffffff`,
-            opacity: 0.85,
-            boxShadow: "inset 0.5px 0.5px 0.5px rgba(0,0,0,0.3)"
-          }}
-        />
 
         {/* Cute Leaf watermark in corner */}
         <svg
@@ -591,32 +555,12 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 50%, #172554 100%)", // UN Blue Metal
           borderColor: "#2563eb",
-          borderRadius: 0,
+          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
         {/* Glow backdrop grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.08)_1px,transparent_1px)] bg-[size:8px_8px] pointer-events-none" />
-
-        {/* Double Neon Border (Pink outer, Cyan inner) */}
-        <div 
-          className="pointer-events-none absolute rounded-[inherit]" 
-          style={{
-            inset: size === "xs" ? "1px" : "2px",
-            border: `1px solid ${neonPink}`,
-            opacity: 0.85,
-            boxShadow: `0 0 3px ${neonPink}`,
-          }}
-        />
-        <div 
-          className="pointer-events-none absolute rounded-[inherit]" 
-          style={{
-            inset: size === "xs" ? "2.5px" : "4.5px",
-            border: `1.2px solid ${neonCyan}`,
-            opacity: 0.9,
-            boxShadow: `0 0 4px ${neonCyan}, inset 0 0 2px ${neonCyan}`,
-          }}
-        />
 
         {/* UN/UNTAC corner brackets */}
         <div className="absolute top-[5px] left-[5px] w-[4px] h-[4px] border-t border-l border-white/40 pointer-events-none" />
@@ -722,24 +666,12 @@ export function ScorePlate({
           ...shell,
           background: "linear-gradient(135deg, #fcfcfc 0%, #f4f4f5 50%, #e4e4e7 100%)", // Pressed white metal
           borderColor: "#d4d4d8",
-          borderRadius: 0,
+          borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
           boxShadow: shadow ? "4px 4px 0 #000" : undefined,
         }}
       >
         {/* Metal reflections & highlights */}
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/20 pointer-events-none rounded-[inherit]" />
-        <div className="absolute inset-[0.5px] border border-white pointer-events-none rounded-[inherit]" />
-
-        {/* Embossed inner border line in Police Red */}
-        <div 
-          className="pointer-events-none absolute rounded-[inherit]" 
-          style={{
-            inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
-            border: `${size === "xs" ? "1px" : "2px"} solid ${policeRed}`,
-            opacity: 0.9,
-            boxShadow: "inset 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.8), 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.15)",
-          }}
-        />
 
         {/* Yellow screw caps in top corners (matching photo's yellow capped pins) */}
         <div
@@ -867,23 +799,12 @@ export function ScorePlate({
         ...shell,
         background: "linear-gradient(135deg, #f5f1e4 0%, #ebe5d3 50%, #dfd8c2 100%)", // Vintage cream metal
         borderColor: "#b5ae95", // Aged cut metal edge
-        borderRadius: 0, // Sharp corners
+        borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
       }}
     >
       {/* Pressed metal plate sheen & shadow vignette */}
       <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-white/15 pointer-events-none rounded-[inherit]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/5 pointer-events-none rounded-[inherit]" />
-      <div className="absolute inset-[0.5px] border border-white/40 pointer-events-none rounded-[inherit]" />
-
-      {/* Raised embossed border (same color as plate but shadowed/highlighted) */}
-      <div 
-        className="pointer-events-none absolute rounded-[inherit]" 
-        style={{
-          inset: size === "xs" ? "1.5px" : size === "sm" ? "2.5px" : size === "md" ? "3.5px" : "4.5px",
-          border: `${size === "xs" ? "1px" : "2px"} solid #dfd9c0`,
-          boxShadow: "inset 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.9), 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.15)",
-        }}
-      />
 
       {/* Left empty screw hole (showing background through shadow) */}
       <div
