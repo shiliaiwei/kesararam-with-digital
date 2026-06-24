@@ -207,9 +207,6 @@ export default function LearnPage() {
           <h2 className="text-4xl md:text-5xl font-black text-white font-system">
             {kh ? "ត្រៀមខ្លួនហើយ?" : "Ready to test yourself?"}
           </h2>
-          <p className="text-white/50 text-lg font-system">
-            {kh ? "រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត" : "Learn to know, compete to excel, protect for life."}
-          </p>
           <Link
             href="/play"
             className="px-10 py-4 bg-yellow-400 text-black font-black border-2 border-yellow-400 text-lg transition-all hover:-translate-y-1 font-system"

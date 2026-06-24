@@ -65,7 +65,6 @@ export const t = {
       step3Desc:
         "Compete in real-time sessions hosted by teachers. Earn points, climb the leaderboard, and claim rewards.",
       ctaTitle: "Ready to start your road safety journey?",
-      ctaSubtitle: "ចូលរៀន — ចូលប្រកួត — ជោគជ័យ",
       ctaExplore: "Explore Traffic Signs",
       ctaRegister: "Create free account",
     },
@@ -145,7 +144,6 @@ export const t = {
       step3Desc:
         "ប្រកួតក្នុងវគ្គប្រកួតផ្ទាល់ ដែលគ្រប់គ្រងដោយគ្រូ។ ទទួលពិន្ទុ ចូលក្នុងតារាងចំណាត់ថ្នាក់ និងទទួលរង្វាន់.",
       ctaTitle: "ត្រៀមខ្លួន ចាប់ផ្ដើមរៀនសុវត្ថិភាពចរាចរណ៍?",
-      ctaSubtitle: "រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត",
       ctaExplore: "ស្វែងរកសញ្ញាចរាចរ",
       ctaRegister: "បង្កើតគណនីឥតគិតថ្លៃ",
     },

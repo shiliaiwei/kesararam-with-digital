@@ -282,12 +282,6 @@ export function RoadSigns3DHero() {
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
           {kh ? "វិថីសុវត្ថិភាព" : "The Way of Safety"}
         </h2>
-        {/* Brand emotional quote */}
-        <p className="mt-2 text-sm md:text-base font-bold text-zinc-600 text-center max-w-md" style={kf}>
-          {kh
-            ? "ចំណេះដឹងថ្ងៃនេះ ការពារជីវិតថ្ងៃស្អែក"
-            : "Knowledge today protects life tomorrow"}
-        </p>
       </div>
 
       {/* 4 rows — alternating direction, different speeds, size offsets.
