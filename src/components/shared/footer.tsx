@@ -45,7 +45,13 @@ export function Footer() {
             វិថីសុវត្ថិភាព
           </p>
           <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-3 text-center">
-            The Way of Safety · KWD
+            The Way of Safety
+          </p>
+          {/* Brand emotional quote */}
+          <p className="font-google-sans text-base md:text-lg font-black text-black mb-3 text-center max-w-md leading-snug border-b-2 border-yellow-400 pb-2">
+            {kh
+              ? "ចំណេះដឹងថ្ងៃនេះ ការពារជីវិតថ្ងៃស្អែក"
+              : "Knowledge today protects life tomorrow"}
           </p>
           <p className="text-sm font-bold text-zinc-700 leading-relaxed text-center max-w-md" style={kf}>
             {tr.tagline}

@@ -2071,44 +2071,6 @@ export default function LeaderboardPage() {
                   })()}
                 </div>
 
-                {/* How it works + delivery note */}
-                <div className="mt-6 flex flex-col items-center gap-2 text-center">
-                  <p className="text-[11px] text-zinc-500 font-medium" style={kf}>
-                    {kh
-                      ? "លេងហ្គេម ➔ ប្រមូលពិន្ទុ ➔ ទទួលបានរង្វាន់ពិតៗ"
-                      : "Play games ➔ Earn points ➔ Get real prizes"}
-                  </p>
-                  <p className="text-[10px] text-zinc-400" style={kf}>
-                    {kh
-                      ? "ពិន្ទុអាចប្រើដើម្បីប្តូររង្វាន់ · រង្វាន់ត្រូវបានប្រគល់ដោយគ្រូ · ទទួលបានតែម្តងក្នុងមួយធាតុ"
-                      : "Points are redeemable for rewards · Prizes delivered by your teacher · One claim per item"}
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-3 mt-1">
-                    <div className="flex items-center gap-1.5 bg-red-50 border border-red-200 px-2.5 py-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                      <span className="text-[9px] font-black text-red-600" style={kf}>
-                        {kh ? "ហ្គេមផ្ទាល់: ១៥–៤០ ពិន្ទុ/ម្ដង" : "Live game: 15–40 pts/session"}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1.5 bg-yellow-50 border border-yellow-200 px-2.5 py-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-                      <span className="text-[9px] font-black text-yellow-700" style={kf}>
-                        {kh ? "ហ្វឹកហាត់: ៥–១៥ ពិន្ទុ/ម្ដង" : "Solo practice: 5–15 pts/session"}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1.5 bg-cyan-50 border border-cyan-200 px-2.5 py-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                      <span className="text-[9px] font-black text-cyan-700" style={kf}>
-                        {kh ? "បញ្ហាថ្ងៃ: ៥–១០ ពិន្ទុ/ថ្ងៃ" : "Daily challenge: 5–10 pts/day"}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-[9px] text-zinc-400 font-mono uppercase mt-1" style={kf}>
-                    {kh
-                      ? "⚡ រង្វាន់ => ១–២ ខែ–មួយឆ្នាំ ត្រូវការ · ត្រូវការការខិតខំប្រឹងប្រែង"
-                      : "⚡ Rewards require weeks to a full school term of consistent play"}
-                  </p>
-                </div>
               </div>
           </>
         )}
