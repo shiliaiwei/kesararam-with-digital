@@ -5,6 +5,7 @@ import { ErrorDebugPanel } from "@/components/ErrorDebugPanel";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@/components/google-analytics";
+import { MicrosoftClarity } from "@/components/microsoft-clarity";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -301,6 +302,7 @@ export default function RootLayout({
       </head>
       <body className="font-system antialiased overflow-x-hidden">
         <GoogleAnalytics />
+        <MicrosoftClarity />
         <LangProvider>
           {children}
           <Toaster richColors closeButton />
