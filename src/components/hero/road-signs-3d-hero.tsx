@@ -277,7 +277,6 @@ export function RoadSigns3DHero() {
             boxShadow: "0 0 0 1px rgba(0,0,0,0.06) inset, 0 2px 16px rgba(0,0,0,0.06)",
           }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-black opacity-60" />
           {kh ? "ស្គាល់ផ្លាកសញ្ញា ការពារជីវិត" : "Know the signs, protect life"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
