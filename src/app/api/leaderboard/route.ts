@@ -87,7 +87,7 @@ async function storePointsLeaderboard(opts: {
       lifetimePoints: users.lifetimePoints,
     })
     .from(users)
-    .where(sql`${publicFilter}${provinceFilter}${gameType !== "all" ? sql` AND ${gamesPlayedExpr} > 0` : sql``}`)
+    .where(sql`${publicFilter}${provinceFilter} AND ${gamesPlayedExpr} > 0`)
     .orderBy(
       desc(liveExpr),
       desc(soloExpr),
@@ -274,7 +274,7 @@ export async function GET(req: NextRequest) {
           lifetimePoints: users.lifetimePoints,
         })
         .from(users)
-        .where(sql`${publicFilter}${provinceFilter}`)
+        .where(sql`${publicFilter}${provinceFilter} AND ${users.totalGamesPlayed} > 0`)
         .orderBy(
           desc(priorityExpr),
           desc(soloExpr),
@@ -305,7 +305,7 @@ export async function GET(req: NextRequest) {
         : sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id${windowCond}${sourceCond}), 0)::int`;
 
       // Filter: if gameType !== "all", they must have played the game.
-      const gamePlayFilter = gameType !== "all" ? sql` AND ${gamesPlayedExpr} > 0` : sql``;
+      const gamePlayFilter = sql` AND ${gamesPlayedExpr} > 0`;
       // If source === "live", show students with overall Road Points (priorityPoints) > 0.
       const livePointsFilter = source === "live" ? sql` AND ${priorityExpr} > 0` : sql` AND ${gamePointsExpr} > 0`;
 

@@ -1343,10 +1343,7 @@ export default function LeaderboardPage() {
   });
 
   const filteredSortedBoard = sortedBoard.filter(u => {
-    if (gameType !== "all") {
-      return (u.totalGamesPlayed ?? 0) > 0;
-    }
-    return true;
+    return (u.totalGamesPlayed ?? 0) > 0;
   });
 
   // Points, rewards, and tier progression are student-only features.
