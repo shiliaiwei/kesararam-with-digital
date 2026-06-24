@@ -176,7 +176,7 @@ export function Footer() {
             {kh ? "រក្សាសិទ្ធិគ្រប់យ៉ាង" : "All rights reserved."}
           </p>
           <p className="text-xs text-zinc-400 font-medium" style={kf}>
-            {kh ? "បង្កើតសម្រាប់ការអប់រំសុវត្ថិភាពចរាចរណ៍កម្ពុជា" : "Built for Cambodian road safety education."}
+            {kh ? "ចំណេះដឹងសុវត្ថិភាព សម្រាប់ប្រជាជនកម្ពុជាគ្រប់គ្នា" : "Safety knowledge for every Cambodian."}
           </p>
         </div>
       </div>

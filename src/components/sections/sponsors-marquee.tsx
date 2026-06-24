@@ -8,7 +8,8 @@ const LOGOS = [
   { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556277/logo-girls_o7e3tg.png",    name: "Technovation Girls" },
   { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/FDTboy_qofevj.png",        name: "Future Digital Talents" },
   { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/66aafc8e5a697_obtttu.png", name: "Ministry of Education, Youth and Sport" },
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/60b09a9dcc100_a0nmfz.png", name: "Tech for Kids Academy" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1782299398/kwdblacknobackground_tikazv.png", name: "Kesararam With Digital" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1782299393/KWDxTGC_d2m05u.png",        name: "KWD × TGC" },
 ];
 
 function LogoItem({ src, name }: { src: string; name: string }) {
