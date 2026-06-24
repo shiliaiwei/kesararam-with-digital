@@ -1168,7 +1168,7 @@ export default function LeaderboardPage() {
   const windowTab = "all";
   const sourceTab = "live";
   // Game mode is the only filter now, surfaced through a dropdown.
-  const [gameType, setGameType] = useState("sign-challenge");
+  const [gameType, setGameType] = useState("all");
   const [gameMenuOpen, setGameMenuOpen] = useState(false);
   const [hoveredHeader, setHoveredHeader] = useState(false);
   const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
