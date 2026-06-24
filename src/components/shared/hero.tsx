@@ -135,11 +135,11 @@ export function Hero() {
                     />
                   </div>
                   <div>
-                    <p className="font-black text-lg leading-none">
-                      KWD Platform
+                    <p className="font-black text-lg leading-none font-google-sans">
+                      វិថីសុវត្ថិភាព
                     </p>
                     <p className="text-xs text-zinc-500">
-                      Kesararam. with. digital.
+                      The Way of Safety · KWD
                     </p>
                   </div>
                 </div>

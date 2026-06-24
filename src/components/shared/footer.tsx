@@ -41,6 +41,12 @@ export function Footer() {
           <div className="w-28 h-28 mb-4 flex items-center justify-center">
             <Image src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg" alt="KWD" width={112} height={112} className="object-contain w-full h-full" unoptimized />
           </div>
+          <p className="font-google-sans font-black text-2xl text-black leading-none mb-1 text-center">
+            វិថីសុវត្ថិភាព
+          </p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-3 text-center">
+            The Way of Safety · KWD
+          </p>
           <p className="text-sm font-bold text-zinc-700 leading-relaxed text-center max-w-md" style={kf}>
             {tr.tagline}
           </p>

@@ -1,0 +1,159 @@
+================================================================================
+                        វិថីសុវត្ថិភាព · THE WAY OF SAFETY
+                         BRAND GUIDELINES · សៀវភៅណែនាំម៉ាក
+                    by Kesararam With Digital (KWD)  ·  v1.0
+================================================================================
+
+CONTENTS / មាតិកា
+  PART A — WHO WE ARE
+    01  Brand Story
+    02  Mission & Vision
+    03  Brand Values
+    04  Audience
+  PART B — HOW WE SOUND
+    05  Tagline System
+    06  Brand Tone & Voice
+    07  Writing Rules
+  PART C — HOW WE LOOK
+    08  Logo
+    09  Color Palette
+    10  Typography
+    11  Aesthetic & Graphic Elements
+  PART D — IN USE
+    12  Social, Web & Marketing
+
+
+================================================================================
+PART A — WHO WE ARE / យើងជានរណា
+================================================================================
+
+01 · BRAND STORY / ដំណើររឿងម៉ាក
+--------------------------------------------------------------------------------
+KH: ផ្លូវនៅកម្ពុជាពោរពេញដោយផ្លាកសញ្ញា និងច្បាប់ ប៉ុន្តែមនុស្សជាច្រើន
+    មិនទាន់យល់ច្បាស់។ វិថីសុវត្ថិភាព បង្វែរច្បាប់ចរាចរណ៍ឲ្យទៅជាមេរៀន
+    ល្បែង និងមតិត្រឡប់ភ្លាមៗ ដើម្បីឲ្យយុវជន និងប្រជាពលរដ្ឋ រៀនបានងាយ
+    ហើយធ្វើដំណើរដោយសុវត្ថិភាពនៅជីវិតពិត។
+EN: Cambodia's roads are full of signs and rules — but too few people
+    truly understand them. The Way of Safety turns traffic law into
+    lessons, games, and instant feedback, so youth and everyday riders
+    learn easily and stay safe in real life.
+
+02 · MISSION & VISION / បេសកកម្ម និងចក្ខុវិស័យ
+--------------------------------------------------------------------------------
+MISSION (KH): ធ្វើឲ្យការរៀនសុវត្ថិភាពចរាចរណ៍ ងាយ ទំនើប និងសប្បាយ
+              សម្រាប់យុវជនកម្ពុជា។
+MISSION (EN): Make traffic-safety learning easy, modern, and fun for
+              Cambodia's youth.
+VISION  (KH): សហគមន៍កម្ពុជាដែលមនុស្សគ្រប់គ្នាស្គាល់ច្បាប់ និងធ្វើដំណើរ
+              ដោយសុវត្ថិភាព។
+VISION  (EN): A Cambodia where everyone knows the rules and travels safely.
+
+03 · BRAND VALUES / តម្លៃម៉ាក
+--------------------------------------------------------------------------------
+  ទំនើប                      Modern        — feels like an app, not a textbook
+  ត្រឹមត្រូវ                  Accurate      — real Cambodian road law, never guesses
+  ងាយយល់                     Easy          — plain Khmer, a teen gets it instantly
+  យុវជន                      Youth         — energy, color, play; made FOR youth
+  សុវត្ថិភាពសម្រាប់ជីវិតពិត      Real-life safe — knowledge that protects you tomorrow
+  បង្កើតសុវត្ថិភាពសម្រាប់សហគមន៍  Community     — building a safer society together
+
+04 · AUDIENCE / អ្នកប្រើប្រាស់
+--------------------------------------------------------------------------------
+  Primary   : Youth & students (Khmer-first)
+  Secondary : General public / everyday riders in Cambodia
+  Context   : Self-learning + teacher-led classes
+
+
+================================================================================
+PART B — HOW WE SOUND / របៀបយើងនិយាយ
+================================================================================
+
+05 · TAGLINE SYSTEM / ពាក្យស្លោក
+--------------------------------------------------------------------------------
+  Official / clean : រៀនច្បាប់ចរាចរណ៍ ស្គាល់ផ្លាកសញ្ញា ធ្វើដំណើរដោយសុវត្ថិភាព
+  Emotional / hero : ចំណេះដឹងថ្ងៃនេះ ការពារជីវិតថ្ងៃស្អែក
+  Short / social   : ស្គាល់ផ្លាក · ដឹងច្បាប់ · ទៅដោយសុវត្ថិភាព
+
+06 · BRAND TONE & VOICE / សំឡេងម៉ាក
+--------------------------------------------------------------------------------
+ONE LINE (KH): ច្បាស់លាស់ ងាយយល់ និងពោរពេញដោយថាមពលវ័យក្មេង —
+               ដូចមិត្តម្នាក់ដែលចេះច្បាប់ ហើយចង់ឲ្យអ្នកមានសុវត្ថិភាព។
+ONE LINE (EN): Clear, easy, and full of youthful energy — like a friend
+               who knows the rules and wants you safe.
+
+  WE SOUND LIKE (✔)              WE NEVER SOUND LIKE (✘)
+  - warm and direct              - stiff legal / government Khmer
+  - short everyday Khmer          - scary or guilt-tripping
+  - encouraging, celebrates wins  - childish / joking about real danger
+  - confident on facts            - preachy or talking down
+
+  TONE BY CONTEXT:
+    Games        -> playful
+    Lessons      -> calm & clear
+    Leaderboard  -> proud
+    Safety warn  -> serious but kind
+
+07 · WRITING RULES / ច្បាប់សរសេរ
+--------------------------------------------------------------------------------
+  - Plain, everyday Khmer. Short sentences.
+  - No stiff / legal / government-document Khmer.
+  LOCKED Q&A RULE — never use inside any Q&A content:
+    emoji   ·   & (ampersand)   ·   * (asterisk)   ·   stiff/legal Khmer
+
+
+================================================================================
+PART C — HOW WE LOOK / របៀបយើងមើលទៅ
+================================================================================
+
+08 · LOGO / ឡូហ្គោ
+--------------------------------------------------------------------------------
+  - Primary: brand name វិថីសុវត្ថិភាព + sign mark
+  - Lockups: Khmer-only, Khmer+EN, mark-only
+  - Keep clear space around logo (= height of one letter)
+  DON'T: stretch · recolor · add shadow/gradient · rotate · crowd it
+
+09 · COLOR PALETTE / ពណ៌  (traffic-sign system)
+--------------------------------------------------------------------------------
+  Caution Yellow   primary accent, energy     attention / youth / road
+  Ink Black        text, borders, structure   authority / clarity
+  Clean White      background, space          modern / readable
+  Stop Red         warnings, errors           danger / prohibition
+  Go Green         success, correct           safe / progress
+  Info Blue        tips, guidance             information
+  (HEX values pulled from the live kwd-brand-design palette when designed.)
+
+10 · TYPOGRAPHY / ពុម្ពអក្សរ
+--------------------------------------------------------------------------------
+  FONT: Google Sans — used for ALL text, including Khmer.
+  RULE: Never use Kantumruy Pro. One family, different weights.
+  Scale: H1 Bold (big) -> H2 -> Body Regular -> Caption -> Numbers Bold
+
+11 · AESTHETIC & GRAPHIC ELEMENTS / រចនាបថ
+--------------------------------------------------------------------------------
+  Style: Brutalist + caution-tape + road-sign — bold, high-contrast, road.
+  Signatures:
+    - thick black borders
+    - caution-tape stripes
+    - real road-sign shapes (octagon, triangle, circle)
+    - big bold numbers
+    - flat solid colors (no soft gradients)
+
+
+================================================================================
+PART D — IN USE / ការប្រើប្រាស់
+================================================================================
+
+12 · SOCIAL, WEB & MARKETING
+--------------------------------------------------------------------------------
+  Web      : kesararamwithdigital.tech — hero uses emotional tagline
+  SEO Title: វិថីសុវត្ថិភាព | ថ្នាលរៀនសុវត្ថិភាពចរាចរណ៍ និងផ្លាកសញ្ញាចរាចរណ៍នៅកម្ពុជា
+  Social   : yellow/black sign-style templates, short social tagline
+  Marketing: youth-targeted (Facebook/TikTok), plain Khmer, sign visuals
+
+
+================================================================================
+CONTACT
+  Brand   : វិថីសុវត្ថិភាព (The Way of Safety)
+  Team    : Kesararam With Digital (KWD)
+  Website : kesararamwithdigital.tech
+================================================================================

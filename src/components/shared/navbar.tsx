@@ -19,39 +19,15 @@ interface NavbarProps {
   session?: JWTPayload | null;
 }
 
-const ANIMATED_WORDS = [
-  "DIGITAL.",
-  "STEM.",
-  "YOUTH.",
-  "INNOVATION.",
-  "ARTIFICIAL INTELLIGENCE.",
-  "AUTOMATION.",
-  "EDUCATION.",
-  "CHANGE."
-];
-
 function AnimatedLogoText() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((cur) => (cur + 1) % ANIMATED_WORDS.length);
-    }, 2000);
-    return () => clearInterval(timer);
-  }, []);
-
+  // Brand DNA lockup — product name វិថីសុវត្ថិភាព first, KWD as the maker.
   return (
-    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col font-roboto" style={{ width: "120px" }}>
-      <span>KESARARAM.</span>
-      <span>WITH.</span>
-      {/* Fixed-height container prevents CLS when word changes */}
-      <span className="block overflow-hidden" style={{ height: "12px" }}>
-        <span
-          key={index}
-          className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-zinc-400 whitespace-nowrap"
-        >
-          {ANIMATED_WORDS[index]}
-        </span>
+    <div className="leading-none flex flex-col" style={{ width: "150px" }}>
+      <span className="font-google-sans font-black text-[15px] text-black tracking-tight">
+        វិថីសុវត្ថិភាព
+      </span>
+      <span className="font-black text-[8px] uppercase tracking-widest text-zinc-400 mt-0.5 whitespace-nowrap font-roboto">
+        The Way of Safety · KWD
       </span>
     </div>
   );
