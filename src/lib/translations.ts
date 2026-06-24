@@ -72,8 +72,7 @@ export const t = {
 
     // Footer
     footer: {
-      tagline:
-        "Master Cambodia's road rules. Know every sign. Travel with confidence.",
+      tagline: "Know the signs, protect life.",
       learnTitle: "Learn",
       platformTitle: "Platform",
       contactTitle: "Contact",
@@ -153,7 +152,7 @@ export const t = {
 
     // Footer
     footer: {
-      tagline: "ស្ទាត់ច្បាប់ចរាចរ — ស្គាល់គ្រប់សញ្ញា — រៀនដោយទំនុកចិត្ត។",
+      tagline: "ស្គាល់ផ្លាកសញ្ញា ការពារជីវិត",
       learnTitle: "រៀន",
       platformTitle: "វេទិកា",
       contactTitle: "ទំនាក់ទំនង",

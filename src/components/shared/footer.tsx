@@ -53,13 +53,10 @@ export function Footer() {
               ? "ចំណេះដឹងថ្ងៃនេះ ការពារជីវិតថ្ងៃស្អែក"
               : "Knowledge today protects life tomorrow"}
           </p>
-          <p className="text-sm font-bold text-zinc-700 leading-relaxed text-center max-w-md" style={kf}>
-            {tr.tagline}
-          </p>
           <p className="text-xs text-zinc-500 mt-2 text-center" style={kf}>
             {kh
-              ? "រៀនដើម្បីដឹង·ប្រកួតដើម្បីពូកែ·ការពារដើម្បីជីវិត"
-              : "Learn to know · Compete to excel · Protect for life"}
+              ? "ថ្នាលរៀនសុវត្ថិភាពចរាចរណ៍ឌីជីថល សម្រាប់យុវជន និងប្រជាពលរដ្ឋកម្ពុជា។"
+              : "A digital road-safety learning platform for Cambodia's youth and people."}
           </p>
         </div>
 

@@ -278,11 +278,17 @@ export function RoadSigns3DHero() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-black opacity-60" />
-          {kh ? "ស្គាល់សញ្ញាចរាចរ" : "Know Every Sign"}
+          {kh ? "ស្គាល់ផ្លាកសញ្ញា ការពារជីវិត" : "Know the signs, protect life"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
           {kh ? "វិថីសុវត្ថិភាព" : "The Way of Safety"}
         </h2>
+        {/* Brand emotional quote */}
+        <p className="mt-2 text-sm md:text-base font-bold text-zinc-600 text-center max-w-md" style={kf}>
+          {kh
+            ? "ចំណេះដឹងថ្ងៃនេះ ការពារជីវិតថ្ងៃស្អែក"
+            : "Knowledge today protects life tomorrow"}
+        </p>
       </div>
 
       {/* 4 rows — alternating direction, different speeds, size offsets.
