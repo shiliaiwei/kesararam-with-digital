@@ -40,6 +40,8 @@ async function storePointsLeaderboard(opts: {
   const balanceExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id), 0)::int`;
   // Live-session Store Points = the "priority" subtotal (attempt_id like 'live:%').
   const liveExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.delta > 0 AND spe.attempt_id LIKE 'live:%'), 0)::int`;
+  // Solo-session Store Points = the "solo" subtotal (attempt_id NOT LIKE 'live:%' or NULL).
+  const soloExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.delta > 0 AND (spe.attempt_id NOT LIKE 'live:%' OR spe.attempt_id IS NULL)), 0)::int`;
   // Average accuracy across recorded plays (0..100).
   const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(spe.accuracy) * 100) FROM store_point_events spe WHERE spe.user_id = users.id AND spe.reason = 'play'${gameTypeCond}), 0)::int`;
   // The single game type this student has played most (by play count) — drives the
@@ -71,6 +73,7 @@ async function storePointsLeaderboard(opts: {
       windowPoints: windowExpr,
       storeBalance: balanceExpr,
       livePoints: liveExpr,
+      soloPoints: soloExpr,
       accuracy: accuracyExpr,
       bestGame: bestGameExpr,
       schoolName: users.schoolName,
@@ -84,11 +87,10 @@ async function storePointsLeaderboard(opts: {
       lifetimePoints: users.lifetimePoints,
     })
     .from(users)
-    .where(sql`${publicFilter}${provinceFilter}${gameType !== "all" ? sql` AND ${gamesPlayedExpr} > 0` : sql``} AND ${source === "live" ? liveExpr : windowExpr} > 0`)
-    // Rank by priority road points first if source === "live", otherwise by window total points.
+    .where(sql`${publicFilter}${provinceFilter}${gameType !== "all" ? sql` AND ${gamesPlayedExpr} > 0` : sql``}`)
     .orderBy(
-      desc(source === "live" ? liveExpr : windowExpr),
-      desc(source === "live" ? windowExpr : liveExpr),
+      desc(liveExpr),
+      desc(soloExpr),
       desc(users.highestScore),
       asc(users.id)
     )
@@ -122,7 +124,7 @@ async function storePointsLeaderboard(opts: {
     totalGamesPlayed: user.totalGamesPlayed,
     lifetimePoints: gameType !== "all" ? user.windowPoints : (user.lifetimePoints ?? user.windowPoints),
     priorityPoints: user.livePoints,
-    soloPoints: 0,
+    soloPoints: user.soloPoints,
     accuracy: user.accuracy,
     bestGame: user.bestGame,
     schoolName: null,
@@ -187,7 +189,7 @@ export async function GET(req: NextRequest) {
     // (school/province/grade) and isStatsPublic are NOT required — students who
     // played any game appear even with a bare profile. Per-field privacy flags
     // (isNamePublic, isSchoolPublic, …) still anonymize the displayed values below.
-    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true AND (${users.lifetimePoints} > 0 OR EXISTS (SELECT 1 FROM points_ledger pl WHERE pl.user_id = users.id AND pl.points > 0))`;
+    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true`;
     const provinceFilter =
       province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
 
@@ -273,9 +275,12 @@ export async function GET(req: NextRequest) {
         })
         .from(users)
         .where(sql`${publicFilter}${provinceFilter}`)
-        // Combined total points (solo + live) are the primary ranking metric;
-        // live total + highest score break ties. This path is source=all only.
-        .orderBy(desc(users.lifetimePoints), desc(priorityExpr), desc(users.highestScore), asc(users.id))
+        .orderBy(
+          desc(priorityExpr),
+          desc(soloExpr),
+          desc(users.highestScore),
+          asc(users.id)
+        )
         .limit(limit)
         .offset(offset);
     } else {
@@ -333,10 +338,10 @@ export async function GET(req: NextRequest) {
           lifetimePoints: users.lifetimePoints,
         })
         .from(users)
-        .where(sql`${publicFilter}${provinceFilter}${gamePlayFilter}${livePointsFilter}`)
+        .where(sql`${publicFilter}${provinceFilter}${gamePlayFilter}`)
         .orderBy(
-          desc(priorityExpr), // Rank by Road Points primary!
-          desc(users.lifetimePoints),
+          desc(priorityExpr),
+          desc(soloExpr),
           desc(users.highestScore),
           asc(users.id)
         )

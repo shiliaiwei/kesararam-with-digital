@@ -1172,7 +1172,7 @@ export default function LeaderboardPage() {
   const [gameMenuOpen, setGameMenuOpen] = useState(false);
   const [hoveredHeader, setHoveredHeader] = useState(false);
   const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
-  const [displayLimit, setDisplayLimit] = useState(10);
+  const [displayLimit, setDisplayLimit] = useState(100);
   // Podium celebration ticker — advances every 7s and rotates through the ranks
   // (1 → 2 → 3 → 1 …) so only ONE podium card celebrates at a time, each with its
   // own style. activeRank = (tick % 3) + 1.
@@ -1181,7 +1181,7 @@ export default function LeaderboardPage() {
 
   const fetchLeaderboard = useCallback(async () => {
     try {
-      const params = new URLSearchParams({ limit: "52", window: windowTab });
+      const params = new URLSearchParams({ limit: "100", window: windowTab });
       // Source filter: live, solo, daily, or all
       if (sourceTab !== "all") params.set("source", sourceTab);
       // Game type filter: daily, catch-sign, etc.
@@ -1324,14 +1324,13 @@ export default function LeaderboardPage() {
   const top3 = (podiumBoard.length > 0 ? podiumBoard : leaderboard).slice(0, 3);
 
   const sortedBoard = [...leaderboard].sort((a, b) => {
-    if (sortKey === "rank") {
-      if ((b.priorityPoints ?? 0) !== (a.priorityPoints ?? 0)) return (b.priorityPoints ?? 0) - (a.priorityPoints ?? 0);
-      if ((b.lifetimePoints ?? 0) !== (a.lifetimePoints ?? 0)) return (b.lifetimePoints ?? 0) - (a.lifetimePoints ?? 0);
-      return a.rank - b.rank;
-    }
-    if (sortKey === "live") {
-      if ((b.priorityPoints ?? 0) !== (a.priorityPoints ?? 0)) return (b.priorityPoints ?? 0) - (a.priorityPoints ?? 0);
-      if ((b.lifetimePoints ?? 0) !== (a.lifetimePoints ?? 0)) return (b.lifetimePoints ?? 0) - (a.lifetimePoints ?? 0);
+    if (sortKey === "rank" || sortKey === "live") {
+      const aPriority = a.priorityPoints ?? 0;
+      const bPriority = b.priorityPoints ?? 0;
+      if (aPriority !== bPriority) return bPriority - aPriority;
+      const aSolo = a.soloPoints ?? 0;
+      const bSolo = b.soloPoints ?? 0;
+      if (aSolo !== bSolo) return bSolo - aSolo;
       return a.rank - b.rank;
     }
     if (sortKey === "games") {
@@ -1895,22 +1894,20 @@ export default function LeaderboardPage() {
                 })()}
               </div>
 
-              {sortedBoard.length > 10 && (
+              {sortedBoard.length > 100 && (
                 <div className="flex justify-center mt-4">
                   <button
                     onClick={() => {
                       setDisplayLimit(d => {
-                        if (d === 10 && sortedBoard.length > 10) return 30;
-                        if (d === 30 && sortedBoard.length > 30) return 52;
-                        return 10;
+                        if (d === 100 && sortedBoard.length > 100) return 200;
+                        return 100;
                       });
                     }}
                     className="border-2 border-black bg-yellow-400 text-black px-4 py-2 text-xs font-black uppercase tracking-wider shadow-[3px_3px_0_#000] hover:-translate-y-0.5 transition-transform"
                     style={{ borderRadius: 0 }}
                   >
-                    {displayLimit === 10 && (kh ? "មើលបន្ថែម (កំពូល ៣០)" : "See More (Top 30)")}
-                    {displayLimit === 30 && sortedBoard.length > 30 && (kh ? "មើលបន្ថែម (កំពូល ៥២)" : "See More (Top 52)")}
-                    {(displayLimit === 52 || (displayLimit === 30 && sortedBoard.length <= 30)) && (kh ? "បង្ហាញតិចជាងមុន (កំពូល ១០)" : "See Less (Top 10)")}
+                    {displayLimit === 100 && (kh ? "មើលបន្ថែម (កំពូល ២០០)" : "See More (Top 200)")}
+                    {displayLimit === 200 && (kh ? "បង្ហាញតិចជាងមុន (កំពូល ១០០)" : "See Less (Top 100)")}
                   </button>
                 </div>
               )}
