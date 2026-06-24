@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 import { 
   BarChart2, BookOpen, Building2, Cpu, ExternalLink, Globe, 
   Landmark, Layers, LayoutGrid, Network, ShieldCheck, Smartphone, 
-  Type, Zap, ChevronRight, LayoutList
+  Type, Zap, ChevronRight, LayoutList, Expand, Shrink
 } from "lucide-react";
 import { SiGoogleplay } from "react-icons/si";
 
@@ -491,6 +491,24 @@ export default function SitemapPage() {
   };
   const [openMap, setOpenMap] = useState<Record<string, boolean>>(initialOpen);
 
+  // Fullscreen
+  const mainRef = useRef<HTMLElement | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const toggleFullscreen = () => {
+    const el = mainRef.current;
+    if (!el) return;
+    if (!document.fullscreenElement) {
+      el.requestFullscreen?.().catch(() => {});
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
+  useEffect(() => {
+    const onFsChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", onFsChange);
+    return () => document.removeEventListener("fullscreenchange", onFsChange);
+  }, []);
+
   const group = currentDomains.find((g) => g.id === activeDomain) || currentDomains[0];
   const stats = countRoutes(currentDomains);
 
@@ -548,7 +566,10 @@ export default function SitemapPage() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-8 space-y-8">
+      <main
+        ref={mainRef}
+        className={`px-6 py-8 space-y-8 ${isFullscreen ? "w-screen h-screen overflow-auto bg-white" : "max-w-5xl mx-auto"}`}
+      >
         
         {/* HUD statistics panels */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
@@ -619,22 +640,32 @@ export default function SitemapPage() {
             })}
           </div>
           
-          {view === "tree" && (
-            <div className="flex items-center gap-2">
-              <button 
-                onClick={expandAll} 
-                className="text-[10px] font-black uppercase tracking-widest border-2 border-black bg-white text-zinc-600 hover:text-black px-3 py-1.5 transition-colors cursor-pointer shadow-[2px_2px_0_#000]"
-              >
-                {t("Expand All", "បើកទាំងអស់")}
-              </button>
-              <button 
-                onClick={collapseAll} 
-                className="text-[10px] font-black uppercase tracking-widest border-2 border-black bg-white text-zinc-600 hover:text-black px-3 py-1.5 transition-colors cursor-pointer shadow-[2px_2px_0_#000]"
-              >
-                {t("Collapse", "បិទទាំងអស់")}
-              </button>
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            {view === "tree" && (
+              <>
+                <button
+                  onClick={expandAll}
+                  className="text-[10px] font-black uppercase tracking-widest border-2 border-black bg-white text-zinc-600 hover:text-black px-3 py-1.5 transition-colors cursor-pointer shadow-[2px_2px_0_#000]"
+                >
+                  {t("Expand All", "បើកទាំងអស់")}
+                </button>
+                <button
+                  onClick={collapseAll}
+                  className="text-[10px] font-black uppercase tracking-widest border-2 border-black bg-white text-zinc-600 hover:text-black px-3 py-1.5 transition-colors cursor-pointer shadow-[2px_2px_0_#000]"
+                >
+                  {t("Collapse", "បិទទាំងអស់")}
+                </button>
+              </>
+            )}
+            {/* Fullscreen Toggle */}
+            <button
+              onClick={toggleFullscreen}
+              title={isFullscreen ? t("Exit Fullscreen", "ចេញពីពេញអេក្រង់") : t("Fullscreen", "ពេញអេក្រង់")}
+              className="flex items-center justify-center border-2 border-black bg-white text-black hover:bg-yellow-400 p-1.5 transition-colors cursor-pointer shadow-[2px_2px_0_#000]"
+            >
+              {isFullscreen ? <Shrink size={14} /> : <Expand size={14} />}
+            </button>
+          </div>
         </div>
 
         {/* active view */}

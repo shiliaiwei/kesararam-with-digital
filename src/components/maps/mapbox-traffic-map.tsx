@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   AlertTriangle, Navigation, RefreshCw, Layers,
   ShieldAlert, Car, TriangleAlert, Info, ChevronDown, ChevronUp,
-  Plus, Minus, Locate, Maximize2, Minimize2,
+  Plus, Minus, Locate, Maximize2, Minimize2, Expand, Shrink,
 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
@@ -195,6 +195,7 @@ export function MapboxTrafficMap({
   zoom = 12,
 }: MapboxTrafficMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -202,6 +203,7 @@ export function MapboxTrafficMap({
   const [activeFilter, setActiveFilter] = useState("all");
   const [expanded, setExpanded] = useState(false);
   const [isExpandedHeight, setIsExpandedHeight] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLegendOpen, setIsLegendOpen] = useState(false);
   const [isLocating, setIsLocating] = useState(false);
 
@@ -346,6 +348,26 @@ export function MapboxTrafficMap({
     setIsExpandedHeight((prev) => !prev);
   };
 
+  const toggleFullscreen = () => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    if (!document.fullscreenElement) {
+      el.requestFullscreen?.().catch(() => {});
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
+
+  // Sync fullscreen state (incl. Esc key) and let Mapbox re-measure after resize
+  useEffect(() => {
+    const onFsChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+      setTimeout(() => mapRef.current?.resize(), 120);
+    };
+    document.addEventListener("fullscreenchange", onFsChange);
+    return () => document.removeEventListener("fullscreenchange", onFsChange);
+  }, []);
+
   const locateUser = () => {
     if (!mapRef.current) return;
     if (!("geolocation" in navigator)) {
@@ -376,7 +398,7 @@ export function MapboxTrafficMap({
   };
 
   return (
-    <div className="bg-white border-2 border-black shadow-[6px_6px_0_#000] overflow-hidden">
+    <div ref={wrapperRef} className={`bg-white overflow-hidden ${isFullscreen ? "flex flex-col h-screen w-screen border-0 shadow-none" : "border-2 border-black shadow-[6px_6px_0_#000]"}`}>
 
       {/* ── Header ─────────────────────────────────────────────────── */}
       <div className="bg-red-500 border-b-2 border-black px-4 py-3 flex items-center justify-between gap-2">
@@ -396,7 +418,7 @@ export function MapboxTrafficMap({
       </div>
 
       {/* ── Map ────────────────────────────────────────────────────── */}
-      <div className={`relative w-full transition-all duration-300 ${isExpandedHeight ? "h-[65vh] md:h-[600px]" : "h-[260px] sm:h-[350px] md:h-[450px]"}`} style={{ minHeight: isExpandedHeight ? "380px" : "240px" }}>
+      <div className={`relative w-full transition-all duration-300 ${isFullscreen ? "flex-1" : isExpandedHeight ? "h-[65vh] md:h-[600px]" : "h-[260px] sm:h-[350px] md:h-[450px]"}`} style={{ minHeight: isFullscreen ? 0 : isExpandedHeight ? "380px" : "240px" }}>
         <div ref={mapContainerRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
 
         {/* Floating Custom Brutalist Map Controls */}
@@ -448,6 +470,15 @@ export function MapboxTrafficMap({
               className="p-2 bg-white border-2 border-black shadow-[2px_2px_0_#000] hover:bg-yellow-400 transition-all flex items-center justify-center"
             >
               {isExpandedHeight ? <Minimize2 size={16} strokeWidth={2.5} /> : <Maximize2 size={16} strokeWidth={2.5} />}
+            </button>
+
+            {/* True Fullscreen Toggle */}
+            <button
+              onClick={toggleFullscreen}
+              aria-label={isFullscreen ? "Exit fullscreen" : "View fullscreen"}
+              className="p-2 bg-white border-2 border-black shadow-[2px_2px_0_#000] hover:bg-yellow-400 transition-all flex items-center justify-center"
+            >
+              {isFullscreen ? <Shrink size={16} strokeWidth={2.5} /> : <Expand size={16} strokeWidth={2.5} />}
             </button>
           </div>
         )}

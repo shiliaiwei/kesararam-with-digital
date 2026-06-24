@@ -18,7 +18,7 @@ import {
   BarChart2, ShieldCheck, PenTool, Layers, Cpu, Zap,
   BrainCircuit, Building2, Landmark, Globe, Type, Smartphone,
   BookOpen, ZoomIn, ZoomOut, RotateCcw, LayoutGrid, Network, Info,
-  ExternalLink, ChevronRight, X
+  ExternalLink, ChevronRight, X, Expand, Shrink
 } from "lucide-react";
 
 // Structure definition for bilingual text
@@ -1189,6 +1189,26 @@ export function BuiltWithClient() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [activeDetail, setActiveDetail] = useState<TechNode | null>(null);
 
+  // Fullscreen State
+  const workspaceRef = useRef<HTMLDivElement | null>(null);
+  const [isDiagramFullscreen, setIsDiagramFullscreen] = useState(false);
+
+  const toggleDiagramFullscreen = () => {
+    const el = workspaceRef.current;
+    if (!el) return;
+    if (!document.fullscreenElement) {
+      el.requestFullscreen?.().catch(() => {});
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
+
+  useEffect(() => {
+    const onFsChange = () => setIsDiagramFullscreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", onFsChange);
+    return () => document.removeEventListener("fullscreenchange", onFsChange);
+  }, []);
+
   // Click & Drag Panning State
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -1517,7 +1537,12 @@ export function BuiltWithClient() {
       </header>
 
       {/* Main Interactive Controls & Workspace */}
-      <div className="max-w-5xl mx-auto px-6 mt-6">
+      <div
+        ref={workspaceRef}
+        className={isDiagramFullscreen
+          ? "w-screen h-screen overflow-auto bg-white dark:bg-zinc-950 p-4 sm:p-6"
+          : "max-w-5xl mx-auto px-6 mt-6"}
+      >
         
         {/* Toggle Control Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 border-2 border-black dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-[3px_3px_0_#000] dark:shadow-[3px_3px_0_rgba(255,255,255,0.05)] mb-8">
@@ -1589,6 +1614,17 @@ export function BuiltWithClient() {
               >
                 <RotateCcw size={14} />
               </button>
+
+              <div className="h-6 w-[1.5px] bg-zinc-200 dark:bg-zinc-700 hidden md:block" />
+
+              {/* Fullscreen Toggle */}
+              <button
+                onClick={toggleDiagramFullscreen}
+                className="p-1.5 border-2 border-black bg-white dark:bg-zinc-800 text-black dark:text-white rounded-none hover:bg-yellow-400 dark:hover:bg-yellow-500 cursor-pointer"
+                title={isDiagramFullscreen ? t("Exit Fullscreen", "ចេញពីពេញអេក្រង់") : t("Fullscreen", "ពេញអេក្រង់")}
+              >
+                {isDiagramFullscreen ? <Shrink size={14} /> : <Expand size={14} />}
+              </button>
             </div>
           )}
         </div>
@@ -1632,7 +1668,9 @@ export function BuiltWithClient() {
               onMouseLeave={handleMouseLeave}
               onMouseUp={handleMouseUp}
               onMouseMove={handleMouseMove}
-              className={`w-full overflow-auto max-h-[640px] py-16 px-8 dot-bg no-scrollbar ${
+              className={`w-full overflow-auto py-16 px-8 dot-bg no-scrollbar ${
+                isDiagramFullscreen ? "max-h-[calc(100vh-180px)]" : "max-h-[640px]"
+              } ${
                 isDragging ? "cursor-grabbing" : "cursor-grab"
               }`}
             >
