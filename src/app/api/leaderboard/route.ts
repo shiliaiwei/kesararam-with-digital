@@ -9,6 +9,19 @@ import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 
 export const dynamic = "force-dynamic";
 
+function formatKhmerDisplayName(name: string | null | undefined): string {
+  if (!name) return "";
+  const khmerRegex = /[\u1780-\u17ff]/;
+  if (!khmerRegex.test(name)) return name;
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    const fatherName = parts[0];
+    const givenName = parts.slice(1).join(" ");
+    return `${fatherName.charAt(0)}. ${givenName}`;
+  }
+  return name;
+}
+
 type Window = "weekly" | "monthly" | "all";
 
 /**
@@ -114,7 +127,7 @@ async function storePointsLeaderboard(opts: {
   const rankedUsers = rows.map((user, index) => ({
     id: user.id,
     rank: offset + index + 1,
-    displayName: (user.isNamePublic ?? true) ? (user.displayName || user.username) : "Private Student",
+    displayName: formatKhmerDisplayName((user.isNamePublic ?? true) ? (user.displayName || user.username) : "Private Student"),
     username: (user.isUsernamePublic ?? true) ? user.username : "",
     isUsernamePublic: user.isUsernamePublic ?? true,
     avatar: user.avatar,
@@ -356,7 +369,7 @@ export async function GET(req: NextRequest) {
       return {
         id: user.id,
         rank: offset + index + 1,
-        displayName: (user.isNamePublic ?? true) ? (user.displayName || user.username) : "Private Student",
+        displayName: formatKhmerDisplayName((user.isNamePublic ?? true) ? (user.displayName || user.username) : "Private Student"),
         username: (user.isUsernamePublic ?? true) ? user.username : "",
         isUsernamePublic: user.isUsernamePublic ?? true,
         avatar: user.avatar,

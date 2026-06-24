@@ -6,6 +6,19 @@ import { getSession } from "@/lib/auth";
 import { eq, and, isNull } from "drizzle-orm";
 import { getPeriodStart, type RankingPeriod } from "@/lib/ranking";
 
+function formatKhmerDisplayName(name: string | null | undefined): string {
+  if (!name) return "";
+  const khmerRegex = /[\u1780-\u17ff]/;
+  if (!khmerRegex.test(name)) return name;
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    const fatherName = parts[0];
+    const givenName = parts.slice(1).join(" ");
+    return `${fatherName.charAt(0)}. ${givenName}`;
+  }
+  return name;
+}
+
 /**
  * GET /api/leaderboard/user/[userId]
  * 
@@ -131,7 +144,7 @@ export async function GET(
       ranking: {
         rank: entry.rank,
         studentId: entry.studentId,
-        displayName: entry.displayName || entry.username || "Unknown User",
+        displayName: formatKhmerDisplayName(entry.displayName || entry.username || "Unknown User"),
         avatar: entry.avatar,
         score: entry.score,
         correctAnswers: entry.correctAnswers,
