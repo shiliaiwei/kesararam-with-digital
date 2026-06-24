@@ -58,7 +58,7 @@ async function storePointsLeaderboard(opts: {
 
   const provinceFilter =
     province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
-  const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true`;
+  const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true AND ${users.username} NOT LIKE 'proptest_%'`;
 
   const rows = await db
     .select({
@@ -189,7 +189,7 @@ export async function GET(req: NextRequest) {
     // (school/province/grade) and isStatsPublic are NOT required — students who
     // played any game appear even with a bare profile. Per-field privacy flags
     // (isNamePublic, isSchoolPublic, …) still anonymize the displayed values below.
-    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true`;
+    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true AND ${users.username} NOT LIKE 'proptest_%'`;
     const provinceFilter =
       province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
 
