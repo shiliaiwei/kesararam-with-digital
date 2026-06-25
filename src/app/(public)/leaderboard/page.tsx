@@ -1384,6 +1384,7 @@ export default function LeaderboardPage() {
     }
   };
 
+  // Render row with KWD's original brutalist score plate / license plate style
   const renderRow = (user: LeaderboardUser, rowIndex: number, isSticky: boolean = false) => {
     const prev = prevRanks[user.id];
     const moved = prev !== undefined ? prev - user.rank : 0;
