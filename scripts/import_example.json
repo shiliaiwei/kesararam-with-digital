@@ -1,0 +1,75 @@
+[
+  {
+    "q": "What should you do when you see a STOP sign?",
+    "qkm": "តើអ្នកគួរធ្វើដូចម្តេចនៅពេលឃើញផ្លាកសញ្ញាឈប់?",
+    "type": "MCQ_SINGLE",
+    "diff": "easy",
+    "hint": "You must bring the vehicle to a complete halt.",
+    "hintKm": "អ្នកត្រូវតែបញ្ឈប់យានយន្តឱ្យបានទាំងស្រុង។",
+    "answers": [
+      { "a": "Stop completely before the stop line", "akm": "ឈប់ឱ្យបានទាំងស្រុងមុនខ្សែបន្ទាត់ឈប់", "correct": true },
+      { "a": "Slow down and proceed if clear", "akm": "បន្ថយល្បឿនហើយទៅមុខទៀតប្រសិនបើគ្មានឧបសគ្គ" },
+      { "a": "Sound your horn and speed up", "akm": "ចុចស៊ីផ្លេហើយបង្កើនល្បឿន" }
+    ]
+  },
+  {
+    "q": "It is permitted to overtake another vehicle at an intersection.",
+    "qkm": "វាត្រូវបានអនុញ្ញាតឱ្យជែងយានយន្តមួយផ្សេងទៀតនៅត្រង់ផ្លូវប្រសព្វ។",
+    "type": "TRUE_FALSE",
+    "diff": "medium",
+    "hint": "Overtaking at intersections is highly dangerous.",
+    "hintKm": "ការជែងគ្នានៅត្រង់ផ្លូវប្រសព្វគឺគ្រោះថ្នាក់ខ្លាំងណាស់។",
+    "answers": [
+      { "a": "True", "akm": "ពិត" },
+      { "a": "False", "akm": "មិនពិត", "correct": true }
+    ]
+  },
+  {
+    "q": "Select all mandatory traffic safety rules for motorcyclists.",
+    "qkm": "ជ្រើសរើសវិធានការសុវត្ថិភាពចរាចរណ៍ដែលត្រូវធ្វើជាដាច់ខាតសម្រាប់អ្នកជិះម៉ូតូ។",
+    "type": "MCQ_MULTIPLE",
+    "diff": "medium",
+    "hint": "Think about personal protection and passenger limits.",
+    "hintKm": "គិតអំពីការការពារផ្ទាល់ខ្លួន និងដែនកំណត់អ្នករួមដំណើរ។",
+    "answers": [
+      { "a": "Wear a certified helmet securely fastened", "akm": "ពាក់មួកសុវត្ថិភាពឱ្យបានត្រឹមត្រូវ", "correct": true },
+      { "a": "Keep headlights on at all times", "akm": "បើកភ្លើងក្បាលម៉ូតូគ្រប់ពេល", "correct": true },
+      { "a": "Ride on the sidewalk when road is busy", "akm": "ជិះលើចិញ្ចើមផ្លូវនៅពេលផ្លូវមមាញឹក" },
+      { "a": "Carry a maximum of 1 adult passenger", "akm": "ដឹកអ្នកដំណើរពេញវ័យម្នាក់យ៉ាងច្រើនបំផុត", "correct": true }
+    ]
+  },
+  {
+    "q": "Match the sign shape to its category.",
+    "qkm": "ផ្គូផ្គងរូបរាងផ្លាកសញ្ញាទៅនឹងប្រភេទរបស់វា។",
+    "type": "MATCHING",
+    "diff": "hard",
+    "answers": [
+      { "a": "Triangle Shape", "akm": "Warning Sign", "correct": true },
+      { "a": "Circle Shape", "akm": "Mandatory/Prohibitory Sign", "correct": true },
+      { "a": "Rectangle Shape", "akm": "Information Sign", "correct": true },
+      { "a": "Octagon Shape", "akm": "STOP Sign", "correct": true }
+    ]
+  },
+  {
+    "q": "Every driver must yield to pedestrians crossing at a ___ crossing.",
+    "qkm": "អ្នកបើកបរគ្រប់រូបត្រូវផ្តល់អាទិភាពដល់ថ្មើរជើងដែលកំពុងឆ្លងកាត់ត្រង់គំនូសសញ្ញា___។",
+    "type": "FILL_BLANK",
+    "diff": "easy",
+    "answers": [
+      { "a": "zebra", "akm": "ថ្មើរជើងឆ្លងកាត់", "correct": true },
+      { "a": "pedestrian", "akm": "ឆ្លងកាត់", "correct": true }
+    ]
+  },
+  {
+    "q": "Which of the following signs indicates priority road?",
+    "qkm": "តើផ្លាកសញ្ញាមួយណាខាងក្រោមបង្ហាញពីផ្លូវមានអាទិភាព?",
+    "type": "IMAGE_BASED",
+    "diff": "medium",
+    "hint": "It is yellow diamond sign with black border and shadow.",
+    "answers": [
+      { "a": "Priority Road Sign", "correct": true, "imageUrl": "auto" },
+      { "a": "STOP Sign", "imageUrl": "auto" },
+      { "a": "Give Way Sign", "imageUrl": "auto" }
+    ]
+  }
+]
