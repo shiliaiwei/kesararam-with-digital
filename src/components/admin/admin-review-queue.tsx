@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Eye, Check, X, Search, AlertCircle, ChevronDown, XCircle } from "lucide-react";
 import { TopicReviewModal } from "./topic-review-modal";
+import { PendingQuestionsReview } from "./pending-questions-review";
 import { BrandSelect } from "@/components/ui/brand-select";
 
 interface Topic {
@@ -82,6 +83,7 @@ function RejectDialog({
 
 // ── Main component ────────────────────────────────────────────────────────────
 export function AdminReviewQueue() {
+  const [tab, setTab] = useState<"topics" | "questions">("topics");
   const [topics, setTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -182,8 +184,40 @@ export function AdminReviewQueue() {
     setTypeFilter("");
   };
 
+  // ── Tab switcher (shared across both queues) ──
+  const TabBar = (
+    <div className="flex gap-2">
+      <button
+        onClick={() => setTab("topics")}
+        className={`px-4 py-2 border-2 border-black font-black text-sm uppercase transition-all ${
+          tab === "topics" ? "bg-black text-white shadow-[3px_3px_0_#000]" : "bg-white hover:shadow-[2px_2px_0_#000]"
+        }`}
+      >
+        Topics
+      </button>
+      <button
+        onClick={() => setTab("questions")}
+        className={`px-4 py-2 border-2 border-black font-black text-sm uppercase transition-all ${
+          tab === "questions" ? "bg-black text-white shadow-[3px_3px_0_#000]" : "bg-white hover:shadow-[2px_2px_0_#000]"
+        }`}
+      >
+        Questions
+      </button>
+    </div>
+  );
+
+  if (tab === "questions") {
+    return (
+      <div className="space-y-6">
+        {TabBar}
+        <PendingQuestionsReview />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
+      {TabBar}
       {/* Header card */}
       <div className="bg-white border-2 border-black p-6" style={{ boxShadow: "4px 4px 0 #000" }}>
         <div className="flex items-center justify-between mb-6">
