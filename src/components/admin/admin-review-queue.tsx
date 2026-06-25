@@ -84,6 +84,8 @@ function RejectDialog({
 // ── Main component ────────────────────────────────────────────────────────────
 export function AdminReviewQueue() {
   const [tab, setTab] = useState<"topics" | "questions">("topics");
+  const [pendingQCount, setPendingQCount] = useState(0);
+  const autoTabbed = useRef(false);
   const [topics, setTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -135,6 +137,28 @@ export function AdminReviewQueue() {
   useEffect(() => {
     fetchTopics();
   }, [fetchTopics]);
+
+  // Fetch pending-question count for the tab badge
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch("/api/admin/questions/pending");
+        const data = await res.json();
+        setPendingQCount(data.stats?.pending ?? (data.questions?.length || 0));
+      } catch {
+        /* non-fatal */
+      }
+    })();
+  }, []);
+
+  // Once both counts are known: if no pending topics but pending questions exist,
+  // open the Questions tab automatically (once) so admins don't miss them.
+  useEffect(() => {
+    if (!autoTabbed.current && !loading && stats.pending === 0 && pendingQCount > 0) {
+      autoTabbed.current = true;
+      setTab("questions");
+    }
+  }, [loading, stats.pending, pendingQCount]);
 
   const handleApprove = async (id: number) => {
     if (!confirm("Approve this topic?")) return;
@@ -189,19 +213,29 @@ export function AdminReviewQueue() {
     <div className="flex gap-2">
       <button
         onClick={() => setTab("topics")}
-        className={`px-4 py-2 border-2 border-black font-black text-sm uppercase transition-all ${
+        className={`px-4 py-2 border-2 border-black font-black text-sm uppercase transition-all inline-flex items-center gap-2 ${
           tab === "topics" ? "bg-black text-white shadow-[3px_3px_0_#000]" : "bg-white hover:shadow-[2px_2px_0_#000]"
         }`}
       >
         Topics
+        {stats.pending > 0 && (
+          <span className="px-1.5 py-0.5 text-[10px] leading-none bg-yellow-400 text-black border border-black">
+            {stats.pending}
+          </span>
+        )}
       </button>
       <button
         onClick={() => setTab("questions")}
-        className={`px-4 py-2 border-2 border-black font-black text-sm uppercase transition-all ${
+        className={`px-4 py-2 border-2 border-black font-black text-sm uppercase transition-all inline-flex items-center gap-2 ${
           tab === "questions" ? "bg-black text-white shadow-[3px_3px_0_#000]" : "bg-white hover:shadow-[2px_2px_0_#000]"
         }`}
       >
         Questions
+        {pendingQCount > 0 && (
+          <span className="px-1.5 py-0.5 text-[10px] leading-none bg-red-500 text-white border border-black">
+            {pendingQCount}
+          </span>
+        )}
       </button>
     </div>
   );
