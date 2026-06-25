@@ -43,6 +43,7 @@ export default async function SubscriptionsPage() {
         trialEndsAt: subscriptions.trialEndsAt,
         startsAt: subscriptions.startsAt,
         endsAt: subscriptions.endsAt,
+        billingCycle: subscriptions.billingCycle,
         note: subscriptions.note,
         createdAt: subscriptions.createdAt,
         updatedAt: subscriptions.updatedAt,

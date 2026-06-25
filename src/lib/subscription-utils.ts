@@ -155,6 +155,7 @@ export async function getSubscriptionDisplayInfo(userId: number) {
             status: "active",
             isTrial: false,
             endsAt: null,
+            billingCycle: null,
             features: PLAN_FEATURES.free,
         };
     }
@@ -169,6 +170,7 @@ export async function getSubscriptionDisplayInfo(userId: number) {
         trialEndsAt: subscription.trialEndsAt,
         startsAt: subscription.startsAt,
         endsAt: subscription.endsAt,
+        billingCycle: (subscription as { billingCycle?: string | null }).billingCycle ?? null,
         features,
     };
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
-import { Pencil, Info, Settings, Crown, Clock, Zap, Building2, Car, ShieldCheck } from "lucide-react";
+import { Pencil, Info, Settings, Crown, Clock, Zap, Building2, Car, ShieldCheck, Check, CalendarClock, Infinity as InfinityIcon, ArrowRight, CreditCard } from "lucide-react";
 import { ChangePassword } from "@/components/account/change-password";
 import { TwoFactorSetup } from "@/components/account/two-factor-setup";
 
@@ -22,6 +22,8 @@ interface StaffProfileTabsProps {
   plan?: string;
   isTrial?: boolean;
   trialEndsAt?: string | null;
+  endsAt?: string | null;
+  billingCycle?: string | null;
   planStatus?: string;
 }
 
@@ -48,6 +50,8 @@ export function StaffProfileTabs({
   plan = "free",
   isTrial = false,
   trialEndsAt = null,
+  endsAt = null,
+  billingCycle = null,
   planStatus = "active",
 }: StaffProfileTabsProps) {
   const roleStyle = ROLE_STYLE[role];
@@ -64,9 +68,38 @@ export function StaffProfileTabs({
   const pc = planConfig[plan as keyof typeof planConfig] ?? planConfig.free;
   const PlanIcon = pc.icon;
 
+  // What each plan unlocks — shown on the "My License" card so the subscriber
+  // can see exactly what their subscription turned on.
+  const PLAN_UNLOCKS: Record<string, string[]> = {
+    free: ["1 game session / month", "Up to 10 players", "1 category"],
+    teacher_pro: ["Unlimited sessions", "50 players / session", "All 8 categories", "Analytics & reports", "Export results", "Suar AI unlimited"],
+    school: ["Unlimited sessions", "200 players / session", "10 teacher accounts", "All categories", "Analytics & reports", "Class management"],
+    family: ["Up to 9 children", "All categories", "Analytics & progress", "Export results", "Advanced game modes"],
+    driving_school: ["Unlimited sessions", "Unlimited learners", "All categories", "Analytics & reports", "Class management"],
+  };
+
   const trialDaysLeft = trialEndsAt
     ? Math.max(0, Math.ceil((new Date(trialEndsAt).getTime() - Date.now()) / 86400000))
     : null;
+
+  // License card values
+  const isPaidPlan = plan !== "free";
+  const endDateStr = isTrial ? trialEndsAt : endsAt;
+  const daysToEnd = endDateStr
+    ? Math.max(0, Math.ceil((new Date(endDateStr).getTime() - Date.now()) / 86400000))
+    : null;
+  const cycleLabel = isTrial
+    ? "Free trial"
+    : billingCycle === "yearly"
+      ? "Annual"
+      : billingCycle === "monthly"
+        ? "Monthly"
+        : isPaidPlan
+          ? "Lifetime"
+          : "Free";
+  const fmtDate = (s: string) =>
+    new Date(s).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+  const unlocks = PLAN_UNLOCKS[plan] ?? PLAN_UNLOCKS.free;
 
   return (
     <div className="flex flex-col gap-6 py-4 max-w-2xl">
@@ -139,6 +172,96 @@ export function StaffProfileTabs({
           </div>
         </div>
       </div>
+
+      {/* ── My License card (teacher only) ── */}
+      {role === "teacher" && (
+        <div className="border-2 border-black bg-white shadow-[4px_4px_0_#000] overflow-hidden">
+          {/* Plan color bar */}
+          <div className="h-1.5" style={{ background: pc.color }} />
+          <div className="p-5 flex flex-col gap-4">
+            {/* Header row */}
+            <div className="flex items-start justify-between gap-3 flex-wrap">
+              <div className="flex items-center gap-3">
+                <div
+                  className="size-11 grid place-items-center border-2 border-black shadow-[2px_2px_0_#000]"
+                  style={{ background: pc.color, color: "#fff" }}
+                >
+                  <PlanIcon size={20} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">My License</p>
+                  <h3 className="text-xl font-black text-black leading-tight">{pc.label}</h3>
+                </div>
+              </div>
+              <span
+                className={`inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest border-2 border-black shadow-[2px_2px_0_#000] ${
+                  planStatus === "active" || planStatus === "trial" ? "bg-[#22c55e] text-white" : "bg-zinc-200 text-zinc-600"
+                }`}
+              >
+                <ShieldCheck size={11} />
+                {planStatus === "trial" ? "Trial" : planStatus === "active" ? "Active" : planStatus}
+              </span>
+            </div>
+
+            {isPaidPlan ? (
+              <>
+                {/* Meta grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="border-2 border-black bg-zinc-50 p-3">
+                    <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-1">
+                      <CreditCard size={11} /> Billing
+                    </p>
+                    <p className="text-sm font-black text-black mt-1">{cycleLabel}</p>
+                  </div>
+                  <div className="border-2 border-black bg-zinc-50 p-3">
+                    <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-1">
+                      {endDateStr ? <CalendarClock size={11} /> : <InfinityIcon size={11} />}
+                      {isTrial ? "Trial ends" : "Renews"}
+                    </p>
+                    <p className="text-sm font-black text-black mt-1">
+                      {endDateStr ? fmtDate(endDateStr) : "Never (∞)"}
+                      {daysToEnd !== null && (
+                        <span className={`ml-1.5 text-[11px] font-bold ${daysToEnd <= 3 ? "text-red-500" : "text-zinc-400"}`}>
+                          · {daysToEnd}d left
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Unlocked features */}
+                <div>
+                  <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-2">Unlocked features</p>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                    {unlocks.map((f) => (
+                      <div key={f} className="flex items-center gap-1.5 text-xs font-bold text-zinc-700">
+                        <span className="grid place-items-center size-4 bg-[#22c55e] border border-black shrink-0">
+                          <Check size={10} className="text-white" />
+                        </span>
+                        {f}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            ) : (
+              /* Free plan → upgrade nudge */
+              <div className="flex items-center justify-between gap-3 flex-wrap border-2 border-dashed border-zinc-300 bg-zinc-50 p-4">
+                <div>
+                  <p className="text-sm font-black text-black">You're on the Free plan</p>
+                  <p className="text-xs text-zinc-500 font-medium mt-0.5">Upgrade to unlock unlimited sessions, all categories & analytics.</p>
+                </div>
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center gap-1.5 bg-amber-400 text-black font-black text-xs uppercase tracking-widest px-4 py-2.5 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-y-0.5 transition-all"
+                >
+                  View Plans <ArrowRight size={13} />
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* ── Tab bar ── */}
       <div className="flex border-2 border-black shadow-[4px_4px_0_#000] overflow-hidden">

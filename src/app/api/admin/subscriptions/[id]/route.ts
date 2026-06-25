@@ -22,7 +22,8 @@ export async function PATCH(
   if (isNaN(subId)) return NextResponse.json({ error: "Invalid id" }, { status: 400 });
 
   const body = await req.json();
-  const { status, note, endsAt } = body;
+  const { status, note, endsAt, billingCycle } = body;
+  const validCycle = billingCycle === "monthly" || billingCycle === "yearly";
 
   const [updated] = await db
     .update(subscriptions)
@@ -30,6 +31,7 @@ export async function PATCH(
       ...(status && { status }),
       ...(note !== undefined && { note }),
       ...(endsAt !== undefined && { endsAt: endsAt ? new Date(endsAt) : null }),
+      ...(billingCycle !== undefined && { billingCycle: validCycle ? billingCycle : null }),
       updatedAt: new Date(),
     })
     .where(eq(subscriptions.id, subId))

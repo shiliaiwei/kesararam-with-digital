@@ -10,9 +10,11 @@ import { subscriptions } from "@/db/schema/subscriptions";
 import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { eq, desc } from "drizzle-orm";
+import { computeEndsAt, type BillingCycle } from "@/lib/pricing";
 
 const VALID_PLANS = ["free", "teacher_pro", "school", "family", "driving_school"] as const;
 type PlanTier = typeof VALID_PLANS[number];
+const VALID_CYCLES = ["monthly", "yearly"] as const;
 
 // GET — uses drizzle (reads are fine, no null timestamp issue)
 export async function GET() {
@@ -31,6 +33,7 @@ export async function GET() {
         trialEndsAt: subscriptions.trialEndsAt,
         startsAt: subscriptions.startsAt,
         endsAt: subscriptions.endsAt,
+        billingCycle: subscriptions.billingCycle,
         note: subscriptions.note,
         createdAt: subscriptions.createdAt,
         updatedAt: subscriptions.updatedAt,
@@ -67,6 +70,13 @@ export async function POST(req: NextRequest) {
     const trialDays = Number(body.trialDays ?? 7);
     const note = typeof body.note === "string" && body.note.trim() ? body.note.trim() : null;
 
+    // Billing cycle is only meaningful for paid (non-trial) licenses.
+    const rawCycle = String(body.billingCycle ?? "");
+    const billingCycle: BillingCycle | null =
+      !isTrial && VALID_CYCLES.includes(rawCycle as BillingCycle) ? (rawCycle as BillingCycle) : null;
+    // "Lifetime" (∞) = explicitly no end date, even on a paid license.
+    const lifetime = Boolean(body.lifetime);
+
     if (!userId || isNaN(userId))
       return NextResponse.json({ error: "Invalid userId" }, { status: 400 });
     if (!VALID_PLANS.includes(plan as PlanTier))
@@ -83,11 +93,23 @@ export async function POST(req: NextRequest) {
       ? new Date(Date.now() + trialDays * 86400000).toISOString()
       : null;
 
+    // End date resolution (paid licenses only):
+    //  1. explicit endsAt from admin override
+    //  2. otherwise auto-compute from the billing cycle (monthly → +1mo, yearly → +1yr)
+    //  3. lifetime → null (never expires)
     let endsAt: string | null = null;
-    if (!isTrial && typeof body.endsAt === "string" && body.endsAt.length > 4) {
-      const d = new Date(body.endsAt);
-      if (!isNaN(d.getTime())) endsAt = d.toISOString();
+    if (!isTrial && !lifetime) {
+      if (typeof body.endsAt === "string" && body.endsAt.length > 4) {
+        const d = new Date(body.endsAt);
+        if (!isNaN(d.getTime())) endsAt = d.toISOString();
+      } else if (billingCycle) {
+        endsAt = computeEndsAt(now, billingCycle);
+      }
     }
+
+    // Ensure the billing_cycle column exists (idempotent — no-op once migrated).
+    // Guards against environments that pre-date the Stripe migration.
+    await neonSql`ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS billing_cycle TEXT`;
 
     // Cancel existing — raw SQL
     await neonSql`
@@ -98,7 +120,7 @@ export async function POST(req: NextRequest) {
     // Insert — raw Neon SQL template tag handles null correctly
     const rows = await neonSql`
       INSERT INTO subscriptions
-        (user_id, plan, status, is_trial, trial_ends_at, starts_at, ends_at, assigned_by, note)
+        (user_id, plan, status, is_trial, trial_ends_at, starts_at, ends_at, billing_cycle, assigned_by, note)
       VALUES (
         ${userId},
         ${plan}::"plan_tier",
@@ -107,6 +129,7 @@ export async function POST(req: NextRequest) {
         ${trialEndsAt}::timestamptz,
         ${now}::timestamptz,
         ${endsAt}::timestamptz,
+        ${billingCycle},
         ${session.id},
         ${note}
       )

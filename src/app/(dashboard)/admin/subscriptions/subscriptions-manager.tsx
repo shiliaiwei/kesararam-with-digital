@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
-import { PLAN_DISPLAY, PLAN_LIMITS, type PlanTier } from "@/lib/subscription-plans";
+import { PLAN_DISPLAY, type PlanTier } from "@/lib/subscription-plans";
+import {
+  PLAN_META, PAID_PLANS, getPlanPrice, getStandardPrice, computeEndsAt,
+  isPromoActive, isPaidPlan, type BillingCycle, type PaidPlan,
+} from "@/lib/pricing";
 import { BrandSelect } from "@/components/ui/brand-select";
 
 type SubStatus = "active" | "expired" | "cancelled" | "trial";
@@ -10,6 +14,7 @@ interface SubRow {
   id: number; userId: number; plan: string; status: string;
   isTrial: boolean; trialEndsAt: Date | string | null;
   startsAt: Date | string; endsAt: Date | string | null;
+  billingCycle: string | null;
   note: string | null; createdAt: Date | string; updatedAt: Date | string;
   userName: string | null; userEmail: string; userRole: string;
 }
@@ -260,13 +265,24 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
   const [users, setUsers] = useState<UserOption[]>(initialUsers);
   const [selectedUser, setSelectedUser] = useState<UserOption | null>(null);
   const [plan, setPlan] = useState<PlanTier>("teacher_pro");
-  const [isTrial, setIsTrial] = useState(true);
+  const [licenseType, setLicenseType] = useState<"trial" | "paid">("trial");
   const [trialDays, setTrialDays] = useState(7);
-  const [endsAt, setEndsAt] = useState("");
+  const [cycle, setCycle] = useState<BillingCycle>("yearly");
+  const [lifetime, setLifetime] = useState(false);
+  const [endsAt, setEndsAt] = useState(""); // manual end-date override (optional)
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const paid = plan !== "free";
+  const isTrial = paid && licenseType === "trial";
+  const promo = isPromoActive();
+  // Resolved renewal/end date the subscriber will see.
+  const resolvedEnd: string | null =
+    paid && licenseType === "paid" && !lifetime
+      ? (endsAt && endsAt.length > 4 ? new Date(endsAt).toISOString() : computeEndsAt(new Date(), cycle))
+      : null;
 
   // Fetch users with current plan info on mount
   useEffect(() => {
@@ -288,8 +304,12 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
         };
         if (isTrial) {
           payload.trialDays = trialDays;
-        } else if (endsAt && endsAt.length > 4) {
-          payload.endsAt = endsAt;
+        } else if (paid) {
+          // Paid license — record the billing cycle; API auto-computes the end
+          // date from the cycle unless we override it or mark it lifetime.
+          payload.billingCycle = cycle;
+          payload.lifetime = lifetime;
+          if (!lifetime && endsAt && endsAt.length > 4) payload.endsAt = endsAt;
         }
 
       const res = await fetch("/api/admin/subscriptions", {
@@ -314,12 +334,11 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
     } finally { setLoading(false); }
   }
 
-  const planMeta: { key: PlanTier; icon: string; label: string; price: string; desc: string }[] = [
-    { key: "free",        icon: "bolt",       label: "Free",        price: "$0",  desc: "Basic access" },
-    { key: "teacher_pro", icon: "crown",      label: "Teacher Pro", price: "$10", desc: "Unlimited sessions" },
-    { key: "school",      icon: "domain",     label: "School",      price: "$49", desc: "Multi-teacher" },
-    { key: "family",      icon: "group",      label: "Family",      price: "$5",  desc: "Up to 9 kids" },
-    { key: "driving_school", icon: "directions_car", label: "Driving School", price: "$35", desc: "Unlimited learners" },
+  // Plans the admin can assign. Paid plans pull live prices from @/lib/pricing
+  // (same numbers as the public /pricing page). Free is appended last.
+  const planMeta: { key: PlanTier; icon: string; label: string; desc: string }[] = [
+    ...PAID_PLANS.map((k) => ({ key: k as PlanTier, icon: PLAN_META[k].icon, label: PLAN_META[k].name, desc: PLAN_META[k].blurb })),
+    { key: "free", icon: "bolt", label: "Free", desc: "Basic access" },
   ];
 
   return (
@@ -387,66 +406,185 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
               <label className="text-xs font-bold text-white/50 uppercase tracking-widest">Choose Plan</label>
             </div>
             <div className="grid grid-cols-3 gap-2 mb-3">
-              {planMeta.map(({ key, icon: IconName, label, price, desc }) => (
-                <button key={key} onClick={() => setPlan(key)}
-                  className={`relative flex flex-col items-center gap-1.5 py-3 px-2 rounded-none border transition-all ${
-                    plan === key
-                      ? "border-amber-400 bg-amber-400/10 shadow-[0_0_12px_rgba(251,191,36,0.15)]"
-                      : "border-white/10 bg-white/4 hover:border-white/20"
-                  }`}>
-                  {plan === key && <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-none bg-amber-400" />}
-                  <span className={`material-symbols-rounded ${plan === key ? "text-amber-400" : "text-white/35"}`} style={{ fontSize: "20px" }}>{IconName}</span>
-                  <span className={`text-xs font-black ${plan === key ? "text-amber-400" : "text-white/55"}`}>{label}</span>
-                  <span className="text-[10px] text-white/25 font-bold">{price}/mo</span>
-                  <span className="text-[10px] text-white/20 text-center leading-tight">{desc}</span>
-                </button>
-              ))}
+              {planMeta.map(({ key, icon: IconName, label, desc }) => {
+                const isFree = key === "free";
+                const usd = isFree ? 0 : getPlanPrice(key as PaidPlan, cycle, { promo });
+                const std = isFree ? 0 : getStandardPrice(key as PaidPlan, cycle);
+                const suffix = cycle === "yearly" ? "/yr" : "/mo";
+                return (
+                  <button key={key} onClick={() => setPlan(key)}
+                    className={`relative flex flex-col items-center gap-1.5 py-3 px-2 rounded-none border transition-all ${
+                      plan === key
+                        ? "border-amber-400 bg-amber-400/10 shadow-[0_0_12px_rgba(251,191,36,0.15)]"
+                        : "border-white/10 bg-white/4 hover:border-white/20"
+                    }`}>
+                    {plan === key && <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-none bg-amber-400" />}
+                    <span className={`material-symbols-rounded ${plan === key ? "text-amber-400" : "text-white/35"}`} style={{ fontSize: "20px" }}>{IconName}</span>
+                    <span className={`text-xs font-black ${plan === key ? "text-amber-400" : "text-white/55"}`}>{label}</span>
+                    <span className="flex items-baseline gap-1">
+                      <span className="text-[11px] text-white/70 font-black">${usd}<span className="text-white/30 font-bold">{isFree ? "" : suffix}</span></span>
+                      {!isFree && promo && std > usd && (
+                        <span className="text-[9px] text-white/25 line-through font-bold">${std}</span>
+                      )}
+                    </span>
+                    <span className="text-[10px] text-white/20 text-center leading-tight">{desc}</span>
+                  </button>
+                );
+              })}
             </div>
             {/* Feature lock list for selected plan */}
             <FeatureLockList plan={plan} />
           </div>
 
-          {/* Step 3 — Duration */}
+          {/* Step 3 — License type */}
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-5 h-5 rounded-none border border-black bg-amber-400 text-black text-[10px] font-black flex items-center justify-center shrink-0">3</span>
-              <label className="text-xs font-bold text-white/50 uppercase tracking-widest">Duration</label>
+              <label className="text-xs font-bold text-white/50 uppercase tracking-widest">License Type</label>
             </div>
-            <div className="bg-white/4 border border-white/10 rounded-none p-3.5">
-              <div className="flex items-center justify-between mb-3">
-                <div>
-                  <p className="text-sm font-bold text-white uppercase tracking-tight">Free Trial Option</p>
-                  <p className="text-xs text-white/35">Grant trial plan — admin discretion</p>
+
+            {paid ? (
+              <>
+                {/* Trial vs Paid choice */}
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  <button onClick={() => setLicenseType("trial")}
+                    className={`flex flex-col items-start gap-0.5 p-3 rounded-none border-2 transition-all text-left ${
+                      licenseType === "trial" ? "border-amber-400 bg-amber-400/10" : "border-white/10 bg-white/4 hover:border-white/20"
+                    }`}>
+                    <span className="flex items-center gap-1.5">
+                      <span className={`material-symbols-rounded ${licenseType === "trial" ? "text-amber-400" : "text-white/35"}`} style={{ fontSize: "16px" }}>schedule</span>
+                      <span className={`text-xs font-black uppercase tracking-tight ${licenseType === "trial" ? "text-amber-400" : "text-white/60"}`}>Free Trial</span>
+                    </span>
+                    <span className="text-[10px] text-white/30">Time-limited, no charge</span>
+                  </button>
+                  <button onClick={() => setLicenseType("paid")}
+                    className={`flex flex-col items-start gap-0.5 p-3 rounded-none border-2 transition-all text-left ${
+                      licenseType === "paid" ? "border-amber-400 bg-amber-400/10" : "border-white/10 bg-white/4 hover:border-white/20"
+                    }`}>
+                    <span className="flex items-center gap-1.5">
+                      <span className={`material-symbols-rounded ${licenseType === "paid" ? "text-amber-400" : "text-white/35"}`} style={{ fontSize: "16px" }}>verified</span>
+                      <span className={`text-xs font-black uppercase tracking-tight ${licenseType === "paid" ? "text-amber-400" : "text-white/60"}`}>Paid License</span>
+                    </span>
+                    <span className="text-[10px] text-white/30">Monthly or annual</span>
+                  </button>
                 </div>
-                <Toggle checked={isTrial} onChange={setIsTrial} />
+
+                <div className="bg-white/4 border border-white/10 rounded-none p-3.5">
+                  {licenseType === "trial" ? (
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="material-symbols-rounded text-amber-400 shrink-0" style={{ fontSize: "14px" }}>schedule</span>
+                      <input type="number" value={trialDays}
+                        onChange={e => setTrialDays(Math.max(1, Math.min(90, parseInt(e.target.value) || 7)))}
+                        min={1} max={90}
+                        className="w-16 bg-black/30 border border-white/10 rounded-none px-2 py-1.5 text-sm text-white text-center focus:outline-none focus:border-amber-400/50" />
+                      <span className="text-xs text-white/40 font-bold uppercase tracking-wider">days free trial</span>
+                      <div className="flex gap-1 ml-auto">
+                        {[7, 14, 30].map(d => (
+                          <button key={d} onClick={() => setTrialDays(d)}
+                            className={`text-[10px] font-bold px-2 py-1 rounded-none border transition-colors ${trialDays === d ? "bg-amber-400 text-black border-amber-400" : "bg-white/10 text-white/50 border-white/10 hover:bg-white/15"}`}>
+                            {d}d
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col gap-3">
+                      {/* Billing cycle segmented control */}
+                      <div>
+                        <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1.5 font-bold">Billing Cycle</p>
+                        <div className="grid grid-cols-2 gap-2">
+                          {(["monthly", "yearly"] as BillingCycle[]).map(c => {
+                            const usd = getPlanPrice(plan as PaidPlan, c, { promo });
+                            return (
+                              <button key={c} onClick={() => setCycle(c)}
+                                className={`flex items-center justify-between px-3 py-2 rounded-none border-2 transition-all ${
+                                  cycle === c ? "border-amber-400 bg-amber-400/10" : "border-white/10 bg-black/20 hover:border-white/20"
+                                }`}>
+                                <span className={`text-xs font-black uppercase tracking-tight ${cycle === c ? "text-amber-400" : "text-white/55"}`}>
+                                  {c === "yearly" ? "Annual" : "Monthly"}
+                                </span>
+                                <span className={`text-xs font-black ${cycle === c ? "text-white" : "text-white/40"}`}>
+                                  ${usd}<span className="text-white/30 font-bold">{c === "yearly" ? "/yr" : "/mo"}</span>
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {cycle === "yearly" && (
+                          <p className="text-[10px] text-green-400/80 font-bold mt-1.5 flex items-center gap-1">
+                            <span className="material-symbols-rounded" style={{ fontSize: "11px" }}>savings</span>
+                            Best value — billed once a year
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Renewal date — auto / lifetime / manual override */}
+                      <div className="border-t border-white/8 pt-3">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-[10px] text-white/30 uppercase tracking-widest font-bold">Renewal Date</p>
+                          <label className="flex items-center gap-1.5 cursor-pointer">
+                            <span className="text-[10px] text-white/40 font-bold uppercase tracking-wider">Lifetime ∞</span>
+                            <Toggle checked={lifetime} onChange={setLifetime} />
+                          </label>
+                        </div>
+                        {lifetime ? (
+                          <p className="text-xs text-white/50 flex items-center gap-1.5">
+                            <span className="material-symbols-rounded text-amber-400" style={{ fontSize: "14px" }}>all_inclusive</span>
+                            Never expires — no renewal date
+                          </p>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <span className="material-symbols-rounded text-white/35 shrink-0" style={{ fontSize: "14px" }}>event</span>
+                            <input type="date" value={endsAt} onChange={e => setEndsAt(e.target.value)}
+                              className="flex-1 bg-black/30 border border-white/10 rounded-none px-3 py-1.5 text-sm text-white focus:outline-none focus:border-amber-400/50" />
+                            <span className="text-[10px] text-white/30 font-bold uppercase tracking-wider whitespace-nowrap">
+                              {endsAt ? "override" : `auto · ${fmt(resolvedEnd)}`}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="bg-white/4 border border-white/10 rounded-none p-3.5 flex items-center gap-2">
+                <span className="material-symbols-rounded text-white/35 shrink-0" style={{ fontSize: "16px" }}>info</span>
+                <p className="text-xs text-white/45">The Free plan has no billing — it activates immediately and never expires.</p>
               </div>
-              {isTrial ? (
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-rounded text-amber-400 shrink-0" style={{ fontSize: "14px" }}>schedule</span>
-                  <input type="number" value={trialDays}
-                    onChange={e => setTrialDays(Math.max(1, Math.min(90, parseInt(e.target.value) || 7)))}
-                    min={1} max={90}
-                    className="w-16 bg-black/30 border border-white/10 rounded-none px-2 py-1.5 text-sm text-white text-center focus:outline-none focus:border-amber-400/50" />
-                  <span className="text-xs text-white/40 font-bold uppercase tracking-wider">days free trial</span>
-                  <div className="flex gap-1 ml-auto">
-                    {[7, 14, 30].map(d => (
-                      <button key={d} onClick={() => setTrialDays(d)}
-                        className={`text-[10px] font-bold px-2 py-1 rounded-none border transition-colors ${trialDays === d ? "bg-amber-400 text-black border-amber-400" : "bg-white/10 text-white/50 border-white/10 hover:bg-white/15"}`}>
-                        {d}d
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-rounded text-white/35 shrink-0" style={{ fontSize: "14px" }}>calendar_month</span>
-                  <input type="date" value={endsAt} onChange={e => setEndsAt(e.target.value)}
-                    className="flex-1 bg-black/30 border border-white/10 rounded-none px-3 py-1.5 text-sm text-white focus:outline-none focus:border-amber-400/50" />
-                  <span className="text-xs text-white/35 font-bold uppercase tracking-wider">end date</span>
-                </div>
-              )}
-            </div>
+            )}
           </div>
+
+          {/* Live license summary */}
+          {selectedUser && (
+            <div className="border-2 border-amber-400/40 bg-amber-400/5 rounded-none p-3.5">
+              <p className="text-[10px] text-amber-400/70 uppercase tracking-widest mb-2 font-black flex items-center gap-1.5">
+                <span className="material-symbols-rounded" style={{ fontSize: "12px" }}>receipt_long</span> License Summary
+              </p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
+                <span className="text-white/40">Subscriber</span>
+                <span className="text-white font-bold text-right truncate">{selectedUser.displayName ?? selectedUser.username}</span>
+                <span className="text-white/40">Plan</span>
+                <span className="font-black text-right" style={{ color: PLAN_DISPLAY[plan].color }}>{PLAN_DISPLAY[plan].name}</span>
+                <span className="text-white/40">Type</span>
+                <span className="text-white font-bold text-right">
+                  {!paid ? "Free" : isTrial ? `Free trial · ${trialDays}d` : `Paid · ${cycle === "yearly" ? "Annual" : "Monthly"}`}
+                </span>
+                {paid && !isTrial && (
+                  <>
+                    <span className="text-white/40">Price</span>
+                    <span className="text-white font-bold text-right">${getPlanPrice(plan as PaidPlan, cycle, { promo })}{cycle === "yearly" ? "/yr" : "/mo"}{promo ? " (promo)" : ""}</span>
+                  </>
+                )}
+                <span className="text-white/40">Starts</span>
+                <span className="text-white font-bold text-right">{fmt(new Date())}</span>
+                <span className="text-white/40">{isTrial ? "Trial ends" : "Renews / ends"}</span>
+                <span className="text-white font-bold text-right">
+                  {isTrial ? fmt(new Date(Date.now() + trialDays * 86400000)) : resolvedEnd ? fmt(resolvedEnd) : "∞ Lifetime"}
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* Note */}
           <div>
@@ -480,6 +618,7 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
   const [status, setStatus] = useState(sub.status);
   const [note, setNote] = useState(sub.note ?? "");
   const [endsAt, setEndsAt] = useState(sub.endsAt ? new Date(sub.endsAt).toISOString().split("T")[0] : "");
+  const [billingCycle, setBillingCycle] = useState<string>(sub.billingCycle ?? "");
   const [loading, setLoading] = useState(false);
 
   async function save() {
@@ -487,7 +626,7 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
     await fetch(`/api/admin/subscriptions/${sub.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status, note: note || null, endsAt: endsAt || null }),
+      body: JSON.stringify({ status, note: note || null, endsAt: endsAt || null, billingCycle: billingCycle || null }),
     });
     setLoading(false); onSuccess(); onClose();
   }
@@ -538,6 +677,25 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
               })}
             </div>
           </div>
+          {sub.plan !== "free" && (
+            <div>
+              <label className="block text-xs text-white/40 uppercase tracking-widest mb-2 font-bold">Billing Cycle</label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { v: "monthly", label: "Monthly" },
+                  { v: "yearly", label: "Annual" },
+                  { v: "", label: "Lifetime ∞" },
+                ].map(({ v, label }) => (
+                  <button key={v} onClick={() => setBillingCycle(v)}
+                    className={`px-2 py-2 rounded-none border text-xs font-bold transition-all ${
+                      billingCycle === v ? "border-amber-400 bg-amber-400/10 text-amber-400" : "border-white/10 text-white/40 hover:border-white/20"
+                    }`}>
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <div>
             <label className="block text-xs text-white/40 uppercase tracking-widest mb-1.5 font-bold">Ends At</label>
             <input type="date" value={endsAt} onChange={e => setEndsAt(e.target.value)}
@@ -674,7 +832,7 @@ export function SubscriptionsManager({ initialRows, allUsers }: Props) {
                 <th className="text-left px-4 py-3 font-bold">User</th>
                 <th className="text-left px-4 py-3 font-bold">Plan</th>
                 <th className="text-left px-4 py-3 font-bold">Status</th>
-                <th className="text-left px-4 py-3 font-bold">Trial</th>
+                <th className="text-left px-4 py-3 font-bold">Billing</th>
                 <th className="text-left px-4 py-3 font-bold">Starts</th>
                 <th className="text-left px-4 py-3 font-bold">Ends</th>
                 <th className="text-left px-4 py-3 font-bold">Note</th>
@@ -720,6 +878,19 @@ export function SubscriptionsManager({ initialRows, allUsers }: Props) {
                           <span className="text-xs text-amber-400 font-bold uppercase tracking-wide">Trial</span>
                           {days !== null && <p className={`text-xs ${days <= 3 ? "text-red-400 font-bold" : "text-white/40"}`}>{days > 0 ? `${days}d left` : "Expired"}</p>}
                         </div>
+                      ) : row.billingCycle === "monthly" || row.billingCycle === "yearly" ? (
+                        <div>
+                          <span className="text-xs text-white/70 font-bold uppercase tracking-wide">{row.billingCycle === "yearly" ? "Annual" : "Monthly"}</span>
+                          {isPaidPlan(row.plan) && (
+                            <p className="text-xs text-white/40 font-mono">
+                              ${getPlanPrice(row.plan, row.billingCycle as BillingCycle)}{row.billingCycle === "yearly" ? "/yr" : "/mo"}
+                            </p>
+                          )}
+                        </div>
+                      ) : row.plan !== "free" && !row.endsAt ? (
+                        <span className="text-xs text-white/40 font-bold uppercase tracking-wide flex items-center gap-1">
+                          <span className="material-symbols-rounded" style={{ fontSize: "12px" }}>all_inclusive</span> Lifetime
+                        </span>
                       ) : <span className="text-xs text-white/20">—</span>}
                     </td>
                     <td className="px-4 py-3 text-xs text-white/50">{fmt(row.startsAt)}</td>

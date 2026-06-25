@@ -17,6 +17,7 @@ const FREE_FALLBACK = {
   isTrial: false,
   trialEndsAt: null as Date | null,
   endsAt: null as Date | null,
+  billingCycle: null as string | null,
   status: "active",
 };
 
@@ -60,6 +61,7 @@ export async function getUserSubscription(userId: number): Promise<typeof FREE_F
       isTrial: sub.isTrial,
       trialEndsAt: sub.trialEndsAt,
       endsAt: sub.endsAt,
+      billingCycle: sub.billingCycle ?? null,
       status: sub.status,
     };
   } catch (err) {

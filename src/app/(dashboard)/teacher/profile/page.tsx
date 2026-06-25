@@ -72,11 +72,14 @@ export default async function TeacherProfilePage({
 
   const name = user?.displayName ?? user?.username ?? session.name;
 
-  // Fetch subscription for plan badge
-  let subInfo = { plan: "free" as string, isTrial: false, trialEndsAt: null as Date | null, status: "active" as string };
+  // Fetch subscription for plan badge + license card
+  let subInfo = {
+    plan: "free" as string, isTrial: false, trialEndsAt: null as Date | null,
+    endsAt: null as Date | null, billingCycle: null as string | null, status: "active" as string,
+  };
   try {
     const s = await getUserSubscription(session.id);
-    subInfo = { plan: s.plan, isTrial: s.isTrial, trialEndsAt: s.trialEndsAt, status: s.status };
+    subInfo = { plan: s.plan, isTrial: s.isTrial, trialEndsAt: s.trialEndsAt, endsAt: s.endsAt, billingCycle: s.billingCycle, status: s.status };
   } catch { /* ignore */ }
 
   return (
@@ -94,6 +97,8 @@ export default async function TeacherProfilePage({
           plan={subInfo.plan}
           isTrial={subInfo.isTrial}
           trialEndsAt={subInfo.trialEndsAt?.toISOString() ?? null}
+          endsAt={subInfo.endsAt?.toISOString() ?? null}
+          billingCycle={subInfo.billingCycle}
           planStatus={subInfo.status}
         />
       </Suspense>

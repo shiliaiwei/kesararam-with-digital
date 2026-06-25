@@ -20,6 +20,7 @@ import {
   Lock,
   CreditCard,
 } from "lucide-react";
+import { PRICES } from "@/lib/pricing";
 
 interface PricingCardsProps {
   lang?: "en" | "kh";
@@ -28,16 +29,8 @@ interface PricingCardsProps {
 /** Plans a user can pick. "driving_school" is shown as "Academy Plan" in copy. */
 type PlanKey = "family" | "teacher_pro" | "school" | "driving_school";
 
-/**
- * Single source of truth for prices (USD). Promo runs through end of 2026.
- * promoM/stdM = monthly · promoY/stdY = yearly.
- */
-const PRICES: Record<PlanKey, { promoM: number; stdM: number; promoY: number; stdY: number }> = {
-  family: { promoM: 2, stdM: 5, promoY: 20, stdY: 60 },
-  teacher_pro: { promoM: 3, stdM: 10, promoY: 24, stdY: 80 },
-  school: { promoM: 6, stdM: 20, promoY: 54, stdY: 180 },
-  driving_school: { promoM: 11, stdM: 35, promoY: 110, stdY: 350 },
-};
+// Prices live in the shared single-source-of-truth module (@/lib/pricing) so the
+// public pricing page and the admin "Assign License" flow can never drift apart.
 
 const PLAN_LABELS: Record<PlanKey, { en: string; kh: string }> = {
   family: { en: "Family Plan", kh: "ផែនការគ្រួសារ" },
