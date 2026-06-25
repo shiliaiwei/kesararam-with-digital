@@ -64,14 +64,24 @@ async function storePointsLeaderboard(opts: {
   const classProvinceExpr = sql<string | null>`(SELECT c.province FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
   const gamesPlayedExpr = gameType !== "all"
     ? sql<number>`(
+        COALESCE((SELECT COUNT(*) FROM game_attempts ga WHERE ga.user_id = users.id AND ga.game_id = ${gameType}), 0) +
         COALESCE((SELECT COUNT(*) FROM game_scores gs WHERE gs.user_id = users.id AND gs.game_mode = ${gameType}), 0) +
         COALESCE((SELECT COUNT(*) FROM game_participants gp JOIN game_sessions gs ON gs.id = gp.session_id WHERE gp.user_id = users.id AND gs.game_mode = ${gameType}), 0)
       )::int`
     : users.totalGamesPlayed;
+  const gameScoreExpr = gameType !== "all"
+    ? sql<number>`(
+        COALESCE((SELECT SUM(ga.score) FROM game_attempts ga WHERE ga.user_id = users.id AND ga.game_id = ${gameType} AND ga.created_at >= ${start}), 0) +
+        COALESCE((SELECT SUM(gs.score) FROM game_scores gs WHERE gs.user_id = users.id AND gs.game_mode = ${gameType} AND gs.created_at >= ${start}), 0) +
+        COALESCE((SELECT SUM(gp.total_score) FROM game_participants gp JOIN game_sessions gse ON gse.id = gp.session_id WHERE gp.user_id = users.id AND gse.game_mode = ${gameType} AND gse.created_at >= ${start}), 0)
+      )::int`
+    : windowExpr;
 
   const provinceFilter =
     province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
   const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true AND ${users.username} NOT LIKE 'proptest_%'`;
+
+  const primaryRankExpr = gameType !== "all" ? gameScoreExpr : liveExpr;
 
   const rows = await db
     .select({
@@ -83,7 +93,7 @@ async function storePointsLeaderboard(opts: {
       scorePlateStyle: users.scorePlateStyle,
       highestScore: users.highestScore,
       totalGamesPlayed: gamesPlayedExpr,
-      windowPoints: windowExpr,
+      windowPoints: gameScoreExpr,
       storeBalance: balanceExpr,
       livePoints: liveExpr,
       soloPoints: soloExpr,
@@ -102,7 +112,7 @@ async function storePointsLeaderboard(opts: {
     .from(users)
     .where(sql`${publicFilter}${provinceFilter} AND ${gamesPlayedExpr} > 0`)
     .orderBy(
-      desc(liveExpr),
+      desc(primaryRankExpr),
       desc(soloExpr),
       desc(users.highestScore),
       asc(users.id)
@@ -206,8 +216,6 @@ export async function GET(req: NextRequest) {
     const provinceFilter =
       province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
 
-    const gameTypeCondPl =
-      gameType !== "all" ? sql` AND pl.game_type = ${gameType}` : sql``;
     const gameTypeCondGs =
       gameType !== "all" ? sql` AND gs.game_mode = ${gameType}` : sql``;
 
@@ -224,6 +232,7 @@ export async function GET(req: NextRequest) {
     const classProvinceExpr = sql<string | null>`(SELECT c.province FROM class_enrollments ce JOIN classes c ON c.id = ce.class_id WHERE ce.student_id = users.id ORDER BY ce.enrolled_at DESC LIMIT 1)`;
     const gamesPlayedExpr = gameType !== "all"
       ? sql<number>`(
+          COALESCE((SELECT COUNT(*) FROM game_attempts ga WHERE ga.user_id = users.id AND ga.game_id = ${gameType}), 0) +
           COALESCE((SELECT COUNT(*) FROM game_scores gs WHERE gs.user_id = users.id AND gs.game_mode = ${gameType}), 0) +
           COALESCE((SELECT COUNT(*) FROM game_participants gp JOIN game_sessions gs ON gs.id = gp.session_id WHERE gp.user_id = users.id AND gs.game_mode = ${gameType}), 0)
         )::int`
@@ -254,6 +263,7 @@ export async function GET(req: NextRequest) {
       isClassPublic: boolean | null;
       isGradePublic: boolean | null;
       isSectionPublic: boolean | null;
+      lifetimePoints: number | null;
     }[];
 
         if (windowParam === "all" && gameType === "all" && source === "all") {
@@ -303,7 +313,6 @@ export async function GET(req: NextRequest) {
           ? windowStartDate(windowParam === "weekly" ? "weekly" : "monthly")
           : "1970-01-01";
 
-      const gameCond = gameType !== "all" ? sql` AND pl.game_type = ${gameType}` : sql``;
       const windowCond = windowParam !== "all" ? sql` AND pl.created_at >= ${start}` : sql``;
       const sourceCond = source !== "all"
         ? source === "live"
@@ -313,14 +322,18 @@ export async function GET(req: NextRequest) {
 
       // Note: when gameType !== "all", we want the game points from all sources (no sourceCond), matching the profile page.
       // But if gameType === "all", we want overall points which respect sourceCond and windowCond.
+      const gameModeScoreExpr = sql<number>`(
+        COALESCE((SELECT SUM(ga.score) FROM game_attempts ga WHERE ga.user_id = users.id AND ga.game_id = ${gameType}${windowParam !== "all" ? sql` AND ga.created_at >= ${start}` : sql``}), 0) +
+        COALESCE((SELECT SUM(gs.score) FROM game_scores gs WHERE gs.user_id = users.id AND gs.game_mode = ${gameType}${windowParam !== "all" ? sql` AND gs.created_at >= ${start}` : sql``}), 0) +
+        COALESCE((SELECT SUM(gp.total_score) FROM game_participants gp JOIN game_sessions gse ON gse.id = gp.session_id WHERE gp.user_id = users.id AND gse.game_mode = ${gameType}${windowParam !== "all" ? sql` AND gse.created_at >= ${start}` : sql``}), 0)
+      )::int`;
+
       const gamePointsExpr = gameType !== "all"
-        ? sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id${gameCond}${windowCond}), 0)::int`
+        ? gameModeScoreExpr
         : sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = users.id${windowCond}${sourceCond}), 0)::int`;
 
       // Filter: if gameType !== "all", they must have played the game.
       const gamePlayFilter = sql` AND ${gamesPlayedExpr} > 0`;
-      // If source === "live", show students with overall Road Points (priorityPoints) > 0.
-      const livePointsFilter = source === "live" ? sql` AND ${priorityExpr} > 0` : sql` AND ${gamePointsExpr} > 0`;
 
       rows = await db
         .select({
@@ -353,6 +366,7 @@ export async function GET(req: NextRequest) {
         .from(users)
         .where(sql`${publicFilter}${provinceFilter}${gamePlayFilter}`)
         .orderBy(
+          desc(gamePointsExpr),
           desc(priorityExpr),
           desc(soloExpr),
           desc(users.highestScore),

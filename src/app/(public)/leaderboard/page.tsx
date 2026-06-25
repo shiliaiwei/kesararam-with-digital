@@ -104,11 +104,16 @@ const SORT_TABS: { id: "rank" | "live" | "games" | "acc"; en: string; kh: string
 ];
 
 // Game filter chips — derived from the shared GAME_CATALOG so every chip carries
-// the game's iconic badge (GameBadge). "all" leads; then every active game in
-// catalog order. Doubles as the game-type filter (chip id === DB gameType).
+// the game's iconic badge (GameBadge). Click the Sign leads because this table's
+// score column defaults to that game mode instead of the old all-game total.
+const DEFAULT_GAME_TYPE = "tick-sign";
 const GAME_CHIPS: { id: string; en: string; kh: string }[] = [
-  { id: "all", en: "All Games", kh: "ហ្គេមទាំងអស់" },
-  ...GAME_FILTER_ORDER.map((g) => ({ id: g.id, en: g.en, kh: g.kh })),
+  ...GAME_FILTER_ORDER
+    .filter((g) => g.id === DEFAULT_GAME_TYPE)
+    .map((g) => ({ id: g.id, en: g.en, kh: g.kh })),
+  ...GAME_FILTER_ORDER
+    .filter((g) => g.id !== DEFAULT_GAME_TYPE)
+    .map((g) => ({ id: g.id, en: g.en, kh: g.kh })),
 ];
 
 interface LeaderboardUser {
@@ -1166,9 +1171,9 @@ export default function LeaderboardPage() {
   // Window + source controls were removed (2026-06-20): the board is fixed to
   // all-time / all-sources. These stay as constants so the fetch params are stable.
   const windowTab = "all";
-  const sourceTab = "live";
-  // Game mode is the only filter now, surfaced through a dropdown.
-  const [gameType, setGameType] = useState("all");
+  const sourceTab = "all";
+  // Game mode is the only filter now, surfaced through the score-column header.
+  const [gameType, setGameType] = useState(DEFAULT_GAME_TYPE);
   const [gameMenuOpen, setGameMenuOpen] = useState(false);
   const [hoveredHeader, setHoveredHeader] = useState(false);
   const [sortKey, setSortKey] = useState<"rank" | "live" | "games" | "acc">("rank");
@@ -1324,7 +1329,16 @@ export default function LeaderboardPage() {
   const top3 = (podiumBoard.length > 0 ? podiumBoard : leaderboard).slice(0, 3);
 
   const sortedBoard = [...leaderboard].sort((a, b) => {
-    if (sortKey === "rank" || sortKey === "live") {
+    if (sortKey === "rank") {
+      const aScore = gameType !== "all" ? (a.lifetimePoints ?? 0) : (a.priorityPoints ?? 0);
+      const bScore = gameType !== "all" ? (b.lifetimePoints ?? 0) : (b.priorityPoints ?? 0);
+      if (aScore !== bScore) return bScore - aScore;
+      const aSolo = a.soloPoints ?? 0;
+      const bSolo = b.soloPoints ?? 0;
+      if (aSolo !== bSolo) return bSolo - aSolo;
+      return a.rank - b.rank;
+    }
+    if (sortKey === "live") {
       const aPriority = a.priorityPoints ?? 0;
       const bPriority = b.priorityPoints ?? 0;
       if (aPriority !== bPriority) return bPriority - aPriority;
@@ -1512,9 +1526,10 @@ export default function LeaderboardPage() {
             </span>
           </div>
 
-          {/* Total / Game Mode Score Column */}
+          {/* Selected Game Score Column */}
           <div className="col-span-2 sm:col-span-2 flex justify-end sm:justify-start items-center">
-            <span className="font-mono font-black text-xs md:text-sm text-black tabular-nums">
+            <span className="inline-flex items-center gap-1.5 font-mono font-black text-xs md:text-sm text-black tabular-nums">
+              {gameType !== "all" && <GameBadge slug={gameType} size="xs" shadow={false} />}
               {user.lifetimePoints ?? 0}
             </span>
           </div>
@@ -1760,7 +1775,7 @@ export default function LeaderboardPage() {
                     {kh ? "ហាត់លេង" : "Solo Practice"}
                   </span>
 
-                  {/* Total / Game Mode points header containing the filter dropdown */}
+                  {/* Game-mode score header containing the filter dropdown */}
                   <div
                     onMouseEnter={() => setHoveredHeader(true)}
                     onMouseLeave={() => setHoveredHeader(false)}
@@ -1772,15 +1787,17 @@ export default function LeaderboardPage() {
                         setGameMenuOpen((o) => !o);
                       }}
                       className="flex items-center justify-end sm:justify-start gap-1 text-yellow-400 font-black uppercase text-right sm:text-left tracking-widest hover:text-yellow-300 transition-colors focus:outline-none w-full"
+                      title={kh ? "ជ្រើសរើសប្រភេទហ្គេមដើម្បីរៀបចំតាមពិន្ទុ" : "Choose a game mode to rank by game score"}
+                      aria-label={kh ? "ជ្រើសរើសប្រភេទហ្គេមដើម្បីរៀបចំតាមពិន្ទុ" : "Choose a game mode to rank by game score"}
                     >
                       {gameType === "all" ? (
                         <>
-                          <Crown size={11} strokeWidth={3} className="text-yellow-400 flex-shrink-0" />
-                          <span className="truncate">{kh ? "សរុប" : "Total"}</span>
+                          <Gamepad2 size={11} strokeWidth={3} className="text-yellow-400 flex-shrink-0" />
+                          <span className="truncate">{kh ? "ហ្គេមទាំងអស់" : "All Games"}</span>
                         </>
                       ) : (
                         <>
-                          <Gamepad2 size={11} strokeWidth={3} className="text-yellow-400 flex-shrink-0" />
+                          <GameBadge slug={gameType} size="xs" shadow={false} />
                           <span className="truncate text-yellow-400">
                             {(kh ? getGameMeta(gameType)?.kh : getGameMeta(gameType)?.en) ?? gameType}
                           </span>
@@ -1911,9 +1928,13 @@ export default function LeaderboardPage() {
               )}
 
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
-                {kh
-                  ? "Road Points = អាចដោះបាន · ចំណាត់ថ្នាក់តាម Road Points · ហ្គេម = ចំនួនលេងសរុប · ត្រឹមត្រូវ = មធ្យមភាគ"
-                  : "Road Points = claimable · Ranked by Road Points · Games = total plays · Acc = avg correct"}
+                {gameType !== "all"
+                  ? (kh
+                    ? `${getGameMeta(gameType)?.kh ?? gameType} = ពិន្ទុប្រភេទហ្គេម · Road Points = អាចដោះបាន · ហ្គេម = ចំនួនលេងសរុប`
+                    : `${getGameMeta(gameType)?.en ?? gameType} = game score rank · Road Points = claimable · Games = total plays`)
+                  : (kh
+                    ? "Road Points = អាចដោះបាន · ចំណាត់ថ្នាក់តាម Road Points · ហ្គេម = ចំនួនលេងសរុប"
+                    : "Road Points = claimable · Ranked by Road Points · Games = total plays")}
               </p>
 
             </div>
