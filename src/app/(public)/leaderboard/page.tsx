@@ -1739,11 +1739,11 @@ export default function LeaderboardPage() {
 
 
 
-              <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
+              <div className="bg-white border-3 border-black" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 <style>{`@keyframes lbFlash{0%,100%{box-shadow:2px 2px 0 #000;filter:brightness(1)}30%{box-shadow:2px 2px 0 #000,0 0 24px 8px rgba(255,215,0,0.95);filter:brightness(1.35)}65%{box-shadow:2px 2px 0 #000,0 0 10px 3px rgba(255,215,0,0.65);filter:brightness(1.15)}}.lb-flash{animation:lbFlash 2.5s ease-in-out}@keyframes menuSlowPop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}.menu-slow-pop{animation:menuSlowPop 0.3s cubic-bezier(0.16,1,0.3,1) forwards}`}</style>
                 {/* Table Header — Live Score is the hero metric and leads the stats
                     right after the player; Games / Acc / Top game follow. */}
-                <div className="grid grid-cols-12 bg-black px-2 sm:px-5 py-2 sm:py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase">
+                <div className="grid grid-cols-12 bg-black px-2 sm:px-5 py-2 sm:py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase sticky top-[66px] z-30">
                   <span className="col-span-4 sm:col-span-4 text-yellow-400 flex items-center gap-1 sm:gap-6">
                     <span className="sm:hidden"># / {kh ? "សិស្ស" : "Player"}</span>
                     <span className="hidden sm:inline w-6">#</span>
