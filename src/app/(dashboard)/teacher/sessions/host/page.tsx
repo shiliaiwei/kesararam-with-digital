@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
 import { useGameRealtime } from "@/hooks/use-game-realtime";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
+import { PLAN_LIMITS, type PlanTier } from "@/lib/subscription-plans";
 import { getTeacherClasses } from "@/app/actions/classes";
 import type { SSEEvent, ParticipantInfo, LeaderboardEntry, QuestionPayload } from "@/lib/game-event-bus";
 import {
@@ -54,6 +55,14 @@ const MODE_ICONS: Record<string, React.ReactNode> = {
   "sign-challenge": <Target size={18} />,
   "mixed-practice": <Swords size={18} />,
 };
+
+const TIME_OPTIONS = [10, 15, 18, 20, 25, 30, 45, 60] as const;
+const PLAYER_OPTIONS = [10, 20, 30, 50, 100] as const;
+const SETUP_DEFAULT_MAX_PLAYERS = 50;
+
+function isPlanTier(plan: unknown): plan is PlanTier {
+  return typeof plan === "string" && Object.prototype.hasOwnProperty.call(PLAN_LIMITS, plan);
+}
 
 type HostPhase =
   | { name: "setup" }
@@ -370,7 +379,7 @@ export default function HostPage() {
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
   const [controlling, setControlling] = useState(false);
-  const [maxPlayers, setMaxPlayers] = useState(50);
+  const [maxPlayers, setMaxPlayers] = useState(SETUP_DEFAULT_MAX_PLAYERS);
   const [teacherClasses, setTeacherClasses] = useState<{ id: number; name: string; status: string }[]>([]);
   const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
@@ -398,7 +407,8 @@ export default function HostPage() {
   const [advanceMode, setAdvanceMode] = useState<"manual" | "auto">("manual");
   const [autoAdvanceIn, setAutoAdvanceIn] = useState<number | null>(null);
 
-  const [subPlan, setSubPlan] = useState<string>("free");
+  const [subPlan, setSubPlan] = useState<PlanTier>("free");
+  const [subscriptionLoaded, setSubscriptionLoaded] = useState(false);
   const [isTrial, setIsTrial] = useState(false);
   const [trialEndsAt, setTrialEndsAt] = useState<string | null>(null);
   const [endsAt, setEndsAt] = useState<string | null>(null);
@@ -411,13 +421,14 @@ export default function HostPage() {
       .then((r) => r.json())
       .then((d) => {
         if (d.subscription) {
-          setSubPlan(d.subscription.plan);
+          if (isPlanTier(d.subscription.plan)) setSubPlan(d.subscription.plan);
           setIsTrial(d.subscription.isTrial);
           setTrialEndsAt(d.subscription.trialEndsAt);
           setEndsAt(d.subscription.endsAt);
         }
       })
-      .catch(() => { });
+      .catch(() => { })
+      .finally(() => setSubscriptionLoaded(true));
   }, []);
 
   const subDaysLeft = (() => {
@@ -427,6 +438,17 @@ export default function HostPage() {
   })();
 
   const showUpgradeBanner = subPlan === "free" || (subDaysLeft !== null && subDaysLeft <= 7);
+  const playerLimit = subscriptionLoaded
+    ? PLAN_LIMITS[subPlan].maxPlayersPerSession
+    : SETUP_DEFAULT_MAX_PLAYERS;
+  const playerLimitText = kh
+    ? `គម្រោងនេះគាំទ្រអ្នកលេងអតិបរមា ${playerLimit} នាក់ក្នុងមួយវគ្គ។`
+    : `Current plan supports up to ${playerLimit} players per session.`;
+
+  useEffect(() => {
+    if (!subscriptionLoaded) return;
+    setMaxPlayers((current) => Math.min(current, playerLimit));
+  }, [playerLimit, subscriptionLoaded]);
 
   // Fetch categories + check for existing active session on mount
   useEffect(() => {
@@ -1332,7 +1354,7 @@ export default function HostPage() {
                     <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "ពេល/សំណួរ" : "Time / Question"}</span>
                   </div>
                   <div className="grid grid-cols-3 gap-1.5">
-                    {[10, 20, 30, 45, 60].map((s) => (
+                    {TIME_OPTIONS.map((s) => (
                       <button key={s} onClick={() => setTimePerQuestion(s)}
                         className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${timePerQuestion === s
                           ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
@@ -1461,17 +1483,33 @@ export default function HostPage() {
                   <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "អ្នកលេងអតិបរមា" : "Max Players"}</span>
                 </div>
                 <div className="flex gap-2">
-                  {[10, 20, 30, 50, 100].map((n) => (
-                    <button key={n} onClick={() => setMaxPlayers(n)}
-                      className={`flex-1 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 ${maxPlayers === n
-                        ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                        : "bg-white text-zinc-600 hover:bg-zinc-50"
-                        }`}
-                      style={{ borderRadius: "0px" }}>
-                      {n}
-                    </button>
-                  ))}
+                  {PLAYER_OPTIONS.map((n) => {
+                    const locked = subscriptionLoaded && n > playerLimit;
+                    return (
+                      <button
+                        key={n}
+                        onClick={() => { if (!locked) setMaxPlayers(n); }}
+                        disabled={locked}
+                        title={locked ? playerLimitText : undefined}
+                        className={`flex-1 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 flex items-center justify-center gap-1.5 ${maxPlayers === n && !locked
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : locked
+                            ? "bg-zinc-100 text-zinc-400 cursor-not-allowed"
+                            : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
+                        style={{ borderRadius: "0px" }}
+                      >
+                        {locked && <Lock size={12} />}
+                        {n}
+                      </button>
+                    );
+                  })}
                 </div>
+                {subscriptionLoaded && (
+                  <p className="text-[11px] font-bold text-zinc-500 mt-3 leading-snug" style={khFont}>
+                    {playerLimitText}
+                  </p>
+                )}
               </GlassCard>
 
               {/* Class Restriction */}
@@ -1582,7 +1620,7 @@ export default function HostPage() {
                           {kh ? selectedModeConfig?.labelKm : selectedModeConfig?.label}
                         </div>
                         <div className="text-xs text-zinc-500 font-bold mt-0.5">
-                          {kh ? `ល្បឿនលំនាំដើម ${selectedModeConfig?.timePerQuestion} វិនាទី` : `Default speed: ${selectedModeConfig?.timePerQuestion}s / question`}
+                          {kh ? `ពេលបានជ្រើស ${timePerQuestion} វិនាទី/សំណួរ` : `Selected speed: ${timePerQuestion}s / question`}
                         </div>
                       </div>
                     </div>
@@ -1598,12 +1636,12 @@ export default function HostPage() {
                         {
                           icon: "schedule",
                           label: kh ? "ពេលវេលាឆ្លើយ" : "Time Per Question",
-                          value: `${selectedModeConfig?.timePerQuestion} seconds`
+                          value: `${timePerQuestion} ${kh ? "វិនាទី" : "seconds"}`
                         },
                         {
                           icon: "groups",
                           label: kh ? "អ្នកលេងអតិបរមា" : "Player Capacity",
-                          value: `Max ${maxPlayers} Players`
+                          value: kh ? `អតិបរមា ${maxPlayers} នាក់` : `Max ${maxPlayers} Players`
                         },
                         {
                           icon: "stars",
@@ -1998,7 +2036,7 @@ export default function HostPage() {
             {/* Time per question (live — applies to the next question) */}
             <div className="flex border-2 border-black shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }} title={kh ? "ពេល/សំណួរ (បន្ទាប់)" : "Time per question (next)"}>
               <span className="flex items-center px-1.5 bg-white text-black"><Timer size={12} /></span>
-              {[10, 20, 30, 45, 60].map((s) => (
+              {TIME_OPTIONS.map((s) => (
                 <button key={s} onClick={() => setLiveTime(s)}
                   className={`px-1.5 py-2 text-[11px] font-black border-l-2 border-black transition-colors ${timePerQuestion === s ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
                   style={{ borderRadius: "0px" }}>
