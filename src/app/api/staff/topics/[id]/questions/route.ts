@@ -90,6 +90,10 @@ export async function POST(
       if (!isOwner && !isRejected && !isDraft) {
         return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
       }
+
+      if (!isDraft && !isRejected) {
+        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
+      }
     }
 
     const {

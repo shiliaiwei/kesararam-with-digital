@@ -110,6 +110,10 @@ export async function PUT(
       if (!isOwner && !isRejected && !isDraft) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
+
+      if (!isDraft && !isRejected) {
+        return NextResponse.json({ error: "Forbidden - can only edit draft or rejected topics" }, { status: 403 });
+      }
     }
 
     const body = await request.json();

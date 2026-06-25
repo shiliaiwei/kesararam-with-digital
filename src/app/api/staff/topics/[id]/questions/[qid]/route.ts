@@ -70,6 +70,10 @@ export async function PUT(
       if (!isOwner && !isRejected && !isDraft) {
         return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
       }
+
+      if (!isDraft && !isRejected) {
+        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
+      }
     }
 
     const {
@@ -155,6 +159,10 @@ export async function DELETE(
       const isDraft = topic.status === "draft";
 
       if (!isOwner && !isRejected && !isDraft) {
+        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
+      }
+
+      if (!isDraft && !isRejected) {
         return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
       }
     }
