@@ -10,6 +10,7 @@ interface QuestionFormModalProps {
     preSelectedTopic?: any;
     onClose: () => void;
     onSuccess: () => void;
+    userRole?: "admin" | "staff";
 }
 
 interface Category { id: number; slug: string; titleEn: string; }
@@ -36,7 +37,7 @@ const DIFF = [
 // Categories that support image-match (road signs & priority)
 const IMAGE_MATCH_SLUGS = ["road-sign", "priority"];
 
-export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSuccess }: QuestionFormModalProps) {
+export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSuccess, userRole }: QuestionFormModalProps) {
     const { showToast } = useToast();
     const [saving, setSaving] = useState(false);
     const [mode, setMode] = useState<"form" | "json">("json");
@@ -45,11 +46,12 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
     const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
     const [distImages, setDistImages] = useState<string[]>([]);
 
+    const isStaff = userRole === "staff";
     const isPreSelected = !!preSelectedTopic;
 
     // Form state
-    const [catId, setCatId] = useState<number | null>(preSelectedTopic?.categoryId || null);
-    const [topicId, setTopicId] = useState<number | null>(preSelectedTopic?.id || null);
+    const [catId, setCatId] = useState<number | null>(preSelectedTopic?.categoryId || initialData?.categoryId || null);
+    const [topicId, setTopicId] = useState<number | null>(preSelectedTopic?.id || initialData?.topicId || null);
     const [topicData, setTopicData] = useState<Topic | null>(preSelectedTopic || null);
     const [qType, setQType] = useState("MCQ_SINGLE");
     const [diff, setDiff] = useState("medium");
@@ -65,15 +67,89 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
 
     const selectedType = Q_TYPES.find(t => t.value === qType)!;
     const selectedDiff = DIFF.find(d => d.value === diff)!;
-    const catSlug = categories.find(c => c.id === catId)?.slug || "";
+    const catSlug = preSelectedTopic?.categorySlug || categories.find(c => c.id === catId)?.slug || "";
     const canUseImageMatch = IMAGE_MATCH_SLUGS.includes(catSlug);
 
-    useEffect(() => { fetchCategories(); fetchTopics(); }, []);
+    useEffect(() => {
+        if (!isStaff) {
+            fetchCategories();
+            fetchTopics();
+        }
+    }, [isStaff]);
 
     useEffect(() => {
         if (catId) setFilteredTopics(topics.filter(t => t.categoryId === catId));
         else setFilteredTopics([]);
     }, [catId, topics]);
+
+    // Auto-link topic data from loaded topics list when initialData matches
+    useEffect(() => {
+        if (topics.length > 0 && initialData && !topicData) {
+            const t = topics.find(t => t.id === (initialData.topicId || initialData.topic_id)) || null;
+            if (t) setTopicData(t);
+        }
+    }, [topics, initialData, topicData]);
+
+    // Fetch question details if initialData is provided
+    useEffect(() => {
+        if (initialData && topicId) {
+            const fetchQuestionDetails = async () => {
+                try {
+                    const qId = initialData.id;
+                    const url = isStaff
+                        ? `/api/staff/topics/${topicId}/questions/${qId}`
+                        : `/api/admin/questions/${qId}`;
+                    const res = await fetch(url);
+                    if (res.ok) {
+                        const data = await res.json();
+                        const q = data.question;
+                        setQEn(q.questionEn || q.question_en || "");
+                        setQKm(q.questionKm || q.question_km || "");
+                        setHintEn(q.hintEn || q.hint_en || "");
+                        setHintKm(q.hintKm || q.hint_km || "");
+                        setImageUrl(q.imageUrl || q.image_url || "");
+                        setDiff(q.difficulty || "medium");
+
+                        const dbAnswers = q.answers || [];
+                        const hasImages = dbAnswers.some((a: any) => Boolean(a.imageUrl || a.image_url));
+                        const correctCount = dbAnswers.filter((a: any) => a.isCorrect === true || a.is_correct === true).length;
+                        const isTF = dbAnswers.length === 2 && dbAnswers.every((a: any) => {
+                            const en = (a.answerEn || a.answer_en || "").toLowerCase();
+                            return en === "true" || en === "false";
+                        });
+
+                        let derivedType = "MCQ_SINGLE";
+                        if (isTF) derivedType = "TRUE_FALSE";
+                        else if (hasImages) derivedType = "IMAGE_BASED";
+                        else if (correctCount > 1) derivedType = "MCQ_MULTIPLE";
+
+                        if (dbAnswers.length === 1) {
+                            derivedType = "FILL_BLANK";
+                        } else if (dbAnswers.length > 1 && correctCount === dbAnswers.length && !hasImages) {
+                            derivedType = "MATCHING";
+                        }
+
+                        setQType(derivedType);
+
+                        const mappedAnswers = dbAnswers.map((a: any, index: number) => ({
+                            id: String(a.id || index),
+                            answerEn: a.answerEn || a.answer_en || "",
+                            answerKm: a.answerKm || a.answer_km || "",
+                            isCorrect: a.isCorrect === true || a.is_correct === true,
+                            imageUrl: a.imageUrl || a.image_url || "",
+                        }));
+                        setAnswers(mappedAnswers.length > 0 ? mappedAnswers : [
+                            { id: "1", answerEn: "", answerKm: "", isCorrect: false },
+                            { id: "2", answerEn: "", answerKm: "", isCorrect: false },
+                        ]);
+                    }
+                } catch (e) {
+                    console.error("Error loading question details:", e);
+                }
+            };
+            fetchQuestionDetails();
+        }
+    }, [initialData, topicId, isStaff]);
 
     // Auto-link topic image when topic changes
     useEffect(() => {
@@ -84,11 +160,11 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
 
     // Auto-load distractor images for image-match
     useEffect(() => {
-        const canUseImageMatchEffect = IMAGE_MATCH_SLUGS.includes(categories.find(c => c.id === catId)?.slug || "");
+        const canUseImageMatchEffect = IMAGE_MATCH_SLUGS.includes(preSelectedTopic?.categorySlug || categories.find(c => c.id === catId)?.slug || "");
         if (qType === "IMAGE_BASED" && catId && canUseImageMatchEffect) {
             fetchDistractors();
         }
-    }, [qType, catId, categories]);
+    }, [qType, catId, categories, preSelectedTopic]);
 
     // Auto-link question image to correct answer if it's empty
     useEffect(() => {
@@ -236,7 +312,9 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                     imageUrl: a.imageUrl || null,
                 })),
             };
-            const url = initialData ? `/api/admin/questions/${initialData.id}` : "/api/admin/questions";
+            const url = initialData
+                ? (isStaff ? `/api/staff/topics/${topicId}/questions/${initialData.id}` : `/api/admin/questions/${initialData.id}`)
+                : (isStaff ? `/api/staff/topics/${topicId}/questions` : "/api/admin/questions");
             const res = await fetch(url, { method: initialData ? "PUT" : "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
             if (res.ok) {
                 showToast(initialData ? "Question updated!" : "Question created!", "success");
@@ -297,7 +375,8 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                 imageUrl: topicData?.primaryImageUrl || "",
                 answers: quickAnswers.map(a => ({ answerEn: a.text, answerKm: "", isCorrect: a.correct, imageUrl: null })),
             };
-            const res = await fetch("/api/admin/questions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+            const url = isStaff ? `/api/staff/topics/${topicId}/questions` : "/api/admin/questions";
+            const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
             if (res.ok) {
                 showToast("Question created!", "success");
                 setQEn(""); setQKm(""); setQuickText(""); setQuickAnswers([]);
@@ -357,6 +436,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                     onClose={onClose}
                     onSuccess={onSuccess}
                     showToast={showToast}
+                    isStaff={isStaff}
                 />}
 
                 {/* ── FULL MODE ── */}
@@ -654,6 +734,7 @@ interface JsonImportModeProps {
     onClose: () => void;
     onSuccess: () => void;
     showToast: (msg: string, type: string) => void;
+    isStaff?: boolean;
 }
 
 const JSON_TEMPLATE = `[
@@ -692,7 +773,7 @@ const JSON_TEMPLATE = `[
   }
 ]`;
 
-function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedTopic, categories, filteredTopics, setCatId, setTopicId, onClose, onSuccess, showToast }: JsonImportModeProps) {
+function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedTopic, categories, filteredTopics, setCatId, setTopicId, onClose, onSuccess, showToast, isStaff }: JsonImportModeProps) {
     const [jsonText, setJsonText] = useState("");
     const [parsed, setParsed] = useState<any[]>([]);
     const [parseError, setParseError] = useState("");
@@ -803,7 +884,7 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
                 if (answers.length < 2) { res.push({ q: payload.questionEn, ok: false, err: "Need at least 2 answers" }); continue; }
                 if (!answers.some((a: any) => a.isCorrect)) { res.push({ q: payload.questionEn, ok: false, err: "No correct answer marked" }); continue; }
 
-                const r = await fetch("/api/admin/questions", {
+                const r = await fetch(isStaff ? `/api/staff/topics/${tid}/questions` : "/api/admin/questions", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload),

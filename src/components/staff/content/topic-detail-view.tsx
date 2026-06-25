@@ -213,7 +213,7 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
 
       {/* Questions tab */}
       {tab === "questions" && (
-        <QuestionsManager topicId={topic.id} topicStatus={topic.status} />
+        <QuestionsManager topic={topic} categorySlug={categorySlug} />
       )}
 
       {/* Details tab */}

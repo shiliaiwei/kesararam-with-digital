@@ -61,20 +61,36 @@ export async function GET(
   }
 }
 
-// POST - Create a new question — ADMIN ONLY
+// POST - Create a new question
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
-    // Staff cannot add questions — only admin can
-    if (!session?.id || session.role !== "admin") {
-      return NextResponse.json({ error: "Only admins can add questions to topics" }, { status: 403 });
+    if (!session?.id || (session.role !== "staff" && session.role !== "admin")) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const { id: topicId } = await params;
     const body = await request.json();
+
+    // Authorization check: Admin can edit anything. Staff can edit draft/rejected topics they created
+    if (session.role !== "admin") {
+      const topicResult = await sql`SELECT created_by, status FROM topics WHERE id = ${topicId}`;
+      const topic = topicResult[0];
+      if (!topic) {
+        return NextResponse.json({ error: "Topic not found" }, { status: 404 });
+      }
+
+      const isOwner = topic.created_by === Number(session.id);
+      const isRejected = topic.status === "rejected";
+      const isDraft = topic.status === "draft";
+
+      if (!isOwner && !isRejected && !isDraft) {
+        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
+      }
+    }
 
     const {
       questionEn,
@@ -85,10 +101,13 @@ export async function POST(
       audioUrlEn,
       audioUrlKm,
       difficulty,
+      pointsMultiplier,
       answers,
     } = body;
 
-    // Create question (no created_by / updated_at columns in schema)
+    const status = session.role === "admin" ? "published" : "pending";
+
+    // Create question
     const questionResult = await sql`
       INSERT INTO questions (
         topic_id,
@@ -100,7 +119,10 @@ export async function POST(
         audio_url_en,
         audio_url_km,
         difficulty,
-        status
+        points_multiplier,
+        status,
+        created_by,
+        created_at
       ) VALUES (
         ${topicId},
         ${questionEn},
@@ -111,7 +133,10 @@ export async function POST(
         ${audioUrlEn || null},
         ${audioUrlKm || null},
         ${difficulty || 'medium'},
-        'draft'
+        ${pointsMultiplier || 2},
+        ${status},
+        ${session.id},
+        NOW()
       )
       RETURNING *
     `;

@@ -2,6 +2,39 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { sql } from "@/lib/db";
 
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const session = await getSession();
+    if (!session?.id || session.role !== "admin") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { id } = await params;
+    const questionId = parseInt(id);
+
+    const questionResult = await sql`
+      SELECT * FROM questions WHERE id = ${questionId}
+    `;
+    const question = questionResult[0];
+    if (!question) {
+      return NextResponse.json({ error: "Question not found" }, { status: 404 });
+    }
+
+    const answers = await sql`
+      SELECT * FROM answers WHERE question_id = ${questionId} ORDER BY sort_order
+    `;
+    question.answers = answers;
+
+    return NextResponse.json({ question });
+  } catch (error) {
+    console.error("[GET /api/admin/questions/[id]]", error);
+    return NextResponse.json({ error: "Failed to fetch question" }, { status: 500 });
+  }
+}
+
 export async function DELETE(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

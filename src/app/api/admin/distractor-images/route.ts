@@ -7,7 +7,7 @@ import { eq, ne, and, isNotNull, sql } from "drizzle-orm";
 export async function GET(request: NextRequest) {
     try {
         const session = await getSession();
-        if (!session?.id || session.role !== "admin") {
+        if (!session?.id || (session.role !== "admin" && session.role !== "staff")) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 

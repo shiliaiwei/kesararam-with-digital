@@ -63,6 +63,17 @@ export async function GET(
       ORDER BY q.sort_order, q.created_at
     `;
 
+    // Fetch answers for each question
+    for (const question of questions) {
+      const answers = await sql`
+        SELECT id, answer_en, answer_km, is_correct, image_url, sort_order
+        FROM answers
+        WHERE question_id = ${question.id}
+        ORDER BY sort_order
+      `;
+      (question as any).answers = answers;
+    }
+
     return NextResponse.json({ topic, questions });
   } catch (error) {
     console.error("[GET /api/staff/topics/[id]]", error);
