@@ -46,6 +46,7 @@ interface Topic {
   createdBy: number;
   questionCount?: number;
   question_count?: number;
+  primaryImageUrl?: string;
 }
 
 const CATEGORY_SLUGS: Record<number, string> = {
@@ -634,6 +635,7 @@ export function StaffQuestionManagement() {
             nameKm: activeTopic.nameKm,
             categoryId: activeTopic.categoryId,
             categorySlug: CATEGORY_SLUGS[activeTopic.categoryId] || "road-sign",
+            primaryImageUrl: activeTopic.primaryImageUrl,
           }}
           userRole="staff"
           onClose={() => setShowAddModal(false)}
@@ -654,6 +656,7 @@ export function StaffQuestionManagement() {
             nameKm: activeTopic.nameKm,
             categoryId: activeTopic.categoryId,
             categorySlug: CATEGORY_SLUGS[activeTopic.categoryId] || "road-sign",
+            primaryImageUrl: activeTopic.primaryImageUrl,
           }}
           userRole="staff"
           onClose={() => setEditingQuestion(null)}

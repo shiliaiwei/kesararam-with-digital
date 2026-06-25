@@ -66,7 +66,6 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
     ]);
 
     const selectedType = Q_TYPES.find(t => t.value === qType)!;
-    const selectedDiff = DIFF.find(d => d.value === diff)!;
     const catSlug = preSelectedTopic?.categorySlug || categories.find(c => c.id === catId)?.slug || "";
     const canUseImageMatch = IMAGE_MATCH_SLUGS.includes(catSlug);
 
@@ -484,7 +483,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
 
                         {/* Difficulty */}
                         <div>
-                            <label className="block text-xs font-black uppercase mb-2">Difficulty & Points *</label>
+                            <label className="block text-xs font-black uppercase mb-2">Difficulty *</label>
                             <div className="space-y-2">
                                 {DIFF.map(d => (
                                     <button key={d.value} type="button" onClick={() => setDiff(d.value)}
@@ -494,9 +493,6 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                                             <span className="font-black text-sm">{d.label}</span>
                                             <span className={`text-xs ml-2 ${diff === d.value ? "text-white/80" : "text-zinc-500"}`}>{d.desc}</span>
                                         </div>
-                                        <span className={`font-black text-sm px-2 py-0.5 border border-black ${diff === d.value ? "bg-white/20" : "bg-zinc-100"}`}>
-                                            +{d.pts} pt{d.pts > 1 ? "s" : ""}
-                                        </span>
                                     </button>
                                 ))}
                             </div>
@@ -687,16 +683,6 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                                                 : "Click the letter button to mark the correct answer."}
                             </span>
                         </div>
-                    </div>
-
-                    {/* ── Score preview ── */}
-                    <div className="flex items-center gap-3 p-3 bg-zinc-50 border-2 border-zinc-300">
-                        <Zap size={16} className="text-yellow-600" />
-                        <span className="text-xs font-black text-zinc-600 uppercase">Score Preview:</span>
-                        <span className="text-sm font-black" style={{ color: selectedDiff.color }}>
-                            +{selectedDiff.pts} point{selectedDiff.pts > 1 ? "s" : ""} per correct answer
-                        </span>
-                        <span className="text-xs text-zinc-400 font-medium">· Streak bonus applies in live mode</span>
                     </div>
 
                     {/* ── Actions ── */}
