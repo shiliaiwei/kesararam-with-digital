@@ -55,24 +55,22 @@ export async function PUT(
     const questionId = parseInt(qid);
     const body = await request.json();
 
-    // Authorization check: Admin can edit anything. Staff can edit draft/rejected topics they created
+    // Verify question exists and belongs to this topic
+    const questionResult = await sql`SELECT id, status, created_by FROM questions WHERE id = ${questionId} AND topic_id = ${topicId}`;
+    const question = questionResult[0];
+    if (!question) {
+      return NextResponse.json({ error: "Question not found" }, { status: 404 });
+    }
+
+    // Authorization check: Admin can edit anything. Staff can edit their own questions if not approved/published
     if (session.role !== "admin") {
-      const topicResult = await sql`SELECT created_by, status FROM topics WHERE id = ${topicId}`;
-      const topic = topicResult[0];
-      if (!topic) {
-        return NextResponse.json({ error: "Topic not found" }, { status: 404 });
+      if (question.status === "approved" || question.status === "published") {
+        return NextResponse.json({ error: "Forbidden - approved questions cannot be modified" }, { status: 403 });
       }
 
-      const isOwner = topic.created_by === Number(session.id);
-      const isRejected = topic.status === "rejected";
-      const isDraft = topic.status === "draft";
-
-      if (!isOwner && !isRejected && !isDraft) {
-        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
-      }
-
-      if (!isDraft && !isRejected) {
-        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
+      const isCreator = question.created_by === Number(session.id);
+      if (!isCreator) {
+        return NextResponse.json({ error: "Forbidden - you did not create this question" }, { status: 403 });
       }
     }
 
@@ -88,10 +86,6 @@ export async function PUT(
       pointsMultiplier,
       answers,
     } = body;
-
-    // Verify question belongs to this topic
-    const existing = await sql`SELECT id FROM questions WHERE id = ${questionId} AND topic_id = ${topicId}`;
-    if (!existing[0]) return NextResponse.json({ error: "Question not found" }, { status: 404 });
 
     const status = session.role === "admin" ? "published" : "pending";
 
@@ -146,29 +140,24 @@ export async function DELETE(
     const { id: topicId, qid } = await params;
     const questionId = parseInt(qid);
 
-    // Authorization check: Admin can edit anything. Staff can edit draft/rejected topics they created
-    if (session.role !== "admin") {
-      const topicResult = await sql`SELECT created_by, status FROM topics WHERE id = ${topicId}`;
-      const topic = topicResult[0];
-      if (!topic) {
-        return NextResponse.json({ error: "Topic not found" }, { status: 404 });
-      }
-
-      const isOwner = topic.created_by === Number(session.id);
-      const isRejected = topic.status === "rejected";
-      const isDraft = topic.status === "draft";
-
-      if (!isOwner && !isRejected && !isDraft) {
-        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
-      }
-
-      if (!isDraft && !isRejected) {
-        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
-      }
+    // Verify question exists and belongs to this topic
+    const questionResult = await sql`SELECT id, status, created_by FROM questions WHERE id = ${questionId} AND topic_id = ${topicId}`;
+    const question = questionResult[0];
+    if (!question) {
+      return NextResponse.json({ error: "Question not found" }, { status: 404 });
     }
 
-    const existing = await sql`SELECT id FROM questions WHERE id = ${questionId} AND topic_id = ${topicId}`;
-    if (!existing[0]) return NextResponse.json({ error: "Question not found" }, { status: 404 });
+    // Authorization check: Admin can delete anything. Staff can delete their own questions if not approved/published
+    if (session.role !== "admin") {
+      if (question.status === "approved" || question.status === "published") {
+        return NextResponse.json({ error: "Forbidden - approved questions cannot be deleted" }, { status: 403 });
+      }
+
+      const isCreator = question.created_by === Number(session.id);
+      if (!isCreator) {
+        return NextResponse.json({ error: "Forbidden - you did not create this question" }, { status: 403 });
+      }
+    }
 
     await sql`DELETE FROM answers WHERE question_id = ${questionId}`;
     await sql`DELETE FROM questions WHERE id = ${questionId}`;

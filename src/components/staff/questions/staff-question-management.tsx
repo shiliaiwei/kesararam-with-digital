@@ -300,7 +300,7 @@ export function StaffQuestionManagement() {
           </div>
         </div>
 
-        {view === "questions" && activeTopic && isEditable && (
+        {view === "questions" && activeTopic && (
           <button
             onClick={() => setShowAddModal(true)}
             className="bg-green-400 border-2 border-black px-4 py-2 font-black text-xs hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all inline-flex items-center gap-1.5 uppercase"
@@ -440,19 +440,13 @@ export function StaffQuestionManagement() {
         <div className="space-y-4">
           {/* Alert / Lock Notice */}
           <div className="bg-white border-2 border-black p-4 flex items-start gap-3" style={{ boxShadow: "3px 3px 0 #000" }}>
-            {isEditable ? (
-              <HelpIcon size={18} className="text-blue-500 shrink-0 mt-0.5" />
-            ) : (
-              <Lock size={18} className="text-zinc-500 shrink-0 mt-0.5" />
-            )}
+            <HelpIcon size={18} className="text-blue-500 shrink-0 mt-0.5" />
             <div>
               <h4 className="text-xs font-black text-black uppercase tracking-wide">
-                {isEditable ? "Moderation Queue Active" : "Questions are locked"}
+                Moderation Queue Active
               </h4>
               <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                {isEditable
-                  ? "You are managing Q&A questions for this draft/rejected topic. Any questions you add, edit, or delete will automatically enter the pending review queue and require Administrator approval before being published to users."
-                  : "This topic has been submitted, approved, or published. The questions are now locked. You can only modify questions once an Administrator rejects the topic or returns it to draft mode."}
+                You can add new questions to this topic. Any new or edited questions will enter the review queue and require Administrator approval. Once approved or published, questions cannot be edited or deleted by staff.
               </p>
             </div>
           </div>
@@ -516,14 +510,12 @@ export function StaffQuestionManagement() {
             <div className="bg-white border-2 border-black p-12 text-center" style={{ boxShadow: "3px 3px 0 #000" }}>
               <HelpCircle className="mx-auto mb-2 text-zinc-300" size={32} />
               <p className="font-black text-zinc-500 text-sm uppercase">No questions found</p>
-              {isEditable && (
-                <button
-                  onClick={() => setShowAddModal(true)}
-                  className="mt-4 bg-green-400 border-2 border-black px-4 py-2 font-black text-xs hover:shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 uppercase"
-                >
-                  <Plus size={14} /> Create First Question
-                </button>
-              )}
+              <button
+                onClick={() => setShowAddModal(true)}
+                className="mt-4 bg-green-400 border-2 border-black px-4 py-2 font-black text-xs hover:shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 uppercase"
+              >
+                <Plus size={14} /> Create First Question
+              </button>
             </div>
           ) : (
             <div className="space-y-3">
@@ -563,24 +555,24 @@ export function StaffQuestionManagement() {
                           {q.difficulty}
                         </span>
 
-                        {isEditable && (
-                          <div className="flex items-center gap-1 ml-2" onClick={e => e.stopPropagation()}>
-                            <button
-                              onClick={() => setEditingQuestion(q)}
-                              className="p-1.5 border-2 border-black bg-yellow-100 hover:bg-yellow-200 transition-all"
-                              title="Edit Question"
-                            >
-                              <Edit size={12} />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteQuestion(q.id)}
-                              className="p-1.5 border-2 border-black bg-red-100 hover:bg-red-200 transition-all text-red-700"
-                              title="Delete Question"
-                            >
-                              <Trash2 size={12} />
-                            </button>
-                          </div>
-                        )}
+                          {q.status !== "approved" && q.status !== "published" && (
+                            <div className="flex items-center gap-1 ml-2" onClick={e => e.stopPropagation()}>
+                              <button
+                                onClick={() => setEditingQuestion(q)}
+                                className="p-1.5 border-2 border-black bg-yellow-100 hover:bg-yellow-200 transition-all"
+                                title="Edit Question"
+                              >
+                                <Edit size={12} />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteQuestion(q.id)}
+                                className="p-1.5 border-2 border-black bg-red-100 hover:bg-red-200 transition-all text-red-700"
+                                title="Delete Question"
+                              >
+                                <Trash2 size={12} />
+                              </button>
+                            </div>
+                          )}
                       </div>
                     </div>
 

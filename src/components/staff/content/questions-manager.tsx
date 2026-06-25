@@ -104,31 +104,23 @@ export function QuestionsManager({
             {questions.length} question{questions.length !== 1 ? "s" : ""} in this topic
           </p>
         </div>
-        {isEditable && (
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="px-4 py-2 border-2 border-black bg-yellow-400 font-black text-xs hover:shadow-[2px_2px_0_#000] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-1 uppercase tracking-wide"
-          >
-            <Plus size={14} /> Add Question
-          </button>
-        )}
+        <button
+          onClick={() => setShowAddModal(true)}
+          className="px-4 py-2 border-2 border-black bg-yellow-400 font-black text-xs hover:shadow-[2px_2px_0_#000] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-1 uppercase tracking-wide"
+        >
+          <Plus size={14} /> Add Question
+        </button>
       </div>
 
       {/* Instructions / Notice */}
       <div className="bg-zinc-100 border-2 border-zinc-400 px-4 py-3 flex items-start gap-3">
-        {isEditable ? (
-          <HelpCircle size={16} className="text-blue-500 shrink-0 mt-0.5" />
-        ) : (
-          <Lock size={16} className="text-zinc-500 shrink-0 mt-0.5" />
-        )}
+        <HelpCircle size={16} className="text-blue-500 shrink-0 mt-0.5" />
         <div>
           <p className="text-xs font-black text-zinc-700 uppercase">
-            {isEditable ? "Manage Q&A Questions" : "Questions are locked"}
+            Manage Q&A Questions
           </p>
           <p className="text-xs text-zinc-500 mt-0.5">
-            {isEditable
-              ? "You can add, edit, and delete questions for this topic. Any questions you add will go through admin review and approval before becoming public."
-              : "This topic is currently live or under review. Questions are locked and can only be modified if administrators send the topic back for editing."}
+            You can add new questions to this topic. Any new or edited questions will enter the review queue and require Administrator approval. Once approved or published, questions cannot be edited or deleted by staff.
           </p>
         </div>
       </div>
@@ -185,8 +177,8 @@ export function QuestionsManager({
                   <span className="text-[10px] text-zinc-400 font-bold">{q.answers?.length ?? 0} ans</span>
                   {q.image_url && <ImageIcon size={12} className="text-zinc-400" />}
 
-                  {/* Actions for editable topics */}
-                  {isEditable && (
+                  {/* Actions */}
+                  {q.status !== "published" && q.status !== "approved" && (
                     <div className="flex items-center gap-1 shrink-0 ml-1">
                       <button
                         onClick={(e) => {

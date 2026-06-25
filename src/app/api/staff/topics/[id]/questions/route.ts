@@ -75,25 +75,11 @@ export async function POST(
     const { id: topicId } = await params;
     const body = await request.json();
 
-    // Authorization check: Admin can edit anything. Staff can edit draft/rejected topics they created
-    if (session.role !== "admin") {
-      const topicResult = await sql`SELECT created_by, status FROM topics WHERE id = ${topicId}`;
-      const topic = topicResult[0];
-      if (!topic) {
-        return NextResponse.json({ error: "Topic not found" }, { status: 404 });
-      }
-
-      const isOwner = topic.created_by === Number(session.id);
-      const isRejected = topic.status === "rejected";
-      const isDraft = topic.status === "draft";
-
-      if (!isOwner && !isRejected && !isDraft) {
-        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
-      }
-
-      if (!isDraft && !isRejected) {
-        return NextResponse.json({ error: "Forbidden - topic is not editable" }, { status: 403 });
-      }
+    // Verify topic exists
+    const topicResult = await sql`SELECT id FROM topics WHERE id = ${topicId}`;
+    const topic = topicResult[0];
+    if (!topic) {
+      return NextResponse.json({ error: "Topic not found" }, { status: 404 });
     }
 
     const {
