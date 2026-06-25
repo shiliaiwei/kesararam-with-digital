@@ -7,14 +7,33 @@ import { BrandSelect } from "@/components/ui/brand-select";
 
 interface Topic {
   id: number;
-  topic_code: string;
-  name_en: string;
-  name_km: string;
-  category_name: string;
+  topicCode?: string;
+  topic_code?: string;
+  categoryId?: number;
+  category_id?: number;
+  nameEn?: string;
+  name_en?: string;
+  nameKm?: string;
+  name_km?: string;
+  category_name?: string;
+  categoryName?: string;
   status: string;
-  question_count: number;
-  created_at: string;
+  questionCount?: number;
+  question_count?: number;
+  createdAt?: string;
+  created_at?: string;
 }
+
+const CATEGORY_SLUGS: Record<number, string> = {
+  1: "road-sign",
+  2: "road-traffic",
+  3: "priority",
+  4: "driving",
+  5: "technical",
+  6: "loading-people-goods",
+  7: "general-knowledge",
+  8: "emergency",
+};
 
 const STATUS_COLORS: Record<string, string> = {
   draft: "bg-gray-200 text-gray-800",
@@ -225,17 +244,19 @@ export function TopicList() {
                 {topics.map((topic) => (
                   <tr key={topic.id} className="border-b border-gray-200">
                     <td className="px-4 py-3 font-mono text-sm">
-                      {topic.topic_code}
+                      {topic.topicCode || topic.topic_code || "—"}
                     </td>
                     <td className="px-4 py-3">
-                      <div className="font-bold">{topic.name_en}</div>
+                      <div className="font-bold">{topic.nameEn || topic.name_en || "—"}</div>
                       <div className="text-sm text-zinc-600">
-                        {topic.name_km}
+                        {topic.nameKm || topic.name_km || "—"}
                       </div>
                     </td>
-                    <td className="px-4 py-3">{topic.category_name}</td>
+                    <td className="px-4 py-3">
+                      {CATEGORIES.find(c => c.id === (topic.categoryId || topic.category_id))?.name || topic.categoryName || topic.category_name || "—"}
+                    </td>
                     <td className="px-4 py-3 text-center">
-                      {topic.question_count}
+                      {topic.questionCount ?? topic.question_count ?? 0}
                     </td>
                     <td className="px-4 py-3">
                       <span
@@ -247,16 +268,17 @@ export function TopicList() {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-sm">
-                      {new Date(topic.created_at).toLocaleDateString()}
+                      {new Date(topic.createdAt || topic.created_at || Date.now()).toLocaleDateString()}
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-2">
                         <button
-                          onClick={() =>
-                            router.push(`/staff/topics/${topic.id}`)
-                          }
+                          onClick={() => {
+                            const slug = CATEGORY_SLUGS[topic.categoryId || topic.category_id || 1] || "road-sign";
+                            router.push(`/staff/content/${slug}/${topic.id}`);
+                          }}
                           className="p-2 border-2 border-black hover:bg-blue-100 transition-all"
-                          title="View"
+                          title="View Questions & Details"
                         >
                           <Eye size={16} />
                         </button>
@@ -264,11 +286,12 @@ export function TopicList() {
                           topic.status === "rejected") && (
                           <>
                             <button
-                              onClick={() =>
-                                router.push(`/staff/topics/${topic.id}/edit`)
-                              }
+                              onClick={() => {
+                                const slug = CATEGORY_SLUGS[topic.categoryId || topic.category_id || 1] || "road-sign";
+                                router.push(`/staff/content/${slug}`);
+                              }}
                               className="p-2 border-2 border-black hover:bg-yellow-100 transition-all"
-                              title="Edit"
+                              title="Edit Topic"
                             >
                               <Edit size={16} />
                             </button>

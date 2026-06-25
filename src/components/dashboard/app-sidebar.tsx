@@ -52,6 +52,7 @@ const teacherNav: NavItem[] = [
 
 const staffNav: NavItem[] = [
   { label: "My Submissions", href: "/staff/submissions", icon: "warning", color: "#3b82f6" },
+  { label: "Questions", href: "/staff/questions", icon: "description", color: "#8b5cf6" },
   {
     label: "Content",
     icon: "book",

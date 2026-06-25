@@ -40,7 +40,7 @@ const IMAGE_MATCH_SLUGS = ["road-sign", "priority"];
 export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSuccess, userRole }: QuestionFormModalProps) {
     const { showToast } = useToast();
     const [saving, setSaving] = useState(false);
-    const [mode, setMode] = useState<"form" | "json">("json");
+    const [mode, setMode] = useState<"form" | "json">("form");
     const [categories, setCategories] = useState<Category[]>([]);
     const [topics, setTopics] = useState<Topic[]>([]);
     const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
@@ -440,7 +440,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                 />}
 
                 {/* ── FULL MODE ── */}
-                {(mode === "full" || initialData) && (<form onSubmit={handleSubmit} className="p-5 space-y-4 flex-1">
+                {(mode === "form" || initialData) && (<form onSubmit={handleSubmit} className="p-5 space-y-4 flex-1">
 
                     {/* ── STEP 1: Topic (only if not pre-selected) ── */}
                     {!isPreSelected && (

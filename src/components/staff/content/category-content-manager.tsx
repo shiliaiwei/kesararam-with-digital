@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useMemo, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { Plus, Search, Edit, Trash2, Send, Globe, Clock, FileText, XCircle, CheckCircle, Image as ImageIcon, Music, RefreshCw, HelpCircle, ChevronDown, ChevronUp, Circle, Save, X, Loader2, Lock, AlertTriangle } from "lucide-react";
 import { TopicFormModal } from "./topic-form-modal";
 import { BrandSelect } from "@/components/ui/brand-select";
@@ -152,6 +153,7 @@ function QuestionsPanel({ topicId, topicStatus, isStaff = true }: { topicId: num
 }
 
 export function CategoryContentManager({ categoryId, categoryName, categorySlug, requiresImage = false, requiresAudio = false }: CategoryContentManagerProps) {
+  const router = useRouter();
   const { showToast } = useToast();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
@@ -318,6 +320,15 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
 
                       {/* Action Buttons - Larger and more spaced */}
                       <div className="flex items-center gap-2 shrink-0">
+                        {/* Questions/Details button */}
+                        <button
+                          onClick={() => router.push(`/staff/content/${categorySlug}/${topic.id}`)}
+                          className="px-3 py-2 border-2 border-black bg-blue-100 hover:bg-blue-200 hover:shadow-[2px_2px_0_#000] transition-all text-xs font-black uppercase inline-flex items-center gap-1.5"
+                          title="Manage Questions"
+                        >
+                          <HelpCircle size={15} />
+                          <span>Questions</span>
+                        </button>
                         {/* Edit button - only for draft, rejected, or pending */}
                         {(topic.status === "draft" || topic.status === "rejected" || topic.status === "pending") && (
                           <button
