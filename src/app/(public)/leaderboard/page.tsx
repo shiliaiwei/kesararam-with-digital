@@ -106,14 +106,10 @@ const SORT_TABS: { id: "rank" | "live" | "games" | "acc"; en: string; kh: string
 // Game filter chips — derived from the shared GAME_CATALOG so every chip carries
 // the game's iconic badge (GameBadge). Click the Sign leads because this table's
 // score column defaults to that game mode instead of the old all-game total.
-const DEFAULT_GAME_TYPE = "tick-sign";
+const DEFAULT_GAME_TYPE = "all";
 const GAME_CHIPS: { id: string; en: string; kh: string }[] = [
-  ...GAME_FILTER_ORDER
-    .filter((g) => g.id === DEFAULT_GAME_TYPE)
-    .map((g) => ({ id: g.id, en: g.en, kh: g.kh })),
-  ...GAME_FILTER_ORDER
-    .filter((g) => g.id !== DEFAULT_GAME_TYPE)
-    .map((g) => ({ id: g.id, en: g.en, kh: g.kh })),
+  { id: "all", en: "All Games", kh: "ហ្គេមទាំងអស់" },
+  ...GAME_FILTER_ORDER.map((g) => ({ id: g.id, en: g.en, kh: g.kh })),
 ];
 
 interface LeaderboardUser {
@@ -1793,13 +1789,13 @@ export default function LeaderboardPage() {
                       {gameType === "all" ? (
                         <>
                           <Gamepad2 size={11} strokeWidth={3} className="text-yellow-400 flex-shrink-0" />
-                          <span className="truncate">{kh ? "ហ្គេមទាំងអស់" : "All Games"}</span>
+                          <span className="truncate">{kh ? "ហ្គេម" : "GAME"}</span>
                         </>
                       ) : (
                         <>
                           <GameBadge slug={gameType} size="xs" shadow={false} />
                           <span className="truncate text-yellow-400">
-                            {(kh ? getGameMeta(gameType)?.kh : getGameMeta(gameType)?.en) ?? gameType}
+                            {kh ? "ហ្គេម" : "GAME"}
                           </span>
                         </>
                       )}
