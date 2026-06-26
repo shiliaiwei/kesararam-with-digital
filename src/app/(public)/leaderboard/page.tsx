@@ -411,14 +411,17 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
   const scoreValue = user?.lifetimePoints ?? 0;
 
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
+    setMounted(true);
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const avatarSize = isMobile ? (isFirst ? 58 : 44) : (isFirst ? 82 : 66);
+  const mobileDevice = mounted && isMobile;
+  const avatarSize = mobileDevice ? (isFirst ? 58 : 44) : (isFirst ? 82 : 66);
 
   useEffect(() => {
     if (!cardRef.current) return;
@@ -445,7 +448,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             className="absolute -top-7 md:-top-9 left-1/2 z-20 flex h-7 w-7 md:h-9 md:w-9 -translate-x-1/2 items-center justify-center border-[3px] border-black bg-yellow-400"
             style={{ boxShadow: "3px 3px 0 #000", transform: "translateX(-50%) rotate(45deg)" }}
           >
-            <Crown size={isMobile ? 14 : 20} strokeWidth={2.5} className="text-black" style={{ transform: "rotate(-45deg)" }} />
+            <Crown size={mobileDevice ? 14 : 20} strokeWidth={2.5} className="text-black" style={{ transform: "rotate(-45deg)" }} />
           </div>
         )}
 
@@ -456,7 +459,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
                 ticker so it replays on this card's turn. Each rank has its own style. */}
             {isCelebrating && (
               <div key={celebrateTick} aria-hidden className="pointer-events-none absolute left-1/2 top-1/2" style={{ zIndex: 0 }}>
-                {renderPodiumCelebration(cfg.rank, isFirst, isMobile)}
+                {renderPodiumCelebration(cfg.rank, isFirst, mobileDevice)}
               </div>
             )}
             <div className="relative z-10">
@@ -478,8 +481,8 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
           <div
             className="flex items-center justify-center border-[3px] border-black bg-zinc-800 font-black text-white"
             style={{
-              width: isMobile ? (isFirst ? 66 : 52) : (isFirst ? 94 : 78),
-              height: isMobile ? (isFirst ? 66 : 52) : (isFirst ? 94 : 78),
+              width: mobileDevice ? (isFirst ? 66 : 52) : (isFirst ? 94 : 78),
+              height: mobileDevice ? (isFirst ? 66 : 52) : (isFirst ? 94 : 78),
               borderRadius: "50%",
               boxShadow: "3px 3px 0 #000",
             }}
@@ -545,7 +548,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             styleId={user.scorePlateStyle}
             provinceEn={user.province}
             provinceKh={getProvinceKh(user.province)}
-            size={isMobile ? (isFirst ? "sm" : "xs") : (isFirst ? "md" : "sm")}
+            size={mobileDevice ? (isFirst ? "sm" : "xs") : (isFirst ? "md" : "sm")}
             className="z-10"
           />
         ) : (
@@ -1140,12 +1143,15 @@ export default function LeaderboardPage() {
   const router = useRouter();
 
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
+    setMounted(true);
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  const mobileDevice = mounted && isMobile;
   const handleSelectUser = (user: LeaderboardUser) => {
     // Private usernames are anonymized to `student_<id>` and have no public
     // profile — don't navigate (would 404 on /u/student_<id>).
@@ -1431,7 +1437,7 @@ export default function LeaderboardPage() {
       >
         <div className="grid grid-cols-12 items-center px-2 sm:px-5 py-2 sm:py-2.5">
           {/* Rank + Avatar + Name + Meta */}
-          <div className="col-span-4 sm:col-span-4 flex items-center gap-1.5 sm:gap-3 min-w-0">
+          <div className="col-span-5 sm:col-span-4 flex items-center gap-1.5 sm:gap-3 min-w-0">
             {/* Rank + movement */}
             <div className="flex items-center gap-1 flex-shrink-0 w-7 sm:w-12">
               {medal ? (
@@ -1454,11 +1460,11 @@ export default function LeaderboardPage() {
 
             {/* Avatar + name + meta */}
             <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-1">
-              <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={isMobile ? 26 : 36} index={rowIndex}>
+              <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={mobileDevice ? 26 : 36} index={rowIndex}>
                 <Avatar
                   url={rowAvatar}
                   name={user.displayName || user.username}
-                  size={isMobile ? 26 : 36}
+                  size={mobileDevice ? 26 : 36}
                   changedAt={user.avatarChangedAt}
                 />
               </RankedAvatarRing>
@@ -1474,8 +1480,8 @@ export default function LeaderboardPage() {
                       fontSize: 12,
                       letterSpacing: "0.01em",
                       maxWidth: "100%",
-                      border: isMobile ? "2px solid #000" : "3px solid #000",
-                      padding: isMobile ? "2px 4px" : "4px 8px",
+                      border: mobileDevice ? "2px solid #000" : "3px solid #000",
+                      padding: mobileDevice ? "2px 4px" : "4px 8px",
                     }}
                     title={user.displayName || user.username}
                   >
@@ -1511,12 +1517,12 @@ export default function LeaderboardPage() {
               styleId={rowPlateStyle}
               provinceEn={rowProvince}
               provinceKh={getProvinceKh(rowProvince)}
-              size={isMobile ? "xs" : "sm"}
+              size={mobileDevice ? "xs" : "sm"}
             />
           </div>
 
           {/* Solo Practice Column */}
-          <div className="col-span-3 sm:col-span-2 flex justify-end sm:justify-start items-center">
+          <div className="col-span-2 sm:col-span-2 flex justify-end sm:justify-start items-center">
             <span className="font-mono font-black text-xs md:text-sm text-black tabular-nums">
               {user.soloPoints ?? 0}
             </span>
@@ -1755,7 +1761,7 @@ export default function LeaderboardPage() {
                 {/* Table Header — Live Score is the hero metric and leads the stats
                     right after the player; Games / Acc / Top game follow. */}
                 <div className="grid grid-cols-12 bg-black px-2 sm:px-5 py-2 sm:py-2.5 text-[9px] md:text-[10px] font-black tracking-widest uppercase sticky top-[66px] z-30">
-                  <span className="col-span-4 sm:col-span-4 text-yellow-400 flex items-center gap-1 sm:gap-6">
+                  <span className="col-span-5 sm:col-span-4 text-yellow-400 flex items-center gap-1 sm:gap-6">
                     <span className="sm:hidden"># / {kh ? "សិស្ស" : "Player"}</span>
                     <span className="hidden sm:inline w-6">#</span>
                     <span className="hidden sm:inline">{kh ? "សិស្ស" : "Player"}</span>
@@ -1767,8 +1773,8 @@ export default function LeaderboardPage() {
                   </span>
 
                   {/* Solo Practice column header */}
-                  <span className="text-yellow-400 flex items-center font-black uppercase tracking-widest truncate col-span-3 sm:col-span-2">
-                    {kh ? "ហាត់លេង" : "Solo Practice"}
+                  <span className="text-yellow-400 flex items-center font-black uppercase tracking-widest truncate col-span-2 sm:col-span-2">
+                    {kh ? "ហាត់" : (mobileDevice ? "Solo" : "Solo Practice")}
                   </span>
 
                   {/* Game-mode score header containing the filter dropdown */}
@@ -1789,12 +1795,12 @@ export default function LeaderboardPage() {
                       {gameType === "all" ? (
                         <>
                           <Gamepad2 size={11} strokeWidth={3} className="text-yellow-400 flex-shrink-0" />
-                          <span className="truncate">{kh ? "ហ្គេម" : "GAME"}</span>
+                          <span className="whitespace-nowrap">{kh ? "ហ្គេម" : "GAME"}</span>
                         </>
                       ) : (
                         <>
                           <GameBadge slug={gameType} size="xs" shadow={false} />
-                          <span className="truncate text-yellow-400">
+                          <span className="whitespace-nowrap text-yellow-400">
                             {kh ? "ហ្គេម" : "GAME"}
                           </span>
                         </>
