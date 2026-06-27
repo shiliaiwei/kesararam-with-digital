@@ -31,7 +31,10 @@ export async function POST(req: NextRequest) {
   }
 
   const plan = body.plan ?? "";
-  const cycle = (body.cycle === "yearly" ? "yearly" : "monthly") as BillingCycle;
+  let cycle = (body.cycle === "yearly" ? "yearly" : "monthly") as BillingCycle;
+  if (plan === "family" || plan === "teacher_pro") {
+    cycle = "yearly";
+  }
 
   if (!isPurchasablePlan(plan)) {
     return NextResponse.json({ error: "Unknown plan" }, { status: 400 });

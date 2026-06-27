@@ -72,8 +72,11 @@ export async function POST(req: NextRequest) {
 
     // Billing cycle is only meaningful for paid (non-trial) licenses.
     const rawCycle = String(body.billingCycle ?? "");
-    const billingCycle: BillingCycle | null =
+    let billingCycle: BillingCycle | null =
       !isTrial && VALID_CYCLES.includes(rawCycle as BillingCycle) ? (rawCycle as BillingCycle) : null;
+    if (billingCycle && (plan === "family" || plan === "teacher_pro")) {
+      billingCycle = "yearly";
+    }
     // "Lifetime" (∞) = explicitly no end date, even on a paid license.
     const lifetime = Boolean(body.lifetime);
 

@@ -408,11 +408,18 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
             <div className="grid grid-cols-3 gap-2 mb-3">
               {planMeta.map(({ key, icon: IconName, label, desc }) => {
                 const isFree = key === "free";
-                const usd = isFree ? 0 : getPlanPrice(key as PaidPlan, cycle, { promo });
-                const std = isFree ? 0 : getStandardPrice(key as PaidPlan, cycle);
-                const suffix = cycle === "yearly" ? "/yr" : "/mo";
+                const isYearlyOnly = key === "family" || key === "teacher_pro";
+                const targetCycle = isYearlyOnly ? "yearly" : cycle;
+                const usd = isFree ? 0 : getPlanPrice(key as PaidPlan, targetCycle, { promo });
+                const std = isFree ? 0 : getStandardPrice(key as PaidPlan, targetCycle);
+                const suffix = targetCycle === "yearly" ? "/yr" : "/mo";
                 return (
-                  <button key={key} onClick={() => setPlan(key)}
+                  <button key={key} onClick={() => {
+                    setPlan(key);
+                    if (isYearlyOnly) {
+                      setCycle("yearly");
+                    }
+                  }}
                     className={`relative flex flex-col items-center gap-1.5 py-3 px-2 rounded-none border transition-all ${
                       plan === key
                         ? "border-amber-400 bg-amber-400/10 shadow-[0_0_12px_rgba(251,191,36,0.15)]"
@@ -492,8 +499,11 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
                       {/* Billing cycle segmented control */}
                       <div>
                         <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1.5 font-bold">Billing Cycle</p>
-                        <div className="grid grid-cols-2 gap-2">
-                          {(["monthly", "yearly"] as BillingCycle[]).map(c => {
+                        <div className={`grid ${plan === "family" || plan === "teacher_pro" ? "grid-cols-1" : "grid-cols-2"} gap-2`}>
+                          {(["monthly", "yearly"] as BillingCycle[]).filter(c => {
+                            const isYearlyOnly = plan === "family" || plan === "teacher_pro";
+                            return !(isYearlyOnly && c === "monthly");
+                          }).map(c => {
                             const usd = getPlanPrice(plan as PaidPlan, c, { promo });
                             return (
                               <button key={c} onClick={() => setCycle(c)}
@@ -680,12 +690,15 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
           {sub.plan !== "free" && (
             <div>
               <label className="block text-xs text-white/40 uppercase tracking-widest mb-2 font-bold">Billing Cycle</label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className={`grid ${sub.plan === "family" || sub.plan === "teacher_pro" ? "grid-cols-2" : "grid-cols-3"} gap-2`}>
                 {[
                   { v: "monthly", label: "Monthly" },
                   { v: "yearly", label: "Annual" },
                   { v: "", label: "Lifetime ∞" },
-                ].map(({ v, label }) => (
+                ].filter(({ v }) => {
+                  const isYearlyOnly = sub.plan === "family" || sub.plan === "teacher_pro";
+                  return !(isYearlyOnly && v === "monthly");
+                }).map(({ v, label }) => (
                   <button key={v} onClick={() => setBillingCycle(v)}
                     className={`px-2 py-2 rounded-none border text-xs font-bold transition-all ${
                       billingCycle === v ? "border-amber-400 bg-amber-400/10 text-amber-400" : "border-white/10 text-white/40 hover:border-white/20"

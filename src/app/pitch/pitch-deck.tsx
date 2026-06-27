@@ -229,10 +229,10 @@ export default function PitchDeck() {
             <h2 className="reveal" style={d(100)}>Free for students. <span className="hl">Forever.</span></h2>
             <p className="reveal lead" style={d(180)}>Those who can pay fund those who can&apos;t — families, teachers &amp; schools subscribe.</p>
             <div className="chips reveal" style={d(300)}>
-              <span className="chip">Family $5/mo</span>
-              <span className="chip">Teacher Pro $10/mo</span>
+              <span className="chip">Family $5/yr</span>
+              <span className="chip">Teacher Pro $10/yr</span>
               <span className="chip">School $20/mo</span>
-              <span className="chip">Driving School $35/mo</span>
+              <span className="chip">Academy $35/mo</span>
             </div>
             <div className="reveal" style={{ ...d(440), marginTop: 26, display: "flex", gap: "clamp(16px,5vw,60px)", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
               <div>

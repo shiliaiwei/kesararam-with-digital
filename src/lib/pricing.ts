@@ -22,8 +22,8 @@ export type BillingCycle = "monthly" | "yearly";
  * Values are the canonical KWD price list (also shown on /pricing).
  */
 export const PRICES: Record<PaidPlan, { promoM: number; stdM: number; promoY: number; stdY: number }> = {
-  family:         { promoM: 2,  stdM: 5,  promoY: 20,  stdY: 60 },
-  teacher_pro:    { promoM: 3,  stdM: 10, promoY: 24,  stdY: 80 },
+  family:         { promoM: 2,  stdM: 5,  promoY: 2,   stdY: 5 },
+  teacher_pro:    { promoM: 3,  stdM: 10, promoY: 3,   stdY: 10 },
   school:         { promoM: 6,  stdM: 20, promoY: 54,  stdY: 180 },
   driving_school: { promoM: 11, stdM: 35, promoY: 110, stdY: 350 },
 };
@@ -57,19 +57,22 @@ export const PAID_PLANS: PaidPlan[] = ["family", "teacher_pro", "school", "drivi
 export function getPlanPrice(plan: PaidPlan, cycle: BillingCycle, opts?: { promo?: boolean }): number {
   const p = PRICES[plan];
   const promo = opts?.promo ?? isPromoActive();
-  if (cycle === "yearly") return promo ? p.promoY : p.stdY;
+  const targetCycle = (plan === "family" || plan === "teacher_pro") ? "yearly" : cycle;
+  if (targetCycle === "yearly") return promo ? p.promoY : p.stdY;
   return promo ? p.promoM : p.stdM;
 }
 
 /** Standard (non-promo) anchor price — what the promo is discounted from. */
 export function getStandardPrice(plan: PaidPlan, cycle: BillingCycle): number {
-  return cycle === "yearly" ? PRICES[plan].stdY : PRICES[plan].stdM;
+  const targetCycle = (plan === "family" || plan === "teacher_pro") ? "yearly" : cycle;
+  return targetCycle === "yearly" ? PRICES[plan].stdY : PRICES[plan].stdM;
 }
 
 /** "$24/yr" style label for the effective charge. */
 export function formatPriceLabel(plan: PaidPlan, cycle: BillingCycle, opts?: { promo?: boolean }): string {
-  const usd = getPlanPrice(plan, cycle, opts);
-  return `$${usd}/${cycle === "yearly" ? "yr" : "mo"}`;
+  const targetCycle = (plan === "family" || plan === "teacher_pro") ? "yearly" : cycle;
+  const usd = getPlanPrice(plan, targetCycle, opts);
+  return `$${usd}/${targetCycle === "yearly" ? "yr" : "mo"}`;
 }
 
 /**

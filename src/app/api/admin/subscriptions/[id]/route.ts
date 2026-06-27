@@ -23,7 +23,20 @@ export async function PATCH(
 
   const body = await req.json();
   const { status, note, endsAt, billingCycle } = body;
-  const validCycle = billingCycle === "monthly" || billingCycle === "yearly";
+
+  const [existing] = await db
+    .select({ plan: subscriptions.plan })
+    .from(subscriptions)
+    .where(eq(subscriptions.id, subId))
+    .limit(1);
+
+  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  let targetCycle = billingCycle;
+  if ((existing.plan === "family" || existing.plan === "teacher_pro") && billingCycle === "monthly") {
+    targetCycle = "yearly";
+  }
+  const validCycle = targetCycle === "monthly" || targetCycle === "yearly";
 
   const [updated] = await db
     .update(subscriptions)
@@ -31,13 +44,11 @@ export async function PATCH(
       ...(status && { status }),
       ...(note !== undefined && { note }),
       ...(endsAt !== undefined && { endsAt: endsAt ? new Date(endsAt) : null }),
-      ...(billingCycle !== undefined && { billingCycle: validCycle ? billingCycle : null }),
+      ...(billingCycle !== undefined && { billingCycle: validCycle ? targetCycle : null }),
       updatedAt: new Date(),
     })
     .where(eq(subscriptions.id, subId))
     .returning();
-
-  if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json({ subscription: updated });
 }
 

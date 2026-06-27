@@ -61,11 +61,11 @@ const nextConfig: NextConfig = {
               // 'unsafe-inline' required by Next.js for inline styles/scripts in RSC
               // 'unsafe-eval' required by Next.js dev mode and some libraries (GSAP, Mapbox)
               // googletagmanager/analytics loaded via next/script with strategy="afterInteractive"
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.mapbox.com https://events.mapbox.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.mapbox.com https://events.mapbox.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.clarity.ms https://*.clarity.ms",
               "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://api.mapbox.com",
               "font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com",
-              "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.jsdelivr.net https://raw.githubusercontent.com https://avatars.githubusercontent.com https://cdnjs.cloudflare.com https://api.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com",
-              "connect-src 'self' wss://*.pusher.com https://*.pusher.com https://*.neon.tech https://api.cloudinary.com https://cdn.jsdelivr.net https://res.cloudinary.com https://api.mapbox.com https://events.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://ssl.google-analytics.com",
+              "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.jsdelivr.net https://raw.githubusercontent.com https://avatars.githubusercontent.com https://cdnjs.cloudflare.com https://api.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com https://*.clarity.ms https://*.c.bing.com",
+              "connect-src 'self' wss://*.pusher.com https://*.pusher.com https://*.neon.tech https://api.cloudinary.com https://cdn.jsdelivr.net https://res.cloudinary.com https://api.mapbox.com https://events.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://ssl.google-analytics.com https://*.clarity.ms https://*.c.bing.com",
               "media-src 'self' https://res.cloudinary.com",
               "worker-src 'self' blob:",
               "frame-src 'none'",
