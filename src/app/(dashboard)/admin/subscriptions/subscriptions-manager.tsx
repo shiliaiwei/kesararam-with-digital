@@ -412,7 +412,7 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
                 const targetCycle = isYearlyOnly ? "yearly" : cycle;
                 const usd = isFree ? 0 : getPlanPrice(key as PaidPlan, targetCycle, { promo });
                 const std = isFree ? 0 : getStandardPrice(key as PaidPlan, targetCycle);
-                const suffix = targetCycle === "yearly" ? "/yr" : "/mo";
+                const suffix = targetCycle === "yearly" ? "/12 mo" : "/mo";
                 return (
                   <button key={key} onClick={() => {
                     setPlan(key);
@@ -472,7 +472,7 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
                       <span className={`material-symbols-rounded ${licenseType === "paid" ? "text-amber-400" : "text-white/35"}`} style={{ fontSize: "16px" }}>verified</span>
                       <span className={`text-xs font-black uppercase tracking-tight ${licenseType === "paid" ? "text-amber-400" : "text-white/60"}`}>Paid License</span>
                     </span>
-                    <span className="text-[10px] text-white/30">Monthly or annual</span>
+                    <span className="text-[10px] text-white/30">Monthly or 12-month</span>
                   </button>
                 </div>
 
@@ -511,10 +511,10 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
                                   cycle === c ? "border-amber-400 bg-amber-400/10" : "border-white/10 bg-black/20 hover:border-white/20"
                                 }`}>
                                 <span className={`text-xs font-black uppercase tracking-tight ${cycle === c ? "text-amber-400" : "text-white/55"}`}>
-                                  {c === "yearly" ? "Annual" : "Monthly"}
+                                  {c === "yearly" ? "12 Months" : "Monthly"}
                                 </span>
                                 <span className={`text-xs font-black ${cycle === c ? "text-white" : "text-white/40"}`}>
-                                  ${usd}<span className="text-white/30 font-bold">{c === "yearly" ? "/yr" : "/mo"}</span>
+                                  ${usd}<span className="text-white/30 font-bold">{c === "yearly" ? "/12 mo" : "/mo"}</span>
                                 </span>
                               </button>
                             );
@@ -578,12 +578,12 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
                 <span className="font-black text-right" style={{ color: PLAN_DISPLAY[plan].color }}>{PLAN_DISPLAY[plan].name}</span>
                 <span className="text-white/40">Type</span>
                 <span className="text-white font-bold text-right">
-                  {!paid ? "Free" : isTrial ? `Free trial · ${trialDays}d` : `Paid · ${cycle === "yearly" ? "Annual" : "Monthly"}`}
+                  {!paid ? "Free" : isTrial ? `Free trial · ${trialDays}d` : `Paid · ${cycle === "yearly" ? "12 Months" : "Monthly"}`}
                 </span>
                 {paid && !isTrial && (
                   <>
                     <span className="text-white/40">Price</span>
-                    <span className="text-white font-bold text-right">${getPlanPrice(plan as PaidPlan, cycle, { promo })}{cycle === "yearly" ? "/yr" : "/mo"}{promo ? " (promo)" : ""}</span>
+                    <span className="text-white font-bold text-right">${getPlanPrice(plan as PaidPlan, cycle, { promo })}{cycle === "yearly" ? "/12 mo" : "/mo"}{promo ? " (promo)" : ""}</span>
                   </>
                 )}
                 <span className="text-white/40">Starts</span>
@@ -693,7 +693,7 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
               <div className={`grid ${sub.plan === "family" || sub.plan === "teacher_pro" ? "grid-cols-2" : "grid-cols-3"} gap-2`}>
                 {[
                   { v: "monthly", label: "Monthly" },
-                  { v: "yearly", label: "Annual" },
+                  { v: "yearly", label: "12 Months" },
                   { v: "", label: "Lifetime ∞" },
                 ].filter(({ v }) => {
                   const isYearlyOnly = sub.plan === "family" || sub.plan === "teacher_pro";
@@ -893,10 +893,10 @@ export function SubscriptionsManager({ initialRows, allUsers }: Props) {
                         </div>
                       ) : row.billingCycle === "monthly" || row.billingCycle === "yearly" ? (
                         <div>
-                          <span className="text-xs text-white/70 font-bold uppercase tracking-wide">{row.billingCycle === "yearly" ? "Annual" : "Monthly"}</span>
+                          <span className="text-xs text-white/70 font-bold uppercase tracking-wide">{row.billingCycle === "yearly" ? "12 Months" : "Monthly"}</span>
                           {isPaidPlan(row.plan) && (
                             <p className="text-xs text-white/40 font-mono">
-                              ${getPlanPrice(row.plan, row.billingCycle as BillingCycle)}{row.billingCycle === "yearly" ? "/yr" : "/mo"}
+                              ${getPlanPrice(row.plan, row.billingCycle as BillingCycle)}{row.billingCycle === "yearly" ? "/12 mo" : "/mo"}
                             </p>
                           )}
                         </div>

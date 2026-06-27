@@ -72,7 +72,7 @@ export function getStandardPrice(plan: PaidPlan, cycle: BillingCycle): number {
 export function formatPriceLabel(plan: PaidPlan, cycle: BillingCycle, opts?: { promo?: boolean }): string {
   const targetCycle = (plan === "family" || plan === "teacher_pro") ? "yearly" : cycle;
   const usd = getPlanPrice(plan, targetCycle, opts);
-  return `$${usd}/${targetCycle === "yearly" ? "yr" : "mo"}`;
+  return `$${usd}/${targetCycle === "yearly" ? "12 mo" : "mo"}`;
 }
 
 /**

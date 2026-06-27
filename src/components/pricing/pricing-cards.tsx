@@ -110,8 +110,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
 
   const cycleSuffix = yearly
     ? kh
-      ? "USD/ឆ្នាំ"
-      : "USD/year"
+      ? "USD/១២ ខែ"
+      : "USD/12 months"
     : kh
       ? "USD/ខែ"
       : "USD/month";
@@ -143,7 +143,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
     const forceYearly = isYearlyOnly || yearly;
     const usd = planUsd(selectedPlan, forceYearly);
     const base = PLAN_LABELS[selectedPlan];
-    const cyc = forceYearly ? (kh ? "ប្រចាំឆ្នាំ" : "Annual") : kh ? "ប្រចាំខែ" : "Monthly";
+    const cyc = forceYearly ? (kh ? "១២ ខែ" : "12 Months") : kh ? "ប្រចាំខែ" : "Monthly";
     const tag = promo ? (kh ? " — ប្រូម៉ូ" : " — Promo") : "";
     return {
       usd,
@@ -261,7 +261,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               />
             </button>
             <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/40"}`} style={khFont}>
-              {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
+              {kh ? "១២ ខែ" : "12 Months"}
               <span className="ml-1 text-[9px] md:text-xs bg-green-500/20 text-green-400 px-1.5 md:px-2 py-0.5 rounded-full font-black whitespace-nowrap">
                 {kh ? "ឥតគិតថ្លៃ ៣-៤ ខែ" : "3-4 mo free"}
               </span>
@@ -358,12 +358,12 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                     </span>
                   )}
                   <span className="text-white/50 text-xs leading-tight" style={khFont}>
-                    {kh ? "USD/ឆ្នាំ" : "USD/year"}
+                    {kh ? "USD/១២ ខែ" : "USD/12 months"}
                   </span>
                 </div>
               </div>
               <div className="text-[10px] font-bold text-amber-400 mt-1" style={khFont}>
-                {kh ? "ទូទាត់ប្រចាំឆ្នាំប៉ុណ្ណោះ" : "Billed annually only"}
+                {kh ? "ទូទាត់រៀងរាល់ ១២ ខែប៉ុណ្ណោះ" : "Billed every 12 months only"}
               </div>
               {promo && (
                 <div className="flex items-center gap-1.5 text-[11px] font-black text-green-400 mt-2 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-lg w-fit">
@@ -441,7 +441,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   <div className="flex items-end gap-1">
                     <span className="text-3xl font-black text-white leading-none">${planUsd("teacher_pro", true)}</span>
                     <span className="text-white/50 text-[9px] mb-0.5" style={khFont}>
-                      {kh ? "/ឆ្នាំ" : "/yr"}
+                      {kh ? "/១២ ខែ" : "/12 mo"}
                     </span>
                   </div>
                   {promo && (
@@ -451,7 +451,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                     </div>
                   )}
                   <div className="text-[8px] font-bold text-amber-400 mt-1" style={khFont}>
-                    {kh ? "ប្រចាំឆ្នាំ" : "Annual"}
+                    {kh ? "១២ ខែ" : "12 Months"}
                   </div>
                 </div>
 
@@ -462,7 +462,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   <div className="flex items-end gap-1">
                     <span className="text-3xl font-black text-white leading-none">${planUsd("school", yearly)}</span>
                     <span className="text-white/50 text-[9px] mb-0.5" style={khFont}>
-                      {yearly ? (kh ? "/ឆ្នាំ" : "/yr") : kh ? "/ខែ" : "/mo"}
+                      {yearly ? (kh ? "/១២ ខែ" : "/12 mo") : kh ? "/ខែ" : "/mo"}
                     </span>
                   </div>
                   {promo && (
@@ -897,12 +897,12 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 mt-5 pt-5 border-t border-white/10">
               {[
                 {
-                  en: "Pricing Promotion: Standard Teacher Pro rate is $10/year; under promo (through end of 2026) it is 70% off at $3/year. Standard rates: Family $5/yr, School $20/mo ($180/yr), Academy $35/mo ($350/yr).",
-                  kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាគ្រូ Pro គឺ ១០ដុល្លារ/ឆ្នាំ។ ក្រោមប្រូម៉ូ (រហូតចុងឆ្នាំ ២០២៦) បញ្ចុះ ៧០% ($៣/ឆ្នាំ)។ តម្លៃធម្មតា៖ គ្រួសារ $៥/ឆ្នាំ, សាលា $២០/ខែ ($១៨០/ឆ្នាំ), សាលាបណ្តុះបណ្តាល $៣៥/ខែ ($៣៥០/ឆ្នាំ)។",
+                  en: "Pricing Promotion: Standard Teacher Pro rate is $10/12 months; under promo (through end of 2026) it is 70% off at $3/12 months. Standard rates: Family $5/12 months, School $20/mo ($180/12 months), Academy $35/mo ($350/12 months).",
+                  kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាគ្រូ Pro គឺ ១០ដុល្លារ/១២ ខែ។ ក្រោមប្រូម៉ូ (រហូតចុងឆ្នាំ ២០២៦) បញ្ចុះ ៧០% ($៣/១២ ខែ)។ តម្លៃធម្មតា៖ គ្រួសារ $៥/១២ ខែ, សាលា $២០/ខែ ($១៨០/១២ ខែ), សាលាបណ្តុះបណ្តាល $៣៥/ខែ ($៣៥០/១២ ខែ)។",
                 },
                 {
-                  en: "Annual Package (free months): Yearly plans include free months — Teacher Pro 4 months ($3/yr promo, $10/yr standard), School 3 months ($54/$180), Family ($2/$5), Academy ($110/$350).",
-                  kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានខែឥតគិតថ្លៃ — គ្រូ Pro ៤ខែ ($៣ ប្រូម៉ូ / $១០ ធម្មតា), សាលា ៣ខែ ($៥៤/$១៨០), គ្រួសារ ($២/$៥), សាលាបណ្តុះបណ្តាល ($១១០/$៣៥០)។",
+                  en: "12-Month Package (free months): 12-month plans include free months — Teacher Pro 4 months ($3/12 mo promo, $10/12 mo standard), School 3 months ($54/$180), Family ($2/$5), Academy ($110/$350).",
+                  kh: "កញ្ចប់ ១២ ខែ (ខែឥតគិតថ្លៃ)៖ ការជាវគម្រោង ១២ ខែទទួលបានខែឥតគិតថ្លៃ — គ្រូ Pro ៤ខែ ($៣ ប្រូម៉ូ / $១០ ធម្មតា), សាលា ៣ខែ ($៥៤/$១៨០), គ្រួសារ ($២/$៥), សាលាបណ្តុះបណ្តាល ($១១០/$៣៥០)។",
                 },
                 {
                   en: "Who each plan is for: Free — students; Family — parents (up to 9 children); Teacher Pro — individual teachers; School — schools & NGOs; Academy — road-safety training academies.",
