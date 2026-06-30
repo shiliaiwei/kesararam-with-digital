@@ -4,9 +4,9 @@
  * KWD /videoads — 9:16 vertical short-video promo generator (admin only).
  *
  * A self-contained reel that demos the real Road-Safety challenge:
- * hook → learning-video preview → a REAL question (read aloud with recorded
- * audio) → answer-pick countdown → auto correct/wrong reveal → explanation →
- * outro (brand + website CTA). Tick + chime SFX. Built for screen recording.
+ * hook → a REAL question (read aloud with recorded audio) → answer-pick
+ * countdown → auto correct/wrong reveal → explanation → outro (brand +
+ * website CTA). Tick + chime SFX. Built for clean screen recording.
  *
  * Brand: Brutalist + traffic-sign palette (white / black / yellow #eab308 /
  * green #22c55e / red #ef4444), caution-tape accents, Google Sans Khmer.
@@ -18,7 +18,6 @@ import {
   Volume2,
   CheckCircle2,
   RotateCcw,
-  ShieldCheck,
   Sparkles,
   Clock,
   Globe,
@@ -59,7 +58,6 @@ type Question = {
 type Stage =
   | "idle"
   | "hook"
-  | "video"
   | "question"
   | "auto"
   | "reveal"
@@ -70,7 +68,6 @@ type Stage =
    waits for the recorded voice to FINISH reading (see playQuestion). */
 const TIMELINE: { stage: Stage; ms: number }[] = [
   { stage: "hook", ms: 2600 },
-  { stage: "video", ms: 3400 },
   { stage: "question", ms: 5200 },
   { stage: "auto", ms: 1600 },
   { stage: "reveal", ms: 3000 },
@@ -164,16 +161,29 @@ export default function VideoAdsClient() {
         name_en?: string | null;
         audio_url_en?: string | null;
         primary_image_url?: string | null;
+        category_id?: number | string | null;
       }[] = tJson.topics ?? [];
       if (!topics.length) throw new Error("no topics");
 
-      // Prefer topics that have recorded English reading audio (same as /learn),
-      // so the question is always read aloud with a real voice — never TTS.
-      const withAudio = topics.filter((t) => t.audio_url_en);
-      const ordered = [
-        ...withAudio.sort(() => Math.random() - 0.5),
-        ...topics.filter((t) => !t.audio_url_en).sort(() => Math.random() - 0.5),
+      // 80% of the time draw from category 1 (Traffic Signs / road signs),
+      // 20% from the other categories. Within each pool, topics WITH recorded
+      // English audio come first so the question is always voiced (never TTS).
+      const isRoadSign = (t: { category_id?: number | string | null }) =>
+        Number(t.category_id) === 1;
+      const preferRoadSign = Math.random() < 0.8;
+      const audioFirst = (arr: typeof topics) => [
+        ...arr.filter((t) => t.audio_url_en).sort(() => Math.random() - 0.5),
+        ...arr.filter((t) => !t.audio_url_en).sort(() => Math.random() - 0.5),
       ];
+      const primaryPool = topics.filter((t) =>
+        preferRoadSign ? isRoadSign(t) : !isRoadSign(t),
+      );
+      const fallbackPool = topics.filter((t) =>
+        preferRoadSign ? !isRoadSign(t) : isRoadSign(t),
+      );
+      // Primary pool drives the 80/20 weight; fallback guarantees we still find
+      // a playable question if the weighted pool has none.
+      const ordered = [...audioFirst(primaryPool), ...audioFirst(fallbackPool)];
 
       for (const t of ordered.slice(0, 12)) {
         const qRes = await fetch(`/api/public/topics/${t.id}/questions`, { cache: "no-store" });
@@ -365,7 +375,6 @@ export default function VideoAdsClient() {
           <>
             {stage === "idle" && <IdleScene />}
             {stage === "hook" && <HookScene />}
-            {stage === "video" && <VideoScene />}
             {(stage === "question" || stage === "auto") && (
               <QuestionScene
                 question={question}
@@ -467,41 +476,7 @@ function HookScene() {
   );
 }
 
-/* ── 2. learning-video preview ── */
-function VideoScene() {
-  return (
-    <FrameBase bg="#000000">
-      <div className="flex items-center justify-center px-4 pt-4">
-        <span className="text-sm font-black uppercase tracking-wide text-white">
-          THE WAY OF SAFETY
-        </span>
-      </div>
-
-      <div className="flex flex-1 flex-col items-center justify-center gap-5 p-6">
-        <div
-          className="relative flex aspect-video w-full items-center justify-center bg-[#eab308]"
-          style={{ border: "4px solid #fff" }}
-        >
-          {/* play button */}
-          <div
-            className="flex h-16 w-16 items-center justify-center rounded-full bg-black anim-pulse"
-            style={{ boxShadow: "4px 4px 0 rgba(255,255,255,0.4)" }}
-          >
-            <Play className="h-7 w-7 text-[#eab308]" fill="currentColor" />
-          </div>
-          <ShieldCheck className="absolute left-3 top-3 h-6 w-6 text-black" />
-          {/* faux scrubber */}
-          <div className="absolute bottom-0 left-0 right-0 h-2 bg-black/20">
-            <div className="h-full w-1/3 bg-black anim-scrub" />
-          </div>
-        </div>
-      </div>
-      <CautionTape variant="caution" height={22} className="w-full" />
-    </FrameBase>
-  );
-}
-
-/* ── 3 & 4. question read-aloud, then answer-picking (clock-driven) ── */
+/* ── question read-aloud, then answer-picking (clock-driven) ── */
 function QuestionScene({
   question,
   choices,
@@ -701,7 +676,7 @@ function OutroScene() {
         {/* high, prominent logo */}
         <div
           className="flex h-24 w-24 items-center justify-center rounded-full bg-white anim-pop"
-          style={{ border: "4px solid #eab308", boxShadow: "6px 6px 0 rgba(234,179,8,0.45)" }}
+          style={{ border: "4px solid #eab308" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/brand/logo.svg" alt="KWD" className="h-16 w-16 object-contain" />
