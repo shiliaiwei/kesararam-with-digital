@@ -6,7 +6,7 @@
  * A self-contained reel that demos the real Road-Safety challenge:
  * hook → learning-video preview → a REAL question (read aloud with recorded
  * audio) → answer-pick countdown → auto correct/wrong reveal → explanation →
- * stats HUD → outro (brand + website CTA). Built for clean screen recording.
+ * outro (brand + website CTA). Tick + chime SFX. Built for screen recording.
  *
  * Brand: Brutalist + traffic-sign palette (white / black / yellow #eab308 /
  * green #22c55e / red #ef4444), caution-tape accents, Google Sans Khmer.
@@ -17,12 +17,7 @@ import {
   Play,
   Volume2,
   CheckCircle2,
-  XCircle,
-  Trophy,
-  Target,
-  Flame,
   RotateCcw,
-  Circle,
   ShieldCheck,
   Sparkles,
   Clock,
@@ -67,7 +62,6 @@ type Stage =
   | "auto"
   | "reveal"
   | "explain"
-  | "stats"
   | "outro";
 
 /* Auto-run timeline (ms). The `question` scene ignores its `ms` and instead
@@ -79,7 +73,6 @@ const TIMELINE: { stage: Stage; ms: number }[] = [
   { stage: "auto", ms: 1600 },
   { stage: "reveal", ms: 3000 },
   { stage: "explain", ms: 3600 },
-  { stage: "stats", ms: 3600 },
   { stage: "outro", ms: 5200 },
 ];
 
@@ -87,7 +80,6 @@ const TIMELINE: { stage: Stage; ms: number }[] = [
    this whole countdown to elapse before auto-picking the correct answer. */
 const ANSWER_SECONDS = 30;
 
-const Y = "#eab308";
 const GREEN = "#22c55e";
 const RED = "#ef4444";
 
@@ -101,7 +93,6 @@ export default function VideoAdsClient() {
   const [err, setErr] = useState<string | null>(null);
 
   const [stage, setStage] = useState<Stage>("idle");
-  const [playing, setPlaying] = useState(false);
   /* `reading` = the recorded voice is still speaking the question.
      `countdown` = seconds left on the answer clock (drives the auto-pick). */
   const [reading, setReading] = useState(false);
@@ -109,6 +100,51 @@ export default function VideoAdsClient() {
   const stageIndexRef = useRef(0);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  /* Mirrors `reading` for use inside timer closures (state is stale there). */
+  const readingRef = useRef(false);
+
+  /* ── Web-Audio SFX (generated — no asset files): clock tick + reveal chime ── */
+  const ctxRef = useRef<AudioContext | null>(null);
+  const getCtx = useCallback(() => {
+    if (typeof window === "undefined") return null;
+    if (!ctxRef.current) {
+      const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      if (AC) ctxRef.current = new AC();
+    }
+    ctxRef.current?.resume().catch(() => {});
+    return ctxRef.current;
+  }, []);
+
+  const beep = useCallback(
+    (freq: number, dur: number, type: OscillatorType, gain: number, when = 0) => {
+      const ctx = getCtx();
+      if (!ctx) return;
+      const t = ctx.currentTime + when;
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(gain, t + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + dur + 0.02);
+    },
+    [getCtx],
+  );
+
+  // short "tik" each second while the answer clock runs (urgent when low)
+  const playTick = useCallback(
+    (low: boolean) => beep(low ? 2000 : 1500, 0.045, "square", low ? 0.12 : 0.07),
+    [beep],
+  );
+  // bright two-note chime on the answer reveal
+  const playReveal = useCallback(() => {
+    beep(660, 0.14, "triangle", 0.2, 0);
+    beep(990, 0.22, "triangle", 0.2, 0.13);
+  }, [beep]);
 
   /* The "correct" answer is what the demo auto-selects — a success story sells. */
   const correct = question?.answers.find((a) => a.is_correct) ?? null;
@@ -196,6 +232,11 @@ export default function VideoAdsClient() {
      when the ANSWER CLOCK runs out, then onDone() triggers the auto-pick. */
   const playQuestion = useCallback(
     (onDone: () => void) => {
+      const stopReading = () => {
+        readingRef.current = false;
+        setReading(false);
+      };
+      readingRef.current = true;
       setReading(true);
       setCountdown(ANSWER_SECONDS);
 
@@ -203,11 +244,11 @@ export default function VideoAdsClient() {
       if (src) {
         const a = new Audio(src);
         audioRef.current = a;
-        a.onended = () => setReading(false); // reading sound done → reveal choices
-        a.onerror = () => setReading(false);
-        a.play().catch(() => setReading(false)); // autoplay blocked
+        a.onended = stopReading; // reading sound done → reveal choices
+        a.onerror = stopReading;
+        a.play().catch(stopReading); // autoplay blocked
       } else {
-        setReading(false);
+        stopReading();
       }
 
       // Tick the clock down once per second; advance when it hits 0.
@@ -219,23 +260,23 @@ export default function VideoAdsClient() {
           onDone();
           return;
         }
+        // "tik" only once we're in the answer-picking phase (voice finished)
+        if (!readingRef.current) playTick(left <= 5);
         after(1000, tick);
       };
       after(1000, tick);
     },
-    [question, after],
+    [question, after, playTick],
   );
 
   /* ── auto-run scene scheduler ── */
   const runStage = useCallback(
     (index: number) => {
-      if (index >= TIMELINE.length) {
-        setPlaying(false);
-        return;
-      }
+      if (index >= TIMELINE.length) return; // reel finished
       stageIndexRef.current = index;
       const { stage: s, ms } = TIMELINE[index];
       setStage(s);
+      if (s === "reveal") playReveal(); // chime on the answer reveal
       const next = () => runStage(index + 1);
       if (s === "question") {
         // Hold this scene until the recorded question has been fully read.
@@ -244,21 +285,21 @@ export default function VideoAdsClient() {
       }
       after(ms, next);
     },
-    [after, playQuestion],
+    [after, playQuestion, playReveal],
   );
 
   const start = useCallback(() => {
     clearTimers();
     stopAudio();
-    setPlaying(true);
+    getCtx(); // unlock/resume Web-Audio on this user gesture
+    readingRef.current = false;
     runStage(0);
-  }, [runStage, stopAudio, clearTimers]);
+  }, [runStage, stopAudio, clearTimers, getCtx]);
 
   const restart = useCallback(() => {
     clearTimers();
     stopAudio();
     setStage("idle");
-    setPlaying(false);
     after(60, start); // next tick → start fresh
   }, [start, stopAudio, clearTimers, after]);
 
@@ -266,7 +307,6 @@ export default function VideoAdsClient() {
     clearTimers();
     stopAudio();
     setStage("idle");
-    setPlaying(false);
     await loadQuestion();
   }, [loadQuestion, stopAudio, clearTimers]);
 
@@ -274,9 +314,6 @@ export default function VideoAdsClient() {
     clearTimers();
     stopAudio();
   }, [stopAudio, clearTimers]);
-
-  /* ── derived demo stats (single correct answer answered) ── */
-  const stats = { qIndex: 1, total: 10, correctN: 1, wrongN: 0, score: 2, accuracy: 100 };
 
   /* ──────────────────────────  render  ────────────────────────── */
 
@@ -333,7 +370,6 @@ export default function VideoAdsClient() {
                 tapped={stage === "auto"}
                 reading={reading}
                 countdown={countdown}
-                stats={stats}
               />
             )}
             {(stage === "reveal" || stage === "explain") && (
@@ -341,14 +377,9 @@ export default function VideoAdsClient() {
                 question={question}
                 correct={correct}
                 showExplain={stage === "explain"}
-                stats={stats}
               />
             )}
-            {stage === "stats" && <StatsScene stats={stats} />}
             {stage === "outro" && <OutroScene />}
-
-            {/* persistent top progress dots while a reel is playing */}
-            {playing && stage !== "idle" && <SceneProgress stage={stage} />}
           </>
         )}
       </div>
@@ -474,7 +505,6 @@ function QuestionScene({
   tapped,
   reading,
   countdown,
-  stats,
 }: {
   question: Question;
   choices: Answer[];
@@ -482,7 +512,6 @@ function QuestionScene({
   tapped: boolean;
   reading: boolean;
   countdown: number;
-  stats: { qIndex: number; total: number };
 }) {
   const lowTime = countdown <= 5;
   const mm = Math.floor(Math.max(0, countdown) / 60);
@@ -500,7 +529,7 @@ function QuestionScene({
 
   return (
     <FrameBase bg="#ffffff">
-      <HudBar qIndex={stats.qIndex} total={stats.total} />
+      <HudBar />
 
       <div className="flex flex-1 flex-col gap-3 overflow-hidden px-4 pb-4 pt-2">
         {question.image_url && (
@@ -589,16 +618,14 @@ function RevealScene({
   question,
   correct,
   showExplain,
-  stats,
 }: {
   question: Question;
   correct: Answer | null;
   showExplain: boolean;
-  stats: { qIndex: number; total: number };
 }) {
   return (
     <FrameBase bg="#ffffff">
-      <HudBar qIndex={stats.qIndex} total={stats.total} />
+      <HudBar />
 
       <div className="flex flex-1 flex-col items-center justify-center gap-4 px-5 pb-5 pt-2 text-center">
         {/* CORRECT banner */}
@@ -648,59 +675,7 @@ function RevealScene({
   );
 }
 
-/* ── 7. live stats HUD ── */
-function StatsScene({
-  stats,
-}: {
-  stats: {
-    qIndex: number;
-    total: number;
-    correctN: number;
-    wrongN: number;
-    score: number;
-    accuracy: number;
-  };
-}) {
-  const cells = [
-    { icon: Circle, label: "Question", value: `${stats.qIndex}/${stats.total}`, color: "#000" },
-    { icon: CheckCircle2, label: "Correct", value: `${stats.correctN}`, color: GREEN },
-    { icon: XCircle, label: "Wrong", value: `${stats.wrongN}`, color: RED },
-    { icon: Trophy, label: "Score", value: `${stats.score}`, color: Y },
-    { icon: Target, label: "Accuracy", value: `${stats.accuracy}%`, color: GREEN },
-    { icon: Flame, label: "Streak", value: "1", color: "#f97316" },
-  ];
-  return (
-    <FrameBase bg="#000000">
-      <div className="flex flex-1 flex-col justify-center gap-5 p-5">
-        <div className="grid grid-cols-2 gap-3">
-          {cells.map((c, i) => {
-            const Icon = c.icon;
-            return (
-              <div
-                key={c.label}
-                className="flex flex-col items-center gap-1 bg-white px-3 py-4 anim-rise"
-                style={{
-                  border: "3px solid #000",
-                  boxShadow: `4px 4px 0 ${c.color}`,
-                  animationDelay: `${i * 80}ms`,
-                }}
-              >
-                <Icon className="h-6 w-6" style={{ color: c.color }} />
-                <span className="text-2xl font-black text-black">{c.value}</span>
-                <span className="text-[10px] font-black uppercase tracking-wide text-zinc-500">
-                  {c.label}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <CautionTape variant="caution" height={22} className="w-full" />
-    </FrameBase>
-  );
-}
-
-/* ── 8. outro — logo, brand, slogan + website call-to-action ── */
+/* ── 7. outro — logo, brand, slogan + website call-to-action ── */
 function OutroScene() {
   return (
     <FrameBase bg="#000000">
@@ -748,39 +723,12 @@ function OutroScene() {
 
 /* ════════════════════════════  HUD bits  ════════════════════════════ */
 
-function HudBar({ qIndex, total }: { qIndex: number; total: number }) {
+function HudBar() {
   return (
-    <>
-      <div className="flex items-center justify-between bg-black px-4 py-2.5">
-        <span className="text-sm font-black uppercase tracking-wide text-white">
-          THE WAY OF SAFETY
-        </span>
-        <span className="rounded bg-[#eab308] px-2.5 py-0.5 text-xs font-black text-black">
-          Question {qIndex}/{total}
-        </span>
-      </div>
-      <div className="h-1.5 w-full bg-zinc-200">
-        <div
-          className="h-full bg-[#eab308]"
-          style={{ width: `${(qIndex / total) * 100}%` }}
-        />
-      </div>
-    </>
-  );
-}
-
-function SceneProgress({ stage }: { stage: Stage }) {
-  const order = TIMELINE.map((t) => t.stage);
-  const idx = order.indexOf(stage);
-  return (
-    <div className="pointer-events-none absolute left-3 right-3 top-2 flex gap-1">
-      {order.map((s, i) => (
-        <div
-          key={s}
-          className="h-1 flex-1 rounded-full"
-          style={{ background: i <= idx ? Y : "rgba(0,0,0,0.18)" }}
-        />
-      ))}
+    <div className="flex items-center justify-center bg-black px-4 py-2.5">
+      <span className="text-sm font-black uppercase tracking-wide text-white">
+        THE WAY OF SAFETY
+      </span>
     </div>
   );
 }
