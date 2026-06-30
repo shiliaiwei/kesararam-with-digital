@@ -26,6 +26,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Sparkles,
+  Clock,
+  Globe,
 } from "lucide-react";
 import { CautionTape } from "@/components/brand/brand-kit";
 import "./videoads.css";
@@ -51,9 +53,9 @@ type Question = {
   audio_url_km: string | null;
   audio_url_en: string | null;
   answers: Answer[];
-  topic_name_km?: string | null;
-  /* recorded Khmer reading audio for the topic — same source the /learn pages play */
-  topic_audio_km?: string | null;
+  topic_name_en?: string | null;
+  /* recorded English reading audio for the topic — same source the /learn pages play */
+  topic_audio_en?: string | null;
 };
 
 /* ───────────────────────────  scene machine  ─────────────────────────── */
@@ -63,19 +65,20 @@ type Stage =
   | "hook"
   | "video"
   | "question"
-  | "tap"
+  | "auto"
   | "reveal"
   | "explain"
   | "stats"
   | "challenge"
   | "outro";
 
-/* Auto-run timeline (ms). `question` is extended live while the TTS speaks. */
+/* Auto-run timeline (ms). The `question` scene ignores its `ms` and instead
+   waits for the recorded voice to FINISH reading (see playQuestion). */
 const TIMELINE: { stage: Stage; ms: number }[] = [
   { stage: "hook", ms: 2600 },
   { stage: "video", ms: 3400 },
   { stage: "question", ms: 5200 },
-  { stage: "tap", ms: 1500 },
+  { stage: "auto", ms: 1600 },
   { stage: "reveal", ms: 3000 },
   { stage: "explain", ms: 3600 },
   { stage: "stats", ms: 3600 },
@@ -83,11 +86,19 @@ const TIMELINE: { stage: Stage; ms: number }[] = [
   { stage: "outro", ms: 4200 },
 ];
 
+/* Answer window: a visible countdown shown while the question is read.
+   The scene still advances as soon as the voice finishes (capped at this). */
+const ANSWER_SECONDS = 30;
+/* Safety cap so a long/looping audio file can't stall the reel (= countdown). */
+const QUESTION_MAX_MS = ANSWER_SECONDS * 1000;
+/* Beat after the voice ends before the auto-answer fires. */
+const QUESTION_TAIL_MS = 700;
+
 const Y = "#eab308";
 const GREEN = "#22c55e";
 const RED = "#ef4444";
 
-const CHOICE_LETTERS = ["ក", "ខ", "គ", "ឃ", "ង"];
+const CHOICE_LETTERS = ["A", "B", "C", "D", "E"];
 
 /* ───────────────────────────  component  ─────────────────────────── */
 
@@ -99,10 +110,10 @@ export default function VideoAdsClient() {
   const [stage, setStage] = useState<Stage>("idle");
   const [playing, setPlaying] = useState(false);
   const stageIndexRef = useRef(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  /* The "correct" answer is what the demo taps — a success story sells better. */
+  /* The "correct" answer is what the demo auto-selects — a success story sells. */
   const correct = question?.answers.find((a) => a.is_correct) ?? null;
   const choices = question?.answers.slice(0, 4) ?? [];
 
@@ -115,17 +126,17 @@ export default function VideoAdsClient() {
       const tJson = await tRes.json();
       const topics: {
         id: number | string;
-        name_km?: string | null;
-        audio_url_km?: string | null;
+        name_en?: string | null;
+        audio_url_en?: string | null;
       }[] = tJson.topics ?? [];
       if (!topics.length) throw new Error("no topics");
 
-      // Prefer topics that have recorded Khmer reading audio (same as /learn),
+      // Prefer topics that have recorded English reading audio (same as /learn),
       // so the question is always read aloud with a real voice — never TTS.
-      const withAudio = topics.filter((t) => t.audio_url_km);
+      const withAudio = topics.filter((t) => t.audio_url_en);
       const ordered = [
         ...withAudio.sort(() => Math.random() - 0.5),
-        ...topics.filter((t) => !t.audio_url_km).sort(() => Math.random() - 0.5),
+        ...topics.filter((t) => !t.audio_url_en).sort(() => Math.random() - 0.5),
       ];
 
       for (const t of ordered.slice(0, 12)) {
@@ -133,18 +144,18 @@ export default function VideoAdsClient() {
         const qJson = await qRes.json();
         const qs: Question[] = (qJson.questions ?? []).filter(
           (q: Question) =>
-            q.question_km &&
+            q.question_en &&
             Array.isArray(q.answers) &&
             q.answers.length >= 2 &&
             q.answers.some((a) => a.is_correct) &&
-            q.answers.every((a) => a.answer_km),
+            q.answers.every((a) => a.answer_en),
         );
         // Reading audio must exist (question-level OR the topic recording).
-        const playable = qs.filter((q) => q.audio_url_km || t.audio_url_km);
+        const playable = qs.filter((q) => q.audio_url_en || t.audio_url_en);
         if (playable.length) {
           const pick = playable[Math.floor(Math.random() * playable.length)];
-          pick.topic_name_km = t.name_km ?? null;
-          pick.topic_audio_km = t.audio_url_km ?? null;
+          pick.topic_name_en = t.name_en ?? null;
+          pick.topic_audio_en = t.audio_url_en ?? null;
           setQuestion(pick);
           setLoading(false);
           return;
@@ -161,38 +172,54 @@ export default function VideoAdsClient() {
     loadQuestion();
   }, [loadQuestion]);
 
-  /* ── read aloud using RECORDED audio only (same source as /learn reading) ── */
-  const speak = useCallback(() => {
-    if (!question) return;
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
-    // Question recording first, else the topic's reading recording. No TTS.
-    const src = question.audio_url_km || question.topic_audio_km;
-    if (!src) return;
-    const a = new Audio(src);
-    audioRef.current = a;
-    a.play().catch(() => {
-      /* autoplay blocked — the visual "កំពុងអាន…" cue still plays */
-    });
-  }, [question]);
+  /* ── timer helpers (track every pending timeout so we can cancel cleanly) ── */
+  const after = useCallback((ms: number, fn: () => void) => {
+    const id = setTimeout(fn, ms);
+    timersRef.current.push(id);
+    return id;
+  }, []);
+
+  const clearTimers = useCallback(() => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  }, []);
 
   const stopAudio = useCallback(() => {
     if (audioRef.current) {
+      audioRef.current.onended = null;
+      audioRef.current.onerror = null;
       audioRef.current.pause();
       audioRef.current = null;
     }
   }, []);
 
-  /* ── auto-run scene scheduler ── */
-  const clearTimer = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-  };
+  /* Read the question aloud with the RECORDED voice (same source as /learn),
+     then call onDone when the voice FINISHES — so the full question is heard. */
+  const playQuestion = useCallback(
+    (onDone: () => void) => {
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        onDone();
+      };
+      const src = question?.audio_url_en || question?.topic_audio_en;
+      // No recording → fall back to the fixed scene length.
+      if (!src) {
+        after(TIMELINE[2].ms, finish);
+        return;
+      }
+      const a = new Audio(src);
+      audioRef.current = a;
+      a.onended = () => after(QUESTION_TAIL_MS, finish); // small beat, then advance
+      a.onerror = () => after(TIMELINE[2].ms, finish);
+      a.play().catch(() => after(TIMELINE[2].ms, finish)); // autoplay blocked
+      after(QUESTION_MAX_MS, finish); // hard safety cap
+    },
+    [question, after],
+  );
 
+  /* ── auto-run scene scheduler ── */
   const runStage = useCallback(
     (index: number) => {
       if (index >= TIMELINE.length) {
@@ -202,40 +229,44 @@ export default function VideoAdsClient() {
       stageIndexRef.current = index;
       const { stage: s, ms } = TIMELINE[index];
       setStage(s);
-      if (s === "question") speak();
-      timerRef.current = setTimeout(() => runStage(index + 1), ms);
+      const next = () => runStage(index + 1);
+      if (s === "question") {
+        // Hold this scene until the recorded question has been fully read.
+        playQuestion(next);
+        return;
+      }
+      after(ms, next);
     },
-    [speak],
+    [after, playQuestion],
   );
 
   const start = useCallback(() => {
-    clearTimer();
+    clearTimers();
     stopAudio();
     setPlaying(true);
     runStage(0);
-  }, [runStage, stopAudio]);
+  }, [runStage, stopAudio, clearTimers]);
 
   const restart = useCallback(() => {
-    clearTimer();
+    clearTimers();
     stopAudio();
     setStage("idle");
     setPlaying(false);
-    // next tick → start fresh
-    setTimeout(start, 60);
-  }, [start, stopAudio]);
+    after(60, start); // next tick → start fresh
+  }, [start, stopAudio, clearTimers, after]);
 
   const reroll = useCallback(async () => {
-    clearTimer();
+    clearTimers();
     stopAudio();
     setStage("idle");
     setPlaying(false);
     await loadQuestion();
-  }, [loadQuestion, stopAudio]);
+  }, [loadQuestion, stopAudio, clearTimers]);
 
   useEffect(() => () => {
-    clearTimer();
+    clearTimers();
     stopAudio();
-  }, [stopAudio]);
+  }, [stopAudio, clearTimers]);
 
   /* ── derived demo stats (single correct answer answered) ── */
   const stats = { qIndex: 1, total: 10, correctN: 1, wrongN: 0, score: 2, accuracy: 100 };
@@ -251,7 +282,7 @@ export default function VideoAdsClient() {
           disabled={loading || !question}
           className="nb-btn inline-flex items-center gap-2 bg-[#eab308] px-5 py-2.5 text-sm font-black uppercase tracking-wide text-black disabled:opacity-40"
         >
-          <Play className="h-4 w-4" fill="currentColor" /> ថត / Record
+          <Play className="h-4 w-4" fill="currentColor" /> Record
         </button>
         <button
           onClick={restart}
@@ -279,20 +310,20 @@ export default function VideoAdsClient() {
           boxShadow: "10px 10px 0 #000",
         }}
       >
-        {loading && <CenterMsg text="កំពុងផ្ទុក…" />}
-        {err && !loading && <CenterMsg text="ផ្ទុកមិនបាន — សូមចុច Reroll" tone="red" />}
+        {loading && <CenterMsg text="Loading…" />}
+        {err && !loading && <CenterMsg text="Load failed — press Reroll" tone="red" />}
 
         {!loading && !err && question && (
           <>
             {stage === "idle" && <IdleScene />}
             {stage === "hook" && <HookScene />}
-            {stage === "video" && <VideoScene topicKm={question.topic_name_km} />}
-            {(stage === "question" || stage === "tap") && (
+            {stage === "video" && <VideoScene topicEn={question.topic_name_en} />}
+            {(stage === "question" || stage === "auto") && (
               <QuestionScene
                 question={question}
                 choices={choices}
                 correctId={correct?.id}
-                tapped={stage === "tap"}
+                tapped={stage === "auto"}
                 stats={stats}
               />
             )}
@@ -313,10 +344,6 @@ export default function VideoAdsClient() {
           </>
         )}
       </div>
-
-      <p className="max-w-[380px] text-center text-xs font-bold uppercase tracking-wide text-zinc-400">
-        9:16 · ថតអេក្រង់ក្នុងស៊ុមនេះ · Admin only
-      </p>
     </div>
   );
 }
@@ -362,11 +389,10 @@ function IdleScene() {
           <Play className="h-9 w-9 text-[#eab308]" fill="currentColor" />
         </div>
         <h1 className="text-3xl font-black leading-tight text-black">
-          វិថីសុវត្ថិភាព
+          THE WAY
+          <br />
+          OF SAFETY
         </h1>
-        <p className="text-sm font-bold uppercase tracking-wide text-black/70">
-          ចុច “ថត / Record” ដើម្បីចាប់ផ្តើម
-        </p>
       </div>
       <CautionTape variant="caution" height={26} className="w-full" />
     </FrameBase>
@@ -380,17 +406,17 @@ function HookScene() {
       <CautionTape variant="chevron" height={24} className="w-full" />
       <div className="flex flex-1 flex-col items-center justify-center gap-4 p-6 text-center anim-pop">
         <span className="rounded-full bg-[#ef4444] px-4 py-1.5 text-xs font-black uppercase tracking-widest text-white">
-          តេស្តចំណេះដឹង
+          Quick Test
         </span>
         <h1 className="text-[2.6rem] font-black leading-[1.05] text-white">
-          តើអ្នកចេះ
+          HOW WELL
           <br />
-          <span className="text-[#eab308]">ច្បាប់ចរាចរណ៍</span>
+          DO YOU KNOW
           <br />
-          ប៉ុន្មាន%?
+          <span className="text-[#eab308]">ROAD RULES?</span>
         </h1>
         <p className="mt-1 text-lg font-bold text-white/80">
-          ៩០% ឆ្លើយខុសសំណួរនេះ 👀
+          90% get this wrong
         </p>
       </div>
       <CautionTape variant="chevron" height={24} className="w-full rotate-180" />
@@ -399,12 +425,12 @@ function HookScene() {
 }
 
 /* ── 2. learning-video preview ── */
-function VideoScene({ topicKm }: { topicKm?: string | null }) {
+function VideoScene({ topicEn }: { topicEn?: string | null }) {
   return (
     <FrameBase bg="#000000">
       <div className="flex items-center justify-between px-4 pt-4">
         <span className="text-sm font-black uppercase tracking-wide text-white">
-          វិថីសុវត្ថិភាព
+          THE WAY OF SAFETY
         </span>
         <span className="rounded bg-[#ef4444] px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-white">
           ● LIVE
@@ -430,12 +456,12 @@ function VideoScene({ topicKm }: { topicKm?: string | null }) {
           </div>
         </div>
         <h2 className="text-center text-2xl font-black leading-tight text-white">
-          មេរៀនសុវត្ថិភាព
+          ROAD SAFETY
           <br />
-          ចរាចរណ៍
+          LESSONS
         </h2>
-        {topicKm && (
-          <p className="text-center text-sm font-bold text-white/70">{topicKm}</p>
+        {topicEn && (
+          <p className="text-center text-sm font-bold text-white/70">{topicEn}</p>
         )}
       </div>
       <CautionTape variant="caution" height={22} className="w-full" />
@@ -457,6 +483,18 @@ function QuestionScene({
   tapped: boolean;
   stats: { qIndex: number; total: number };
 }) {
+  // Answer countdown — ticks down while the voice reads; freezes once auto-answered.
+  const [secs, setSecs] = useState(ANSWER_SECONDS);
+  useEffect(() => {
+    if (tapped || secs <= 0) return;
+    const id = setTimeout(() => setSecs((s) => s - 1), 1000);
+    return () => clearTimeout(id);
+  }, [secs, tapped]);
+
+  const lowTime = secs <= 5;
+  const mm = Math.floor(secs / 60);
+  const ss = String(secs % 60).padStart(2, "0");
+
   return (
     <FrameBase bg="#ffffff">
       <HudBar qIndex={stats.qIndex} total={stats.total} />
@@ -464,7 +502,7 @@ function QuestionScene({
       <div className="flex flex-1 flex-col gap-3 overflow-hidden px-4 pb-4 pt-2">
         {question.image_url && (
           <div
-            className="mx-auto flex h-28 w-full items-center justify-center overflow-hidden bg-zinc-100"
+            className="mx-auto flex h-24 w-full items-center justify-center overflow-hidden bg-zinc-100"
             style={{ border: "3px solid #000" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -476,16 +514,25 @@ function QuestionScene({
           </div>
         )}
 
-        {/* question text + speaking indicator */}
+        {/* question text + speaking indicator + answer countdown */}
         <div
           className="relative bg-[#eab308] px-3 py-3"
           style={{ border: "3px solid #000", boxShadow: "4px 4px 0 #000" }}
         >
-          <div className="mb-1 inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-black/70">
-            <Volume2 className="h-3.5 w-3.5 anim-pulse" /> កំពុងអាន…
+          <div className="mb-1 flex items-center justify-between">
+            <div className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-black/70">
+              <Volume2 className="h-3.5 w-3.5 anim-pulse" /> Reading…
+            </div>
+            <div
+              className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-black tabular-nums text-white"
+              style={{ background: lowTime ? RED : "#000" }}
+            >
+              <Clock className="h-3.5 w-3.5" />
+              {mm}:{ss}
+            </div>
           </div>
-          <p className="text-[1.05rem] font-black leading-snug text-black">
-            {question.question_km}
+          <p className="text-[1.02rem] font-black leading-snug text-black">
+            {question.question_en}
           </p>
         </div>
 
@@ -496,7 +543,7 @@ function QuestionScene({
             return (
               <div
                 key={c.id}
-                className="flex items-center gap-2.5 bg-white px-3 py-2.5 anim-rise"
+                className="flex items-center gap-2.5 bg-white px-3 py-2 anim-rise"
                 style={{
                   border: "3px solid #000",
                   boxShadow: isTappedCorrect ? `4px 4px 0 ${GREEN}` : "3px 3px 0 #000",
@@ -512,7 +559,7 @@ function QuestionScene({
                   {CHOICE_LETTERS[i]}
                 </span>
                 <span className="text-sm font-bold leading-tight text-black">
-                  {c.answer_km}
+                  {c.answer_en}
                 </span>
                 {isTappedCorrect && (
                   <CheckCircle2 className="ml-auto h-5 w-5 flex-none text-[#22c55e]" />
@@ -550,14 +597,14 @@ function RevealScene({
         >
           <CheckCircle2 className="h-8 w-8 text-white" />
           <span className="text-3xl font-black uppercase tracking-wide text-white">
-            ត្រឹមត្រូវ!
+            CORRECT!
           </span>
         </div>
 
         {/* the correct answer, stated clearly */}
         <div className="w-full">
           <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-            ចម្លើយត្រឹមត្រូវ
+            Correct answer
           </p>
           <div
             className="flex items-center gap-2.5 bg-[#dcfce7] px-3 py-3"
@@ -565,23 +612,23 @@ function RevealScene({
           >
             <CheckCircle2 className="h-6 w-6 flex-none text-[#22c55e]" />
             <span className="text-left text-base font-black leading-tight text-black">
-              {correct?.answer_km}
+              {correct?.answer_en}
             </span>
           </div>
         </div>
 
         {/* explanation */}
-        {showExplain && (question.hint_km || correct?.answer_km) && (
+        {showExplain && (question.hint_en || correct?.answer_en) && (
           <div
             className="w-full bg-zinc-50 px-3 py-3 anim-rise"
             style={{ border: "3px solid #000" }}
           >
             <p className="mb-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-              ការពន្យល់
+              Explanation
             </p>
             <p className="text-left text-sm font-bold leading-snug text-zinc-800">
-              {question.hint_km ||
-                `ចម្លើយត្រឹមត្រូវគឺ “${correct?.answer_km}” — សូមចងចាំ ដើម្បីបើកបរប្រកបដោយសុវត្ថិភាព។`}
+              {question.hint_en ||
+                `The correct answer is “${correct?.answer_en}” — remember it to drive safely.`}
             </p>
           </div>
         )}
@@ -604,18 +651,18 @@ function StatsScene({
   };
 }) {
   const cells = [
-    { icon: Circle, label: "សំណួរ", value: `${stats.qIndex}/${stats.total}`, color: "#000" },
-    { icon: CheckCircle2, label: "ត្រូវ", value: `${stats.correctN}`, color: GREEN },
-    { icon: XCircle, label: "ខុស", value: `${stats.wrongN}`, color: RED },
-    { icon: Trophy, label: "ពិន្ទុ", value: `${stats.score}`, color: Y },
-    { icon: Target, label: "ភាពត្រឹមត្រូវ", value: `${stats.accuracy}%`, color: GREEN },
-    { icon: Flame, label: "ស្ទ្រីក", value: "1", color: "#f97316" },
+    { icon: Circle, label: "Question", value: `${stats.qIndex}/${stats.total}`, color: "#000" },
+    { icon: CheckCircle2, label: "Correct", value: `${stats.correctN}`, color: GREEN },
+    { icon: XCircle, label: "Wrong", value: `${stats.wrongN}`, color: RED },
+    { icon: Trophy, label: "Score", value: `${stats.score}`, color: Y },
+    { icon: Target, label: "Accuracy", value: `${stats.accuracy}%`, color: GREEN },
+    { icon: Flame, label: "Streak", value: "1", color: "#f97316" },
   ];
   return (
     <FrameBase bg="#000000">
       <div className="flex flex-1 flex-col justify-center gap-5 p-5">
         <h2 className="text-center text-2xl font-black uppercase tracking-wide text-white">
-          លទ្ធផលផ្ទាល់
+          Live Results
         </h2>
         <div className="grid grid-cols-2 gap-3">
           {cells.map((c, i) => {
@@ -653,7 +700,7 @@ function ChallengeScene() {
       <div className="flex flex-1 flex-col items-center justify-center gap-5 p-6 text-center anim-pop">
         <Trophy className="h-14 w-14 text-black" />
         <h2 className="text-[2rem] font-black leading-tight text-black">
-          ចូលរួម
+          JOIN THE
           <br />
           Road Safety
           <br />
@@ -663,7 +710,7 @@ function ChallengeScene() {
           className="inline-flex items-center gap-2 bg-black px-6 py-3 text-lg font-black uppercase tracking-wide text-[#eab308] anim-pulse"
           style={{ boxShadow: "5px 5px 0 rgba(0,0,0,0.25)" }}
         >
-          ចាប់ផ្តើមឥឡូវនេះ <ArrowRight className="h-5 w-5" />
+          Start Now <ArrowRight className="h-5 w-5" />
         </div>
       </div>
       <CautionTape variant="chevron" height={24} className="w-full rotate-180" />
@@ -671,37 +718,64 @@ function ChallengeScene() {
   );
 }
 
-/* ── 9. outro tagline ── */
+/* ── 9. outro — logo, brand, tagline + website call-to-action ── */
 function OutroScene() {
-  const words = ["រៀន", "អនុវត្ត", "ប្រកួតប្រជែង", "កែលម្អ"];
+  const words = ["LEARN", "PRACTICE", "COMPETE", "IMPROVE"];
   return (
     <FrameBase bg="#000000">
-      <div className="flex flex-1 flex-col items-center justify-center gap-6 p-6 text-center">
-        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-          {words.map((w, i) => (
-            <span key={w} className="flex items-center gap-2">
-              <span
-                className="text-xl font-black text-[#eab308] anim-rise"
-                style={{ animationDelay: `${i * 160}ms` }}
-              >
-                {w}
-              </span>
-              {i < words.length - 1 && <span className="text-white/40">·</span>}
-            </span>
-          ))}
-        </div>
-        <h1 className="text-[2.7rem] font-black leading-none text-white anim-pop">
-          វិថី
-          <span className="text-[#eab308]">សុវត្ថិភាព</span>
-        </h1>
+      <div className="flex flex-1 flex-col items-center justify-center gap-4 p-6 text-center">
+        {/* high, prominent logo */}
         <div
-          className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eab308]"
-          style={{ boxShadow: "5px 5px 0 rgba(255,255,255,0.3)" }}
+          className="flex h-24 w-24 items-center justify-center rounded-full bg-white anim-pop"
+          style={{ border: "4px solid #eab308", boxShadow: "6px 6px 0 rgba(234,179,8,0.45)" }}
         >
-          <ShieldCheck className="h-8 w-8 text-black" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/logo.svg" alt="KWD" className="h-16 w-16 object-contain" />
+        </div>
+
+        {/* brand name — Khmer (primary) + English */}
+        <div className="flex flex-col items-center gap-0.5">
+          <h1 className="text-[2.3rem] font-black leading-none text-[#eab308] anim-pop">
+            វិថីសុវត្ថិភាព
+          </h1>
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-white/70">
+            The Way of Safety
+          </p>
+        </div>
+
+        {/* tagline — English + Khmer */}
+        <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-wrap items-center justify-center gap-x-1.5">
+            {words.map((w, i) => (
+              <span key={w} className="flex items-center gap-1.5">
+                <span
+                  className="text-sm font-black text-white anim-rise"
+                  style={{ animationDelay: `${i * 140}ms` }}
+                >
+                  {w}
+                </span>
+                {i < words.length - 1 && <span className="text-[#eab308]">·</span>}
+              </span>
+            ))}
+          </div>
+          <p className="text-sm font-black text-white/80">
+            រៀន · អនុវត្ត · ប្រកួតប្រជែង · កែលម្អ
+          </p>
+        </div>
+
+        {/* encouraging call-to-action — come learn on the website */}
+        <p className="mt-1 text-base font-black leading-snug text-white">
+          Start learning road safety today
+        </p>
+        <div
+          className="inline-flex items-center gap-2 bg-[#eab308] px-4 py-2.5 text-sm font-black text-black anim-pulse"
+          style={{ boxShadow: "4px 4px 0 rgba(255,255,255,0.25)" }}
+        >
+          <Globe className="h-4 w-4" />
+          kesararamwithdigital.tech
         </div>
       </div>
-      <CautionTape variant="caution" height={26} className="w-full" />
+      <CautionTape variant="caution" height={24} className="w-full" />
     </FrameBase>
   );
 }
@@ -713,10 +787,10 @@ function HudBar({ qIndex, total }: { qIndex: number; total: number }) {
     <>
       <div className="flex items-center justify-between bg-black px-4 py-2.5">
         <span className="text-sm font-black uppercase tracking-wide text-white">
-          វិថីសុវត្ថិភាព
+          THE WAY OF SAFETY
         </span>
         <span className="rounded bg-[#eab308] px-2.5 py-0.5 text-xs font-black text-black">
-          សំណួរ {qIndex}/{total}
+          Question {qIndex}/{total}
         </span>
       </div>
       <div className="h-1.5 w-full bg-zinc-200">
