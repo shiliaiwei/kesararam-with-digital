@@ -86,13 +86,9 @@ const TIMELINE: { stage: Stage; ms: number }[] = [
   { stage: "outro", ms: 4200 },
 ];
 
-/* Answer window: a visible countdown shown while the question is read.
-   The scene still advances as soon as the voice finishes (capped at this). */
+/* Answer window (seconds): the question scene reads the voice, then waits for
+   this whole countdown to elapse before auto-picking the correct answer. */
 const ANSWER_SECONDS = 30;
-/* Safety cap so a long/looping audio file can't stall the reel (= countdown). */
-const QUESTION_MAX_MS = ANSWER_SECONDS * 1000;
-/* Beat after the voice ends before the auto-answer fires. */
-const QUESTION_TAIL_MS = 700;
 
 const Y = "#eab308";
 const GREEN = "#22c55e";
@@ -109,6 +105,10 @@ export default function VideoAdsClient() {
 
   const [stage, setStage] = useState<Stage>("idle");
   const [playing, setPlaying] = useState(false);
+  /* `reading` = the recorded voice is still speaking the question.
+     `countdown` = seconds left on the answer clock (drives the auto-pick). */
+  const [reading, setReading] = useState(false);
+  const [countdown, setCountdown] = useState(ANSWER_SECONDS);
   const stageIndexRef = useRef(0);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -193,28 +193,38 @@ export default function VideoAdsClient() {
     }
   }, []);
 
-  /* Read the question aloud with the RECORDED voice (same source as /learn),
-     then call onDone when the voice FINISHES — so the full question is heard. */
+  /* Read the question aloud with the RECORDED voice (same source as /learn).
+     While the voice speaks → show the question. When it ends → hide the
+     question and show the answer choices to pick. The scene advances only
+     when the ANSWER CLOCK runs out, then onDone() triggers the auto-pick. */
   const playQuestion = useCallback(
     (onDone: () => void) => {
-      let done = false;
-      const finish = () => {
-        if (done) return;
-        done = true;
-        onDone();
-      };
+      setReading(true);
+      setCountdown(ANSWER_SECONDS);
+
       const src = question?.audio_url_en || question?.topic_audio_en;
-      // No recording → fall back to the fixed scene length.
-      if (!src) {
-        after(TIMELINE[2].ms, finish);
-        return;
+      if (src) {
+        const a = new Audio(src);
+        audioRef.current = a;
+        a.onended = () => setReading(false); // reading sound done → reveal choices
+        a.onerror = () => setReading(false);
+        a.play().catch(() => setReading(false)); // autoplay blocked
+      } else {
+        setReading(false);
       }
-      const a = new Audio(src);
-      audioRef.current = a;
-      a.onended = () => after(QUESTION_TAIL_MS, finish); // small beat, then advance
-      a.onerror = () => after(TIMELINE[2].ms, finish);
-      a.play().catch(() => after(TIMELINE[2].ms, finish)); // autoplay blocked
-      after(QUESTION_MAX_MS, finish); // hard safety cap
+
+      // Tick the clock down once per second; advance when it hits 0.
+      let left = ANSWER_SECONDS;
+      const tick = () => {
+        left -= 1;
+        setCountdown(left);
+        if (left <= 0) {
+          onDone();
+          return;
+        }
+        after(1000, tick);
+      };
+      after(1000, tick);
     },
     [question, after],
   );
@@ -317,13 +327,15 @@ export default function VideoAdsClient() {
           <>
             {stage === "idle" && <IdleScene />}
             {stage === "hook" && <HookScene />}
-            {stage === "video" && <VideoScene topicEn={question.topic_name_en} />}
+            {stage === "video" && <VideoScene />}
             {(stage === "question" || stage === "auto") && (
               <QuestionScene
                 question={question}
                 choices={choices}
                 correctId={correct?.id}
                 tapped={stage === "auto"}
+                reading={reading}
+                countdown={countdown}
                 stats={stats}
               />
             )}
@@ -425,15 +437,12 @@ function HookScene() {
 }
 
 /* ── 2. learning-video preview ── */
-function VideoScene({ topicEn }: { topicEn?: string | null }) {
+function VideoScene() {
   return (
     <FrameBase bg="#000000">
-      <div className="flex items-center justify-between px-4 pt-4">
+      <div className="flex items-center justify-center px-4 pt-4">
         <span className="text-sm font-black uppercase tracking-wide text-white">
           THE WAY OF SAFETY
-        </span>
-        <span className="rounded bg-[#ef4444] px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-white">
-          ● LIVE
         </span>
       </div>
 
@@ -455,45 +464,43 @@ function VideoScene({ topicEn }: { topicEn?: string | null }) {
             <div className="h-full w-1/3 bg-black anim-scrub" />
           </div>
         </div>
-        <h2 className="text-center text-2xl font-black leading-tight text-white">
-          ROAD SAFETY
-          <br />
-          LESSONS
-        </h2>
-        {topicEn && (
-          <p className="text-center text-sm font-bold text-white/70">{topicEn}</p>
-        )}
       </div>
       <CautionTape variant="caution" height={22} className="w-full" />
     </FrameBase>
   );
 }
 
-/* ── 3 & 4. question (TTS) + tap ── */
+/* ── 3 & 4. question read-aloud, then answer-picking (clock-driven) ── */
 function QuestionScene({
   question,
   choices,
   correctId,
   tapped,
+  reading,
+  countdown,
   stats,
 }: {
   question: Question;
   choices: Answer[];
   correctId?: number | string;
   tapped: boolean;
+  reading: boolean;
+  countdown: number;
   stats: { qIndex: number; total: number };
 }) {
-  // Answer countdown — ticks down while the voice reads; freezes once auto-answered.
-  const [secs, setSecs] = useState(ANSWER_SECONDS);
-  useEffect(() => {
-    if (tapped || secs <= 0) return;
-    const id = setTimeout(() => setSecs((s) => s - 1), 1000);
-    return () => clearTimeout(id);
-  }, [secs, tapped]);
+  const lowTime = countdown <= 5;
+  const mm = Math.floor(Math.max(0, countdown) / 60);
+  const ss = String(Math.max(0, countdown) % 60).padStart(2, "0");
 
-  const lowTime = secs <= 5;
-  const mm = Math.floor(secs / 60);
-  const ss = String(secs % 60).padStart(2, "0");
+  const clock = (
+    <div
+      className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-black tabular-nums text-white"
+      style={{ background: lowTime ? RED : "#000" }}
+    >
+      <Clock className="h-3.5 w-3.5" />
+      {mm}:{ss}
+    </div>
+  );
 
   return (
     <FrameBase bg="#ffffff">
@@ -514,60 +521,68 @@ function QuestionScene({
           </div>
         )}
 
-        {/* question text + speaking indicator + answer countdown */}
-        <div
-          className="relative bg-[#eab308] px-3 py-3"
-          style={{ border: "3px solid #000", boxShadow: "4px 4px 0 #000" }}
-        >
-          <div className="mb-1 flex items-center justify-between">
-            <div className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-black/70">
-              <Volume2 className="h-3.5 w-3.5 anim-pulse" /> Reading…
-            </div>
-            <div
-              className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-black tabular-nums text-white"
-              style={{ background: lowTime ? RED : "#000" }}
-            >
-              <Clock className="h-3.5 w-3.5" />
-              {mm}:{ss}
-            </div>
-          </div>
-          <p className="text-[1.02rem] font-black leading-snug text-black">
-            {question.question_en}
-          </p>
-        </div>
-
-        {/* silent choices */}
-        <div className="flex flex-col gap-2">
-          {choices.map((c, i) => {
-            const isTappedCorrect = tapped && c.id === correctId;
-            return (
-              <div
-                key={c.id}
-                className="flex items-center gap-2.5 bg-white px-3 py-2 anim-rise"
-                style={{
-                  border: "3px solid #000",
-                  boxShadow: isTappedCorrect ? `4px 4px 0 ${GREEN}` : "3px 3px 0 #000",
-                  background: isTappedCorrect ? "#dcfce7" : "#fff",
-                  animationDelay: `${i * 90}ms`,
-                  transform: isTappedCorrect ? "translate(-1px,-1px)" : undefined,
-                }}
-              >
-                <span
-                  className="flex h-7 w-7 flex-none items-center justify-center text-sm font-black text-white"
-                  style={{ background: isTappedCorrect ? GREEN : "#000" }}
-                >
-                  {CHOICE_LETTERS[i]}
-                </span>
-                <span className="text-sm font-bold leading-tight text-black">
-                  {c.answer_en}
-                </span>
-                {isTappedCorrect && (
-                  <CheckCircle2 className="ml-auto h-5 w-5 flex-none text-[#22c55e]" />
-                )}
+        {reading ? (
+          /* WHILE the voice reads → show the question only */
+          <div
+            className="relative bg-[#eab308] px-3 py-3"
+            style={{ border: "3px solid #000", boxShadow: "4px 4px 0 #000" }}
+          >
+            <div className="mb-1 flex items-center justify-between">
+              <div className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-black/70">
+                <Volume2 className="h-3.5 w-3.5 anim-pulse" /> Reading…
               </div>
-            );
-          })}
-        </div>
+              {clock}
+            </div>
+            <p className="text-[1.02rem] font-black leading-snug text-black">
+              {question.question_en}
+            </p>
+          </div>
+        ) : (
+          /* AFTER the voice ends → hide the question, show choices to pick */
+          <>
+            <div
+              className="flex items-center justify-between bg-black px-3 py-2"
+              style={{ border: "3px solid #000" }}
+            >
+              <span className="text-xs font-black uppercase tracking-widest text-[#eab308]">
+                Pick your answer
+              </span>
+              {clock}
+            </div>
+
+            <div className="flex flex-col gap-2">
+              {choices.map((c, i) => {
+                const isTappedCorrect = tapped && c.id === correctId;
+                return (
+                  <div
+                    key={c.id}
+                    className="flex items-center gap-2.5 bg-white px-3 py-2 anim-rise"
+                    style={{
+                      border: "3px solid #000",
+                      boxShadow: isTappedCorrect ? `4px 4px 0 ${GREEN}` : "3px 3px 0 #000",
+                      background: isTappedCorrect ? "#dcfce7" : "#fff",
+                      animationDelay: `${i * 90}ms`,
+                      transform: isTappedCorrect ? "translate(-1px,-1px)" : undefined,
+                    }}
+                  >
+                    <span
+                      className="flex h-7 w-7 flex-none items-center justify-center text-sm font-black text-white"
+                      style={{ background: isTappedCorrect ? GREEN : "#000" }}
+                    >
+                      {CHOICE_LETTERS[i]}
+                    </span>
+                    <span className="text-sm font-bold leading-tight text-black">
+                      {c.answer_en}
+                    </span>
+                    {isTappedCorrect && (
+                      <CheckCircle2 className="ml-auto h-5 w-5 flex-none text-[#22c55e]" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
     </FrameBase>
   );
@@ -661,9 +676,6 @@ function StatsScene({
   return (
     <FrameBase bg="#000000">
       <div className="flex flex-1 flex-col justify-center gap-5 p-5">
-        <h2 className="text-center text-2xl font-black uppercase tracking-wide text-white">
-          Live Results
-        </h2>
         <div className="grid grid-cols-2 gap-3">
           {cells.map((c, i) => {
             const Icon = c.icon;
