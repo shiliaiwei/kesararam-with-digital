@@ -3,10 +3,10 @@
 /**
  * KWD /videoads — 9:16 vertical short-video promo generator (admin only).
  *
- * A self-contained reel that demos the real Road-Safety Online Challenge:
- * hook → learning-video preview → a REAL question (read aloud via TTS) →
- * tap answer → correct/wrong reveal → explanation → live stats HUD →
- * challenge CTA → outro tagline. Built for clean screen recording.
+ * A self-contained reel that demos the real Road-Safety challenge:
+ * hook → learning-video preview → a REAL question (read aloud with recorded
+ * audio) → answer-pick countdown → auto correct/wrong reveal → explanation →
+ * stats HUD → outro (brand + website CTA). Built for clean screen recording.
  *
  * Brand: Brutalist + traffic-sign palette (white / black / yellow #eab308 /
  * green #22c55e / red #ef4444), caution-tape accents, Google Sans Khmer.
@@ -23,7 +23,6 @@ import {
   Flame,
   RotateCcw,
   Circle,
-  ArrowRight,
   ShieldCheck,
   Sparkles,
   Clock,
@@ -69,7 +68,6 @@ type Stage =
   | "reveal"
   | "explain"
   | "stats"
-  | "challenge"
   | "outro";
 
 /* Auto-run timeline (ms). The `question` scene ignores its `ms` and instead
@@ -82,8 +80,7 @@ const TIMELINE: { stage: Stage; ms: number }[] = [
   { stage: "reveal", ms: 3000 },
   { stage: "explain", ms: 3600 },
   { stage: "stats", ms: 3600 },
-  { stage: "challenge", ms: 3000 },
-  { stage: "outro", ms: 4200 },
+  { stage: "outro", ms: 5200 },
 ];
 
 /* Answer window (seconds): the question scene reads the voice, then waits for
@@ -348,7 +345,6 @@ export default function VideoAdsClient() {
               />
             )}
             {stage === "stats" && <StatsScene stats={stats} />}
-            {stage === "challenge" && <ChallengeScene />}
             {stage === "outro" && <OutroScene />}
 
             {/* persistent top progress dots while a reel is playing */}
@@ -704,35 +700,8 @@ function StatsScene({
   );
 }
 
-/* ── 8. challenge CTA ── */
-function ChallengeScene() {
-  return (
-    <FrameBase bg="#eab308">
-      <CautionTape variant="chevron" height={24} className="w-full" />
-      <div className="flex flex-1 flex-col items-center justify-center gap-5 p-6 text-center anim-pop">
-        <Trophy className="h-14 w-14 text-black" />
-        <h2 className="text-[2rem] font-black leading-tight text-black">
-          JOIN THE
-          <br />
-          Road Safety
-          <br />
-          Online Challenge
-        </h2>
-        <div
-          className="inline-flex items-center gap-2 bg-black px-6 py-3 text-lg font-black uppercase tracking-wide text-[#eab308] anim-pulse"
-          style={{ boxShadow: "5px 5px 0 rgba(0,0,0,0.25)" }}
-        >
-          Start Now <ArrowRight className="h-5 w-5" />
-        </div>
-      </div>
-      <CautionTape variant="chevron" height={24} className="w-full rotate-180" />
-    </FrameBase>
-  );
-}
-
-/* ── 9. outro — logo, brand, tagline + website call-to-action ── */
+/* ── 8. outro — logo, brand, slogan + website call-to-action ── */
 function OutroScene() {
-  const words = ["LEARN", "PRACTICE", "COMPETE", "IMPROVE"];
   return (
     <FrameBase bg="#000000">
       <div className="flex flex-1 flex-col items-center justify-center gap-4 p-6 text-center">
@@ -755,32 +724,17 @@ function OutroScene() {
           </p>
         </div>
 
-        {/* tagline — English + Khmer */}
-        <div className="flex flex-col items-center gap-1">
-          <div className="flex flex-wrap items-center justify-center gap-x-1.5">
-            {words.map((w, i) => (
-              <span key={w} className="flex items-center gap-1.5">
-                <span
-                  className="text-sm font-black text-white anim-rise"
-                  style={{ animationDelay: `${i * 140}ms` }}
-                >
-                  {w}
-                </span>
-                {i < words.length - 1 && <span className="text-[#eab308]">·</span>}
-              </span>
-            ))}
-          </div>
-          <p className="text-sm font-black text-white/80">
-            រៀន · អនុវត្ត · ប្រកួតប្រជែង · កែលម្អ
-          </p>
-        </div>
-
-        {/* encouraging call-to-action — come learn on the website */}
-        <p className="mt-1 text-base font-black leading-snug text-white">
-          Start learning road safety today
+        {/* slogan + one-line platform description */}
+        <p className="text-base font-black leading-snug text-white anim-rise">
+          ចំណេះដឹងថ្ងៃនេះ ការពារជីវិតថ្ងៃស្អែក
         </p>
+        <p className="max-w-[19rem] text-[0.72rem] font-bold leading-snug text-white/70">
+          ថ្នាលរៀនសុវត្ថិភាពចរាចរណ៍ឌីជីថល សម្រាប់យុវជន និងប្រជាពលរដ្ឋកម្ពុជា។
+        </p>
+
+        {/* website call-to-action — come learn on the site */}
         <div
-          className="inline-flex items-center gap-2 bg-[#eab308] px-4 py-2.5 text-sm font-black text-black anim-pulse"
+          className="mt-1 inline-flex items-center gap-2 bg-[#eab308] px-4 py-2.5 text-sm font-black text-black anim-pulse"
           style={{ boxShadow: "4px 4px 0 rgba(255,255,255,0.25)" }}
         >
           <Globe className="h-4 w-4" />
