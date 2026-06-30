@@ -50,6 +50,8 @@ type Question = {
   topic_name_en?: string | null;
   /* recorded English reading audio for the topic — same source the /learn pages play */
   topic_audio_en?: string | null;
+  /* the topic's road-sign image — questions rarely carry their own image_url */
+  topic_image_url?: string | null;
 };
 
 /* ───────────────────────────  scene machine  ─────────────────────────── */
@@ -161,6 +163,7 @@ export default function VideoAdsClient() {
         id: number | string;
         name_en?: string | null;
         audio_url_en?: string | null;
+        primary_image_url?: string | null;
       }[] = tJson.topics ?? [];
       if (!topics.length) throw new Error("no topics");
 
@@ -189,6 +192,7 @@ export default function VideoAdsClient() {
           const pick = playable[Math.floor(Math.random() * playable.length)];
           pick.topic_name_en = t.name_en ?? null;
           pick.topic_audio_en = t.audio_url_en ?? null;
+          pick.topic_image_url = t.primary_image_url ?? null;
           setQuestion(pick);
           setLoading(false);
           return;
@@ -527,19 +531,22 @@ function QuestionScene({
     </div>
   );
 
+  // questions almost never carry their own image → use the topic's road sign
+  const signUrl = question.image_url || question.topic_image_url;
+
   return (
     <FrameBase bg="#ffffff">
       <HudBar />
 
       <div className="flex flex-1 flex-col gap-3 overflow-hidden px-4 pb-4 pt-2">
-        {question.image_url && (
+        {signUrl && (
           <div
-            className="mx-auto flex h-24 w-full items-center justify-center overflow-hidden bg-zinc-100"
+            className="mx-auto flex h-28 w-full items-center justify-center overflow-hidden bg-zinc-100"
             style={{ border: "3px solid #000" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={question.image_url}
+              src={signUrl}
               alt=""
               className="h-full w-full object-contain"
             />
@@ -623,11 +630,22 @@ function RevealScene({
   correct: Answer | null;
   showExplain: boolean;
 }) {
+  const signUrl = question.image_url || question.topic_image_url;
   return (
     <FrameBase bg="#ffffff">
       <HudBar />
 
-      <div className="flex flex-1 flex-col items-center justify-center gap-4 px-5 pb-5 pt-2 text-center">
+      <div className="flex flex-1 flex-col items-center justify-center gap-3 px-5 pb-5 pt-2 text-center">
+        {signUrl && (
+          <div
+            className="mx-auto flex h-20 w-full items-center justify-center overflow-hidden bg-zinc-100"
+            style={{ border: "3px solid #000" }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={signUrl} alt="" className="h-full w-full object-contain" />
+          </div>
+        )}
+
         {/* CORRECT banner */}
         <div
           className="flex w-full items-center justify-center gap-2 py-3 anim-pop"
