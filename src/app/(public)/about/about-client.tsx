@@ -11,9 +11,9 @@ const protect = (url: string) =>
   url.replace("/upload/", "/upload/fl_attachment:false,q_auto,f_auto/");
 
 const GALLERY = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00062File_rrjfgx.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783435140/OURTEAMFOUNDER_wcg9ao.webp",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00057File_d4gnzg.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760770/00056File_mlwsxx.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783437729/DSC_1031_pxbzfi.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760776/00041File_bhyh9b.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00078File_mqcrbt.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760777/00074File_a4s9d1.jpg",

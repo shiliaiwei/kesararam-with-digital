@@ -20,43 +20,43 @@ const MEMBERS: Record<string, {
 }> = {
   "VSID-2026-001": {
     lastName: "DANAI", fullName: "YIN DANAI", type: "student",
-    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/DANAI_YIN_sezo2q.jpg",
+    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1783437545/danaixkwd_feeyrj.webp",
     roleTags: [
-      { kh: "អ្នកអានសំលេង",                    en: "Voice Reading" },
       { kh: "អ្នកដឹកនាំក្រុម",                  en: "Team Lead" },
+      { kh: "សំឡេង",                            en: "Audio" },
       { kh: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា", en: "Content Review & Editing" },
     ],
   },
   "VSID-2026-002": {
     lastName: "KANIKA", fullName: "CHANTHA KANIKA", type: "student",
-    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/CHANTHA_KANIKA_gmh6w9.jpg",
+    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1783433074/chanthakanika_oj0zef.webp",
     roleTags: [
-      { kh: "ត្រួតពិនិត្យ",                     en: "Review" },
-      { kh: "កែសម្រួលមាតិកា",                    en: "Content Editing" },
+      { kh: "មាតិកា",                            en: "Content" },
       { kh: "ការស្រាវជ្រាវ",                     en: "Research" },
+      { kh: "កែសម្រួលមាតិកា",                    en: "Content Editing" },
     ],
   },
   "VSID-2026-003": {
-    lastName: "NEUN", fullName: "ROZA NEUN", type: "student",
-    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739867/Roza_Neun_ciz33b.jpg",
+    lastName: "SOVANROZA", fullName: "NEUN SOVANROZA", type: "student",
+    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1783437542/rozaxkwd_jjqovt.webp",
     roleTags: [
-      { kh: "រចនា UI/UX",                        en: "UI/UX Design" },
-      { kh: "ត្រួតពិនិត្យ",                     en: "Review" },
+      { kh: "មាតិកា",                            en: "Content" },
+      { kh: "រចនា",                              en: "Design" },
       { kh: "កែសម្រួលមាតិកា",                    en: "Content Editing" },
     ],
   },
   "VSID-2026-004": {
     lastName: "MANY", fullName: "LIM MANY", type: "student",
-    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/Lin_Many_nffno6.jpg",
+    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1783437542/manyxkwd_c1v7yz.webp",
     roleTags: [
-      { kh: "ធានាគុណភាព",                        en: "Quality Assurance" },
+      { kh: "មាតិកា",                            en: "Content" },
       { kh: "តេស្ត",                             en: "Testing" },
       { kh: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា", en: "Content Review & Editing" },
     ],
   },
   "VSID-2026-005": {
     lastName: "RUNAMARA", fullName: "SUN RUNAMARA", type: "student",
-    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/SUN_RUNAMARA_rmtlzf.jpg",
+    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1783437541/amaraxkwd_imchn7.webp",
     roleTags: [
       { kh: "ធានាគុណភាព",                        en: "Quality Assurance" },
       { kh: "តេស្ត",                             en: "Testing" },
