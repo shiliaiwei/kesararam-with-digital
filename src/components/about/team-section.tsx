@@ -9,7 +9,7 @@ const STUDENTS = [
   { id: "VSID-2026-001", name: "YIN DANAI",      nameKh: "យិន ដាណៃ",        roleEn: "Team Lead & Audio",     roleKh: "អ្នកដឹកនាំក្រុម និងសំឡេង" },
   { id: "VSID-2026-002", name: "CHANTHA KANIKA", nameKh: "ចាន់ថា កន្និកា",  roleEn: "Content & Research",    roleKh: "មាតិកា និងស្រាវជ្រាវ" },
   { id: "VSID-2026-003", name: "NEUN SOVANROZA", nameKh: "នឿន សុវណ្ណរ៉ូហ្សា", roleEn: "Content & Design",      roleKh: "មាតិកា និងរចនា" },
-  { id: "VSID-2026-004", name: "LIM MANY",       nameKh: "លីន ម៉ានី",        roleEn: "Content & Testing",     roleKh: "មាតិកា និងតេស្ត" },
+  { id: "VSID-2026-004", name: "LIN MANY",       nameKh: "លីន ម៉ានី",        roleEn: "Content & Testing",     roleKh: "មាតិកា និងតេស្ត" },
   { id: "VSID-2026-005", name: "SUN RUNAMARA",   nameKh: "សាន់ រុណអមរ៉ា",    roleEn: "QA & Testing",          roleKh: "ធានាគុណភាព និងតេស្ត" },
 ];
 
@@ -23,7 +23,7 @@ const MENTORS = [
   {
     id: "VSID-2026-M02",
     name: "SRIE VI", nameKh: "ស្រុី វី",
-    roleEn: "Business Mentor", roleKh: "គ្រូណែនាំជំនួញ",
+    roleEn: "Business Mentor", roleKh: "គ្រូណែនាំអាជីវកម្ម",
     image: "https://avatars.githubusercontent.com/u/70220432?v=4",
   },
 ];

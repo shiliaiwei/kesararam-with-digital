@@ -46,7 +46,7 @@ const MEMBERS: Record<string, {
     ],
   },
   "VSID-2026-004": {
-    lastName: "MANY", fullName: "LIM MANY", type: "student",
+    lastName: "MANY", fullName: "LIN MANY", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1783437542/manyxkwd_c1v7yz.webp",
     roleTags: [
       { kh: "មាតិកា",                            en: "Content" },

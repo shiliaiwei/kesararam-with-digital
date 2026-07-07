@@ -85,7 +85,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "lin-many",
-    name: "LIM MANY",
+    name: "LIN MANY",
     nameKh: "លីន ម៉ានី",
     role: "student",
     age: 13,
