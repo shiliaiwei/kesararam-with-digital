@@ -279,7 +279,7 @@ export function AboutClient() {
       <section className="bg-zinc-950 border-b-4 border-yellow-400 overflow-hidden">
         <div className="h-1 bg-yellow-400" />
         <div className="max-w-6xl mx-auto px-6 py-14 md:py-20">
-          <div className="grid md:grid-cols-[1fr_300px] gap-10 items-end">
+          <div className="grid md:grid-cols-[1fr_360px] lg:grid-cols-[1fr_480px] gap-10 items-center">
 
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-2">
@@ -313,7 +313,7 @@ export function AboutClient() {
 
             {/* Face effect: real photo triggers trust faster than text */}
             <div
-              className="relative w-full h-64 md:h-80 border-2 border-yellow-400 overflow-hidden flex-shrink-0"
+              className="relative w-full aspect-video border-2 border-yellow-400 overflow-hidden flex-shrink-0"
               style={{ boxShadow: "8px 8px 0 #ca8a04" }}
               onContextMenu={e => e.preventDefault()}
             >
@@ -358,8 +358,8 @@ export function AboutClient() {
           <p className="text-base md:text-lg text-zinc-800 leading-relaxed font-medium" style={kf}>
             {c.story[0]}
           </p>
-          <div className="relative border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
-            <img src={GALLERY[1]} alt="" draggable={false} className="w-full h-52 object-cover pointer-events-none" style={{ userSelect: "none" }} />
+          <div className="relative w-full aspect-[3/2] border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
+            <img src={GALLERY[1]} alt="" draggable={false} className="w-full h-full object-cover pointer-events-none" style={{ userSelect: "none" }} />
             <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
           </div>
         </div>
@@ -384,8 +384,8 @@ export function AboutClient() {
         {/* GROUP D — Para 5: Three teachings (with photo alongside)
             The three-part structure in the text maps to a natural cognitive chunk. */}
         <div className="grid md:grid-cols-[240px_1fr] gap-10 items-start mb-12 border-t border-zinc-100 pt-10">
-          <div className="relative border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
-            <img src={GALLERY[2]} alt="" draggable={false} className="w-full h-52 object-cover pointer-events-none" style={{ userSelect: "none" }} />
+          <div className="relative w-full aspect-[3/2] border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
+            <img src={GALLERY[2]} alt="" draggable={false} className="w-full h-full object-cover pointer-events-none" style={{ userSelect: "none" }} />
             <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
           </div>
           <p className="text-sm text-zinc-600 leading-relaxed" style={kf}>{c.story[4]}</p>
