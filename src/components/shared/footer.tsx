@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { FaYoutube } from "react-icons/fa";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
 
@@ -148,6 +149,17 @@ export function Footer() {
                 </svg>
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                   TikTok
+                </span>
+              </a>
+
+              {/* YouTube — black */}
+              <a href="https://www.youtube.com/@kesararamwithdigital" target="_blank" rel="noopener noreferrer"
+                className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
+                style={{ background: "#000000", boxShadow: "3px 3px 0 #000" }}
+                aria-label="YouTube">
+                <FaYoutube className="w-5 h-5 text-white" aria-hidden="true" />
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  YouTube
                 </span>
               </a>
 
