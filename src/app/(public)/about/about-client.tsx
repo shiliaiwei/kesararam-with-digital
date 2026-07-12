@@ -14,7 +14,7 @@ const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783435140/OURTEAMFOUNDER_wcg9ao.webp",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00057File_d4gnzg.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783437729/DSC_1031_pxbzfi.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760776/00041File_bhyh9b.jpg",
+  "/about/team-gallery-00041-replacement.png",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00078File_mqcrbt.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760777/00074File_a4s9d1.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760788/00081File_vs67kw.jpg",
