@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
-import { Award, ArrowRight, Shield } from "lucide-react";
+import { Award, LayoutGrid, ArrowRight, Shield } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import {
   CautionTape,
@@ -1041,6 +1041,13 @@ export function BrandGuidelineClient() {
                 "ស្វែងយល់ពីរចនាសម្ព័ន្ធទំព័រសាធារណៈទាំងមូលនៅក្នុងផែនទីគេហទំព័របែប HUD អន្តរកម្ម។"
               )}
             </p>
+            <Link
+              href="/sitemap"
+              className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-2 border-black dark:border-white px-4 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+            >
+              <LayoutGrid size={16} strokeWidth={2.5} aria-hidden="true" />
+              {t("View Sitemap", "មើលផែនទីគេហទំព័រ")}
+            </Link>
           </section>
 
         </main>
