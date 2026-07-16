@@ -6,25 +6,9 @@ import { useLang } from "@/context/lang-context";
 import { X, ChevronLeft, ChevronRight, ArrowUpRight, Maximize2 } from "lucide-react";
 import { TeamSection } from "@/components/about/team-section";
 
-// ── Image protection helpers ──────────────────────────────────────────────────
-// URL-safe Base64 versions of the six production-hosted road-sign mask assets.
-const FACE_MASK_OVERLAYS = [
-  "aHR0cHM6Ly93d3cua2VzYXJhcmFtd2l0aGRpZ2l0YWwudGVjaC9hYm91dC9mYWNlLW1hc2tzL2RpYW1vbmQtd2FybmluZy5zdmc",
-  "aHR0cHM6Ly93d3cua2VzYXJhcmFtd2l0aGRpZ2l0YWwudGVjaC9hYm91dC9mYWNlLW1hc2tzL29jdGFnb24tc3RvcC5zdmc",
-  "aHR0cHM6Ly93d3cua2VzYXJhcmFtd2l0aGRpZ2l0YWwudGVjaC9hYm91dC9mYWNlLW1hc2tzL2NpcmNsZS1wcm9oaWJpdG9yeS5zdmc",
-  "aHR0cHM6Ly93d3cua2VzYXJhcmFtd2l0aGRpZ2l0YWwudGVjaC9hYm91dC9mYWNlLW1hc2tzL3NpZ24taW5mb3JtYXRpb24uc3Zn",
-  "aHR0cHM6Ly93d3cua2VzYXJhcmFtd2l0aGRpZ2l0YWwudGVjaC9hYm91dC9mYWNlLW1hc2tzL3RyaWFuZ2xlLWNhdXRpb24uc3Zn",
-  "aHR0cHM6Ly93d3cua2VzYXJhcmFtd2l0aGRpZ2l0YWwudGVjaC9hYm91dC9mYWNlLW1hc2tzL2Jhbm5lci1ndWlkZS5zdmc",
-] as const;
-
-const protect = (url: string, index: number) => {
-  const mask = FACE_MASK_OVERLAYS[index % FACE_MASK_OVERLAYS.length];
-
-  return url.replace(
-    "/upload/",
-    `/upload/e_blur_faces:1000/l_fetch:${mask}/c_scale,fl_region_relative,w_1.35/fl_layer_apply,g_faces/q_auto,f_auto/`,
-  );
-};
+// ── Image protection helper ───────────────────────────────────────────────────
+const protect = (url: string) =>
+  url.replace("/upload/", "/upload/e_blur_faces:1000,q_auto,f_auto/");
 
 const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783435140/OURTEAMFOUNDER_wcg9ao.webp",
