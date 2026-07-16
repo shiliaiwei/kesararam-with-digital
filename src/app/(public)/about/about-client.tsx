@@ -255,7 +255,6 @@ const CONTENT = {
 export function AboutClient() {
   const { lang } = useLang();
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
-  const [hoveredImg, setHoveredImg] = useState<number | null>(null);
 
   const c = CONTENT[lang === "kh" ? "kh" : "en"];
   const kh = lang === "kh";
@@ -488,8 +487,8 @@ export function AboutClient() {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           6. GALLERY — Memory anchor
           Psychology: Picture superiority — images are remembered 6×
-          better than words. The grayscale-to-color hover creates a
-          reward loop that encourages exploration (operant conditioning).
+          better than words. A consistent treatment keeps the gallery
+          visually calm while each image remains available in the lightbox.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="border-t border-zinc-100 max-w-6xl mx-auto px-6 py-14">
         <div className="flex items-center gap-3 mb-5">
@@ -500,14 +499,12 @@ export function AboutClient() {
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1">
           {GALLERY.map((src, i) => (
             <button key={i} onClick={() => openLightbox(i)}
-              className="relative aspect-square overflow-hidden border border-zinc-100 group"
-              onMouseEnter={() => setHoveredImg(i)} onMouseLeave={() => setHoveredImg(null)}
+              className="relative aspect-square overflow-hidden border border-zinc-100"
               onContextMenu={e => e.preventDefault()}>
               <img src={src} alt="" draggable={false}
-                className="w-full h-full object-cover transition-all duration-300 pointer-events-none"
+                className="w-full h-full object-cover pointer-events-none"
                 style={{
-                  filter: hoveredImg === i ? "none" : "grayscale(100%) brightness(0.85)",
-                  transform: hoveredImg === i ? "scale(1.06)" : "scale(1)",
+                  filter: "grayscale(100%) brightness(0.85)",
                   userSelect: "none",
                 }} />
               <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
