@@ -3,18 +3,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/lang-context";
-import { X, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ArrowUpRight, Maximize2 } from "lucide-react";
 import { TeamSection } from "@/components/about/team-section";
 
 // ── Image protection helper ───────────────────────────────────────────────────
 const protect = (url: string) =>
-  url.replace("/upload/", "/upload/fl_attachment:false,q_auto,f_auto/");
+  url.replace("/upload/", "/upload/e_blur_faces:1000,q_auto,f_auto/");
 
 const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783435140/OURTEAMFOUNDER_wcg9ao.webp",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00057File_d4gnzg.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783437729/DSC_1031_pxbzfi.jpg",
-  "/about/team-gallery-00041-replacement.png",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00078File_mqcrbt.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760777/00074File_a4s9d1.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760788/00081File_vs67kw.jpg",
@@ -129,6 +128,8 @@ const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1781360558/photo_2026-06-13_21-18-20_sm7chz.jpg",
 ];
 
+const PROTECTED_GALLERY = GALLERY.map(protect);
+
 // ── Lightbox ──────────────────────────────────────────────────────────────────
 function Lightbox({ images, index, onClose, onPrev, onNext }: {
   images: string[]; index: number; onClose: () => void; onPrev: () => void; onNext: () => void;
@@ -190,6 +191,7 @@ const CONTENT = {
       { label: "SDG Alignment",        text: "SDG 4 (Quality Education) and SDG 11 (Sustainable Cities & Communities).", href: "https://sdgs.un.org/goals" },
     ],
     galleryTitle: "Our Journey",
+    galleryView: "View photo",
     testimonials: [
       { name: "Mentor",            role: "Technovation Girls",          text: "These girls didn't just build an app — they built confidence. Watching them go from 'I don't know how' to 'I built this' is the most rewarding thing I've ever been part of." },
       { name: "Teacher",           role: "Kesararam Primary School",    text: "KWD proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a global stage." },
@@ -237,6 +239,7 @@ const CONTENT = {
       { label: "SDG",                      text: "SDG 4 (ការអប់រំ) · SDG 11 (ទីក្រុងប្រកបដោយចីរភាព)", href: "https://sdgs.un.org/goals" },
     ],
     galleryTitle: "ដំណើររបស់យើង",
+    galleryView: "មើលរូបភាព",
     testimonials: [
       { name: "គ្រូណែនាំ",          role: "Technovation Girls",         text: "ពួកគេមិនបានបង្កើតតែ app ប៉ុណ្ណោះទេ — ពួកគេបានបង្កើតទំនុកចិត្ត។ ការមើលឃើញការផ្លាស់ប្ដូរពី «ខ្ញុំមិនដឹងទេ» ទៅ «ខ្ញុំបានធ្វើ» ជាបទពិសោធន៍ដ៏មានន័យ ហើយជាមោទនភាពដ៏ធំធេងបំផុត។" },
       { name: "លោកគ្រូ",            role: "សាលាបឋមសិក្សាកេសរារាម",      text: "KWD បញ្ជាក់ថា ការអប់រំចរាចរអាចច្នៃប្រឌិត ២ ភាសា និងដឹកនាំដោយសិស្ស។ សិស្សរបស់យើងមោទនភាពដែលឈ្មោះសាលានៅលើឆាកអន្តរជាតិ។" },
@@ -255,6 +258,7 @@ const CONTENT = {
 export function AboutClient() {
   const { lang } = useLang();
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const [hoveredImg, setHoveredImg] = useState<number | null>(null);
 
   const c = CONTENT[lang === "kh" ? "kh" : "en"];
   const kh = lang === "kh";
@@ -262,8 +266,8 @@ export function AboutClient() {
 
   function openLightbox(i: number) { setLightboxIdx(i); }
   function closeLightbox() { setLightboxIdx(null); }
-  function prevImg() { setLightboxIdx(i => i !== null ? (i - 1 + GALLERY.length) % GALLERY.length : 0); }
-  function nextImg() { setLightboxIdx(i => i !== null ? (i + 1) % GALLERY.length : 0); }
+  function prevImg() { setLightboxIdx(i => i !== null ? (i - 1 + PROTECTED_GALLERY.length) % PROTECTED_GALLERY.length : 0); }
+  function nextImg() { setLightboxIdx(i => i !== null ? (i + 1) % PROTECTED_GALLERY.length : 0); }
 
   return (
     <div className="min-h-screen bg-white">
@@ -487,27 +491,36 @@ export function AboutClient() {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           6. GALLERY — Memory anchor
           Psychology: Picture superiority — images are remembered 6×
-          better than words. A consistent treatment keeps the gallery
-          visually calm while each image remains available in the lightbox.
+          better than words. The grayscale-to-color hover creates a
+          reward loop that encourages exploration (operant conditioning).
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="border-t border-zinc-100 max-w-6xl mx-auto px-6 py-14">
         <div className="flex items-center gap-3 mb-5">
           <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400" style={kf}>{c.galleryTitle}</span>
           <div className="h-px flex-1 bg-zinc-100" />
-          <span className="text-[10px] text-zinc-300 font-mono">{GALLERY.length}</span>
+          <span className="text-[10px] text-zinc-300 font-mono">{PROTECTED_GALLERY.length}</span>
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1">
-          {GALLERY.map((src, i) => (
+          {PROTECTED_GALLERY.map((src, i) => (
             <button key={i} onClick={() => openLightbox(i)}
-              className="relative aspect-square overflow-hidden border border-zinc-100"
+              className="relative aspect-square overflow-hidden border border-zinc-100 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#eab308] focus-visible:ring-offset-2"
+              onMouseEnter={() => setHoveredImg(i)} onMouseLeave={() => setHoveredImg(null)}
               onContextMenu={e => e.preventDefault()}>
               <img src={src} alt="" draggable={false}
-                className="w-full h-full object-cover pointer-events-none"
+                className="w-full h-full object-cover transition-all duration-300 pointer-events-none"
                 style={{
-                  filter: "grayscale(100%) brightness(0.85)",
+                  filter: hoveredImg === i ? "none" : "grayscale(100%) brightness(0.85)",
+                  transform: hoveredImg === i ? "scale(1.06)" : "scale(1)",
                   userSelect: "none",
                 }} />
               <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
+              <div className="absolute inset-x-0 bottom-0 z-10 translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0 transition-transform duration-300 pointer-events-none">
+                <div className="caution-tape h-2" />
+                <div className="flex items-center justify-between gap-2 border-t-2 border-black bg-[#eab308] px-2 py-1.5 text-black">
+                  <span className="truncate text-[9px] font-black uppercase tracking-wider" style={kf}>{c.galleryView}</span>
+                  <Maximize2 size={12} strokeWidth={3} className="shrink-0" />
+                </div>
+              </div>
             </button>
           ))}
         </div>
@@ -590,7 +603,7 @@ export function AboutClient() {
       </section>
 
       {lightboxIdx !== null && (
-        <Lightbox images={GALLERY} index={lightboxIdx} onClose={closeLightbox} onPrev={prevImg} onNext={nextImg} />
+        <Lightbox images={PROTECTED_GALLERY} index={lightboxIdx} onClose={closeLightbox} onPrev={prevImg} onNext={nextImg} />
       )}
     </div>
   );
