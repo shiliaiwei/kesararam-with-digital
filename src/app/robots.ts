@@ -12,6 +12,7 @@ const DISALLOW = [
   '/staff/',
   '/u/', // personal user profiles
   '/team/', // tokenized team-scan links
+  '/Regional-Pitch-Event',
 ]
 
 // AI / LLM search crawlers we explicitly welcome, so KWD can be discovered and
