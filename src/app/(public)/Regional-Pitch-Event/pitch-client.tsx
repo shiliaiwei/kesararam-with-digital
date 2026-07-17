@@ -88,14 +88,14 @@ export function PitchClient() {
           
           {/* Header Card / Logo Section */}
           <div className="flex flex-col items-center justify-center gap-3">
-            <img src="/brand/logo.png" alt="KWD Logo" className="h-16 w-auto object-contain" />
+            <img src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg" alt="KWD Logo" className="h-16 w-auto object-contain" />
             <span className="font-google-sans text-md lg:text-lg font-black tracking-tight text-black uppercase text-center">
               {t("Kesararam With Digital", "សាលាកេសារារាម ជាមួយបច្ចេកវិទ្យា")}
             </span>
           </div>
 
           {/* Form Box */}
-          <div className="bg-white border-[3px] border-black rounded-[15px] shadow-[6px_6px_0_#000] overflow-hidden">
+          <div className="bg-white border-[3px] border-black rounded-none shadow-[6px_6px_0_#000] overflow-hidden">
             {/* Top Caution Tape Decoration */}
             <CautionTape variant="caution" height={16} />
 
@@ -122,7 +122,7 @@ export function PitchClient() {
                     {t("5-Digit Access Code", "លេខកូដសម្ងាត់ ៥ ខ្ទង់")}
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     id="accessCode"
                     value={code}
                     onChange={(e) => {
@@ -132,13 +132,12 @@ export function PitchClient() {
                     maxLength={10}
                     required
                     autoFocus
-                    className="w-full px-4 py-3 border-2 border-black rounded-lg text-center text-xl font-black tracking-[0.4em] font-mono focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#eab308] transition-all bg-zinc-50"
-                    placeholder="•••••"
+                    className="w-full px-4 py-3 border-2 border-black rounded-none text-center text-xl font-black tracking-[0.4em] font-mono focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#eab308] transition-all bg-zinc-50"
                   />
                 </div>
 
                 {error && (
-                  <div className="p-3 bg-[#fda4af] border-2 border-[#ef4444] rounded-lg text-xs font-bold text-black shadow-[2px_2px_0_#000] flex items-start gap-2 text-left animate-shake">
+                  <div className="p-3 bg-[#fda4af] border-2 border-[#ef4444] rounded-none text-xs font-bold text-black shadow-[2px_2px_0_#000] flex items-start gap-2 text-left animate-shake">
                     <ShieldAlert className="size-4.5 text-[#ef4444] shrink-0 mt-0.5" />
                     <div>
                       <p className="font-black uppercase tracking-wider text-red-950">
@@ -151,7 +150,7 @@ export function PitchClient() {
 
                 <button
                   type="submit"
-                  className="w-full nb-btn bg-[#eab308] hover:bg-yellow-500 text-black py-3 text-xs font-black uppercase tracking-wider border-2 border-black shadow-[3px_3px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all flex items-center justify-center gap-2"
+                  className="w-full nb-btn rounded-none bg-[#eab308] hover:bg-yellow-500 text-black py-3 text-xs font-black uppercase tracking-wider border-2 border-black shadow-[3px_3px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all flex items-center justify-center gap-2"
                 >
                   {t("Unlock Presentation", "បើកមើលការបង្ហាញ")}
                 </button>
@@ -168,7 +167,7 @@ export function PitchClient() {
       {/* Premium Top Bar */}
       <div className="bg-black border-b-[3px] border-zinc-800 px-4 py-3 flex items-center justify-between text-white shrink-0">
         <div className="flex items-center gap-3">
-          <img src="/brand/logo.png" alt="KWD Logo" className="h-8 w-auto object-contain" />
+          <img src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg" alt="KWD Logo" className="h-8 w-auto object-contain" />
           <div>
             <h1 className="text-sm font-black uppercase tracking-wider text-white leading-tight">
               {t("Regional Pitch Event", "ការបង្ហាញគម្រោងថ្នាក់តំបន់")}
@@ -182,7 +181,7 @@ export function PitchClient() {
           {/* Full Screen Toggle Button */}
           <button
             onClick={toggleFullscreen}
-            className="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider border-2 border-black bg-white hover:bg-zinc-100 text-black rounded-lg shadow-[2px_2px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider border-2 border-black bg-white hover:bg-zinc-100 text-black rounded-none shadow-[2px_2px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all flex items-center gap-1.5 cursor-pointer"
           >
             {isFullscreen ? (
               <>
@@ -200,7 +199,7 @@ export function PitchClient() {
           {/* Lock Button */}
           <button
             onClick={handleLogout}
-            className="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider border-2 border-black bg-[#ef4444] hover:bg-red-500 text-white rounded-lg shadow-[2px_2px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider border-2 border-black bg-[#ef4444] hover:bg-red-500 text-white rounded-none shadow-[2px_2px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <Lock className="size-3.5" />
             <span>{t("Lock", "ចាក់សោ")}</span>
