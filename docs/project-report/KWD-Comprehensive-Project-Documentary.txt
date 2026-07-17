@@ -1,0 +1,391 @@
+KESARARAM WITH DIGITAL (KWD)
+
+COMPREHENSIVE PROJECT DOCUMENTARY AND EVOLUTION REPORT
+
+Review date: 2026-07-15 | Current commit: 823db447d4df
+
+========================================================================================
+
+
+
+DOCUMENT CONTROL
+
+----------------
+
+Title: Kesararam With Digital (KWD) — Comprehensive Project Documentary and Evolution Report
+
+Review date: 2026-07-15 (Asia/Phnom_Penh)
+
+Evidence base: current local repository, committed Git history, source code, database schemas, project documentation, and agent-maintained brand/workflow specifications.
+
+Record boundary: this report includes the complete verifiable repository record available in this checkout. It does not claim access to private iCloud versions, deleted files outside Git, private messages, deployed database rows, analytics accounts, or cloud-provider consoles.
+
+Status language: 'current' means present in the reviewed checkout; 'historical' means evidenced by Git or older repository documentation; 'planned' means documented but not proven complete in current code.
+
+
+
+EXECUTIVE SUMMARY
+
+-----------------
+
+Kesararam With Digital (KWD), also presented through the learner-facing identity វិថីសុវត្ថិភាព / The Way of Safety, is a bilingual English–Khmer road-safety learning platform for Cambodia. It turns traffic-law knowledge, road signs, markings, priorities, emergency response, and related topics into lessons, quizzes, teacher-led live sessions, short GameKit activities, progress systems, rankings, and reward workflows.
+
+The project began as a Next.js web application and quickly expanded into a multi-role education system. The current product contains public learning and play surfaces, student onboarding and profiles, teacher classrooms and hosted sessions, staff content operations, administrator controls, database-backed Q&A, media workflows, subscription and application records, security controls, public leaderboards, score-derived ranks, Store Points, reward claims, analytics, and formal design and content standards.
+
+Its clearest differentiator is the alignment of subject matter and interface: road safety is not merely the content; it is the visual and interaction language. Road-sign shapes, traffic-semantic colors, caution-tape dividers, hard black borders, zero-blur offset shadows, high contrast, short bilingual copy, and immediate answer feedback make the interface itself reinforce the learning topic.
+
+The codebase is active and broad. At review time it contains 102 page routes, 146 API routes, 599 source files, 163 React component files, 243 public assets, and 1486 Git commits. This maturity also creates technical debt: overlapping legacy and modern scoring/data paths, some older terminology and documentation, privacy and anti-cheat obligations, and the need to keep many gameplay routes aligned.
+
+
+
+VERIFIED REPOSITORY SNAPSHOT
+
+----------------------------
+
+Git commits: 1,486
+
+History range: 2026-07-12 to 2026-07-12
+
+Page routes: 102
+
+API route handlers: 146
+
+Source files: 599
+
+React component files: 163
+
+Public assets: 243
+
+Documentation files before this report: 36
+
+
+
+1. PROJECT IDENTITY AND ORIGIN
+
+------------------------------
+
+Full organizational name: Kesararam With Digital (KWD). Learner-facing brand identity: វិថីសុវត្ថិភាព (The Way of Safety). The repository describes the initiative as a free, bilingual road-safety education product built by young Cambodian women for Technovation Girls 2026, Team #50777, in Siem Reap, Cambodia.
+
+The originating problem is practical: people encounter traffic signs and rules every day, yet formal material can be difficult, overly legal, language-inaccessible, or disconnected from real situations. KWD responds by making the knowledge visual, short, interactive, and available in Khmer and English.
+
+Mission: make road-safety learning easy, modern, accurate, and engaging for Cambodian youth and communities. Vision: a Cambodia where people understand road rules and travel more safely. The project is an education platform, not a school for vehicle operation and not merely a test-preparation product.
+
+Primary audiences are Khmer-first students and youth. Secondary audiences include teachers, schools, families, the general public, staff content teams, administrators, and partner organizations. The platform supports self-directed learning and teacher-led classroom use.
+
+
+
+2. BRAND CONCEPT AND MEANING
+
+----------------------------
+
+Brand thesis: 'road safety made into a UI.' The product combines brutalist structure, real traffic-sign semantics, and caution-tape motifs. This creates immediate recognition, keeps important actions high-contrast, and connects the interface to the subject being learned.
+
+The lightning motif represents Flash Learning: knowledge delivered in short, fast, memorable bursts. The brand does not depend on decoration alone; it uses established cognitive signals. Shape, color, label, and icon repeat the same meaning so users can recognize a warning, stop action, success state, or information panel at a glance.
+
+Core values are accuracy, clarity, accessibility, youth energy, practical real-life safety, community benefit, bilingual inclusion, and responsible encouragement. The desired voice is warm, direct, simple, confident on verified facts, and serious without fear-based language.
+
+Current positioning should consistently use road-safety and traffic-learning language. Older references to vehicle-operation schools or formal testing should be treated as historical wording and revised when user-facing copy is touched.
+
+
+
+3. CURRENT BRAND GUIDELINES
+
+---------------------------
+
+Structure: use sharp or deliberately structured corners, 2–3 px solid black borders on prominent surfaces, and hard 3–4 px offset shadows with zero blur. App chrome may use the established 15 px brutalist radius token, but one corner mode must remain consistent within a surface.
+
+Primary light-surface accent: caution yellow #eab308 with black. Dark dashboard/game/HUD surfaces use the brighter gold #ffd700 token. Do not mix the two yellow systems casually on the same surface.
+
+Traffic-semantic palette: red #ef4444 means stop, danger, prohibition, or destructive action; green #22c55e means go, success, or correct; blue #3b82f6 means information or links; orange #f97316 means caution; purple #a855f7 means premium or special; black and white provide structure and space.
+
+Shapes carry real-world meaning: diamond for warnings, octagon for stop or hard-block actions, circle for mandatory/prohibitory/icon controls, triangle for caution, rectangle for information/content, and wide overhead-sign banners for navigation or section direction.
+
+Caution tape is a signature divider and emphasis device. Approved variants include diagonal stripe, checkerboard, chevron, dashed, double-line, and labeled tape. It should frame or separate content rather than become background noise.
+
+Typography is bilingual by design. The current strict standard is Google Sans for Khmer and Roboto for English/fallback. Labels are bold or black, often uppercase in English, and use tracked spacing. Khmer layouts require taller line-height and must be tested for wrapping.
+
+Icons must come from Lucide React or Material Symbols Rounded; react-icons is reserved for third-party brand marks. Emoji and raw Unicode symbols are not acceptable as interface icons. Icons remain flat, monochrome, and semantically colored.
+
+Logo rules: do not stretch, rotate, recolor, outline, filter, shadow, or place the logo on low-contrast backgrounds. Use the black mark on light surfaces and the approved inverted mark on dark surfaces, with clear space and at least 24 px height.
+
+Writing rules: preserve meaning while using plain Khmer and concise English. Avoid stiff legal language, fear, guilt, or childish treatment of real danger. New user-facing experiences should provide both languages through the established language helper.
+
+
+
+4. LEARNING AND EXPERIENCE CONCEPT
+
+----------------------------------
+
+KWD uses retrieval practice: learners must recall the correct answer instead of only rereading information. Immediate correct/incorrect feedback helps learners adjust quickly. Text and imagery provide dual coding, while realistic traffic contexts support transfer from the screen to everyday road situations.
+
+The product uses scaffolding and mastery progression through difficulty, repeated play, ranks, divisions, progress indicators, and increasingly varied activities. Flash Learning keeps sessions short and focused, reducing cognitive load for mobile-first use.
+
+Motivation uses points, ranks, streaks, badges, leaderboards, avatars, public identity, class belonging, and redeemable Store Points. These mechanisms should remain feedback instruments for learning rather than rewards that overpower safety understanding.
+
+Self-Determination Theory appears in autonomy through profiles and activity choice, competence through scores and progression, and relatedness through classes, teams, live sessions, and leaderboards. Goal-gradient indicators show how close a learner is to the next rank.
+
+Accessibility principles include recognition over recall, large tap targets, high contrast, limited choices per screen, visible labels with icons, motion restraint, timer accommodations, and bilingual readability.
+
+
+
+5. WHAT THE PLATFORM CURRENTLY DOES
+
+-----------------------------------
+
+Public learning: browse learning categories and structured content covering road signs, road traffic, priority, emergencies, general knowledge, technical topics, and loading people or goods. Content can include text, images, flashcards, signs, markings, topics, questions, and answers.
+
+Public play: join teacher-hosted sessions with a code; use solo and category practice; complete daily activities; and access GameKit formats such as Traffic Commander, Sign Match, Connect the Signs, Tick the Sign, Word Bank, Catch Sign, Light Hero, Safety Adventure, and Safe Street Smart. A legacy priority-puzzle route remains for deep links while Traffic Commander is the preferred replacement.
+
+Student experience: register or authenticate, complete a profile, join a class through an invitation flow, choose an avatar, learn, play, track progress, build streaks, earn points, view rank/division, appear on eligible leaderboards, use privacy settings, and submit reward claims where allowed.
+
+Teacher experience: create and manage classes, invite or enroll students, host sessions, inspect session analytics, manage profile and subscription context, and accept, reject, prepare, or fulfill learner reward claims.
+
+Staff experience: create and moderate learning content, questions, topics, road-safety resources, approvals, submissions, media, and category assignments.
+
+Administrator experience: manage users, subscriptions, content review, questions, road markings, media, game sessions, logs, settings, and system-level controls. Sensitive administrative and staff authentication supports TOTP two-factor verification.
+
+Public trust and discovery: about, brand, ranks, leaderboard, pricing, privacy, terms, security, sitemap, technology-stack, profile-sharing, and SEO-oriented surfaces document the product and expose safe public information.
+
+
+
+6. ROLES, ACCESS, AND WORKFLOW
+
+------------------------------
+
+Guest: views public pages and may use guest-compatible learning/play without persistent personal records. Guest attempts should not create authenticated leaderboard or reward balances.
+
+Student: owns a learner account, class enrollment, progress, attempts, streaks, rank, profile/privacy choices, and eligible rewards. The profile workflow limits sensitive edits and aims to prevent account sharing or identity churn.
+
+Teacher: owns classroom and hosted-session workflows. Teacher access may be tied to trial, subscription, or manually approved application paths. Teachers are the operational link between students, classes, live learning, analytics, and physical reward fulfillment.
+
+Staff: manages curriculum/content production and moderation but does not receive unrestricted administrative authority. Category assignment and approval records help separate authoring from review.
+
+Administrator: has the broadest operational authority over accounts, subscriptions, content, audit views, and system settings. Administrative actions should remain attributable through audit records and protected by stronger authentication.
+
+Standard content workflow: research and author bilingual content; validate terminology and answer shape; review before import; import transactionally; verify database counts and fields; confirm compatibility with target game modes; then test public rendering and gameplay.
+
+Standard feature workflow: inspect current code and applicable project skills; keep scope narrow; reuse shared tokens and utilities; implement server validation; write focused tests; run targeted checks; test the real route in desktop and mobile layouts; document notable system changes; commit/push only when explicitly requested.
+
+
+
+7. SYSTEM ARCHITECTURE
+
+----------------------
+
+Frontend: Next.js App Router with React, TypeScript, Tailwind CSS, reusable client/server components, language helpers, Lucide icons, and targeted animation/chart/media libraries.
+
+Backend: Next.js route handlers and server actions provide authentication, content, classes, games, profiles, media, billing, reward, analytics, and operational APIs.
+
+Database: PostgreSQL through Neon serverless and Drizzle ORM. Schema modules cover users/classes, sessions, content, quizzes, modern games, subscriptions, audit records, and Store Points.
+
+Authentication and authorization: signed JWT cookie flows through jose, role-based route protection, redirect handling, recovery behavior, and TOTP 2FA for sensitive roles. Google-based student registration is also represented in the onboarding documentation and codebase.
+
+Media and external services: Cloudinary supports managed media; Stripe supports paid plan workflows; Vercel Analytics and Speed Insights plus Microsoft Clarity support performance/behavior measurement; Mapbox is available for mapping needs; Pusher supports real-time interaction; Groq/OpenAI packages support AI-related surfaces.
+
+Deployment orientation: the repository is configured for modern Node 20 and Next.js deployment, with environment-controlled database and service credentials. Public read-only endpoints include caching improvements, and performance work has targeted First Contentful Paint.
+
+
+
+8. DATA AND RECORDS
+
+-------------------
+
+Identity and organization records: users, sessions, classes, class enrollments, invitation codes, subscriptions, and teacher applications.
+
+Learning records: categories, content items, flashcards, topics, questions, answers, road markings, traffic signs, media resources, content-media links, approvals, progress, learning-mode settings, and category assignments.
+
+Gameplay records: quizzes, quiz questions/attempts/answers, live or challenge sessions, participants and answers, modern game sessions/participants/answers, daily sets and attempts, user streaks, game scores, priority scenes, GameKit attempts, and leaderboard entries.
+
+Economy and accountability records: points ledger, Store Point events, reward claims, audit logs, staff activity metrics, and administrative review metrics.
+
+Privacy principle: database existence does not mean public visibility. Public profile and leaderboard outputs must respect profile privacy and province visibility, and operational exports should avoid exposing secrets, email addresses, recovery codes, authentication tokens, or unnecessary student data.
+
+Backup/restore scripts exist for database operations, but this report does not inspect or export the live hosted database. A complete institutional archive should separately include encrypted database backups, cloud-media manifests, environment-variable inventories without secret values, deployment logs, analytics exports, and iCloud/archive material supplied by the owner.
+
+
+
+9. GAMES, SCORING, RANKS, AND REWARDS
+
+-------------------------------------
+
+The modern game engine centralizes difficulty-based scoring, streak behavior, timing safeguards, limits, and server-side result handling. Repository documents show that scoring rules have changed over time; current runtime code and the most recent scoring policy must be treated as authoritative for production decisions.
+
+The product has carried both modern and legacy score paths. Historical quiz/challenge routes used content-level point values and separate leaderboard records, while newer live, solo, daily, priority, and GameKit paths use shared engine helpers and modern ledgers/attempt tables. This overlap is a known architectural risk and should continue moving toward one server-authoritative event model.
+
+The current road-rank system has exactly six ranks: ROOKIE, RISING, GOLD, PLATINUM, DIAMOND, and MYTHIC. Each has divisions IV, III, II, and I. Only score is stored as the truth; rank and division are derived to prevent drift. Entry thresholds are 0, 1,000, 2,500, 3,500, 7,000, and 12,000 points.
+
+Store Points are designed as a learner reward currency distinct from rank/learning score. Award and redemption logic requires server-side eligibility, anti-farming/idempotency safeguards, an immutable event trail, and student-only enforcement. Reward claims move through pending, accepted/preparing, fulfilled, or rejected/refunded states.
+
+Leaderboard logic must use deterministic tie-breaking, respect privacy, distinguish overall road points from game-specific scores, and avoid rewarding only volume. Public displays include rank frames and Cambodian license-plate-inspired score surfaces, which evolved through extensive mobile and realism adjustments.
+
+
+
+10. SECURITY, QUALITY, AND OPERATIONS
+
+-------------------------------------
+
+Security controls evidenced in the repository include role-based access, protected administrative routes, JWT cookies, TOTP 2FA and recovery codes, security headers, secret scanning scripts, dependency audit commands, audit logging, cautious media handling, and a public vulnerability-reporting policy.
+
+Game integrity requires server-authoritative answer checks, validation of question/session state, timing floors, one-time score synchronization, idempotent completion, and no trust in client-declared correctness for reward-bearing results. Some practice activities historically trusted client correctness and remain candidates for hardening.
+
+Quality uses Vitest, property-based testing with fast-check, ESLint, TypeScript, migration verification, focused route tests, and browser checks. Because broad TypeScript output may contain unrelated pre-existing noise, focused tests and direct browser verification are important evidence for scoped changes.
+
+Operational scripts cover development, build/start, migrations, schema verification, Drizzle Studio, backup/restore, security checks, and score/reward migrations. Database changes should be additive where possible, backed up, verified, and reversible.
+
+Git discipline: inspect the working tree; preserve unrelated changes; stage exact paths; check staged diffs; write descriptive commits; and push only after explicit instruction. This prevents sweeping temporary files, reports, local media, or another contributor's work into a release.
+
+
+
+11. EVOLUTION FROM BEGINNING TO CURRENT STATE
+
+---------------------------------------------
+
+March 2026 — foundation and rapid product formation. The initial commit established the Next.js application. Early work added login, role dashboards, RBAC, database resilience, content CRUD, media, profiles, public learning, and a broad neo-brutalist visual direction. Multiple iterations replaced generic dashboard styling with stronger black borders, high contrast, traffic imagery, and caution-tape interaction.
+
+April 2026 — expansion and stabilization. The project continued developing public content, authentication, administrative operations, responsive behavior, production fixes, and a larger education workflow. The codebase increasingly separated public, teacher, staff, and administrator experiences.
+
+May 2026 — learning, gameplay, and platform depth. Git activity shows substantial feature and fix volume. The project expanded quizzes, sessions, content data, gamification, profiles, subscriptions, security, bilingual behavior, and public-facing product surfaces.
+
+June 2026 — system definition and brand maturation. This was the largest recorded month. Work formalized the GameKit architecture, multiple kid-friendly formats, scoring research and policy, Store Points, reward claims, ranks/divisions, public profiles, leaderboards, license-plate score visuals, QA rewrite/import rules, responsive/mobile behavior, typography, performance, SEO, privacy, analytics, security, and repository cleanup.
+
+Brand change: early 'neo-brutalism' became a more specific KWD system—Brutalist + Road-Traffic-Sign + Caution-Tape. Generic decoration gave way to semantic traffic colors, road-sign shapes, flat library icons, bilingual copy, strict logo use, and reusable brand kit/tokens.
+
+Typography change: older documents mention one-family Google Sans usage or a three-font experiment including Battambang. The current mandatory brand source establishes a two-font standard: Google Sans for Khmer and Roboto for English. The report treats that current rule as authoritative and older specifications as historical.
+
+Game-system change: isolated quizzes and challenge records grew into live sessions, solo/daily modes, a shared modern scorer, GameKit formats, attempt recording, ranks, Store Points, reward claims, and richer public leaderboards. Remaining legacy paths explain why unification remains important.
+
+Content change: broad content CRUD evolved toward topic-scoped, bilingual, database-backed Q&A with strict answer-shape compatibility, banned-word rules, review artifacts, transactional imports, image ownership rules, and randomization across relevant game paths.
+
+July 2026 — refinement and documentation. The current checkout contains a small number of July commits focused on follow-up fixes and restoring brand discoverability. The last recorded commit in this checkout is listed in Document Control and the complete history appendix.
+
+
+
+MONTHLY GIT ACTIVITY
+
+--------------------
+
+2026-03: 389 commits — Foundation, auth, dashboards, CRUD, media, early neo-brutalist identity
+
+2026-04: 167 commits — Platform expansion, production stabilization, role and learning flows
+
+2026-05: 357 commits — Gameplay, content, subscriptions, profiles, security, bilingual growth
+
+2026-06: 559 commits — Brand system, GameKit, scoring/economy, rewards, ranks, QA, performance
+
+2026-07: 14 commits — Refinement, fixes, and brand discoverability in reviewed checkout
+
+
+
+12. CURRENT STRENGTHS
+
+---------------------
+
+A distinctive and coherent Cambodia-specific identity connects product purpose to interface behavior.
+
+Bilingual Khmer/English design is treated as a structural requirement rather than an optional translation layer.
+
+The role model supports a real education ecosystem: learners, teachers, curriculum staff, and administrators.
+
+The platform combines learning content, practice, real-time sessions, motivation, public identity, and tangible reward operations.
+
+The repository contains unusually detailed internal standards for brand, games, scoring, content authoring, testing, security, and operations.
+
+The database model records enough event detail to support progress, audits, analytics, and future system unification.
+
+
+
+13. RISKS AND RECOMMENDATIONS
+
+-----------------------------
+
+Unify scoring and progress sources. One server-authoritative scoring/event pipeline should power all games, profiles, leaderboards, rank progress, and rewards, with migration rules for legacy history.
+
+Resolve documentation drift. README, scoring reports, older brand text, and runtime code may describe different generations of the system. Add version/date/status labels and make one current architecture document authoritative.
+
+Finish server validation for every activity. Client feedback can remain immediate, but correctness, score, eligibility, and award values must be recalculated on the server.
+
+Strengthen automated coverage. Increase tests for permissions, privacy, scoring properties, replay/idempotency, migration correctness, bilingual rendering, and mobile game completion.
+
+Maintain privacy by default. Public profiles, province labels, class details, share images, and leaderboard filters must honor each user's settings and avoid inference leaks.
+
+Create a formal records-retention package. Keep tagged releases, encrypted database backups, media manifests, deployment configuration inventories, incident logs, analytics exports, and owner-provided iCloud archives under a dated retention schedule.
+
+Define production service ownership. Document who owns the database, Cloudinary, Stripe, Vercel, domains, analytics, OAuth, email, and recovery procedures, without placing secrets in the repository.
+
+Continue performance/accessibility checks on low-cost mobile devices and variable networks, especially Khmer font loading, image-heavy game screens, animation, live-session reconnects, and long leaderboard lists.
+
+
+
+14. STANDARD DEVELOPMENT AND RELEASE PROCEDURE
+
+----------------------------------------------
+
+1. Define the user outcome, roles affected, data touched, and acceptance criteria.
+
+2. Read the current source-of-truth skill/specification for brand, GameKit, scoring, testing, or content authoring.
+
+3. Inspect the existing implementation and database schema before proposing new structures.
+
+4. Create a rollback-safe plan for migrations, imports, scoring changes, and bulk content work.
+
+5. Implement the smallest coherent change using shared utilities, tokens, and server validation.
+
+6. Add or update focused unit, property, integration, and route tests proportional to risk.
+
+7. Run formatting/diff checks, targeted tests, and necessary build/type checks; separate unrelated existing failures.
+
+8. Test the actual route in English and Khmer, desktop and mobile widths, keyboard/touch use, loading, error, and empty states.
+
+9. Verify privacy, authorization, auditability, idempotency, and anti-cheat behavior.
+
+10. Update authoritative documentation and migration notes without rewriting unrelated files.
+
+11. Stage only intended paths, inspect the staged diff, commit descriptively, and push only under the project's explicit push workflow.
+
+12. After deployment, verify health, logs, analytics signals, migrations, and a representative end-to-end user flow.
+
+
+
+15. REPOSITORY SNAPSHOT AND DOCUMENTARY CONCLUSION
+
+--------------------------------------------------
+
+This repository documents a transition from a fast-moving prototype into a broad, branded education platform. The strongest progress is not only the number of features; it is the emergence of consistent rules: a distinct visual language, clear user roles, bilingual content standards, server-validated gameplay goals, score-derived progression, accountable reward workflows, privacy controls, and disciplined development practices.
+
+KWD's next stage should prioritize consolidation over uncontrolled expansion: one score/event model, one current documentation set, complete server validation, stronger automated tests, and formal external records retention. Those steps will make the product easier to operate, explain, audit, and scale while preserving the energetic identity that makes it memorable.
+
+This report should be updated at major releases. Each revision should record the Git tag/commit, schema version, deployed services, changed policies, feature additions/removals, known risks, and links to separately secured operational archives.
+
+
+
+APPENDIX A — CURRENT FUNCTIONAL SURFACES
+
+Public: home, about, brand, ranks, learning categories, play hub, live join, solo, daily, GameKit activities, leaderboard, public profiles, registration/login, pricing, privacy, terms, security, sitemap, technology stack.
+
+Teacher: overview, profile, classes, hosted sessions, analytics, reward claims.
+
+Staff: content, questions, topics, learning resources, media, submissions, classes, profile.
+
+Admin: overview, users, subscriptions, content, questions, reviews, road markings, media, game sessions, logs, profile.
+
+
+
+APPENDIX B — CURRENT GAMEKIT REGISTRY
+
+Daily; Traffic Commander; Sign Match; Connect the Signs; Tick the Sign; Word Bank; Catch Sign; Light Hero; Safety Adventure; Safe Street Smart.
+
+
+
+APPENDIX C — SIX ROAD RANKS
+
+ROOKIE 0; RISING 1,000; GOLD 2,500; PLATINUM 3,500; DIAMOND 7,000; MYTHIC 12,000. Each rank has divisions IV, III, II, I; score is the source of truth.
+
+
+
+APPENDIX D — COMPLETE CHANGE RECORD
+
+The companion file KWD-Complete-Git-History.txt contains every commit available in this checkout in chronological order, including ISO timestamp, full hash, author, email, and subject.
+
+
+
+END OF REPORT
