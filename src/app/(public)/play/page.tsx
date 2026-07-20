@@ -189,16 +189,13 @@ function GameCard({ mode, kh, khFont, isLimitReached }: {
       )}
 
       {/* Colored illustration banner */}
-      <div style={{
-        height: 96,
-        background: isLimitReached ? "#e4e4e7" : mode.color,
-        borderBottom: `4px solid ${BRAND.black}`,
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
-      }}>
+      <div
+        className="h-16 sm:h-20 md:h-24 relative flex items-center justify-center overflow-hidden"
+        style={{
+          background: isLimitReached ? "#e4e4e7" : mode.color,
+          borderBottom: `4px solid ${BRAND.black}`,
+        }}
+      >
         {/* dot pattern */}
         <div style={{
           position: "absolute",
@@ -207,82 +204,99 @@ function GameCard({ mode, kh, khFont, isLimitReached }: {
           backgroundSize: "14px 14px",
         }} />
         {/* giant watermark number */}
-        <span style={{
-          position: "absolute",
-          left: 10,
-          bottom: -18,
-          fontSize: 80,
-          fontWeight: 900,
-          fontFamily: "var(--font-system)",
-          color: "rgba(0,0,0,0.12)",
-          lineHeight: 1,
-          userSelect: "none",
-        }}>
+        <span
+          className="absolute left-2.5 -bottom-4 md:-bottom-5 text-4xl sm:text-5xl md:text-8xl font-black font-system select-none leading-none"
+          style={{
+            color: "rgba(0,0,0,0.12)",
+          }}
+        >
           {mode.number}
         </span>
         {/* icon tile */}
-        <div style={{
-          width: 56,
-          height: 56,
-          background: BRAND.white,
-          border: `3px solid ${BRAND.black}`,
-          boxShadow: !isLimitReached && hovered ? `5px 5px 0 ${BRAND.black}` : `3px 3px 0 ${BRAND.black}`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          transform: !isLimitReached && hovered ? "rotate(-10deg) scale(1.08)" : "none",
-          transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s",
-          zIndex: 2,
-        }}>
+        <div
+          className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 border-2 md:border-3 border-black flex items-center justify-center z-10"
+          style={{
+            background: BRAND.white,
+            boxShadow: !isLimitReached && hovered ? `5px 5px 0 ${BRAND.black}` : `3px 3px 0 ${BRAND.black}`,
+            transform: !isLimitReached && hovered ? "rotate(-10deg) scale(1.08)" : "none",
+            transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s",
+          }}
+        >
           {isLimitReached ? (
-            <Lock size={22} strokeWidth={2.5} className="text-zinc-400" />
+            <Lock size={16} strokeWidth={2.5} className="text-zinc-400" />
           ) : (
-            <mode.Icon size={26} strokeWidth={2.5} style={{ color: mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color }} />
+            <mode.Icon
+              className="w-4 h-4 sm:w-5 sm:h-5 md:w-[26px] md:h-[26px]"
+              strokeWidth={2.5}
+              style={{ color: mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color }}
+            />
           )}
         </div>
       </div>
 
       {/* Content */}
-      <div style={{ padding: "16px 18px 18px", display: "flex", flexDirection: "column", flex: 1, gap: 10 }}>
+      <div className="p-2 sm:p-3.5 md:p-[18px] flex flex-col flex-1 gap-1.5 sm:gap-2">
         {/* meta chips */}
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 800, fontFamily: "var(--font-en)", border: `2px solid ${BRAND.black}`, padding: "2px 7px" }}>
+        <div className="flex gap-1 md:gap-2 flex-wrap">
+          <span className="flex items-center gap-1 text-[8px] md:text-[10px] font-black border-1.5 md:border-2 border-black px-1.5 py-0.5 md:px-2 md:py-0.5 font-roboto">
             {mode.badge}
           </span>
-          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 800, fontFamily: "var(--font-en)", border: `2px solid ${BRAND.black}`, padding: "2px 7px" }}>
-            <Clock size={11} strokeWidth={2.5} /> {mode.timer}
+          <span className="flex items-center gap-1 text-[8px] md:text-[10px] font-black border-1.5 md:border-2 border-black px-1.5 py-0.5 md:px-2 md:py-0.5 font-roboto">
+            <Clock className="w-2.5 h-2.5 md:w-3 md:h-3" strokeWidth={2.5} /> {mode.timer}
           </span>
         </div>
 
-        <h3 style={{ ...khFont, fontSize: 19, fontWeight: 900, margin: 0, lineHeight: 1.15, letterSpacing: "-0.5px", color: !isLimitReached && hovered ? (mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color) : BRAND.black, transition: "color 0.2s" }}>
+        <h3
+          className="text-xs sm:text-sm md:text-lg font-black leading-tight"
+          style={{
+            ...khFont,
+            margin: 0,
+            color: !isLimitReached && hovered ? (mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color) : BRAND.black,
+            transition: "color 0.2s"
+          }}
+        >
           {kh ? mode.titleKh : mode.title}
         </h3>
 
-        <p style={{ ...khFont, fontSize: 12.5, fontWeight: 600, color: "rgba(0,0,0,0.62)", margin: 0, lineHeight: 1.45, flex: 1 }}>
+        <p
+          className="hidden md:block"
+          style={{
+            ...khFont,
+            fontSize: 12.5,
+            fontWeight: 600,
+            color: "rgba(0,0,0,0.62)",
+            margin: 0,
+            lineHeight: 1.45,
+            flex: 1
+          }}
+        >
           {kh ? mode.descKh : mode.desc}
         </p>
 
-        <DifficultyDots level={mode.difficulty} kh={kh} />
+        <div className="hidden sm:block">
+          <DifficultyDots level={mode.difficulty} kh={kh} />
+        </div>
 
         {/* CTA */}
-        <div style={{
-          marginTop: 4,
-          padding: "11px 18px",
-          background: isLimitReached ? "#f4f4f5" : (hovered ? mode.color : BRAND.white),
-          color: isLimitReached ? "#9ca3af" : BRAND.black,
-          border: `3px solid ${BRAND.black}`,
-          fontWeight: 900,
-          fontSize: 12,
-          letterSpacing: 2,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 6,
-          transition: "all 0.14s cubic-bezier(0.34,1.56,0.64,1)",
-          boxShadow: hovered ? "none" : `4px 4px 0 ${BRAND.black}`,
-          transform: hovered ? "translate(3px,3px)" : "none",
-        }}>
-          <Play size={13} fill="currentColor" strokeWidth={3} />
+        <div
+          className="mt-1 py-1 px-1.5 md:py-2.5 md:px-4 border-2 md:border-3 text-[9px] md:text-xs"
+          style={{
+            background: isLimitReached ? "#f4f4f5" : (hovered ? mode.color : BRAND.white),
+            color: isLimitReached ? "#9ca3af" : BRAND.black,
+            borderColor: BRAND.black,
+            borderStyle: "solid",
+            fontWeight: 900,
+            letterSpacing: 1.5,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 4,
+            transition: "all 0.14s cubic-bezier(0.34,1.56,0.64,1)",
+            boxShadow: hovered ? "none" : `4px 4px 0 ${BRAND.black}`,
+            transform: hovered ? "translate(3px,3px)" : "none",
+          }}
+        >
+          <Play className="w-3 h-3 md:w-3.5 md:h-3.5" fill="currentColor" strokeWidth={3} />
           <span style={khFont}>{kh ? "លេងឥឡូវ" : "PLAY NOW"}</span>
         </div>
       </div>
@@ -774,10 +788,16 @@ export default function PlayPage() {
                 }}
               >
                 {/* banner */}
-                <div style={{ height: 88, background: g.brandColor, borderBottom: `4px solid ${BRAND.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div
+                  className="h-16 sm:h-20 md:h-22 relative flex items-center justify-center"
+                  style={{ background: g.brandColor, borderBottom: `4px solid ${BRAND.black}` }}
+                >
                   <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.5px, transparent 1.5px)", backgroundSize: "14px 14px" }} />
-                  <div style={{ width: 60, height: 60, background: BRAND.white, border: `3px solid ${BRAND.black}`, boxShadow: `4px 4px 0 ${BRAND.black}`, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
-                    <g.Icon size={32} strokeWidth={2.75} className="text-black" />
+                  <div
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-[60px] md:h-[60px] border-2 md:border-3 border-black flex items-center justify-center z-10"
+                    style={{ background: BRAND.white, boxShadow: `4px 4px 0 ${BRAND.black}` }}
+                  >
+                    <g.Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-8 md:h-8 text-black" strokeWidth={2.75} />
                   </div>
                   {/* badge */}
                   {g.badge && (
@@ -792,25 +812,36 @@ export default function PlayPage() {
                   )}
                 </div>
                 {/* content */}
-                <div style={{ padding: "14px 16px 16px", display: "flex", flexDirection: "column", flex: 1, gap: 8 }}>
-                  <h3 style={{ ...khFont, fontSize: 17, fontWeight: 900, margin: 0, lineHeight: 1.15 }}>{kh ? g.title.kh : g.title.en}</h3>
-                  <p style={{ ...khFont, fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.6)", margin: 0, lineHeight: 1.4, flex: 1 }}>{kh ? g.description.kh : g.description.en}</p>
-                  <div style={{
-                    marginTop: 4,
-                    padding: "10px 16px",
-                    background: isBlocked ? "#f4f4f5" : BRAND.white,
-                    color: isBlocked ? "#9ca3af" : BRAND.black,
-                    border: `3px solid ${BRAND.black}`,
-                    fontWeight: 900,
-                    fontSize: 12,
-                    letterSpacing: 1.5,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 6,
-                    boxShadow: isBlocked ? "none" : `4px 4px 0 ${BRAND.black}`
-                  }}>
-                    {isBlocked ? <Lock size={13} /> : <Play size={13} fill="currentColor" strokeWidth={3} />}
+                <div className="p-2 sm:p-3.5 flex flex-col flex-1 gap-1.5 sm:gap-2">
+                  <h3
+                    className="text-xs sm:text-sm md:text-[17px] font-black leading-tight"
+                    style={{ ...khFont, margin: 0 }}
+                  >
+                    {kh ? g.title.kh : g.title.en}
+                  </h3>
+                  <p
+                    className="hidden md:block"
+                    style={{ ...khFont, fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.6)", margin: 0, lineHeight: 1.4, flex: 1 }}
+                  >
+                    {kh ? g.description.kh : g.description.en}
+                  </p>
+                  <div
+                    className="mt-1 py-1 px-1.5 md:py-2.5 md:px-4 border-2 md:border-3 text-[9px] md:text-xs"
+                    style={{
+                      background: isBlocked ? "#f4f4f5" : BRAND.white,
+                      color: isBlocked ? "#9ca3af" : BRAND.black,
+                      borderColor: BRAND.black,
+                      borderStyle: "solid",
+                      fontWeight: 900,
+                      letterSpacing: 1.5,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: 4,
+                      boxShadow: isBlocked ? "none" : `4px 4px 0 ${BRAND.black}`
+                    }}
+                  >
+                    {isBlocked ? <Lock className="w-3 h-3 md:w-3.5 md:h-3.5" /> : <Play className="w-3 h-3 md:w-3.5 md:h-3.5" fill="currentColor" strokeWidth={3} />}
                     <span style={khFont}>
                       {isPro
                         ? (kh ? "ដោះសោដោយ Pro" : "PRO UNLOCK")

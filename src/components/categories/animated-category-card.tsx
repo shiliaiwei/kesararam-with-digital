@@ -436,10 +436,9 @@ export function AnimatedCategoryCard({
       {/* ── Animated cover header ── */}
       <div
         ref={headerRef}
-        className="relative flex items-center justify-center border-b-2 border-black overflow-hidden"
+        className="relative flex items-center justify-center border-b-2 border-black overflow-hidden h-24 sm:h-32 md:h-48"
         style={{
           backgroundColor: color,
-          minHeight: "190px",
           transition: "background-color 0.4s ease",
         }}
       >
@@ -472,7 +471,7 @@ export function AnimatedCategoryCard({
 
         {/* Icon scene */}
         <div
-          className="relative z-10 w-36 h-36"
+          className="relative z-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36"
           style={{
             filter: isHovered ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25))" : "drop-shadow(0 2px 4px rgba(0,0,0,0.15))",
             transition: "filter 0.3s ease",
@@ -502,26 +501,26 @@ export function AnimatedCategoryCard({
 
       {/* ── Card body ── */}
       <div
-        className="flex flex-col flex-1 p-5 gap-2"
+        className="flex flex-col flex-1 p-2 sm:p-3.5 md:p-5 gap-1 md:gap-2"
         style={{
           transform: isHovered ? "translateY(-3px)" : "translateY(0)",
           transition: "transform 0.3s ease",
         }}
       >
-        <h3 className="font-black text-lg text-black leading-tight font-learning">
+        <h3 className="font-black text-xs sm:text-sm md:text-lg text-black leading-tight font-learning">
           {kh ? titleKh : titleEn}
         </h3>
-        <p className="text-xs text-zinc-400 font-learning">
+        <p className="text-[9px] sm:text-xs text-zinc-400 font-learning">
           {titleKh}
         </p>
-        <p className="text-sm text-zinc-600 leading-relaxed mt-1 flex-1 font-learning">
+        <p className="hidden md:block text-sm text-zinc-600 leading-relaxed mt-1 flex-1 font-learning">
           {descEn}
         </p>
 
         {/* Study now button */}
-        <div className="mt-3 pt-3 border-t-2 border-black flex items-center justify-between">
+        <div className="mt-1.5 md:mt-3 pt-1.5 md:pt-3 border-t border-black flex items-center justify-between">
           <span
-            className="text-xs font-black px-3 py-1 border-2 border-black font-system"
+            className="text-[9px] sm:text-xs font-black px-1.5 py-0.5 sm:px-3 sm:py-1 border sm:border-2 border-black font-system"
             style={{
               backgroundColor: isHovered ? "#000" : color,
               color: isHovered ? "#fff" : "#000",
@@ -533,7 +532,7 @@ export function AnimatedCategoryCard({
           </span>
           {/* Arrow */}
           <svg
-            width="20" height="20" viewBox="0 0 20 20" fill="none"
+            className="w-3.5 h-3.5 sm:w-5 sm:h-5" viewBox="0 0 20 20" fill="none"
             style={{
               transform: isHovered ? "translateX(4px)" : "translateX(0)",
               transition: "transform 0.3s ease",
