@@ -182,7 +182,7 @@ export default function LearnPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-5">
             {CATEGORIES.map((cat, index) => (
               <AnimatedCategoryCard
                 key={cat.slug}
@@ -192,7 +192,7 @@ export default function LearnPage() {
                 descEn={cat.descEn}
                 index={index}
                 lang={lang}
-                studyNowText={kh ? "រៀនឥឡូវ" : "Study now"}
+                studyNowText={kh ? "រៀនឥឡូវ" : "Learn now"}
               />
             ))}
           </div>

@@ -436,7 +436,7 @@ export function AnimatedCategoryCard({
       {/* ── Animated cover header ── */}
       <div
         ref={headerRef}
-        className="relative flex items-center justify-center border-b-2 border-black overflow-hidden h-24 sm:h-32 md:h-48"
+        className="relative flex items-center justify-center border-b-2 border-black overflow-hidden h-20 sm:h-28 md:h-44"
         style={{
           backgroundColor: color,
           transition: "background-color 0.4s ease",
@@ -489,28 +489,20 @@ export function AnimatedCategoryCard({
             transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
           }}
         />
-
-        {/* Category index badge */}
-        <div
-          className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center border-2 border-black bg-white text-xs font-black"
-          style={{ borderRadius: "3px" }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </div>
       </div>
 
       {/* ── Card body ── */}
       <div
-        className="flex flex-col flex-1 p-2 sm:p-3.5 md:p-5 gap-1 md:gap-2"
+        className="flex flex-col flex-1 p-2 sm:p-3.5 md:p-5 gap-0.5 sm:gap-1 md:gap-2"
         style={{
           transform: isHovered ? "translateY(-3px)" : "translateY(0)",
           transition: "transform 0.3s ease",
         }}
       >
-        <h3 className="font-black text-xs sm:text-sm md:text-lg text-black leading-tight font-learning">
+        <h3 className="font-black text-[11px] xs:text-xs sm:text-sm md:text-lg text-black leading-tight font-learning break-normal">
           {kh ? titleKh : titleEn}
         </h3>
-        <p className="text-[9px] sm:text-xs text-zinc-400 font-learning">
+        <p className="text-[9px] sm:text-xs text-zinc-400 font-learning break-normal">
           {titleKh}
         </p>
         <p className="hidden md:block text-sm text-zinc-600 leading-relaxed mt-1 flex-1 font-learning">

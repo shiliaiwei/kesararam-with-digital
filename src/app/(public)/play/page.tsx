@@ -203,15 +203,7 @@ function GameCard({ mode, kh, khFont, isLimitReached }: {
           backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.5px, transparent 1.5px)",
           backgroundSize: "14px 14px",
         }} />
-        {/* giant watermark number */}
-        <span
-          className="absolute left-2.5 -bottom-4 md:-bottom-5 text-4xl sm:text-5xl md:text-8xl font-black font-system select-none leading-none"
-          style={{
-            color: "rgba(0,0,0,0.12)",
-          }}
-        >
-          {mode.number}
-        </span>
+
         {/* icon tile */}
         <div
           className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 border-2 md:border-3 border-black flex items-center justify-center z-10"
@@ -901,7 +893,7 @@ export default function PlayPage() {
           .play-hero-join { justify-self: stretch; max-width: none; }
         }
         @media (max-width: 640px) {
-          .card-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px 16px 8px; }
+          .card-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 20px 12px 8px; }
           .play-hero { padding: 28px 16px; }
           .modes-header { padding: 32px 16px 4px; }
           .bottom-cta { flex-direction: column; align-items: flex-start; padding: 28px 22px; margin: 24px 16px 56px; gap: 22px; }

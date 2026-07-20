@@ -44,7 +44,7 @@ export const t = {
       sectionTitle2: "Categories",
       sectionDesc:
         "Eight subject areas covering everything you need to master Cambodia's road safety knowledge.",
-      studyNow: "Study now",
+      studyNow: "Learn now",
     },
 
     // Home page sections

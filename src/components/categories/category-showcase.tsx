@@ -109,7 +109,7 @@ export function CategoryShowcase({ lang = "en" }: CategoryShowcaseProps) {
         {/* Grid */}
         <div
           ref={containerRef}
-          className="grid grid-cols-4 gap-6"
+          className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-6"
         >
           {CATEGORIES.map((cat, index) => (
             <ShowcaseCard
