@@ -24,7 +24,7 @@ function AnimatedLogoText() {
   return (
     <div className="leading-none flex flex-col" style={{ width: "150px" }}>
       <span className="font-google-sans font-black text-[15px] text-black tracking-tight pt-1">
-        វិថីសុវត្ថិភាព
+        វិថី សុវត្ថិភាព
       </span>
       <span className="font-black text-[8px] uppercase tracking-widest text-zinc-400 mt-0.5 whitespace-nowrap font-roboto">
         The Way of Safety

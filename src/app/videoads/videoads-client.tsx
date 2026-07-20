@@ -685,7 +685,7 @@ function OutroScene() {
         {/* brand name — Khmer (primary) + English */}
         <div className="flex flex-col items-center gap-0.5">
           <h1 className="text-[2.3rem] font-black leading-none text-[#eab308] anim-pop">
-            វិថីសុវត្ថិភាព
+            វិថី សុវត្ថិភាព
           </h1>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-white/70">
             The Way of Safety

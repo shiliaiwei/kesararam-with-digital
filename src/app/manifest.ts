@@ -5,8 +5,8 @@ import { MetadataRoute } from "next";
 // for the browser/OS chrome. Brand: yellow #eab308 on black, road-safety identity.
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "វិថីសុវត្ថិភាព · The Way of Safety — Kesararam With Digital",
-    short_name: "វិថីសុវត្ថិភាព",
+    name: "វិថី សុវត្ថិភាព · The Way of Safety — Kesararam With Digital",
+    short_name: "វិថី សុវត្ថិភាព",
     description:
       "Free bilingual (ខ្មែរ / English) road-safety learning for Cambodia: traffic signs, road rules, quizzes, and live games. By Kesararam With Digital.",
     id: "/",

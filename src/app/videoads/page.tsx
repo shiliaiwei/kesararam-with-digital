@@ -5,7 +5,7 @@ import VideoAdsClient from "./videoads-client";
 
 /* Internal marketing tool — keep it out of search results. */
 export const metadata: Metadata = {
-  title: "Video Ads · វិថីសុវត្ថិភាព",
+  title: "Video Ads · វិថី សុវត្ថិភាព",
   description: "KWD short-video promo generator (admin only).",
   robots: { index: false, follow: false },
 };

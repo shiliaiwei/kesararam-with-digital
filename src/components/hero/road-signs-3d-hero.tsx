@@ -280,7 +280,7 @@ export function RoadSigns3DHero() {
           {kh ? "ស្គាល់ផ្លាកសញ្ញា ការពារជីវិត" : "Know the signs, protect life"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
-          {kh ? "វិថីសុវត្ថិភាព" : "The Way of Safety"}
+          {kh ? "វិថី សុវត្ថិភាព" : "The Way of Safety"}
         </h2>
       </div>
 
