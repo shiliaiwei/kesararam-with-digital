@@ -97,7 +97,7 @@ export default function LearnPage() {
         <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <div className="flex flex-col gap-5 max-w-2xl">
-              <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-xs font-black tracking-widest uppercase px-3 py-1.5 w-fit border-2 border-yellow-400">
+              <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-xs font-black tracking-widest uppercase px-3 py-1.5 w-fit border-2 border-black shadow-[2px_2px_0_#000]">
                 <span className="w-2 h-2 bg-black rounded-full animate-pulse" />
                 {kh ? "មជ្ឈមណ្ឌលចំណេះដឹង" : "Knowledge Hub"}
               </div>
@@ -114,20 +114,19 @@ export default function LearnPage() {
                 className="text-lg md:text-xl text-white/60 max-w-lg leading-relaxed font-system"
               >
                 {kh
-                  ? "រៀនបើកបរ និងស្គាល់សញ្ញាចរាចរ — ៨ ប្រភេទ ២ ភាសា"
-                  : "Master Cambodia's driving theory across 8 categories — in Khmer & English."}
+                  ? "រៀនសុវត្ថិភាពចរាចរណ៍ និងស្គាល់សញ្ញាចរាចរណ៍ — ៨ ប្រភេទ ២ ភាសា"
+                  : "Master Cambodia's road safety theory across 8 categories — in Khmer & English."}
               </p>
               <div ref={ctaRef} className="flex flex-wrap gap-3">
                 <Link
                   href="/play"
-                  className="px-6 py-3 bg-yellow-400 text-black font-black border-2 border-yellow-400 transition-all duration-100 hover:-translate-y-1 font-system"
-                  style={{ boxShadow: "4px 4px 0 #ca8a04" }}
+                  className="px-6 py-3 bg-yellow-400 text-black font-black border-2 border-black transition-all duration-100 hover:-translate-y-1 font-system shadow-[4px_4px_0_#000] active:translate-y-0 active:shadow-none"
                 >
                   {kh ? "លេងឥឡូវ →" : "Play Now →"}
                 </Link>
                 <Link
                   href="/leaderboard"
-                  className="px-6 py-3 bg-transparent text-white font-black border-2 border-white/40 hover:border-white transition-all duration-100 font-system"
+                  className="px-6 py-3 bg-white text-black font-black border-2 border-black transition-all duration-100 hover:-translate-y-1 font-system shadow-[4px_4px_0_#000] hover:bg-zinc-50 active:translate-y-0 active:shadow-none"
                 >
                   {kh ? "ចំណាត់ថ្នាក់" : "Leaderboard"}
                 </Link>
@@ -135,10 +134,9 @@ export default function LearnPage() {
             </div>
 
             {/* Floating category count */}
-            <div className="hidden md:flex flex-col items-center justify-center w-40 h-40 border-4 border-yellow-400 bg-yellow-400/10 flex-shrink-0"
-              style={{ boxShadow: "8px 8px 0 #ca8a04" }}>
-              <span className="text-6xl font-black text-yellow-400">8</span>
-              <span className="text-xs font-black text-white/60 tracking-widest uppercase mt-1">
+            <div className="hidden md:flex flex-col items-center justify-center w-40 h-40 border-4 border-black bg-yellow-400 flex-shrink-0 shadow-[8px_8px_0_#000]">
+              <span className="text-6xl font-black text-black">8</span>
+              <span className="text-xs font-black text-black tracking-widest uppercase mt-1">
                 {kh ? "ប្រភេទ" : "Categories"}
               </span>
             </div>
@@ -184,7 +182,7 @@ export default function LearnPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-4 gap-5">
             {CATEGORIES.map((cat, index) => (
               <AnimatedCategoryCard
                 key={cat.slug}
@@ -209,8 +207,7 @@ export default function LearnPage() {
           </h2>
           <Link
             href="/play"
-            className="px-10 py-4 bg-yellow-400 text-black font-black border-2 border-yellow-400 text-lg transition-all hover:-translate-y-1 font-system"
-            style={{ boxShadow: "6px 6px 0 #ca8a04" }}
+            className="px-10 py-4 bg-yellow-400 text-black font-black border-2 border-black text-lg transition-all hover:-translate-y-1 font-system shadow-[6px_6px_0_#000] active:translate-y-0 active:shadow-none"
           >
             {kh ? "លេងឥឡូវ →" : "Start Playing →"}
           </Link>

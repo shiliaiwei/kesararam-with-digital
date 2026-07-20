@@ -862,7 +862,7 @@ export default function PlayPage() {
         }
 
         @media (max-width: 1024px) {
-          .card-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+          .card-grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
           .play-hero { gap: 32px; padding: 44px 24px; }
         }
         @media (max-width: 860px) {
@@ -870,7 +870,7 @@ export default function PlayPage() {
           .play-hero-join { justify-self: stretch; max-width: none; }
         }
         @media (max-width: 640px) {
-          .card-grid { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px 8px; }
+          .card-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px 16px 8px; }
           .play-hero { padding: 28px 16px; }
           .modes-header { padding: 32px 16px 4px; }
           .bottom-cta { flex-direction: column; align-items: flex-start; padding: 28px 22px; margin: 24px 16px 56px; gap: 22px; }
