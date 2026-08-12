@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
+import { SaveCardButton } from "./save-card-button";
 
 interface Topic {
   id: number;
@@ -150,16 +151,17 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
             </div>
           )}
 
-          {audioUrl && (
-            <div className="px-5 pb-5">
+          <div className="px-5 pb-5 flex items-center gap-2.5">
+            <SaveCardButton topic={topic} isKh={isKh} size="lg" showLabel className="flex-1 py-3 text-sm" />
+            {audioUrl && (
               <button
                 onClick={toggleAudio}
                 disabled={loading}
-                className={`w-full py-3 font-black text-sm inline-flex items-center justify-center gap-2.5 border-2 border-black select-none ${loading
+                className={`flex-1 py-3 font-black text-sm inline-flex items-center justify-center gap-2.5 border-2 border-black select-none transition-all ${loading
                   ? "bg-zinc-100 text-zinc-400 cursor-wait"
                   : playing
                     ? "bg-black text-yellow-400 shadow-[4px_4px_0_#ca8a04]"
-                    : "bg-white text-black shadow-[4px_4px_0_#000] hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
+                    : "bg-black text-white shadow-[4px_4px_0_#000] hover:bg-zinc-800"
                   }`}
                 style={kf}
               >
@@ -192,8 +194,8 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
                   </>
                 )}
               </button>
-            </div>
-          )}
+            )}
+          </div>
 
           {topic.audio_url_en && (
             <audio ref={audioEnRef} src={topic.audio_url_en} onEnded={() => setPlaying(false)} />

@@ -422,14 +422,14 @@ function DetailPanel({
           )}
 
           {/* ── Audio + Save row ── */}
-          <div className="mt-2 flex items-center justify-between gap-2">
-            <SaveCardButton topic={topic} isKh={isKh} size="lg" />
+          <div className="mt-2 flex items-center justify-between gap-2.5">
+            <SaveCardButton topic={topic} isKh={isKh} size="lg" showLabel className="flex-1 py-2.5 text-sm" />
             {audioUrl && (
               <button
                 onClick={handleAudio}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 border-2 border-black font-black text-sm transition-all select-none ${loadingAudio ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                  : playing ? "bg-black text-yellow-400"
-                    : "bg-yellow-400 hover:bg-yellow-500 text-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000]"
+                className={`flex-1 py-2.5 border-2 border-black font-black text-sm transition-all select-none inline-flex items-center justify-center gap-2 ${loadingAudio ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                  : playing ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04]"
+                    : "bg-black text-white shadow-[3px_3px_0_#000] hover:bg-zinc-800"
                   }`}
                 style={kf}
               >

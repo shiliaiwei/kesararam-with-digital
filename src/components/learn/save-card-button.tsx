@@ -17,26 +17,70 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
     ctx.closePath();
 }
 
-function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number, lineHeight: number, maxLines = 99): number {
-    const words = text.split(' ');
-    let line = '';
-    let lineCount = 0;
-    for (const word of words) {
-        if (lineCount >= maxLines) break;
-        const test = line + word + ' ';
-        if (ctx.measureText(test).width > maxWidth && line !== '') {
-            ctx.fillText(line.trim(), x, y + lineCount * lineHeight);
-            line = word + ' ';
-            lineCount++;
-        } else {
-            line = test;
+function wrapTextLines(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
+    if (!text) return [];
+    const lines: string[] = [];
+    const paragraphs = text.split('\n');
+
+    for (const para of paragraphs) {
+        if (!para.trim()) {
+            lines.push('');
+            continue;
+        }
+
+        const words = para.split(' ');
+        let currentLine = '';
+
+        for (const word of words) {
+            const testLine = currentLine ? `${currentLine} ${word}` : word;
+
+            if (ctx.measureText(testLine).width <= maxWidth) {
+                currentLine = testLine;
+            } else {
+                if (currentLine) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+
+                // Handle single words/unbroken Khmer phrases wider than maxWidth
+                if (ctx.measureText(word).width > maxWidth) {
+                    let charLine = '';
+                    for (const char of Array.from(word)) {
+                        const testCharLine = charLine + char;
+                        if (ctx.measureText(testCharLine).width <= maxWidth) {
+                            charLine = testCharLine;
+                        } else {
+                            if (charLine) lines.push(charLine);
+                            charLine = char;
+                        }
+                    }
+                    if (charLine) currentLine = charLine;
+                } else {
+                    currentLine = word;
+                }
+            }
+        }
+        if (currentLine) {
+            lines.push(currentLine);
         }
     }
-    if (lineCount < maxLines && line.trim()) {
-        ctx.fillText(line.trim(), x, y + lineCount * lineHeight);
-        lineCount++;
+    return lines;
+}
+
+function renderWrappedText(
+    ctx: CanvasRenderingContext2D,
+    text: string,
+    x: number,
+    y: number,
+    maxWidth: number,
+    lineHeight: number,
+    maxLines = 999
+): number {
+    const lines = wrapTextLines(ctx, text, maxWidth).slice(0, maxLines);
+    for (let i = 0; i < lines.length; i++) {
+        ctx.fillText(lines[i], x, y + i * lineHeight);
     }
-    return lineCount;
+    return lines.length;
 }
 
 interface SaveCardButtonProps {
@@ -48,11 +92,14 @@ interface SaveCardButtonProps {
         description_km: string;
         primary_image_url: string;
         sub_group: string;
+        law_reference?: string;
         audio_url_en?: string;
         audio_url_km?: string;
     };
     isKh: boolean;
     size?: 'sm' | 'md' | 'lg';
+    showLabel?: boolean;
+    className?: string;
 }
 
 // Category accent colours — matches web UI per category
@@ -114,26 +161,26 @@ const CATEGORY_CONFIG: Record<string, { slug: string; accent: string; accentDark
 
 const DEFAULT_CONFIG = { slug: 'learn', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Learn', quote: 'Learn. Play. Pass.' };
 
-export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps) {
+export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, className = '' }: SaveCardButtonProps) {
     const [saving, setSaving] = useState(false);
 
     const handleSave = async () => {
         setSaving(true);
         try {
-            // ── Canvas: 1200 × 900 — taller to fit full description ───────────────
-            const W = 1200, H = 900;
+            // ── Canvas Base Width: 1200px ─────────────────────────────────────────
+            const W = 1200;
             const canvas = document.createElement('canvas');
-            canvas.width = W; canvas.height = H;
+            canvas.width = W;
             const ctx = canvas.getContext('2d');
             if (!ctx) throw new Error('Canvas not supported');
 
             const cfg = CATEGORY_CONFIG[topic.sub_group] || DEFAULT_CONFIG;
             const siteUrl = 'kesararamwithdigital.tech';
-            // Card shows only the selected language (same as web UI)
             const title = isKh ? topic.name_km : topic.name_en;
             const answer = isKh ? topic.description_km : topic.description_en;
+            const lawRefText = topic.law_reference ? topic.law_reference.trim() : '';
 
-            // ── Force-load brand fonts so canvas ignores device fonts ─────────────
+            // ── Load Google Sans font for ALL text (Khmer + English) per user spec ─────
             const loadFont = async (name: string, url: string, weight = 'normal') => {
                 try {
                     const f = new FontFace(name, `url(${url})`, { weight });
@@ -146,15 +193,10 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 }
             };
 
-            await Promise.all([
-                loadFont('KWDRoboto', '/Roboto/Roboto-VariableFont_wdth,wght.woff2', '100 900'),
-                // Brand font: Google Sans (incl. Khmer glyphs) — never Kantumruy
-                loadFont('KWDGoogleSansKhmer', '/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf', '400 700'),
-            ]);
+            await loadFont('KWDGoogleSans', '/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf', '100 900');
 
-            const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px KWDRoboto, sans-serif`;
-            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px KWDGoogleSansKhmer, KWDRoboto, sans-serif`;
-            const font = (size: number, weight = 'bold') => isKh ? fontKH(size, weight) : fontEN(size, weight);
+            // Google Sans font for all card text (Khmer & English) exclusively
+            const font = (size: number, weight = 'bold') => `${weight} ${size}px KWDGoogleSans, sans-serif`;
 
             const loadImg = (src: string, timeout = 4000) => new Promise<HTMLImageElement | null>((resolve) => {
                 const img = new Image(); img.crossOrigin = 'anonymous';
@@ -173,56 +215,41 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             // ── Layout constants ──────────────────────────────────────────────────
             const footerH = 88;
             const leftW = 420;
-            const rx = leftW + 44, ry = 40, rw = W - rx - 44;
+            const rx = leftW + 44, ry = 40, rw = W - rx - 44; // 692px text area width
 
-            // ── Pre-measure description to calculate dynamic height ───────────────
-            // We need to know how many lines the description takes BEFORE drawing
-            // so we can size the box correctly.
-            const descFontSize = 16;
-            const descLineH = 26;
-            const descPadX = 16, descPadY = 20;
-
-            // Measure title lines
-            ctx.font = font(34);
+            // ── Pre-measure title lines ───────────────────────────────────────────
+            ctx.font = font(34, 'bold');
             const titleLineH = 44;
-            // Count title lines by simulating wrapText
-            const countLines = (text: string, maxW: number, fontSize: number, lh: number, fnt: string): number => {
-                ctx.font = fnt;
-                const words = text.split(' ');
-                let line = '', count = 0;
-                for (const word of words) {
-                    const test = line + word + ' ';
-                    if (ctx.measureText(test).width > maxW && line !== '') {
-                        count++;
-                        line = word + ' ';
-                    } else {
-                        line = test;
-                    }
-                }
-                if (line.trim()) count++;
-                return count;
-            };
-
-            const titleLineCount = countLines(title, rw, 34, titleLineH, font(34));
+            const titleLines = wrapTextLines(ctx, title, rw);
+            const titleLineCount = Math.max(1, titleLines.length);
             const titleBottom = ry + 68 + titleLineCount * titleLineH;
 
-            // Measure description lines (no cap — show ALL text)
-            const descLineCount = answer
-                ? countLines(answer, rw - descPadX * 2, descFontSize, descLineH, font(descFontSize, 'normal'))
-                : 0;
-            const descBoxH = descLineCount > 0
-                ? descPadY * 2 + descLineCount * descLineH
-                : 0;
+            // ── Pre-measure Law Reference (if present) ────────────────────────────
+            const lawFontSize = 13;
+            const lawLineH = 22;
+            const lawPadX = 16, lawPadY = 12;
+            ctx.font = font(lawFontSize, 'normal');
+            const lawLines = lawRefText ? wrapTextLines(ctx, lawRefText, rw - lawPadX * 2) : [];
+            const lawBoxH = lawLines.length > 0 ? lawPadY * 2 + 22 + lawLines.length * lawLineH : 0;
 
-            // Calculate total right-panel content height needed
-            const descLabelY = titleBottom + 52;
+            // ── Pre-measure Description box ───────────────────────────────────────
+            const descFontSize = 16;
+            const descLineH = 26;
+            const descPadX = 18, descPadY = 20;
+            ctx.font = font(descFontSize, 'normal');
+            const descLines = answer ? wrapTextLines(ctx, answer, rw - descPadX * 2) : [];
+            const descBoxH = descLines.length > 0 ? descPadY * 2 + descLines.length * descLineH : 0;
+
+            // ── Compute positions & dynamic height ────────────────────────────────
+            const lawBoxY = titleBottom + 40;
+            const descLabelY = lawBoxH > 0 ? lawBoxY + lawBoxH + 24 : titleBottom + 44;
             const answerBoxY = descLabelY + 28;
-            const contentBottom = answerBoxY + descBoxH + 20;
+            const contentBottom = answerBoxY + descBoxH + 30;
 
-            // Dynamic canvas height: enough for content + footer, minimum 675
-            const neededH = Math.max(675, contentBottom + footerH + 20);
+            // Dynamic canvas height: expands so zero text is truncated or hidden
+            const neededH = Math.max(720, contentBottom + footerH + 30);
             canvas.height = neededH;
-            const FH = neededH; // final height
+            const FH = neededH; // final canvas height
 
             // ── 1. Background ─────────────────────────────────────────────────────
             ctx.fillStyle = '#ffffff';
@@ -236,7 +263,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             // ── 3. Category label pill ────────────────────────────────────────────
             ctx.fillStyle = cfg.accent;
-            ctx.font = fontEN(12);
+            ctx.font = font(12, 'bold');
             ctx.textAlign = 'left';
             const catLabel = isKh ? cfg.label : cfg.label.toUpperCase();
             const catW = ctx.measureText(catLabel).width + 28;
@@ -247,19 +274,18 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             roundRect(ctx, 24, 24, catW, 32, 6);
             ctx.stroke();
             ctx.fillStyle = '#000';
-            ctx.font = fontEN(12);
+            ctx.font = font(12, 'bold');
             ctx.fillText(catLabel, 38, 44);
 
             // ── 4. Topic code ─────────────────────────────────────────────────────
             ctx.fillStyle = cfg.accentDark;
-            ctx.font = fontEN(11);
+            ctx.font = font(11, 'bold');
             ctx.textAlign = 'left';
             ctx.fillText(topic.topic_code, 24, 76);
 
             // ── 5. Image area ─────────────────────────────────────────────────────
             const imgAreaX = 24, imgAreaY = 96;
             const imgAreaW = leftW - 48;
-            // Image takes up to 60% of left panel height, leaving room for footer
             const imgAreaH = Math.min(FH - 96 - footerH - 40, 480);
 
             if (topicImg) {
@@ -282,8 +308,8 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 ctx.drawImage(topicImg, dx, dy, dw, dh);
 
                 if (cfg.slug !== 'road-sign' && cfg.slug !== 'priority') {
-                    ctx.fillStyle = 'rgba(0,0,0,0.25)';
-                    ctx.font = fontEN(9, 'normal');
+                    ctx.fillStyle = 'rgba(0,0,0,0.3)';
+                    ctx.font = font(9, 'normal');
                     ctx.textAlign = 'center';
                     ctx.fillText(
                         isKh ? 'រូបភាពបង្កើតដោយ AI · គ្រាន់តែជារូបភាពយោង' : 'AI-generated image · Reference illustration only',
@@ -300,7 +326,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.fill();
                 ctx.fillStyle = cfg.accent;
-                ctx.font = fontEN(64);
+                ctx.font = font(64, 'bold');
                 ctx.textAlign = 'center';
                 ctx.fillText('🚦', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH / 2 + 20);
             }
@@ -309,7 +335,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             // 6a. SIGN CATEGORY micro-label
             ctx.fillStyle = cfg.accentDark;
-            ctx.font = fontEN(11);
+            ctx.font = font(11, 'bold');
             ctx.textAlign = 'left';
             ctx.fillText('SIGN CATEGORY', rx, ry + 14);
 
@@ -317,34 +343,52 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.fillStyle = cfg.accent;
             ctx.fillRect(rx, ry + 22, 64, 4);
 
-            // 6c. Title — full text, no line cap
+            // 6c. Title — Google Sans font, wrapTextLines ensures zero overflow
             ctx.fillStyle = '#000000';
-            ctx.font = font(34);
-            wrapText(ctx, title, rx, ry + 68, rw, titleLineH, 99);
+            ctx.font = font(34, 'bold');
+            renderWrappedText(ctx, title, rx, ry + 68, rw, titleLineH);
 
             // 6d. Metadata
-            ctx.fillStyle = 'rgba(0,0,0,0.4)';
-            ctx.font = fontEN(13);
+            ctx.fillStyle = 'rgba(0,0,0,0.45)';
+            ctx.font = font(13, 'normal');
             const metaText = topic.sub_group ? `${topic.topic_code}  ·  ${topic.sub_group}` : topic.topic_code;
             ctx.fillText(metaText, rx, titleBottom + 22);
 
             // 6e. Divider
             ctx.fillStyle = cfg.accent;
-            ctx.fillRect(rx, titleBottom + 36, rw, 4);
+            ctx.fillRect(rx, titleBottom + 32, rw, 4);
 
-            // 6f. DESCRIPTION label bar
+            // 6f. Law Reference box (if present)
+            if (lawRefText && lawLines.length > 0) {
+                ctx.fillStyle = '#eff6ff';
+                ctx.fillRect(rx, lawBoxY, rw, lawBoxH);
+                ctx.strokeStyle = '#3b82f6';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(rx, lawBoxY, rw, lawBoxH);
+
+                ctx.fillStyle = '#1e40af';
+                ctx.font = font(11, 'bold');
+                ctx.textAlign = 'left';
+                ctx.fillText(isKh ? 'ឯកសារយោងច្បាប់' : 'LAW REFERENCE', rx + lawPadX, lawBoxY + 20);
+
+                ctx.fillStyle = '#1e3a8a';
+                ctx.font = font(lawFontSize, 'normal');
+                renderWrappedText(ctx, lawRefText, rx + lawPadX, lawBoxY + 40, rw - lawPadX * 2, lawLineH);
+            }
+
+            // 6g. DESCRIPTION label bar
             ctx.fillStyle = '#22c55e';
             ctx.fillRect(rx, descLabelY, rw, 28);
             ctx.strokeStyle = '#000';
             ctx.lineWidth = 2;
             ctx.strokeRect(rx, descLabelY, rw, 28);
             ctx.fillStyle = '#fff';
-            ctx.font = fontEN(11);
+            ctx.font = font(11, 'bold');
             ctx.textAlign = 'left';
             ctx.fillText('DESCRIPTION', rx + 14, descLabelY + 18);
 
-            // 6g. Description box — dynamic height, full text, no truncation
-            if (answer && descBoxH > 0) {
+            // 6h. Description box — Google Sans font, wrapTextLines ensures zero overflow
+            if (answer && descLines.length > 0) {
                 ctx.fillStyle = '#f0fdf4';
                 ctx.fillRect(rx, answerBoxY, rw, descBoxH);
                 ctx.strokeStyle = '#000';
@@ -353,8 +397,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 ctx.fillStyle = '#14532d';
                 ctx.font = font(descFontSize, 'normal');
                 ctx.textAlign = 'left';
-                // No maxLines cap — show ALL text
-                wrapText(ctx, answer, rx + descPadX, answerBoxY + descPadY + descLineH - 6, rw - descPadX * 2, descLineH, 99);
+                renderWrappedText(ctx, answer, rx + descPadX, answerBoxY + descPadY + descLineH - 6, rw - descPadX * 2, descLineH);
             }
 
             // ── 7. Footer ─────────────────────────────────────────────────────────
@@ -370,12 +413,12 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             }
 
             ctx.fillStyle = '#000000';
-            ctx.font = fontEN(18);
+            ctx.font = font(18, 'bold');
             ctx.textAlign = 'left';
             ctx.fillText('KESARARAM WITH DIGITAL', 88, footerY + 36);
 
             ctx.fillStyle = 'rgba(0,0,0,0.6)';
-            ctx.font = isKh ? fontKH(12, 'normal') : fontEN(12, 'normal');
+            ctx.font = font(12, 'normal');
             ctx.fillText(
                 isKh ? 'ចំណេះដឹងសុវត្ថិភាពចរាចរ — Learn. Know the signs. Pass.'
                     : "Master Cambodia's driving theory — Learn. Know the signs. Pass.",
@@ -383,11 +426,11 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             );
 
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
-            ctx.font = fontEN(11);
+            ctx.font = font(11, 'normal');
             ctx.fillText(`${siteUrl}/learn/${cfg.slug}`, 88, footerY + 74);
 
             ctx.fillStyle = 'rgba(0,0,0,0.35)';
-            ctx.font = fontEN(10, 'normal');
+            ctx.font = font(10, 'normal');
             ctx.textAlign = 'right';
             ctx.fillText(`© ${new Date().getFullYear()} Kesararam With Digital. All rights reserved.`, W - (qr ? 110 : 28), footerY + 74);
 
@@ -395,7 +438,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 ctx.drawImage(qr, W - 96, footerY + 10, 68, 68);
             }
 
-            // ── 8. Download ───────────────────────────────────────────────────────
+            // ── 8. Download PNG ───────────────────────────────────────────────────
             canvas.toBlob((blob) => {
                 if (!blob) throw new Error('Failed to create image');
                 const url = URL.createObjectURL(blob);
@@ -414,18 +457,45 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
         }
     };
 
-    // TEMPORARILY DISABLED — to re-enable, remove the `disabled` prop and restore onClick={handleSave}
+    const kf = isKh ? { fontFamily: 'var(--font-learning)' } : {};
+    const labelText = isKh ? 'ទាញយកកាត' : 'Save Card';
+    const savingText = isKh ? 'កំពុងបង្កើត...' : 'Generating...';
+
     return (
         <button
-            disabled
-            className={`inline-flex items-center justify-center border-2 border-slate-200 transition-all shrink-0 cursor-not-allowed opacity-40 ${
-                size === 'lg' ? 'w-9 h-9' : size === 'sm' ? 'w-6 h-6' : 'w-8 h-8'
-            } bg-slate-100 text-slate-300`}
-            title={isKh ? 'រក្សាទុកកាតមិនអាចប្រើបានបណ្តោះអាសន្ន' : 'Save Card temporarily unavailable'}
-            aria-label={isKh ? 'រក្សាទុកកាតមិនអាចប្រើបានបណ្តោះអាសន្ន' : 'Save Card temporarily unavailable'}
-            aria-disabled="true"
+            onClick={handleSave}
+            disabled={saving}
+            style={kf}
+            className={`inline-flex items-center justify-center gap-2 border-2 border-black font-black text-xs transition-all shrink-0 select-none ${
+                saving
+                    ? 'bg-zinc-100 text-zinc-400 border-zinc-300 cursor-wait'
+                    : 'bg-yellow-400 hover:bg-yellow-500 text-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_#000]'
+            } ${
+                showLabel
+                    ? 'px-4 py-2.5'
+                    : size === 'lg'
+                    ? 'w-10 h-10'
+                    : size === 'sm'
+                    ? 'w-7 h-7'
+                    : 'w-8 h-8'
+            } ${className}`}
+            title={saving ? savingText : (isKh ? 'ទាញយកកាតរូបភាព' : 'Save Card Image')}
+            aria-label={saving ? savingText : (isKh ? 'ទាញយកកាតរូបភាព' : 'Save Card Image')}
         >
-            <Download size={size === 'lg' ? 14 : size === 'sm' ? 10 : 12} />
+            {saving ? (
+                <span className="flex gap-0.5 items-end h-3">
+                    {[60, 100, 75].map((h, i) => (
+                        <span
+                            key={i}
+                            className="w-0.5 bg-zinc-400 rounded-sm animate-pulse"
+                            style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }}
+                        />
+                    ))}
+                </span>
+            ) : (
+                <Download size={size === 'lg' ? 16 : size === 'sm' ? 12 : 14} />
+            )}
+            {showLabel && <span>{saving ? savingText : labelText}</span>}
         </button>
     );
 }
