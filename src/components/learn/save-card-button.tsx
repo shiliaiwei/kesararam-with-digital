@@ -217,37 +217,37 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
             const leftW = 420;
             const rx = leftW + 44, ry = 40, rw = W - rx - 44; // 692px text area width
 
-            // ── Pre-measure title lines ───────────────────────────────────────────
-            ctx.font = font(34, 'bold');
-            const titleLineH = 44;
+            // ── Pre-measure title lines (38px font size for maximum clarity) ─────────────
+            ctx.font = font(38, 'bold');
+            const titleLineH = 48;
             const titleLines = wrapTextLines(ctx, title, rw);
             const titleLineCount = Math.max(1, titleLines.length);
             const titleBottom = ry + 68 + titleLineCount * titleLineH;
 
             // ── Pre-measure Law Reference (if present) ────────────────────────────
-            const lawFontSize = 13;
-            const lawLineH = 22;
-            const lawPadX = 16, lawPadY = 12;
+            const lawFontSize = 14;
+            const lawLineH = 24;
+            const lawPadX = 18, lawPadY = 14;
             ctx.font = font(lawFontSize, 'normal');
             const lawLines = lawRefText ? wrapTextLines(ctx, lawRefText, rw - lawPadX * 2) : [];
-            const lawBoxH = lawLines.length > 0 ? lawPadY * 2 + 22 + lawLines.length * lawLineH : 0;
+            const lawBoxH = lawLines.length > 0 ? lawPadY * 2 + 24 + lawLines.length * lawLineH : 0;
 
-            // ── Pre-measure Description box ───────────────────────────────────────
-            const descFontSize = 16;
-            const descLineH = 26;
-            const descPadX = 18, descPadY = 20;
-            ctx.font = font(descFontSize, 'normal');
+            // ── Pre-measure Description box (20px font size for prominent reading) ──────
+            const descFontSize = 20;
+            const descLineH = 32;
+            const descPadX = 22, descPadY = 22;
+            ctx.font = font(descFontSize, 'bold');
             const descLines = answer ? wrapTextLines(ctx, answer, rw - descPadX * 2) : [];
             const descBoxH = descLines.length > 0 ? descPadY * 2 + descLines.length * descLineH : 0;
 
             // ── Compute positions & dynamic height ────────────────────────────────
-            const lawBoxY = titleBottom + 40;
-            const descLabelY = lawBoxH > 0 ? lawBoxY + lawBoxH + 24 : titleBottom + 44;
-            const answerBoxY = descLabelY + 28;
-            const contentBottom = answerBoxY + descBoxH + 30;
+            const lawBoxY = titleBottom + 36;
+            const descLabelY = lawBoxH > 0 ? lawBoxY + lawBoxH + 24 : titleBottom + 40;
+            const answerBoxY = descLabelY + 32;
+            const contentBottom = answerBoxY + descBoxH + 36;
 
             // Dynamic canvas height: expands so zero text is truncated or hidden
-            const neededH = Math.max(720, contentBottom + footerH + 30);
+            const neededH = Math.max(760, contentBottom + footerH + 30);
             canvas.height = neededH;
             const FH = neededH; // final canvas height
 
@@ -283,10 +283,10 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
             ctx.textAlign = 'left';
             ctx.fillText(topic.topic_code, 24, 76);
 
-            // ── 5. Image area ─────────────────────────────────────────────────────
-            const imgAreaX = 24, imgAreaY = 96;
-            const imgAreaW = leftW - 48;
-            const imgAreaH = Math.min(FH - 96 - footerH - 40, 480);
+            // ── 5. Image area (larger focal display for the sign) ─────────────────
+            const imgAreaX = 20, imgAreaY = 96;
+            const imgAreaW = leftW - 40;
+            const imgAreaH = Math.min(FH - 96 - footerH - 40, 520);
 
             if (topicImg) {
                 ctx.fillStyle = cfg.accent;
@@ -298,7 +298,7 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
                 roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.fill();
 
-                const pad = 28;
+                const pad = 24;
                 const maxW = imgAreaW - pad * 2, maxH = imgAreaH - pad * 2;
                 const aspect = topicImg.naturalWidth / topicImg.naturalHeight;
                 let dw = maxW, dh = maxW / aspect;
@@ -343,9 +343,9 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
             ctx.fillStyle = cfg.accent;
             ctx.fillRect(rx, ry + 22, 64, 4);
 
-            // 6c. Title — Google Sans font, wrapTextLines ensures zero overflow
+            // 6c. Title — 38px bold Google Sans font
             ctx.fillStyle = '#000000';
-            ctx.font = font(34, 'bold');
+            ctx.font = font(38, 'bold');
             renderWrappedText(ctx, title, rx, ry + 68, rw, titleLineH);
 
             // 6d. Metadata
@@ -367,37 +367,37 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
                 ctx.strokeRect(rx, lawBoxY, rw, lawBoxH);
 
                 ctx.fillStyle = '#1e40af';
-                ctx.font = font(11, 'bold');
+                ctx.font = font(12, 'bold');
                 ctx.textAlign = 'left';
                 ctx.fillText(isKh ? 'ឯកសារយោងច្បាប់' : 'LAW REFERENCE', rx + lawPadX, lawBoxY + 20);
 
                 ctx.fillStyle = '#1e3a8a';
                 ctx.font = font(lawFontSize, 'normal');
-                renderWrappedText(ctx, lawRefText, rx + lawPadX, lawBoxY + 40, rw - lawPadX * 2, lawLineH);
+                renderWrappedText(ctx, lawRefText, rx + lawPadX, lawBoxY + 42, rw - lawPadX * 2, lawLineH);
             }
 
             // 6g. DESCRIPTION label bar
             ctx.fillStyle = '#22c55e';
-            ctx.fillRect(rx, descLabelY, rw, 28);
+            ctx.fillRect(rx, descLabelY, rw, 32);
             ctx.strokeStyle = '#000';
             ctx.lineWidth = 2;
-            ctx.strokeRect(rx, descLabelY, rw, 28);
+            ctx.strokeRect(rx, descLabelY, rw, 32);
             ctx.fillStyle = '#fff';
-            ctx.font = font(11, 'bold');
+            ctx.font = font(13, 'bold');
             ctx.textAlign = 'left';
-            ctx.fillText('DESCRIPTION', rx + 14, descLabelY + 18);
+            ctx.fillText('DESCRIPTION', rx + 16, descLabelY + 21);
 
-            // 6h. Description box — Google Sans font, wrapTextLines ensures zero overflow
+            // 6h. Description box — Prominent 20px bold Google Sans font
             if (answer && descLines.length > 0) {
                 ctx.fillStyle = '#f0fdf4';
                 ctx.fillRect(rx, answerBoxY, rw, descBoxH);
                 ctx.strokeStyle = '#000';
                 ctx.lineWidth = 3;
                 ctx.strokeRect(rx, answerBoxY, rw, descBoxH);
-                ctx.fillStyle = '#14532d';
-                ctx.font = font(descFontSize, 'normal');
+                ctx.fillStyle = '#052e16';
+                ctx.font = font(descFontSize, 'bold');
                 ctx.textAlign = 'left';
-                renderWrappedText(ctx, answer, rx + descPadX, answerBoxY + descPadY + descLineH - 6, rw - descPadX * 2, descLineH);
+                renderWrappedText(ctx, answer, rx + descPadX, answerBoxY + descPadY + descLineH - 8, rw - descPadX * 2, descLineH);
             }
 
             // ── 7. Footer ─────────────────────────────────────────────────────────
@@ -415,17 +415,14 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
             ctx.fillStyle = '#000000';
             ctx.font = font(18, 'bold');
             ctx.textAlign = 'left';
-            ctx.fillText('KESARARAM WITH DIGITAL', 88, footerY + 36);
+            ctx.fillText('KESARARAM WITH DIGITAL', 88, footerY + 34);
 
-            ctx.fillStyle = 'rgba(0,0,0,0.6)';
-            ctx.font = font(12, 'normal');
-            ctx.fillText(
-                isKh ? 'ចំណេះដឹងសុវត្ថិភាពចរាចរ — Learn. Know the signs. Pass.'
-                    : "Master Cambodia's driving theory — Learn. Know the signs. Pass.",
-                88, footerY + 56
-            );
+            // Updated quote per user request: "វិថី សុវត្ថិភាព — The Way of Safety"
+            ctx.fillStyle = '#000000';
+            ctx.font = font(13, 'bold');
+            ctx.fillText('វិថី សុវត្ថិភាព — The Way of Safety', 88, footerY + 56);
 
-            ctx.fillStyle = 'rgba(0,0,0,0.4)';
+            ctx.fillStyle = 'rgba(0,0,0,0.45)';
             ctx.font = font(11, 'normal');
             ctx.fillText(`${siteUrl}/learn/${cfg.slug}`, 88, footerY + 74);
 
@@ -459,7 +456,7 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
 
     const kf = isKh ? { fontFamily: 'var(--font-learning)' } : {};
     const labelText = isKh ? 'ទាញយកកាត' : 'Save Card';
-    const savingText = isKh ? 'កំពុងបង្កើត...' : 'Generating...';
+    const savingText = isKh ? 'កំពុងរក្សាទុក...' : 'Saving...';
 
     return (
         <button
