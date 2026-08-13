@@ -265,6 +265,37 @@ Each phase is independently deployable; sources in `pointsLedger` make every pha
 
 ---
 
+## 🗑️ Removed Features & UI Elements Log (August 2026)
+
+This section documents components, buttons, headers, count numbers, and visual patterns that were removed from the homepage and showcase sections for reference and future use:
+
+### 1. Buttons & Links Removed
+* **`[Learn Team Story]` button** (`/about`) — Removed from `AwardsSection`.
+* **`[View Regional Pitch]` button** (`/Regional-Pitch-Event`) — Removed from `AwardsSection`.
+* **`CHAMPION GALLERY — ALL 29 PHOTOS`** — Removed toolbar button from `AwardsSection`.
+* **`CINEMA STAGE`** — Removed toolbar button from `AwardsSection`.
+* **`PHOTO WALL (29)`** — Removed toolbar button from `AwardsSection`.
+* **`PAUSE SLIDESHOW`** — Removed toolbar button from `AwardsSection`.
+
+### 2. Press & Media Headers Removed
+* **`MEDIA MENTIONS & OFFICIAL PRESS SHOWCASE`** — Removed top header badge in `MentionsTestimonialsSection`.
+* **`FEATURED IN 11 OFFICIAL SOURCES & PRESS`** — Removed `<h2>` title block in `MentionsTestimonialsSection`.
+* **Sub-description paragraph** — Removed summary text under media header.
+
+### 3. Testimonials Tab & Filter Counts Removed
+* **`TESTIMONIALS (5)` tab button** — Completely removed from `MentionsTestimonialsSection`.
+* **Filter tab count numbers** — Stripped numbers from remaining filter tabs:
+  * `ALL MENTIONS (16)` ➔ `ALL MENTIONS`
+  * `FACEBOOK POSTS (4)` ➔ `FACEBOOK POSTS`
+  * `PRESS ARTICLES (7)` ➔ `PRESS ARTICLES`
+
+### 4. Background & Scroll Behavior Changes
+* **Pure Black Section Backgrounds** — Removed `bg-zinc-950` pure black container background on `AwardsSection`, replaced with clean Neo-Brutalist `bg-amber-50`.
+* **Scroll Hijacking** — Removed automatic `scrollIntoView()` calls on slideshow transitions so page scrolling is 100% free.
+* **Cloudinary Broken Image Fallbacks** — Added automatic `onError` image handlers across all photo sections to hide missing or failing Cloudinary image cards dynamically.
+
+---
+
 ## 💻 Development & Operations
 
 ### Installation
