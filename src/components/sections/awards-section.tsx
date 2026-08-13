@@ -351,41 +351,42 @@ export function AwardsSection() {
   }, [lightboxIndex, totalPhotos]);
 
   return (
-    <section className="relative bg-zinc-950 text-white border-b-4 border-black py-12 sm:py-16 md:py-20 overflow-hidden">
+  return (
+    <section className="relative bg-amber-50 text-black border-b-4 border-black py-12 sm:py-16 md:py-20 overflow-hidden">
       {/* Gold Top Caution Tape Accent */}
       <div className="absolute top-0 left-0 right-0 z-10">
         <CautionTape variant="caution" height={14} />
       </div>
 
-      {/* Hero Dot / Grid Dark Background Accent */}
-      <div className="absolute inset-0 hero-dot-bg opacity-40 pointer-events-none" />
+      {/* Hero Dot / Grid Background Accent */}
+      <div className="absolute inset-0 hero-dot-bg opacity-30 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* ── SECTION HEADER ── */}
         <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 bg-amber-400 text-black text-xs font-mono font-black tracking-widest uppercase px-4 py-1.5 border-2 border-black shadow-[4px_4px_0_#ffd700] mb-4">
+          <div className="inline-flex items-center gap-2 bg-amber-400 text-black text-xs font-mono font-black tracking-widest uppercase px-4 py-1.5 border-2 border-black shadow-[4px_4px_0_#000] mb-4">
             <Trophy size={16} className="text-black animate-bounce" />
             <span>{kh ? "សមិទ្ធផលជើងឯកថ្នាក់ជាតិ — NATIONAL CHAMPIONS" : "NATIONAL CHAMPIONS 2026 SHOWCASE"}</span>
           </div>
 
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white text-balance"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-black text-balance"
             style={khFont}
           >
             {kh ? (
               <>
-                ជើងឯកថ្នាក់ជាតិ <span className="bg-amber-400 text-black px-3 py-0.5 border-2 border-black shadow-[3px_3px_0_#fff]">២០២៦</span>
+                ជើងឯកថ្នាក់ជាតិ <span className="bg-amber-400 text-black px-3 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">២០២៦</span>
               </>
             ) : (
               <>
-                NATIONAL CHAMPIONS <span className="bg-amber-400 text-black px-3 py-0.5 border-2 border-black shadow-[3px_3px_0_#fff]">2026</span>
+                NATIONAL CHAMPIONS <span className="bg-amber-400 text-black px-3 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">2026</span>
               </>
             )}
           </h2>
 
           <p
-            className="mt-3 text-base sm:text-lg md:text-xl font-black text-amber-300 max-w-3xl text-balance"
+            className="mt-3 text-base sm:text-lg md:text-xl font-black text-amber-800 max-w-3xl text-balance"
             style={khFont}
           >
             Technovation Girls Cambodia x Future Digital Talents 2026
@@ -393,7 +394,7 @@ export function AwardsSection() {
         </div>
 
         {/* ── CHAMPION FEATURED SPOTLIGHT STAGE (FULL UNUNCROPPED IMAGE DISPLAY) ── */}
-        <div className="bg-zinc-900 border-[3px] border-amber-400 shadow-[10px_10px_0_#000] relative overflow-hidden">
+        <div className="bg-white border-[3px] border-black shadow-[10px_10px_0_#000] relative overflow-hidden">
           
           {/* Top Gold Header Bar */}
           <div className="bg-amber-400 text-black px-4 py-2.5 border-b-2 border-black flex flex-wrap items-center justify-between gap-2 text-xs font-mono font-black uppercase">
@@ -409,12 +410,16 @@ export function AwardsSection() {
           {/* Full Image Presentation Container (Uncropped, Full Image) */}
           <div
             onClick={() => setLightboxIndex(activeIndex)}
-            className="relative bg-black min-h-[340px] sm:min-h-[480px] md:min-h-[580px] flex items-center justify-center p-4 cursor-pointer group overflow-hidden"
+            className="relative bg-zinc-950 min-h-[340px] sm:min-h-[480px] md:min-h-[580px] flex items-center justify-center p-4 cursor-pointer group overflow-hidden"
           >
             <img
               key={currentPhoto.id}
               src={currentPhoto.url}
               alt={currentPhoto.titleEn}
+              onError={(e) => {
+                // If Cloudinary image fails, hide image element cleanly
+                (e.target as HTMLElement).style.display = 'none';
+              }}
               className="max-h-[70vh] w-auto max-w-full object-contain mx-auto transition-all duration-500 ease-out animate-fade-in shadow-2xl border border-zinc-800"
             />
 
@@ -449,12 +454,12 @@ export function AwardsSection() {
           </div>
 
           {/* Champion Photo Caption Banner */}
-          <div className="p-4 sm:p-6 bg-zinc-900 border-t-2 border-black flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="p-4 sm:p-6 bg-zinc-50 border-t-2 border-black flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="space-y-1 max-w-3xl">
               <div className="inline-flex items-center gap-2 bg-amber-400 text-black text-xs font-mono font-black uppercase px-2.5 py-0.5 border border-black shadow-[2px_2px_0_#000]">
                 <Award size={13} /> {kh ? currentPhoto.tagKh : currentPhoto.tagEn}
               </div>
-              <h3 className="text-base sm:text-xl font-black text-white leading-snug" style={khFont}>
+              <h3 className="text-base sm:text-xl font-black text-black leading-snug" style={khFont}>
                 {kh ? currentPhoto.titleKh : currentPhoto.titleEn}
               </h3>
             </div>
@@ -471,18 +476,18 @@ export function AwardsSection() {
         </div>
 
         {/* ── THUMBNAIL TAP STRIP (FREE SCROLL, NO SCREEN HIJACKING!) ── */}
-        <div className="mt-6 bg-zinc-900 border-2 border-amber-400/80 p-3 sm:p-4 shadow-[6px_6px_0_#000]">
+        <div className="mt-6 bg-white border-2 border-black p-3 sm:p-4 shadow-[6px_6px_0_#000]">
           <div className="flex items-center justify-between mb-3 px-1">
-            <div className="flex items-center gap-2 text-xs font-mono font-black uppercase text-amber-400">
+            <div className="flex items-center gap-2 text-xs font-mono font-black uppercase text-black">
               <Camera size={15} />
               <span>{kh ? "រូបភាពជើងឯកទាំង ២៩" : "ALL 29 CHAMPION PHOTOS (TAP TO VIEW)"}</span>
             </div>
-            <div className="text-[11px] font-mono font-bold text-zinc-400">
+            <div className="text-[11px] font-mono font-bold text-zinc-600">
               Photo {currentPhoto.num} of {totalPhotos}
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-zinc-950">
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-zinc-100">
             {CHAMPION_PHOTOS.map((photo, idx) => {
               const isActive = idx === activeIndex;
               return (
@@ -491,18 +496,25 @@ export function AwardsSection() {
                   onClick={() => handleSelectPhoto(idx)}
                   className={`relative flex-shrink-0 w-24 sm:w-28 aspect-[4/3] border-2 transition-all cursor-pointer overflow-hidden ${
                     isActive
-                      ? "border-amber-400 bg-amber-400 scale-105 shadow-[3px_3px_0_#ffd700] z-10"
-                      : "border-zinc-700 bg-zinc-950 opacity-60 hover:opacity-100 hover:border-amber-300"
+                      ? "border-black bg-amber-400 scale-105 shadow-[3px_3px_0_#000] z-10"
+                      : "border-zinc-300 bg-zinc-100 opacity-70 hover:opacity-100 hover:border-black"
                   }`}
                 >
                   <img
                     src={photo.url}
                     alt={photo.titleEn}
+                    onError={(e) => {
+                      // Hide missing image container
+                      const target = e.target as HTMLElement;
+                      if (target.parentElement) {
+                        target.parentElement.style.display = 'none';
+                      }
+                    }}
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
                   <div className={`absolute top-1 left-1 text-[9px] font-mono font-black px-1 py-0.2 border ${
-                    isActive ? "bg-black text-amber-400 border-black" : "bg-zinc-900/90 text-white border-zinc-700"
+                    isActive ? "bg-black text-amber-400 border-black" : "bg-white/90 text-black border-black"
                   }`}>
                     {photo.num}
                   </div>
@@ -510,27 +522,6 @@ export function AwardsSection() {
               );
             })}
           </div>
-        </div>
-
-        {/* ── ACTION BUTTONS ── */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href="/about"
-            className="nb-btn bg-amber-400 text-black hover:bg-amber-300 text-sm font-black uppercase tracking-wider px-6 py-3.5 border-2 border-black shadow-[4px_4px_0_#fff] inline-flex items-center gap-2 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
-            style={khFont}
-          >
-            <span>{kh ? "អានអំពីក្រុមយើង" : "Learn Team Story"}</span>
-            <ArrowRight size={16} />
-          </Link>
-
-          <Link
-            href="/Regional-Pitch-Event"
-            className="bg-white text-black hover:bg-zinc-100 text-sm font-black uppercase tracking-wider px-6 py-3.5 border-2 border-black shadow-[4px_4px_0_#fff] inline-flex items-center gap-2 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
-            style={khFont}
-          >
-            <Award size={16} />
-            <span>{kh ? "ទស្សនា PITCH EVENT" : "View Regional Pitch"}</span>
-          </Link>
         </div>
       </div>
 

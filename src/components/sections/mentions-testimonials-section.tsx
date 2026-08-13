@@ -401,58 +401,9 @@ export function MentionsTestimonialsSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* ── SECTION HEADER ── */}
-        <div className="text-center max-w-4xl mx-auto mb-10 md:mb-12">
-          <div
-            className="inline-flex items-center gap-2 bg-black text-amber-400 text-xs font-mono font-black tracking-widest uppercase px-4 py-1.5 border-2 border-black shadow-[3px_3px_0_#000] mb-4"
-            style={khFont}
-          >
-            <Newspaper size={14} className="text-amber-400" />
-            <span>{kh ? "ប្រព័ន្ធផ្សព្វផ្សាយ និងការសរសើរផ្លូវការ" : "MEDIA MENTIONS & OFFICIAL PRESS SHOWCASE"}</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black uppercase tracking-tight" style={khFont}>
-            {kh ? (
-              <>
-                សេចក្តីរាយការណ៍ <span className="bg-amber-400 px-2 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">១១ ប្រភព</span> និងមតិគាំទ្រ
-              </>
-            ) : (
-              <>
-                FEATURED IN <span className="bg-amber-400 px-2 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">11 OFFICIAL SOURCES</span> & PRESS
-              </>
-            )}
-          </h2>
-
-          <p className="mt-3 text-base sm:text-lg font-medium text-zinc-700 max-w-3xl mx-auto" style={khFont}>
-            {kh
-              ? "ការផ្សាយផ្លូវការពីក្រសួងប្រៃសណីយ៍ ក្រសួងអប់រំ Technovation ពិភពលោក សារព័ត៌មានជាតិ AMS & CC-Times និង Facebook Posts ផ្លូវការ"
-              : "Official coverage from MPTC Ministry, MoEYS Minister H.E. Dr. Hang Chuon Naron, Technovation Global HQ, AMS Education, and CC Times."}
-          </p>
-
-          {/* Quick Counter Badges */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-mono font-bold">
-            <span className="bg-amber-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
-              <Award size={14} className="text-amber-600" />
-              {kh ? "ជើងឯកថ្នាក់ជាតិ ២០២៦" : "2026 National Champion"}
-            </span>
-            <span className="bg-blue-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
-              <Globe size={14} className="text-blue-600" />
-              {kh ? "ជ័យលាភីពិភពលោក Global Semifinalist" : "Global Semifinalist"}
-            </span>
-            <span className="bg-emerald-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
-              <FacebookIcon className="w-3.5 h-3.5 text-blue-600" />
-              {kh ? "៤ Facebook Posts ផ្លូវការ" : "4 Official FB Embeds"}
-            </span>
-            <span className="bg-purple-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
-              <Newspaper size={14} className="text-purple-600" />
-              {kh ? "៧ អត្ថបទសារព័ត៌មាន" : "7 Press Articles"}
-            </span>
-          </div>
-        </div>
-
         {/* ── FILTER TABS & CONTROL BAR ── */}
-        <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-black pb-5">
-          {/* Main Filter Buttons */}
+        <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-black pb-5 pt-4">
+          {/* Main Filter Buttons (No Count Numbers) */}
           <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
             <button
               onClick={() => setActiveTab("all")}
@@ -463,7 +414,7 @@ export function MentionsTestimonialsSection() {
               }`}
               style={khFont}
             >
-              ⚡ {kh ? "ទាំងអស់ (១៦)" : "ALL MENTIONS (16)"}
+              ⚡ {kh ? "ទាំងអស់" : "ALL MENTIONS"}
             </button>
 
             <button
@@ -476,7 +427,7 @@ export function MentionsTestimonialsSection() {
               style={khFont}
             >
               <FacebookIcon className="w-3.5 h-3.5" />
-              <span>{kh ? "FACEBOOK EMBEDS (៤)" : "FACEBOOK POSTS (4)"}</span>
+              <span>{kh ? "FACEBOOK EMBEDS" : "FACEBOOK POSTS"}</span>
             </button>
 
             <button
@@ -489,20 +440,7 @@ export function MentionsTestimonialsSection() {
               style={khFont}
             >
               <Newspaper size={14} />
-              <span>{kh ? "សារព័ត៌មាន (៧)" : "PRESS ARTICLES (7)"}</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab("testimonials")}
-              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 ${
-                activeTab === "testimonials"
-                  ? "bg-emerald-500 text-white -translate-y-0.5 shadow-[4px_4px_0_#000]"
-                  : "bg-white text-black hover:bg-emerald-50"
-              }`}
-              style={khFont}
-            >
-              <Quote size={14} />
-              <span>{kh ? "មតិគាំទ្រ (៥)" : "TESTIMONIALS (5)"}</span>
+              <span>{kh ? "សារព័ត៌មាន" : "PRESS ARTICLES"}</span>
             </button>
           </div>
 
@@ -606,6 +544,10 @@ export function MentionsTestimonialsSection() {
                         <img
                           src={fb.postImage}
                           alt={fb.titleEn}
+                          onError={(e) => {
+                            const container = (e.target as HTMLElement).parentElement;
+                            if (container) container.style.display = 'none';
+                          }}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
                         />
@@ -657,6 +599,10 @@ export function MentionsTestimonialsSection() {
                         <img
                           src={fb.postImage}
                           alt={fb.titleEn}
+                          onError={(e) => {
+                            const container = (e.target as HTMLElement).parentElement;
+                            if (container) container.style.display = 'none';
+                          }}
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />

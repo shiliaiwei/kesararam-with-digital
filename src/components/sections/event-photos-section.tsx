@@ -721,6 +721,13 @@ export function EventPhotosSection() {
                   <img
                     src={photo.url}
                     alt={photo.titleEn}
+                    onError={(e) => {
+                      // Hide card if image fails to load from Cloudinary
+                      const card = (e.target as HTMLElement).closest('.group');
+                      if (card) {
+                        (card as HTMLElement).style.display = 'none';
+                      }
+                    }}
                     className="max-h-full max-w-full object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
