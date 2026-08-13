@@ -7,7 +7,6 @@ import { CategoryGrid } from "@/components/categories/category-grid";
 import { AwardsSection } from "@/components/sections/awards-section";
 import { MentionsTestimonialsSection } from "@/components/sections/mentions-testimonials-section";
 import { EventPhotosSection } from "@/components/sections/event-photos-section";
-import { RegionalPitchSection } from "@/components/sections/regional-pitch-section";
 import dynamic from "next/dynamic";
 import { Users, LayoutGrid, FileQuestion, Radio } from "lucide-react";
 
@@ -112,14 +111,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* As Mentioned In & What People Say — Infinite Marquee Mentions & Testimonials */}
+      {/* News Quotes & What People Say — Press Mentions & Testimonials */}
       <MentionsTestimonialsSection />
 
       {/* Event Photos Gallery */}
       <EventPhotosSection />
-
-      {/* Regional Pitch Event Section */}
-      <RegionalPitchSection />
 
       {/* Live Traffic Map — compact */}
       <section className="bg-white py-14 border-b-2 border-black">

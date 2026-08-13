@@ -1,57 +1,301 @@
 "use client";
 
 import { useState } from "react";
-import { Quote, Star, Award, Building2, CheckCircle2, Sparkles, Heart, MessageSquare, ArrowRight, ShieldCheck } from "lucide-react";
+import {
+  Newspaper,
+  ExternalLink,
+  Quote,
+  Star,
+  Building2,
+  CheckCircle2,
+  Sparkles,
+  ArrowRight,
+  Globe,
+  Tv,
+  Award,
+  Maximize2,
+  X,
+  Layers,
+  Check,
+  Bookmark,
+  Share2,
+  Eye,
+  Radio,
+} from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { CautionTape } from "@/components/brand/brand-kit";
 import { Marquee } from "@/components/ui/marquee";
 import Link from "next/link";
 
-// ── Mentions / Partners Dataset ──
-const MENTIONS_DATA = [
+// ── Facebook Logo SVG Component ──
+function FacebookIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
+
+// ── Facebook Post Embed Interface ──
+export interface FacebookEmbedMention {
+  id: string;
+  sourceNameEn: string;
+  sourceNameKh: string;
+  categoryEn: string;
+  categoryKh: string;
+  titleEn: string;
+  titleKh: string;
+  summaryEn: string;
+  summaryKh: string;
+  iframeSrc: string;
+  iframeHeight: number;
+  url: string;
+  color: string;
+  badgeEn: string;
+  badgeKh: string;
+}
+
+// ── Press Article Mention Interface ──
+export interface PressArticleMention {
+  id: string;
+  sourceNameEn: string;
+  sourceNameKh: string;
+  categoryEn: string;
+  categoryKh: string;
+  titleEn: string;
+  titleKh: string;
+  summaryEn: string;
+  summaryKh: string;
+  date: string;
+  url: string;
+  color: string;
+  badgeEn: string;
+  badgeKh: string;
+  publisherIcon: "mptc" | "global" | "ams" | "tfk" | "cctimes";
+}
+
+// ── 1. Facebook Post Embeds Dataset (4 Official Iframes) ──
+const FACEBOOK_MENTIONS: FacebookEmbedMention[] = [
   {
-    nameEn: "Technovation Girls Global",
-    nameKh: "Technovation Girls ពិភពលោក",
-    badgeEn: "National Champions 2026",
-    badgeKh: "ជើងឯកថ្នាក់ជាតិ ២០២៦",
+    id: "fb-1",
+    sourceNameEn: "Tech For Kids Academy",
+    sourceNameKh: "Tech For Kids Academy (អ្នករៀបចំ)",
+    categoryEn: "National Competition Showcase",
+    categoryKh: "ការបង្ហាញគម្រោងថ្នាក់ជាតិ",
+    titleEn: "Technovation Girls Cambodia 2026 — National Pitch & Project Showcase",
+    titleKh: "Technovation Girls Cambodia ២០២៦ — ការបង្ហាញគម្រោង និងការប្រកួត Pitch ថ្នាក់ជាតិ",
+    summaryEn:
+      "Official coverage of student teams presenting innovative digital solutions at the Technovation Girls Cambodia National Event.",
+    summaryKh:
+      "ការផ្សាយផ្លូវការពីក្រុមបច្ចេកវិទ្យាកម្ពុជា Technovation Girls ក្នុងការបង្ហាញស្នាដៃឌីជីថល និងដំណោះស្រាយសង្គម។",
+    iframeSrc:
+      "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2FTechforKidsAcademy%2Fposts%2Fpfbid0hS84WWm8QvQWMoYhr2fZgrEkQxGE2HwoqP84pSAHhun4CpDLfveFW6YVh4L8uPQTl&show_text=true&width=500",
+    iframeHeight: 735,
+    url: "https://web.facebook.com/TechforKidsAcademy/posts/pfbid0hS84WWm8QvQWMoYhr2fZgrEkQxGE2HwoqP84pSAHhun4CpDLfveFW6YVh4L8uPQTl",
     color: "#eab308",
-    logoSrc: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556277/logo-girls_o7e3tg.png",
+    badgeEn: "National Organizer",
+    badgeKh: "អ្នករៀបចំផ្លូវការ",
   },
   {
-    nameEn: "Ministry of Education, Youth & Sport",
-    nameKh: "ក្រសួងអប់រំ យុវជន និងកីឡា",
-    badgeEn: "Curriculum Aligned",
-    badgeKh: "ស្របតាមកម្មវិធីសិក្សា",
+    id: "fb-2",
+    sourceNameEn: "Ministry of Post & Telecommunications (MPTC)",
+    sourceNameKh: "ក្រសួងប្រៃសណីយ៍ និងទូរគមនាគមន៍ (MPTC)",
+    categoryEn: "Government Ministry",
+    categoryKh: "ក្រសួងរដ្ឋាភិបាល",
+    titleEn: "MPTC Official Coverage of Technovation Girls Cambodia Finals",
+    titleKh: "ក្រសួងប្រៃសណីយ៍ និងទូរគមនាគមន៍ ផ្សព្វផ្សាយផ្លូវការពីការប្រកួត Technovation Girls",
+    summaryEn:
+      "Official MPTC Ministry post featuring Secretary of State Chun Vat presiding over the national competition finals.",
+    summaryKh:
+      "ការផ្សព្វផ្សាយផ្លូវការពីក្រសួង MPTC ដែលមានឯកឧត្តម រដ្ឋលេខាធិការ ជុន វ៉ាត់ អញ្ជើញជាអធិបតីក្នុងពិធីប្រកួតផ្តាច់ព្រ័ត្រ។",
+    iframeSrc:
+      "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fwww.mptc.gov.kh%2Fposts%2Fpfbid0FtuVXjHrwGQVMXLU8Uz7RVXUrVjDBYRq9Ta2NTTYn7nXagBAyTPuDATxKkhtBTxtl&show_text=true&width=500",
+    iframeHeight: 250,
+    url: "https://web.facebook.com/www.mptc.gov.kh/posts/pfbid0FtuVXjHrwGQVMXLU8Uz7RVXUrVjDBYRq9Ta2NTTYn7nXagBAyTPuDATxKkhtBTxtl",
     color: "#3b82f6",
-    logoSrc: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/66aafc8e5a697_obtttu.png",
+    badgeEn: "Official Ministry Post",
+    badgeKh: "ក្រសួងរដ្ឋាភិបាល",
   },
   {
-    nameEn: "Future Digital Talents Cambodia",
-    nameKh: "Future Digital Talents កម្ពុជា",
-    badgeEn: "Junior Division Winner",
-    badgeKh: "ម្ចាស់ពាន Junior Division",
+    id: "fb-3",
+    sourceNameEn: "H.E. Dr. Hang Chuon Naron (Deputy PM & MoEYS Minister)",
+    sourceNameKh: "ឯកឧត្តមបណ្ឌិតសភាចារ្យ ហង់ជួន ណារ៉ុន (ឧបនាយករដ្ឋមន្ត្រី)",
+    categoryEn: "Minister Endorsement",
+    categoryKh: "ការកោតសរសើរពីរដ្ឋមន្ត្រី",
+    titleEn: "H.E. Dr. Hang Chuon Naron Commends Technovation Girls Cambodia Winners",
+    titleKh: "ឯកឧត្តមបណ្ឌិតសភាចារ្យ ហង់ជួន ណារ៉ុន ឧបនាយករដ្ឋមន្ត្រី រដ្ឋមន្ត្រីក្រសួងអប់រំ ថ្លែងការកោតសរសើរ",
+    summaryEn:
+      "Minister of Education, Youth and Sport praises young female innovators transforming education through technology.",
+    summaryKh:
+      "ឯកឧត្តមឧបនាយករដ្ឋមន្ត្រី រដ្ឋមន្ត្រីក្រសួងអប់រំ យុវជន និងកីឡា ថ្លែងការកោតសរសើរដល់យុវតីជ័យលាភីដែលប្រើប្រាស់បច្ចេកវិទ្យា។",
+    iframeSrc:
+      "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fhang.naron%2Fposts%2Fpfbid02hmT9oAT5JMftd798aGDW8HHfjPWK77BatQxw9eWUwBYeui7vsvTrspkaus6TdvDYl&show_text=true&width=500",
+    iframeHeight: 725,
+    url: "https://web.facebook.com/hang.naron/posts/pfbid02hmT9oAT5JMftd798aGDW8HHfjPWK77BatQxw9eWUwBYeui7vsvTrspkaus6TdvDYl",
+    color: "#ef4444",
+    badgeEn: "Minister Spotlight",
+    badgeKh: "មោទនភាពក្រសួងអប់រំ",
+  },
+  {
+    id: "fb-4",
+    sourceNameEn: "Tech For Kids Academy",
+    sourceNameKh: "Tech For Kids Academy (អ្នករៀបចំ)",
+    categoryEn: "National Champions Announcement",
+    categoryKh: "ការប្រកាសជើងឯកថ្នាក់ជាតិ",
+    titleEn: "Official Announcement: National Champions & Global Semifinalists 2026",
+    titleKh: "ការប្រកាសផ្លូវការ៖ ក្រុមជើងឯកថ្នាក់ជាតិ និងក្រុមឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
+    summaryEn:
+      "Tech For Kids Academy officially celebrates Team KWD's double triumph: National Champion Junior Division & Global Semifinalist.",
+    summaryKh:
+      "ការប្រកាសអបអរសាទរផ្លូវការដល់ក្រុម KWD ដែលឈ្នះជើងឯកថ្នាក់ជាតិ Junior Division និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក។",
+    iframeSrc:
+      "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2FTechforKidsAcademy%2Fposts%2Fpfbid02PCe6n6QMRAjwDuFuEaDAmn29iDm6uhq2WF7G4ha5UkHg1Hdxo6iE7ZexPk9PSreal&show_text=true&width=500",
+    iframeHeight: 803,
+    url: "https://web.facebook.com/TechforKidsAcademy/posts/pfbid02PCe6n6QMRAjwDuFuEaDAmn29iDm6uhq2WF7G4ha5UkHg1Hdxo6iE7ZexPk9PSreal",
     color: "#22c55e",
-    logoSrc: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/FDTboy_qofevj.png",
-  },
-  {
-    nameEn: "Kesararam Primary School Siem Reap",
-    nameKh: "សាលាបឋមសិក្សាកេសរារាម សៀមរាប",
-    badgeEn: "Founding School & Lab",
-    badgeKh: "សាលាស្ថាបនិក និងការអនុវត្ត",
-    color: "#a855f7",
-    logoSrc: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1782299398/kwdblacknobackground_tikazv.png",
-  },
-  {
-    nameEn: "UN Sustainable Development Goals",
-    nameKh: "គោលដៅអភិវឌ្ឍន៍ប្រកបដោយចីរភាព UN",
-    badgeEn: "SDG 4 & SDG 11 Aligned",
-    badgeKh: "គោលដៅ SDG 4 និង SDG 11",
-    color: "#06b6d4",
-    logoSrc: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1782299393/KWDxTGC_d2m05u.png",
+    badgeEn: "National Champions",
+    badgeKh: "ជ័យលាភីថ្នាក់ជាតិ",
   },
 ];
 
-// ── Testimonials Dataset ──
+// ── 2. Press & News Articles Dataset (7 Official Links) ──
+const PRESS_ARTICLES: PressArticleMention[] = [
+  {
+    id: "press-1",
+    sourceNameEn: "Ministry of Post & Telecommunications (MPTC Portal)",
+    sourceNameKh: "ក្រសួងប្រៃសណីយ៍ និងទូរគមនាគមន៍ (MPTC Portal)",
+    categoryEn: "Government Press",
+    categoryKh: "ព័ត៌មានរដ្ឋាភិបាល",
+    titleEn: "Secretary of State Chun Vat Presided Over Technovation Girls Cambodia 2026 Finals",
+    titleKh: "រដ្ឋលេខាធិការ ជុន វ៉ាត់ អញ្ជើញជាអធិបតីក្នុងពិធីប្រកួត Technovation Girls Cambodia ២០២៦",
+    summaryEn:
+      "Official news from MPTC covering the national competition event where Team KWD presented their bilingual road safety app.",
+    summaryKh:
+      "អត្ថបទព័ត៌មានផ្លូវការពីក្រសួងប្រៃសណីយ៍ និងទូរគមនាគមន៍ ស្តីពីការប្រកួតផ្តាច់ព្រ័ត្រថ្នាក់ជាតិ និងការបង្ហាញគម្រោង KWD។",
+    date: "July 2026",
+    url: "https://mptc.gov.kh/en/2026/07/secretary-of-state-chun-vat-presided-over-the-national-competition-technovation-girls-cambodia-x-future-digital-talents-2026/",
+    color: "#3b82f6",
+    badgeEn: "Official Portal",
+    badgeKh: "គេហទំព័រក្រសួង",
+    publisherIcon: "mptc",
+  },
+  {
+    id: "press-2",
+    sourceNameEn: "Technovation Worldwide HQ",
+    sourceNameKh: "Technovation ពិភពលោក (Global HQ)",
+    categoryEn: "Global HQ Announcement",
+    categoryKh: "ជ័យលាភីពិភពលោក",
+    titleEn: "Technovation 2026 Global Semifinalist Announcement — Junior Division (Team KWD)",
+    titleKh: "ការប្រកាសបេក្ខជនពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក Technovation 2026 (ក្រុម KWD)",
+    summaryEn:
+      "Technovation Global HQ officially recognizes Team KWD from Siem Reap, Cambodia among the 2026 Global Semifinalists.",
+    summaryKh:
+      "ទីស្នាក់ការកណ្តាល Technovation ពិភពលោក បានប្រកាសផ្លូវការនូវក្រុម KWD ជាក្រុមពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)។",
+    date: "July 2026",
+    url: "https://www.technovation.org/blogs/2026-semifinalist-announcement/#junior-kh",
+    color: "#eab308",
+    badgeEn: "Global Semifinalist",
+    badgeKh: "ជ័យលាភីពិភពលោក",
+    publisherIcon: "global",
+  },
+  {
+    id: "press-3",
+    sourceNameEn: "AMS Education Media",
+    sourceNameKh: "អប្សរា មេឌៀ ស៊ែវីស (AMS Education)",
+    categoryEn: "National Television & Press",
+    categoryKh: "មោទនភាពជាតិ",
+    titleEn: "National Pride: Three Cambodian Girls Advance to Global Semifinalists of Technovation 2026",
+    titleKh: "មោទនភាពជាតិ៖ យុវតីកម្ពុជា ៣ រូបឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក Technovation 2026",
+    summaryEn:
+      "AMS Education news feature spotlighting the inspirational journey of young primary school girls from Kesararam Primary School.",
+    summaryKh:
+      "សារព័ត៌មានអប្សរា AMS ផ្សាយពីមោទនភាពជាតិដែលយុវតីបឋមសិក្សាកេសរារាម សៀមរាប បាននាំយកស្នាដៃកម្ពុជាទៅកាន់ឆាកអន្តរជាតិ។",
+    date: "July 2026",
+    url: "https://education.ams.com.kh/outstanding-youth/news-award/news/national-pride-three-cambodian-girls-advance-to-the-global-semifinalists-of-technovation-girls-x-future-digital-talents-2026/",
+    color: "#ef4444",
+    badgeEn: "National Pride",
+    badgeKh: "មោទនភាពជាតិ",
+    publisherIcon: "ams",
+  },
+  {
+    id: "press-4",
+    sourceNameEn: "Tech for Kids Asia Blog",
+    sourceNameKh: "Tech for Kids Asia",
+    categoryEn: "Regional Partner Feature",
+    categoryKh: "សារព័ត៌មានអប់រំ",
+    titleEn: "Congratulations to Top 15 National Teams & 3 Global Semifinalists",
+    titleKh: "អបអរសាទរក្រុមជ័យលាភី Top 15 ថ្នាក់ជាតិ និង ៣ ក្រុមឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
+    summaryEn:
+      "Official report honoring top tech teams across Cambodia, celebrating Team KWD's National Championship and Global Semifinalist spot.",
+    summaryKh:
+      "របាយការណ៍ផ្លូវការកោតសរសើរក្រុមបច្ចេកវិទ្យាកម្ពុជា និងអបអរសាទរក្រុម KWD ដែលឈ្នះជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពិភពលោក។",
+    date: "July 2026",
+    url: "https://techforkids.asia/en/blog/congratulations-to-the-top-15-national-teams-of-the-technovation-girls-cambodia-x-future-digital-talents-and-the-3-global-semifinalists",
+    color: "#22c55e",
+    badgeEn: "Regional Partner",
+    badgeKh: "ដៃគូអប់រំផ្លូវការ",
+    publisherIcon: "tfk",
+  },
+  {
+    id: "press-5",
+    sourceNameEn: "The Cambodia China Times (CC Times)",
+    sourceNameKh: "សារព័ត៌មានស៊ីស៊ីថាមស៍ (CC Times)",
+    categoryEn: "National Press",
+    categoryKh: "សារព័ត៌មានជាតិ",
+    titleEn: "Team KWD Crowned National Champion & Advances to Global Semifinals",
+    titleKh: "ក្រុម KWD ឈ្នះជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
+    summaryEn:
+      "CC Times covers Team KWD's victorious journey from Siem Reap to the Technovation Cambodia National Championship stage.",
+    summaryKh:
+      "សារព័ត៌មានស៊ីស៊ីថាមស៍ ចុះផ្សាយពីជ័យជម្នះរបស់ក្រុម KWD ពីសាលាបឋមសិក្សាកេសរារាម ខេត្តសៀមរាប រហូតដល់ឈ្នះពានជើងឯកថ្នាក់ជាតិ។",
+    date: "July 2026",
+    url: "https://kh.cc-times.com/posts/30029",
+    color: "#a855f7",
+    badgeEn: "National Champion",
+    badgeKh: "ជើងឯកថ្នាក់ជាតិ",
+    publisherIcon: "cctimes",
+  },
+  {
+    id: "press-6",
+    sourceNameEn: "The Cambodia China Times (CC Times)",
+    sourceNameKh: "សារព័ត៌មានស៊ីស៊ីថាមស៍ (CC Times)",
+    categoryEn: "Youth & Tech Innovation",
+    categoryKh: "នវានុវត្តន៍យុវជន",
+    titleEn: "Technovation Girls Cambodia 2026: Empowering Young Female Innovators",
+    titleKh: "Technovation Girls Cambodia ២០២៦៖ នវានុវត្តន៍យុវជន និងការលើកកម្ពស់ឌីជីថល",
+    summaryEn:
+      "Exploring how young Cambodian girls utilize mobile technology to solve real-world road safety education challenges.",
+    summaryKh:
+      "ការបង្ហាញពីរបៀបដែលយុវតីកម្ពុជាប្រើប្រាស់បច្ចេកវិទ្យា និងការអប់រំច្នៃប្រឌិត ដើម្បីដោះស្រាយបញ្ហាសហគមន៍ពិតប្រាកដ។",
+    date: "July 2026",
+    url: "https://kh.cc-times.com/posts/29087",
+    color: "#f97316",
+    badgeEn: "Youth Empowerment",
+    badgeKh: "លើកកម្ពស់យុវតី",
+    publisherIcon: "cctimes",
+  },
+  {
+    id: "press-7",
+    sourceNameEn: "The Cambodia China Times (CC Times)",
+    sourceNameKh: "សារព័ត៌មានស៊ីស៊ីថាមស៍ (CC Times)",
+    categoryEn: "Community Feature",
+    categoryKh: "ព័ត៌មានសហគមន៍",
+    titleEn: "Siem Reap Primary School Girls Build Innovative Road Safety App",
+    titleKh: "សិស្សបឋមសិក្សាកេសរារាម សៀមរាប បង្កើតកម្មវិធីសុវត្ថិភាពចរាចរណ៍",
+    summaryEn:
+      "Special feature on Kesararam Primary School students developing KWD to educate youth across Cambodia on road safety rules.",
+    summaryKh:
+      "អត្ថបទពិសេសស្តីពីសិស្សសាលាបឋមសិក្សាកេសរារាម បង្កើតថ្នាល់អប់រំសុវត្ថិភាពចរាចរណ៍ពីរភាសាសម្រាប់កុមារកម្ពុជា។",
+    date: "June 2026",
+    url: "https://kh.cc-times.com/posts/28912?",
+    color: "#06b6d4",
+    badgeEn: "Siem Reap Spotlight",
+    badgeKh: "សៀមរាប",
+    publisherIcon: "cctimes",
+  },
+];
+
+// ── 3. Testimonials Dataset ──
 const TESTIMONIALS_DATA = [
   {
     nameEn: "Technovation Mentor",
@@ -120,9 +364,31 @@ export function MentionsTestimonialsSection() {
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
 
+  // Filter & Display States
+  const [activeTab, setActiveTab] = useState<"all" | "facebook" | "press" | "testimonials">("all");
+  const [fbViewMode, setFbViewMode] = useState<"embed" | "card">("embed");
+  const [activeModalEmbed, setActiveModalEmbed] = useState<FacebookEmbedMention | null>(null);
+
+  // Helper for publisher icon
+  const getPublisherIcon = (type: PressArticleMention["publisherIcon"]) => {
+    switch (type) {
+      case "mptc":
+        return <Building2 size={16} className="text-blue-600" />;
+      case "global":
+        return <Globe size={16} className="text-amber-600" />;
+      case "ams":
+        return <Tv size={16} className="text-red-600" />;
+      case "tfk":
+        return <Award size={16} className="text-emerald-600" />;
+      case "cctimes":
+        return <Newspaper size={16} className="text-purple-600" />;
+      default:
+        return <Newspaper size={16} className="text-zinc-600" />;
+    }
+  };
+
   return (
     <section className="bg-white border-b-2 border-black py-14 md:py-20 relative overflow-hidden">
-      
       {/* Top Caution Strip Accent */}
       <div className="absolute top-0 left-0 right-0 z-10">
         <CautionTape variant="caution" height={12} />
@@ -130,134 +396,434 @@ export function MentionsTestimonialsSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+        {/* ── SECTION HEADER ── */}
+        <div className="text-center max-w-4xl mx-auto mb-10 md:mb-12">
           <div
-            className="inline-flex items-center gap-2 bg-black text-amber-400 text-xs font-mono font-black tracking-widest uppercase px-4 py-1.5 border-2 border-black shadow-[3px_3px_0_#000] mb-3"
+            className="inline-flex items-center gap-2 bg-black text-amber-400 text-xs font-mono font-black tracking-widest uppercase px-4 py-1.5 border-2 border-black shadow-[3px_3px_0_#000] mb-4"
             style={khFont}
           >
-            <Sparkles size={14} className="text-amber-400 animate-spin" style={{ animationDuration: "5s" }} />
-            <span>{kh ? "ការលើកឡើង និងការវាយតម្លៃ" : "AS MENTIONED IN & WHAT PEOPLE SAY"}</span>
+            <Newspaper size={14} className="text-amber-400" />
+            <span>{kh ? "ប្រព័ន្ធផ្សព្វផ្សាយ និងការសរសើរផ្លូវការ" : "MEDIA MENTIONS & OFFICIAL PRESS SHOWCASE"}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black uppercase tracking-tight" style={khFont}>
             {kh ? (
               <>
-                ត្រូវបានលើកឡើងក្នង <span className="bg-amber-400 px-2 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">កម្មវិធីថ្នាក់ជាតិ</span> និងពិភពលោក
+                សេចក្តីរាយការណ៍ <span className="bg-amber-400 px-2 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">១១ ប្រភព</span> និងមតិគាំទ្រ
               </>
             ) : (
               <>
-                WE HAVE BEEN <span className="bg-amber-400 px-2 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">MENTIONED</span> EVERYWHERE
+                FEATURED IN <span className="bg-amber-400 px-2 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">11 OFFICIAL SOURCES</span> & PRESS
               </>
             )}
           </h2>
 
-          <p className="mt-3 text-base sm:text-lg font-medium text-zinc-600" style={khFont}>
+          <p className="mt-3 text-base sm:text-lg font-medium text-zinc-700 max-w-3xl mx-auto" style={khFont}>
             {kh
-              ? "ការទទួលស្គាល់ពីកម្មវិធី Technovation ក្រសួងអប់រំ គ្រូណែនាំ លោកគ្រូអ្នកគ្រូ មន្ត្រីចរាចរណ៍ និងអាណាព្យាបាលសិស្ស"
-              : "Recognized by Technovation Girls Global, MoEYS, educational partners, police officers, teachers, and parents across Cambodia."}
+              ? "ការផ្សាយផ្លូវការពីក្រសួងប្រៃសណីយ៍ ក្រសួងអប់រំ Technovation ពិភពលោក សារព័ត៌មានជាតិ AMS & CC-Times និង Facebook Posts ផ្លូវការ"
+              : "Official coverage from MPTC Ministry, MoEYS Minister H.E. Dr. Hang Chuon Naron, Technovation Global HQ, AMS Education, and CC Times."}
           </p>
+
+          {/* Quick Counter Badges */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-mono font-bold">
+            <span className="bg-amber-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
+              <Award size={14} className="text-amber-600" />
+              {kh ? "ជើងឯកថ្នាក់ជាតិ ២០២៦" : "2026 National Champion"}
+            </span>
+            <span className="bg-blue-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
+              <Globe size={14} className="text-blue-600" />
+              {kh ? "ជ័យលាភីពិភពលោក Global Semifinalist" : "Global Semifinalist"}
+            </span>
+            <span className="bg-emerald-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
+              <FacebookIcon className="w-3.5 h-3.5 text-blue-600" />
+              {kh ? "៤ Facebook Posts ផ្លូវការ" : "4 Official FB Embeds"}
+            </span>
+            <span className="bg-purple-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
+              <Newspaper size={14} className="text-purple-600" />
+              {kh ? "៧ អត្ថបទសារព័ត៌មាន" : "7 Press Articles"}
+            </span>
+          </div>
         </div>
 
-        {/* ── PART 1: AS MENTIONED IN — INFINITE MARQUEE ── */}
-        <div className="mb-14 bg-zinc-900 border-[3px] border-black shadow-[6px_6px_0_#000] p-6 text-white relative overflow-hidden">
-          <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-6 flex-wrap gap-2">
-            <div className="flex items-center gap-2 text-xs font-mono font-black uppercase text-amber-400">
-              <Building2 size={16} /> {kh ? "ដៃគូ និងការផ្សព្វផ្សាយ" : "PROJECT MENTIONS & ORGANIZATIONS"}
-            </div>
-            <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
-              {kh ? "រ៉ូតបង្ហាញដៃគូស្ថាប័ន" : "INFINITE MOTION MARQUEE"}
-            </div>
+        {/* ── FILTER TABS & CONTROL BAR ── */}
+        <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-black pb-5">
+          {/* Main Filter Buttons */}
+          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] ${
+                activeTab === "all"
+                  ? "bg-black text-amber-400 -translate-y-0.5 shadow-[4px_4px_0_#000]"
+                  : "bg-white text-black hover:bg-zinc-100"
+              }`}
+              style={khFont}
+            >
+              ⚡ {kh ? "ទាំងអស់ (១៦)" : "ALL MENTIONS (16)"}
+            </button>
+
+            <button
+              onClick={() => setActiveTab("facebook")}
+              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 ${
+                activeTab === "facebook"
+                  ? "bg-blue-600 text-white -translate-y-0.5 shadow-[4px_4px_0_#000]"
+                  : "bg-white text-black hover:bg-blue-50"
+              }`}
+              style={khFont}
+            >
+              <FacebookIcon className="w-3.5 h-3.5" />
+              <span>{kh ? "FACEBOOK EMBEDS (៤)" : "FACEBOOK POSTS (4)"}</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab("press")}
+              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 ${
+                activeTab === "press"
+                  ? "bg-amber-400 text-black -translate-y-0.5 shadow-[4px_4px_0_#000]"
+                  : "bg-white text-black hover:bg-amber-50"
+              }`}
+              style={khFont}
+            >
+              <Newspaper size={14} />
+              <span>{kh ? "សារព័ត៌មាន (៧)" : "PRESS ARTICLES (7)"}</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab("testimonials")}
+              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 ${
+                activeTab === "testimonials"
+                  ? "bg-emerald-500 text-white -translate-y-0.5 shadow-[4px_4px_0_#000]"
+                  : "bg-white text-black hover:bg-emerald-50"
+              }`}
+              style={khFont}
+            >
+              <Quote size={14} />
+              <span>{kh ? "មតិគាំទ្រ (៥)" : "TESTIMONIALS (5)"}</span>
+            </button>
           </div>
 
-          <Marquee pauseOnHover repeat={4} className="[--duration:28s] [--gap:1.5rem]">
-            {MENTIONS_DATA.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-black border-2 border-zinc-700 hover:border-amber-400 p-4 shadow-[4px_4px_0_#000] flex items-center gap-4 transition-all hover:-translate-y-0.5 cursor-pointer min-w-[280px]"
+          {/* View Mode Toggle (For Facebook Posts) */}
+          {(activeTab === "all" || activeTab === "facebook") && (
+            <div className="flex items-center gap-1.5 bg-zinc-100 border-2 border-black p-1 shadow-[2px_2px_0_#000]">
+              <span className="text-[10px] font-mono font-bold uppercase text-zinc-600 px-2" style={khFont}>
+                {kh ? "ទម្រង់ Facebook:" : "FB View Mode:"}
+              </span>
+              <button
+                onClick={() => setFbViewMode("embed")}
+                className={`px-2.5 py-1 text-[11px] font-mono font-bold uppercase border border-black transition-all ${
+                  fbViewMode === "embed"
+                    ? "bg-black text-amber-400"
+                    : "bg-white text-zinc-700 hover:bg-zinc-200"
+                }`}
+                style={khFont}
               >
-                <div
-                  className="w-12 h-12 border-2 border-black flex items-center justify-center p-1.5 flex-shrink-0"
-                  style={{ backgroundColor: item.color }}
-                >
-                  <img src={item.logoSrc} alt={item.nameEn} className="w-full h-full object-contain" />
+                <Eye size={12} className="inline mr-1" />
+                {kh ? "Live Embed" : "Live Embed"}
+              </button>
+              <button
+                onClick={() => setFbViewMode("card")}
+                className={`px-2.5 py-1 text-[11px] font-mono font-bold uppercase border border-black transition-all ${
+                  fbViewMode === "card"
+                    ? "bg-black text-amber-400"
+                    : "bg-white text-zinc-700 hover:bg-zinc-200"
+                }`}
+                style={khFont}
+              >
+                <Layers size={12} className="inline mr-1" />
+                {kh ? "Cards" : "Cards"}
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* ── PART 1: OFFICIAL FACEBOOK POST IFRAME EMBEDS SHOWCASE ── */}
+        {(activeTab === "all" || activeTab === "facebook") && (
+          <div className="mb-16 space-y-6">
+            <div className="flex items-center justify-between border-b-2 border-black pb-3 flex-wrap gap-2">
+              <div className="flex items-center gap-2 text-base sm:text-lg font-black text-black uppercase" style={khFont}>
+                <div className="w-7 h-7 bg-blue-600 text-white border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
+                  <FacebookIcon className="w-4 h-4" />
                 </div>
-                <div>
-                  <div className="text-xs font-black text-white line-clamp-1" style={khFont}>
-                    {kh ? item.nameKh : item.nameEn}
-                  </div>
-                  <div
-                    className="inline-block text-[10px] font-mono font-black uppercase px-2 py-0.5 border border-black mt-1"
-                    style={{ backgroundColor: item.color, color: "#000" }}
-                  >
-                    {kh ? item.badgeKh : item.badgeEn}
-                  </div>
-                </div>
+                <span>{kh ? "ការផ្សាយផ្លូវការលើ FACEBOOK (Official Facebook Embeds)" : "OFFICIAL FACEBOOK POST EMBEDS"}</span>
               </div>
-            ))}
-          </Marquee>
-        </div>
-
-        {/* ── PART 2: WHAT PEOPLE SAY — TESTIMONIALS MARQUEE ── */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b-2 border-black pb-3">
-            <div className="flex items-center gap-2 text-base font-black text-black uppercase" style={khFont}>
-              <MessageSquare size={20} className="text-amber-500" />
-              <span>{kh ? "មតិ និងការវាយតម្លៃពីអ្នកប្រើប្រាស់ (What People Say)" : "WHAT PEOPLE SAY ABOUT KWD"}</span>
+              <div className="text-xs font-mono font-bold text-zinc-500 uppercase flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                {kh ? "ប្រភពផ្លូវការផ្ទៀងផ្ទាត់" : "VERIFIED OFFICIAL POSTS"}
+              </div>
             </div>
-            <div className="text-xs font-mono font-bold text-zinc-500 uppercase">
-              ★ 5.0 RATING
-            </div>
-          </div>
 
-          {/* Testimonial Cards Infinite Motion Marquee */}
-          <Marquee pauseOnHover repeat={3} reverse className="[--duration:35s] [--gap:1.5rem]">
-            {TESTIMONIALS_DATA.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white border-[3px] border-black p-5 sm:p-6 shadow-[5px_5px_0_#000] flex flex-col justify-between min-w-[320px] max-w-[380px] hover:shadow-[7px_7px_0_#000] transition-all hover:-translate-y-1"
-              >
-                <div>
-                  {/* Quote Icon & Rating Header */}
-                  <div className="flex items-center justify-between mb-3">
-                    <div
-                      className="w-9 h-9 border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]"
-                      style={{ backgroundColor: item.color }}
-                    >
-                      <Quote size={18} className="text-black" />
+            {/* If View Mode is LIVE EMBED View: Interactive Facebook Iframe Grid */}
+            {fbViewMode === "embed" ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                {FACEBOOK_MENTIONS.map((fb) => (
+                  <div
+                    key={fb.id}
+                    className="bg-white border-[3px] border-black p-4 sm:p-5 shadow-[6px_6px_0_#000] flex flex-col justify-between relative overflow-hidden"
+                  >
+                    {/* Header Bar */}
+                    <div className="flex items-center justify-between pb-3 border-b-2 border-black mb-4 gap-2 flex-wrap">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="w-3 h-3 border border-black"
+                          style={{ backgroundColor: fb.color }}
+                        />
+                        <span className="text-xs font-black uppercase text-black" style={khFont}>
+                          {kh ? fb.sourceNameKh : fb.sourceNameEn}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="text-[10px] font-mono font-black uppercase px-2 py-0.5 border border-black shadow-[1px_1px_0_#000]"
+                          style={{ backgroundColor: fb.color, color: "#000" }}
+                        >
+                          {kh ? fb.badgeKh : fb.badgeEn}
+                        </span>
+                        
+                        <button
+                          onClick={() => setActiveModalEmbed(fb)}
+                          className="p-1.5 bg-black text-amber-400 border border-black shadow-[2px_2px_0_#000] hover:bg-zinc-800 transition-colors"
+                          title={kh ? "មើលទំហំធំ" : "Enlarge View"}
+                        >
+                          <Maximize2 size={12} />
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-0.5 text-amber-500">
-                      {Array.from({ length: item.rating }).map((_, i) => (
-                        <Star key={i} size={14} fill="currentColor" />
-                      ))}
+
+                    {/* Post Title */}
+                    <h3 className="text-sm sm:text-base font-black text-black leading-snug mb-2" style={khFont}>
+                      {kh ? fb.titleKh : fb.titleEn}
+                    </h3>
+                    <p className="text-xs text-zinc-600 font-medium mb-4" style={khFont}>
+                      {kh ? fb.summaryKh : fb.summaryEn}
+                    </p>
+
+                    {/* The Live Interactive Facebook Iframe Container */}
+                    <div className="w-full bg-zinc-50 border-2 border-black p-2 relative flex justify-center overflow-x-auto min-h-[250px]">
+                      <div className="max-w-full overflow-hidden flex justify-center">
+                        <iframe
+                          src={fb.iframeSrc}
+                          width="500"
+                          height={fb.iframeHeight}
+                          style={{ border: "none", overflow: "hidden", maxWidth: "100%" }}
+                          scrolling="no"
+                          frameBorder="0"
+                          allowFullScreen={true}
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          title={fb.titleEn}
+                          className="w-full max-w-[500px]"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card Footer Link */}
+                    <div className="mt-4 pt-3 border-t-2 border-black flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-mono font-bold text-zinc-500">
+                        FACEBOOK POST EMBED
+                      </span>
+                      <a
+                        href={fb.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-black uppercase bg-amber-400 text-black px-3 py-1 border border-black shadow-[2px_2px_0_#000] hover:bg-amber-300 transition-all"
+                      >
+                        <span>{kh ? "មើលលើ Facebook" : "Open Facebook"}</span>
+                        <ExternalLink size={12} />
+                      </a>
                     </div>
                   </div>
+                ))}
+              </div>
+            ) : (
+              /* CARD VIEW: Lightweight Press-Style Cards */
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {FACEBOOK_MENTIONS.map((fb) => (
+                  <div
+                    key={fb.id}
+                    className="bg-white border-[3px] border-black p-5 shadow-[5px_5px_0_#000] hover:shadow-[7px_7px_0_#000] transition-all hover:-translate-y-1 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <span
+                          className="text-[10px] font-mono font-black uppercase px-2 py-0.5 border border-black shadow-[1px_1px_0_#000]"
+                          style={{ backgroundColor: fb.color, color: "#000" }}
+                        >
+                          {kh ? fb.badgeKh : fb.badgeEn}
+                        </span>
+                        <FacebookIcon className="w-4 h-4 text-blue-600" />
+                      </div>
 
-                  {/* Quote Text */}
-                  <p className="text-xs sm:text-sm text-zinc-800 font-medium leading-relaxed italic mb-4" style={khFont}>
-                    "{kh ? item.quoteKh : item.quoteEn}"
-                  </p>
-                </div>
+                      <h4 className="text-sm font-black text-black mb-2 leading-tight" style={khFont}>
+                        {kh ? fb.titleKh : fb.titleEn}
+                      </h4>
+                      <p className="text-xs text-zinc-600 leading-relaxed mb-4" style={khFont}>
+                        {kh ? fb.summaryKh : fb.summaryEn}
+                      </p>
+                    </div>
 
-                {/* Author Info */}
-                <div className="pt-3 border-t border-zinc-200 flex items-center justify-between">
-                  <div>
-                    <h4 className="text-xs font-black text-black uppercase" style={khFont}>
-                      {kh ? item.nameKh : item.nameEn}
-                    </h4>
-                    <p className="text-[10px] font-mono text-zinc-500 font-bold" style={khFont}>
-                      {kh ? item.roleKh : item.roleEn}
+                    <div className="pt-3 border-t-2 border-black flex items-center justify-between">
+                      <span className="text-[10px] font-mono font-bold text-zinc-500" style={khFont}>
+                        {kh ? fb.sourceNameKh : fb.sourceNameEn}
+                      </span>
+                      <a
+                        href={fb.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-mono font-black uppercase text-amber-600 hover:text-black"
+                      >
+                        <ExternalLink size={12} />
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── PART 2: OFFICIAL PRESS & MEDIA ARTICLES (7 LINKS) ── */}
+        {(activeTab === "all" || activeTab === "press") && (
+          <div className="mb-16 space-y-6">
+            <div className="flex items-center justify-between border-b-2 border-black pb-3 flex-wrap gap-2">
+              <div className="flex items-center gap-2 text-base sm:text-lg font-black text-black uppercase" style={khFont}>
+                <Newspaper size={20} className="text-amber-500" />
+                <span>{kh ? "អត្ថបទសារព័ត៌មាន និងគេហទំព័រផ្លូវការ (Press & News Articles)" : "PRESS ARTICLES & OFFICIAL NEWS COVERAGE"}</span>
+              </div>
+              <div className="text-xs font-mono font-bold text-zinc-500 uppercase">
+                {kh ? "៧ ប្រភពអត្ថបទព័ត៌មាន" : "7 OFFICIAL MEDIA ARTICLES"}
+              </div>
+            </div>
+
+            {/* Articles Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {PRESS_ARTICLES.map((article) => (
+                <div
+                  key={article.id}
+                  className="bg-white border-[3px] border-black p-6 shadow-[6px_6px_0_#000] hover:shadow-[9px_9px_0_#000] transition-all hover:-translate-y-1 flex flex-col justify-between relative overflow-hidden group"
+                >
+                  {/* Top Accent Strip */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-2 border-b-2 border-black"
+                    style={{ backgroundColor: article.color }}
+                  />
+
+                  <div className="pt-2">
+                    {/* Category & Badge Row */}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span
+                        className="inline-block text-[10px] font-mono font-black uppercase px-2.5 py-0.5 border border-black shadow-[1px_1px_0_#000]"
+                        style={{ backgroundColor: article.color, color: "#000" }}
+                      >
+                        {kh ? article.categoryKh : article.categoryEn}
+                      </span>
+                      <span className="text-[10px] font-mono font-bold text-zinc-500">{article.date}</span>
+                    </div>
+
+                    {/* Article Publisher Header */}
+                    <div className="flex items-center gap-2 mb-3 bg-zinc-50 border border-black p-2">
+                      <div className="w-6 h-6 border border-black bg-white flex items-center justify-center shadow-[1px_1px_0_#000]">
+                        {getPublisherIcon(article.publisherIcon)}
+                      </div>
+                      <span className="text-xs font-black text-black uppercase" style={khFont}>
+                        {kh ? article.sourceNameKh : article.sourceNameEn}
+                      </span>
+                    </div>
+
+                    {/* Headline */}
+                    <h3 className="text-base font-black text-black leading-snug mb-3 group-hover:text-amber-600 transition-colors" style={khFont}>
+                      {kh ? article.titleKh : article.titleEn}
+                    </h3>
+
+                    {/* Summary Snippet */}
+                    <p className="text-xs text-zinc-700 font-medium leading-relaxed bg-amber-50/50 border-l-4 border-black p-3 mb-4" style={khFont}>
+                      {kh ? article.summaryKh : article.summaryEn}
                     </p>
                   </div>
-                  <CheckCircle2 size={16} className="text-emerald-500 flex-shrink-0" />
+
+                  {/* Footer & Action Button */}
+                  <div className="pt-3 border-t-2 border-black flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase text-zinc-500" style={khFont}>
+                      {kh ? article.badgeKh : article.badgeEn}
+                    </span>
+
+                    <a
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="nb-btn bg-black text-amber-400 hover:bg-zinc-800 text-[11px] font-mono font-black uppercase px-3 py-1.5 border border-black shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5 transition-all"
+                      style={khFont}
+                    >
+                      <span>{kh ? "អានអត្ថបទពេញ" : "Read Article"}</span>
+                      <ExternalLink size={12} />
+                    </a>
+                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── PART 3: COMMUNITY TESTIMONIALS MARQUEE ── */}
+        {(activeTab === "all" || activeTab === "testimonials") && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between border-b-2 border-black pb-3">
+              <div className="flex items-center gap-2 text-base sm:text-lg font-black text-black uppercase" style={khFont}>
+                <Quote size={20} className="text-amber-500" />
+                <span>{kh ? "មតិ និងការវាយតម្លៃពីសហគមន៍ (Community Testimonials)" : "WHAT PEOPLE SAY ABOUT KWD"}</span>
               </div>
-            ))}
-          </Marquee>
-        </div>
+              <div className="text-xs font-mono font-bold text-zinc-500 uppercase">
+                ★ 5.0 ENDORSEMENTS
+              </div>
+            </div>
+
+            {/* Testimonial Cards Infinite Motion Marquee */}
+            <Marquee pauseOnHover repeat={3} reverse className="[--duration:35s] [--gap:1.5rem]">
+              {TESTIMONIALS_DATA.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white border-[3px] border-black p-5 sm:p-6 shadow-[5px_5px_0_#000] flex flex-col justify-between min-w-[320px] max-w-[380px] hover:shadow-[7px_7px_0_#000] transition-all hover:-translate-y-1"
+                >
+                  <div>
+                    {/* Quote Icon & Rating Header */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div
+                        className="w-9 h-9 border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]"
+                        style={{ backgroundColor: item.color }}
+                      >
+                        <Quote size={18} className="text-black" />
+                      </div>
+                      <div className="flex items-center gap-0.5 text-amber-500">
+                        {Array.from({ length: item.rating }).map((_, i) => (
+                          <Star key={i} size={14} fill="currentColor" />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Quote Text */}
+                    <p className="text-xs sm:text-sm text-zinc-800 font-medium leading-relaxed italic mb-4" style={khFont}>
+                      "{kh ? item.quoteKh : item.quoteEn}"
+                    </p>
+                  </div>
+
+                  {/* Author Info */}
+                  <div className="pt-3 border-t border-zinc-200 flex items-center justify-between">
+                    <div>
+                      <h4 className="text-xs font-black text-black uppercase" style={khFont}>
+                        {kh ? item.nameKh : item.nameEn}
+                      </h4>
+                      <p className="text-[10px] font-mono text-zinc-500 font-bold" style={khFont}>
+                        {kh ? item.roleKh : item.roleEn}
+                      </p>
+                    </div>
+                    <CheckCircle2 size={16} className="text-emerald-500 flex-shrink-0" />
+                  </div>
+                </div>
+              ))}
+            </Marquee>
+          </div>
+        )}
 
         {/* Bottom CTA Banner */}
-        <div className="mt-12 bg-amber-400 border-[3px] border-black p-6 sm:p-8 shadow-[6px_6px_0_#000] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-14 bg-amber-400 border-[3px] border-black p-6 sm:p-8 shadow-[6px_6px_0_#000] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="text-xl sm:text-2xl font-black text-black uppercase" style={khFont}>
               {kh ? "ចូលរួមរៀនជាមួយសិស្សកម្ពុជារាប់ពាន់នាក់!" : "Join 1,000+ Students Learning Road Safety!"}
@@ -265,7 +831,7 @@ export function MentionsTestimonialsSection() {
             <p className="text-xs sm:text-sm font-bold text-zinc-800" style={khFont}>
               {kh
                 ? "រៀនសញ្ញាចរាចរណ៍ និងច្បាប់ផ្លូវវិថីដោយឥតគិតថ្លៃ ជាមួយ KWD"
-                : "Master Cambodian traffic signs and driving theory for free on KWD."}
+                : "Master Cambodian traffic signs and road safety knowledge for free on KWD."}
             </p>
           </div>
 
@@ -279,6 +845,65 @@ export function MentionsTestimonialsSection() {
           </Link>
         </div>
       </div>
+
+      {/* ── MODAL VIEWER FOR FULL FACEBOOK EMBED IFRAME ── */}
+      {activeModalEmbed && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white border-[4px] border-black shadow-[12px_12px_0_#000] w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col relative">
+            {/* Modal Header */}
+            <div className="bg-amber-400 border-b-3 border-black p-4 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <FacebookIcon className="w-5 h-5 text-black" />
+                <h3 className="text-sm font-black uppercase text-black" style={khFont}>
+                  {kh ? activeModalEmbed.sourceNameKh : activeModalEmbed.sourceNameEn}
+                </h3>
+              </div>
+
+              <button
+                onClick={() => setActiveModalEmbed(null)}
+                className="w-8 h-8 bg-black text-white border-2 border-black flex items-center justify-center hover:bg-red-600 transition-colors"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-4 sm:p-6 overflow-y-auto flex-1 bg-zinc-100 flex flex-col items-center">
+              <div className="w-full bg-white border-2 border-black p-2 flex justify-center shadow-[4px_4px_0_#000]">
+                <iframe
+                  src={activeModalEmbed.iframeSrc}
+                  width="500"
+                  height={activeModalEmbed.iframeHeight}
+                  style={{ border: "none", overflow: "hidden", maxWidth: "100%" }}
+                  scrolling="no"
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  title={activeModalEmbed.titleEn}
+                  className="w-full max-w-[500px]"
+                />
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="bg-white border-t-2 border-black p-4 flex items-center justify-between gap-3">
+              <span className="text-xs font-mono font-bold text-zinc-600" style={khFont}>
+                {kh ? activeModalEmbed.badgeKh : activeModalEmbed.badgeEn}
+              </span>
+
+              <a
+                href={activeModalEmbed.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nb-btn bg-blue-600 text-white hover:bg-blue-700 text-xs font-mono font-black uppercase px-4 py-2 border-2 border-black shadow-[3px_3px_0_#000] inline-flex items-center gap-2"
+              >
+                <span>{kh ? "បើកលើ Facebook ផ្ទាល់" : "Open Direct Post"}</span>
+                <ExternalLink size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -33,6 +33,7 @@
     "db:migrate-score-plates": "tsx scripts/migrate-score-plates.ts",
     "studio": "node node_modules/drizzle-kit/bin.cjs studio",
     "backup": "node node_modules/tsx/dist/cli.mjs scripts/backup-db.ts",
+    "backup:full": "node node_modules/tsx/dist/cli.mjs scripts/backup-signs-structured.ts",
     "restore": "node node_modules/tsx/dist/cli.mjs scripts/restore-db.ts",
     "security:audit": "pnpm audit --audit-level=moderate",
     "security:check": "bash scripts/check-secrets.sh",
