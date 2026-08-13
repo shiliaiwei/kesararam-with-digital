@@ -52,7 +52,7 @@ export const CHAMPION_PHOTOS: ChampionPhoto[] = [
   {
     id: "photo-03",
     num: "03",
-    url: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1786649331/03_zzcanc.png",
+    url: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1786649331/03_zzcanc.jpg",
     titleEn: "Technovation Girls Cambodia 2026 Winner Official Banner",
     titleKh: "បដាផ្លូវការជ័យលាភី Technovation Girls Cambodia 2026",
     tagEn: "Official Banner",
@@ -406,20 +406,20 @@ export function AwardsSection() {
             </div>
           </div>
 
-          {/* Full Image Presentation Container (Uncropped, Full Image) */}
+          {/* Full Image Presentation Container (Light Studio Stage, No Black Screen) */}
           <div
             onClick={() => setLightboxIndex(activeIndex)}
-            className="relative bg-zinc-950 min-h-[340px] sm:min-h-[480px] md:min-h-[580px] flex items-center justify-center p-4 cursor-pointer group overflow-hidden"
+            className="relative bg-amber-100/50 hero-dot-bg border-y-2 border-black min-h-[340px] sm:min-h-[480px] md:min-h-[580px] flex items-center justify-center p-4 cursor-pointer group overflow-hidden"
           >
             <img
               key={currentPhoto.id}
               src={currentPhoto.url}
               alt={currentPhoto.titleEn}
-              onError={(e) => {
-                // If Cloudinary image fails, hide image element cleanly
-                (e.target as HTMLElement).style.display = 'none';
+              onError={() => {
+                // If photo fails to load, automatically skip to next photo
+                handleNext();
               }}
-              className="max-h-[70vh] w-auto max-w-full object-contain mx-auto transition-all duration-500 ease-out animate-fade-in shadow-2xl border border-zinc-800"
+              className="max-h-[70vh] w-auto max-w-full object-contain mx-auto transition-all duration-500 ease-out animate-fade-in shadow-2xl border-2 border-black bg-white"
             />
 
             {/* Previous & Next Tap Arrows */}
@@ -446,7 +446,7 @@ export function AwardsSection() {
             </button>
 
             {/* Tap to Enlarge Hover Badge */}
-            <div className="absolute top-4 right-4 bg-black/80 text-amber-400 text-xs font-mono font-black uppercase px-3 py-1.5 border border-amber-400 opacity-90 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 shadow-[2px_2px_0_#000]">
+            <div className="absolute top-4 right-4 bg-black text-amber-400 text-xs font-mono font-black uppercase px-3 py-1.5 border border-black opacity-90 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 shadow-[2px_2px_0_#000]">
               <Maximize2 size={14} />
               <span>{kh ? "ចុចដើម្បីមើលរូបពេញ" : "TAP FOR FULL VIEW"}</span>
             </div>

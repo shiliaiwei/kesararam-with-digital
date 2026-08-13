@@ -717,7 +717,7 @@ export function EventPhotosSection() {
                 className={`group bg-white border-2 border-black p-3 shadow-[4px_4px_0_#000] hover:shadow-[7px_7px_0_#000] transition-all duration-300 hover:rotate-0 hover:scale-105 hover:z-20 cursor-pointer flex flex-col justify-between ${tiltClass}`}
               >
                 {/* Full Uncropped Image Container */}
-                <div className="relative aspect-[4/3] bg-zinc-950 border-2 border-black flex items-center justify-center p-1 overflow-hidden">
+                <div className="relative aspect-[4/3] bg-zinc-100 border-2 border-black flex items-center justify-center p-1 overflow-hidden">
                   <img
                     src={photo.url}
                     alt={photo.titleEn}
@@ -800,7 +800,7 @@ export function EventPhotosSection() {
               </button>
             </div>
 
-            <div className="relative bg-zinc-950 flex items-center justify-center p-2 min-h-[350px] sm:min-h-[480px] flex-1 overflow-hidden">
+            <div className="relative bg-zinc-900 flex items-center justify-center p-2 min-h-[350px] sm:min-h-[480px] flex-1 overflow-hidden">
               <img
                 key={filteredPhotos[lightboxIndex].id}
                 src={filteredPhotos[lightboxIndex].url}
