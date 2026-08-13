@@ -4,8 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { RoadSigns3DHero } from "@/components/hero/road-signs-3d-hero";
 import { SponsorsMarquee } from "@/components/sections/sponsors-marquee";
 import { CategoryGrid } from "@/components/categories/category-grid";
+import { AwardsSection } from "@/components/sections/awards-section";
+import { MentionsTestimonialsSection } from "@/components/sections/mentions-testimonials-section";
+import { EventPhotosSection } from "@/components/sections/event-photos-section";
+import { RegionalPitchSection } from "@/components/sections/regional-pitch-section";
 import dynamic from "next/dynamic";
-import { Users, LayoutGrid, FileQuestion, Radio, LibraryBig, BrainCircuit, Swords, ArrowRight } from "lucide-react";
+import { Users, LayoutGrid, FileQuestion, Radio } from "lucide-react";
 
 const MapboxTrafficMap = dynamic(
   () => import("@/components/maps/mapbox-traffic-map").then((mod) => mod.MapboxTrafficMap),
@@ -90,6 +94,10 @@ export default function HomePage() {
       {/* Hero: 3D animated road signs marquee */}
       <RoadSigns3DHero />
 
+      {/* SECTION 1: About Cham AWARDS - National Champion Junior Division Technovation Girls Cambodia 2026 */}
+      <AwardsSection />
+
+      {/* Category Grid */}
       <CategoryGrid />
 
       {/* Real-data stats */}
@@ -104,41 +112,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How it works — short visual explainer flow */}
-      <section className="bg-white py-16 border-b-2 border-black">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-10 text-center">
-            <div className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3" style={khFont}>
-              {tr.howBadge}
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-black" style={khFont}>{tr.howTitle}</h2>
-          </div>
+      {/* As Mentioned In & What People Say — Infinite Marquee Mentions & Testimonials */}
+      <MentionsTestimonialsSection />
 
-          {/* flow row: card → arrow → card → arrow → card */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-center gap-4">
-            {[
-              { step: "01", icon: LibraryBig, title: tr.step1Title, color: "#eab308" },
-              { step: "02", icon: BrainCircuit, title: tr.step2Title, color: "#22c55e" },
-              { step: "03", icon: Swords, title: tr.step3Title, color: "#06b6d4" },
-            ].map(({ step, icon: Icon, title, color }, i, arr) => (
-              <div key={step} className="contents">
-                <div className="flex-1 bg-white border-2 border-black p-5 shadow-[4px_4px_0_#000] flex items-center md:flex-col md:text-center gap-4">
-                  <div className="w-14 h-14 border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000] flex-shrink-0" style={{ background: color }}>
-                    <Icon size={26} className="text-black" strokeWidth={2.2} />
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-mono font-black text-zinc-400 mb-1">STEP {step}</div>
-                    <h3 className="text-lg font-black leading-tight" style={khFont}>{title}</h3>
-                  </div>
-                </div>
-                {i < arr.length - 1 && (
-                  <ArrowRight size={24} className="hidden md:block flex-shrink-0 text-black" strokeWidth={3} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Event Photos Gallery */}
+      <EventPhotosSection />
+
+      {/* Regional Pitch Event Section */}
+      <RegionalPitchSection />
 
       {/* Live Traffic Map — compact */}
       <section className="bg-white py-14 border-b-2 border-black">

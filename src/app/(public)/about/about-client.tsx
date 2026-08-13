@@ -8,7 +8,7 @@ import { TeamSection } from "@/components/about/team-section";
 
 // ── Image protection helper ───────────────────────────────────────────────────
 const protect = (url: string) =>
-  url.replace("/upload/", "/upload/e_blur_faces:1000,q_auto,f_auto/");
+  url.replace("/upload/", "/upload/q_auto,f_auto/");
 
 const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783435140/OURTEAMFOUNDER_wcg9ao.webp",
