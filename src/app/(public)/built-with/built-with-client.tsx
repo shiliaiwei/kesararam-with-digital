@@ -10,8 +10,8 @@ import {
   SiAffinitydesigner, SiAnthropic, SiGooglegemini, SiOpenai,
   SiGithubcopilot, SiNotebooklm, SiKahoot, SiYoutube, SiGoogle,
   SiGoogleplay, SiVscodium, SiGraphql, SiMysql, SiMongodb,
-  SiJava, SiPhp, SiRuby, SiPython, SiBootstrap, SiJquery,
-  SiAngular, SiVuedotjs, SiHtml5, SiCss3, SiJavascript,
+  SiOpenjdk, SiPhp, SiRuby, SiPython, SiBootstrap, SiJquery,
+  SiAngular, SiVuedotjs, SiHtml5, SiCssmodules, SiJavascript,
   SiNodedotjs
 } from "react-icons/si";
 import {
@@ -166,7 +166,7 @@ const TECH_TREE: TechNode = {
                 en: "A class-based, object-oriented programming language designed for minimal dependencies.",
                 kh: "ភាសាសរសេរកម្មវិធីតម្រង់ទិសវត្ថុផ្អែកលើថ្នាក់ ដែលរចនាឡើងសម្រាប់ការពឹងផ្អែកអប្បបរមា។"
               },
-              icon: SiJava,
+              icon: SiOpenjdk,
               status: "not_used",
               usedInKwd: {
                 en: "Not used in KWD. React/Next.js and TypeScript provide a faster, unified developer experience.",
@@ -478,7 +478,7 @@ const TECH_TREE: TechNode = {
                 en: "A stylesheet language used for describing the presentation of a document written in HTML.",
                 kh: "ភាសាសន្លឹករចនាប័ទ្មដែលប្រើសម្រាប់ពណ៌នាអំពីការបង្ហាញឯកសារដែលបានសរសេរជា HTML។"
               },
-              icon: SiCss3,
+              icon: SiCssmodules,
               status: "used",
               usedInKwd: {
                 en: "Used in KWD via CSS variables, avatar rank transitions, and caution-tape gradients in globals.css.",
