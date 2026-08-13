@@ -111,9 +111,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* News Quotes & What People Say — Press Mentions & Testimonials */}
-      <MentionsTestimonialsSection />
-
       {/* Event Photos Gallery */}
       <EventPhotosSection />
 
