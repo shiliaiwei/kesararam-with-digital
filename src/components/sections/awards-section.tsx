@@ -409,7 +409,7 @@ export function AwardsSection() {
           {/* Full Image Presentation Container (Light Studio Stage, No Black Screen) */}
           <div
             onClick={() => setLightboxIndex(activeIndex)}
-            className="relative bg-amber-100/50 hero-dot-bg border-y-2 border-black min-h-[340px] sm:min-h-[480px] md:min-h-[580px] flex items-center justify-center p-4 cursor-pointer group overflow-hidden"
+            className="relative bg-amber-100/50 hero-dot-bg border-y-2 border-black min-h-[280px] sm:min-h-[440px] md:min-h-[560px] flex items-center justify-center p-2 sm:p-4 cursor-pointer group overflow-hidden"
           >
             <img
               key={currentPhoto.id}
@@ -419,7 +419,7 @@ export function AwardsSection() {
                 // If photo fails to load, automatically skip to next photo
                 handleNext();
               }}
-              className="max-h-[70vh] w-auto max-w-full object-contain mx-auto transition-all duration-500 ease-out animate-fade-in shadow-2xl border-2 border-black bg-white"
+              className="max-h-[65vh] sm:max-h-[70vh] w-auto max-w-full object-contain mx-auto transition-all duration-500 ease-out animate-fade-in shadow-2xl border-2 border-black bg-white group-hover:scale-[1.01]"
             />
 
             {/* Previous & Next Tap Arrows */}
@@ -428,10 +428,10 @@ export function AwardsSection() {
                 e.stopPropagation();
                 handlePrev();
               }}
-              className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 transition-all active:scale-95 cursor-pointer"
+              className="absolute left-2 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000] hover:bg-amber-300 transition-all active:scale-95 cursor-pointer"
               aria-label="Previous champion photo"
             >
-              <ChevronLeft size={28} strokeWidth={3} />
+              <ChevronLeft className="w-5 h-5 sm:w-7 sm:h-7" strokeWidth={3} />
             </button>
 
             <button
@@ -439,38 +439,28 @@ export function AwardsSection() {
                 e.stopPropagation();
                 handleNext();
               }}
-              className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 transition-all active:scale-95 cursor-pointer"
+              className="absolute right-2 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000] hover:bg-amber-300 transition-all active:scale-95 cursor-pointer"
               aria-label="Next champion photo"
             >
-              <ChevronRight size={28} strokeWidth={3} />
+              <ChevronRight className="w-5 h-5 sm:w-7 sm:h-7" strokeWidth={3} />
             </button>
 
-            {/* Tap to Enlarge Hover Badge */}
-            <div className="absolute top-4 right-4 bg-black text-amber-400 text-xs font-mono font-black uppercase px-3 py-1.5 border border-black opacity-90 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 shadow-[2px_2px_0_#000]">
-              <Maximize2 size={14} />
-              <span>{kh ? "ចុចដើម្បីមើលរូបពេញ" : "TAP FOR FULL VIEW"}</span>
+            {/* Subtle Expand Icon (Hover Only) */}
+            <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 sm:w-10 sm:h-10 bg-black text-amber-400 border-2 border-black flex items-center justify-center shadow-[3px_3px_0_#000] opacity-80 group-hover:opacity-100 transition-opacity">
+              <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
           </div>
 
           {/* Champion Photo Caption Banner */}
-          <div className="p-4 sm:p-6 bg-zinc-50 border-t-2 border-black flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="space-y-1 max-w-3xl">
-              <div className="inline-flex items-center gap-2 bg-amber-400 text-black text-xs font-mono font-black uppercase px-2.5 py-0.5 border border-black shadow-[2px_2px_0_#000]">
-                <Award size={13} /> {kh ? currentPhoto.tagKh : currentPhoto.tagEn}
+          <div className="p-3.5 sm:p-5 bg-zinc-50 border-t-2 border-black flex items-center justify-between gap-3">
+            <div className="space-y-1 max-w-4xl">
+              <div className="inline-flex items-center gap-1.5 bg-amber-400 text-black text-[11px] sm:text-xs font-mono font-black uppercase px-2 py-0.5 border border-black shadow-[2px_2px_0_#000]">
+                <Award size={12} /> {kh ? currentPhoto.tagKh : currentPhoto.tagEn}
               </div>
-              <h3 className="text-base sm:text-xl font-black text-black leading-snug" style={khFont}>
+              <h3 className="text-sm sm:text-lg md:text-xl font-black text-black leading-snug" style={khFont}>
                 {kh ? currentPhoto.titleKh : currentPhoto.titleEn}
               </h3>
             </div>
-
-            <button
-              onClick={() => setLightboxIndex(activeIndex)}
-              className="bg-amber-400 text-black hover:bg-amber-300 text-xs font-mono font-black uppercase px-4 py-2.5 border-2 border-black shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 transition-all cursor-pointer"
-              style={khFont}
-            >
-              <Eye size={14} />
-              <span>{kh ? "មើលរូបភាពពេញ" : "FULL VIEW"}</span>
-            </button>
           </div>
         </div>
 
