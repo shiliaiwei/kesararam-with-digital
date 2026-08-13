@@ -351,7 +351,6 @@ export function AwardsSection() {
   }, [lightboxIndex, totalPhotos]);
 
   return (
-  return (
     <section className="relative bg-amber-50 text-black border-b-4 border-black py-12 sm:py-16 md:py-20 overflow-hidden">
       {/* Gold Top Caution Tape Accent */}
       <div className="absolute top-0 left-0 right-0 z-10">
