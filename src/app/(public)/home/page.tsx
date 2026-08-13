@@ -93,11 +93,11 @@ export default function HomePage() {
       {/* Hero: 3D animated road signs marquee */}
       <RoadSigns3DHero />
 
-      {/* SECTION 1: About Cham AWARDS - National Champion Junior Division Technovation Girls Cambodia 2026 */}
-      <AwardsSection />
-
-      {/* Category Grid */}
+      {/* 8 Traffic Category Grid */}
       <CategoryGrid />
+
+      {/* SECTION: About Cham AWARDS - National Champion Junior Division Technovation Girls Cambodia 2026 */}
+      <AwardsSection />
 
       {/* Real-data stats */}
       <section ref={statsRef} className="grid-bg py-14 border-b-2 border-black">
