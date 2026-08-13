@@ -49,6 +49,7 @@ export interface FacebookEmbedMention {
   summaryKh: string;
   iframeSrc: string;
   iframeHeight: number;
+  postImage: string;
   url: string;
   color: string;
   badgeEn: string;
@@ -74,7 +75,7 @@ export interface PressArticleMention {
   publisherIcon: "mptc" | "global" | "ams" | "tfk" | "cctimes";
 }
 
-// ── 1. Facebook Post Embeds Dataset (4 Official Iframes) ──
+// ── 1. Facebook Post Embeds Dataset (4 Official Embeds with High-Res Photos) ──
 const FACEBOOK_MENTIONS: FacebookEmbedMention[] = [
   {
     id: "fb-1",
@@ -91,6 +92,7 @@ const FACEBOOK_MENTIONS: FacebookEmbedMention[] = [
     iframeSrc:
       "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2FTechforKidsAcademy%2Fposts%2Fpfbid0hS84WWm8QvQWMoYhr2fZgrEkQxGE2HwoqP84pSAHhun4CpDLfveFW6YVh4L8uPQTl&show_text=true&width=500",
     iframeHeight: 735,
+    postImage: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1786649329/01_h8y0wn.jpg",
     url: "https://web.facebook.com/TechforKidsAcademy/posts/pfbid0hS84WWm8QvQWMoYhr2fZgrEkQxGE2HwoqP84pSAHhun4CpDLfveFW6YVh4L8uPQTl",
     color: "#eab308",
     badgeEn: "National Organizer",
@@ -110,7 +112,8 @@ const FACEBOOK_MENTIONS: FacebookEmbedMention[] = [
       "ការផ្សព្វផ្សាយផ្លូវការពីក្រសួង MPTC ដែលមានឯកឧត្តម រដ្ឋលេខាធិការ ជុន វ៉ាត់ អញ្ជើញជាអធិបតីក្នុងពិធីប្រកួតផ្តាច់ព្រ័ត្រ។",
     iframeSrc:
       "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fwww.mptc.gov.kh%2Fposts%2Fpfbid0FtuVXjHrwGQVMXLU8Uz7RVXUrVjDBYRq9Ta2NTTYn7nXagBAyTPuDATxKkhtBTxtl&show_text=true&width=500",
-    iframeHeight: 250,
+    iframeHeight: 650,
+    postImage: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1786649335/08_yluxi1.jpg",
     url: "https://web.facebook.com/www.mptc.gov.kh/posts/pfbid0FtuVXjHrwGQVMXLU8Uz7RVXUrVjDBYRq9Ta2NTTYn7nXagBAyTPuDATxKkhtBTxtl",
     color: "#3b82f6",
     badgeEn: "Official Ministry Post",
@@ -131,6 +134,7 @@ const FACEBOOK_MENTIONS: FacebookEmbedMention[] = [
     iframeSrc:
       "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fhang.naron%2Fposts%2Fpfbid02hmT9oAT5JMftd798aGDW8HHfjPWK77BatQxw9eWUwBYeui7vsvTrspkaus6TdvDYl&show_text=true&width=500",
     iframeHeight: 725,
+    postImage: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1786649332/02_wozvje.jpg",
     url: "https://web.facebook.com/hang.naron/posts/pfbid02hmT9oAT5JMftd798aGDW8HHfjPWK77BatQxw9eWUwBYeui7vsvTrspkaus6TdvDYl",
     color: "#ef4444",
     badgeEn: "Minister Spotlight",
@@ -151,6 +155,7 @@ const FACEBOOK_MENTIONS: FacebookEmbedMention[] = [
     iframeSrc:
       "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2FTechforKidsAcademy%2Fposts%2Fpfbid02PCe6n6QMRAjwDuFuEaDAmn29iDm6uhq2WF7G4ha5UkHg1Hdxo6iE7ZexPk9PSreal&show_text=true&width=500",
     iframeHeight: 803,
+    postImage: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1786649331/03_zzcanc.png",
     url: "https://web.facebook.com/TechforKidsAcademy/posts/pfbid02PCe6n6QMRAjwDuFuEaDAmn29iDm6uhq2WF7G4ha5UkHg1Hdxo6iE7ZexPk9PSreal",
     color: "#22c55e",
     badgeEn: "National Champions",
@@ -426,205 +431,76 @@ export function MentionsTestimonialsSection() {
 
           {/* Quick Counter Badges */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-mono font-bold">
-            <span className="bg-amber-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
-              <Award size={14} className="text-amber-600" />
-              {kh ? "ជើងឯកថ្នាក់ជាតិ ២០២៦" : "2026 National Champion"}
-            </span>
-            <span className="bg-blue-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
-              <Globe size={14} className="text-blue-600" />
-              {kh ? "ជ័យលាភីពិភពលោក Global Semifinalist" : "Global Semifinalist"}
-            </span>
-            <span className="bg-emerald-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
-              <FacebookIcon className="w-3.5 h-3.5 text-blue-600" />
-              {kh ? "៤ Facebook Posts ផ្លូវការ" : "4 Official FB Embeds"}
-            </span>
-            <span className="bg-purple-100 text-black border-2 border-black px-3 py-1 shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
-              <Newspaper size={14} className="text-purple-600" />
-              {kh ? "៧ អត្ថបទសារព័ត៌មាន" : "7 Press Articles"}
-            </span>
-          </div>
-        </div>
-
-        {/* ── FILTER TABS & CONTROL BAR ── */}
-        <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-black pb-5">
-          {/* Main Filter Buttons */}
-          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-            <button
-              onClick={() => setActiveTab("all")}
-              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] ${
-                activeTab === "all"
-                  ? "bg-black text-amber-400 -translate-y-0.5 shadow-[4px_4px_0_#000]"
-                  : "bg-white text-black hover:bg-zinc-100"
-              }`}
-              style={khFont}
-            >
-              ⚡ {kh ? "ទាំងអស់ (១៦)" : "ALL MENTIONS (16)"}
-            </button>
-
-            <button
-              onClick={() => setActiveTab("facebook")}
-              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 ${
-                activeTab === "facebook"
-                  ? "bg-blue-600 text-white -translate-y-0.5 shadow-[4px_4px_0_#000]"
-                  : "bg-white text-black hover:bg-blue-50"
-              }`}
-              style={khFont}
-            >
-              <FacebookIcon className="w-3.5 h-3.5" />
-              <span>{kh ? "FACEBOOK EMBEDS (៤)" : "FACEBOOK POSTS (4)"}</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab("press")}
-              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 ${
-                activeTab === "press"
-                  ? "bg-amber-400 text-black -translate-y-0.5 shadow-[4px_4px_0_#000]"
-                  : "bg-white text-black hover:bg-amber-50"
-              }`}
-              style={khFont}
-            >
-              <Newspaper size={14} />
-              <span>{kh ? "សារព័ត៌មាន (៧)" : "PRESS ARTICLES (7)"}</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab("testimonials")}
-              className={`px-4 py-2 text-xs font-mono font-black uppercase border-2 border-black transition-all shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 ${
-                activeTab === "testimonials"
-                  ? "bg-emerald-500 text-white -translate-y-0.5 shadow-[4px_4px_0_#000]"
-                  : "bg-white text-black hover:bg-emerald-50"
-              }`}
-              style={khFont}
-            >
-              <Quote size={14} />
-              <span>{kh ? "មតិគាំទ្រ (៥)" : "TESTIMONIALS (5)"}</span>
-            </button>
-          </div>
-
-          {/* View Mode Toggle (For Facebook Posts) */}
-          {(activeTab === "all" || activeTab === "facebook") && (
-            <div className="flex items-center gap-1.5 bg-zinc-100 border-2 border-black p-1 shadow-[2px_2px_0_#000]">
-              <span className="text-[10px] font-mono font-bold uppercase text-zinc-600 px-2" style={khFont}>
-                {kh ? "ទម្រង់ Facebook:" : "FB View Mode:"}
-              </span>
-              <button
-                onClick={() => setFbViewMode("embed")}
-                className={`px-2.5 py-1 text-[11px] font-mono font-bold uppercase border border-black transition-all ${
-                  fbViewMode === "embed"
-                    ? "bg-black text-amber-400"
-                    : "bg-white text-zinc-700 hover:bg-zinc-200"
-                }`}
-                style={khFont}
-              >
-                <Eye size={12} className="inline mr-1" />
-                {kh ? "Live Embed" : "Live Embed"}
-              </button>
-              <button
-                onClick={() => setFbViewMode("card")}
-                className={`px-2.5 py-1 text-[11px] font-mono font-bold uppercase border border-black transition-all ${
-                  fbViewMode === "card"
-                    ? "bg-black text-amber-400"
-                    : "bg-white text-zinc-700 hover:bg-zinc-200"
-                }`}
-                style={khFont}
-              >
-                <Layers size={12} className="inline mr-1" />
-                {kh ? "Cards" : "Cards"}
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* ── PART 1: OFFICIAL FACEBOOK POST IFRAME EMBEDS SHOWCASE ── */}
-        {(activeTab === "all" || activeTab === "facebook") && (
-          <div className="mb-16 space-y-6">
-            <div className="flex items-center justify-between border-b-2 border-black pb-3 flex-wrap gap-2">
-              <div className="flex items-center gap-2 text-base sm:text-lg font-black text-black uppercase" style={khFont}>
-                <div className="w-7 h-7 bg-blue-600 text-white border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
-                  <FacebookIcon className="w-4 h-4" />
-                </div>
-                <span>{kh ? "ការផ្សាយផ្លូវការលើ FACEBOOK (Official Facebook Embeds)" : "OFFICIAL FACEBOOK POST EMBEDS"}</span>
-              </div>
-              <div className="text-xs font-mono font-bold text-zinc-500 uppercase flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                {kh ? "ប្រភពផ្លូវការផ្ទៀងផ្ទាត់" : "VERIFIED OFFICIAL POSTS"}
-              </div>
-            </div>
-
-            {/* If View Mode is LIVE EMBED View: Interactive Facebook Iframe Grid */}
+            <span className="bg-amber-100 text-black borde            {/* If View Mode is LIVE EMBED View: Interactive Facebook Iframe Grid */}
             {fbViewMode === "embed" ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                 {FACEBOOK_MENTIONS.map((fb) => (
                   <div
                     key={fb.id}
-                    className="bg-white border-[3px] border-black p-4 sm:p-5 shadow-[6px_6px_0_#000] flex flex-col justify-between relative overflow-hidden"
+                    className="bg-white border-[3px] border-black p-4 sm:p-5 shadow-[6px_6px_0_#000] flex flex-col justify-between relative overflow-hidden h-full"
                   >
-                    {/* Header Bar */}
-                    <div className="flex items-center justify-between pb-3 border-b-2 border-black mb-4 gap-2 flex-wrap">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="w-3 h-3 border border-black"
-                          style={{ backgroundColor: fb.color }}
-                        />
-                        <span className="text-xs font-black uppercase text-black" style={khFont}>
-                          {kh ? fb.sourceNameKh : fb.sourceNameEn}
-                        </span>
+                    <div>
+                      {/* Header Bar */}
+                      <div className="flex items-center justify-between pb-3 border-b-2 border-black mb-3 gap-2 flex-wrap">
+                        <div className="flex items-center gap-2">
+                          <div className="w-7 h-7 bg-blue-600 text-white border border-black flex items-center justify-center shadow-[1px_1px_0_#000]">
+                            <FacebookIcon className="w-3.5 h-3.5" />
+                          </div>
+                          <span className="text-xs font-black uppercase text-black" style={khFont}>
+                            {kh ? fb.sourceNameKh : fb.sourceNameEn}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span
+                            className="text-[10px] font-mono font-black uppercase px-2 py-0.5 border border-black shadow-[1px_1px_0_#000]"
+                            style={{ backgroundColor: fb.color, color: "#000" }}
+                          >
+                            {kh ? fb.badgeKh : fb.badgeEn}
+                          </span>
+                          
+                          <button
+                            onClick={() => setActiveModalEmbed(fb)}
+                            className="p-1.5 bg-black text-amber-400 border border-black shadow-[2px_2px_0_#000] hover:bg-zinc-800 transition-colors"
+                            title={kh ? "មើលទំហំធំ" : "Enlarge View"}
+                          >
+                            <Maximize2 size={12} />
+                          </button>
+                        </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="text-[10px] font-mono font-black uppercase px-2 py-0.5 border border-black shadow-[1px_1px_0_#000]"
-                          style={{ backgroundColor: fb.color, color: "#000" }}
-                        >
-                          {kh ? fb.badgeKh : fb.badgeEn}
-                        </span>
-                        
-                        <button
-                          onClick={() => setActiveModalEmbed(fb)}
-                          className="p-1.5 bg-black text-amber-400 border border-black shadow-[2px_2px_0_#000] hover:bg-zinc-800 transition-colors"
-                          title={kh ? "មើលទំហំធំ" : "Enlarge View"}
-                        >
-                          <Maximize2 size={12} />
-                        </button>
-                      </div>
-                    </div>
+                      {/* Post Title */}
+                      <h3 className="text-sm sm:text-base font-black text-black leading-snug mb-2" style={khFont}>
+                        {kh ? fb.titleKh : fb.titleEn}
+                      </h3>
+                      <p className="text-xs text-zinc-600 font-medium mb-3 line-clamp-2" style={khFont}>
+                        {kh ? fb.summaryKh : fb.summaryEn}
+                      </p>
 
-                    {/* Post Title */}
-                    <h3 className="text-sm sm:text-base font-black text-black leading-snug mb-2" style={khFont}>
-                      {kh ? fb.titleKh : fb.titleEn}
-                    </h3>
-                    <p className="text-xs text-zinc-600 font-medium mb-4" style={khFont}>
-                      {kh ? fb.summaryKh : fb.summaryEn}
-                    </p>
-
-                    {/* The Live Interactive Facebook Iframe Container */}
-                    <div className="w-full bg-zinc-50 border-2 border-black p-2 relative flex justify-center overflow-x-auto min-h-[250px]">
-                      <div className="max-w-full overflow-hidden flex justify-center">
-                        <iframe
-                          src={fb.iframeSrc}
-                          width="500"
-                          height={fb.iframeHeight}
-                          style={{ border: "none", overflow: "hidden", maxWidth: "100%" }}
-                          scrolling="no"
-                          frameBorder="0"
-                          allowFullScreen={true}
-                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                          title={fb.titleEn}
-                          className="w-full max-w-[500px]"
+                      {/* Official Facebook High-Res Post Photo Container */}
+                      <div className="w-full aspect-[16/9] border-2 border-black bg-zinc-950 overflow-hidden relative mb-3 group">
+                        <img
+                          src={fb.postImage}
+                          alt={fb.titleEn}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
                         />
+                        <div className="absolute top-2 left-2 bg-blue-600 text-white text-[10px] font-mono font-black uppercase px-2 py-0.5 border border-black shadow-[2px_2px_0_#000] flex items-center gap-1">
+                          <FacebookIcon className="w-3 h-3" /> OFFICIAL POST PHOTO
+                        </div>
                       </div>
                     </div>
 
                     {/* Card Footer Link */}
-                    <div className="mt-4 pt-3 border-t-2 border-black flex items-center justify-between gap-2">
+                    <div className="pt-3 border-t-2 border-black flex items-center justify-between gap-2">
                       <span className="text-[10px] font-mono font-bold text-zinc-500">
-                        FACEBOOK POST EMBED
+                        VERIFIED FACEBOOK MENTION
                       </span>
                       <a
                         href={fb.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono font-black uppercase bg-amber-400 text-black px-3 py-1 border border-black shadow-[2px_2px_0_#000] hover:bg-amber-300 transition-all"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-black uppercase bg-amber-400 text-black px-3 py-1.5 border border-black shadow-[2px_2px_0_#000] hover:bg-amber-300 transition-all"
                       >
                         <span>{kh ? "មើលលើ Facebook" : "Open Facebook"}</span>
                         <ExternalLink size={12} />
@@ -635,11 +511,11 @@ export function MentionsTestimonialsSection() {
               </div>
             ) : (
               /* CARD VIEW: Lightweight Press-Style Cards */
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
                 {FACEBOOK_MENTIONS.map((fb) => (
                   <div
                     key={fb.id}
-                    className="bg-white border-[3px] border-black p-5 shadow-[5px_5px_0_#000] hover:shadow-[7px_7px_0_#000] transition-all hover:-translate-y-1 flex flex-col justify-between"
+                    className="bg-white border-[3px] border-black p-4 sm:p-5 shadow-[5px_5px_0_#000] hover:shadow-[7px_7px_0_#000] transition-all hover:-translate-y-1 flex flex-col justify-between h-full"
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-3">
@@ -652,10 +528,20 @@ export function MentionsTestimonialsSection() {
                         <FacebookIcon className="w-4 h-4 text-blue-600" />
                       </div>
 
+                      {/* Photo Thumbnail */}
+                      <div className="w-full aspect-[16/9] border-2 border-black bg-zinc-950 overflow-hidden mb-3">
+                        <img
+                          src={fb.postImage}
+                          alt={fb.titleEn}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+
                       <h4 className="text-sm font-black text-black mb-2 leading-tight" style={khFont}>
                         {kh ? fb.titleKh : fb.titleEn}
                       </h4>
-                      <p className="text-xs text-zinc-600 leading-relaxed mb-4" style={khFont}>
+                      <p className="text-xs text-zinc-600 leading-relaxed mb-4 line-clamp-3" style={khFont}>
                         {kh ? fb.summaryKh : fb.summaryEn}
                       </p>
                     </div>
@@ -679,6 +565,7 @@ export function MentionsTestimonialsSection() {
             )}
           </div>
         )}
+
 
         {/* ── PART 2: OFFICIAL PRESS & MEDIA ARTICLES (7 LINKS) ── */}
         {(activeTab === "all" || activeTab === "press") && (

@@ -8,11 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Shuffle,
-  Sparkles,
-  Award,
-  Users,
   Grid,
-  Layers,
 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { CautionTape } from "@/components/brand/brand-kit";
@@ -26,11 +22,10 @@ export interface EventPhoto {
   tagEn: string;
   tagKh: string;
   date: string;
-  rotDeg?: string;
 }
 
 export const EVENT_HIGHLIGHT_PHOTOS: EventPhoto[] = [
-  // Existing Highlights
+  // Highlights
   {
     id: "ep-01",
     url: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1786649329/01_h8y0wn.jpg",
@@ -112,7 +107,7 @@ export const EVENT_HIGHLIGHT_PHOTOS: EventPhoto[] = [
     date: "2026",
   },
 
-  // 44 New Random Event Photos
+  // 44 New Photos
   {
     id: "ep-09",
     url: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1786649751/photo_2026-07-26_11-17-40_2_lwimxo.jpg",
@@ -554,7 +549,6 @@ export const EVENT_HIGHLIGHT_PHOTOS: EventPhoto[] = [
   },
 ];
 
-// Helper to shuffle array randomly (Fisher-Yates Shuffle)
 function shuffleArray<T>(array: T[]): T[] {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -569,19 +563,19 @@ export function EventPhotosSection() {
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
 
-  // Active Filter Tab
+  // Active Filter Category Tab
   const [activeFilter, setActiveFilter] = useState<string>("all");
 
-  // Master Photos Array (Can be shuffled randomly)
+  // Photos Master List (Shuffleable)
   const [photosList, setPhotosList] = useState<EventPhoto[]>(EVENT_HIGHLIGHT_PHOTOS);
 
-  // Visible Limit for smooth lazy viewing
+  // Visible Limit
   const [visibleCount, setVisibleCount] = useState<number>(12);
 
   // Lightbox State
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Shuffle animation trigger
+  // Shuffle animation indicator
   const [isShuffling, setIsShuffling] = useState<boolean>(false);
 
   // Filter photos based on category
@@ -600,10 +594,10 @@ export function EventPhotosSection() {
     setTimeout(() => {
       setPhotosList(shuffleArray(EVENT_HIGHLIGHT_PHOTOS));
       setIsShuffling(false);
-    }, 250);
+    }, 200);
   }, []);
 
-  // Keyboard navigation for Lightbox
+  // Keyboard navigation for Lightbox (Pure state, NO screen hijacking!)
   useEffect(() => {
     if (lightboxIndex === null) return;
 
@@ -622,16 +616,16 @@ export function EventPhotosSection() {
   }, [lightboxIndex, filteredPhotos.length]);
 
   return (
-    <section className="bg-zinc-50 border-b-2 border-black py-14 sm:py-16 md:py-20 relative overflow-hidden">
-      {/* Top Accent Divider */}
+    <section className="bg-zinc-50 border-b-2 border-black py-12 sm:py-16 md:py-20 relative overflow-hidden">
+      {/* Top Divider */}
       <div className="absolute top-0 left-0 right-0 z-10">
         <CautionTape variant="line" height={10} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-10">
+        {/* ── SECTION HEADER & CATEGORIES FIRST ── */}
+        <div className="flex flex-col items-center text-center mb-8">
           <div
             className="inline-flex items-center gap-2 bg-black text-amber-400 text-xs font-mono font-black tracking-widest uppercase px-4 py-1.5 border-2 border-black shadow-[3px_3px_0_#000] mb-4"
             style={khFont}
@@ -664,8 +658,8 @@ export function EventPhotosSection() {
               : "Moments from Technovation Girls 2026, Regional Pitch competition, school visits, and community workshops."}
           </p>
 
-          {/* Action Toolbar: Category Filters & Random Shuffle Button */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 mt-8">
+          {/* ── CATEGORIES FIRST TOOLBAR ── */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5 mt-6">
             {[
               { id: "all", labelEn: `All Photos (${photosList.length})`, labelKh: `រូបភាពទាំងអស់ (${photosList.length})` },
               { id: "technovation", labelEn: "Technovation 2026", labelKh: "Technovation ២០២៦" },
@@ -693,30 +687,26 @@ export function EventPhotosSection() {
               );
             })}
 
-            {/* Random Shuffle Button */}
             <button
               onClick={handleShufflePhotos}
-              className={`flex items-center gap-2 bg-black text-amber-400 text-xs font-mono font-black uppercase px-4 py-2 border-2 border-black shadow-[3px_3px_0_#000] hover:bg-zinc-900 transition-all cursor-pointer active:translate-x-0.5 active:translate-y-0.5 ${
-                isShuffling ? "opacity-50 scale-95" : ""
+              className={`flex items-center gap-1.5 bg-black text-amber-400 text-xs font-mono font-black uppercase px-3.5 py-2 border-2 border-black shadow-[3px_3px_0_#000] hover:bg-zinc-900 transition-all cursor-pointer active:scale-95 ${
+                isShuffling ? "opacity-50" : ""
               }`}
               title="Randomize photo order"
             >
               <Shuffle size={14} className={isShuffling ? "animate-spin" : ""} />
-              <span>{kh ? "ចែករំលែករូបភាព" : "SHUFFLE RANDOM"}</span>
+              <span>{kh ? "ចែករំលែក" : "SHUFFLE"}</span>
             </button>
           </div>
         </div>
 
-        {/* ---------------------------------------------------- */}
-        {/* CREATIVE BRUTALIST PHOTO GRID */}
-        {/* ---------------------------------------------------- */}
+        {/* ── PHOTO GRID (UNCROPPED, FULL IMAGE DISPLAY) ── */}
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 transition-opacity duration-300 ${
-            isShuffling ? "opacity-30 scale-98" : "opacity-100"
+            isShuffling ? "opacity-30" : "opacity-100"
           }`}
         >
           {visiblePhotos.map((photo, idx) => {
-            // Creative subtle tilt angle per index for polaroid photo booth vibe
             const tiltAngles = ["rotate-1", "-rotate-1", "rotate-2", "-rotate-2", "rotate-0"];
             const tiltClass = tiltAngles[idx % tiltAngles.length];
 
@@ -724,28 +714,25 @@ export function EventPhotosSection() {
               <div
                 key={`${photo.id}-${idx}`}
                 onClick={() => setLightboxIndex(idx)}
-                className={`group bg-white border-[2.5px] border-black p-3 shadow-[5px_5px_0_#000] hover:shadow-[8px_8px_0_#000] transition-all duration-300 hover:rotate-0 hover:scale-105 hover:z-20 cursor-pointer flex flex-col justify-between ${tiltClass}`}
+                className={`group bg-white border-2 border-black p-3 shadow-[4px_4px_0_#000] hover:shadow-[7px_7px_0_#000] transition-all duration-300 hover:rotate-0 hover:scale-105 hover:z-20 cursor-pointer flex flex-col justify-between ${tiltClass}`}
               >
-                {/* Image Container with Neo-Brutalist Frame */}
-                <div className="relative aspect-[4/3] overflow-hidden border-2 border-black bg-zinc-950">
+                {/* Full Uncropped Image Container */}
+                <div className="relative aspect-[4/3] bg-zinc-950 border-2 border-black flex items-center justify-center p-1 overflow-hidden">
                   <img
                     src={photo.url}
                     alt={photo.titleEn}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
+                    className="max-h-full max-w-full object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
 
-                  {/* Top Left Tag Badge */}
                   <div className="absolute top-2 left-2 bg-black text-amber-400 text-[10px] font-mono font-black uppercase px-2 py-0.5 border border-black shadow-[2px_2px_0_#000]">
                     {kh ? photo.tagKh : photo.tagEn}
                   </div>
 
-                  {/* Top Right Photo Index Badge */}
                   <div className="absolute top-2 right-2 bg-amber-400 text-black text-[10px] font-mono font-black px-1.5 py-0.5 border border-black shadow-[2px_2px_0_#000]">
                     #{idx + 1}
                   </div>
 
-                  {/* Hover Overlay Icon */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <div className="w-10 h-10 bg-amber-400 border-2 border-black flex items-center justify-center shadow-[3px_3px_0_#000] text-black">
                       <Maximize2 size={18} />
@@ -753,7 +740,6 @@ export function EventPhotosSection() {
                   </div>
                 </div>
 
-                {/* Photo Title Footer */}
                 <div className="pt-3 px-0.5">
                   <h4 className="text-xs font-bold text-black line-clamp-2 leading-snug" style={khFont}>
                     {kh ? photo.titleKh : photo.titleEn}
@@ -768,14 +754,12 @@ export function EventPhotosSection() {
           })}
         </div>
 
-        {/* ---------------------------------------------------- */}
-        {/* LOAD MORE / SHOW ALL CONTROL */}
-        {/* ---------------------------------------------------- */}
+        {/* Load More Pagination */}
         {filteredPhotos.length > visibleCount && (
           <div className="mt-10 flex flex-col items-center gap-3">
             <button
               onClick={() => setVisibleCount((prev) => Math.min(prev + 12, filteredPhotos.length))}
-              className="bg-amber-400 text-black hover:bg-amber-300 text-sm font-black uppercase tracking-wider px-8 py-3.5 border-2 border-black shadow-[5px_5px_0_#000] inline-flex items-center gap-2 transition-all hover:translate-x-0.5 hover:translate-y-0.5 cursor-pointer"
+              className="bg-amber-400 text-black hover:bg-amber-300 text-sm font-black uppercase tracking-wider px-8 py-3.5 border-2 border-black shadow-[4px_4px_0_#000] inline-flex items-center gap-2 transition-all hover:translate-x-0.5 hover:translate-y-0.5 cursor-pointer"
               style={khFont}
             >
               <Grid size={16} />
@@ -788,19 +772,15 @@ export function EventPhotosSection() {
         )}
       </div>
 
-      {/* ---------------------------------------------------- */}
-      {/* FULLSCREEN LIGHTBOX MODAL */}
-      {/* ---------------------------------------------------- */}
+      {/* Lightbox Modal */}
       {lightboxIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-3 sm:p-6 animate-fade-in">
           <div className="relative max-w-5xl w-full bg-white border-[3px] border-black shadow-[12px_12px_0_#000] overflow-hidden flex flex-col max-h-[92vh]">
-            
-            {/* Top Modal Header */}
             <div className="bg-black text-white px-4 py-3 border-b-2 border-black flex items-center justify-between">
               <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400">
                 <Camera size={16} />
                 <span>
-                  PHOTO {lightboxIndex + 1} OF {filteredPhotos.length}
+                  EVENT PHOTO {lightboxIndex + 1} OF {filteredPhotos.length}
                 </span>
               </div>
 
@@ -813,19 +793,17 @@ export function EventPhotosSection() {
               </button>
             </div>
 
-            {/* Lightbox Center Display */}
             <div className="relative bg-zinc-950 flex items-center justify-center p-2 min-h-[350px] sm:min-h-[480px] flex-1 overflow-hidden">
               <img
                 key={filteredPhotos[lightboxIndex].id}
                 src={filteredPhotos[lightboxIndex].url}
                 alt={filteredPhotos[lightboxIndex].titleEn}
-                className="max-h-[68vh] w-auto object-contain border border-zinc-800 animate-fade-in"
+                className="max-h-[68vh] w-auto max-w-full object-contain mx-auto border border-zinc-800 animate-fade-in"
               />
 
-              {/* Navigation Arrows */}
               <button
                 onClick={() => setLightboxIndex((lightboxIndex - 1 + filteredPhotos.length) % filteredPhotos.length)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 cursor-pointer transition-all active:scale-95"
                 title="Previous photo (Left Arrow)"
               >
                 <ChevronLeft size={24} strokeWidth={3} />
@@ -833,14 +811,13 @@ export function EventPhotosSection() {
 
               <button
                 onClick={() => setLightboxIndex((lightboxIndex + 1) % filteredPhotos.length)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 cursor-pointer transition-all active:scale-95"
                 title="Next photo (Right Arrow)"
               >
                 <ChevronRight size={24} strokeWidth={3} />
               </button>
             </div>
 
-            {/* Modal Bottom Caption */}
             <div className="p-4 bg-white border-t-2 border-black flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
                 <span className="inline-block bg-black text-amber-400 text-[10px] font-mono font-black uppercase px-2 py-0.5 mb-1 border border-black">

@@ -1,24 +1,21 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   Trophy,
   Award,
   Sparkles,
   ArrowRight,
-  Play,
-  Pause,
   Maximize2,
   ChevronLeft,
   ChevronRight,
-  Grid,
-  Film,
   X,
-  RotateCcw,
   Eye,
   Camera,
-  Layers,
+  ShieldCheck,
+  MapPin,
+  Users,
 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { CautionTape } from "@/components/brand/brand-kit";
@@ -302,79 +299,38 @@ export function AwardsSection() {
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
 
-  // Active Photo Index (Starts with 0 -> Photo #01)
+  // Active Photo Index (Starts at 0 -> Photo #01)
   const [activeIndex, setActiveIndex] = useState<number>(0);
   
-  // View Mode: 'cinema' (Stage + Filmstrip) or 'wall' (Full Grid Gallery)
-  const [viewMode, setViewMode] = useState<"cinema" | "wall">("cinema");
-
-  // Slideshow Autoplay State
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
-  const [progress, setProgress] = useState<number>(0);
-
   // Lightbox Modal Index State
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
-  // Thumbnail Scroll Reference
-  const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const filmstripContainerRef = useRef<HTMLDivElement | null>(null);
 
   const totalPhotos = CHAMPION_PHOTOS.length;
   const currentPhoto = CHAMPION_PHOTOS[activeIndex];
 
-  // Auto-scroll active thumbnail into view
-  const scrollToThumbnail = useCallback((index: number) => {
-    const el = thumbnailRefs.current[index];
-    if (el && filmstripContainerRef.current) {
-      el.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
-    }
+  // Pure state change handler (NO scrollIntoView, NO screen jumping!)
+  const handleSelectPhoto = useCallback((index: number) => {
+    setActiveIndex(index);
   }, []);
 
-  const handleSelectPhoto = useCallback(
-    (index: number) => {
-      setActiveIndex(index);
-      setProgress(0);
-      scrollToThumbnail(index);
-    },
-    [scrollToThumbnail]
-  );
-
   const handleNext = useCallback(() => {
-    const nextIdx = (activeIndex + 1) % totalPhotos;
-    handleSelectPhoto(nextIdx);
-  }, [activeIndex, totalPhotos, handleSelectPhoto]);
+    setActiveIndex((prev) => (prev + 1) % totalPhotos);
+  }, [totalPhotos]);
 
   const handlePrev = useCallback(() => {
-    const prevIdx = (activeIndex - 1 + totalPhotos) % totalPhotos;
-    handleSelectPhoto(prevIdx);
-  }, [activeIndex, totalPhotos, handleSelectPhoto]);
+    setActiveIndex((prev) => (prev - 1 + totalPhotos) % totalPhotos);
+  }, [totalPhotos]);
 
-  // Autoplay Timer Loop (4 seconds per slide)
+  // Smooth Auto-Slide Timer (5 seconds) — pure state update, NO scroll hijacking!
   useEffect(() => {
-    if (!isPlaying || lightboxIndex !== null) {
-      setProgress(0);
-      return;
-    }
-
-    const intervalTime = 40; // update progress every 40ms
-    const step = 100 / (4000 / intervalTime);
+    if (lightboxIndex !== null) return;
 
     const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          handleNext();
-          return 0;
-        }
-        return prev + step;
-      });
-    }, intervalTime);
+      setActiveIndex((prev) => (prev + 1) % totalPhotos);
+    }, 5000);
 
     return () => clearInterval(timer);
-  }, [isPlaying, lightboxIndex, handleNext]);
+  }, [lightboxIndex, totalPhotos]);
 
   // Keyboard navigation for Lightbox modal
   useEffect(() => {
@@ -395,310 +351,172 @@ export function AwardsSection() {
   }, [lightboxIndex, totalPhotos]);
 
   return (
-    <section className="relative bg-amber-500/10 border-b-2 border-black py-12 sm:py-16 md:py-20 overflow-hidden">
-      {/* Top Caution Tape Accent */}
+    <section className="relative bg-zinc-950 text-white border-b-4 border-black py-12 sm:py-16 md:py-20 overflow-hidden">
+      {/* Gold Top Caution Tape Accent */}
       <div className="absolute top-0 left-0 right-0 z-10">
         <CautionTape variant="caution" height={14} />
       </div>
 
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+      {/* Hero Dot / Grid Dark Background Accent */}
+      <div className="absolute inset-0 hero-dot-bg opacity-40 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Section Header Banner */}
+        {/* ── SECTION HEADER ── */}
         <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 bg-black text-amber-400 text-xs font-mono font-black tracking-widest uppercase px-4 py-1.5 border-2 border-black shadow-[3px_3px_0_#000] mb-4">
-            <Trophy size={16} className="text-amber-400 animate-bounce" />
-            <span>{kh ? "សមិទ្ធផលជើងឯក — CHAMPIONS SHOWCASE" : "NATIONAL CHAMPIONS SHOWCASE"}</span>
+          <div className="inline-flex items-center gap-2 bg-amber-400 text-black text-xs font-mono font-black tracking-widest uppercase px-4 py-1.5 border-2 border-black shadow-[4px_4px_0_#ffd700] mb-4">
+            <Trophy size={16} className="text-black animate-bounce" />
+            <span>{kh ? "សមិទ្ធផលជើងឯកថ្នាក់ជាតិ — NATIONAL CHAMPIONS" : "NATIONAL CHAMPIONS 2026 SHOWCASE"}</span>
           </div>
 
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-black text-balance"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white text-balance"
             style={khFont}
           >
             {kh ? (
               <>
-                ជើងឯកថ្នាក់ជាតិ <span className="bg-amber-400 px-2.5 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">២០២៦</span>
+                ជើងឯកថ្នាក់ជាតិ <span className="bg-amber-400 text-black px-3 py-0.5 border-2 border-black shadow-[3px_3px_0_#fff]">២០២៦</span>
               </>
             ) : (
               <>
-                NATIONAL CHAMPIONS <span className="bg-amber-400 px-2.5 py-0.5 border-2 border-black shadow-[3px_3px_0_#000]">2026</span>
+                NATIONAL CHAMPIONS <span className="bg-amber-400 text-black px-3 py-0.5 border-2 border-black shadow-[3px_3px_0_#fff]">2026</span>
               </>
             )}
           </h2>
 
           <p
-            className="mt-3 text-base sm:text-lg md:text-xl font-black text-zinc-900 max-w-3xl text-balance"
+            className="mt-3 text-base sm:text-lg md:text-xl font-black text-amber-300 max-w-3xl text-balance"
             style={khFont}
           >
             Technovation Girls Cambodia x Future Digital Talents 2026
           </p>
+        </div>
 
-          <div className="mt-3 flex items-center gap-2 text-xs font-mono font-bold text-zinc-700 bg-white/80 border border-black px-3 py-1 shadow-[2px_2px_0_#000]">
-            <Camera size={14} className="text-amber-600" />
-            <span>{kh ? `កម្រងរូបភាពជើងឯកចំនួន ២៩ រូបភាព` : `CHAMPION GALLERY — ALL 29 PHOTOS`}</span>
+        {/* ── CHAMPION FEATURED SPOTLIGHT STAGE (FULL UNUNCROPPED IMAGE DISPLAY) ── */}
+        <div className="bg-zinc-900 border-[3px] border-amber-400 shadow-[10px_10px_0_#000] relative overflow-hidden">
+          
+          {/* Top Gold Header Bar */}
+          <div className="bg-amber-400 text-black px-4 py-2.5 border-b-2 border-black flex flex-wrap items-center justify-between gap-2 text-xs font-mono font-black uppercase">
+            <div className="flex items-center gap-2">
+              <Trophy size={16} />
+              <span>★ #1 NATIONAL CHAMPION SPOTLIGHT ★</span>
+            </div>
+            <div className="bg-black text-amber-400 px-3 py-0.5 border border-black shadow-[2px_2px_0_#000]">
+              PHOTO {currentPhoto.num} / {totalPhotos}
+            </div>
           </div>
 
-          {/* Mode Switcher & Controls Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-6 sm:mt-8">
-            <div className="inline-flex bg-white border-2 border-black p-1 shadow-[3px_3px_0_#000]">
-              <button
-                onClick={() => setViewMode("cinema")}
-                className={`flex items-center gap-2 text-xs font-black uppercase px-4 py-2 border border-black transition-all ${
-                  viewMode === "cinema"
-                    ? "bg-amber-400 text-black shadow-[2px_2px_0_#000]"
-                    : "bg-transparent text-zinc-700 hover:bg-zinc-100"
-                }`}
-                style={khFont}
-              >
-                <Film size={14} />
-                <span>{kh ? "របៀប SHOWCASE" : "CINEMA STAGE"}</span>
-              </button>
+          {/* Full Image Presentation Container (Uncropped, Full Image) */}
+          <div
+            onClick={() => setLightboxIndex(activeIndex)}
+            className="relative bg-black min-h-[340px] sm:min-h-[480px] md:min-h-[580px] flex items-center justify-center p-4 cursor-pointer group overflow-hidden"
+          >
+            <img
+              key={currentPhoto.id}
+              src={currentPhoto.url}
+              alt={currentPhoto.titleEn}
+              className="max-h-[70vh] w-auto max-w-full object-contain mx-auto transition-all duration-500 ease-out animate-fade-in shadow-2xl border border-zinc-800"
+            />
 
-              <button
-                onClick={() => setViewMode("wall")}
-                className={`flex items-center gap-2 text-xs font-black uppercase px-4 py-2 border border-black transition-all ${
-                  viewMode === "wall"
-                    ? "bg-amber-400 text-black shadow-[2px_2px_0_#000]"
-                    : "bg-transparent text-zinc-700 hover:bg-zinc-100"
-                }`}
-                style={khFont}
-              >
-                <Grid size={14} />
-                <span>{kh ? "រូបភាពទាំងអស់ (29)" : "PHOTO WALL (29)"}</span>
-              </button>
+            {/* Previous & Next Tap Arrows */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrev();
+              }}
+              className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 transition-all active:scale-95 cursor-pointer"
+              aria-label="Previous champion photo"
+            >
+              <ChevronLeft size={28} strokeWidth={3} />
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNext();
+              }}
+              className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 transition-all active:scale-95 cursor-pointer"
+              aria-label="Next champion photo"
+            >
+              <ChevronRight size={28} strokeWidth={3} />
+            </button>
+
+            {/* Tap to Enlarge Hover Badge */}
+            <div className="absolute top-4 right-4 bg-black/80 text-amber-400 text-xs font-mono font-black uppercase px-3 py-1.5 border border-amber-400 opacity-90 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 shadow-[2px_2px_0_#000]">
+              <Maximize2 size={14} />
+              <span>{kh ? "ចុចដើម្បីមើលរូបពេញ" : "TAP FOR FULL VIEW"}</span>
+            </div>
+          </div>
+
+          {/* Champion Photo Caption Banner */}
+          <div className="p-4 sm:p-6 bg-zinc-900 border-t-2 border-black flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1 max-w-3xl">
+              <div className="inline-flex items-center gap-2 bg-amber-400 text-black text-xs font-mono font-black uppercase px-2.5 py-0.5 border border-black shadow-[2px_2px_0_#000]">
+                <Award size={13} /> {kh ? currentPhoto.tagKh : currentPhoto.tagEn}
+              </div>
+              <h3 className="text-base sm:text-xl font-black text-white leading-snug" style={khFont}>
+                {kh ? currentPhoto.titleKh : currentPhoto.titleEn}
+              </h3>
             </div>
 
-            {/* Play/Pause Control (for Cinema Mode) */}
-            {viewMode === "cinema" && (
-              <button
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="flex items-center gap-2 bg-black text-amber-400 text-xs font-mono font-black uppercase px-4 py-2.5 border-2 border-black shadow-[3px_3px_0_#000] hover:bg-zinc-900 transition-all active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
-              >
-                {isPlaying ? <Pause size={14} /> : <Play size={14} />}
-                <span>{isPlaying ? (kh ? "ផ្អាកស្លាយ" : "PAUSE SLIDESHOW") : (kh ? "លេងស្លាយ" : "PLAY SLIDESHOW")}</span>
-              </button>
-            )}
+            <button
+              onClick={() => setLightboxIndex(activeIndex)}
+              className="bg-amber-400 text-black hover:bg-amber-300 text-xs font-mono font-black uppercase px-4 py-2.5 border-2 border-black shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 transition-all cursor-pointer"
+              style={khFont}
+            >
+              <Eye size={14} />
+              <span>{kh ? "មើលរូបភាពពេញ" : "FULL VIEW"}</span>
+            </button>
           </div>
         </div>
 
-        {/* ---------------------------------------------------- */}
-        {/* CINEMA STAGE MODE (FEATURED HERO IMAGE + FILMSTRIP) */}
-        {/* ---------------------------------------------------- */}
-        {viewMode === "cinema" && (
-          <div className="space-y-6">
-            {/* Main Stage Frame */}
-            <div className="bg-white border-[3px] border-black shadow-[8px_8px_0_#000] relative overflow-hidden">
-              
-              {/* Top Autoplay Progress Bar */}
-              {isPlaying && (
-                <div className="w-full bg-zinc-200 h-1.5 border-b border-black">
-                  <div
-                    className="bg-amber-400 h-full transition-all ease-linear"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-              )}
-
-              {/* Champion Badge Banner */}
-              <div className="absolute top-3 left-3 z-20 flex flex-wrap items-center gap-2 pointer-events-none">
-                <div className="bg-amber-400 border-2 border-black text-black font-black text-xs uppercase tracking-wider px-3 py-1 shadow-[3px_3px_0_#000] flex items-center gap-1.5">
-                  <Trophy size={14} className="text-black" />
-                  <span>★ #1 NATIONAL CHAMPION ★</span>
-                </div>
-                <div className="bg-black text-amber-400 border-2 border-black text-xs font-mono font-black uppercase px-2.5 py-1 shadow-[3px_3px_0_#000]">
-                  PHOTO {currentPhoto.num} / {totalPhotos}
-                </div>
-              </div>
-
-              {/* Lightbox / Zoom Trigger */}
-              <button
-                onClick={() => setLightboxIndex(activeIndex)}
-                className="absolute top-3 right-3 z-20 w-10 h-10 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[3px_3px_0_#000] hover:bg-amber-300 transition-all cursor-pointer"
-                title="Open Fullscreen Lightbox"
-              >
-                <Maximize2 size={18} />
-              </button>
-
-              {/* Stage Image Display Container */}
-              <div className="relative aspect-[16/9] sm:aspect-[21/9] md:aspect-[21/9] min-h-[300px] sm:min-h-[420px] md:min-h-[500px] bg-zinc-950 flex items-center justify-center overflow-hidden">
-                <img
-                  key={currentPhoto.id}
-                  src={currentPhoto.url}
-                  alt={currentPhoto.titleEn}
-                  className="w-full h-full object-cover transition-all duration-700 ease-out animate-fade-in"
-                />
-
-                {/* Bottom Overlay Gradient for Text Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
-
-                {/* Left/Right Navigation Overlay Buttons */}
-                <button
-                  onClick={handlePrev}
-                  className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 transition-all active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
-                  aria-label="Previous photo"
-                >
-                  <ChevronLeft size={26} strokeWidth={3} />
-                </button>
-
-                <button
-                  onClick={handleNext}
-                  className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 transition-all active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
-                  aria-label="Next photo"
-                >
-                  <ChevronRight size={26} strokeWidth={3} />
-                </button>
-
-                {/* Photo Details Overlay Footer */}
-                <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-6 z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-white">
-                  <div className="max-w-3xl space-y-1">
-                    <div className="inline-flex items-center gap-2 bg-amber-400 text-black text-[11px] font-mono font-black uppercase px-2.5 py-1 border border-black shadow-[2px_2px_0_#000]">
-                      <Award size={13} /> {kh ? currentPhoto.tagKh : currentPhoto.tagEn}
-                    </div>
-                    <h3 className="text-base sm:text-xl md:text-2xl font-black leading-snug drop-shadow-md" style={khFont}>
-                      {kh ? currentPhoto.titleKh : currentPhoto.titleEn}
-                    </h3>
-                  </div>
-
-                  <div className="flex items-center gap-2 self-start sm:self-auto">
-                    <button
-                      onClick={() => setLightboxIndex(activeIndex)}
-                      className="bg-white text-black hover:bg-amber-300 text-xs font-black uppercase px-3 py-2 border-2 border-black shadow-[3px_3px_0_#000] inline-flex items-center gap-1.5 cursor-pointer transition-all"
-                      style={khFont}
-                    >
-                      <Eye size={14} />
-                      <span>{kh ? "មើលរូបពេញ" : "FULL VIEW"}</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Stage Bottom Bar */}
-              <div className="bg-black text-amber-400 px-4 py-3 border-t-2 border-black flex flex-wrap items-center justify-between gap-3 text-xs font-mono font-bold">
-                <div className="flex items-center gap-2">
-                  <Sparkles size={14} className="text-amber-400 animate-spin" />
-                  <span>NATIONAL CHAMPIONSHIP GALLERY 2026</span>
-                </div>
-                <div className="text-white">
-                  PHOTO <span className="text-amber-400 font-black">{currentPhoto.num}</span> OF <span className="text-amber-400 font-black">{totalPhotos}</span>
-                </div>
-              </div>
+        {/* ── THUMBNAIL TAP STRIP (FREE SCROLL, NO SCREEN HIJACKING!) ── */}
+        <div className="mt-6 bg-zinc-900 border-2 border-amber-400/80 p-3 sm:p-4 shadow-[6px_6px_0_#000]">
+          <div className="flex items-center justify-between mb-3 px-1">
+            <div className="flex items-center gap-2 text-xs font-mono font-black uppercase text-amber-400">
+              <Camera size={15} />
+              <span>{kh ? "រូបភាពជើងឯកទាំង ២៩" : "ALL 29 CHAMPION PHOTOS (TAP TO VIEW)"}</span>
             </div>
-
-            {/* Scrollable Filmstrip Thumbnail Strip */}
-            <div className="bg-white border-2 border-black p-3 sm:p-4 shadow-[6px_6px_0_#000]">
-              <div className="flex items-center justify-between mb-3 px-1">
-                <div className="flex items-center gap-2 text-xs font-mono font-black uppercase text-black">
-                  <Layers size={15} className="text-amber-500" />
-                  <span>{kh ? "កម្រងរូបភាពទាំងអស់ ២៩" : "FILMSTRIP SELECTOR (29 PHOTOS)"}</span>
-                </div>
-                <div className="text-[11px] font-bold text-zinc-500">
-                  {kh ? "ចុចលើរូបដើម្បីជ្រើសរើស" : "Click thumbnail to view"}
-                </div>
-              </div>
-
-              {/* Horizontal Scroll Area */}
-              <div
-                ref={filmstripContainerRef}
-                className="flex items-center gap-3 overflow-x-auto pb-2 pt-1 scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-zinc-100"
-              >
-                {CHAMPION_PHOTOS.map((photo, idx) => {
-                  const isActive = idx === activeIndex;
-                  return (
-                    <button
-                      key={photo.id}
-                      ref={(el) => {
-                        thumbnailRefs.current[idx] = el;
-                      }}
-                      onClick={() => handleSelectPhoto(idx)}
-                      className={`relative flex-shrink-0 w-24 sm:w-32 aspect-[4/3] border-2 border-black transition-all cursor-pointer overflow-hidden ${
-                        isActive
-                          ? "bg-amber-400 ring-4 ring-amber-400 ring-offset-2 ring-offset-black scale-105 shadow-[4px_4px_0_#000] z-10"
-                          : "bg-zinc-200 hover:bg-amber-200 opacity-75 hover:opacity-100 shadow-[2px_2px_0_#000]"
-                      }`}
-                    >
-                      <img
-                        src={photo.url}
-                        alt={photo.titleEn}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                      
-                      {/* Thumbnail Number Pill */}
-                      <div className={`absolute top-1 left-1 text-[10px] font-mono font-black px-1.5 py-0.5 border border-black ${
-                        isActive ? "bg-black text-amber-400" : "bg-white/90 text-black"
-                      }`}>
-                        {photo.num}
-                      </div>
-
-                      {isActive && (
-                        <div className="absolute inset-0 border-2 border-amber-400 pointer-events-none" />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+            <div className="text-[11px] font-mono font-bold text-zinc-400">
+              Photo {currentPhoto.num} of {totalPhotos}
             </div>
           </div>
-        )}
 
-        {/* ---------------------------------------------------- */}
-        {/* PHOTO WALL GRID MODE (DISPLAY ALL 29 PHOTOS SIDE BY SIDE) */}
-        {/* ---------------------------------------------------- */}
-        {viewMode === "wall" && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
-              {CHAMPION_PHOTOS.map((photo, idx) => (
-                <div
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-zinc-950">
+            {CHAMPION_PHOTOS.map((photo, idx) => {
+              const isActive = idx === activeIndex;
+              return (
+                <button
                   key={photo.id}
-                  onClick={() => {
-                    setActiveIndex(idx);
-                    setLightboxIndex(idx);
-                  }}
-                  className="group bg-white border-2 border-black p-2.5 shadow-[4px_4px_0_#000] hover:shadow-[7px_7px_0_#000] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between"
+                  onClick={() => handleSelectPhoto(idx)}
+                  className={`relative flex-shrink-0 w-24 sm:w-28 aspect-[4/3] border-2 transition-all cursor-pointer overflow-hidden ${
+                    isActive
+                      ? "border-amber-400 bg-amber-400 scale-105 shadow-[3px_3px_0_#ffd700] z-10"
+                      : "border-zinc-700 bg-zinc-950 opacity-60 hover:opacity-100 hover:border-amber-300"
+                  }`}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden border border-black bg-zinc-950">
-                    <img
-                      src={photo.url}
-                      alt={photo.titleEn}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-
-                    {/* Image Number Badge */}
-                    <div className="absolute top-2 left-2 bg-black text-amber-400 text-[10px] font-mono font-black px-2 py-0.5 border border-black shadow-[2px_2px_0_#000]">
-                      #{photo.num}
-                    </div>
-
-                    <div className="absolute top-2 right-2 bg-amber-400 text-black text-[10px] font-mono font-black px-2 py-0.5 border border-black shadow-[2px_2px_0_#000]">
-                      {kh ? photo.tagKh : photo.tagEn}
-                    </div>
-
-                    {/* Hover Zoom Icon */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <div className="w-10 h-10 bg-amber-400 border-2 border-black flex items-center justify-center shadow-[3px_3px_0_#000] text-black font-black">
-                        <Maximize2 size={18} />
-                      </div>
-                    </div>
+                  <img
+                    src={photo.url}
+                    alt={photo.titleEn}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className={`absolute top-1 left-1 text-[9px] font-mono font-black px-1 py-0.2 border ${
+                    isActive ? "bg-black text-amber-400 border-black" : "bg-zinc-900/90 text-white border-zinc-700"
+                  }`}>
+                    {photo.num}
                   </div>
-
-                  <div className="pt-2.5 px-1">
-                    <h4 className="text-xs font-bold text-black line-clamp-2 leading-snug" style={khFont}>
-                      {kh ? photo.titleKh : photo.titleEn}
-                    </h4>
-                  </div>
-                </div>
-              ))}
-            </div>
+                </button>
+              );
+            })}
           </div>
-        )}
+        </div>
 
-        {/* Action Buttons Section */}
-        <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-4 border-t-2 border-black/20 pt-8">
+        {/* ── ACTION BUTTONS ── */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/about"
-            className="nb-btn bg-amber-400 text-black hover:bg-amber-300 text-sm font-black uppercase tracking-wider px-6 py-3.5 border-2 border-black shadow-[4px_4px_0_#000] inline-flex items-center gap-2 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
+            className="nb-btn bg-amber-400 text-black hover:bg-amber-300 text-sm font-black uppercase tracking-wider px-6 py-3.5 border-2 border-black shadow-[4px_4px_0_#fff] inline-flex items-center gap-2 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
             style={khFont}
           >
             <span>{kh ? "អានអំពីក្រុមយើង" : "Learn Team Story"}</span>
@@ -707,7 +525,7 @@ export function AwardsSection() {
 
           <Link
             href="/Regional-Pitch-Event"
-            className="bg-white text-black hover:bg-zinc-100 text-sm font-black uppercase tracking-wider px-6 py-3.5 border-2 border-black shadow-[4px_4px_0_#000] inline-flex items-center gap-2 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
+            className="bg-white text-black hover:bg-zinc-100 text-sm font-black uppercase tracking-wider px-6 py-3.5 border-2 border-black shadow-[4px_4px_0_#fff] inline-flex items-center gap-2 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
             style={khFont}
           >
             <Award size={16} />
@@ -716,16 +534,13 @@ export function AwardsSection() {
         </div>
       </div>
 
-      {/* ---------------------------------------------------- */}
-      {/* FULLSCREEN LIGHTBOX MODAL VIEWER */}
-      {/* ---------------------------------------------------- */}
+      {/* ── FULLSCREEN LIGHTBOX MODAL VIEWER ── */}
       {lightboxIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-3 sm:p-6 animate-fade-in">
-          <div className="relative max-w-5xl w-full bg-white border-[3px] border-black shadow-[12px_12px_0_#000] overflow-hidden flex flex-col max-h-[92vh]">
+          <div className="relative max-w-5xl w-full bg-zinc-900 border-[3px] border-amber-400 shadow-[12px_12px_0_#000] overflow-hidden flex flex-col max-h-[92vh]">
             
-            {/* Top Modal Header */}
-            <div className="bg-black text-white px-4 py-3 border-b-2 border-black flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400">
+            <div className="bg-amber-400 text-black px-4 py-3 border-b-2 border-black flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-mono font-black uppercase">
                 <Trophy size={16} />
                 <span>
                   NATIONAL CHAMPION PHOTO {CHAMPION_PHOTOS[lightboxIndex].num} OF {totalPhotos}
@@ -734,53 +549,50 @@ export function AwardsSection() {
 
               <button
                 onClick={() => setLightboxIndex(null)}
-                className="w-9 h-9 bg-amber-400 text-black border-2 border-black flex items-center justify-center font-black hover:bg-amber-300 cursor-pointer shadow-[2px_2px_0_#000]"
+                className="w-9 h-9 bg-black text-amber-400 border border-black flex items-center justify-center font-black hover:bg-zinc-800 cursor-pointer shadow-[2px_2px_0_#000]"
                 title="Close (Esc)"
               >
                 <X size={20} />
               </button>
             </div>
 
-            {/* Lightbox Center Image Stage */}
-            <div className="relative bg-zinc-950 flex items-center justify-center p-2 min-h-[350px] sm:min-h-[500px] flex-1 overflow-hidden">
+            <div className="relative bg-black flex items-center justify-center p-3 min-h-[350px] sm:min-h-[500px] flex-1 overflow-hidden">
               <img
                 key={CHAMPION_PHOTOS[lightboxIndex].id}
                 src={CHAMPION_PHOTOS[lightboxIndex].url}
                 alt={CHAMPION_PHOTOS[lightboxIndex].titleEn}
-                className="max-h-[68vh] w-auto object-contain border border-zinc-800 animate-fade-in"
+                className="max-h-[70vh] w-auto max-w-full object-contain mx-auto border border-zinc-800 animate-fade-in"
               />
 
-              {/* Prev / Next Buttons */}
               <button
                 onClick={() => setLightboxIndex((lightboxIndex - 1 + totalPhotos) % totalPhotos)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 cursor-pointer transition-all active:scale-95"
                 title="Previous photo (Left Arrow)"
               >
-                <ChevronLeft size={24} strokeWidth={3} />
+                <ChevronLeft size={26} strokeWidth={3} />
               </button>
 
               <button
                 onClick={() => setLightboxIndex((lightboxIndex + 1) % totalPhotos)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-amber-400 border-2 border-black flex items-center justify-center text-black shadow-[4px_4px_0_#000] hover:bg-amber-300 cursor-pointer transition-all active:scale-95"
                 title="Next photo (Right Arrow)"
               >
-                <ChevronRight size={24} strokeWidth={3} />
+                <ChevronRight size={26} strokeWidth={3} />
               </button>
             </div>
 
-            {/* Bottom Caption & Mini Selector */}
-            <div className="p-4 bg-white border-t-2 border-black flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="p-4 bg-zinc-900 border-t-2 border-black flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-white">
               <div>
-                <span className="inline-block bg-black text-amber-400 text-[10px] font-mono font-black uppercase px-2 py-0.5 mb-1 border border-black">
+                <span className="inline-block bg-amber-400 text-black text-[10px] font-mono font-black uppercase px-2 py-0.5 mb-1 border border-black">
                   {kh ? CHAMPION_PHOTOS[lightboxIndex].tagKh : CHAMPION_PHOTOS[lightboxIndex].tagEn}
                 </span>
-                <h3 className="text-sm sm:text-base font-black text-black" style={khFont}>
+                <h3 className="text-sm sm:text-base font-black text-white" style={khFont}>
                   {kh ? CHAMPION_PHOTOS[lightboxIndex].titleKh : CHAMPION_PHOTOS[lightboxIndex].titleEn}
                 </h3>
               </div>
 
-              <div className="flex items-center gap-2 self-end sm:self-auto text-xs font-mono font-bold text-zinc-600">
-                <span>Use ← → keys to navigate</span>
+              <div className="text-xs font-mono font-bold text-amber-400">
+                Use ← → keys to navigate
               </div>
             </div>
           </div>
