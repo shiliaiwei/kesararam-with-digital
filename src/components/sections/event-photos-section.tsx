@@ -172,7 +172,7 @@ export function EventPhotosSection() {
                   onClick={() => openLightbox(photo.id)}
                   onContextMenu={(e) => e.preventDefault()}
                   onDragStart={(e) => e.preventDefault()}
-                  className="break-inside-avoid group relative rounded-2xl overflow-hidden border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.9)] bg-zinc-900 cursor-pointer hover:shadow-[6px_6px_0_#3b82f6] hover:-translate-y-1 transition-all duration-200 select-none"
+                  className="break-inside-avoid group relative rounded-none overflow-hidden border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.9)] bg-zinc-900 cursor-pointer hover:shadow-[6px_6px_0_#3b82f6] hover:-translate-y-1 transition-all duration-200 select-none"
                 >
                   <div
                     className={`w-full relative ${
@@ -188,7 +188,7 @@ export function EventPhotosSection() {
                       alt="Event Moment"
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none rounded-none"
                       loading="lazy"
                       draggable={false}
                     />
@@ -197,7 +197,7 @@ export function EventPhotosSection() {
                   </div>
                   {/* Subtle expand icon on hover */}
                   <div className="absolute inset-0 z-20 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                    <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
+                    <div className="w-8 h-8 rounded-none bg-blue-500 text-white flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
                       <Maximize2 size={15} />
                     </div>
                   </div>
@@ -210,7 +210,7 @@ export function EventPhotosSection() {
               <div className="mt-8 text-center">
                 <button
                   onClick={() => setDisplayCount((prev) => Math.min(prev + 30, photos.length))}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-2xl bg-white dark:bg-zinc-800 border-2 border-black font-black text-xs uppercase tracking-wider text-zinc-900 dark:text-white shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#3b82f6] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000] transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-none bg-white dark:bg-zinc-800 border-2 border-black font-black text-xs uppercase tracking-wider text-zinc-900 dark:text-white shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#3b82f6] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000] transition-all"
                   style={khFont}
                 >
                   <Sparkles size={15} className="text-blue-500" />
@@ -289,7 +289,7 @@ export function EventPhotosSection() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping" />
+              <span className="w-2.5 h-2.5 rounded-none bg-blue-500 animate-ping" />
               <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-blue-400">
                 {kh ? "រូបភាពព្រឹត្តិការណ៍" : "Event Photo Spotlight"}
               </span>
@@ -297,7 +297,7 @@ export function EventPhotosSection() {
 
             <button
               onClick={closeLightbox}
-              className="p-2 rounded-xl bg-zinc-900/80 hover:bg-red-600 text-zinc-300 hover:text-white border border-zinc-700/60 transition-colors"
+              className="p-2 rounded-none bg-zinc-900/80 hover:bg-red-600 text-zinc-300 hover:text-white border border-zinc-700/60 transition-colors"
               title="Close (Esc)"
               aria-label="Close"
             >
@@ -314,7 +314,7 @@ export function EventPhotosSection() {
             {/* Prev Button */}
             <button
               onClick={prevPhoto}
-              className="absolute left-1 sm:left-4 z-30 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-blue-500 hover:text-white text-white border border-white/20 transition-all active:scale-90"
+              className="absolute left-1 sm:left-4 z-30 p-2 sm:p-3 rounded-none bg-black/60 hover:bg-blue-500 hover:text-white text-white border border-white/20 transition-all active:scale-90"
               title="Previous (Left Arrow)"
               aria-label="Previous"
             >
@@ -324,20 +324,20 @@ export function EventPhotosSection() {
             {/* Next Button */}
             <button
               onClick={nextPhoto}
-              className="absolute right-1 sm:right-4 z-30 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-blue-500 hover:text-white text-white border border-white/20 transition-all active:scale-90"
+              className="absolute right-1 sm:right-4 z-30 p-2 sm:p-3 rounded-none bg-black/60 hover:bg-blue-500 hover:text-white text-white border border-white/20 transition-all active:scale-90"
               title="Next (Right Arrow)"
               aria-label="Next"
             >
               <ChevronRight size={22} />
             </button>
 
-            {/* Protected Image Container */}
+            {/* Protected Image Container (No border radius) */}
             <div className="relative max-h-[82vh] max-w-[92vw] flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos[lightboxIndex].url}
                 alt="Event Spotlight"
-                className="max-h-[82vh] max-w-[92vw] object-contain rounded-2xl border-2 border-white/10 shadow-2xl pointer-events-none select-none"
+                className="max-h-[82vh] max-w-[92vw] object-contain rounded-none border-2 border-white/10 shadow-2xl pointer-events-none select-none"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
                 onDragStart={(e) => e.preventDefault()}
@@ -366,7 +366,7 @@ export function EventPhotosSection() {
   );
 }
 
-// Subcomponent: Individual River Photo Card
+// Subcomponent: Individual River Photo Card (No border radius)
 function EventPhotoCard({ photo, onClick }: { photo: ShowcasePhoto; onClick: () => void }) {
   const sizeClasses =
     photo.orientation === "portrait"
@@ -380,21 +380,21 @@ function EventPhotoCard({ photo, onClick }: { photo: ShowcasePhoto; onClick: () 
       onClick={onClick}
       onContextMenu={(e) => e.preventDefault()}
       onDragStart={(e) => e.preventDefault()}
-      className={`group relative flex-shrink-0 rounded-2xl overflow-hidden border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.85)] bg-zinc-900 cursor-pointer hover:shadow-[7px_7px_0_#3b82f6] hover:-translate-y-1 transition-all duration-200 select-none ${sizeClasses}`}
+      className={`group relative flex-shrink-0 rounded-none overflow-hidden border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.85)] bg-zinc-900 cursor-pointer hover:shadow-[7px_7px_0_#3b82f6] hover:-translate-y-1 transition-all duration-200 select-none ${sizeClasses}`}
     >
       <Image
         src={photo.url}
         alt="Event Moment"
         fill
         sizes="(max-width: 640px) 250px, 340px"
-        className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
+        className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none rounded-none"
         loading="lazy"
         draggable={false}
       />
       {/* Invisible shield to prevent image dragging / context menu saving */}
       <div className="absolute inset-0 z-10 pointer-events-auto" onContextMenu={(e) => e.preventDefault()} />
       <div className="absolute inset-0 z-20 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-        <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
+        <div className="w-8 h-8 rounded-none bg-blue-500 text-white flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
           <Maximize2 size={15} />
         </div>
       </div>

@@ -201,7 +201,7 @@ export function AwardsSection() {
                 onClick={() => openLightbox(photo.id)}
                 onContextMenu={(e) => e.preventDefault()}
                 onDragStart={(e) => e.preventDefault()}
-                className="break-inside-avoid group relative rounded-2xl overflow-hidden border-2 border-black/80 shadow-[4px_4px_0_rgba(0,0,0,0.9)] bg-zinc-900 cursor-pointer hover:shadow-[6px_6px_0_#eab308] hover:-translate-y-1 transition-all duration-200 select-none"
+                className="break-inside-avoid group relative rounded-none overflow-hidden border-2 border-black/80 shadow-[4px_4px_0_rgba(0,0,0,0.9)] bg-zinc-900 cursor-pointer hover:shadow-[6px_6px_0_#eab308] hover:-translate-y-1 transition-all duration-200 select-none"
               >
                 <div
                   className={`w-full relative ${
@@ -217,7 +217,7 @@ export function AwardsSection() {
                     alt="National Champions 2026"
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none rounded-none"
                     loading="lazy"
                     draggable={false}
                   />
@@ -225,7 +225,7 @@ export function AwardsSection() {
                   <div className="absolute inset-0 z-10 pointer-events-auto" onContextMenu={(e) => e.preventDefault()} />
                 </div>
                 <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-2.5 pointer-events-none">
-                  <div className="w-8 h-8 rounded-full bg-amber-400 text-black flex items-center justify-center shadow-md">
+                  <div className="w-8 h-8 rounded-none bg-amber-400 text-black flex items-center justify-center shadow-md">
                     <Maximize2 size={14} />
                   </div>
                 </div>
@@ -248,7 +248,7 @@ export function AwardsSection() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
+              <span className="w-2.5 h-2.5 rounded-none bg-amber-400 animate-ping" />
               <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-amber-300">
                 {kh ? "រូបភាពជើងឯកថ្នាក់ជាតិ" : "National Champion Photo"}
               </span>
@@ -256,7 +256,7 @@ export function AwardsSection() {
 
             <button
               onClick={closeLightbox}
-              className="p-2 rounded-xl bg-zinc-900/80 hover:bg-red-600 text-zinc-300 hover:text-white border border-zinc-700/60 transition-colors"
+              className="p-2 rounded-none bg-zinc-900/80 hover:bg-red-600 text-zinc-300 hover:text-white border border-zinc-700/60 transition-colors"
               title="Close (Esc)"
               aria-label="Close"
             >
@@ -273,7 +273,7 @@ export function AwardsSection() {
             {/* Prev Button */}
             <button
               onClick={prevPhoto}
-              className="absolute left-1 sm:left-4 z-30 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-amber-400 hover:text-black text-white border border-white/20 transition-all active:scale-90"
+              className="absolute left-1 sm:left-4 z-30 p-2 sm:p-3 rounded-none bg-black/60 hover:bg-amber-400 hover:text-black text-white border border-white/20 transition-all active:scale-90"
               title="Previous (Left Arrow)"
               aria-label="Previous"
             >
@@ -283,20 +283,20 @@ export function AwardsSection() {
             {/* Next Button */}
             <button
               onClick={nextPhoto}
-              className="absolute right-1 sm:right-4 z-30 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-amber-400 hover:text-black text-white border border-white/20 transition-all active:scale-90"
+              className="absolute right-1 sm:right-4 z-30 p-2 sm:p-3 rounded-none bg-black/60 hover:bg-amber-400 hover:text-black text-white border border-white/20 transition-all active:scale-90"
               title="Next (Right Arrow)"
               aria-label="Next"
             >
               <ChevronRight size={22} />
             </button>
 
-            {/* Protected Image Container */}
+            {/* Protected Image Container (No border radius) */}
             <div className="relative max-h-[82vh] max-w-[92vw] flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos[lightboxIndex].url}
                 alt="National Champion Spotlight"
-                className="max-h-[82vh] max-w-[92vw] object-contain rounded-2xl border-2 border-white/10 shadow-2xl pointer-events-none select-none"
+                className="max-h-[82vh] max-w-[92vw] object-contain rounded-none border-2 border-white/10 shadow-2xl pointer-events-none select-none"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
                 onDragStart={(e) => e.preventDefault()}
@@ -325,7 +325,7 @@ export function AwardsSection() {
   );
 }
 
-// Subcomponent: Individual Fast Kinetic Stream Photo Card
+// Subcomponent: Individual Fast Kinetic Stream Photo Card (No border radius)
 function PhotoCard({ photo, onClick }: { photo: ShowcasePhoto; onClick: () => void }) {
   const sizeClasses =
     photo.orientation === "portrait"
@@ -339,14 +339,14 @@ function PhotoCard({ photo, onClick }: { photo: ShowcasePhoto; onClick: () => vo
       onClick={onClick}
       onContextMenu={(e) => e.preventDefault()}
       onDragStart={(e) => e.preventDefault()}
-      className={`group relative flex-shrink-0 rounded-2xl overflow-hidden border-2 border-black/90 shadow-[4px_4px_0_rgba(0,0,0,0.85)] bg-zinc-900 cursor-pointer hover:shadow-[7px_7px_0_#eab308] hover:-translate-y-1 transition-all duration-200 select-none ${sizeClasses}`}
+      className={`group relative flex-shrink-0 rounded-none overflow-hidden border-2 border-black/90 shadow-[4px_4px_0_rgba(0,0,0,0.85)] bg-zinc-900 cursor-pointer hover:shadow-[7px_7px_0_#eab308] hover:-translate-y-1 transition-all duration-200 select-none ${sizeClasses}`}
     >
       <Image
         src={photo.url}
         alt="Champion Photo"
         fill
         sizes="(max-width: 640px) 260px, 360px"
-        className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
+        className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none rounded-none"
         loading="lazy"
         draggable={false}
       />
@@ -354,7 +354,7 @@ function PhotoCard({ photo, onClick }: { photo: ShowcasePhoto; onClick: () => vo
       <div className="absolute inset-0 z-10 pointer-events-auto" onContextMenu={(e) => e.preventDefault()} />
       {/* Subtle hover overlay with expand icon */}
       <div className="absolute inset-0 z-20 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-        <div className="w-9 h-9 rounded-full bg-amber-400 text-black flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
+        <div className="w-9 h-9 rounded-none bg-amber-400 text-black flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
           <Maximize2 size={16} />
         </div>
       </div>
