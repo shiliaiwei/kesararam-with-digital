@@ -8,7 +8,6 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
-  Download,
   Shuffle,
   Play,
   Pause,
@@ -97,26 +96,8 @@ export function EventPhotosSection() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxIndex, closeLightbox, prevPhoto, nextPhoto]);
 
-  // Trigger browser download / direct image save with Blob fallback
-  const handleSaveImage = async (url: string) => {
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      const blobUrl = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = `kwd-event-${Date.now()}.jpg`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(blobUrl);
-    } catch {
-      window.open(url, "_blank");
-    }
-  };
-
   return (
-    <section className="relative bg-zinc-900/50 py-12 md:py-18 border-b-2 border-black overflow-hidden">
+    <section className="relative bg-zinc-900/50 py-12 md:py-18 border-b-2 border-black overflow-hidden select-none">
       {/* Subtle dotted background grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
 
@@ -189,7 +170,9 @@ export function EventPhotosSection() {
                 <div
                   key={`mosaic-${photo.id}`}
                   onClick={() => openLightbox(photo.id)}
-                  className="break-inside-avoid group relative rounded-2xl overflow-hidden border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.9)] bg-zinc-900 cursor-pointer hover:shadow-[6px_6px_0_#3b82f6] hover:-translate-y-1 transition-all duration-200"
+                  onContextMenu={(e) => e.preventDefault()}
+                  onDragStart={(e) => e.preventDefault()}
+                  className="break-inside-avoid group relative rounded-2xl overflow-hidden border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.9)] bg-zinc-900 cursor-pointer hover:shadow-[6px_6px_0_#3b82f6] hover:-translate-y-1 transition-all duration-200 select-none"
                 >
                   <div
                     className={`w-full relative ${
@@ -205,12 +188,15 @@ export function EventPhotosSection() {
                       alt="Event Moment"
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-auto select-auto"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
                       loading="lazy"
+                      draggable={false}
                     />
+                    {/* Invisible shield to prevent image dragging / context menu saving */}
+                    <div className="absolute inset-0 z-10 pointer-events-auto" onContextMenu={(e) => e.preventDefault()} />
                   </div>
                   {/* Subtle expand icon on hover */}
-                  <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="absolute inset-0 z-20 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
                     <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
                       <Maximize2 size={15} />
                     </div>
@@ -290,13 +276,14 @@ export function EventPhotosSection() {
         )}
       </div>
 
-      {/* ─── FULLSCREEN LIGHTBOX MODAL (Direct Save Image Allowed) ─── */}
+      {/* ─── FULLSCREEN LIGHTBOX MODAL (Image Protected Against Saving) ─── */}
       {lightboxIndex !== null && photos[lightboxIndex] && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col justify-between p-3 sm:p-6 animate-in fade-in duration-200"
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col justify-between p-3 sm:p-6 animate-in fade-in duration-200 select-none"
           onClick={closeLightbox}
+          onContextMenu={(e) => e.preventDefault()}
         >
-          {/* Top Bar: Title + Save + Close */}
+          {/* Top Bar: Title + Close */}
           <div
             className="flex items-center justify-between gap-4 relative z-10"
             onClick={(e) => e.stopPropagation()}
@@ -308,37 +295,26 @@ export function EventPhotosSection() {
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
-              {/* Direct Save/Download Button */}
-              <button
-                onClick={() => handleSaveImage(photos[lightboxIndex].url)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-500 hover:bg-blue-400 text-white font-black text-xs shadow-md active:scale-95 transition-all"
-                title="Save this image"
-              >
-                <Download size={14} />
-                <span>{kh ? "ទាញយក" : "Save Image"}</span>
-              </button>
-
-              <button
-                onClick={closeLightbox}
-                className="p-2 rounded-xl bg-zinc-900/80 hover:bg-red-600 text-zinc-300 hover:text-white border border-zinc-700/60 transition-colors"
-                title="Close (Esc)"
-                aria-label="Close"
-              >
-                <X size={18} />
-              </button>
-            </div>
+            <button
+              onClick={closeLightbox}
+              className="p-2 rounded-xl bg-zinc-900/80 hover:bg-red-600 text-zinc-300 hover:text-white border border-zinc-700/60 transition-colors"
+              title="Close (Esc)"
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
           </div>
 
-          {/* Center Stage: Pure Uncropped Full Image */}
+          {/* Center Stage: Protected Uncropped Full Image */}
           <div
             className="flex-1 relative flex items-center justify-center my-auto p-2"
             onClick={(e) => e.stopPropagation()}
+            onContextMenu={(e) => e.preventDefault()}
           >
             {/* Prev Button */}
             <button
               onClick={prevPhoto}
-              className="absolute left-1 sm:left-4 z-20 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-blue-500 hover:text-white text-white border border-white/20 transition-all active:scale-90"
+              className="absolute left-1 sm:left-4 z-30 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-blue-500 hover:text-white text-white border border-white/20 transition-all active:scale-90"
               title="Previous (Left Arrow)"
               aria-label="Previous"
             >
@@ -348,30 +324,41 @@ export function EventPhotosSection() {
             {/* Next Button */}
             <button
               onClick={nextPhoto}
-              className="absolute right-1 sm:right-4 z-20 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-blue-500 hover:text-white text-white border border-white/20 transition-all active:scale-90"
+              className="absolute right-1 sm:right-4 z-30 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-blue-500 hover:text-white text-white border border-white/20 transition-all active:scale-90"
               title="Next (Right Arrow)"
               aria-label="Next"
             >
               <ChevronRight size={22} />
             </button>
 
-            {/* Standard Image allowing right-click save, long-press save */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={photos[lightboxIndex].url}
-              alt="Event Spotlight"
-              className="max-h-[82vh] max-w-[92vw] object-contain rounded-2xl border-2 border-white/10 shadow-2xl select-auto"
-            />
+            {/* Protected Image Container */}
+            <div className="relative max-h-[82vh] max-w-[92vw] flex items-center justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={photos[lightboxIndex].url}
+                alt="Event Spotlight"
+                className="max-h-[82vh] max-w-[92vw] object-contain rounded-2xl border-2 border-white/10 shadow-2xl pointer-events-none select-none"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+              />
+              {/* Transparent Shield overlay blocking right click and drag */}
+              <div
+                className="absolute inset-0 z-20"
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+              />
+            </div>
           </div>
 
-          {/* Bottom Bar: Touch/Keyboard Tip */}
+          {/* Bottom Bar: Navigation Tip */}
           <div
             className="text-center text-[11px] text-zinc-500 select-none pb-1"
             onClick={(e) => e.stopPropagation()}
           >
             {kh
-              ? "ប្រើព្រួញឆ្វេង/ស្តាំដើម្បីប្តូររូប • ចុច Save Image ដើម្បីទាញយករូបទុក"
-              : "Use Left / Right arrow keys to navigate • Tap 'Save Image' or right click to download"}
+              ? "ប្រើព្រួញឆ្វេង/ស្តាំដើម្បីប្តូររូប • ចុច Esc ដើម្បីបិទ"
+              : "Use Left / Right arrow keys or buttons to navigate • Press Esc to close"}
           </div>
         </div>
       )}
@@ -391,17 +378,22 @@ function EventPhotoCard({ photo, onClick }: { photo: ShowcasePhoto; onClick: () 
   return (
     <div
       onClick={onClick}
-      className={`group relative flex-shrink-0 rounded-2xl overflow-hidden border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.85)] bg-zinc-900 cursor-pointer hover:shadow-[7px_7px_0_#3b82f6] hover:-translate-y-1 transition-all duration-200 ${sizeClasses}`}
+      onContextMenu={(e) => e.preventDefault()}
+      onDragStart={(e) => e.preventDefault()}
+      className={`group relative flex-shrink-0 rounded-2xl overflow-hidden border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.85)] bg-zinc-900 cursor-pointer hover:shadow-[7px_7px_0_#3b82f6] hover:-translate-y-1 transition-all duration-200 select-none ${sizeClasses}`}
     >
       <Image
         src={photo.url}
         alt="Event Moment"
         fill
         sizes="(max-width: 640px) 250px, 340px"
-        className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-auto select-auto"
+        className="object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
         loading="lazy"
+        draggable={false}
       />
-      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+      {/* Invisible shield to prevent image dragging / context menu saving */}
+      <div className="absolute inset-0 z-10 pointer-events-auto" onContextMenu={(e) => e.preventDefault()} />
+      <div className="absolute inset-0 z-20 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
         <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
           <Maximize2 size={15} />
         </div>
@@ -409,3 +401,4 @@ function EventPhotoCard({ photo, onClick }: { photo: ShowcasePhoto; onClick: () 
     </div>
   );
 }
+
