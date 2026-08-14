@@ -31,8 +31,8 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 export function EventPhotosSection() {
-  const { lang } = useLang();
-  const kh = lang === "km";
+  const { lang, isKh } = useLang();
+  const kh = isKh || lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-khmer)" } : undefined;
 
   const [photos, setPhotos] = useState<ShowcasePhoto[]>(EVENT_PHOTOS);
@@ -97,15 +97,22 @@ export function EventPhotosSection() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxIndex, closeLightbox, prevPhoto, nextPhoto]);
 
-  // Trigger browser download / direct image save
-  const handleSaveImage = (url: string) => {
-    const link = document.createElement("a");
-    link.href = url;
-    link.target = "_blank";
-    link.download = `kwd-event-${Date.now()}.jpg`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // Trigger browser download / direct image save with Blob fallback
+  const handleSaveImage = async (url: string) => {
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `kwd-event-${Date.now()}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch {
+      window.open(url, "_blank");
+    }
   };
 
   return (
