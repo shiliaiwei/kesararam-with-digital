@@ -775,22 +775,44 @@ html.lang-en {
 }
 
 /* ─── Google Material Symbols Rounded ─── */
-.material-symbols-rounded {
-  font-family: 'Material Symbols Rounded';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'liga';
+/* ─── Fast Kinetic Photo Showcase Marquee Animations ─── */
+@keyframes photo-marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
+
+@keyframes photo-marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-photo-stream-left {
+  animation: photo-marquee-left 32s linear infinite;
+}
+
+.animate-photo-stream-left-fast {
+  animation: photo-marquee-left 22s linear infinite;
+}
+
+.animate-photo-stream-right {
+  animation: photo-marquee-right 34s linear infinite;
+}
+
+.animate-photo-stream-right-fast {
+  animation: photo-marquee-right 24s linear infinite;
+}
+
+.pause-animation,
+.group-hover-pause:hover,
+.hover-pause:hover {
+  animation-play-state: paused !important;
+}
+
