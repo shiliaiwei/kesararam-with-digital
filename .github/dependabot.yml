@@ -6,12 +6,29 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 15
+    target-branch: "docs"
     labels:
       - "dependencies"
       - "security"
-    # Group related packages to reduce PR noise
+      - "automerge"
+    # Group related packages to reduce PR noise and streamline patch merges
     groups:
+      patch-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+      security-critical:
+        patterns:
+          - "next"
+          - "nanoid"
+          - "brace-expansion"
+          - "ip-address"
+          - "js-yaml"
+          - "fast-uri"
+          - "postcss"
+          - "esbuild"
       hono-packages:
         patterns:
           - "hono"
@@ -36,10 +53,6 @@ updates:
       types-packages:
         patterns:
           - "@types/*"
-      security-packages:
-        patterns:
-          - "postcss"
-          - "esbuild"
     ignore:
       - dependency-name: "next"
         update-types: ["version-update:semver-major"]
