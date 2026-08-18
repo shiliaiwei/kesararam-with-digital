@@ -47,10 +47,15 @@ export const metadata: Metadata = {
     "free education platform",
     "road safety education",
     // Brand & project names
+    // Brand & Award Recognition (National Champion 2026)
     "Kesararam With Digital",
     "The Way of Safety",
     "វិថី សុវត្ថិភាព",
-    "Kesararam With Digital road safety",
+    "Technovation Girls Cambodia 2026 Champion",
+    "Technovation Girls Global Semifinalist",
+    "Technovation Cambodia National Champion",
+    "Team #50777",
+    "KWD road safety",
     "KWD",
     // Khmer (ខ្មែរ)
     "រៀនសុវត្ថិភាពចរាចរណ៍",
@@ -58,6 +63,8 @@ export const metadata: Metadata = {
     "ច្បាប់ចរាចរណ៍",
     "ផ្លាកសញ្ញាចរាចរណ៍",
     "សញ្ញាចរាចរណ៍",
+    "ជើងឯកថ្នាក់ជាតិ ២០២៦",
+    "Technovation Girls Cambodia ជើងឯកថ្នាក់ជាតិ",
     "សញ្ញាផ្លូវ",
     "តេស្តសញ្ញាចរាចរណ៍",
     "ច្បាប់ផ្លូវគោក",
