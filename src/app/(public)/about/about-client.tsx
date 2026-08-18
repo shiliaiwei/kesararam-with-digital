@@ -159,22 +159,42 @@ const CONTENT = {
   en: {
     eyebrow: "About KWD",
     titleLine1: "KESARARAM.",
-    tagline: "National Champion & Global Semifinalist — Young Cambodian women advancing road safety education through digital innovation.",
-    pullQuote: "From our classroom in Siem Reap to the National Championship stage at AUPP and the Global Semifinals: We proved that young women can build digital solutions that save lives.",
+    titleLine2: "WITH DIGITAL.",
+    tagline: "Young Cambodian women advancing road safety education through digital innovation and technology.",
+    pullQuote: "The monastery taught us discipline. The school taught us theory. Our mentors are teaching us to apply what we have learned.",
     story: [
       "Kesararam is the name of a monastery and a primary school — the oldest seat of learning in our community. This place of great value has instilled in every child a clear understanding: the knowledge gained through education is the strong foundation for building the future, for education is the bridge toward opportunity and the very foundation of life's transformation.",
-      "We carried this conviction all the way to the national stage. In July 2026, at the American University of Phnom Penh (AUPP), Kesararam With Digital was officially crowned National Champion of Technovation Girls Cambodia 2026 and selected by Technovation Global HQ as one of only three teams representing Cambodia in the Global Semifinals.",
-      "As AI and automated systems transform every sector of work, we must ensure that every young woman has an equal opportunity to learn, to create, and to lead in the digital age. KWD is our answer — transforming road safety knowledge into a fully bilingual, gamified platform that tackles real-world traffic safety across Cambodia.",
+      "We carry this conviction into a world where technology is advancing at remarkable speed. As AI and automated systems transform every sector of work, we must ensure that every young woman has an equal opportunity to learn, to create, and to grow in the digital age. And we are here — together — to change that reality.",
+      "Kesararam With Digital is a team of young Cambodian women actively engaging with the age of AI and digital technology — transforming knowledge into real creation and development, with a clear focus on turning problems into tangible, practical solutions.",
       "Our mentors taught us that AI is not a threat to be feared, but a tool to be used with clear direction. Its role is to sharpen our thinking — to serve as a force that strengthens our reasoning, not to replace it.",
-      "The monastery taught us discipline. The school taught us theory. Our mentors taught us to apply what we learned. Standing as National Champions and Global Semifinalists, we are proud to show the world that young Cambodian students can build world-class digital solutions.",
+      "The monastery taught us discipline. The school taught us theory. Our mentors are teaching us to apply what we have learned. As candidates of the Technovation Girls program, we are learning to think and work like young entrepreneurs — developing new digital solutions to solve social problems and drive national progress.",
       "Kesararam With Digital is our team — the foundation of an entrepreneurial mindset, and our collective drive toward becoming leaders guided by vision.",
     ],
     stats: [
-      { value: "Champion", label: "National 2026" },
-      { value: "Top 3", label: "Global Semis" },
       { value: "5", label: "Students" },
+      { value: "2", label: "Mentors" },
+      { value: "2", label: "Languages" },
       { value: "SDG 4 · 11", label: "UN Goals" },
     ],
+    awardSection: {
+      tag: "Technovation 2026 Milestone",
+      title: "National Champions & Global Semifinalists",
+      desc: "In July 2026, at the American University of Phnom Penh (AUPP), Team KWD was crowned 1st Place National Champion of Technovation Girls Cambodia 2026 and selected by Technovation Global HQ as 1 of only 3 Cambodian teams advancing to the Global Semifinals.",
+      metaList: [
+        { label: "Award Level", value: "National Champion · Junior Division" },
+        { label: "Global Status", value: "Global Semifinalist (Top 3 in Cambodia)" },
+        { label: "Finals Venue", value: "American University of Phnom Penh (AUPP)" },
+        { label: "Presided By", value: "H.E. Chun Vat (MPTC) & H.E. Dr. Sann Vathana (MoEYS)" },
+        { label: "Organized & Supported By", value: "Tech for Kids Academy · CBRD Fund" },
+      ],
+      articleLinks: [
+        { title: "MPTC Official Portal", url: "https://mptc.gov.kh/en/2026/07/secretary-of-state-chun-vat-presided-over-the-national-competition-technovation-girls-cambodia-x-future-digital-talents-2026/" },
+        { title: "Technovation Worldwide HQ", url: "https://www.technovation.org/blogs/2026-semifinalist-announcement/#junior-kh" },
+        { title: "AMS Education Media", url: "https://education.ams.com.kh/outstanding-youth/news-award/news/national-pride-three-cambodian-girls-advance-to-the-global-semifinalists-of-technovation-girls-x-future-digital-talents-2026/" },
+        { title: "Tech for Kids Asia", url: "https://techforkids.asia/en/blog/congratulations-to-the-top-15-national-teams-of-the-technovation-girls-cambodia-x-future-digital-talents-and-the-3-global-semifinalists" },
+        { title: "CC Times Report", url: "https://kh.cc-times.com/posts/30029" },
+      ]
+    },
     mvv: [
       { tag: "Mission", color: "#eab308", text: "We are grounded in the belief that technology is the most effective bridge for transmitting and sharing knowledge. By modernising road safety education into a digital format, we have removed the barriers of location and time — allowing every student to study driving theory and traffic signs in two languages, easily, from any smartphone or computer with internet access. This is the essential foundation for reducing accidents and building a culture of responsible driving in Cambodia." },
       { tag: "Vision",  color: "#22c55e", text: "To build the foundations of a safe, responsible, and knowledgeable driving culture in Cambodia — and to open a new chapter for young women in schools and communities, enabling them to become leaders in technology and creative builders of the digital world." },
@@ -206,22 +226,42 @@ const CONTENT = {
   kh: {
     eyebrow: "អំពីយើង",
     titleLine1: "កេសរារាម.",
-    tagline: "ជើងឯកថ្នាក់ជាតិ និងជ័យលាភីពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក ២០២៦ — លើកកម្ពស់ការអប់រំសុវត្ថិភាពចរាចរណ៍តាមរយៈនវានុវត្តន៍បច្ចេកវិទ្យា",
-    pullQuote: "ពីថ្នាក់រៀនបឋមសិក្សាកេសរារាម ខេត្តសៀមរាប ឆ្ពោះទៅកាន់ពានរង្វាន់ជើងឯកថ្នាក់ជាតិនៅ AUPP និងវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក៖ យើងបានបញ្ជាក់ថាយុវតីកម្ពុជាអាចបង្កើតបច្ចេកវិទ្យាជួយសង្គ្រោះជីវិត។",
+    titleLine2: "ជាមួយឌីជីថល.",
+    tagline: "ស្នាដៃយុវតីខ្មែរ៖ លើកកម្ពស់ការអប់រំ យល់ដឹងពីសុវត្ថិភាពចរាចរណ៍ តាមរយៈនវានុវត្តន៍បច្ចេកវិទ្យា",
+    pullQuote: "វត្តអារាមបង្រៀនយើងឱ្យមានវិន័យ សាលារៀនបង្រៀនយើងឱ្យស្គាល់ទ្រឹស្ដី រីឯគ្រូ Mentors បណ្តុះយើងឱ្យចេះអនុវត្តផ្ទាល់។",
     story: [
       "កេសរារាម ជាឈ្មោះសម្គាល់នៃទីអារាម និងសាលារៀន ដែលជាថ្នាលបណ្ដុះចំណេះដឹងចំណាស់ជាងគេក្នុងសហគមន៍របស់យើង។ ទីគ្រឹះស្ថានដ៏មានតម្លៃមួយនេះ បានបណ្តុះស្មារតីកុមារគ្រប់រូបឱ្យដឹងច្បាស់ថា ចំណេះដឹងដែលទទួលបានពីការសិក្សា គឺជាគ្រឹះដ៏រឹងមាំសម្រាប់កសាងអនាគត ព្រោះការអប់រំ គឺជាស្ពានឆ្ពោះទៅរកឱកាស និងជាមូលដ្ឋានគ្រឹះនៃការផ្លាស់ប្តូរជីវិត។",
-      "ពួកយើងបាននាំយកស្មារតីនេះឆ្ពោះទៅកាន់ឆាកប្រកួតថ្នាក់ជាតិ។ នៅខែកក្កដា ឆ្នាំ២០២៦ នៅសាកលវិទ្យាល័យអាមេរិកាំងភ្នំពេញ (AUPP) ក្រុម Kesararam With Digital (KWD) ត្រូវបានប្រកាសជាផ្លូវការជាម្ចាស់ជើងឯកថ្នាក់ជាតិ (National Champion) នៃកម្មវិធី Technovation Girls Cambodia ២០២៦ និងត្រូវបានជ្រើសរើសជា ១ ក្នុងចំណោម ៣ ក្រុមតំណាងឱ្យកម្ពុជាឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)។",
-      "នៅពេលដែល AI និងប្រព័ន្ធស្វ័យប្រវត្តិកំពុងផ្លាស់ប្ដូរពិភពលោក យើងបានបង្កើត KWD ជាថ្នាលអប់រំសុវត្ថិភាពចរាចរណ៍ពីរភាសា ប្រកបដោយការប្រកួតប្រជែងសប្បាយៗ ដើម្បីដោះស្រាយបញ្ហាគ្រោះថ្នាក់ចរាចរណ៍ជាក់ស្តែងនៅកម្ពុជា។",
+      "យើងយកស្មារតីមួយនេះទៅបង្ហាញពិភពលោក ដែលបច្ចេកវិទ្យាកំពុងដើរទៅមុខយ៉ាងលឿន។ នៅពេលដែល AI និងប្រព័ន្ធស្វ័យប្រវត្តិកំពុងផ្លាស់ប្ដូរគ្រប់វិស័យការងារ យើងត្រូវធានាថា រាល់យុវតីមានឱកាសស្មើគ្នាក្នុងការរៀន បង្កើត និងរីកចម្រើនក្នុងយុគសម័យឌីជីថល។ ហើយពួកយើងនៅទីនេះ គឺដើម្បីរួមគ្នាផ្លាស់ប្ដូរតថភាពសង្គមមួយនេះឱ្យបាន។",
+      "កេសរារាម ជាមួយឌីជីថល (Kesararam With Digital) គឺជាក្រុមយុវតីខ្មែរដែលចូលរួមយ៉ាងសកម្មក្នុងយុគសម័យ AI និងបច្ចេកវិទ្យាឌីជីថល ការបម្លែងចំណេះដឹងទៅជាការបង្កើត និងការអភិវឌ្ឍពិតប្រាកដ ដោយផ្តោតលើការប្រែក្លាយបញ្ហាទៅជាដំណោះស្រាយជាក់ស្តែង។",
       "គ្រូ Mentors បានបង្រៀនយើងថា AI មិនមែនជាការគំរាមកំហែងដែលត្រូវខ្លាចនោះទេ ប៉ុន្តែវាជាឧបករណ៍ដែលត្រូវចេះប្រើប្រាស់ឱ្យត្រូវទិសដៅ។ តួនាទីរបស់វាគឺជួយដុសខាត់ការគិតរបស់យើងឱ្យកាន់តែមុតស្រួច ពោលគឺមកដើម្បីជាកម្លាំងជំនួយដល់ការត្រិះរិះ មិនមែនមកជំនួសការគិតរបស់យើងឡើយ។",
-      "វត្តអារាមបង្រៀនយើងឱ្យមានវិន័យ សាលារៀនបង្រៀនយើងឱ្យស្គាល់ទ្រឹស្ដី រីឯគ្រូ Mentors បណ្តុះយើងឱ្យចេះអនុវត្តផ្ទាល់។ ក្នុងនាមជាម្ចាស់ជើងឯកថ្នាក់ជាតិ និងបេក្ខជនពិភពលោក ពួកយើងមានមោទនភាពយ៉ាងក្រៃលែងក្នុងការបង្ហាញពីសមត្ថភាពយុវតីកម្ពុជាលើឆាកអន្តរជាតិ។",
+      "វត្តអារាមបង្រៀនយើងឱ្យមានវិន័យ សាលារៀនបង្រៀនយើងឱ្យស្គាល់ទ្រឹស្ដី រីឯគ្រូ Mentors បណ្តុះយើងឱ្យចេះអនុវត្តផ្ទាល់។ ក្នុងនាមជាបេក្ខនារីនៃកម្មវិធី Technovation Girls ពួកយើងកំពុងរៀនគិត និងបោះជំហានធ្វើការដូចជាសហគ្រិនវ័យក្មេង ដែលអភិវឌ្ឍដំណោះស្រាយឌីជីថលថ្មីៗ ដើម្បីដោះស្រាយបញ្ហាសង្គម និងជំរុញការរីកចម្រើនជាតិ។",
       "កេសរារាម ជាមួយឌីជីថល គឺជាក្រុមរបស់យើង ដែលជាគ្រឹះសម្រាប់ស្មារតីសហគ្រិន និងការរួមគ្នារុញឆ្ពោះទៅភាពជាអ្នកដឹកនាំប្រកបដោយចក្ខុវិស័យ។",
     ],
     stats: [
-      { value: "ជើងឯក",   label: "ថ្នាក់ជាតិ ២០២៦" },
-      { value: "Top 3",     label: "ពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក" },
-      { value: "5",         label: "សិស្ស" },
-      { value: "SDG 4·11",  label: "គោលដៅ UN" },
+      { value: "5",       label: "សិស្ស" },
+      { value: "2",       label: "គ្រូណែនាំ" },
+      { value: "2",       label: "ភាសា" },
+      { value: "SDG 4·11",label: "គោលដៅ UN" },
     ],
+    awardSection: {
+      tag: "សមិទ្ធផល Technovation ២០២៦",
+      title: "ជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
+      desc: "នៅខែកក្កដា ឆ្នាំ២០២៦ នៅសាកលវិទ្យាល័យអាមេរិកាំងភ្នំពេញ (AUPP) ក្រុម KWD ឈ្នះពានរង្វាន់ជើងឯកថ្នាក់ជាតិ (Junior Division) នៃ Technovation Girls Cambodia ២០២៦ និងត្រូវបានជ្រើសរើសជា ១ ក្នុងចំណោម ៣ ក្រុមតំណាងឱ្យកម្ពុជាឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)។",
+      metaList: [
+        { label: "កម្រិតជ័យលាភី", value: "ជើងឯកថ្នាក់ជាតិ (National Champion · Junior)" },
+        { label: "ឆាកអន្តរជាតិ", value: "វគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)" },
+        { label: "ទីតាំងប្រកួតផ្តាច់ព្រ័ត្រ", value: "សាកលវិទ្យាល័យអាមេរិកាំងភ្នំពេញ (AUPP)" },
+        { label: "អធិបតីភាព", value: "ឯកឧត្តម ជុន វ៉ាត់ (MPTC) និង ឯកឧត្តម បណ្ឌិត សាន វឌ្ឍនា (MoEYS)" },
+        { label: "រៀបចំ និងគាំទ្រដោយ", value: "Tech for Kids Academy និង មូលនិធិ ស.អ. (CBRD Fund)" },
+      ],
+      articleLinks: [
+        { title: "ព័ត៌មានផ្លូវការក្រសួង MPTC", url: "https://mptc.gov.kh/en/2026/07/secretary-of-state-chun-vat-presided-over-the-national-competition-technovation-girls-cambodia-x-future-digital-talents-2026/" },
+        { title: "ទីស្នាក់ការកណ្តាល Technovation ពិភពលោក", url: "https://www.technovation.org/blogs/2026-semifinalist-announcement/#junior-kh" },
+        { title: "សារព័ត៌មានអប្សរា AMS Education", url: "https://education.ams.com.kh/outstanding-youth/news-award/news/national-pride-three-cambodian-girls-advance-to-the-global-semifinalists-of-technovation-girls-x-future-digital-talents-2026/" },
+        { title: "Tech for Kids Asia", url: "https://techforkids.asia/en/blog/congratulations-to-the-top-15-national-teams-of-the-technovation-girls-cambodia-x-future-digital-talents-and-the-3-global-semifinalists" },
+        { title: "សារព័ត៌មានស៊ីស៊ីថាមស៍ (CC Times)", url: "https://kh.cc-times.com/posts/30029" },
+      ]
+    },
     mvv: [
       { tag: "បេសកកម្ម", color: "#eab308", text: "យើងផ្តោតលើការជឿជាក់ថាបច្ចេកវិទ្យាគឺជាស្ពានដ៏មានប្រសិទ្ធភាពក្នុងការចម្លង និងចែករំលែកចំណេះដឹង។ តាមរយៈការធ្វើទំនើបកម្មការអប់រំចរាចរណ៍ទៅជាទម្រង់ឌីជីថល យើងបានធ្វើឱ្យការរៀនមិនមានដែនកំណត់ទីកន្លែង និងពេលវេលា ដើម្បីឱ្យសិស្សគ្រប់រូបអាចរៀនសូត្រទ្រឹស្ដី និងសញ្ញាចរាចរណ៍ពីរភាសាបានយ៉ាងងាយស្រួលដោយប្រើស្មាតហ្វូន ឬកុំព្យូទ័រ នៅគ្រប់ទីកន្លែងដែលមានអ៊ីនធឺណិត។ នេះជាគ្រឹះសំខាន់ក្នុងការកាត់បន្ថយគ្រោះថ្នាក់ និងបង្កើតវប្បធម៌បើកបរដែលមានការទទួលខុសត្រូវនៅកម្ពុជា។" },
       { tag: "ចក្ខុវិស័យ",color: "#22c55e", text: "ចាក់គ្រឹះវប្បធម៌បើកបរដែលមានសុវត្ថិភាព ស្មារតីទទួលខុសត្រូវ និងចំណេះដឹងច្បាស់លាស់នៅកម្ពុជា ព្រមទាំងបើកទំព័រថ្មីសម្រាប់យុវតីសាលា និងសហគមន៍ ក្នុងការក្លាយជាអ្នកដឹកនាំប្រើបច្ចេកវិទ្យា និងអ្នកបង្កើតពិភពឌីជីថលប្រកបដោយច្នៃប្រឌិត។" },
@@ -475,6 +515,65 @@ export function AboutClient() {
               <p className="text-xs text-zinc-500 leading-relaxed flex-1" style={kf}>{text}</p>
             </a>
           ))}
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4.5 NATIONAL CHAMPION & GLOBAL SEMIFINALIST MILESTONE SECTION
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="bg-zinc-950 text-white border-t-2 border-black border-b-2 border-black py-14">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-400 text-black text-[10px] font-black uppercase tracking-wider mb-2">
+                <span>{c.awardSection.tag}</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight" style={kf}>
+                {c.awardSection.title}
+              </h2>
+              <p className="text-zinc-400 text-sm mt-2 max-w-2xl leading-relaxed" style={kf}>
+                {c.awardSection.desc}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Meta Specifications */}
+            <div className="border border-zinc-800 bg-zinc-900/60 p-6 flex flex-col gap-3">
+              <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400" style={kf}>
+                {kh ? "ព័ត៌មានលម្អិតផ្លូវការ" : "Official Recognition Details"}
+              </span>
+              <div className="flex flex-col divide-y divide-zinc-800">
+                {c.awardSection.metaList.map((m) => (
+                  <div key={m.label} className="py-2.5 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <span className="text-xs text-zinc-400 font-bold" style={kf}>{m.label}</span>
+                    <span className="text-xs text-zinc-100 font-medium sm:text-right" style={kf}>{m.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Official Press & Media Links */}
+            <div className="border border-zinc-800 bg-zinc-900/60 p-6 flex flex-col gap-3">
+              <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400" style={kf}>
+                {kh ? "ប្រភពសារព័ត៌មាន និងតំណភ្ជាប់ផ្លូវការ" : "Official Press & Media Mentions"}
+              </span>
+              <div className="flex flex-col gap-2 mt-1">
+                {c.awardSection.articleLinks.map((link) => (
+                  <a
+                    key={link.title}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between gap-2 p-3 bg-zinc-900 border border-zinc-800 hover:border-yellow-400 hover:bg-zinc-800/80 transition-all text-xs text-zinc-200 group"
+                  >
+                    <span className="font-bold group-hover:text-yellow-400 transition-colors" style={kf}>{link.title}</span>
+                    <ArrowUpRight size={14} className="text-zinc-500 group-hover:text-yellow-400 transition-colors shrink-0" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
