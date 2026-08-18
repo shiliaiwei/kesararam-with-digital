@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "topic_id": null,
+    "title_en": "Two cars at a crossroad",
+    "title_km": "រថយន្តពីរនៅផ្លូវបំបែក",
+    "layout": "{\"junction\":\"cross\",\"hasTrafficLight\":false,\"vehicles\":[{\"id\":\"v1\",\"approach\":\"south\",\"intent\":\"straight\",\"kind\":\"car\",\"pos\":0.5},{\"id\":\"v2\",\"approach\":\"west\",\"intent\":\"straight\",\"kind\":\"car\",\"pos\":0.5}]}",
+    "correct_order": "[\"v2\",\"v1\"]",
+    "explanation_en": "At an uncontrolled crossroad, give way to the vehicle on your right. v2 (on the right) goes first.",
+    "explanation_km": "នៅផ្លូវបំបែកគ្មានភ្លើងសញ្ញា ត្រូវផ្ដល់ផ្លូវឱ្យរថយន្តខាងស្ដាំ។ v2 (ខាងស្ដាំ) ទៅមុនគេ។",
+    "difficulty": "easy",
+    "status": "approved",
+    "created_by": null,
+    "created_at": "2026-06-07 19:37:59.312628",
+    "updated_at": "2026-06-07 19:37:59.312628"
+  },
+  {
+    "id": 2,
+    "topic_id": null,
+    "title_en": "Ambulance approaching",
+    "title_km": "រថយន្តសង្គ្រោះកំពុងមកដល់",
+    "layout": "{\"junction\":\"cross\",\"hasTrafficLight\":false,\"vehicles\":[{\"id\":\"v1\",\"approach\":\"north\",\"intent\":\"straight\",\"kind\":\"car\",\"pos\":0.5},{\"id\":\"v2\",\"approach\":\"east\",\"intent\":\"straight\",\"kind\":\"ambulance\",\"pos\":0.5},{\"id\":\"v3\",\"approach\":\"west\",\"intent\":\"straight\",\"kind\":\"car\",\"pos\":0.5}]}",
+    "correct_order": "[\"v2\",\"v3\",\"v1\"]",
+    "explanation_en": "Emergency vehicles always go first. Then give way to the right.",
+    "explanation_km": "រថយន្តអាសន្នតែងតែទៅមុនគេ។ បន្ទាប់មកផ្ដល់ផ្លូវឱ្យខាងស្ដាំ។",
+    "difficulty": "medium",
+    "status": "approved",
+    "created_by": null,
+    "created_at": "2026-06-07 19:37:59.830825",
+    "updated_at": "2026-06-07 19:37:59.830825"
+  },
+  {
+    "id": 3,
+    "topic_id": null,
+    "title_en": "Three cars, turning left",
+    "title_km": "រថយន្តបី បត់ឆ្វេង",
+    "layout": "{\"junction\":\"cross\",\"hasTrafficLight\":false,\"vehicles\":[{\"id\":\"v1\",\"approach\":\"south\",\"intent\":\"left\",\"kind\":\"car\",\"pos\":0.5},{\"id\":\"v2\",\"approach\":\"north\",\"intent\":\"straight\",\"kind\":\"car\",\"pos\":0.5},{\"id\":\"v3\",\"approach\":\"east\",\"intent\":\"straight\",\"kind\":\"moto\",\"pos\":0.5}]}",
+    "correct_order": "[\"v3\",\"v2\",\"v1\"]",
+    "explanation_en": "Give way to the right first (v3), then straight traffic (v2). The left-turning car (v1) yields and goes last.",
+    "explanation_km": "ផ្ដល់ផ្លូវឱ្យខាងស្ដាំមុន (v3) បន្ទាប់មករថយន្តផ្លូវត្រង់ (v2)។ រថយន្តបត់ឆ្វេង (v1) ទៅក្រោយគេ។",
+    "difficulty": "hard",
+    "status": "approved",
+    "created_by": null,
+    "created_at": "2026-06-07 19:38:00.345668",
+    "updated_at": "2026-06-07 19:38:00.345668"
+  },
+  {
+    "id": 4,
+    "topic_id": null,
+    "title_en": "T-junction",
+    "title_km": "ផ្លូវបំបែករាង T",
+    "layout": "{\"junction\":\"t_junction\",\"hasTrafficLight\":false,\"vehicles\":[{\"id\":\"v1\",\"approach\":\"south\",\"intent\":\"left\",\"kind\":\"car\",\"pos\":0.5},{\"id\":\"v2\",\"approach\":\"west\",\"intent\":\"straight\",\"kind\":\"bus\",\"pos\":0.5}]}",
+    "correct_order": "[\"v2\",\"v1\"]",
+    "explanation_en": "Traffic on the main road (v2) has priority over the vehicle joining from the minor road (v1).",
+    "explanation_km": "ចរាចរណ៍លើផ្លូវធំ (v2) មានអាទិភាពជាងរថយន្តចូលពីផ្លូវតូច (v1)។",
+    "difficulty": "easy",
+    "status": "approved",
+    "created_by": null,
+    "created_at": "2026-06-07 19:38:00.875086",
+    "updated_at": "2026-06-07 19:38:00.875086"
+  }
+]

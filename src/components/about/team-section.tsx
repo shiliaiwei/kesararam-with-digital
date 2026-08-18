@@ -6,11 +6,11 @@ import { useLang } from "@/context/lang-context";
 
 // Full name (Latin + Khmer) shown on the card face; role kept short and bilingual.
 const STUDENTS = [
-  { id: "VSID-2026-001", name: "YIN DANAI",      nameKh: "យិន ដាណៃ",        roleEn: "Team Lead & Audio",     roleKh: "អ្នកដឹកនាំក្រុម និងសំឡេង" },
-  { id: "VSID-2026-002", name: "CHANTHA KANIKA", nameKh: "ចាន់ថា កន្និកា",  roleEn: "Content & Research",    roleKh: "មាតិកា និងស្រាវជ្រាវ" },
-  { id: "VSID-2026-003", name: "NEUN SOVANROZA", nameKh: "នឿន សុវណ្ណរ៉ូហ្សា", roleEn: "Content & Design",      roleKh: "មាតិកា និងរចនា" },
-  { id: "VSID-2026-004", name: "LIN MANY",       nameKh: "លីន ម៉ានី",        roleEn: "Content & Testing",     roleKh: "មាតិកា និងតេស្ត" },
-  { id: "VSID-2026-005", name: "SUN RUNAMARA",   nameKh: "សាន់ រុណអមរ៉ា",    roleEn: "QA & Testing",          roleKh: "ធានាគុណភាព និងតេស្ត" },
+  { id: "VSID-2026-001", name: "YIN DANAI", nameKh: "យិន ដាណៃ", roleEn: "Team Lead & Audio", roleKh: "អ្នកដឹកនាំក្រុម និងសំឡេង" },
+  { id: "VSID-2026-002", name: "CHANTHA KANIKA", nameKh: "ចាន់ថា កន្និកា", roleEn: "Content & Research", roleKh: "មាតិកា និងស្រាវជ្រាវ" },
+  { id: "VSID-2026-003", name: "NEUN SOVANROZA", nameKh: "នឿន សុវណ្ណរ៉ូហ្សា", roleEn: "Content & Design", roleKh: "មាតិកា និងរចនា" },
+  { id: "VSID-2026-004", name: "LIN MANY", nameKh: "លីន ម៉ានី", roleEn: "Content & Testing", roleKh: "មាតិកា និងតេស្ត" },
+  { id: "VSID-2026-005", name: "SUN RUNAMARA", nameKh: "សាន់ រុណអមរ៉ា", roleEn: "QA & Testing", roleKh: "ធានាគុណភាព និងតេស្ត" },
 ];
 
 const MENTORS = [
@@ -80,7 +80,7 @@ function MemberCard({ member, isMentor, isKh }: { member: Member; isMentor: bool
               style={{ color: accent, borderColor: accent + "50", backgroundColor: accent + "12" }}>
               {isMentor ? "MENTOR" : "STUDENT"}
             </div>
-            <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-2.5 opacity-30 brightness-0 invert object-contain" />
+            <img src="/brand/kwd-black_nobackground.png" alt="Kesararam With Digital" className="h-2.5 opacity-30 brightness-0 invert object-contain" />
           </div>
 
           {/* QR area — stable height prevents layout shift */}
@@ -94,7 +94,7 @@ function MemberCard({ member, isMentor, isKh }: { member: Member; isMentor: bool
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center gap-3 py-6 opacity-40 w-full">
-                <img src="/brand/kwd-black_nobackground.png" alt="" className="w-16 h-8 object-contain mx-auto brightness-0 invert" />
+                <img src="/brand/kwd-black_nobackground.png" alt="Kesararam With Digital" className="w-16 h-8 object-contain mx-auto brightness-0 invert" />
                 <span className="text-[8px] font-black uppercase tracking-widest text-center" style={{ color: accent }}>SCAN ID</span>
               </div>
             )}

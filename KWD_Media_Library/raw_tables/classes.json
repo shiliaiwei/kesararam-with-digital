@@ -1,0 +1,67 @@
+[
+  {
+    "id": 10,
+    "name": "Grade 5",
+    "teacher_id": 1697,
+    "code": "P1GX8W",
+    "created_at": "2026-06-17 07:05:41.874751",
+    "grade_level": null,
+    "school_name": "Kesararam Primary School",
+    "province": "Siem Reap",
+    "section": null,
+    "status": "active",
+    "name_changed_count": 0
+  },
+  {
+    "id": 11,
+    "name": "Grade 6",
+    "teacher_id": 1697,
+    "code": "E6JT0U",
+    "created_at": "2026-06-17 07:06:01.640133",
+    "grade_level": null,
+    "school_name": "Kesararam Primary School",
+    "province": "Siem Reap",
+    "section": null,
+    "status": "active",
+    "name_changed_count": 0
+  },
+  {
+    "id": 12,
+    "name": "digital room",
+    "teacher_id": 1697,
+    "code": "NSKAFL",
+    "created_at": "2026-06-17 07:06:14.367211",
+    "grade_level": null,
+    "school_name": "Kesararam Primary School",
+    "province": "Siem Reap",
+    "section": null,
+    "status": "active",
+    "name_changed_count": 1
+  },
+  {
+    "id": 13,
+    "name": "KESARARrere",
+    "teacher_id": 4451,
+    "code": "7B25CQ",
+    "created_at": "2026-06-25 09:29:56.507371",
+    "grade_level": null,
+    "school_name": "wrwrw",
+    "province": "Kampong Speu",
+    "section": null,
+    "status": "active",
+    "name_changed_count": 0
+  },
+  {
+    "id": 14,
+    "name": "AUPP Student Project Showcase",
+    "teacher_id": 4451,
+    "code": "ZIHNM7",
+    "created_at": "2026-07-26 00:31:00.374326",
+    "grade_level": null,
+    "school_name": "American University of Phnom Penh",
+    "province": "Phnom Penh",
+    "section": null,
+    "status": "active",
+    "name_changed_count": 0
+  }
+]

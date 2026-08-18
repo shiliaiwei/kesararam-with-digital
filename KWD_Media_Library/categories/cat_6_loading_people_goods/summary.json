@@ -1,0 +1,13 @@
+{
+  "id": 6,
+  "slug": "loading-people-goods",
+  "title_en": "Loading People & Goods",
+  "title_km": "ការដឹកអ្នកដំណើរ",
+  "sort_order": 6,
+  "is_active": true,
+  "topic_count": 14,
+  "sub_groups": {
+    "Cargo Securing": 7,
+    "Weight Limits": 7
+  }
+}
