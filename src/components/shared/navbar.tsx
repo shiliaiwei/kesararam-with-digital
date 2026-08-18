@@ -20,7 +20,7 @@ interface NavbarProps {
 }
 
 function AnimatedLogoText() {
-  // Brand DNA lockup — product name វិថីសុវត្ថិភាព first, KWD as the maker.
+  // Brand DNA lockup — product name វិថីសុវត្ថិភាព first, Kesararam With Digital as the maker.
   return (
     <div className="leading-none flex flex-col" style={{ width: "150px" }}>
       <span className="font-google-sans font-black text-[15px] text-black tracking-tight pt-1">
@@ -230,7 +230,7 @@ export function Navbar({ session }: NavbarProps) {
           <Link href="/" className="flex items-center gap-3 flex-shrink-0 ml-2 w-[220px]">
             <Image
               src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg"
-              alt="KWD Logo"
+              alt="Kesararam With Digital Logo"
               width={40}
               height={40}
               className="object-contain flex-shrink-0"

@@ -215,7 +215,7 @@ export function AppSidebar({
           >
             <Image
               src="/brand/kwd-black_nobackground.png"
-              alt="KWD"
+              alt="Kesararam With Digital"
               width={22}
               height={22}
               className="object-contain relative z-10"
@@ -224,7 +224,7 @@ export function AppSidebar({
           </div>
           <div>
             <h1 className="text-sm font-black uppercase tracking-widest text-black leading-none">
-              KWD
+              Kesararam With Digital
             </h1>
             <p className="text-[9px] font-black uppercase tracking-widest leading-tight mt-0.5 text-zinc-500">
               Kesararam · Digital

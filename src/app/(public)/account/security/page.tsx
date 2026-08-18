@@ -4,7 +4,7 @@ import { getSession } from "@/lib/auth";
 import { TwoFactorSetup } from "@/components/account/two-factor-setup";
 
 export const metadata: Metadata = {
-    title: "Account Security — KWD",
+    title: "Account Security — Kesararam With Digital",
     robots: { index: false, follow: false },
 };
 

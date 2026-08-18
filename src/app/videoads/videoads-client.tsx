@@ -679,7 +679,7 @@ function OutroScene() {
           style={{ border: "4px solid #eab308" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/logo.svg" alt="KWD" className="h-16 w-16 object-contain" />
+          <img src="/brand/logo.svg" alt="Kesararam With Digital" className="h-16 w-16 object-contain" />
         </div>
 
         {/* brand name — Khmer (primary) + English */}

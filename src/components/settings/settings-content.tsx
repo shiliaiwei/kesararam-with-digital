@@ -372,7 +372,7 @@ export function SettingsContent() {
         <div className="bg-blue-50 border-4 border-[#0284c7] p-4 shadow-[4px_4px_0_#000] flex items-center gap-3">
           <Info className="text-[#0284c7] flex-shrink-0" size={24} />
           <div className="font-bold text-sm text-black leading-relaxed">
-            Temporary correction window is active for <span className="text-[#0284c7] font-black">{profileEditUnlockDaysLeft} days</span>. You can correct your profile information now; after this window, the normal KWD profile rules apply again. / រយៈពេលកែតម្រូវបណ្ដោះអាសន្ននៅសល់ <span className="text-[#0284c7] font-black">{profileEditUnlockDaysLeft} ថ្ងៃ</span>។ អ្នកអាចកែព័ត៌មានគណនីឥឡូវនេះ ហើយបន្ទាប់មកនឹងត្រឡប់ទៅតាមលក្ខខណ្ឌធម្មតារបស់ KWD វិញ។
+            Temporary correction window is active for <span className="text-[#0284c7] font-black">{profileEditUnlockDaysLeft} days</span>. You can correct your profile information now; after this window, the normal Kesararam With Digital profile rules apply again. / រយៈពេលកែតម្រូវបណ្ដោះអាសន្ននៅសល់ <span className="text-[#0284c7] font-black">{profileEditUnlockDaysLeft} ថ្ងៃ</span>។ អ្នកអាចកែព័ត៌មានគណនីឥឡូវនេះ ហើយបន្ទាប់មកនឹងត្រឡប់ទៅតាមលក្ខខណ្ឌធម្មតារបស់ Kesararam With Digital វិញ។
           </div>
         </div>
       )}
@@ -560,7 +560,7 @@ export function SettingsContent() {
                   <div className="flex flex-col items-center justify-center p-4 bg-white border-2 border-black shadow-[2px_2px_0_#000]">
                     <AvatarDisplay
                       avatar={settings.avatar}
-                      name={settings.displayName || "KWD Student"}
+                      name={settings.displayName || "Kesararam With Digital Student"}
                       size={120}
                       radius={0}
                     />

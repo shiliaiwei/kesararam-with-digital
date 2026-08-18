@@ -138,7 +138,7 @@ export function TeacherApplyForm({
             {/* KHQR */}
             <div className="flex flex-col items-center gap-3 mb-5">
               <div className="w-44 h-44 border-2 border-black rounded-lg overflow-hidden bg-white flex items-center justify-center shadow-[3px_3px_0_#000]">
-                <img src="/khqr.png" alt="KWD KHQR" className="w-full h-full object-contain" />
+                <img src="/khqr.png" alt="Kesararam With Digital KHQR" className="w-full h-full object-contain" />
               </div>
               <p className="text-xs font-black text-zinc-900">KESARARAM WITH DIGITAL</p>
             </div>

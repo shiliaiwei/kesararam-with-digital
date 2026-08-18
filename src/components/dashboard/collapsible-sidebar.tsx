@@ -160,7 +160,7 @@ export function CollapsibleSidebar({ userName, userRole }: { userName: string; u
               <span className="text-white font-black text-xl">K</span>
             </div>
             <div>
-              <div className="font-black text-lg">KWD</div>
+              <div className="font-black text-lg">Kesararam With Digital</div>
               <div className="text-xs font-bold uppercase">{userRole} Panel</div>
             </div>
           </div>

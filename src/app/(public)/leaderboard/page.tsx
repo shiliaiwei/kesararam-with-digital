@@ -252,7 +252,7 @@ function RankBadge({ rank }: { rank: 1 | 2 | 3 }) {
     <svg width="44" height="44" viewBox="0 0 52 52" fill="none">
       <polygon points="26,2 48,14 48,38 26,50 4,38 4,14" fill={c.fill} stroke="#000" strokeWidth="3" />
       <polygon points="26,5 45,16 45,22 26,11" fill="rgba(255,255,255,0.25)" />
-      <text x="26" y="32" textAnchor="middle" fontSize="13" fontWeight="900" fill={c.text} fontFamily="KWD Roboto">{c.label}</text>
+      <text x="26" y="32" textAnchor="middle" fontSize="13" fontWeight="900" fill={c.text} fontFamily="Kesararam With Digital Roboto">{c.label}</text>
     </svg>
   );
 }
@@ -1400,7 +1400,7 @@ export default function LeaderboardPage() {
     }
   };
 
-  // Render row with KWD's original brutalist score plate / license plate style
+  // Render row with Kesararam With Digital's original brutalist score plate / license plate style
   const renderRow = (user: LeaderboardUser, rowIndex: number, isSticky: boolean = false) => {
     const prev = prevRanks[user.id];
     const moved = prev !== undefined ? prev - user.rank : 0;
@@ -1634,7 +1634,7 @@ export default function LeaderboardPage() {
             </div>
             {currentUser && isStudent && (
               <div className="relative overflow-hidden flex flex-col bg-zinc-950 border-[3px] border-black shadow-[4px_4px_0_#000]" style={{ borderRadius: 0 }}>
-                {/* KWD Branding Stripe */}
+                {/* Kesararam With Digital Branding Stripe */}
                 <CautionTape variant="caution" height={10} />
                 
                 <div className="flex flex-col gap-3.5 p-4 pt-3 w-full sm:w-[260px]">

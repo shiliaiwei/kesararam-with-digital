@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * KWD Brand Kit — road-sign shapes + caution-tape patterns.
+ * Kesararam With Digital Brand Kit — road-sign shapes + caution-tape patterns.
  *
  * Everything is pure vector SVG → renders crisp at ANY size (4K slides, print,
  * favicons). Flat brutalist look: solid black border, hard offset shadow, NO blur,

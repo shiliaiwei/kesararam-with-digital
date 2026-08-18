@@ -38,8 +38,8 @@ export function RegionalPitchSection() {
 
           <p className="mt-3 text-base sm:text-lg font-medium text-zinc-600 max-w-2xl" style={khFont}>
             {kh
-              ? "ការបង្ហាញដំណោះស្រាយបច្ចេកវិទ្យាសុវត្ថិភាពចរាចរណ៍ KWD ជូនដល់គណៈកម្មការបច្ចេកវិទ្យា និងអប់រំថ្នាក់ជាតិ"
-              : "Presenting KWD - Kesararam With Digital to national tech & education leaders at Technovation Cambodia."}
+              ? "ការបង្ហាញដំណោះស្រាយបច្ចេកវិទ្យាសុវត្ថិភាពចរាចរណ៍ Kesararam With Digital ជូនដល់គណៈកម្មការបច្ចេកវិទ្យា និងអប់រំថ្នាក់ជាតិ"
+              : "Presenting Kesararam With Digital - Kesararam With Digital to national tech & education leaders at Technovation Cambodia."}
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export function RegionalPitchSection() {
                 <div className="relative aspect-[16/10] overflow-hidden border border-zinc-800 bg-zinc-950">
                   <img
                     src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1783437729/DSC_1031_pxbzfi.jpg"
-                    alt="Technovation Regional Pitch Day Presentation Team KWD"
+                    alt="Technovation Regional Pitch Day Presentation Team Kesararam With Digital"
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -99,7 +99,7 @@ export function RegionalPitchSection() {
               <p className="text-sm sm:text-base text-zinc-300 font-medium leading-relaxed" style={khFont}>
                 {kh
                   ? "ក្នុងព្រឹត្តិការណ៍ Regional Pitch ក្រុមបានធ្វើបទបង្ហាញរយៈពេល ៤ នាទី និងឆ្លើយសំណួរជាមួយគណៈកម្មការជំនាញ លើការផ្លាស់ប្តូរការរៀនសញ្ញាចរាចរណ៍តាមបែបឌីជីថលសម្រាប់សិស្សកម្ពុជា។"
-                  : "During the Regional Pitch Event, the team delivered a live 4-minute presentation and interactive demo, showcasing how KWD makes learning road signs engaging, bilingual, and accessible for youth."}
+                  : "During the Regional Pitch Event, the team delivered a live 4-minute presentation and interactive demo, showcasing how Kesararam With Digital makes learning road signs engaging, bilingual, and accessible for youth."}
               </p>
 
               {/* Feature Highlights List */}

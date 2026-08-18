@@ -10,8 +10,8 @@ const SECTIONS = [
     id: "s1",
     num: "១",
     heading: { kh: "សេចក្ដីផ្ដើម", en: "Introduction" },
-    kh: "KWD (kesararamwithdigital.tech) ប្ដេជ្ញាការពារភាពឯកជនរបស់សិស្ស គ្រូ និងអ្នកប្រើប្រាស់ទាំងអស់។ គោលការណ៍នេះពន្យល់ពីព័ត៌មានដែលយើងប្រមូល របៀបយើងប្រើ និងរបៀបយើងការពារវា ស្របតាមស្តង់ដារសុវត្ថិភាព Technovation និងគោលដៅអភិវឌ្ឍន៍ប្រកបដោយចីរភាព (SDG) របស់អង្គការសហប្រជាជាតិ។",
-    en: "KWD (kesararamwithdigital.tech) is committed to protecting the privacy of students, teachers, and all users. This policy explains what information we collect, how we use it, and how we protect it — in alignment with Technovation's safety standards and the United Nations Sustainable Development Goals (SDG).",
+    kh: "Kesararam With Digital (kesararamwithdigital.tech) ប្ដេជ្ញាការពារភាពឯកជនរបស់សិស្ស គ្រូ និងអ្នកប្រើប្រាស់ទាំងអស់។ គោលការណ៍នេះពន្យល់ពីព័ត៌មានដែលយើងប្រមូល របៀបយើងប្រើ និងរបៀបយើងការពារវា ស្របតាមស្តង់ដារសុវត្ថិភាព Technovation និងគោលដៅអភិវឌ្ឍន៍ប្រកបដោយចីរភាព (SDG) របស់អង្គការសហប្រជាជាតិ។",
+    en: "Kesararam With Digital (kesararamwithdigital.tech) is committed to protecting the privacy of students, teachers, and all users. This policy explains what information we collect, how we use it, and how we protect it — in alignment with Technovation's safety standards and the United Nations Sustainable Development Goals (SDG).",
   },
   {
     id: "s2",
@@ -38,8 +38,8 @@ const SECTIONS = [
     id: "s5",
     num: "៥",
     heading: { kh: "ភាពឯកជនរបស់កុមារ", en: "Children's Privacy" },
-    kh: "KWD ត្រូវបានរចនាសម្រាប់បរិយាកាសសាលា។ គណនីសិស្សអាយុក្រោម ១៣ ឆ្នាំ ត្រូវបង្កើតណែនាំដោយគ្រូ ឬអ្នកគ្រប់គ្រង ស្របតាមគោលការណ៍សុវត្ថិភាពកុមាររបស់ Technovation។ ឪពុកម្ដាយ ឬអាណាព្យាបាលអាចស្នើសុំចូលមើល កែ ឬលុបទិន្នន័យកូនរបស់ខ្លួន។",
-    en: "KWD is designed for school environments. Student accounts for users under 13 years of age must be created by a teacher or administrator, in accordance with Technovation's child safety guidelines. Parents or guardians may request to view, edit, or delete their child's data.",
+    kh: "Kesararam With Digital ត្រូវបានរចនាសម្រាប់បរិយាកាសសាលា។ គណនីសិស្សអាយុក្រោម ១៣ ឆ្នាំ ត្រូវបង្កើតណែនាំដោយគ្រូ ឬអ្នកគ្រប់គ្រង ស្របតាមគោលការណ៍សុវត្ថិភាពកុមាររបស់ Technovation។ ឪពុកម្ដាយ ឬអាណាព្យាបាលអាចស្នើសុំចូលមើល កែ ឬលុបទិន្នន័យកូនរបស់ខ្លួន។",
+    en: "Kesararam With Digital is designed for school environments. Student accounts for users under 13 years of age must be created by a teacher or administrator, in accordance with Technovation's child safety guidelines. Parents or guardians may request to view, edit, or delete their child's data.",
   },
   {
     id: "s6",
@@ -96,17 +96,17 @@ export default function PrivacyPage() {
             {kh ? "ឯកសារច្បាប់" : "Legal Document"}
           </p>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900" style={kf}>
-            {kh ? "គោលការណ៍ភាពឯកជន KWD" : "KWD Privacy Policy"}
+            {kh ? "គោលការណ៍ភាពឯកជន Kesararam With Digital" : "Kesararam With Digital Privacy Policy"}
           </h1>
           <p className="mt-2 text-sm text-zinc-500 max-w-xl leading-relaxed" style={kf}>
             {kh
-              ? "KWD ប្ដេជ្ញាការពារភាពឯកជនរបស់សិស្ស គ្រូ និងអ្នកប្រើប្រាស់ទាំងអស់។"
-              : "KWD is committed to protecting the privacy of every student, teacher, and user on our platform."}
+              ? "Kesararam With Digital ប្ដេជ្ញាការពារភាពឯកជនរបស់សិស្ស គ្រូ និងអ្នកប្រើប្រាស់ទាំងអស់។"
+              : "Kesararam With Digital is committed to protecting the privacy of every student, teacher, and user on our platform."}
           </p>
           <p className="mt-3 text-xs text-zinc-400 font-mono">
             {kh
-              ? "ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
-              : "Last updated June 2026 · KWD · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia"}
+              ? "ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · Kesararam With Digital · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
+              : "Last updated June 2026 · Kesararam With Digital · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia"}
           </p>
         </div>
       </header>

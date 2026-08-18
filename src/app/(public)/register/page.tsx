@@ -3,7 +3,7 @@ import { getSession, getRedirectUrl } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { RegisterForm } from "./register-form";
 
-export const metadata: Metadata = { title: "Register — KWD" };
+export const metadata: Metadata = { title: "Register — Kesararam With Digital" };
 
 export default async function RegisterPage() {
   const session = await getSession();

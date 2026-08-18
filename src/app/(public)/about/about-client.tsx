@@ -157,7 +157,7 @@ function Lightbox({ images, index, onClose, onPrev, onNext }: {
 // ── Content ───────────────────────────────────────────────────────────────────
 const CONTENT = {
   en: {
-    eyebrow: "About KWD",
+    eyebrow: "About Kesararam With Digital",
     titleLine1: "KESARARAM.",
     titleLine2: "WITH DIGITAL.",
     tagline: "Young Cambodian women advancing road safety education through digital innovation and technology.",
@@ -179,7 +179,7 @@ const CONTENT = {
     awardSection: {
       tag: "Technovation 2026 Milestone",
       title: "National Champions & Global Semifinalists",
-      desc: "In July 2026, at the American University of Phnom Penh (AUPP), Team KWD was crowned 1st Place National Champion of Technovation Girls Cambodia 2026 and selected by Technovation Global HQ as 1 of only 3 Cambodian teams advancing to the Global Semifinals.",
+      desc: "In July 2026, at the American University of Phnom Penh (AUPP), Team Kesararam With Digital was crowned 1st Place National Champion of Technovation Girls Cambodia 2026 and selected by Technovation Global HQ as 1 of only 3 Cambodian teams advancing to the Global Semifinals.",
       metaList: [
         { label: "Award Level", value: "National Champion · Junior Division" },
         { label: "Global Status", value: "Global Semifinalist (Top 3 in Cambodia)" },
@@ -213,13 +213,13 @@ const CONTENT = {
     galleryView: "View photo",
     testimonials: [
       { name: "Mentor",            role: "Technovation Girls",          text: "These girls didn't just build an app — they built confidence. Watching them go from 'I don't know how' to 'I built this' is the most rewarding thing I've ever been part of." },
-      { name: "Teacher",           role: "Kesararam Primary School",    text: "KWD proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a global stage." },
-      { name: "Student",           role: "KWD User",                    text: "I used to be afraid of the driving theory exam. Now I practice every day on KWD and feel ready. The Khmer support makes everything so much clearer." },
+      { name: "Teacher",           role: "Kesararam Primary School",    text: "Kesararam With Digital proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a global stage." },
+      { name: "Student",           role: "Kesararam With Digital User",                    text: "I used to be afraid of the driving theory exam. Now I practice every day on Kesararam With Digital and feel ready. The Khmer support makes everything so much clearer." },
       { name: "Police Officer",    role: "Traffic Safety Department",   text: "We are impressed by this platform. It covers more than we expected from a student project. This kind of education can genuinely reduce road accidents." },
-      { name: "Parent",            role: "Parent of KWD Student",       text: "I am so proud of this platform. My child uses it every day to study for the exam. The Khmer language makes it easy for our whole family to learn together." },
+      { name: "Parent",            role: "Parent of Kesararam With Digital Student",       text: "I am so proud of this platform. My child uses it every day to study for the exam. The Khmer language makes it easy for our whole family to learn together." },
     ],
     legalTitle: "Legal & Privacy",
-    legalText: "KWD is committed to protecting user privacy, especially for students. Our platform follows Technovation's safety guidelines and Cambodia's data protection principles.",
+    legalText: "Kesararam With Digital is committed to protecting user privacy, especially for students. Our platform follows Technovation's safety guidelines and Cambodia's data protection principles.",
     privacyBtn: "Privacy Policy",
     termsBtn: "Terms of Use",
   },
@@ -246,7 +246,7 @@ const CONTENT = {
     awardSection: {
       tag: "សមិទ្ធផល Technovation ២០២៦",
       title: "ជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
-      desc: "នៅខែកក្កដា ឆ្នាំ២០២៦ នៅសាកលវិទ្យាល័យអាមេរិកាំងភ្នំពេញ (AUPP) ក្រុម KWD ឈ្នះពានរង្វាន់ជើងឯកថ្នាក់ជាតិ (Junior Division) នៃ Technovation Girls Cambodia ២០២៦ និងត្រូវបានជ្រើសរើសជា ១ ក្នុងចំណោម ៣ ក្រុមតំណាងឱ្យកម្ពុជាឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)។",
+      desc: "នៅខែកក្កដា ឆ្នាំ២០២៦ នៅសាកលវិទ្យាល័យអាមេរិកាំងភ្នំពេញ (AUPP) ក្រុម Kesararam With Digital ឈ្នះពានរង្វាន់ជើងឯកថ្នាក់ជាតិ (Junior Division) នៃ Technovation Girls Cambodia ២០២៦ និងត្រូវបានជ្រើសរើសជា ១ ក្នុងចំណោម ៣ ក្រុមតំណាងឱ្យកម្ពុជាឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)។",
       metaList: [
         { label: "កម្រិតជ័យលាភី", value: "ជើងឯកថ្នាក់ជាតិ (National Champion · Junior)" },
         { label: "ឆាកអន្តរជាតិ", value: "វគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)" },
@@ -280,13 +280,13 @@ const CONTENT = {
     galleryView: "មើលរូបភាព",
     testimonials: [
       { name: "គ្រូណែនាំ",          role: "Technovation Girls",         text: "ពួកគេមិនបានបង្កើតតែ app ប៉ុណ្ណោះទេ — ពួកគេបានបង្កើតទំនុកចិត្ត។ ការមើលឃើញការផ្លាស់ប្ដូរពី «ខ្ញុំមិនដឹងទេ» ទៅ «ខ្ញុំបានធ្វើ» ជាបទពិសោធន៍ដ៏មានន័យ ហើយជាមោទនភាពដ៏ធំធេងបំផុត។" },
-      { name: "លោកគ្រូ",            role: "សាលាបឋមសិក្សាកេសរារាម",      text: "KWD បញ្ជាក់ថា ការអប់រំចរាចរអាចច្នៃប្រឌិត ២ ភាសា និងដឹកនាំដោយសិស្ស។ សិស្សរបស់យើងមោទនភាពដែលឈ្មោះសាលានៅលើឆាកអន្តរជាតិ។" },
-      { name: "សិស្ស",               role: "អ្នកប្រើ KWD",               text: "ពីការភ័យខ្លាចការប្រឡង ទៅជាការហ្វឹកហ្វឺនរៀងរាល់ថ្ងៃ ដោយ KWD — ភាសាខ្មែរ ច្បាស់ ងាយ យល់ ១០០%។" },
+      { name: "លោកគ្រូ",            role: "សាលាបឋមសិក្សាកេសរារាម",      text: "Kesararam With Digital បញ្ជាក់ថា ការអប់រំចរាចរអាចច្នៃប្រឌិត ២ ភាសា និងដឹកនាំដោយសិស្ស។ សិស្សរបស់យើងមោទនភាពដែលឈ្មោះសាលានៅលើឆាកអន្តរជាតិ។" },
+      { name: "សិស្ស",               role: "អ្នកប្រើ Kesararam With Digital",               text: "ពីការភ័យខ្លាចការប្រឡង ទៅជាការហ្វឹកហ្វឺនរៀងរាល់ថ្ងៃ ដោយ Kesararam With Digital — ភាសាខ្មែរ ច្បាស់ ងាយ យល់ ១០០%។" },
       { name: "មន្ត្រីចរាចរ",        role: "នាយកដ្ឋានសុវត្ថិភាពចរាចរ",  text: "ប្រព័ន្ធសំណួរ និងប្រភេទវិញ្ញាសា មានស្តង់ដារខ្ពស់ ហួសពីការរំពឹងទុក។ ដំណោះស្រាយអប់រំដ៏ចំគោលដៅ ដែលនឹងកាត់បន្ថយគ្រោះថ្នាក់ចរាចរ។" },
-      { name: "ឪពុក/ម្ដាយ",          role: "ឪពុកម្ដាយរបស់សិស្ស KWD",    text: "ខ្ញុំមោទនភាពពីកម្មវិធីនេះ។ កូនខ្ញុំប្រើរៀងរាល់ថ្ងៃ ហើយយល់ដឹងច្រើនជាមុន។ ភាសាខ្មែរ ជួយឱ្យក្រុមគ្រួសារទាំងមូលរៀនជាមួយគ្នា។" },
+      { name: "ឪពុក/ម្ដាយ",          role: "ឪពុកម្ដាយរបស់សិស្ស Kesararam With Digital",    text: "ខ្ញុំមោទនភាពពីកម្មវិធីនេះ។ កូនខ្ញុំប្រើរៀងរាល់ថ្ងៃ ហើយយល់ដឹងច្រើនជាមុន។ ភាសាខ្មែរ ជួយឱ្យក្រុមគ្រួសារទាំងមូលរៀនជាមួយគ្នា។" },
     ],
     legalTitle: "ច្បាប់ និងភាពឯកជន",
-    legalText: "KWD ប្ដេជ្ញាការពារឯកជនភាពអ្នកប្រើ ជាពិសេសសិស្ស។ ថ្នាល់របស់យើងអនុវត្តតាមការណែនាំ Technovation និងគោលការណ៍ការពារទិន្នន័យកម្ពុជា។",
+    legalText: "Kesararam With Digital ប្ដេជ្ញាការពារឯកជនភាពអ្នកប្រើ ជាពិសេសសិស្ស។ ថ្នាល់របស់យើងអនុវត្តតាមការណែនាំ Technovation និងគោលការណ៍ការពារទិន្នន័យកម្ពុជា។",
     privacyBtn: "គោលការណ៍ភាពឯកជន",
     termsBtn: "លក្ខខណ្ឌប្រើប្រាស់",
   },
@@ -358,13 +358,13 @@ export function AboutClient() {
               style={{ boxShadow: "8px 8px 0 #ca8a04" }}
               onContextMenu={e => e.preventDefault()}
             >
-              <img src={GALLERY[0]} alt="Team KWD" draggable={false}
+              <img src={GALLERY[0]} alt="Team Kesararam With Digital" draggable={false}
                 className="w-full h-full object-cover pointer-events-none"
                 style={{ userSelect: "none" }} />
               <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
               <div className="absolute bottom-0 left-0 right-0 bg-yellow-400 px-3 py-1.5 flex items-center justify-between">
                 <span className="text-black font-black text-[10px] tracking-widest uppercase" style={kf}>
-                  Team KWD · Technovation Girls 2026
+                  Team Kesararam With Digital · Technovation Girls 2026
                 </span>
                 <span className="text-black/50 text-[10px] font-bold">#50777</span>
               </div>

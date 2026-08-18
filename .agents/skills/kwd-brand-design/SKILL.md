@@ -286,9 +286,25 @@ See also memory: [[git-push-discipline]].
 
 Never use these words in any user-facing text, UI copy, translations, descriptions, or generated content:
 
+### Product Name — ALWAYS use the full name in user-facing text
+
+> ❌ **NEVER** write `KWD` alone as the product name in any user-facing string:
+> page titles, meta descriptions, alt text, UI copy, error messages, emails, OG images, or any visible text.
+>
+> ✅ **ALWAYS** write the full name: **`Kesararam With Digital`**
+>
+> **Allowed exceptions (internal/code only):**
+> - CSS class names and CSS variables: `kwd-*`, `--kwd-*` (design tokens, keep as-is)
+> - Code identifiers, function/variable names, slug strings in DB (e.g. `kwdDash`, `kwd_theme`)
+> - Comments in source code
+> - TOTP issuer / auth codes that use the abbreviation by technical necessity
+> - This skill file and internal agent documentation
+> - Invite code format placeholders (e.g. `KWD-XXXX-YYYY` as a code pattern, not a product name)
+
 ### English
 | Banned | Use instead |
 |--------|-------------|
+| **KWD** (standalone as product name) | "Kesararam With Digital" |
 | **exam** | "test", "quiz", "challenge", or "assessment" |
 | **driving** | "road safety", "traffic", or "travel" |
 

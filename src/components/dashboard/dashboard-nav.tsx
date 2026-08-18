@@ -33,7 +33,7 @@ export function DashboardNav({ role }: { role: "admin" | "teacher" }) {
           className={`w-3 h-3 rounded-full ${accentColor} border-2 border-black`}
         />
         <span className="font-black text-sm uppercase tracking-widest">
-          KWD {role}
+          Kesararam With Digital {role}
         </span>
       </div>
 

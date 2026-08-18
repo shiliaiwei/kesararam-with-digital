@@ -30,17 +30,17 @@ export default function TermsPage() {
             {kh ? "ឯកសារច្បាប់" : "Legal Document"}
           </p>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900" style={kf}>
-            {kh ? "លក្ខខណ្ឌប្រើប្រាស់ KWD" : "KWD Terms of Use"}
+            {kh ? "លក្ខខណ្ឌប្រើប្រាស់ Kesararam With Digital" : "Kesararam With Digital Terms of Use"}
           </h1>
           <p className="mt-2 text-sm text-zinc-500 max-w-xl leading-relaxed" style={kf}>
             {kh
-              ? "ការប្រើប្រាស់ KWD មានន័យថាអ្នកយល់ព្រមនឹងលក្ខខណ្ឌទាំងនេះ។"
-              : "By using KWD you agree to these terms. Please read them carefully before using the platform."}
+              ? "ការប្រើប្រាស់ Kesararam With Digital មានន័យថាអ្នកយល់ព្រមនឹងលក្ខខណ្ឌទាំងនេះ។"
+              : "By using Kesararam With Digital you agree to these terms. Please read them carefully before using the platform."}
           </p>
           <p className="mt-3 text-xs text-zinc-400 font-mono">
             {kh
-              ? "ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
-              : "Last updated June 2026 · KWD · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia"}
+              ? "ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · Kesararam With Digital · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
+              : "Last updated June 2026 · Kesararam With Digital · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia"}
           </p>
         </div>
       </header>

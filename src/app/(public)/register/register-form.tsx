@@ -211,14 +211,14 @@ function PrivacyConfirmModal({
         <div className="flex-1 overflow-y-auto space-y-4 pr-1 text-sm font-semibold text-zinc-700">
           <p className="leading-relaxed">
             {kh
-              ? "មុនពេលចុះឈ្មោះគណនី សូមអាន និងយល់ព្រមលើលក្ខខណ្ឌប្រើប្រាស់របស់ KWD៖"
-              : "Before creating an account, please read and accept the KWD Terms of Use:"}
+              ? "មុនពេលចុះឈ្មោះគណនី សូមអាន និងយល់ព្រមលើលក្ខខណ្ឌប្រើប្រាស់របស់ Kesararam With Digital៖"
+              : "Before creating an account, please read and accept the Kesararam With Digital Terms of Use:"}
           </p>
 
-          {/* KWD Terms of Use scroll section */}
+          {/* Kesararam With Digital Terms of Use scroll section */}
           <div className="flex flex-col gap-1.5 pt-2">
             <span className="text-xs font-black uppercase text-black tracking-wide">
-              {kh ? "លក្ខខណ្ឌប្រើប្រាស់ KWD" : "KWD Terms of Use"}
+              {kh ? "លក្ខខណ្ឌប្រើប្រាស់ Kesararam With Digital" : "Kesararam With Digital Terms of Use"}
             </span>
             <div
               ref={scrollContainerRef}
@@ -423,7 +423,7 @@ function RegisterFormInner() {
 
         {/* Header logo */}
         <div className="flex flex-col items-center justify-center gap-3">
-          <img src="/brand/logo.png" alt="KWD Logo" className="h-20 w-auto object-contain" />
+          <img src="/brand/logo.png" alt="Kesararam With Digital Logo" className="h-20 w-auto object-contain" />
           <span className="font-google-sans text-lg lg:text-xl font-black tracking-tight text-black uppercase text-center">
             KESARARAM WITH DIGITAL
           </span>

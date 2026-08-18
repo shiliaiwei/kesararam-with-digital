@@ -17,7 +17,7 @@ export default function NotFound() {
             <div className="flex justify-center mb-6">
               <Image
                 src="/brand/kwd-black_nobackground.png"
-                alt="KWD"
+                alt="Kesararam With Digital"
                 width={120}
                 height={48}
                 className="object-contain h-12 w-auto"

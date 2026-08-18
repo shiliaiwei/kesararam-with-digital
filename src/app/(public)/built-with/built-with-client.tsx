@@ -75,8 +75,8 @@ const TECH_TREE: TechNode = {
               icon: SiGraphql,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. We prefer standard RESTful endpoint architecture for speed and simplicity.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ យើងចូលចិត្តស្ថាបត្យកម្ម REST API ស្តង់ដារដើម្បីល្បឿន និងភាពសាមញ្ញ។"
+                en: "Not used in Kesararam With Digital. We prefer standard RESTful endpoint architecture for speed and simplicity.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ យើងចូលចិត្តស្ថាបត្យកម្ម REST API ស្តង់ដារដើម្បីល្បឿន និងភាពសាមញ្ញ។"
               }
             },
             {
@@ -89,8 +89,8 @@ const TECH_TREE: TechNode = {
               icon: Zap,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD via Next.js Route Handlers for authentication, game sessions, and score synchronization.",
-                kh: "ប្រើប្រាស់ក្នុង KWD តាមរយៈ Next.js Route Handlers សម្រាប់ការផ្ទៀងផ្ាត់គណនី វគ្គលេងហ្គេម និងការធ្វើសមកាលកម្មពិន្ទុ។"
+                en: "Used in Kesararam With Digital via Next.js Route Handlers for authentication, game sessions, and score synchronization.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital តាមរយៈ Next.js Route Handlers សម្រាប់ការផ្ទៀងផ្ាត់គណនី វគ្គលេងហ្គេម និងការធ្វើសមកាលកម្មពិន្ទុ។"
               }
             }
           ]
@@ -115,8 +115,8 @@ const TECH_TREE: TechNode = {
               icon: SiPostgresql,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD via Neon Serverless Postgres to ensure clean transactions and relational constraints.",
-                kh: "ប្រើប្រាស់ក្នុង KWD តាមរយៈ Neon Serverless Postgres ដើម្បីធានានូវប្រតិបត្តិការស្អាត និងដែនកំណត់ទំនាក់ទំនង។"
+                en: "Used in Kesararam With Digital via Neon Serverless Postgres to ensure clean transactions and relational constraints.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital តាមរយៈ Neon Serverless Postgres ដើម្បីធានានូវប្រតិបត្តិការស្អាត និងដែនកំណត់ទំនាក់ទំនង។"
               }
             },
             {
@@ -129,8 +129,8 @@ const TECH_TREE: TechNode = {
               icon: SiMysql,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. We choose PostgreSQL for better JSON query capabilities and serverless scalability.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ យើងជ្រើសរើស PostgreSQL សម្រាប់សមត្ថភាពសំណួរ JSON ល្អជាង និងលទ្ធភាពធ្វើមាត្រដ្ឋានបែប serverless។"
+                en: "Not used in Kesararam With Digital. We choose PostgreSQL for better JSON query capabilities and serverless scalability.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ យើងជ្រើសរើស PostgreSQL សម្រាប់សមត្ថភាពសំណួរ JSON ល្អជាង និងលទ្ធភាពធ្វើមាត្រដ្ឋានបែប serverless។"
               }
             },
             {
@@ -143,8 +143,8 @@ const TECH_TREE: TechNode = {
               icon: SiMongodb,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. Relational integrity is vital for scoring and school reports, making SQL databases a better fit.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ ភាពត្រឹមត្រូវនៃទំនាក់ទំនងមានសារៈសំខាន់ណាស់សម្រាប់ពិន្ទុ និងរបាយការណ៍សាលារៀន ដែលធ្វើឱ្យ SQL ក្លាយជាជម្រើសល្អជាង។"
+                en: "Not used in Kesararam With Digital. Relational integrity is vital for scoring and school reports, making SQL databases a better fit.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ ភាពត្រឹមត្រូវនៃទំនាក់ទំនងមានសារៈសំខាន់ណាស់សម្រាប់ពិន្ទុ និងរបាយការណ៍សាលារៀន ដែលធ្វើឱ្យ SQL ក្លាយជាជម្រើសល្អជាង។"
               }
             }
           ]
@@ -169,8 +169,8 @@ const TECH_TREE: TechNode = {
               icon: SiOpenjdk,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. React/Next.js and TypeScript provide a faster, unified developer experience.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ React/Next.js និង TypeScript ផ្តល់នូវបទពិសោធន៍អ្នកអភិវឌ្ឍន៍រួមគ្នាលឿនជាងមុន។"
+                en: "Not used in Kesararam With Digital. React/Next.js and TypeScript provide a faster, unified developer experience.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ React/Next.js និង TypeScript ផ្តល់នូវបទពិសោធន៍អ្នកអភិវឌ្ឍន៍រួមគ្នាលឿនជាងមុន។"
               }
             },
             {
@@ -183,8 +183,8 @@ const TECH_TREE: TechNode = {
               icon: SiRuby,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. We unify our codebase on TypeScript for both front-end and back-end logic.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ យើងបង្រួបបង្រួមប្រភពកូដរបស់យើងលើ TypeScript សម្រាប់តក្កវិជ្ជាទាំងផ្នែកខាងមុខ និងខាងក្រោយ។"
+                en: "Not used in Kesararam With Digital. We unify our codebase on TypeScript for both front-end and back-end logic.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ យើងបង្រួបបង្រួមប្រភពកូដរបស់យើងលើ TypeScript សម្រាប់តក្កវិជ្ជាទាំងផ្នែកខាងមុខ និងខាងក្រោយ។"
               }
             },
             {
@@ -197,8 +197,8 @@ const TECH_TREE: TechNode = {
               icon: SiPhp,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. Although running locally on XAMPP, KWD's production engine runs fully on TypeScript/Node.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ ទោះបីជាដំណើរការក្នុងតំបន់លើ XAMPP ក៏ដោយ ម៉ាស៊ីនផលិតកម្មរបស់ KWD ដំណើរការទាំងស្រុងលើ TypeScript/Node។"
+                en: "Not used in Kesararam With Digital. Although running locally on XAMPP, Kesararam With Digital's production engine runs fully on TypeScript/Node.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ ទោះបីជាដំណើរការក្នុងតំបន់លើ XAMPP ក៏ដោយ ម៉ាស៊ីនផលិតកម្មរបស់ Kesararam With Digital ដំណើរការទាំងស្រុងលើ TypeScript/Node។"
               }
             },
             {
@@ -211,8 +211,8 @@ const TECH_TREE: TechNode = {
               icon: SiPython,
               status: "not_used",
               usedInKwd: {
-                en: "Used in KWD for background data processing and AI training preparation scripts.",
-                kh: "ប្រើប្រាស់ក្នុង KWD សម្រាប់ដំណើរការទិន្នន័យផ្ទៃខាងក្រោយ និងស្គ្រីបរៀបចំការបណ្តុះបណ្តាល AI។"
+                en: "Used in Kesararam With Digital for background data processing and AI training preparation scripts.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital សម្រាប់ដំណើរការទិន្នន័យផ្ទៃខាងក្រោយ និងស្គ្រីបរៀបចំការបណ្តុះបណ្តាល AI។"
               }
             },
             {
@@ -225,8 +225,8 @@ const TECH_TREE: TechNode = {
               icon: SiNodedotjs,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our server runtime engine for hosting code and handling package management via Node.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាម៉ាស៊ីនដំណើរការម៉ាស៊ីនបម្រើរបស់យើង សម្រាប់ផ្ទុកកូដ និងគ្រប់គ្រងកញ្ចប់កម្មវិធីតាមរយៈ Node។"
+                en: "Used in Kesararam With Digital as our server runtime engine for hosting code and handling package management via Node.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាម៉ាស៊ីនដំណើរការម៉ាស៊ីនបម្រើរបស់យើង សម្រាប់ផ្ទុកកូដ និងគ្រប់គ្រងកញ្ចប់កម្មវិធីតាមរយៈ Node។"
               }
             }
           ]
@@ -251,8 +251,8 @@ const TECH_TREE: TechNode = {
               icon: Layers,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our primary SQL interface, giving SQL autocomplete and automatic type generation.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាចំណុចប្រទាក់ SQL ចម្បងរបស់យើង ផ្តល់នូវការបំពេញកូដ SQL ដោយស្វ័យប្រវត្ត និងការបង្កើតប្រភេទស្វ័យប្រវត្តិ។"
+                en: "Used in Kesararam With Digital as our primary SQL interface, giving SQL autocomplete and automatic type generation.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាចំណុចប្រទាក់ SQL ចម្បងរបស់យើង ផ្តល់នូវការបំពេញកូដ SQL ដោយស្វ័យប្រវត្ត និងការបង្កើតប្រភេទស្វ័យប្រវត្តិ។"
               }
             },
             {
@@ -265,8 +265,8 @@ const TECH_TREE: TechNode = {
               icon: ShieldCheck,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to validate user registration formats, quiz attempts, and API input parameters.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីផ្ទៀងផ្ទាត់ទម្រង់ចុះឈ្មោះអ្នកប្រើប្រាស់ ការព្យាយាមឆ្លើយសំណួរ និងប៉ារ៉ាម៉ែត្របញ្ចូល API។"
+                en: "Used in Kesararam With Digital to validate user registration formats, quiz attempts, and API input parameters.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីផ្ទៀងផ្ទាត់ទម្រង់ចុះឈ្មោះអ្នកប្រើប្រាស់ ការព្យាយាមឆ្លើយសំណួរ និងប៉ារ៉ាម៉ែត្របញ្ចូល API។"
               }
             },
             {
@@ -279,8 +279,8 @@ const TECH_TREE: TechNode = {
               icon: ShieldCheck,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to issue and verify secure student session cookies and tokens.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីចេញ និងផ្ទៀងផ្ទាត់ session cookies និងថូខឹនសិស្សដែលមានសុវត្ថិភាព។"
+                en: "Used in Kesararam With Digital to issue and verify secure student session cookies and tokens.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីចេញ និងផ្ទៀងផ្ទាត់ session cookies និងថូខឹនសិស្សដែលមានសុវត្ថិភាព។"
               }
             }
           ]
@@ -317,8 +317,8 @@ const TECH_TREE: TechNode = {
               icon: SiBootstrap,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. We choose Tailwind CSS for custom branding flexibility and modern features.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ យើងជ្រើសរើស Tailwind CSS សម្រាប់ភាពបត់បែននៃម៉ាកសញ្ញាផ្ទាល់ខ្លួន និងលក្ខណៈពិសេសទំនើបៗ។"
+                en: "Not used in Kesararam With Digital. We choose Tailwind CSS for custom branding flexibility and modern features.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ យើងជ្រើសរើស Tailwind CSS សម្រាប់ភាពបត់បែននៃម៉ាកសញ្ញាផ្ទាល់ខ្លួន និងលក្ខណៈពិសេសទំនើបៗ។"
               }
             },
             {
@@ -331,8 +331,8 @@ const TECH_TREE: TechNode = {
               icon: SiTailwindcss,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our core layout and style tool, giving fast response styling and spacing rules.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាប្លង់ស្នូល និងឧបករណ៍រចនាម៉ូដរបស់យើង ផ្តល់នូវការរចនាម៉ូដឆ្លើយតបរហ័ស និងច្បាប់ចន្លោះ។"
+                en: "Used in Kesararam With Digital as our core layout and style tool, giving fast response styling and spacing rules.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាប្លង់ស្នូល និងឧបករណ៍រចនាម៉ូដរបស់យើង ផ្តល់នូវការរចនាម៉ូដឆ្លើយតបរហ័ស និងច្បាប់ចន្លោះ។"
               }
             },
             {
@@ -345,8 +345,8 @@ const TECH_TREE: TechNode = {
               icon: SiJquery,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. React provides declarative state rendering, replacing jQuery entirely.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ React ផ្តល់នូវការបង្ហាញស្ថានភាពបែបប្រកាស ដោយជំនួស jQuery ទាំងស្រុង។"
+                en: "Not used in Kesararam With Digital. React provides declarative state rendering, replacing jQuery entirely.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ React ផ្តល់នូវការបង្ហាញស្ថានភាពបែបប្រកាស ដោយជំនួស jQuery ទាំងស្រុង។"
               }
             },
             {
@@ -359,8 +359,8 @@ const TECH_TREE: TechNode = {
               icon: SiLucide,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our primary icon set for road safety UI, alerts, and navigation.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាបណ្តុំរូបតំណាងចម្បងរបស់យើងសម្រាប់ UI សុវត្ថិភាពចរាចរណ៍ ការព្រមាន និងការរុករក។"
+                en: "Used in Kesararam With Digital as our primary icon set for road safety UI, alerts, and navigation.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាបណ្តុំរូបតំណាងចម្បងរបស់យើងសម្រាប់ UI សុវត្ថិភាពចរាចរណ៍ ការព្រមាន និងការរុករក។"
               }
             },
             {
@@ -373,8 +373,8 @@ const TECH_TREE: TechNode = {
               icon: BarChart2,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD dashboard to render student progress graphs and correct answer statistics.",
-                kh: "ប្រើប្រាស់ក្នុងផ្ទាំងគ្រប់គ្រង KWD ដើម្បីបង្ហាញក្រាហ្វិកវឌ្ឍនភាពសិស្ស និងស្ថិតិចម្លើយត្រឹមត្រូវ។"
+                en: "Used in Kesararam With Digital dashboard to render student progress graphs and correct answer statistics.",
+                kh: "ប្រើប្រាស់ក្នុងផ្ទាំងគ្រប់គ្រង Kesararam With Digital ដើម្បីបង្ហាញក្រាហ្វិកវឌ្ឍនភាពសិស្ស និងស្ថិតិចម្លើយត្រឹមត្រូវ។"
               }
             }
           ]
@@ -399,8 +399,8 @@ const TECH_TREE: TechNode = {
               icon: SiAngular,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. React provides a more flexible model that integrates better with our design tokens.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ React ផ្តល់នូវគំរូដែលអាចបត់បែនបានជាង ដែលរួមបញ្ចូលគ្នាកាន់តែល្អជាមួយនិមិត្តសញ្ញារចនារបស់យើង។"
+                en: "Not used in Kesararam With Digital. React provides a more flexible model that integrates better with our design tokens.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ React ផ្តល់នូវគំរូដែលអាចបត់បែនបានជាង ដែលរួមបញ្ចូលគ្នាកាន់តែល្អជាមួយនិមិត្តសញ្ញារចនារបស់យើង។"
               }
             },
             {
@@ -413,8 +413,8 @@ const TECH_TREE: TechNode = {
               icon: SiVuedotjs,
               status: "not_used",
               usedInKwd: {
-                en: "Not used in KWD. Next.js was selected for official SEO rendering and corporate scaling requirements.",
-                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង KWD ទេ។ Next.js ត្រូវបានជ្រើសរើសសម្រាប់តម្រូវការបង្ហាញ SEO ផ្លូវការ និងការធ្វើមាត្រដ្ឋានក្រុមហ៊ុន។"
+                en: "Not used in Kesararam With Digital. Next.js was selected for official SEO rendering and corporate scaling requirements.",
+                kh: "មិនត្រូវបានប្រើប្រាស់ក្នុង Kesararam With Digital ទេ។ Next.js ត្រូវបានជ្រើសរើសសម្រាប់តម្រូវការបង្ហាញ SEO ផ្លូវការ និងការធ្វើមាត្រដ្ឋានក្រុមហ៊ុន។"
               }
             },
             {
@@ -427,8 +427,8 @@ const TECH_TREE: TechNode = {
               icon: SiReact,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as the building block for all user interaction, quizzes, and animations.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាប្លុកសំណង់សម្រាប់រាល់អន្តរកម្មអ្នកប្រើប្រាស់ កម្រងសំណួរ និងចលនា។"
+                en: "Used in Kesararam With Digital as the building block for all user interaction, quizzes, and animations.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាប្លុកសំណង់សម្រាប់រាល់អន្តរកម្មអ្នកប្រើប្រាស់ កម្រងសំណួរ និងចលនា។"
               }
             },
             {
@@ -441,8 +441,8 @@ const TECH_TREE: TechNode = {
               icon: SiNextdotjs,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our core web engine. It hosts all pages, manages APIs, and performs fast server builds.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាម៉ាស៊ីនគេហទំព័រស្នូលរបស់យើង។ វាផ្ទុកទំព័រទាំងអស់ គ្រប់គ្រង API និងបង្កើតការសាងសង់ម៉ាស៊ីនបម្រើរហ័ស។"
+                en: "Used in Kesararam With Digital as our core web engine. It hosts all pages, manages APIs, and performs fast server builds.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាម៉ាស៊ីនគេហទំព័រស្នូលរបស់យើង។ វាផ្ទុកទំព័រទាំងអស់ គ្រប់គ្រង API និងបង្កើតការសាងសង់ម៉ាស៊ីនបម្រើរហ័ស។"
               }
             }
           ]
@@ -467,8 +467,8 @@ const TECH_TREE: TechNode = {
               icon: SiHtml5,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD through React JSX to define semantic HTML landmarks, headers, and accessible buttons.",
-                kh: "ប្រើប្រាស់ក្នុង KWD តាមរយៈ React JSX ដើម្បីកំណត់សម្គាល់ HTML ន័យធៀប ក្បាលទំព័រ និងប៊ូតុងដែលអាចចូលប្រើបាន។"
+                en: "Used in Kesararam With Digital through React JSX to define semantic HTML landmarks, headers, and accessible buttons.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital តាមរយៈ React JSX ដើម្បីកំណត់សម្គាល់ HTML ន័យធៀប ក្បាលទំព័រ និងប៊ូតុងដែលអាចចូលប្រើបាន។"
               }
             },
             {
@@ -481,8 +481,8 @@ const TECH_TREE: TechNode = {
               icon: SiCssmodules,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD via CSS variables, avatar rank transitions, and caution-tape gradients in globals.css.",
-                kh: "ប្រើប្រាស់ក្នុង KWD តាមរយៈអថេរ CSS ការផ្លាស់ប្តូរចំណាត់ថ្នាក់រូបតំណាង និងជម្រាលខ្សែអាត់ប្រុងប្រយ័ត្ននៅក្នុង globals.css។"
+                en: "Used in Kesararam With Digital via CSS variables, avatar rank transitions, and caution-tape gradients in globals.css.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital តាមរយៈអថេរ CSS ការផ្លាស់ប្តូរចំណាត់ថ្នាក់រូបតំណាង និងជម្រាលខ្សែអាត់ប្រុងប្រយ័ត្ននៅក្នុង globals.css។"
               }
             },
             {
@@ -495,8 +495,8 @@ const TECH_TREE: TechNode = {
               icon: SiJavascript,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to power client state management, sound effects, and session verification.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីគាំទ្រដល់ការគ្រប់គ្រងស្ថានភាពអ្នកប្រើប្រាស់ ផលប៉ះពាល់សំឡេង និងការផ្ទៀង verification។"
+                en: "Used in Kesararam With Digital to power client state management, sound effects, and session verification.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីគាំទ្រដល់ការគ្រប់គ្រងស្ថានភាពអ្នកប្រើប្រាស់ ផលប៉ះពាល់សំឡេង និងការផ្ទៀង verification។"
               }
             }
           ]
@@ -521,8 +521,8 @@ const TECH_TREE: TechNode = {
               icon: SiFigma,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD for UI wireframes, initial layout brainstorming, and mockups.",
-                kh: "ប្រើប្រាស់ក្នុង KWD សម្រាប់ប្លង់សេចក្តីព្រាង UI ការបំផុសគំនិតប្លង់ដំបូង និង mockups។"
+                en: "Used in Kesararam With Digital for UI wireframes, initial layout brainstorming, and mockups.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital សម្រាប់ប្លង់សេចក្តីព្រាង UI ការបំផុសគំនិតប្លង់ដំបូង និង mockups។"
               }
             },
             {
@@ -535,8 +535,8 @@ const TECH_TREE: TechNode = {
               icon: SiAffinitydesigner,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to refine vector road signs and SVG assets to render cleanly at 4K.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីកែលម្អផ្លាកសញ្ញាចរាចរណ៍វ៉ិចទ័រ និងធនធាន SVG ដើម្បីបង្ហាញបានច្បាស់នៅកម្រិត 4K។"
+                en: "Used in Kesararam With Digital to refine vector road signs and SVG assets to render cleanly at 4K.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីកែលម្អផ្លាកសញ្ញាចរាចរណ៍វ៉ិចទ័រ និងធនធាន SVG ដើម្បីបង្ហាញបានច្បាស់នៅកម្រិត 4K។"
               }
             },
             {
@@ -549,8 +549,8 @@ const TECH_TREE: TechNode = {
               icon: Layers,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to compress visual layers and export raster illustrations.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីបង្រួមស្រទាប់ចក្ខុ និងនាំចេញរូបភាពគំនូរ raster។"
+                en: "Used in Kesararam With Digital to compress visual layers and export raster illustrations.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីបង្រួមស្រទាប់ចក្ខុ និងនាំចេញរូបភាពគំនូរ raster។"
               }
             },
             {
@@ -563,8 +563,8 @@ const TECH_TREE: TechNode = {
               icon: PenTool,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to illustrate road-safety mascot templates and cartoon components.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីគូរគំរូតួអង្គម៉ាស្កូតសុវត្ថិភាពចរាចរណ៍ និងសមាសភាគតុក្កតា។"
+                en: "Used in Kesararam With Digital to illustrate road-safety mascot templates and cartoon components.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីគូរគំរូតួអង្គម៉ាស្កូតសុវត្ថិភាពចរាចរណ៍ និងសមាសភាគតុក្កតា។"
               }
             }
           ]
@@ -575,8 +575,8 @@ const TECH_TREE: TechNode = {
       id: "ai_dev",
       name: { en: "AI & Dev Tools", kh: "ជំនួយការ AI និងឧបករណ៍សរសេរកូដ" },
       description: {
-        en: "Generative artificial intelligence and code development assistants helping KWD creators.",
-        kh: "បញ្ញាសិប្បនិម្មិតបង្កើតផល និងជំនួយការសរសេរកូដដែលជួយដល់អ្នកបង្កើត KWD។"
+        en: "Generative artificial intelligence and code development assistants helping Kesararam With Digital creators.",
+        kh: "បញ្ញាសិប្បនិម្មិតបង្កើតផល និងជំនួយការសរសេរកូដដែលជួយដល់អ្នកបង្កើត Kesararam With Digital។"
       },
       icon: BrainCircuit,
       status: "used",
@@ -601,8 +601,8 @@ const TECH_TREE: TechNode = {
               icon: BrainCircuit,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our primary developer pair-programmer to implement complex views and styling checks.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាអ្នកសរសេរកូដដៃគូចម្បងរបស់យើង ដើម្បីអនុវត្តការបង្ហាញស្មុគស្មាញ និងការត្រួតពិនិត្យរចនាប័ទ្ម។"
+                en: "Used in Kesararam With Digital as our primary developer pair-programmer to implement complex views and styling checks.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាអ្នកសរសេរកូដដៃគូចម្បងរបស់យើង ដើម្បីអនុវត្តការបង្ហាញស្មុគស្មាញ និងការត្រួតពិនិត្យរចនាប័ទ្ម។"
               }
             },
             {
@@ -615,8 +615,8 @@ const TECH_TREE: TechNode = {
               icon: BrainCircuit,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to write unit tests and audit database schemas.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីសរសេរតេស្តឯកតា និងសវនកម្មគ្រោងការណ៍មូលដ្ឋានទិន្នន័យ។"
+                en: "Used in Kesararam With Digital to write unit tests and audit database schemas.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីសរសេរតេស្តឯកតា និងសវនកម្មគ្រោងការណ៍មូលដ្ឋានទិន្នន័យ។"
               }
             },
             {
@@ -629,8 +629,8 @@ const TECH_TREE: TechNode = {
               icon: SiGithubcopilot,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to speed up typing of standard loops, imports, and variables.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីពន្លឿនការវាយកូដរង្វិលជុំស្តង់ដារ ការនាំចូល និងអថេរ។"
+                en: "Used in Kesararam With Digital to speed up typing of standard loops, imports, and variables.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីពន្លឿនការវាយកូដរង្វិលជុំស្តង់ដារ ការនាំចូល និងអថេរ។"
               }
             }
           ]
@@ -655,8 +655,8 @@ const TECH_TREE: TechNode = {
               icon: SiAnthropic,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to write detailed Khmer translations and check responsive HTML styles.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីសរសេរបកប្រែភាសាខ្មែរលម្អិត និងត្រួតពិនិត្យរចនាប័ទ្ម HTML ឆ្លើយតប។"
+                en: "Used in Kesararam With Digital to write detailed Khmer translations and check responsive HTML styles.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីសរសេរបកប្រែភាសាខ្មែរលម្អិត និងត្រួតពិនិត្យរចនាប័ទ្ម HTML ឆ្លើយតប។"
               }
             },
             {
@@ -669,8 +669,8 @@ const TECH_TREE: TechNode = {
               icon: SiGooglegemini,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to brainstorm local Cambodian scenarios and verify safety law references.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីបំផុសគំនិតអំពីស្ថានភាពក្នុងស្រុករបស់កម្ពុជា និងផ្ទៀងផ្ទាត់ឯកសារយោងច្បាប់សុវត្ថិភាព។"
+                en: "Used in Kesararam With Digital to brainstorm local Cambodian scenarios and verify safety law references.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីបំផុសគំនិតអំពីស្ថានភាពក្នុងស្រុករបស់កម្ពុជា និងផ្ទៀងផ្ទាត់ឯកសារយោងច្បាប់សុវត្ថិភាព។"
               }
             },
             {
@@ -683,8 +683,8 @@ const TECH_TREE: TechNode = {
               icon: SiOpenai,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD for formatting markdown files and planning database migrations.",
-                kh: "ប្រើប្រាស់ក្នុង KWD សម្រាប់កំណត់ទម្រង់ឯកសារ markdown និងរៀបចំផែនការផ្ទេរទិន្នន័យ។"
+                en: "Used in Kesararam With Digital for formatting markdown files and planning database migrations.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital សម្រាប់កំណត់ទម្រង់ឯកសារ markdown និងរៀបចំផែនការផ្ទេរទិន្នន័យ។"
               }
             },
             {
@@ -697,8 +697,8 @@ const TECH_TREE: TechNode = {
               icon: SiNotebooklm,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to structure traffic regulations and textbook sources into a clean learning flow.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីរៀបចំបទប្បញ្ញត្តិចរាចរណ៍ និងប្រភពសៀវភៅសិក្សាទៅជាលំហូរសិក្សាស្អាត។"
+                en: "Used in Kesararam With Digital to structure traffic regulations and textbook sources into a clean learning flow.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីរៀបចំបទប្បញ្ញត្តិចរាចរណ៍ និងប្រភពសៀវភៅសិក្សាទៅជាលំហូរសិក្សាស្អាត។"
               }
             },
             {
@@ -711,8 +711,8 @@ const TECH_TREE: TechNode = {
               icon: Cpu,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to read long Ministry PDF documents and extract signage tables.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីអានឯកសារ PDF វែងៗរបស់ក្រសួង និងទាញយកតារាងផ្លាកសញ្ញា។"
+                en: "Used in Kesararam With Digital to read long Ministry PDF documents and extract signage tables.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីអានឯកសារ PDF វែងៗរបស់ក្រសួង និងទាញយកតារាងផ្លាកសញ្ញា។"
               }
             },
             {
@@ -725,8 +725,8 @@ const TECH_TREE: TechNode = {
               icon: Zap,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to search for recent official traffic law updates.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីស្វែងរកការធ្វើបច្ចុប្បន្នភាពច្បាប់ចរាចរណ៍ផ្លូវការថ្មីៗបំផុត។"
+                en: "Used in Kesararam With Digital to search for recent official traffic law updates.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីស្វែងរកការធ្វើបច្ចុប្បន្នភាពច្បាប់ចរាចរណ៍ផ្លូវការថ្មីៗបំផុត។"
               }
             },
             {
@@ -739,8 +739,8 @@ const TECH_TREE: TechNode = {
               icon: SiGoogle,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to prototype content filtering and test localized translation prompts.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីសាកល្បងការច្រោះមាតិកា និងសាកល្បងប្រអប់បញ្ចូលបកប្រែក្នុងស្រុក។"
+                en: "Used in Kesararam With Digital to prototype content filtering and test localized translation prompts.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីសាកល្បងការច្រោះមាតិកា និងសាកល្បងប្រអប់បញ្ចូលបកប្រែក្នុងស្រុក។"
               }
             },
             {
@@ -753,8 +753,8 @@ const TECH_TREE: TechNode = {
               icon: BrainCircuit,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to crosscheck technical terminology.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីត្រួតពិនិត្យវាក្យសព្ទបច្ចេកទេស។"
+                en: "Used in Kesararam With Digital to crosscheck technical terminology.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីត្រួតពិនិត្យវាក្យសព្ទបច្ចេកទេស។"
               }
             },
             {
@@ -767,8 +767,8 @@ const TECH_TREE: TechNode = {
               icon: BrainCircuit,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to optimize database indexing and complex join queries.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីបង្កើនប្រសិទ្ធភាពលិបិក្រមមូលដ្ឋានទិន្នន័យ និងសំណួររួមគ្នាស្មុគស្មាញ។"
+                en: "Used in Kesararam With Digital to optimize database indexing and complex join queries.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីបង្កើនប្រសិទ្ធភាពលិបិក្រមមូលដ្ឋានទិន្នន័យ និងសំណួររួមគ្នាស្មុគស្មាញ។"
               }
             }
           ]
@@ -777,8 +777,8 @@ const TECH_TREE: TechNode = {
           id: "ai_env",
           name: { en: "Environments", kh: "ប្រព័ន្ធគ្រប់គ្រង និងបរិស្ថាន" },
           description: {
-            en: "Hosting and version control platforms keeping KWD server builds running.",
-            kh: "វេទិកាផ្ទុក និងគ្រប់គ្រងកំណែដែលរក្សាដំណើរការសាងសង់ម៉ាស៊ីនបម្រើ KWD។"
+            en: "Hosting and version control platforms keeping Kesararam With Digital server builds running.",
+            kh: "វេទិកាផ្ទុក និងគ្រប់គ្រងកំណែដែលរក្សាដំណើរការសាងសង់ម៉ាស៊ីនបម្រើ Kesararam With Digital។"
           },
           icon: Globe,
           status: "used",
@@ -793,8 +793,8 @@ const TECH_TREE: TechNode = {
               icon: SiGithub,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to track all design changes, review branch pull requests, and deploy code changes.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីតាមដានរាល់ការផ្លាស់ប្តូរការរចនា ពិនិត្យការស្នើសុំទាញយកសាខា និងដាក់ឱ្យប្រើប្រាស់កូដ។"
+                en: "Used in Kesararam With Digital to track all design changes, review branch pull requests, and deploy code changes.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីតាមដានរាល់ការផ្លាស់ប្តូរការរចនា ពិនិត្យការស្នើសុំទាញយកសាខា និងដាក់ឱ្យប្រើប្រាស់កូដ។"
               }
             },
             {
@@ -807,8 +807,8 @@ const TECH_TREE: TechNode = {
               icon: SiVscodium,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our primary editor environment for writing React files and stylesheet assets.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាបរិស្ថានកម្មវិធីនិពន្ធចម្បងរបស់យើងសម្រាប់សរសេរឯកសារ React និងធនធានសន្លឹករចនាប័ទ្ម។"
+                en: "Used in Kesararam With Digital as our primary editor environment for writing React files and stylesheet assets.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាបរិស្ថានកម្មវិធីនិពន្ធចម្បងរបស់យើងសម្រាប់សរសេរឯកសារ React និងធនធានសន្លឹករចនាប័ទ្ម។"
               }
             },
             {
@@ -821,8 +821,8 @@ const TECH_TREE: TechNode = {
               icon: SiVercel,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to serve pages, deliver asset bundles via CDN, and handle domain redirection.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីផ្តល់ទំព័រ ផ្តល់កញ្ចប់ធនធានតាមរយៈ CDN និងគ្រប់គ្រងការបញ្ជូនបន្តដែន។"
+                en: "Used in Kesararam With Digital to serve pages, deliver asset bundles via CDN, and handle domain redirection.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីផ្តល់ទំព័រ ផ្តល់កញ្ចប់ធនធានតាមរយៈ CDN និងគ្រប់គ្រងការបញ្ជូនបន្តដែន។"
               }
             }
           ]
@@ -859,8 +859,8 @@ const TECH_TREE: TechNode = {
               icon: Landmark,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to align game modules with curriculum guidelines for Cambodian schools.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីតម្រឹមម៉ូឌុលហ្គេមជាមួយនឹងគោលការណ៍ណែនាំកម្មវិធីសិក្សាសម្រាប់សាលារៀនកម្ពុជា។"
+                en: "Used in Kesararam With Digital to align game modules with curriculum guidelines for Cambodian schools.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីតម្រឹមម៉ូឌុលហ្គេមជាមួយនឹងគោលការណ៍ណែនាំកម្មវិធីសិក្សាសម្រាប់សាលារៀនកម្ពុជា។"
               }
             },
             {
@@ -873,8 +873,8 @@ const TECH_TREE: TechNode = {
               icon: Landmark,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our primary authority source for road sign designs, definitions, and licensing logic.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាប្រភពផ្លូវការចម្បងរបស់យើងសម្រាប់ការរចនាផ្លាកសញ្ញា និយមន័យ និងតក្កវិជ្ជានៃការបើកបរ។"
+                en: "Used in Kesararam With Digital as our primary authority source for road sign designs, definitions, and licensing logic.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាប្រភពផ្លូវការចម្បងរបស់យើងសម្រាប់ការរចនាផ្លាកសញ្ញា និយមន័យ និងតក្កវិជ្ជានៃការបើកបរ។"
               }
             },
             {
@@ -887,8 +887,8 @@ const TECH_TREE: TechNode = {
               icon: Landmark,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to verify legal articles and references in intermediate road test challenges.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីផ្ទៀងផ្ទាត់មាត្រាច្បាប់ និងឯកសារយោងក្នុងការប្រកួតតេស្តផ្លូវកម្រិតមធ្យម។"
+                en: "Used in Kesararam With Digital to verify legal articles and references in intermediate road test challenges.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីផ្ទៀងផ្ទាត់មាត្រាច្បាប់ និងឯកសារយោងក្នុងការប្រកួតតេស្តផ្លូវកម្រិតមធ្យម។"
               }
             },
             {
@@ -901,8 +901,8 @@ const TECH_TREE: TechNode = {
               icon: SiGoogleplay,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as a standard visual and logic reference for structuring study guides.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាឯកសារយោងចក្ខុ និងតក្កវិជ្ជាស្តង់ដារសម្រាប់រៀបចំមគ្គុទ្ទេសក៍សិក្សា។"
+                en: "Used in Kesararam With Digital as a standard visual and logic reference for structuring study guides.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាឯកសារយោងចក្ខុ និងតក្កវិជ្ជាស្តង់ដារសម្រាប់រៀបចំមគ្គុទ្ទេសក៍សិក្សា។"
               }
             },
             {
@@ -915,8 +915,8 @@ const TECH_TREE: TechNode = {
               icon: Globe,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to reference Cambodian road signs in tourist regions.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីយោងផ្លាកសញ្ញាចរាចរណ៍កម្ពុជានៅក្នុងតំបន់ទេសចរណ៍។"
+                en: "Used in Kesararam With Digital to reference Cambodian road signs in tourist regions.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីយោងផ្លាកសញ្ញាចរាចរណ៍កម្ពុជានៅក្នុងតំបន់ទេសចរណ៍។"
               }
             }
           ]
@@ -941,8 +941,8 @@ const TECH_TREE: TechNode = {
               icon: SiGoogle,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD during dev setup to locate library instructions and fix errors.",
-                kh: "ប្រើប្រាស់ក្នុង KWD អំឡុងពេលដំឡើង ដើម្បីស្វែងរកការណែនាំអំពីបណ្ណាល័យ និងដោះស្រាយកំហុស។"
+                en: "Used in Kesararam With Digital during dev setup to locate library instructions and fix errors.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital អំឡុងពេលដំឡើង ដើម្បីស្វែងរកការណែនាំអំពីបណ្ណាល័យ និងដោះស្រាយកំហុស។"
               }
             },
             {
@@ -955,8 +955,8 @@ const TECH_TREE: TechNode = {
               icon: SiYoutube,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to embed educational animations in student guidance cards.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីបង្កប់គំនូរជីវចលអប់រំនៅក្នុងកាតណែនាំសិស្ស។"
+                en: "Used in Kesararam With Digital to embed educational animations in student guidance cards.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីបង្កប់គំនូរជីវចលអប់រំនៅក្នុងកាតណែនាំសិស្ស។"
               }
             },
             {
@@ -969,8 +969,8 @@ const TECH_TREE: TechNode = {
               icon: SiKahoot,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to model scoring systems and reward multipliers.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីបង្កើតប្រព័ន្ធពិន្ទុ និងមេគុណរង្វាន់។"
+                en: "Used in Kesararam With Digital to model scoring systems and reward multipliers.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីបង្កើតប្រព័ន្ធពិន្ទុ និងមេគុណរង្វាន់។"
               }
             },
             {
@@ -983,8 +983,8 @@ const TECH_TREE: TechNode = {
               icon: Globe,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to review international standards, keeping our signs accessible to all cultures.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីពិនិត្យមើលស្តង់ដារអន្តរជាតិ រក្សាផ្លាកសញ្ញារបស់យើងឱ្យអាចចូលប្រើបានសម្រាប់គ្រប់វប្បធម៌។"
+                en: "Used in Kesararam With Digital to review international standards, keeping our signs accessible to all cultures.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីពិនិត្យមើលស្តង់ដារអន្តរជាតិ រក្សាផ្លាកសញ្ញារបស់យើងឱ្យអាចចូលប្រើបានសម្រាប់គ្រប់វប្បធម៌។"
               }
             }
           ]
@@ -993,8 +993,8 @@ const TECH_TREE: TechNode = {
           id: "res_media",
           name: { en: "Media & Fonts", kh: "ធនធានរូបភាព និងហ្វុនត៍" },
           description: {
-            en: "Digital assets, font systems, and illustration servers styling KWD's responsive front-end.",
-            kh: "ធនធានឌីជីថល ប្រព័ន្ធហ្វុនត៍ និងម៉ាស៊ីនបម្រើរូបភាពដែលរចនាម៉ូដផ្នែកខាងមុខរបស់ KWD។"
+            en: "Digital assets, font systems, and illustration servers styling Kesararam With Digital's responsive front-end.",
+            kh: "ធនធានឌីជីថល ប្រព័ន្ធហ្វុនត៍ និងម៉ាស៊ីនបម្រើរូបភាពដែលរចនាម៉ូដផ្នែកខាងមុខរបស់ Kesararam With Digital។"
           },
           icon: Layers,
           status: "used",
@@ -1009,8 +1009,8 @@ const TECH_TREE: TechNode = {
               icon: SiCloudinary,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD to host high-quality road safety diagrams, optimizing loading speed.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ដើម្បីផ្ទុករូបភាពសុវត្ថិភាពចរាចរណ៍ដែលមានគុណភាពខ្ពស់ ជួយបង្កើនល្បឿនផ្ទុក។"
+                en: "Used in Kesararam With Digital to host high-quality road safety diagrams, optimizing loading speed.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ដើម្បីផ្ទុករូបភាពសុវត្ថិភាពចរាចរណ៍ដែលមានគុណភាពខ្ពស់ ជួយបង្កើនល្បឿនផ្ទុក។"
               }
             },
             {
@@ -1023,8 +1023,8 @@ const TECH_TREE: TechNode = {
               icon: Type,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD via globals.css for technical chips, scoring panels, and English paragraphs.",
-                kh: "ប្រើប្រាស់ក្នុង KWD តាមរយៈ globals.css សម្រាប់បន្ទះពិន្ទុ និងកថាខណ្ឌភាសាអង់គ្លេស។"
+                en: "Used in Kesararam With Digital via globals.css for technical chips, scoring panels, and English paragraphs.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital តាមរយៈ globals.css សម្រាប់បន្ទះពិន្ទុ និងកថាខណ្ឌភាសាអង់គ្លេស។"
               }
             },
             {
@@ -1037,8 +1037,8 @@ const TECH_TREE: TechNode = {
               icon: Type,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD as our primary Khmer script, preventing font layout shifting.",
-                kh: "ប្រើប្រាស់ក្នុង KWD ជាអក្សរខ្មែរចម្បងរបស់យើង ការពារការផ្លាស់ប្តូរប្លង់ហ្វុនត៍។"
+                en: "Used in Kesararam With Digital as our primary Khmer script, preventing font layout shifting.",
+                kh: "ប្រើប្រាស់ក្នុង Kesararam With Digital ជាអក្សរខ្មែរចម្បងរបស់យើង ការពារការផ្លាស់ប្តូរប្លង់ហ្វុនត៍។"
               }
             },
             {
@@ -1051,8 +1051,8 @@ const TECH_TREE: TechNode = {
               icon: PenTool,
               status: "used",
               usedInKwd: {
-                en: "Used in KWD student store to award badges when safety levels are unlocked.",
-                kh: "ប្រើប្រាស់ក្នុងហាង KWD សិស្ស ដើម្បីផ្តល់ផ្លាកសញ្ញានៅពេលកម្រិតសុវត្ថិភាពត្រូវបានដោះសោ។"
+                en: "Used in Kesararam With Digital student store to award badges when safety levels are unlocked.",
+                kh: "ប្រើប្រាស់ក្នុងហាង Kesararam With Digital សិស្ស ដើម្បីផ្តល់ផ្លាកសញ្ញានៅពេលកម្រិតសុវត្ថិភាពត្រូវបានដោះសោ។"
               }
             }
           ]
@@ -1148,25 +1148,25 @@ const REFERENCES = [
     note: { en: "Technical advisors and mentors providing codebase feedback & program guidance", kh: "ទីប្រឹក្សាបច្ទេកទេស និងគ្រូណែនាំដែលផ្តល់មតិកែលម្អលើកូដ និងការណែនាំកម្មវិធីសិក្សា" }
   },
   {
-    name: "KWD Privacy Policy (PDF Document)",
+    name: "Kesararam With Digital Privacy Policy (PDF Document)",
     icon: BookOpen,
     url: "/report-kwd/គោលការណ៍ភាពឯកជន_KWD.pdf",
-    note: { en: "Official Privacy Policy document for KWD (Khmer)", kh: "ឯកសារគោលការណ៍ភាពឯកជនផ្លូវការសម្រាប់ KWD (ភាសាខ្មែរ)" }
+    note: { en: "Official Privacy Policy document for Kesararam With Digital (Khmer)", kh: "ឯកសារគោលការណ៍ភាពឯកជនផ្លូវការសម្រាប់ Kesararam With Digital (ភាសាខ្មែរ)" }
   },
   {
-    name: "KWD Terms of Use (PDF Document)",
+    name: "Kesararam With Digital Terms of Use (PDF Document)",
     icon: BookOpen,
     url: "/report-kwd/លក្ខខណ្ឌប្រើប្រាស់_KWD.pdf",
-    note: { en: "Official Terms of Service document for KWD (Khmer)", kh: "ឯកសារលក្ខខណ្ឌប្រើប្រាស់ផ្លូវការសម្រាប់ KWD (ភាសាខ្មែរ)" }
+    note: { en: "Official Terms of Service document for Kesararam With Digital (Khmer)", kh: "ឯកសារលក្ខខណ្ឌប្រើប្រាស់ផ្លូវការសម្រាប់ Kesararam With Digital (ភាសាខ្មែរ)" }
   },
   {
-    name: "KWD Brand Guidelines (PDF Document)",
+    name: "Kesararam With Digital Brand Guidelines (PDF Document)",
     icon: BookOpen,
     url: "/report-kwd/អំពីពួកយើង_Brand_KWD.pdf",
-    note: { en: "Official brand visual identity & logo guidelines for KWD (Khmer)", kh: "ឯកសារគោលការណ៍ណែនាំអត្តសញ្ញាណម៉ាក KWD (ភាសាខ្មែរ)" }
+    note: { en: "Official brand visual identity & logo guidelines for Kesararam With Digital (Khmer)", kh: "ឯកសារគោលការណ៍ណែនាំអត្តសញ្ញាណម៉ាក Kesararam With Digital (ភាសាខ្មែរ)" }
   },
   {
-    name: "KWD Digital Road Safety Education System Report (PDF Document)",
+    name: "Kesararam With Digital Digital Road Safety Education System Report (PDF Document)",
     icon: BookOpen,
     url: "/report-kwd/ប្រព័ន្ធអប់រំសុវត្ថិភាពចរាចរណ៍ឌីជីថល_KWD-SYS-RPT-2026.pdf",
     note: { en: "Official system architecture, implementation details & SDG alignment report (Khmer)", kh: "របាយការណ៍ផ្លូវការស្តីពីស្ថាបត្យកម្មប្រព័ន្ធ ការអនុវត្ត និងគោលដៅ SDG (ភាសាខ្មែរ)" }
@@ -1525,12 +1525,12 @@ export function BuiltWithClient() {
             {t("Interactive Bibliography", "ឯកសារយោង និងប្រព័ន្ធបច្ចេកវិទ្យា")}
           </div>
           <h1 className="text-3xl font-black uppercase tracking-tight leading-none text-zinc-950 dark:text-white">
-            {t("Built With KWD", "គ្រឿងផ្គុំបច្ចេកវិទ្យា KWD")}
+            {t("Built With Kesararam With Digital", "គ្រឿងផ្គុំបច្ចេកវិទ្យា Kesararam With Digital")}
           </h1>
           <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed">
             {t(
-              "Explore KWD's technology tree ecosystem. Hover or click on the nodes to see full technical descriptions, references, and how we apply them to build this platform.",
-              "ស្វែងយល់ពីប្រព័ន្ធមែកធាងបច្ចេកវិទ្យារបស់ KWD។ ចុចលើប្រអប់ដើម្បីមើលការពិពណ៌នាបច្ចេកទេស និងរបៀបដែលយើងប្រើប្រាស់វាដើម្បីបង្កើតគេហទំព័រនេះ។"
+              "Explore Kesararam With Digital's technology tree ecosystem. Hover or click on the nodes to see full technical descriptions, references, and how we apply them to build this platform.",
+              "ស្វែងយល់ពីប្រព័ន្ធមែកធាងបច្ចេកវិទ្យារបស់ Kesararam With Digital។ ចុចលើប្រអប់ដើម្បីមើលការពិពណ៌នាបច្ចេកទេស និងរបៀបដែលយើងប្រើប្រាស់វាដើម្បីបង្កើតគេហទំព័រនេះ។"
             )}
           </p>
         </div>
@@ -1813,7 +1813,7 @@ export function BuiltWithClient() {
                 {activeDetail.status === "used" ? (
                   <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase bg-emerald-100 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800 px-3 py-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    {t("Used in KWD", "ប្រើប្រាស់ក្នុង KWD")}
+                    {t("Used in Kesararam With Digital", "ប្រើប្រាស់ក្នុង Kesararam With Digital")}
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase bg-amber-100 dark:bg-amber-950/40 text-amber-800 dark:text-amber-400 border border-amber-300 dark:border-amber-850 px-3 py-1">
@@ -1834,11 +1834,11 @@ export function BuiltWithClient() {
                   </p>
                 </div>
 
-                {/* Used in KWD Detail */}
+                {/* Used in Kesararam With Digital Detail */}
                 {activeDetail.usedInKwd ? (
                   <div className="p-3 bg-zinc-50 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-800">
                     <h4 className="text-xs font-black uppercase tracking-wider text-yellow-600 dark:text-yellow-400 mb-1">
-                      {t("KWD Integration", "ការប្រើប្រាស់ក្នុង KWD")}
+                      {t("Kesararam With Digital Integration", "ការប្រើប្រាស់ក្នុង Kesararam With Digital")}
                     </h4>
                     <p className="text-zinc-600 dark:text-zinc-400 text-xs">
                       {t(activeDetail.usedInKwd.en, activeDetail.usedInKwd.kh)}
@@ -1848,7 +1848,7 @@ export function BuiltWithClient() {
                   activeDetail.status === "used" && (
                     <div className="p-3 bg-zinc-50 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-800">
                       <h4 className="text-xs font-black uppercase tracking-wider text-yellow-600 dark:text-yellow-400 mb-1">
-                        {t("KWD Integration", "ការប្រើប្រាស់ក្នុង KWD")}
+                        {t("Kesararam With Digital Integration", "ការប្រើប្រាស់ក្នុង Kesararam With Digital")}
                       </h4>
                       <p className="text-zinc-600 dark:text-zinc-400 text-xs">
                         {t(
