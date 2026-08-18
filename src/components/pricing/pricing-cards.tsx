@@ -88,7 +88,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
   const [selectedPlan, setSelectedPlan] = useState<PlanKey>("teacher_pro");
 
   const kh = lang === "kh";
-  // KWD official font stack: Roboto for English, Google Sans for Khmer UI.
+  // Kesararam With Digital official font stack: Roboto for English, Google Sans for Khmer UI.
   const pf = { fontFamily: "var(--font-system)" };
   const khFont = pf;
 
@@ -516,7 +516,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   { en: "Mistake tracking & weak spots", kh: "តាមដានកំហុស និងចំណុចខ្សោយ" },
                   { en: "Export CSV / PDF", kh: "នាំចេញ CSV/PDF" },
                   { en: "Advanced game modes", kh: "ហ្គេមកម្រិតខ្ពស់" },
-                  { en: "Remove KWD branding", kh: "លុបស្លាក KWD" },
+                  { en: "Remove Kesararam With Digital branding", kh: "លុបស្លាក Kesararam With Digital" },
                   { en: "Suar AI tutor unlimited", kh: "Suar AI គ្មានដែនកំណត់" },
                 ].map((f, i) => (
                   <div key={i} className="flex items-center gap-1.5 min-w-0">
@@ -767,7 +767,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
 
                 <div className="bg-transparent border border-white/10 rounded-2xl p-4 flex flex-col items-center gap-3">
                   <div className="relative w-full max-w-[200px] aspect-square overflow-hidden rounded-xl border border-white/5 bg-black/40 flex items-center justify-center">
-                    <img src="/khqr.png" alt="KWD KHQR Code" className="w-full h-full object-contain" />
+                    <img src="/khqr.png" alt="Kesararam With Digital KHQR Code" className="w-full h-full object-contain" />
                   </div>
                   <div className="text-center">
                     <p className="text-xs font-black text-white leading-tight">KESARARAM WITH DIGITAL</p>

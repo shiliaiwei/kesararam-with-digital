@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import Groq from "groq-sdk";
 
-const SYSTEM_PROMPT = `You are Suar AI (សួរ), the AI assistant for KWD — Kesararam With Digital, a Cambodian driving theory education platform for students preparing for the mandatory driving exam.
+const SYSTEM_PROMPT = `You are Suar AI (សួរ), the AI assistant for Kesararam With Digital — Kesararam With Digital, a Cambodian driving theory education platform for students preparing for the mandatory driving exam.
 
 You are an expert on:
 1. Traffic Signs (សញ្ញាផ្លូវវិថី) — all road signs used in Cambodia

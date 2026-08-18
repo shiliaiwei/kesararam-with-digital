@@ -1,0 +1,53 @@
+{
+  "1": {
+    "Priority Signs": 10,
+    "Supplementary Signs": 25,
+    "Other Road Markings": 9,
+    "Transverse Markings": 4,
+    "Prohibitory Signs": 45,
+    "Sign Posts": 10,
+    "Temporary Signs": 11,
+    "Buildup Area Boundary Signs": 4,
+    "Street Name Signs": 5,
+    "Arrows Markings": 8,
+    "Longitudinal Markings": 11,
+    "Warning Signs": 49,
+    "Traffic Lights": 11,
+    "Traffic Police Signals": 5,
+    "Informative Signs": 39,
+    "Uncategorized": 1
+  },
+  "2": {
+    "Overtaking": 24,
+    "Traffic Rules": 112,
+    "Parking": 31,
+    "Speed Limits": 25
+  },
+  "3": {
+    "Intersection Priority – Left Turn": 30,
+    "Intersection Priority – Sequential": 25,
+    "Intersection Priority – Simultaneous": 15
+  },
+  "4": {
+    "Basic Maneuvers": 17,
+    "Advanced Techniques": 17,
+    "Defensive Driving": 16
+  },
+  "5": {
+    "Engine": 8,
+    "Safety Systems": 21,
+    "Lights": 2,
+    "Brakes": 7
+  },
+  "6": {
+    "Cargo Securing": 7,
+    "Weight Limits": 7
+  },
+  "7": {
+    "Road Safety": 10,
+    "Legal": 2
+  },
+  "8": {
+    "First Aid": 15
+  }
+}

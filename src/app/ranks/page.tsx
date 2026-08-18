@@ -19,9 +19,9 @@ import { LeaderboardUserCard } from "@/components/rank/LeaderboardUserCard";
 import { RankProgressBar } from "@/components/rank/RankProgressBar";
 
 export const metadata: Metadata = {
-    title: "KWD Road Safety Rank System",
+    title: "Kesararam With Digital Road Safety Rank System",
     description:
-        "Avatar border & profile badge system — 6 ranks, Roman-numeral divisions, score migration and leaderboard for the KWD road-safety quiz platform.",
+        "Avatar border & profile badge system — 6 ranks, Roman-numeral divisions, score migration and leaderboard for the Kesararam With Digital road-safety quiz platform.",
 };
 
 /* ── Demo data ──────────────────────────────────────────────────────────── */
@@ -55,7 +55,7 @@ const CHECKLIST: { score: number; rank: RankName; division: Division; note?: str
     { score: 2499, rank: "Rising", division: "I", note: "just before rank up" },
 ];
 
-/* ── Small layout helpers (brutalist KWD) ───────────────────────────────── */
+/* ── Small layout helpers (brutalist Kesararam With Digital) ───────────────────────────────── */
 
 function Section({ n, title, subtitle, children }: { n: number; title: string; subtitle?: string; children: React.ReactNode }) {
     return (
@@ -96,7 +96,7 @@ export default function RanksPage() {
                         Kesararam With Digital
                     </div>
                     <h1 className="text-3xl font-black uppercase leading-none tracking-tight text-black sm:text-5xl">
-                        KWD Road Safety<br />Rank System
+                        Kesararam With Digital Road Safety<br />Rank System
                     </h1>
                     <p className="mt-3 text-base font-bold uppercase tracking-wider text-zinc-700">
                         Avatar Border &amp; Profile Badge System
@@ -263,7 +263,7 @@ const board = sortLeaderboardUsers(users); // score → activity → fastest tim
 
             <CautionBand />
             <footer className="mx-auto w-full max-w-6xl px-4 py-10 text-center text-xs font-bold uppercase tracking-widest text-zinc-400">
-                KWD · Kesararam With Digital · Road Safety Rank System
+                Kesararam With Digital · Kesararam With Digital · Road Safety Rank System
             </footer>
         </main>
     );

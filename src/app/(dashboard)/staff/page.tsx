@@ -4,7 +4,7 @@ import { Plus, FileText, Image } from "lucide-react";
 import { StatsOverview } from "@/components/staff/dashboard/stats-overview";
 
 export const metadata: Metadata = {
-  title: "Staff Dashboard | KWD",
+  title: "Staff Dashboard | Kesararam With Digital",
   description: "Manage content, media, and game modes",
 };
 

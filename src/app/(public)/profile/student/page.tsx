@@ -13,10 +13,10 @@ import { getStoreBalances } from "@/lib/store-points/balance";
 import { normalizeScorePlateStyle, type ScorePlateStyle } from "@/lib/score-plates";
 
 export const metadata: Metadata = {
-  title: "My Profile — KWD Quiz",
+  title: "My Profile — Kesararam With Digital Quiz",
   description: "View your quiz statistics, game history, and manage your student profile. Track your progress, scores, and rankings.",
   openGraph: {
-    title: "My Profile — KWD Quiz",
+    title: "My Profile — Kesararam With Digital Quiz",
     description: "View your quiz statistics and manage your profile",
     type: "profile",
   },

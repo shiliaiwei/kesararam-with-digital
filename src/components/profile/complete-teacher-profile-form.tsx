@@ -217,7 +217,7 @@ export function CompleteTeacherProfileForm() {
             <div className="flex flex-col items-center justify-center p-6 bg-zinc-50 border-2 border-black shadow-[3px_3px_0_#000] relative">
               <AvatarDisplay
                 avatar={JSON.stringify({ face, head })}
-                name={displayName || "KWD Owner"}
+                name={displayName || "Kesararam With Digital Owner"}
                 size={140}
                 radius={0}
               />

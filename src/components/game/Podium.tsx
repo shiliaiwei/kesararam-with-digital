@@ -190,11 +190,11 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("Could not get 2d context");
 
-      // Background - KWD Brand Black
+      // Background - Kesararam With Digital Brand Black
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, 800, 500);
 
-      // Yellow border - KWD Brand
+      // Yellow border - Kesararam With Digital Brand
       ctx.strokeStyle = "#eab308";
       ctx.lineWidth = 8;
       ctx.strokeRect(15, 15, 770, 470);
@@ -213,13 +213,13 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       // Brand Title
       ctx.fillStyle = "#000000";
-      ctx.font = 'bold 24px "KWD Roboto", sans-serif';
+      ctx.font = 'bold 24px "Kesararam With Digital Roboto", sans-serif';
       ctx.textAlign = "center";
       ctx.fillText("KESARARAM LIVE GAME", 400, 48);
 
       // Player Name
       ctx.fillStyle = "#ffffff";
-      ctx.font = `bold 42px ${kh ? '"KWD Google Sans Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
+      ctx.font = `bold 42px ${kh ? '"Kesararam With Digital Google Sans Khmer", "Kesararam With Digital Roboto", sans-serif' : '"Kesararam With Digital Roboto", sans-serif'}`;
       ctx.fillText(myEntry.displayName, 400, 130);
 
       // Rank Badge Container - Brutalist
@@ -247,11 +247,11 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
       else if (isRank3) badgeColor = "#cd7f32";
 
       ctx.fillStyle = badgeColor;
-      ctx.font = 'bold 72px "KWD Roboto", sans-serif';
+      ctx.font = 'bold 72px "Kesararam With Digital Roboto", sans-serif';
       ctx.fillText(`#${myRank}`, 400, 245);
 
       ctx.fillStyle = "#000000";
-      ctx.font = `bold 18px ${kh ? '"KWD Google Sans Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
+      ctx.font = `bold 18px ${kh ? '"Kesararam With Digital Google Sans Khmer", "Kesararam With Digital Roboto", sans-serif' : '"Kesararam With Digital Roboto", sans-serif'}`;
       ctx.fillText(kh ? "ចំណាត់ថ្នាក់ចុងក្រោយ" : "FINAL RANK", 400, 280);
 
       // Score Box
@@ -262,12 +262,12 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
       ctx.strokeRect(200, 320, 400, 70);
 
       ctx.fillStyle = "#eab308";
-      ctx.font = 'bold 38px "KWD Roboto", sans-serif';
+      ctx.font = 'bold 38px "Kesararam With Digital Roboto", sans-serif';
       ctx.fillText(`${myEntry.totalScore.toLocaleString()} PTS`, 400, 365);
 
       // Stats Row
       ctx.fillStyle = "#ffffff";
-      ctx.font = `bold 16px ${kh ? '"KWD Google Sans Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
+      ctx.font = `bold 16px ${kh ? '"Kesararam With Digital Google Sans Khmer", "Kesararam With Digital Roboto", sans-serif' : '"Kesararam With Digital Roboto", sans-serif'}`;
 
       const streakText = kh
         ? `🔥 ជាប់គ្នា: ${myEntry.currentStreak}`
@@ -281,7 +281,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       // Room code
       ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-      ctx.font = '14px "KWD Roboto", sans-serif';
+      ctx.font = '14px "Kesararam With Digital Roboto", sans-serif';
       ctx.fillText(
         kh ? `លេខកូដបន្ទប់: ${sessionCode || ""}` : `Room Code: ${sessionCode || ""}`,
         400,
@@ -305,7 +305,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
     <div className="flex flex-col items-center gap-8 py-8 relative">
       {showConfetti && <Confetti />}
 
-      {/* Title - KWD Brand Style */}
+      {/* Title - Kesararam With Digital Brand Style */}
       <div className="text-center animate-fade-in">
         <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-xs font-black tracking-widest uppercase px-4 py-2 border-4 border-black shadow-[4px_4px_0_#000] mb-4" style={{ borderRadius: "0px", ...khFont }}>
           <Trophy size={16} />

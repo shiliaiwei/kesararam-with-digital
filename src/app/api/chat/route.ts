@@ -175,7 +175,7 @@ async function chatWithPerplexity(message: string, history: ChatMessage[] = []):
       messages: [
         {
           role: "system",
-          content: "You are Suar AI, a helpful assistant for a Cambodian driving education platform called KWD (Kesararam With Digital). Provide accurate, concise answers about Cambodian traffic laws, road signs, and driving safety. Be friendly and supportive to learners.",
+          content: "You are Suar AI, a helpful assistant for a Cambodian driving education platform called Kesararam With Digital (Kesararam With Digital). Provide accurate, concise answers about Cambodian traffic laws, road signs, and driving safety. Be friendly and supportive to learners.",
         },
         ...history.map(h => ({ role: h.role, content: h.content })),
         {

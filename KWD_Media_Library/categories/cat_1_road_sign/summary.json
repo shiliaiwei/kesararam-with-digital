@@ -1,0 +1,27 @@
+{
+  "id": 1,
+  "slug": "road-sign",
+  "title_en": "Traffic Signs",
+  "title_km": "សញ្ញាចរាចរ",
+  "sort_order": 1,
+  "is_active": true,
+  "topic_count": 247,
+  "sub_groups": {
+    "Priority Signs": 10,
+    "Supplementary Signs": 25,
+    "Other Road Markings": 9,
+    "Transverse Markings": 4,
+    "Prohibitory Signs": 45,
+    "Sign Posts": 10,
+    "Temporary Signs": 11,
+    "Buildup Area Boundary Signs": 4,
+    "Street Name Signs": 5,
+    "Arrows Markings": 8,
+    "Longitudinal Markings": 11,
+    "Warning Signs": 49,
+    "Traffic Lights": 11,
+    "Traffic Police Signals": 5,
+    "Informative Signs": 39,
+    "Uncategorized": 1
+  }
+}

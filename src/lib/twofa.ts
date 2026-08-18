@@ -7,7 +7,7 @@ import * as OTPAuth from "otpauth";
 import { createHash, randomBytes } from "crypto";
 import { SignJWT, jwtVerify } from "jose";
 
-const ISSUER = "KWD";
+const ISSUER = "Kesararam With Digital";
 
 function buildTotp(secretBase32: string, accountEmail = "user"): OTPAuth.TOTP {
   return new OTPAuth.TOTP({

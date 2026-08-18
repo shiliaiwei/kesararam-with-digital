@@ -107,12 +107,12 @@ export function BrandGuidelineClient() {
       <header className="border-b border-zinc-200 dark:border-zinc-800">
         <div className="max-w-5xl mx-auto px-6 py-12">
           <h1 className="text-2xl font-bold tracking-tight">
-            {t("KWD Brand Guidelines", "អំពីម៉ាកយីហោ KWD")}
+            {t("Kesararam With Digital Brand Guidelines", "អំពីម៉ាកយីហោ Kesararam With Digital")}
           </h1>
           <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
             {t(
-              "Visual identity, design standards, and usage rules that define KWD — Kesararam With Digital.",
-              "អត្តសញ្ញាណដែលមើលឃើញ ស្តង់ដាររចនា និងច្បាប់ប្រើប្រាស់ដែលកំណត់ KWD — Kesararam With Digital"
+              "Visual identity, design standards, and usage rules that define Kesararam With Digital — Kesararam With Digital.",
+              "អត្តសញ្ញាណដែលមើលឃើញ ស្តង់ដាររចនា និងច្បាប់ប្រើប្រាស់ដែលកំណត់ Kesararam With Digital — Kesararam With Digital"
             )}
           </p>
           <p className="mt-3 text-xs text-zinc-400 dark:text-zinc-500 font-mono">
@@ -154,20 +154,20 @@ export function BrandGuidelineClient() {
             <div className="space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
               {kh ? (
                 <>
-                  <p>KWD មានន័យថា Kesararam With Digital — ឈ្មោះដែលផ្ទុកន័យនៃទីកន្លែង គោលដៅ និងការផ្លាស់ប្ដូរ។ កេសរារាម ជាឈ្មោះវត្ត អារាម និងសាលាបឋមសិក្សា — ជាកន្លែងរៀនចំណាស់បំផុតក្នុងសហគមន៍របស់យើង។</p>
+                  <p>Kesararam With Digital មានន័យថា Kesararam With Digital — ឈ្មោះដែលផ្ទុកន័យនៃទីកន្លែង គោលដៅ និងការផ្លាស់ប្ដូរ។ កេសរារាម ជាឈ្មោះវត្ត អារាម និងសាលាបឋមសិក្សា — ជាកន្លែងរៀនចំណាស់បំផុតក្នុងសហគមន៍របស់យើង។</p>
                   <p>ពាក្យ With ប្រកាសពីភាពជាដៃគូរវាងប្រពៃណី និងបច្ចេកវិទ្យា។ ឌីជីថល (Digital) ជាការប្ដេជ្ញាផ្ដល់នូវឱកាសចូលរៀន (Access) ការពង្រីកវិសាលភាព (Reach) និងនិរន្តរភាព (Permanence)។</p>
-                  <p>KWD ត្រូវបានបង្កើតឡើងដោយយុវតីខ្មែរ ក្រោមទស្សនវិស័យថា ការអប់រំអំពីសុវត្ថិភាពចរាចរណ៍គួរតែផ្ដល់ជូនដោយឥតគិតថ្លៃ មានអន្តរកម្ម និងងាយស្រួលចូលប្រើជាភាសាកំណើតរបស់សិស្ស។</p>
+                  <p>Kesararam With Digital ត្រូវបានបង្កើតឡើងដោយយុវតីខ្មែរ ក្រោមទស្សនវិស័យថា ការអប់រំអំពីសុវត្ថិភាពចរាចរណ៍គួរតែផ្ដល់ជូនដោយឥតគិតថ្លៃ មានអន្តរកម្ម និងងាយស្រួលចូលប្រើជាភាសាកំណើតរបស់សិស្ស។</p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 pt-2 border-t border-zinc-100 dark:border-zinc-800">
-                    <strong className="text-zinc-700 dark:text-zinc-200">ការណែនាំ:</strong> ប្រើឈ្មោះពេញ «Kesararam With Digital» សម្រាប់ការណែនាំលើកដំបូង។ បន្ទាប់មកអាចប្រើ «KWD» បាន។
+                    <strong className="text-zinc-700 dark:text-zinc-200">ការណែនាំ:</strong> ប្រើឈ្មោះពេញ «Kesararam With Digital» សម្រាប់ការណែនាំលើកដំបូង។ បន្ទាប់មកអាចប្រើ «Kesararam With Digital» បាន។
                   </p>
                 </>
               ) : (
                 <>
-                  <p>KWD stands for <strong className="text-zinc-800 dark:text-zinc-100">Kesararam With Digital</strong> — a name carrying the weight of place, purpose, and transformation. Kesararam is the name of the monastery and primary school — the oldest seat of learning in our community.</p>
+                  <p>Kesararam With Digital stands for <strong className="text-zinc-800 dark:text-zinc-100">Kesararam With Digital</strong> — a name carrying the weight of place, purpose, and transformation. Kesararam is the name of the monastery and primary school — the oldest seat of learning in our community.</p>
                   <p>The word "With" declares a partnership between tradition and technology. "Digital" is a commitment to access, reach, and permanence.</p>
-                  <p>KWD was created by young Cambodian women from Kesararam Primary School with the vision that road safety education should be free, interactive, and accessible in students' native language.</p>
+                  <p>Kesararam With Digital was created by young Cambodian women from Kesararam Primary School with the vision that road safety education should be free, interactive, and accessible in students' native language.</p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 pt-2 border-t border-zinc-100 dark:border-zinc-800">
-                    <strong className="text-zinc-700 dark:text-zinc-200">Recommendation:</strong> Use the full name "Kesararam With Digital" on first reference in press, presentations, and official documents. "KWD" may be used after.
+                    <strong className="text-zinc-700 dark:text-zinc-200">Recommendation:</strong> Use the full name "Kesararam With Digital" on first reference in press, presentations, and official documents. "Kesararam With Digital" may be used after.
                   </p>
                 </>
               )}
@@ -180,8 +180,8 @@ export function BrandGuidelineClient() {
             <div className="space-y-8 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
               <p>
                 {kh
-                  ? "និមិត្តសញ្ញាផ្លេកបន្ទោរលើឡូហ្គោ KWD មិនមែនជាការតុបតែង តែជាទស្សនវិជ្ជាស្នូលរបស់ម៉ាក — Flash Learning ឈរលើជំនឿថា ក្នុងយុគ AI ចំណេះដឹងត្រូវដើរក្នុងល្បឿននៃពន្លឺ។"
-                  : "The lightning bolt on the KWD logo is not ornamental — it is the core philosophy of the brand. It represents Flash Learning: in the age of AI, knowledge must move at the speed of light."}
+                  ? "និមិត្តសញ្ញាផ្លេកបន្ទោរលើឡូហ្គោ Kesararam With Digital មិនមែនជាការតុបតែង តែជាទស្សនវិជ្ជាស្នូលរបស់ម៉ាក — Flash Learning ឈរលើជំនឿថា ក្នុងយុគ AI ចំណេះដឹងត្រូវដើរក្នុងល្បឿននៃពន្លឺ។"
+                  : "The lightning bolt on the Kesararam With Digital logo is not ornamental — it is the core philosophy of the brand. It represents Flash Learning: in the age of AI, knowledge must move at the speed of light."}
               </p>
 
               {/* Logo Variants */}
@@ -259,7 +259,7 @@ export function BrandGuidelineClient() {
               <div className="space-y-4 pt-2">
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 mb-1">Display · 36px · Black</p>
-                  <p className="text-4xl font-black text-zinc-900 dark:text-white tracking-tight">KWD</p>
+                  <p className="text-4xl font-black text-zinc-900 dark:text-white tracking-tight">Kesararam With Digital</p>
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 mb-1">Heading · 20px · Bold</p>
@@ -382,8 +382,8 @@ export function BrandGuidelineClient() {
             <SectionHeading>{t("Player Ranks & Badges", "កម្រិត និងផ្លាកសញ្ញា")}</SectionHeading>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 max-w-2xl">
               {t(
-                "KWD uses score-derived rank frames for learner profiles and leaderboard highlights. Players climb 6 avatar-border tiers and collect Roman numeral progress divisions (IV to I) from lifetime points. Select a tier below to view its design and details.",
-                "KWD ប្រើស៊ុមកម្រិតដែលគណនាពីពិន្ទុសម្រាប់ប្រវត្តិរូបសិស្ស និងការបង្ហាញលំដាប់។ អ្នកលេងអាចឡើងតាមកម្រិតស៊ុមរូបតំណាង ៦ និងប្រមូលផ្នែករ៉ូម៉ាំង (IV ដល់ I) ពីពិន្ទុសរុប។ ជ្រើសរើសកម្រិតខាងក្រោមដើម្បីមើលរូបរាង និងព័ត៌មានលម្អិត។"
+                "Kesararam With Digital uses score-derived rank frames for learner profiles and leaderboard highlights. Players climb 6 avatar-border tiers and collect Roman numeral progress divisions (IV to I) from lifetime points. Select a tier below to view its design and details.",
+                "Kesararam With Digital ប្រើស៊ុមកម្រិតដែលគណនាពីពិន្ទុសម្រាប់ប្រវត្តិរូបសិស្ស និងការបង្ហាញលំដាប់។ អ្នកលេងអាចឡើងតាមកម្រិតស៊ុមរូបតំណាង ៦ និងប្រមូលផ្នែករ៉ូម៉ាំង (IV ដល់ I) ពីពិន្ទុសរុប។ ជ្រើសរើសកម្រិតខាងក្រោមដើម្បីមើលរូបរាង និងព័ត៌មានលម្អិត។"
               )}
             </p>
 
@@ -735,8 +735,8 @@ export function BrandGuidelineClient() {
             <div className="bg-white dark:bg-zinc-950 border-2 border-black p-6 shadow-[4px_4px_0_#000]" style={{ borderRadius: 0 }}>
               <p className="text-sm md:text-base text-zinc-700 dark:text-zinc-300 font-medium">
                 {t(
-                  "KWD uses a unified, low-point scoring engine across all games and challenges to maintain progression scarcity and reward consistency. Speed bonuses are fully disabled; points are purely derived from accuracy and consecutive streaks.",
-                  "KWD ប្រើប្រាស់ប្រព័ន្ធគណនាពិន្ទុរួមមួយដែលមានតម្លៃពិន្ទុទាបសម្រាប់គ្រប់សកម្មភាព និងការប្រកួត ដើម្បីរក្សាភាពកម្រនៃពិន្ទុ និងភាពស៊ីសង្វាក់គ្នានៃរង្វាន់។ ពិន្ទុបន្ថែមផ្អែកលើល្បឿនត្រូវបានបិទទាំងស្រុង ដោយពិន្ទុត្រូវបានគណនាផ្អែកលើភាពត្រឹមត្រូវ និងការលេងត្រូវជាប់ៗគ្នា (Streak)។"
+                  "Kesararam With Digital uses a unified, low-point scoring engine across all games and challenges to maintain progression scarcity and reward consistency. Speed bonuses are fully disabled; points are purely derived from accuracy and consecutive streaks.",
+                  "Kesararam With Digital ប្រើប្រាស់ប្រព័ន្ធគណនាពិន្ទុរួមមួយដែលមានតម្លៃពិន្ទុទាបសម្រាប់គ្រប់សកម្មភាព និងការប្រកួត ដើម្បីរក្សាភាពកម្រនៃពិន្ទុ និងភាពស៊ីសង្វាក់គ្នានៃរង្វាន់។ ពិន្ទុបន្ថែមផ្អែកលើល្បឿនត្រូវបានបិទទាំងស្រុង ដោយពិន្ទុត្រូវបានគណនាផ្អែកលើភាពត្រឹមត្រូវ និងការលេងត្រូវជាប់ៗគ្នា (Streak)។"
                 )}
               </p>
 

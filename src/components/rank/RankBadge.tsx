@@ -5,7 +5,7 @@ import type { RankConfig } from "@/lib/ranks";
 /**
  * RankBadge — the main rank banner that attaches to the bottom of the avatar
  * frame. Shows the UPPERCASE rank name. Rank tiers are the one place gradients
- * are allowed in the KWD system, so the banner uses a subtle tier gradient with a
+ * are allowed in the Kesararam With Digital system, so the banner uses a subtle tier gradient with a
  * solid black border + hard offset shadow.
  */
 

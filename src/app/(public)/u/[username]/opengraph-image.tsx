@@ -53,7 +53,7 @@ export default async function Image({ params }: { params: Promise<{ username: st
     return new ImageResponse(
       <div style={{ width: "1200px", height: "630px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "24px", background: "#18181b", color: "#fff", border: "18px solid #000", fontFamily: "sans-serif" }}>
         <div style={{ display: "flex", background: "#ef4444", color: "#fff", border: "4px solid #000", boxShadow: "8px 8px 0 #000", padding: "14px 24px", fontSize: "24px", fontWeight: 900 }}>PRIVATE PROFILE</div>
-        <div style={{ display: "flex", fontSize: "54px", fontWeight: 900 }}>KWD STUDENT</div>
+        <div style={{ display: "flex", fontSize: "54px", fontWeight: 900 }}>Kesararam With Digital STUDENT</div>
         <div style={{ display: "flex", fontSize: "22px", color: "#a1a1aa" }}>This student has hidden their public profile.</div>
       </div>,
       size
@@ -87,7 +87,7 @@ export default async function Image({ params }: { params: Promise<{ username: st
   );
   const rank = studentIndex !== -1 ? studentIndex + 1 : 99;
 
-  const name = student.isNamePublic ? (student.displayName || student.username) : "KWD Student";
+  const name = student.isNamePublic ? (student.displayName || student.username) : "Kesararam With Digital Student";
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
 
   const rankResult = calculateRankAndDivision(student.lifetimePoints);
@@ -224,7 +224,7 @@ export default async function Image({ params }: { params: Promise<{ username: st
               alignItems: "center",
             }}
           >
-            {student.isProvincePublic && student.province ? student.province : "KWD Road Safety Learning"}
+            {student.isProvincePublic && student.province ? student.province : "Kesararam With Digital Road Safety Learning"}
           </div>
 
           {/* Quick Stats Grid */}
@@ -332,7 +332,7 @@ export default async function Image({ params }: { params: Promise<{ username: st
               
               <div style={{ display: "flex", flexDirection: "column", lineHeight: "1" }}>
                 <span style={{ fontSize: "11px", fontWeight: "900", color: "#1e3a8a" }}>
-                  KWD ROAD SAFETY
+                  Kesararam With Digital ROAD SAFETY
                 </span>
                 <span style={{ fontSize: "7.5px", fontWeight: "900", color: "#a1a1aa", marginTop: "2px", letterSpacing: "0.5px" }}>
                   PUBLIC STUDENT PROFILE
@@ -340,12 +340,12 @@ export default async function Image({ params }: { params: Promise<{ username: st
               </div>
             </div>
 
-            {/* KWD Logo */}
+            {/* Kesararam With Digital Logo */}
             <div style={{ display: "flex" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`${baseUrl}/brand/kwd-black_nobackground.png`}
-                alt="KWD Logo"
+                alt="Kesararam With Digital Logo"
                 style={{ height: "26px", objectFit: "contain" }}
               />
             </div>

@@ -156,7 +156,7 @@ function LoginFormInner() {
 
         {/* Centered Brand Header */}
         <div className="flex flex-col items-center justify-center gap-3">
-          <img src="/brand/logo.png" alt="KWD Logo" className="h-20 w-auto object-contain" />
+          <img src="/brand/logo.png" alt="Kesararam With Digital Logo" className="h-20 w-auto object-contain" />
           <span className="font-google-sans text-lg lg:text-xl font-black tracking-tight text-black uppercase text-center">
             KESARARAM WITH DIGITAL
           </span>
