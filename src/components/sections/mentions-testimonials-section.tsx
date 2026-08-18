@@ -149,9 +149,9 @@ const FACEBOOK_MENTIONS: FacebookEmbedMention[] = [
     titleEn: "Official Announcement: National Champions & Global Semifinalists 2026",
     titleKh: "ការប្រកាសផ្លូវការ៖ ក្រុមជើងឯកថ្នាក់ជាតិ និងក្រុមឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
     summaryEn:
-      "Tech For Kids Academy officially celebrates Team KWD's double triumph: National Champion Junior Division & Global Semifinalist.",
+      "Tech For Kids Academy officially celebrates Team Kesararam With Digital's double triumph: National Champion Junior Division & Global Semifinalist.",
     summaryKh:
-      "ការប្រកាសអបអរសាទរផ្លូវការដល់ក្រុម KWD ដែលឈ្នះជើងឯកថ្នាក់ជាតិ Junior Division និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក។",
+      "ការប្រកាសអបអរសាទរផ្លូវការដល់ក្រុម Kesararam With Digital ដែលឈ្នះជើងឯកថ្នាក់ជាតិ Junior Division និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក។",
     iframeSrc:
       "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2FTechforKidsAcademy%2Fposts%2Fpfbid02PCe6n6QMRAjwDuFuEaDAmn29iDm6uhq2WF7G4ha5UkHg1Hdxo6iE7ZexPk9PSreal&show_text=true&width=500",
     iframeHeight: 803,
@@ -174,9 +174,9 @@ const PRESS_ARTICLES: PressArticleMention[] = [
     titleEn: "Secretary of State Chun Vat Presided Over Technovation Girls Cambodia 2026 Finals",
     titleKh: "រដ្ឋលេខាធិការ ជុន វ៉ាត់ អញ្ជើញជាអធិបតីក្នុងពិធីប្រកួត Technovation Girls Cambodia ២០២៦",
     summaryEn:
-      "Official news from MPTC covering the national competition event where Team KWD presented their bilingual road safety app.",
+      "Official news from MPTC covering the national competition event where Team Kesararam With Digital presented their bilingual road safety app.",
     summaryKh:
-      "អត្ថបទព័ត៌មានផ្លូវការពីក្រសួងប្រៃសណីយ៍ និងទូរគមនាគមន៍ ស្តីពីការប្រកួតផ្តាច់ព្រ័ត្រថ្នាក់ជាតិ និងការបង្ហាញគម្រោង KWD។",
+      "អត្ថបទព័ត៌មានផ្លូវការពីក្រសួងប្រៃសណីយ៍ និងទូរគមនាគមន៍ ស្តីពីការប្រកួតផ្តាច់ព្រ័ត្រថ្នាក់ជាតិ និងការបង្ហាញគម្រោង Kesararam With Digital។",
     date: "July 2026",
     url: "https://mptc.gov.kh/en/2026/07/secretary-of-state-chun-vat-presided-over-the-national-competition-technovation-girls-cambodia-x-future-digital-talents-2026/",
     color: "#3b82f6",
@@ -190,12 +190,12 @@ const PRESS_ARTICLES: PressArticleMention[] = [
     sourceNameKh: "Technovation ពិភពលោក (Global HQ)",
     categoryEn: "Global HQ Announcement",
     categoryKh: "ជ័យលាភីពិភពលោក",
-    titleEn: "Technovation 2026 Global Semifinalist Announcement — Junior Division (Team KWD)",
-    titleKh: "ការប្រកាសបេក្ខជនពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក Technovation 2026 (ក្រុម KWD)",
+    titleEn: "Technovation 2026 Global Semifinalist Announcement — Junior Division (Team Kesararam With Digital)",
+    titleKh: "ការប្រកាសបេក្ខជនពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក Technovation 2026 (ក្រុម Kesararam With Digital)",
     summaryEn:
-      "Technovation Global HQ officially recognizes Team KWD from Siem Reap, Cambodia among the 2026 Global Semifinalists.",
+      "Technovation Global HQ officially recognizes Team Kesararam With Digital from Siem Reap, Cambodia among the 2026 Global Semifinalists.",
     summaryKh:
-      "ទីស្នាក់ការកណ្តាល Technovation ពិភពលោក បានប្រកាសផ្លូវការនូវក្រុម KWD ជាក្រុមពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)។",
+      "ទីស្នាក់ការកណ្តាល Technovation ពិភពលោក បានប្រកាសផ្លូវការនូវក្រុម Kesararam With Digital ជាក្រុមពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)។",
     date: "July 2026",
     url: "https://www.technovation.org/blogs/2026-semifinalist-announcement/#junior-kh",
     color: "#eab308",
@@ -231,9 +231,9 @@ const PRESS_ARTICLES: PressArticleMention[] = [
     titleEn: "Congratulations to Top 15 National Teams & 3 Global Semifinalists",
     titleKh: "អបអរសាទរក្រុមជ័យលាភី Top 15 ថ្នាក់ជាតិ និង ៣ ក្រុមឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
     summaryEn:
-      "Official report honoring top tech teams across Cambodia, celebrating Team KWD's National Championship and Global Semifinalist spot.",
+      "Official report honoring top tech teams across Cambodia, celebrating Team Kesararam With Digital's National Championship and Global Semifinalist spot.",
     summaryKh:
-      "របាយការណ៍ផ្លូវការកោតសរសើរក្រុមបច្ចេកវិទ្យាកម្ពុជា និងអបអរសាទរក្រុម KWD ដែលឈ្នះជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពិភពលោក។",
+      "របាយការណ៍ផ្លូវការកោតសរសើរក្រុមបច្ចេកវិទ្យាកម្ពុជា និងអបអរសាទរក្រុម Kesararam With Digital ដែលឈ្នះជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពិភពលោក។",
     date: "July 2026",
     url: "https://techforkids.asia/en/blog/congratulations-to-the-top-15-national-teams-of-the-technovation-girls-cambodia-x-future-digital-talents-and-the-3-global-semifinalists",
     color: "#22c55e",
@@ -247,12 +247,12 @@ const PRESS_ARTICLES: PressArticleMention[] = [
     sourceNameKh: "សារព័ត៌មានស៊ីស៊ីថាមស៍ (CC Times)",
     categoryEn: "National Press",
     categoryKh: "សារព័ត៌មានជាតិ",
-    titleEn: "Team KWD Crowned National Champion & Advances to Global Semifinals",
-    titleKh: "ក្រុម KWD ឈ្នះជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
+    titleEn: "Team Kesararam With Digital Crowned National Champion & Advances to Global Semifinals",
+    titleKh: "ក្រុម Kesararam With Digital ឈ្នះជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
     summaryEn:
-      "CC Times covers Team KWD's victorious journey from Siem Reap to the Technovation Cambodia National Championship stage.",
+      "CC Times covers Team Kesararam With Digital's victorious journey from Siem Reap to the Technovation Cambodia National Championship stage.",
     summaryKh:
-      "សារព័ត៌មានស៊ីស៊ីថាមស៍ ចុះផ្សាយពីជ័យជម្នះរបស់ក្រុម KWD ពីសាលាបឋមសិក្សាកេសរារាម ខេត្តសៀមរាប រហូតដល់ឈ្នះពានជើងឯកថ្នាក់ជាតិ។",
+      "សារព័ត៌មានស៊ីស៊ីថាមស៍ ចុះផ្សាយពីជ័យជម្នះរបស់ក្រុម Kesararam With Digital ពីសាលាបឋមសិក្សាកេសរារាម ខេត្តសៀមរាប រហូតដល់ឈ្នះពានជើងឯកថ្នាក់ជាតិ។",
     date: "July 2026",
     url: "https://kh.cc-times.com/posts/30029",
     color: "#a855f7",
@@ -288,7 +288,7 @@ const PRESS_ARTICLES: PressArticleMention[] = [
     titleEn: "Siem Reap Primary School Girls Build Innovative Road Safety App",
     titleKh: "សិស្សបឋមសិក្សាកេសរារាម សៀមរាប បង្កើតកម្មវិធីសុវត្ថិភាពចរាចរណ៍",
     summaryEn:
-      "Special feature on Kesararam Primary School students developing KWD to educate youth across Cambodia on road safety rules.",
+      "Special feature on Kesararam Primary School students developing Kesararam With Digital to educate youth across Cambodia on road safety rules.",
     summaryKh:
       "អត្ថបទពិសេសស្តីពីសិស្សសាលាបឋមសិក្សាកេសរារាម បង្កើតថ្នាល់អប់រំសុវត្ថិភាពចរាចរណ៍ពីរភាសាសម្រាប់កុមារកម្ពុជា។",
     date: "June 2026",
@@ -320,21 +320,21 @@ const TESTIMONIALS_DATA = [
     roleEn: "Kesararam Primary School",
     roleKh: "សាលាបឋមសិក្សាកេសរារាម",
     quoteEn:
-      "KWD proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a national stage.",
+      "Kesararam With Digital proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a national stage.",
     quoteKh:
-      "KWD បញ្ជាក់ថា ការអប់រំចរាចរអាចច្នៃប្រឌិត ២ ភាសា និងដឹកនាំដោយសិស្ស។ សិស្សរបស់យើងមោទនភាពដែលឈ្មោះសាលានៅលើឆាកជាតិ។",
+      "Kesararam With Digital បញ្ជាក់ថា ការអប់រំចរាចរអាចច្នៃប្រឌិត ២ ភាសា និងដឹកនាំដោយសិស្ស។ សិស្សរបស់យើងមោទនភាពដែលឈ្មោះសាលានៅលើឆាកជាតិ។",
     color: "#22c55e",
     rating: 5,
   },
   {
     nameEn: "Student Learner",
-    nameKh: "សិស្សប្រើប្រាស់ KWD",
-    roleEn: "KWD Active Student User",
-    roleKh: "អ្នកប្រើប្រាស់ KWD",
+    nameKh: "សិស្សប្រើប្រាស់ Kesararam With Digital",
+    roleEn: "Kesararam With Digital Active Student User",
+    roleKh: "អ្នកប្រើប្រាស់ Kesararam With Digital",
     quoteEn:
-      "I used to be confused by traffic signs. Now I practice every day on KWD and feel confident. The Khmer language support makes everything so clear!",
+      "I used to be confused by traffic signs. Now I practice every day on Kesararam With Digital and feel confident. The Khmer language support makes everything so clear!",
     quoteKh:
-      "ពីការភ័យខ្លាច និងស្រពិចស្រពិលលើសញ្ញាចរាចរ ទៅជាការរៀនរៀងរាល់ថ្ងៃលើ KWD — ភាសាខ្មែរ ច្បាស់ ងាយ យល់ ១០០%។",
+      "ពីការភ័យខ្លាច និងស្រពិចស្រពិលលើសញ្ញាចរាចរ ទៅជាការរៀនរៀងរាល់ថ្ងៃលើ Kesararam With Digital — ភាសាខ្មែរ ច្បាស់ ងាយ យល់ ១០០%។",
     color: "#3b82f6",
     rating: 5,
   },
@@ -725,7 +725,7 @@ export function MentionsTestimonialsSection() {
             <div className="flex items-center justify-between border-b-2 border-black pb-3">
               <div className="flex items-center gap-2 text-base sm:text-lg font-black text-black uppercase" style={khFont}>
                 <Quote size={20} className="text-amber-500" />
-                <span>{kh ? "មតិ និងការវាយតម្លៃពីសហគមន៍ (Community Testimonials)" : "WHAT PEOPLE SAY ABOUT KWD"}</span>
+                <span>{kh ? "មតិ និងការវាយតម្លៃពីសហគមន៍ (Community Testimonials)" : "WHAT PEOPLE SAY ABOUT Kesararam With Digital"}</span>
               </div>
               <div className="text-xs font-mono font-bold text-zinc-500 uppercase">
                 ★ 5.0 ENDORSEMENTS
@@ -787,8 +787,8 @@ export function MentionsTestimonialsSection() {
             </h3>
             <p className="text-xs sm:text-sm font-bold text-zinc-800" style={khFont}>
               {kh
-                ? "រៀនសញ្ញាចរាចរណ៍ និងច្បាប់ផ្លូវវិថីដោយឥតគិតថ្លៃ ជាមួយ KWD"
-                : "Master Cambodian traffic signs and road safety knowledge for free on KWD."}
+                ? "រៀនសញ្ញាចរាចរណ៍ និងច្បាប់ផ្លូវវិថីដោយឥតគិតថ្លៃ ជាមួយ Kesararam With Digital"
+                : "Master Cambodian traffic signs and road safety knowledge for free on Kesararam With Digital."}
             </p>
           </div>
 

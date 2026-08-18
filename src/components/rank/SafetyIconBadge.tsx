@@ -16,7 +16,7 @@ import type { RankConfig, RankIconId } from "@/lib/ranks";
 
 /**
  * SafetyIconBadge — a small road-safety icon chip that sits OUTSIDE the avatar
- * image (never over the photo). Uses Lucide icons only (KWD brand rule: no emoji,
+ * image (never over the photo). Uses Lucide icons only (Kesararam With Digital brand rule: no emoji,
  * no Unicode symbols). Flat, monochrome, single colour.
  */
 

@@ -32,42 +32,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     if (!result || result.length === 0) {
       return {
-        title: "Student Profile Not Found — KWD Quiz",
+        title: "Student Profile Not Found — Kesararam With Digital Quiz",
       };
     }
 
     const student = result[0];
     if (!student.isProfilePublic) {
       return {
-        title: "Private Student Profile — KWD",
-        description: "This KWD student has chosen to keep their profile private.",
+        title: "Private Student Profile — Kesararam With Digital",
+        description: "This Kesararam With Digital student has chosen to keep their profile private.",
       };
     }
 
-    const name = student.isNamePublic ? (student.displayName || student.username) : "KWD Student";
+    const name = student.isNamePublic ? (student.displayName || student.username) : "Kesararam With Digital Student";
 
-    const desc = `View ${name}'s public KWD profile, game scores, rank progress, and claimed rewards.`;
+    const desc = `View ${name}'s public Kesararam With Digital profile, game scores, rank progress, and claimed rewards.`;
     const url = `https://kesararamwithdigital.tech/u/${student.username}`;
     return {
       title: `${name} — Student Profile`,
       description: desc,
       openGraph: {
-        title: `${name} — KWD Student Profile`,
+        title: `${name} — Kesararam With Digital Student Profile`,
         description: desc,
         type: "profile",
         url,
-        siteName: "KWD Quiz · Kesararam With Digital",
+        siteName: "Kesararam With Digital Quiz · Kesararam With Digital",
       },
       twitter: {
         card: "summary_large_image",
-        title: `${name} — KWD Student Profile`,
+        title: `${name} — Kesararam With Digital Student Profile`,
         description: desc,
       },
     };
   } catch (error) {
     console.error("Error generating metadata for student profile:", error);
     return {
-      title: "Student Profile — KWD Quiz",
+      title: "Student Profile — Kesararam With Digital Quiz",
     };
   }
 }

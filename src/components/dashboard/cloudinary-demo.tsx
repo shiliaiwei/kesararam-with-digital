@@ -85,7 +85,7 @@ export function CloudinaryDemo() {
               },
               fonts: {
                 default: null,
-                "'KWD Roboto', sans-serif": {
+                "'Kesararam With Digital Roboto', sans-serif": {
                   url: "/Roboto/Roboto-VariableFont_wdth,wght.woff2",
                   active: true
                 }

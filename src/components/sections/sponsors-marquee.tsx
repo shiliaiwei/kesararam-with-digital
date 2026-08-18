@@ -10,7 +10,7 @@ const LOGOS: { src: string; name: string; cls?: string }[] = [
   { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/66aafc8e5a697_obtttu.png", name: "Ministry of Education, Youth and Sport" },
   // Square logos (~800×800): use a taller box so object-contain doesn't shrink them
   { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1782299398/kwdblacknobackground_tikazv.png", name: "Kesararam With Digital", cls: "h-16 w-16" },
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1782299393/KWDxTGC_d2m05u.png",        name: "KWD × TGC", cls: "h-16 w-16" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1782299393/KWDxTGC_d2m05u.png",        name: "Kesararam With Digital × TGC", cls: "h-16 w-16" },
 ];
 
 function LogoItem({ src, name, cls = "h-12 w-28" }: { src: string; name: string; cls?: string }) {

@@ -649,7 +649,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                   <Trophy className="text-[#eab308]" size={16} strokeWidth={2.8} />
                   <span className="font-mono text-xs font-black uppercase tracking-wider">{t("STUDENT STATS", "ស្ថិតិសិស្ស")}</span>
                 </div>
-                <span className="font-mono text-[9px] font-black text-zinc-400 uppercase tracking-widest">{t("VERIFIED BY KWD", "ផ្ទៀងផ្ទាត់ដោយ KWD")}</span>
+                <span className="font-mono text-[9px] font-black text-zinc-400 uppercase tracking-widest">{t("VERIFIED BY Kesararam With Digital", "ផ្ទៀងផ្ទាត់ដោយ Kesararam With Digital")}</span>
               </div>
               
               {/* 4-column divided grid */}

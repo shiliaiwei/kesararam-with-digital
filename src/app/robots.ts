@@ -15,7 +15,7 @@ const DISALLOW = [
   '/Regional-Pitch-Event',
 ]
 
-// AI / LLM search crawlers we explicitly welcome, so KWD can be discovered and
+// AI / LLM search crawlers we explicitly welcome, so Kesararam With Digital can be discovered and
 // cited inside ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews.
 // (See /llms.txt for the structured summary these assistants read.)
 const AI_CRAWLERS = [

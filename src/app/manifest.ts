@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 // PWA / web app manifest — served at /manifest.webmanifest.
-// Makes KWD installable ("Add to Home Screen") and sets the brand theme color
+// Makes Kesararam With Digital installable ("Add to Home Screen") and sets the brand theme color
 // for the browser/OS chrome. Brand: yellow #eab308 on black, road-safety identity.
 export default function manifest(): MetadataRoute.Manifest {
   return {

@@ -18,7 +18,7 @@ export function TeamCard() {
         {/* B&W layer */}
         <img
           src={IMG}
-          alt="Team KWD"
+          alt="Team Kesararam With Digital"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: "grayscale(100%) contrast(1.1)" }}
         />
@@ -47,7 +47,7 @@ export function TeamCard() {
         style={{ backgroundColor: hovered ? "#eab308" : "#fff" }}
       >
         <p className="font-black text-sm transition-colors duration-300" style={{ color: hovered ? "#000" : "#000" }}>
-          Team KWD
+          Team Kesararam With Digital
         </p>
         <p className="text-xs mt-1 transition-colors duration-300" style={{ color: hovered ? "#000" : "#71717a" }}>
           Kesararam With Digital · Technovation Girls Cambodia

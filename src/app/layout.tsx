@@ -55,8 +55,8 @@ export const metadata: Metadata = {
     "Technovation Girls Global Semifinalist",
     "Technovation Cambodia National Champion",
     "Team #50777",
-    "KWD road safety",
-    "KWD",
+    "Kesararam With Digital road safety",
+    "Kesararam With Digital",
     // Khmer (ខ្មែរ)
     "រៀនសុវត្ថិភាពចរាចរណ៍",
     "សុវត្ថិភាពចរាចរណ៍",
@@ -139,7 +139,7 @@ const structuredData = {
       "@type": ["Organization", "EducationalOrganization"],
       "@id": `${SITE_URL}/#organization`,
       name: "Kesararam With Digital",
-      alternateName: ["The Way of Safety", "វិថី សុវត្ថិភាព", "Kesararam With Digital — The Way of Safety", "KWD"],
+      alternateName: ["The Way of Safety", "វិថី សុវត្ថិភាព", "Kesararam With Digital — The Way of Safety", "Kesararam With Digital"],
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
@@ -150,7 +150,7 @@ const structuredData = {
       image: `${SITE_URL}/brand/kwd-green.png`,
       slogan: "Learn the road. Stay safe. In Khmer and English.",
       description:
-        "KWD (Kesararam With Digital) is Cambodia's free, fully bilingual (Khmer & English) road-safety education platform — teaching traffic signs, road rules, and safe road-use theory through interactive lessons, quizzes, and live multiplayer games.",
+        "Kesararam With Digital (Kesararam With Digital) is Cambodia's free, fully bilingual (Khmer & English) road-safety education platform — teaching traffic signs, road rules, and safe road-use theory through interactive lessons, quizzes, and live multiplayer games.",
       email: "kesararamwithdigital@gmail.com",
       foundingDate: "2025",
       knowsLanguage: ["km", "en"],
@@ -169,8 +169,8 @@ const structuredData = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: "KWD — Kesararam With Digital",
-      alternateName: "KWD",
+      name: "Kesararam With Digital — Kesararam With Digital",
+      alternateName: "Kesararam With Digital",
       description:
         "Cambodia's free, bilingual (Khmer & English) road-safety platform — learn traffic signs and road rules through lessons, quizzes, and live games.",
       inLanguage: ["en", "km"],
@@ -223,7 +223,7 @@ const structuredData = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "Is KWD free?",
+          name: "Is Kesararam With Digital free?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Yes. Students can learn road safety, study Cambodian traffic signs, and play quiz games for free. Paid plans add tools for teachers, schools, families, and academies.",
@@ -231,7 +231,7 @@ const structuredData = {
         },
         {
           "@type": "Question",
-          name: "What languages does KWD support?",
+          name: "What languages does Kesararam With Digital support?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Everything is fully bilingual — Khmer (ខ្មែរ) and English — and switchable anywhere on the platform.",
@@ -247,7 +247,7 @@ const structuredData = {
         },
         {
           "@type": "Question",
-          name: "Can I practice for a traffic license test with KWD?",
+          name: "Can I practice for a traffic license test with Kesararam With Digital?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Yes. The Learn categories cover the road-safety theory and the games — especially Category Quiz and Daily Challenge — let you practice with quiz questions to check your knowledge before a license test.",
@@ -255,10 +255,10 @@ const structuredData = {
         },
         {
           "@type": "Question",
-          name: "Who made KWD?",
+          name: "Who made Kesararam With Digital?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "KWD (វិថី សុវត្ថិភាព · The Way of Safety) is built by Kesararam With Digital, a team of young Cambodian women in Siem Reap, as a Technovation Girls 2026 project (Team #50777).",
+            text: "Kesararam With Digital (វិថី សុវត្ថិភាព · The Way of Safety) is built by Kesararam With Digital, a team of young Cambodian women in Siem Reap, as a Technovation Girls 2026 project (Team #50777).",
           },
         },
       ],

@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 
-// Khmer display font follows the local KWD Google Sans UI stack.
+// Khmer display font follows the local Kesararam With Digital Google Sans UI stack.
 const KH_FONT = 'var(--font-system)';
 
 // Three bilingual role tags per member — KH verbatim from KWD_អំពីពួកយើង.txt
@@ -155,7 +155,7 @@ export default function TeamMemberPage() {
       {/* Subtle FUI grid */}
       <div className="absolute inset-0 opacity-[0.03]"
         style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
-      <div className="absolute top-8 left-8 text-[9px] text-white/10 font-mono hidden md:block">KWD · VSID_AUTH · 2026</div>
+      <div className="absolute top-8 left-8 text-[9px] text-white/10 font-mono hidden md:block">Kesararam With Digital · VSID_AUTH · 2026</div>
       <div className="absolute bottom-8 right-8 text-[9px] text-white/10 font-mono hidden md:block">TECHNOVATION GIRLS · #50777</div>
 
       <div className="w-full max-w-xs relative z-10">
@@ -181,7 +181,7 @@ export default function TeamMemberPage() {
             <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
 
-            {/* KWD logo watermark */}
+            {/* Kesararam With Digital logo watermark */}
             <div className="absolute top-3 right-3">
               <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-4 opacity-30 brightness-0 invert" />
             </div>
@@ -194,7 +194,7 @@ export default function TeamMemberPage() {
             <div className="flex items-start justify-between gap-2">
               <div>
                 <p className="text-[9px] font-black uppercase tracking-widest mb-1" style={{ color: accent }}>
-                  {isMentor ? "Mentor" : "Student"} · KWD 2026
+                  {isMentor ? "Mentor" : "Student"} · Kesararam With Digital 2026
                 </p>
                 <h1 className="text-3xl font-black text-white leading-none tracking-tight">{member.lastName}</h1>
                 <p className="text-xs text-white/30 mt-0.5">{member.fullName}</p>

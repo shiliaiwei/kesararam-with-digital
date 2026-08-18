@@ -65,7 +65,7 @@ export function CompleteProfileForm({
   const [province, setProvince] = useState("Siem Reap"); // Default to Siem Reap as requested
   const [face, setFace] = useState("Smile.svg");
   const [head, setHead] = useState("Short 1.svg");
-  const [isProfilePublic] = useState(true); // KWD student profiles are public by default.
+  const [isProfilePublic] = useState(true); // Kesararam With Digital student profiles are public by default.
   const [activeAvatarTab, setActiveAvatarTab] = useState<"head" | "face">("head");
 
   const [loading, setLoading] = useState(false);
@@ -349,7 +349,7 @@ export function CompleteProfileForm({
             <div className="flex flex-col items-center justify-center p-6 bg-zinc-50 border-2 border-black shadow-[3px_3px_0_#000] relative">
               <AvatarDisplay
                 avatar={JSON.stringify({ face, head })}
-                name={displayName || "KWD Student"}
+                name={displayName || "Kesararam With Digital Student"}
                 size={140}
                 radius={0}
               />

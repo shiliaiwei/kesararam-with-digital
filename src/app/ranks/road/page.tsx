@@ -8,8 +8,8 @@ import { MythicAvatarBorder } from "@/components/rank/MythicAvatarBorder";
 import { RoadBorderSandbox } from "@/components/rank/RoadBorderSandbox";
 
 export const metadata: Metadata = {
-    title: "KWD Road Avatar Border — Rookie, Rising, Gold & Diamond",
-    description: "Premium skeuomorphic road-safety avatar borders for KWD rank tiers: Rookie, Rising, Gold, and Diamond.",
+    title: "Kesararam With Digital Road Avatar Border — Rookie, Rising, Gold & Diamond",
+    description: "Premium skeuomorphic road-safety avatar borders for Kesararam With Digital rank tiers: Rookie, Rising, Gold, and Diamond.",
 };
 
 export default function RoadBorderPage() {

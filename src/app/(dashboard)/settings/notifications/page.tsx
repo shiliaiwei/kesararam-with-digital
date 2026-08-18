@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Bell } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Notification Settings | KWD",
+  title: "Notification Settings | Kesararam With Digital",
   description: "Manage your notification preferences",
 };
 

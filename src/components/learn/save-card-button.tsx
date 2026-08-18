@@ -441,7 +441,7 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `${topic.topic_code}-KWD.png`;
+                a.download = `${topic.topic_code}-Kesararam With Digital.png`;
                 a.click();
                 URL.revokeObjectURL(url);
             }, 'image/png', 1.0);
