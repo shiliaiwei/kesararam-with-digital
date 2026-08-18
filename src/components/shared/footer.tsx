@@ -40,7 +40,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center mb-14">
           <div className="w-28 h-28 mb-4 flex items-center justify-center">
-            <Image src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg" alt="KWD" width={112} height={112} className="object-contain w-full h-full" unoptimized />
+            <Image src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg" alt="Kesararam With Digital" width={112} height={112} className="object-contain w-full h-full" unoptimized />
           </div>
           <p className="font-google-sans font-black text-2xl text-black leading-none mb-1 text-center">
             វិថី សុវត្ថិភាព

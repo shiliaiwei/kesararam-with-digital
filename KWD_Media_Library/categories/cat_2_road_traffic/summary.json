@@ -1,0 +1,15 @@
+{
+  "id": 2,
+  "slug": "road-traffic",
+  "title_en": "Road Traffic Law",
+  "title_km": "ច្បាប់ចរាចរ",
+  "sort_order": 2,
+  "is_active": true,
+  "topic_count": 192,
+  "sub_groups": {
+    "Overtaking": 24,
+    "Traffic Rules": 112,
+    "Parking": 31,
+    "Speed Limits": 25
+  }
+}
