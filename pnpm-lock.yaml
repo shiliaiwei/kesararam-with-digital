@@ -168,6 +168,9 @@ importers:
         specifier: ^4.3.6
         version: 4.4.3
     devDependencies:
+      '@next/eslint-plugin-next':
+        specifier: ^15.5.23
+        version: 15.5.23
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.3.0

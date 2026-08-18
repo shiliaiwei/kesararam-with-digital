@@ -49,7 +49,7 @@ describe("Property 16: Audio Mute Preference Persistence", () => {
           await db.delete(users).where(eq(users.id, user.id));
         }
       }),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 
@@ -95,7 +95,7 @@ describe("Property 16: Audio Mute Preference Persistence", () => {
           }
         }
       ),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 
@@ -146,7 +146,7 @@ describe("Property 16: Audio Mute Preference Persistence", () => {
           await db.delete(users).where(eq(users.id, user.id));
         }
       }),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 });

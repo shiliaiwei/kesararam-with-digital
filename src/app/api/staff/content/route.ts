@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
     const offset = (page - 1) * limit;
 
     // Build query conditions
-    const conditions = [eq(contentItems.createdBy, session.id)];
+    const conditions: any[] = [eq(contentItems.createdBy, session.id)];
     
     if (status) {
       conditions.push(eq(contentItems.status, status));
@@ -60,13 +60,12 @@ export async function GET(request: NextRequest) {
     }
     
     if (search) {
-      conditions.push(
-        or(
-          like(contentItems.titleEn, `%${search}%`),
-          like(contentItems.titleKm, `%${search}%`),
-          like(contentItems.questionEn, `%${search}%`)
-        )
+      const searchCond = or(
+        like(contentItems.titleEn, `%${search}%`),
+        like(contentItems.titleKm, `%${search}%`),
+        like(contentItems.questionEn, `%${search}%`)
       );
+      if (searchCond) conditions.push(searchCond);
     }
 
     // Fetch content
@@ -158,12 +157,6 @@ export async function POST(request: NextRequest) {
         sortOrder: data.sortOrder,
         isActive: false,
         createdBy: session.id,
-        videoUrl: data.videoUrl,
-        logoUrl: data.logoUrl,
-        brandUrl: data.brandUrl,
-        resourceType: data.resourceType,
-        tags: data.tags,
-        metadata: data.metadata ? JSON.stringify(data.metadata) : null,
       })
       .returning();
 

@@ -81,7 +81,7 @@ function DetailPanel({
   topic: Topic;
   isKh: boolean;
   kf: React.CSSProperties;
-  t: typeof UI.en;
+  t: typeof UI.en | typeof UI.kh;
   onClose: () => void;
 }) {
   const [playing, setPlaying] = useState(false);

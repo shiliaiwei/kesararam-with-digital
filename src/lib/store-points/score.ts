@@ -19,10 +19,10 @@ export interface StorePointsResult {
 }
 
 /** Hard ceiling on a single play: at most 30 correct answers count. */
-export const STORE_POINTS_MAX_PER_PLAY = 300;
+export const STORE_POINTS_MAX_PER_PLAY = 30;
 export const STORE_POINTS_MIN_ACCURACY = 0.4; // below this → 0 spendable points
 export const STORE_POINTS_UNIT_CAP = 30; // correct answers beyond 30 in one play do not pay
-export const STORE_POINTS_PER_CORRECT = 10; // one correct answer = 10 Store Points
+export const STORE_POINTS_PER_CORRECT = 1; // one correct answer = 1 Store Point
 export const STORE_POINTS_COMPLETION_BONUS = 0;
 export const STORE_POINTS_QUALITY_ACCURACY = 1; // retained for ledger compatibility
 export const STORE_POINTS_QUALITY_BONUS = 0;

@@ -24,7 +24,7 @@ import {
   Key
 } from "lucide-react";
 
-import { SECTIONS } from "../terms/page";
+import { SECTIONS } from "@/data/terms-data";
 
 const initialState = { error: "", success: false };
 

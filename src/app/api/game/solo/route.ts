@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
   // Daily play limit check (authenticated students only)
   if (user?.id && user.role === "student") {
-    const { getStudentPlayLimit, getSoloPlaysToday } = await import("./complete/route");
+    const { getStudentPlayLimit, getSoloPlaysToday } = await import("@/lib/solo-limits");
     const limitInfo = await getStudentPlayLimit(user.id);
     const playsToday = await getSoloPlaysToday(user.id);
 

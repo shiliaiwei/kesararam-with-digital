@@ -1413,10 +1413,10 @@ export function BuiltWithClient() {
 
             {/* Row of children connected by horizontal line */}
             <div className="flex gap-x-6 relative pt-6">
-              {node.children.map((child, index) => {
+              {node.children?.map((child, index) => {
                 const isFirst = index === 0;
-                const isLast = index === node.children.length - 1;
-                const isOnly = node.children.length === 1;
+                const isLast = index === (node.children?.length ?? 0) - 1;
+                const isOnly = (node.children?.length ?? 0) === 1;
 
                 return (
                   <div key={child.id} className="relative flex flex-col items-center">

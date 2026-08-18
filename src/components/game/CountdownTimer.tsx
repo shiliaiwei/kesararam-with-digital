@@ -44,15 +44,15 @@ export function CountdownTimer({ endsAt, totalSeconds, onExpire, muted }: Countd
       }
     };
 
-    const intervalRef = { id: 0 as ReturnType<typeof setInterval> };
+    let intervalId: any = null;
     const initTimeout = setTimeout(() => {
       tick();
-      intervalRef.id = setInterval(tick, 1000);
+      intervalId = setInterval(tick, 1000);
     }, 200);
 
     return () => {
       clearTimeout(initTimeout);
-      clearInterval(intervalRef.id);
+      if (intervalId) clearInterval(intervalId);
     };
   }, [endsAt, muted]);
 

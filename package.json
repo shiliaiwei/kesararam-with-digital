@@ -91,6 +91,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^15.5.23",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20.19.37",
     "@types/qrcode": "^1.5.6",
