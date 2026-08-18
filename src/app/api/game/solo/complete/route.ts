@@ -16,49 +16,7 @@ interface AnswerInput {
   difficulty?: string | null;
 }
 
-/**
- * Determine the play-limit tier for an authenticated student.
- * Joins classEnrollments → classes to get the teacher, then checks subscription.
- */
-export async function getStudentPlayLimit(userId: number): Promise<{
-  limit: number;
-  tier: "student" | "studentClass" | "studentPro";
-}> {
-  // Check if enrolled in any class
-  const [row] = await db
-    .select({ teacherId: classes.teacherId })
-    .from(classEnrollments)
-    .innerJoin(classes, eq(classes.id, classEnrollments.classId))
-    .where(eq(classEnrollments.studentId, userId))
-    .limit(1);
-
-  if (!row) return { limit: PLAY_LIMITS.student, tier: "student" };
-
-  try {
-    const { plan } = await getUserSubscription(row.teacherId);
-    const isPro = plan !== "free";
-    return isPro
-      ? { limit: PLAY_LIMITS.studentPro, tier: "studentPro" }
-      : { limit: PLAY_LIMITS.studentClass, tier: "studentClass" };
-  } catch {
-    return { limit: PLAY_LIMITS.studentClass, tier: "studentClass" };
-  }
-}
-
-/** Count today's solo gameScores rows for this student (Asia/Phnom_Penh = UTC+7). */
-export async function getSoloPlaysToday(userId: number): Promise<number> {
-  const now = new Date();
-  const todayOffset = new Date(now.getTime() + 7 * 60 * 60 * 1000);
-  const dateStr = todayOffset.toISOString().slice(0, 10);
-  const startOfDay = new Date(`${dateStr}T00:00:00+07:00`);
-
-  const [row] = await db
-    .select({ cnt: count() })
-    .from(gameScores)
-    .where(and(eq(gameScores.userId, userId), gte(gameScores.createdAt, startOfDay)));
-
-  return Number(row?.cnt ?? 0);
-}
+import { getStudentPlayLimit, getSoloPlaysToday } from "@/lib/solo-limits";
 
 /**
  * POST /api/game/solo/complete

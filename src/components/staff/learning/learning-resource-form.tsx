@@ -19,7 +19,7 @@ interface Question {
   audioSourceEn: "url" | "cloudinary";
   audioUrlKm: string;
   audioSourceKm: "url" | "cloudinary";
-  answers: unknown[];
+  answers: any[];
   expanded: boolean;
 }
 
@@ -40,11 +40,11 @@ const DIFFICULTIES = [
   { value: "hard", label: "Hard", color: "bg-red-400" },
 ];
 
-export function LearningResourceForm({ initialData }: { initialData?: Record<string, unknown> }) {
+export function LearningResourceForm({ initialData }: { initialData?: any }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(
-    initialData?.categoryId?.toString() || ""
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    initialData?.categoryId ? String(initialData.categoryId) : ""
   );
   const [formData, setFormData] = useState({
     titleEn: initialData?.titleEn || "",
@@ -60,10 +60,10 @@ export function LearningResourceForm({ initialData }: { initialData?: Record<str
     audioUrlKm: initialData?.audioUrlKm || "",
     audioSourceKm: (initialData?.audioSourceKm || "url") as "url" | "cloudinary",
     videoUrl: initialData?.videoUrl || "",
-    tags: initialData?.tags?.join(", ") || "",
+    tags: Array.isArray(initialData?.tags) ? initialData.tags.join(", ") : (initialData?.tags || ""),
   });
 
-  const [questions, setQuestions] = useState<Question[]>(
+  const [questions, setQuestions] = useState<any[]>(
     initialData?.questions || []
   );
 
@@ -84,7 +84,7 @@ export function LearningResourceForm({ initialData }: { initialData?: Record<str
 
     try {
       const payload = {
-        categoryId: parseInt(selectedCategory),
+        categoryId: parseInt(selectedCategory, 10),
         type: "learning_resource",
         titleEn: formData.titleEn,
         titleKm: formData.titleKm,
@@ -99,8 +99,8 @@ export function LearningResourceForm({ initialData }: { initialData?: Record<str
         audioUrlKm: formData.audioUrlKm,
         audioSourceKm: formData.audioSourceKm,
         videoUrl: formData.videoUrl,
-        tags: formData.tags ? formData.tags.split(",").map((t) => t.trim()) : [],
-        questions: questions.map((q) => ({
+        tags: formData.tags ? formData.tags.split(",").map((t: string) => t.trim()) : [],
+        questions: questions.map((q: any) => ({
           questionEn: q.questionEn,
           questionKm: q.questionKm,
           hintEn: q.hintEn,

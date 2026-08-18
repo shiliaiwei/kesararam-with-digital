@@ -126,12 +126,6 @@ export async function PUT(
         difficulty: difficulty ?? existing.difficulty,
         subtopic: subtopic ?? existing.subtopic,
         sortOrder: sortOrder ?? existing.sortOrder,
-        videoUrl: videoUrl ?? existing.videoUrl,
-        logoUrl: logoUrl ?? existing.logoUrl,
-        brandUrl: brandUrl ?? existing.brandUrl,
-        resourceType: resourceType ?? existing.resourceType,
-        tags: tags ?? existing.tags,
-        metadata: metadata ? JSON.stringify(metadata) : existing.metadata,
         status: "pending", // Reset to pending after edit
         updatedAt: new Date(),
       })
@@ -204,7 +198,7 @@ export async function DELETE(
 
       if (
         creator?.role === "staff" &&
-        (existing.status === "approved" || existing.approvedBy !== null)
+        ((existing.status as string) === "approved" || existing.approvedBy !== null)
       ) {
         return NextResponse.json(
           { error: "Cannot delete content created by staff and approved by admin" },

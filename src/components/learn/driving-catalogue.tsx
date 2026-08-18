@@ -99,7 +99,7 @@ function useAudio(url: string | null) {
 }
 
 // ── Expanded answer card ──────────────────────────────────────────────────────
-function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en }) {
+function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en | typeof UI.kh }) {
   const kf = isKh ? { fontFamily: "var(--font-learning)" } : {};
   const audioUrlEn = topic.audio_url_en || "";
   const audioUrlKm = topic.audio_url_km || "";

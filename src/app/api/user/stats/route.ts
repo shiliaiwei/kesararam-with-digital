@@ -127,7 +127,7 @@ export async function GET() {
         currentRank,
         recentGames: recentGames.map((game) => ({
           ...game,
-          createdAt: game.createdAt?.toISOString() || new Date().toISOString(),
+          createdAt: (game as any).createdAt ? new Date((game as any).createdAt).toISOString() : new Date().toISOString(),
         })),
       },
     });

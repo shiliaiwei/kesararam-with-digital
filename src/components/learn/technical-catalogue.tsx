@@ -100,7 +100,7 @@ function useAudio(url: string | null) {
 }
 
 // ── Answer card ───────────────────────────────────────────────────────────────
-function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en }) {
+function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en | typeof UI.kh }) {
   const kf = isKh ? { fontFamily: "var(--font-learning)" } : {};
   const answer = isKh ? topic.description_km : topic.description_en;
   const subGroup = SUB_GROUPS.find((s) => s.key === topic.sub_group);
@@ -170,7 +170,7 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
 
 // ── Footer row: audio LEFT, save RIGHT ───────────────────────────────────────
 function FooterRow({ topic, isKh, t, accentPlay, accentStop }: {
-  topic: Topic; isKh: boolean; t: typeof UI.en;
+  topic: Topic; isKh: boolean; t: typeof UI.en | typeof UI.kh;
   accentPlay: string; accentStop: string;
 }) {
   const kf = isKh ? { fontFamily: "var(--font-learning)" } : {};

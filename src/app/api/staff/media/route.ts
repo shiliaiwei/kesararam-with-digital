@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     const offset = (page - 1) * limit;
 
     // Build query
-    let query = db.select().from(mediaResources);
+    let query: any = db.select().from(mediaResources);
 
     const conditions = [];
     if (type) {

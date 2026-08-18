@@ -61,7 +61,7 @@ export async function GET() {
     teacherId = enrollment.teacherId;
     try {
       const { plan } = await getUserSubscription(enrollment.teacherId);
-      tier = (plan !== "free" && plan !== "trial") ? "studentPro" : "studentClass";
+      tier = (plan && (plan as string) !== "free" && (plan as string) !== "trial") ? "studentPro" : "studentClass";
     } catch {
       tier = "studentClass";
     }

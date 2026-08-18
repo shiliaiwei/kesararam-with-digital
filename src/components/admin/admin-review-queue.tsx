@@ -491,7 +491,7 @@ export function AdminReviewQueue() {
       {/* Review Modal */}
       {selectedTopic && (
         <TopicReviewModal
-          topic={selectedTopic}
+          topic={selectedTopic as any}
           onClose={() => setSelectedTopic(null)}
           onApprove={() => {
             handleApprove(selectedTopic.id);

@@ -21,7 +21,7 @@ interface Topic {
   primaryImageUrl: string | null;
   audioUrlEn: string | null;
   audioUrlKm: string | null;
-  status: "draft" | "pending" | "approved" | "rejected";
+  status: "draft" | "pending" | "approved" | "published" | "rejected";
   rejectionReason?: string | null;
   createdAt: string;
   updatedAt: string;
