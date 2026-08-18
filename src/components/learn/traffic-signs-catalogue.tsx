@@ -209,7 +209,7 @@ function DetailPanel({
           <!-- Header with logo -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
             <div style="display: flex; align-items: center; gap: 20px;">
-              <img src="/brand/kwd-gray.png" alt="KWD" style="height: 60px; opacity: 0.7;" />
+              <img src="/brand/kwd-gray.png" alt="Kesararam With Digital" style="height: 60px; opacity: 0.7;" />
               <div>
                 <div style="font-size: 14px; font-weight: bold; color: #666; text-transform: uppercase; letter-spacing: 1px;">
                   ${isKh ? 'សញ្ញាចរាចរណ៍' : 'Traffic Sign'}
