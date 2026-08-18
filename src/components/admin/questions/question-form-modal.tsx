@@ -434,7 +434,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                     setTopicId={handleTopicChange}
                     onClose={onClose}
                     onSuccess={onSuccess}
-                    showToast={showToast}
+                    showToast={(msg: string, type?: any) => showToast(msg, type)}
                     isStaff={isStaff}
                 />}
 

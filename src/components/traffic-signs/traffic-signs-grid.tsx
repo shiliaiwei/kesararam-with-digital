@@ -109,7 +109,7 @@ function SignDetailPanel({
       <div className="flex items-center justify-between px-5 py-3 bg-yellow-400 border-b-2 border-black">
         <div className="flex items-center gap-3">
           <span className="font-mono text-xs font-black bg-black text-yellow-400 px-2 py-0.5">
-            {sign.signCode || sign.signType}
+            {(sign as any).signCode || sign.signType}
           </span>
           {sign.category && (
             <span className="text-xs font-bold text-black/70">{sign.category}</span>
@@ -343,7 +343,7 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
                 <div className={`border-t-2 px-1 py-1 w-full text-center transition-colors ${isSelected ? "border-yellow-500 bg-yellow-500" : "border-black bg-zinc-50 group-hover:border-yellow-500 group-hover:bg-yellow-500"
                   }`}>
                   <span className="font-mono text-[9px] font-black text-black leading-none">
-                    {sign.signCode || sign.signType}
+                    {(sign as any).signCode || sign.signType}
                   </span>
                 </div>
               </button>

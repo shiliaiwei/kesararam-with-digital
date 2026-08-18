@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import Image from "next/image";
 import {
   Camera,
@@ -14,6 +14,7 @@ import {
   LayoutGrid,
   Sparkles,
   Layers,
+  Loader2,
 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { EVENT_PHOTOS } from "@/data/event-photos-data";
@@ -39,6 +40,55 @@ export function EventPhotosSection() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [displayCount, setDisplayCount] = useState(30);
   const [activeTab, setActiveTab] = useState<"mosaic" | "river">("mosaic");
+  
+  // Auto-release 5-second timer states
+  const [autoSecondsLeft, setAutoSecondsLeft] = useState<number | null>(null);
+  const triggerRef = useRef<HTMLDivElement | null>(null);
+
+  // Randomize photos on client-side mount so every scroll/visit presents a random sequence
+  useEffect(() => {
+    setPhotos(shuffleArray(EVENT_PHOTOS));
+  }, []);
+
+  // IntersectionObserver: when user scrolls down to the trigger, countdown 5s and auto-release more photos
+  useEffect(() => {
+    if (displayCount >= photos.length || activeTab !== "mosaic") return;
+
+    const el = triggerRef.current;
+    if (!el) return;
+
+    let countdownInterval: NodeJS.Timeout | null = null;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setAutoSecondsLeft(5);
+          countdownInterval = setInterval(() => {
+            setAutoSecondsLeft((prev) => {
+              if (prev === null || prev <= 1) {
+                if (countdownInterval) clearInterval(countdownInterval);
+                setDisplayCount((c) => Math.min(c + 30, photos.length));
+                return null;
+              }
+              return prev - 1;
+            });
+          }, 1000);
+        } else {
+          if (countdownInterval) clearInterval(countdownInterval);
+          setAutoSecondsLeft(null);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      if (countdownInterval) clearInterval(countdownInterval);
+    };
+  }, [displayCount, photos.length, activeTab]);
 
   // Randomize photos on client-side mount so every scroll/visit presents a random sequence
   useEffect(() => {
@@ -205,17 +255,39 @@ export function EventPhotosSection() {
               ))}
             </div>
 
-            {/* Load More Trigger if more photos exist */}
+            {/* Load More Trigger with Auto 5s Countdown on Scroll */}
             {displayCount < photos.length && (
-              <div className="mt-8 text-center">
+              <div ref={triggerRef} className="mt-8 text-center flex flex-col items-center justify-center gap-2">
                 <button
-                  onClick={() => setDisplayCount((prev) => Math.min(prev + 30, photos.length))}
+                  onClick={() => {
+                    setAutoSecondsLeft(null);
+                    setDisplayCount((prev) => Math.min(prev + 30, photos.length));
+                  }}
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-none bg-white dark:bg-zinc-800 border-2 border-black font-black text-xs uppercase tracking-wider text-zinc-900 dark:text-white shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#3b82f6] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000] transition-all"
                   style={khFont}
                 >
-                  <Sparkles size={15} className="text-blue-500" />
-                  <span>{kh ? "មើលរូបភាពបន្ថែមទៀត" : "Show More Photos"}</span>
+                  {autoSecondsLeft !== null ? (
+                    <Loader2 size={15} className="text-blue-500 animate-spin" />
+                  ) : (
+                    <Sparkles size={15} className="text-blue-500" />
+                  )}
+                  <span>
+                    {autoSecondsLeft !== null
+                      ? kh
+                        ? `កំពុងផ្ទុកស្វ័យប្រវត្តិ (${autoSecondsLeft}វិនាទី)...`
+                        : `Auto-loading in ${autoSecondsLeft}s...`
+                      : kh
+                      ? "មើលរូបភាពបន្ថែមទៀត"
+                      : "Show More Photos"}
+                  </span>
                 </button>
+                {autoSecondsLeft !== null && (
+                  <span className="text-[11px] font-mono text-zinc-400">
+                    {kh
+                      ? `រូបភាពនឹងបង្ហាញដោយស្វ័យប្រវត្តិក្នងរយៈពេល ${autoSecondsLeft} វិនាទី`
+                      : `Releasing more photos automatically in ${autoSecondsLeft}s`}
+                  </span>
+                )}
               </div>
             )}
           </div>

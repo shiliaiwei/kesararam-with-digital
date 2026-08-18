@@ -90,11 +90,11 @@ interface SaveCardButtonProps {
         name_km: string;
         description_en: string;
         description_km: string;
-        primary_image_url: string;
-        sub_group: string;
-        law_reference?: string;
-        audio_url_en?: string;
-        audio_url_km?: string;
+        primary_image_url?: string | null;
+        sub_group?: string | null;
+        law_reference?: string | null;
+        audio_url_en?: string | null;
+        audio_url_km?: string | null;
     };
     isKh: boolean;
     size?: 'sm' | 'md' | 'lg';
@@ -174,7 +174,7 @@ export function SaveCardButton({ topic, isKh, size = 'md', showLabel = false, cl
             const ctx = canvas.getContext('2d');
             if (!ctx) throw new Error('Canvas not supported');
 
-            const cfg = CATEGORY_CONFIG[topic.sub_group] || DEFAULT_CONFIG;
+            const cfg = (topic.sub_group && CATEGORY_CONFIG[topic.sub_group]) ? CATEGORY_CONFIG[topic.sub_group] : DEFAULT_CONFIG;
             const siteUrl = 'kesararamwithdigital.tech';
             const title = isKh ? topic.name_km : topic.name_en;
             const answer = isKh ? topic.description_km : topic.description_en;

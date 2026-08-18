@@ -795,19 +795,19 @@ html.lang-en {
 }
 
 .animate-photo-stream-left {
-  animation: photo-marquee-left 32s linear infinite;
+  animation: photo-marquee-left 65s linear infinite;
 }
 
 .animate-photo-stream-left-fast {
-  animation: photo-marquee-left 22s linear infinite;
+  animation: photo-marquee-left 52s linear infinite;
 }
 
 .animate-photo-stream-right {
-  animation: photo-marquee-right 34s linear infinite;
+  animation: photo-marquee-right 68s linear infinite;
 }
 
 .animate-photo-stream-right-fast {
-  animation: photo-marquee-right 24s linear infinite;
+  animation: photo-marquee-right 55s linear infinite;
 }
 
 .pause-animation,

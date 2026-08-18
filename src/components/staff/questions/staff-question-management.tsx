@@ -25,6 +25,12 @@ interface Question {
   answerCount: number;
   createdAt: string;
   answers?: any[];
+  imageUrl?: string | null;
+  image_url?: string | null;
+  hintEn?: string | null;
+  hintKm?: string | null;
+  hint_en?: string | null;
+  hint_km?: string | null;
 }
 
 interface Category {

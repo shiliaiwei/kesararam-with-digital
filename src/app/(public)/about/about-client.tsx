@@ -176,6 +176,25 @@ const CONTENT = {
       { value: "2", label: "Languages" },
       { value: "SDG 4 · 11", label: "UN Goals" },
     ],
+    awardSection: {
+      tag: "Technovation 2026 Milestone",
+      title: "National Champions & Global Semifinalists",
+      desc: "In July 2026, at the American University of Phnom Penh (AUPP), Team KWD was crowned 1st Place National Champion of Technovation Girls Cambodia 2026 and selected by Technovation Global HQ as 1 of only 3 Cambodian teams advancing to the Global Semifinals.",
+      metaList: [
+        { label: "Award Level", value: "National Champion · Junior Division" },
+        { label: "Global Status", value: "Global Semifinalist (Top 3 in Cambodia)" },
+        { label: "Finals Venue", value: "American University of Phnom Penh (AUPP)" },
+        { label: "Presided By", value: "H.E. Chun Vat (MPTC) & H.E. Dr. Sann Vathana (MoEYS)" },
+        { label: "Organized & Supported By", value: "Tech for Kids Academy · CBRD Fund" },
+      ],
+      articleLinks: [
+        { title: "MPTC Official Portal", url: "https://mptc.gov.kh/en/2026/07/secretary-of-state-chun-vat-presided-over-the-national-competition-technovation-girls-cambodia-x-future-digital-talents-2026/" },
+        { title: "Technovation Worldwide HQ", url: "https://www.technovation.org/blogs/2026-semifinalist-announcement/#junior-kh" },
+        { title: "AMS Education Media", url: "https://education.ams.com.kh/outstanding-youth/news-award/news/national-pride-three-cambodian-girls-advance-to-the-global-semifinalists-of-technovation-girls-x-future-digital-talents-2026/" },
+        { title: "Tech for Kids Asia", url: "https://techforkids.asia/en/blog/congratulations-to-the-top-15-national-teams-of-the-technovation-girls-cambodia-x-future-digital-talents-and-the-3-global-semifinalists" },
+        { title: "CC Times Report", url: "https://kh.cc-times.com/posts/30029" },
+      ]
+    },
     mvv: [
       { tag: "Mission", color: "#eab308", text: "We are grounded in the belief that technology is the most effective bridge for transmitting and sharing knowledge. By modernising road safety education into a digital format, we have removed the barriers of location and time — allowing every student to study driving theory and traffic signs in two languages, easily, from any smartphone or computer with internet access. This is the essential foundation for reducing accidents and building a culture of responsible driving in Cambodia." },
       { tag: "Vision",  color: "#22c55e", text: "To build the foundations of a safe, responsible, and knowledgeable driving culture in Cambodia — and to open a new chapter for young women in schools and communities, enabling them to become leaders in technology and creative builders of the digital world." },
@@ -224,6 +243,25 @@ const CONTENT = {
       { value: "2",       label: "ភាសា" },
       { value: "SDG 4·11",label: "គោលដៅ UN" },
     ],
+    awardSection: {
+      tag: "សមិទ្ធផល Technovation ២០២៦",
+      title: "ជើងឯកថ្នាក់ជាតិ និងឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក",
+      desc: "នៅខែកក្កដា ឆ្នាំ២០២៦ នៅសាកលវិទ្យាល័យអាមេរិកាំងភ្នំពេញ (AUPP) ក្រុម KWD ឈ្នះពានរង្វាន់ជើងឯកថ្នាក់ជាតិ (Junior Division) នៃ Technovation Girls Cambodia ២០២៦ និងត្រូវបានជ្រើសរើសជា ១ ក្នុងចំណោម ៣ ក្រុមតំណាងឱ្យកម្ពុជាឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)។",
+      metaList: [
+        { label: "កម្រិតជ័យលាភី", value: "ជើងឯកថ្នាក់ជាតិ (National Champion · Junior)" },
+        { label: "ឆាកអន្តរជាតិ", value: "វគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក (Global Semifinalist)" },
+        { label: "ទីតាំងប្រកួតផ្តាច់ព្រ័ត្រ", value: "សាកលវិទ្យាល័យអាមេរិកាំងភ្នំពេញ (AUPP)" },
+        { label: "អធិបតីភាព", value: "ឯកឧត្តម ជុន វ៉ាត់ (MPTC) និង ឯកឧត្តម បណ្ឌិត សាន វឌ្ឍនា (MoEYS)" },
+        { label: "រៀបចំ និងគាំទ្រដោយ", value: "Tech for Kids Academy និង មូលនិធិ ស.អ. (CBRD Fund)" },
+      ],
+      articleLinks: [
+        { title: "ព័ត៌មានផ្លូវការក្រសួង MPTC", url: "https://mptc.gov.kh/en/2026/07/secretary-of-state-chun-vat-presided-over-the-national-competition-technovation-girls-cambodia-x-future-digital-talents-2026/" },
+        { title: "ទីស្នាក់ការកណ្តាល Technovation ពិភពលោក", url: "https://www.technovation.org/blogs/2026-semifinalist-announcement/#junior-kh" },
+        { title: "សារព័ត៌មានអប្សរា AMS Education", url: "https://education.ams.com.kh/outstanding-youth/news-award/news/national-pride-three-cambodian-girls-advance-to-the-global-semifinalists-of-technovation-girls-x-future-digital-talents-2026/" },
+        { title: "Tech for Kids Asia", url: "https://techforkids.asia/en/blog/congratulations-to-the-top-15-national-teams-of-the-technovation-girls-cambodia-x-future-digital-talents-and-the-3-global-semifinalists" },
+        { title: "សារព័ត៌មានស៊ីស៊ីថាមស៍ (CC Times)", url: "https://kh.cc-times.com/posts/30029" },
+      ]
+    },
     mvv: [
       { tag: "បេសកកម្ម", color: "#eab308", text: "យើងផ្តោតលើការជឿជាក់ថាបច្ចេកវិទ្យាគឺជាស្ពានដ៏មានប្រសិទ្ធភាពក្នុងការចម្លង និងចែករំលែកចំណេះដឹង។ តាមរយៈការធ្វើទំនើបកម្មការអប់រំចរាចរណ៍ទៅជាទម្រង់ឌីជីថល យើងបានធ្វើឱ្យការរៀនមិនមានដែនកំណត់ទីកន្លែង និងពេលវេលា ដើម្បីឱ្យសិស្សគ្រប់រូបអាចរៀនសូត្រទ្រឹស្ដី និងសញ្ញាចរាចរណ៍ពីរភាសាបានយ៉ាងងាយស្រួលដោយប្រើស្មាតហ្វូន ឬកុំព្យូទ័រ នៅគ្រប់ទីកន្លែងដែលមានអ៊ីនធឺណិត។ នេះជាគ្រឹះសំខាន់ក្នុងការកាត់បន្ថយគ្រោះថ្នាក់ និងបង្កើតវប្បធម៌បើកបរដែលមានការទទួលខុសត្រូវនៅកម្ពុជា។" },
       { tag: "ចក្ខុវិស័យ",color: "#22c55e", text: "ចាក់គ្រឹះវប្បធម៌បើកបរដែលមានសុវត្ថិភាព ស្មារតីទទួលខុសត្រូវ និងចំណេះដឹងច្បាស់លាស់នៅកម្ពុជា ព្រមទាំងបើកទំព័រថ្មីសម្រាប់យុវតីសាលា និងសហគមន៍ ក្នុងការក្លាយជាអ្នកដឹកនាំប្រើបច្ចេកវិទ្យា និងអ្នកបង្កើតពិភពឌីជីថលប្រកបដោយច្នៃប្រឌិត។" },
@@ -477,6 +515,65 @@ export function AboutClient() {
               <p className="text-xs text-zinc-500 leading-relaxed flex-1" style={kf}>{text}</p>
             </a>
           ))}
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4.5 NATIONAL CHAMPION & GLOBAL SEMIFINALIST MILESTONE SECTION
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="bg-zinc-950 text-white border-t-2 border-black border-b-2 border-black py-14">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-400 text-black text-[10px] font-black uppercase tracking-wider mb-2">
+                <span>{c.awardSection.tag}</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight" style={kf}>
+                {c.awardSection.title}
+              </h2>
+              <p className="text-zinc-400 text-sm mt-2 max-w-2xl leading-relaxed" style={kf}>
+                {c.awardSection.desc}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Meta Specifications */}
+            <div className="border border-zinc-800 bg-zinc-900/60 p-6 flex flex-col gap-3">
+              <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400" style={kf}>
+                {kh ? "ព័ត៌មានលម្អិតផ្លូវការ" : "Official Recognition Details"}
+              </span>
+              <div className="flex flex-col divide-y divide-zinc-800">
+                {c.awardSection.metaList.map((m) => (
+                  <div key={m.label} className="py-2.5 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <span className="text-xs text-zinc-400 font-bold" style={kf}>{m.label}</span>
+                    <span className="text-xs text-zinc-100 font-medium sm:text-right" style={kf}>{m.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Official Press & Media Links */}
+            <div className="border border-zinc-800 bg-zinc-900/60 p-6 flex flex-col gap-3">
+              <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400" style={kf}>
+                {kh ? "ប្រភពសារព័ត៌មាន និងតំណភ្ជាប់ផ្លូវការ" : "Official Press & Media Mentions"}
+              </span>
+              <div className="flex flex-col gap-2 mt-1">
+                {c.awardSection.articleLinks.map((link) => (
+                  <a
+                    key={link.title}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between gap-2 p-3 bg-zinc-900 border border-zinc-800 hover:border-yellow-400 hover:bg-zinc-800/80 transition-all text-xs text-zinc-200 group"
+                  >
+                    <span className="font-bold group-hover:text-yellow-400 transition-colors" style={kf}>{link.title}</span>
+                    <ArrowUpRight size={14} className="text-zinc-500 group-hover:text-yellow-400 transition-colors shrink-0" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

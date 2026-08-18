@@ -137,7 +137,7 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
                     totalRounds: answersRef.current.length,
                     perRound: [],
                     persisted: false,
-                } as TResult,
+                } as unknown as TResult,
             });
         }
     }
