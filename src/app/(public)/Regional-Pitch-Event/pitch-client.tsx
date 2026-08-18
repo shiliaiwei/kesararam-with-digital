@@ -101,13 +101,16 @@ export function PitchClient() {
 
             <div className="px-6 py-6 space-y-5">
               <div className="text-center space-y-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-400 border border-black text-black text-[10px] font-black uppercase tracking-wider shadow-[2px_2px_0_#000]">
+                  {t("National Champion · AUPP Finals", "ជើងឯកថ្នាក់ជាតិ ២០២៦ · វគ្គផ្តាច់ព្រ័ត្រ AUPP")}
+                </div>
                 <h1 className="text-2xl font-black uppercase tracking-tight text-black">
-                  {t("Regional Pitch Event", "ការបង្ហាញគម្រោងថ្នាក់តំបន់")}
+                  {t("National & Regional Pitch Presentation", "ការបង្ហាញគម្រោងជើងឯកថ្នាក់ជាតិ")}
                 </h1>
                 <p className="text-xs font-bold text-zinc-600">
                   {t(
-                    "This presentation is private. Enter access code to view.",
-                    "ការបង្ហាញគម្រោងនេះជាលក្ខណៈឯកជន។ សូមបញ្ចូលលេខកូដដើម្បីមើល។"
+                    "Official National Finals presentation delivered at American University of Phnom Penh (AUPP) supported by MPTC, MoEYS & Tech for Kids Academy.",
+                    "ឯកសារបទបង្ហាញផ្លូវការវគ្គផ្តាច់ព្រ័ត្រនៅសាកលវិទ្យាល័យ AUPP គាំទ្រដោយ MPTC, MoEYS និង Tech for Kids Academy។"
                   )}
                 </p>
               </div>
