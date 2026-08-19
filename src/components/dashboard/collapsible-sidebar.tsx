@@ -133,6 +133,8 @@ export function CollapsibleSidebar({ userName, userRole }: { userName: string; u
       {/* Mobile Menu Button */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label={mobileOpen ? "Close menu" : "Open menu"}
+        aria-expanded={mobileOpen}
         className="lg:hidden fixed top-4 left-4 z-50 bg-yellow-400 border-2 border-black p-2 shadow-[4px_4px_0_#000]"
       >
         {mobileOpen ? <X size={24} /> : <Menu size={24} />}
