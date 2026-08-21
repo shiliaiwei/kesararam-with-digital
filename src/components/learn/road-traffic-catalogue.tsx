@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
@@ -236,7 +236,7 @@ export function RoadTrafficCatalogue() {
     setExpandedTopic(expandedTopic === id ? null : id);
   };
 
-  const filtered = topics.filter((tp) => {
+  const filtered = useMemo(() => topics.filter((tp) => {
     const q = search.trim().toLowerCase();
     const matchSearch = !q || (
       tp.name_en.toLowerCase().includes(q) ||
@@ -245,13 +245,13 @@ export function RoadTrafficCatalogue() {
     );
     const matchGroup = !subGroupFilter || tp.sub_group === subGroupFilter;
     return matchSearch && matchGroup;
-  });
+  }), [topics, search, subGroupFilter]);
 
-  const countMap = topics.reduce<Record<string, number>>((acc, tp) => {
+  const countMap = useMemo(() => topics.reduce<Record<string, number>>((acc, tp) => {
     acc[tp.sub_group] = (acc[tp.sub_group] || 0) + 1;
     return acc;
-  }, {});
-  const availableGroups = SUB_GROUPS.filter((sg) => countMap[sg.key]);
+  }, {}), [topics]);
+  const availableGroups = useMemo(() => SUB_GROUPS.filter((sg) => countMap[sg.key]), [countMap]);
   const isDefaultFilter = !subGroupFilter && !search.trim();
 
   return (
