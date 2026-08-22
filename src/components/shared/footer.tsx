@@ -209,11 +209,6 @@ export function Footer() {
           <p className="text-xs md:text-sm text-zinc-900 font-bold" style={kf}>
             &copy; {new Date().getFullYear()} Kesararam With Digital • វិថី សុវត្ថិភាព The Way of Safety
           </p>
-          <p className="text-xs text-blue-600 font-medium">
-            <a href="mailto:kesararamwithdigital@gmail.com" className="hover:underline">kesararamwithdigital@gmail.com</a>
-            {" • "}
-            <a href="https://kesararamwithdigital.tech" className="hover:underline">kesararamwithdigital.tech</a>
-          </p>
           <p className="text-xs text-zinc-500 font-medium" style={kf}>
             Kesararam Primary School, Krong Siem Reap 17000, Cambodia
           </p>

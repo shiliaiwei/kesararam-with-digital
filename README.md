@@ -68,8 +68,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-> **© 2026 Kesararam With Digital • វិថី សុវត្ថិភាព The Way of Safety**  
-> `kesararamwithdigital@gmail.com` • [`kesararamwithdigital.tech`](https://kesararamwithdigital.tech)  
-> Kesararam Primary School, Krong Siem Reap 17000, Cambodia  
-> *គម្រោងនេះបង្កើតឡើងសម្រាប់គោលបំណងអប់រំសាធារណៈ | Not affiliated with MPWT, Traffic Police, National Police, or MOI | Support our project • We welcome collaborations*
+© 2026 Kesararam With Digital • វិថី សុវត្ថិភាព The Way of Safety  
+Kesararam Primary School, Krong Siem Reap 17000, Cambodia  
+*គម្រោងនេះបង្កើតឡើងសម្រាប់គោលបំណងអប់រំសាធារណៈ | Not affiliated with MPWT, Traffic Police, National Police, or MOI | Support our project • We welcome collaborations*
 
