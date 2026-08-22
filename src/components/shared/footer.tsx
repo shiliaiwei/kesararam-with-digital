@@ -213,7 +213,7 @@ export function Footer() {
             Kesararam Primary School, Krong Siem Reap 17000, Cambodia
           </p>
           <p className="text-[10px] md:text-[11px] text-zinc-400 font-normal mt-2 max-w-3xl leading-relaxed" style={kf}>
-            គម្រោងនេះបង្កើតឡើងសម្រាប់គោលបំណងអប់រំសាធារណៈ | Not affiliated with MPWT, Traffic Police, National Police, or MOI | Support our project • We welcome collaborations
+            គម្រោងនេះបង្កើតឡើងសម្រាប់គោលបំណងអប់រំសាធារណៈ · Created for Public Educational Purposes | Not affiliated with MPWT, Traffic Police, National Police, or MOI | Support our project • We welcome collaborations
           </p>
         </div>
       </div>
