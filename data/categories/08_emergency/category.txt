@@ -1,0 +1,203 @@
+================================================================================
+CATEGORY 8: Emergency / អាសន្ន (emergency)
+Total Topics: 15 | Total Questions: 135
+================================================================================
+
+>>> SUB-GROUP: First Aid (15 topics)
+--------------------------------------------------------------------------------
+
+[EMG-Q001] When a victim having wound with blooding, how can you help stop blooding? | ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?
+Topic ID: 533
+Sub-Group: First Aid
+Name (EN): When a victim having wound with blooding, how can you help stop blooding?
+Name (KM): ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?
+Desc (EN): The answer is Use good cloth or bandage to tight around the wound, fasten a bit tightly.
+Desc (KM): ចម្លើយគឺ ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។
+Law Reference: N/A
+Image Code: EMG-Q001_mhirgj.jpg
+Audio KM: EMG-Q001-KHMER_w8bx9n.wav
+Audio EN: EMG-Q001-ENGLISH_bjsogs.wav
+Questions Linked: 9
+
+[EMG-Q002] When there is someone has an accident, what are main points needed to check to help him or her? | ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?
+Topic ID: 534
+Sub-Group: First Aid
+Name (EN): When there is someone has an accident, what are main points needed to check to help him or her?
+Name (KM): ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?
+Desc (EN): The answer is Unconsciousness, no breathing, no pulse, blooding, and bone break.
+Desc (KM): ចម្លើយគឺ សន្លប់, ដកដង្ហើម, ជីពចរ, ឈាម, និងបាក់ឆ្អឹង។
+Law Reference: N/A
+Image Code: EMG-Q002_qutfab.jpg
+Audio KM: EMG-Q002-KHMER_bffdti.wav
+Audio EN: EMG-Q002-ENGLISH_dzhc2l.wav
+Questions Linked: 9
+
+[EMG-Q003] How do you realize that the victim's pulse does not work? | តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?
+Topic ID: 535
+Sub-Group: First Aid
+Name (EN): How do you realize that the victim's pulse does not work?
+Name (KM): តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?
+Desc (EN): The answer is By using fingers to press at the a side of the neck.
+Desc (KM): ចម្លើយគឺ ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងនៃក។
+Law Reference: N/A
+Image Code: EMG-Q003_ptex0q.jpg
+Audio KM: EMG-Q003-KHMER_gna3ty.wav
+Audio EN: EMG-Q003-ENGLISH_dceayx.wav
+Questions Linked: 9
+
+[EMG-Q004] How do you realize that the victim is not breathing? | ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?
+Topic ID: 536
+Sub-Group: First Aid
+Name (EN): How do you realize that the victim is not breathing?
+Name (KM): ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?
+Desc (EN): The answer is The victim does not have movement up and down and no breathing through mouth and nose.
+Desc (KM): ចម្លើយគឺ ជន​រង​គ្រោះ​មិន​មាន​ចលនា​ឡើង​ចុះ​ក្រោម និង​មិន​មាន​ដង្ហើម​តាម​មាត់ និង​ច្រមុះ ។
+Law Reference: N/A
+Image Code: EMG-Q004_f1dyaj.jpg
+Audio KM: EMG-Q004-KHMER_hlmyjf.wav
+Audio EN: EMG-Q004-ENGLISH_alyvgc.wav
+Questions Linked: 9
+
+[EMG-Q005] How do you realize that the victim got broken arm(s) or leg(s)? | តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?
+Topic ID: 537
+Sub-Group: First Aid
+Name (EN): How do you realize that the victim got broken arm(s) or leg(s)?
+Name (KM): តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?
+Desc (EN): The answer is Realizing that the victim gets a lot of hurt at the arms and legs when he/she want to move his/her them.
+Desc (KM): ចម្លើយគឺ ដោយ​ដឹង​ថា ជន​រង​គ្រោះ​មាន​របួស​ដៃ និង​ជើង​ជា​ខ្លាំង ពេល​ចង់​រើ​ខ្លួន​។
+Law Reference: N/A
+Image Code: EMG-Q005_r318sk.jpg
+Audio KM: EMG-Q005-KHMER_ffzn3b.wav
+Audio EN: EMG-Q005-ENGLISH_uijz5e.wav
+Questions Linked: 9
+
+[EMG-Q006] When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)? | នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?
+Topic ID: 538
+Sub-Group: First Aid
+Name (EN): When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?
+Name (KM): នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?
+Desc (EN): The answer is Massage 15 times and 2 times of mouth-to-mouth resuscitation
+Desc (KM): ចម្លើយគឺ ម៉ាស្សា 15 ដង និង 2 ដងនៃការសង្គ្រោះពីមាត់
+Law Reference: N/A
+Image Code: EMG-Q006_nwshp3.jpg
+Audio KM: EMG-Q006-KHMER_kffg6r.wav
+Audio EN: EMG-Q006-ENGLISH_wzdl8i.wav
+Questions Linked: 9
+
+[EMG-Q007] If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious? | ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?
+Topic ID: 539
+Sub-Group: First Aid
+Name (EN): If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?
+Name (KM): ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?
+Desc (EN): The answer is Let him/her lie down or let him/her incline to one side so that the air can easily get through
+Desc (KM): ចម្លើយគឺ ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ
+Law Reference: N/A
+Image Code: EMG-Q007_xkl3r1.jpg
+Audio KM: EMG-Q007-KHMER_cfwsy7.wav
+Audio EN: EMG-Q007-ENGLISH_ihmjcz.wav
+Questions Linked: 9
+
+[EMG-Q008] If the victim is not breathing, how can you help him or her? | បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?
+Topic ID: 540
+Sub-Group: First Aid
+Name (EN): If the victim is not breathing, how can you help him or her?
+Name (KM): បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?
+Desc (EN): The answer is Do the CPR by blowing the air in through the victim's mouth and press his or her chest by two hands.
+Desc (KM): ចម្លើយគឺ ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។
+Law Reference: N/A
+Image Code: EMG-Q008_je6ict.jpg
+Audio KM: EMG-Q008-KHMER_gb3qdd.wav
+Audio EN: EMG-Q008-ENGLISH_hgxcmc.wav
+Questions Linked: 9
+
+[EMG-Q009] How many minutes can you help victim with no breathing? | តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?
+Topic ID: 541
+Sub-Group: First Aid
+Name (EN): How many minutes can you help victim with no breathing?
+Name (KM): តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?
+Desc (EN): The answer is 2 to 3 minutes
+Desc (KM): ចម្លើយគឺ 2 ទៅ 3 នាទី។
+Law Reference: N/A
+Image Code: EMG-Q009_vapoir.jpg
+Audio KM: EMG-Q009-KHMER_uzjlan.wav
+Audio EN: EMG-Q009-ENGLISH_ypujpm.wav
+Questions Linked: 9
+
+[EMG-Q010] If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth? | ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?
+Topic ID: 542
+Sub-Group: First Aid
+Name (EN): If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?
+Name (KM): ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?
+Desc (EN): The answer is About 15 times per minute
+Desc (KM): ចម្លើយគឺ ប្រហែល 15 ដងក្នុងមួយនាទី
+Law Reference: N/A
+Image Code: EMG-Q010_lu2ntg.jpg
+Audio KM: EMG-Q010-KHMER_vijski.wav
+Audio EN: EMG-Q010-ENGLISH_czwyla.wav
+Questions Linked: 9
+
+[EMG-Q011] When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in? | នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?
+Topic ID: 543
+Sub-Group: First Aid
+Name (EN): When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?
+Name (KM): នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?
+Desc (EN): The answer is Press 15 times and blow 2 times
+Desc (KM): ចម្លើយគឺ ចុច 15 ដងហើយផ្លុំ 2 ដង
+Law Reference: N/A
+Image Code: EMG-Q011_e1fhbt.jpg
+Audio KM: EMG-Q011-KHMER_wvnbih.wav
+Audio EN: EMG-Q011-ENGLISH_dwsvby.wav
+Questions Linked: 9
+
+[EMG-Q012] Can you touch an accident victim? | តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?
+Topic ID: 544
+Sub-Group: First Aid
+Name (EN): Can you touch an accident victim?
+Name (KM): តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?
+Desc (EN): The answer is Yes, by helping through First Aids.
+Desc (KM): ចម្លើយគឺ បាទ ដោយការជួយតាមរយៈ First Aids។
+Law Reference: N/A
+Image Code: EMG-Q012_uwhsuc.jpg
+Audio KM: EMG-Q012-KHMER_qeqrwc.wav
+Audio EN: EMG-Q012-ENGLISH_gufb7t.wav
+Questions Linked: 9
+
+[EMG-Q013] Realizing the victim got broken arm, how shall you do? | ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?
+Topic ID: 545
+Sub-Group: First Aid
+Name (EN): Realizing the victim got broken arm, how shall you do?
+Name (KM): ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?
+Desc (EN): The answer is Leave the broken arm with no moving then use metal or wooden board to splint the arm, and then tie with cloth or scaft at the neck to suport the broken arm.
+Desc (KM): ចម្លើយគឺ ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។
+Law Reference: N/A
+Image Code: EMG-Q013_lj5qz0.jpg
+Audio KM: EMG-Q013-KHMER_oys0i7.wav
+Audio EN: EMG-Q013-ENGLISH_ascweb.wav
+Questions Linked: 9
+
+[EMG-Q014] How many minutes of no breathing does it cause the victim dead? | អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?
+Topic ID: 546
+Sub-Group: First Aid
+Name (EN): How many minutes of no breathing does it cause the victim dead?
+Name (KM): អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?
+Desc (EN): The answer is From 5 minutes and up.
+Desc (KM): ចម្លើយគឺ ចាប់ពី 5 នាទីឡើងទៅ។
+Law Reference: N/A
+Image Code: EMG-Q014_o6j2mi.jpg
+Audio KM: EMG-Q014-KHMER_vucpj9.wav
+Audio EN: EMG-Q014-ENGLISH_zpbwdv.wav
+Questions Linked: 9
+
+[EMG-Q015] If victim no breathing and the pulse no working, how can you help? | ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?
+Topic ID: 547
+Sub-Group: First Aid
+Name (EN): If victim no breathing and the pulse no working, how can you help?
+Name (KM): ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?
+Desc (EN): The answer is Blow the air in through his or her mouth and bring the two hands press his or her chest.
+Desc (KM): ចម្លើយគឺ ផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ ហើយយកដៃទាំងពីរចុចទ្រូងរបស់គាត់។
+Law Reference: N/A
+Image Code: EMG-Q015_jqvvpe.jpg
+Audio KM: EMG-Q015-KHMER_kzbc8h.wav
+Audio EN: EMG-Q015-ENGLISH_ohm1yf.wav
+Questions Linked: 9
+

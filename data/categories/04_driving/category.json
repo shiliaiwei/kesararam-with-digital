@@ -1,0 +1,886 @@
+{
+  "category": {
+    "id": 4,
+    "slug": "driving",
+    "title_en": "Driving Skills",
+    "title_km": "ជំនាញបើកបរ",
+    "total_topics": 50,
+    "total_questions": 450,
+    "total_subgroups": 3,
+    "exported_at": "2026-08-22T14:03:34.804Z",
+    "database_host": "ep-rapid-glitter-am81r7j8-pooler.c-5.us-east-1.aws.neon.tech"
+  },
+  "subgroups": [
+    {
+      "subgroup_name": "Advanced Techniques",
+      "topics_count": 17,
+      "questions_count": 153,
+      "topics": [
+        {
+          "id": 434,
+          "topic_code": "DRV-Q018",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Driving a motorcycle, is it necessary to give serviced signs?",
+          "name_km": "តើការបើកបរ ត្រូវចាំបាច់ឱ្យសញ្ញាជាដំណឹង ដែរឬទេ ?",
+          "description_en": "The answer is Yes, it is. It is necessary to inform others to get to know your purposes",
+          "description_km": "ចម្លើយគឺ ចាំបាច់ត្រូវឱ្យសញ្ញាជាដំណឹងដើម្បីឱ្យអ្នកបើកបរផ្សេងៗទៀតដឹងពីបំណងរបស់យើង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q018_s2kdbq.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066226/DRV-Q018_s2kdbq.jpg",
+            "audio_km_code": "DRV-Q018-KHMER_uhu2x6.wav",
+            "audio_en_code": "DRV-Q018-ENGLISH_qerahb.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 435,
+          "topic_code": "DRV-Q019",
+          "sub_group": "Advanced Techniques",
+          "name_en": "To avoid slippery on a sandy or stony road, how shall drivers do?",
+          "name_km": "ដើម្បីជៀសវាងការរអិលនៅលើផ្លូវដែលមានខ្សាច់ ឬថ្មតូចៗ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?",
+          "description_en": "The answer is Slow down, hold the steer firmly, not to apply the brakes or engage the gear down or turn sharply",
+          "description_km": "ចម្លើយគឺ ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឱ្យត្រង់ មិនត្រូវចាប់ហ្វ្រាំង ឬដាក់ លេខចុះ ឬធ្វើការបត់ដោយសង្ខុញឡើយ-",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q019_oyohlz.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066225/DRV-Q019_oyohlz.jpg",
+            "audio_km_code": "DRV-Q019-KHMER_ip54yy.wav",
+            "audio_en_code": "DRV-Q019-ENGLISH_mr3uu8.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 436,
+          "topic_code": "DRV-Q020",
+          "sub_group": "Advanced Techniques",
+          "name_en": "To slow down or stop effectively, what brake do you put on?",
+          "name_km": "ដើម្បីបន្ថយល្បឿន ឬឈប់ឱ្យមានប្រសិទ្ធភាព តើអ្នកត្រូវប្រើហ្វ្រាំងអ្វី ?",
+          "description_en": "The answer is Put on the footbrake (back brake) and handbrake (front brake)",
+          "description_km": "ចម្លើយគឺ ត្រូវប្រើហ្វ្រាំងជើង(ហ្វ្រាំងក្រោយ) និងហ្វ្រាំងដៃ(ហ្វ្រាំងមុខ)",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q020_bbkgzk.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066205/DRV-Q020_bbkgzk.jpg",
+            "audio_km_code": "DRV-Q020-KHMER_kioal7.wav",
+            "audio_en_code": "DRV-Q020-ENGLISH_xitvdt.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 437,
+          "topic_code": "DRV-Q021",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Driving at the speed of 70km/h on the smooth road, your man-styled motorcycles (more than 125cc and up) have good condition in tires and brakes. What is the braking distance?",
+          "name_km": "ការប្រើល្បឿន៧០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ ប្រភេទប្រុស (លើសពី១២៥ ឡើងទៅ) របស់អ្នកមាន សំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?",
+          "description_en": "The answer is About 50m",
+          "description_km": "ចម្លើយគឺ ប្រហែល ៥០ ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q021_jmepig.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066220/DRV-Q021_jmepig.jpg",
+            "audio_km_code": "DRV-Q021-KHMER_nrcjes.wav",
+            "audio_en_code": "DRV-Q021-ENGLISH_baldhd.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 438,
+          "topic_code": "DRV-Q022",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Driving on a small stony road or sandy area, can it make your motorcycle slippery?",
+          "name_km": "ការបើកបរនៅលើផ្ទៃផ្លូវដែលមានថ្មតូចៗ ឬកន្លែងដែលមានខ្សាច់ តើអាចធ្វើឱ្យកង់អ្នករអិល ដែរឬទេ ?",
+          "description_en": "The answer is Yes, it can when you speed up and steer firmly",
+          "description_km": "ចម្លើយគឺ អាចធ្វើឱ្យកង់រអិលនៅពេលបង្កើនល្បឿន ឬកាច់ចង្កូតខ្លាំង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q022_naho7a.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066212/DRV-Q022_naho7a.jpg",
+            "audio_km_code": "DRV-Q022-KHMER_ydm8t4.wav",
+            "audio_en_code": "DRV-Q022-ENGLISH_e9zsqm.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 439,
+          "topic_code": "DRV-Q023",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Outside a built-up area, you are driving at the speed of 40km/h. How far, in meter, do you leave a distance limit?",
+          "name_km": "នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៤០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?",
+          "description_en": "The answer is At least 24m",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច២៤ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q023_a1qyuf.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066207/DRV-Q023_a1qyuf.jpg",
+            "audio_km_code": "DRV-Q023-KHMER_xg1cjd.wav",
+            "audio_en_code": "DRV-Q023-ENGLISH_tmz4vl.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 440,
+          "topic_code": "DRV-Q024",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Outside a built-up area, you are driving at the speed of 60km/h. How far, in meter, do you leave a distance limit?",
+          "name_km": "នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?",
+          "description_en": "The answer is At least 36m",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច៣៦ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q024_wicekv.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066208/DRV-Q024_wicekv.jpg",
+            "audio_km_code": "DRV-Q024-KHMER_ntawfl.wav",
+            "audio_en_code": "DRV-Q024-ENGLISH_gnl3ez.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 441,
+          "topic_code": "DRV-Q025",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Driving at the speed of 50km/h on a smooth, your motorcycle has brakes and tires in good condition, what is a stopping distance, probably?",
+          "name_km": "ការប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយ ឈប់ប្រហែលប៉ុន្មាន ?",
+          "description_en": "The answer is About 25m",
+          "description_km": "ចម្លើយគឺ ប្រហែល ២៥ ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q025_f73z7p.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066226/DRV-Q025_f73z7p.jpg",
+            "audio_km_code": "DRV-Q025-KHMER_zddaox.wav",
+            "audio_en_code": "DRV-Q025-ENGLISH_xj9msg.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 442,
+          "topic_code": "DRV-Q026",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Outside a built-up area, you are driving at the speed of 50km/h. How far at least, in meter, do you leave a distance limit?",
+          "name_km": "នៅក្រៅទីប្រជុំជន អ្នកប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?",
+          "description_en": "The answer is At least 30m",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ៣០ ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q026_zaom01.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066207/DRV-Q026_zaom01.jpg",
+            "audio_km_code": "DRV-Q026-KHMER_mdbkxn.wav",
+            "audio_en_code": "DRV-Q026-ENGLISH_rqywjr.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 443,
+          "topic_code": "DRV-Q027",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Driving a motorcycle, how do you look to the front?",
+          "name_km": "តើការបើកបរ ត្រូវមើលទៅមុខយ៉ាងដូចម្ដេច ?",
+          "description_en": "The answer is Look ahead in far distance to know the situation of bending road, ascent, descent, and look at the light signs of drivers in the front.",
+          "description_km": "ចម្លើយគឺ មើលទៅមុខឲ្យបានឆ្ងាយដើម្បីដឹងពីស្ថានភាពផ្លូវកោងឡើងចុះទួលនិងមើលភ្លើងសញ្ញារបស់យានខាងមុខ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q027_ivzqln.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066213/DRV-Q027_ivzqln.jpg",
+            "audio_km_code": "DRV-Q027-KHMER_wfcqmg.wav",
+            "audio_en_code": "DRV-Q027-ENGLISH_zfgaib.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 444,
+          "topic_code": "DRV-Q028",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Driving a motorcycle, the back wheel is slippery due to applying the brake, how shall you do?",
+          "name_km": "ពេលបើកបរ ហើយកង់ក្រោយរអិលរេដោយសារការចាប់ហ្វ្រាំង តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+          "description_en": "The answer is Turn to the slippery direction",
+          "description_km": "ចម្លើយគឺ ត្រូវកាច់ដៃចង្កូតទៅរកទិសដែលរអិលរេនោះ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q028_y5menm.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066211/DRV-Q028_y5menm.jpg",
+            "audio_km_code": "DRV-Q028-KHMER_g4ugs3.wav",
+            "audio_en_code": "DRV-Q028-ENGLISH_acbsjh.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 445,
+          "topic_code": "DRV-Q029",
+          "sub_group": "Advanced Techniques",
+          "name_en": "Driving a motorcycle and the steer shakes, what does it cause?",
+          "name_km": "ពេលបើកបរ ហើយចង្កូតញាក់ តើបណ្ដាលមកពីអ្វី?",
+          "description_en": "The answer is Buckled wheels, loose radius, loose ball bearing, flat, or loaded too heavy at the back and steering ball bearing is improperly.",
+          "description_km": "ចម្លើយគឺ កង់បោរ ឬកាំរលុង បាដាងកង់រលុង កង់ធូរ ឬក៏ផ្ទុកខាងក្រោយធ្ងន់ពេក និងបាដាងចង្កូតមិនប្រក្រតី",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "N/A",
+            "primary_image_url": "N/A",
+            "audio_km_code": "DRV-Q029-KHMER_lumagp.wav",
+            "audio_en_code": "DRV-Q029-ENGLISH_sbembj.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 446,
+          "topic_code": "DRV-Q030",
+          "sub_group": "Advanced Techniques",
+          "name_en": "What distances do you take into calculating the stopping distance of vehicle?",
+          "name_km": "តើចំងាយអ្វីខ្លះ ដែលអ្នកយកមកគណនាចំងាយឈប់របស់រថយន្ត ?",
+          "description_en": "The answer is Reaction distance and braking distance.",
+          "description_km": "ចម្លើយគឺ ចំងាយប្រតិកម្ម និងចំងាយចាប់ហ្វ្រាំង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q030_ofl16s.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066206/DRV-Q030_ofl16s.jpg",
+            "audio_km_code": "DRV-Q030-KHMER_yhzznu.wav",
+            "audio_en_code": "DRV-Q030-ENGLISH_rxfqfy.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 447,
+          "topic_code": "DRV-Q031",
+          "sub_group": "Advanced Techniques",
+          "name_en": "To adjust the gear up and down with ease, how many times shall you disconnect clutch?",
+          "name_km": "ដើម្បីសំរួលការដាក់ លេខឡើង ឬចុះតើត្រូវផ្ដាច់អំព្រីយ៉ាប៉ុន្មានដង ?",
+          "description_en": "The answer is two times",
+          "description_km": "ចម្លើយគឺ ២ដង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q031_xaltk9.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066222/DRV-Q031_xaltk9.jpg",
+            "audio_km_code": "DRV-Q031-KHMER_itsjju.wav",
+            "audio_en_code": "DRV-Q031-ENGLISH_jmnnza.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 448,
+          "topic_code": "DRV-Q032",
+          "sub_group": "Advanced Techniques",
+          "name_en": "What are the main reasons that make the brake get hotter quickly when braking?",
+          "name_km": "តើមូលហេតុសំខាន់ៗអ្វីខ្លះ ដែលធ្វើឲ្យហ្វ្រាំងឆាប់កើនកំដៅនៅពេលជាន់ហ្វ្រាំង ?",
+          "description_en": "The answer is Over load and drive extremly fast.",
+          "description_km": "ចម្លើយគឺ ផ្ទុកទំនិញហួសកំរិតកំណត់ និងបើកបរក្នុងល្បឿនលឿន",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q032_a3nbff.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066209/DRV-Q032_a3nbff.jpg",
+            "audio_km_code": "DRV-Q032-KHMER_dkqj49.wav",
+            "audio_en_code": "DRV-Q032-ENGLISH_l7yrrp.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 449,
+          "topic_code": "DRV-Q033",
+          "sub_group": "Advanced Techniques",
+          "name_en": "If the speed and weight increase twice together, how many times does the stopping distance increase, accordingly?",
+          "name_km": "បើទម្ងន់ និងល្បឿនកើនពីរដងរួមគ្នា តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?",
+          "description_en": "The answer is 8 times",
+          "description_km": "ចម្លើយគឺ ៨ដង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q033_hfnogt.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066220/DRV-Q033_hfnogt.jpg",
+            "audio_km_code": "DRV-Q033-KHMER_lt666b.wav",
+            "audio_en_code": "DRV-Q033-ENGLISH_tqiqjq.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 450,
+          "topic_code": "DRV-Q034",
+          "sub_group": "Advanced Techniques",
+          "name_en": "To look ahead for long distance enough, how many seconds shall you need to look to it?",
+          "name_km": "ដើម្បីមើលទៅមុខឲ្យបានឆ្ងាយគ្រប់គ្រាន់ តើអ្នកត្រូវការមើលក្នុងចម្ងាយប៉ុន្មានវិនាទី ?",
+          "description_en": "The answer is 12 to 15 seconds",
+          "description_km": "ចម្លើយគឺ ១២ ទៅ ១៥វិនាទី",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q034_aztedt.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066214/DRV-Q034_aztedt.jpg",
+            "audio_km_code": "DRV-Q034-KHMER_gc8pkl.wav",
+            "audio_en_code": "DRV-Q034-ENGLISH_y82rrr.wav"
+          },
+          "total_questions_linked": 9
+        }
+      ]
+    },
+    {
+      "subgroup_name": "Basic Maneuvers",
+      "topics_count": 17,
+      "questions_count": 153,
+      "topics": [
+        {
+          "id": 417,
+          "topic_code": "DRV-Q001",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "What is an accident to be known in driving?",
+          "name_km": "តើអ្វីជាគ្រោះថ្នាក់ ដែលអ្នកត្រូវស្គាល់ក្នុងការបើកបរ ?",
+          "description_en": "The answer is Road and road users.",
+          "description_km": "ចម្លើយគឺ ផ្លូវ និង អ្នកប្រើប្រាស់ផ្លូវ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q001_shp5yc.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066222/DRV-Q001_shp5yc.jpg",
+            "audio_km_code": "DRV-Q001-KHMER_fzrcst.wav",
+            "audio_en_code": "DRV-Q001-ENGLISH_h6ajvu.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 418,
+          "topic_code": "DRV-Q002",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Knowing a wheel is flat, what shall you do?",
+          "name_km": "នៅពេលដឹងថាកង់បែក ឬ ធ្លាយ តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+          "description_en": "The answer is Slow down, firmly hold the steering wheel or/and steer follow the lane.",
+          "description_km": "ចម្លើយគឺ ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឲ្យជាប់ ឬនឹង និងកាច់ចង្កូតឲ្យត្រង់តាមគន្លងផ្លូវ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q002_a3buq2.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066214/DRV-Q002_a3buq2.jpg",
+            "audio_km_code": "DRV-Q002-KHMER_nb3qhw.wav",
+            "audio_en_code": "DRV-Q002-ENGLISH_bm2snk.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 419,
+          "topic_code": "DRV-Q003",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Motorcycle using clutch lever, how shall drivers do to change gear shift up or down?",
+          "name_km": "ចម្លើយគឺ ត្រូវចាប់អាំព្រីយ៉ា",
+          "description_en": "The answer is Press the clutch",
+          "description_km": "ប្រើអាំព្រីយ៉ា តើការដាក់ លេខឡើង និងការដាក់ លេខចុះ អ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q003_gbpebv.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066207/DRV-Q003_gbpebv.jpg",
+            "audio_km_code": "DRV-Q003-KHMER_mldpvw.wav",
+            "audio_en_code": "DRV-Q003-ENGLISH_fkwopi.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 420,
+          "topic_code": "DRV-Q004",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Driving at the speed of 30km/h on the flat, dry road, your motorcycle has good condition of brakes and tires, how far is a braking distance?",
+          "name_km": "ការប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវស្ងួតរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?",
+          "description_en": "The answer is About 10m",
+          "description_km": "ចម្លើយគឺ ប្រហែល ១០ ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q004_cqbhnh.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066222/DRV-Q004_cqbhnh.jpg",
+            "audio_km_code": "DRV-Q004-KHMER_ovt9zz.wav",
+            "audio_en_code": "DRV-Q004-ENGLISH_hl3yty.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 421,
+          "topic_code": "DRV-Q005",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Inside a built-up area, you drive your motorcycle at 20km/h. How far at least do you leave distance limit for motorcycles?",
+          "name_km": "នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន២០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?",
+          "description_en": "The answer is At least 6m",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ៦ ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q005_xivaep.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066210/DRV-Q005_xivaep.jpg",
+            "audio_km_code": "DRV-Q005-KHMER_sxbo5b.wav",
+            "audio_en_code": "DRV-Q005-ENGLISH_gugwgg.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 422,
+          "topic_code": "DRV-Q006",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Before driving your motorcycle into a bend road, what shall you do?",
+          "name_km": "មុននឹងបើកបរចូលផ្លូវកោង តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+          "description_en": "The answer is Slow down properly to a bend road status and drive very closed to the right side.",
+          "description_km": "ចម្លើយគឺ ត្រូវបន្ថយល្បឿនឲ្យសមស្របនឹងសភាពផ្លូវកោង និងបើកមកកៀកខាងស្ដាំដៃបំផុត-",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q006_cdwb4n.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066209/DRV-Q006_cdwb4n.jpg",
+            "audio_km_code": "DRV-Q006-KHMER_p7exnb.wav",
+            "audio_en_code": "DRV-Q006-ENGLISH_lsktz6.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 423,
+          "topic_code": "DRV-Q007",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "What is the reason making the vehicles swerve off?",
+          "name_km": "មូលហេតុអ្វីខ្លះដែលធ្វើឲ្យរថយន្តរអិលរេ ?",
+          "description_en": "The answer is Pun on the brake firmly, steer strongly, more speed up, or drive very fast.",
+          "description_km": "ចម្លើយគឺ ជាន់ហ្វ្រាំងខ្លាំង កាច់ចង្កូតខ្លាំង បង្កើនល្បឿនខ្លាំង ឬបើកបរលឿនពេក",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q007_zdjelk.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066237/DRV-Q007_zdjelk.jpg",
+            "audio_km_code": "DRV-Q007-KHMER_vasvui.wav",
+            "audio_en_code": "DRV-Q007-ENGLISH_msmgfr.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 424,
+          "topic_code": "DRV-Q008",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Is it necessary to use brake light?",
+          "name_km": "តើការប្រើភ្លើងហ្វ្រាំង ជាការចាំបាច់ដែរឬទេ ?",
+          "description_en": "The answer is Yes, it is. It is necessary to inform drivers behind about the slowing down or stopping",
+          "description_km": "ចម្លើយគឺ ជាការចាំបាច់ ដើម្បីឲ្យអ្នកបើកបរខាងក្រោយដឹងពីការបន្ថយល្បឿន ឬឈប់",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q008_mrjc30.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066205/DRV-Q008_mrjc30.jpg",
+            "audio_km_code": "DRV-Q008-KHMER_r0eazl.wav",
+            "audio_en_code": "DRV-Q008-ENGLISH_sozcfx.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 425,
+          "topic_code": "DRV-Q009",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "When your vehicle is swerving off on a dry road, what shall you do?",
+          "name_km": "នៅពេលរថយន្តអ្នករអិលរេនៅលើផ្លូវស្ងួត តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+          "description_en": "The answer is Slow down and no need to apply the brake.",
+          "description_km": "ចម្លើយគឺ បន្ថយល្បឿន និងមិនត្រូវជាន់ហ្វ្រាំងទេ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q009_b8qslk.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066208/DRV-Q009_b8qslk.jpg",
+            "audio_km_code": "DRV-Q009-KHMER_udwe0v.wav",
+            "audio_en_code": "DRV-Q009-ENGLISH_izvqd0.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 426,
+          "topic_code": "DRV-Q010",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "What shall you do when the brake is broken?",
+          "name_km": "នៅពេលហ្វ្រាំងខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+          "description_en": "The answer is Engage the gear down orderly, apply hand brake gentlely, and seek for parking area.",
+          "description_km": "ចម្លើយគឺ ដាក់ លេខចុះតាមលំដាប់និងចាប់ហ្វ្រាំងដៃថ្នមៗរកកន្លែងចត",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q010_buc0hq.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066220/DRV-Q010_buc0hq.jpg",
+            "audio_km_code": "DRV-Q010-KHMER_t67tqu.wav",
+            "audio_en_code": "DRV-Q010-ENGLISH_oxo48m.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 427,
+          "topic_code": "DRV-Q011",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "At night, seeing a vehicle from the opposite traffic direction, at what distance from it shall you cast to coat light from headlight?",
+          "name_km": "នៅពេលយប់ ក្នុងពេលជួបយានយន្តមកពីទិសផ្ទុយ តើអ្នកត្រូវទំលាក់ភ្លើងហ្វាមកកូតវិញ ក្នុងចំងាយប៉ុន្មាន ?",
+          "description_en": "The answer is About 160m",
+          "description_km": "ចម្លើយគឺ ប្រហែល ១៦០ ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q011_gvwjap.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066222/DRV-Q011_gvwjap.jpg",
+            "audio_km_code": "DRV-Q011-KHMER_y8gdhh.wav",
+            "audio_en_code": "DRV-Q011-ENGLISH_aavxn5.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 428,
+          "topic_code": "DRV-Q012",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Driving in heavy rain or in deep water, how shall you do to get the brake dried up quickly?",
+          "name_km": "នៅក្នុងការបើកបរកាត់ភ្លៀងខ្លាំង ឬ កាត់ទឹកជ្រៅ តើធ្វើដូចម្ដេច ដើម្បីឲ្យហ្វ្រាំងឆាប់ស្ងួត ?",
+          "description_en": "The answer is Apply the brake to dry the brakes up.",
+          "description_km": "ចម្លើយគឺ ត្រូវជាន់ហ្វ្រាំងសំងួតវា",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q012_ljzxkk.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066214/DRV-Q012_ljzxkk.jpg",
+            "audio_km_code": "DRV-Q012-KHMER_epzimh.wav",
+            "audio_en_code": "DRV-Q012-ENGLISH_rpqyct.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 429,
+          "topic_code": "DRV-Q013",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Driving in an extremely hot weather, what are the tires of vehicle?",
+          "name_km": "ក្នុងការបើកបរនៅពេលអាកាសធាតុក្ដៅខ្លាំង តើកង់រថយន្តមានសភាពដូចម្ដេច ?",
+          "description_en": "The answer is The tires are tight.",
+          "description_km": "ចម្លើយគឺ កង់តឹង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q013_eqzc3q.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066205/DRV-Q013_eqzc3q.jpg",
+            "audio_km_code": "DRV-Q013-KHMER_k3enyy.wav",
+            "audio_en_code": "DRV-Q013-ENGLISH_hl6hcb.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 430,
+          "topic_code": "DRV-Q014",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Applying the brake while moving down a descent steep, one apply and release alternatively, another one apply firmly without releasing, which one make the brake hotter?",
+          "name_km": "ក្នុងការជាន់ហ្វ្រាំងចុះទួលដូចគ្នា មួយជាន់ដក ៗ មួយទៀតជាន់ជាប់ តើមួយណាធ្វើឲ្យកំដៅហ្វ្រាំងកើនក្ដៅជាង ?",
+          "description_en": "The answer is Applying and releasing alternatively.",
+          "description_km": "ចម្លើយគឺ ការជាន់ដក ៗ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q014_jomwau.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066214/DRV-Q014_jomwau.jpg",
+            "audio_km_code": "DRV-Q014-KHMER_sc1j1y.wav",
+            "audio_en_code": "DRV-Q014-ENGLISH_pbjkhz.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 431,
+          "topic_code": "DRV-Q015",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "When driving into a bend road, what forces can make your vehicle turn over?",
+          "name_km": "នៅពេលបើកចូលផ្លូវកោង តើកំលាំងអ្វីដែលអាចធ្វើឲ្យរថយន្តក្រឡាប់ ?",
+          "description_en": "The answer is Centrifugal force",
+          "description_km": "ចម្លើយគឺ កំលាំងចាកផ្ចិត",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q015_rhjszf.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066215/DRV-Q015_rhjszf.jpg",
+            "audio_km_code": "DRV-Q015-KHMER_rkwh7v.wav",
+            "audio_en_code": "DRV-Q015-ENGLISH_edss8l.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 432,
+          "topic_code": "DRV-Q016",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Engaging the gear shift down then your motorcycle twitches and the back wheel is stuck, what does it cause?",
+          "name_km": "ការដាក់ លេខចុះ ហើយរបស់អ្នកកន្ដ្រាក់ ហើយកង់ក្រោយអាចគាំង តើបណ្ដាលមកពីអ្វី ?",
+          "description_en": "The answer is Caused by the failure of slowing down suffiently",
+          "description_km": "ចម្លើយគឺ មកពីមិនបានបន្ថយល្បឿនឱ្យបានគ្រប់គ្រាន់",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q016_a0qn8g.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066233/DRV-Q016_a0qn8g.jpg",
+            "audio_km_code": "DRV-Q016-KHMER_oh8rtb.wav",
+            "audio_en_code": "DRV-Q016-ENGLISH_c4ocm6.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 433,
+          "topic_code": "DRV-Q017",
+          "sub_group": "Basic Maneuvers",
+          "name_en": "Inside a built-up area, you drive your motorcycle at 30km/h. How far at least do you leave distance limit for motorcycles?",
+          "name_km": "នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?",
+          "description_en": "The answer is At least 9m",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ៩ ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q017_v3g1dk.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066228/DRV-Q017_v3g1dk.jpg",
+            "audio_km_code": "DRV-Q017-KHMER_qdvf6k.wav",
+            "audio_en_code": "DRV-Q017-ENGLISH_dfidf7.wav"
+          },
+          "total_questions_linked": 9
+        }
+      ]
+    },
+    {
+      "subgroup_name": "Defensive Driving",
+      "topics_count": 16,
+      "questions_count": 144,
+      "topics": [
+        {
+          "id": 451,
+          "topic_code": "DRV-Q035",
+          "sub_group": "Defensive Driving",
+          "name_en": "What distance limit for large-sized trucks, with more than 3.5T or more than 7m in length driving in queue one after another and at the same speed, shall drivers leave?",
+          "name_km": "តើអ្នកបើកបររថយន្តធុនធ្ងន់លើសពី ៣,៥តោន ឬប្រវែងបណ្ដោយលើសពី ៧ម៉ែត្រ បើកបរបន្តកន្ទុយគ្នា ក្នុងល្បឿនដូចគ្នា ត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ?",
+          "description_en": "The answer is At least 50m",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ៥០ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q035_uzoi63.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066220/DRV-Q035_uzoi63.jpg",
+            "audio_km_code": "DRV-Q035-KHMER_rwfnhn.wav",
+            "audio_en_code": "DRV-Q035-ENGLISH_jpgmil.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 452,
+          "topic_code": "DRV-Q036",
+          "sub_group": "Defensive Driving",
+          "name_en": "What is the brake’s temperature taken as warning?",
+          "name_km": "តើកំដៅនៅតំបួរហ្វ្រាំងកើនឡើងប៉ុន្មានអង្សា ទើបការជាន់ហ្វ្រាំងគ្មានប្រសិទ្ធិភាព ?",
+          "description_en": "The answer is 400 celsius",
+          "description_km": "ចម្លើយគឺ ៤០០អង្សា",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q036_gjkwmx.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066229/DRV-Q036_gjkwmx.jpg",
+            "audio_km_code": "DRV-Q036-KHMER_mtdano.wav",
+            "audio_en_code": "DRV-Q036-ENGLISH_xquewj.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 453,
+          "topic_code": "DRV-Q037",
+          "sub_group": "Defensive Driving",
+          "name_en": "If the weight increases twice, how many times does the stopping distance increase?",
+          "name_km": "បើទម្ងន់កើនឡើងពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?",
+          "description_en": "The answer is Two times",
+          "description_km": "ចម្លើយគឺ ២​ដង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q037_poctts.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066236/DRV-Q037_poctts.jpg",
+            "audio_km_code": "DRV-Q037-KHMER_d4gfmv.wav",
+            "audio_en_code": "DRV-Q037-ENGLISH_d3so9b.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 454,
+          "topic_code": "DRV-Q038",
+          "sub_group": "Defensive Driving",
+          "name_en": "If the speed increases twice, how many times does the stopping distance increase?",
+          "name_km": "បើល្បឿនកើនពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?",
+          "description_en": "The answer is Four times",
+          "description_km": "ចម្លើយគឺ ៤ ដង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q038_pbeoio.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066215/DRV-Q038_pbeoio.jpg",
+            "audio_km_code": "DRV-Q038-KHMER_jlprnl.wav",
+            "audio_en_code": "DRV-Q038-ENGLISH_wtpfku.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 455,
+          "topic_code": "DRV-Q039",
+          "sub_group": "Defensive Driving",
+          "name_en": "Driving on the wet road, how many percentages do drivers decrease​ speed compared to dry road?",
+          "name_km": "ក្នុងការបើកបរនៅលើផ្លូវសើម តើអ្នកបើកបរត្រូវបន្ថយល្បឿនប៉ុន្មានភាគរយលើផ្លូវស្ងួត ?",
+          "description_en": "The answer is 1/3 on the dry road",
+          "description_km": "ចម្លើយគឺ ១/៣ លើផ្លូវ ស្ងួត",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q039_mmj9w4.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066229/DRV-Q039_mmj9w4.jpg",
+            "audio_km_code": "DRV-Q039-KHMER_p2i65q.wav",
+            "audio_en_code": "DRV-Q039-ENGLISH_lmjblv.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 456,
+          "topic_code": "DRV-Q040",
+          "sub_group": "Defensive Driving",
+          "name_en": "What are reasons that make the wheels swerve off when driving on the dry road?",
+          "name_km": "តើមូលហេតុអ្វីខ្លះដែលធ្វើឲ្យកង់រអិលរេនៅពេលបើកបរលើផ្លូវស្ងួត ?",
+          "description_en": "The answer is Speed up, drive very fast, apply the brake firmly, and steer firmly.",
+          "description_km": "ចម្លើយគឺ បង្កើនល្បឿន-បើកបរលឿន-ចាប់ហ្វ្រាំងខ្លាំង-កាច់ចង្កូតខ្លាំង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q040_curtdg.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066230/DRV-Q040_curtdg.jpg",
+            "audio_km_code": "DRV-Q040-KHMER_wpjmrv.wav",
+            "audio_en_code": "DRV-Q040-ENGLISH_fpfiw0.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 457,
+          "topic_code": "DRV-Q041",
+          "sub_group": "Defensive Driving",
+          "name_en": "What are reasons that make the back wheels slippery?",
+          "name_km": "តើមូលហេតុអ្វី ដែលធ្វើឱ្យកង់ក្រោយរអិល ?",
+          "description_en": "The answer is Speed up a lot",
+          "description_km": "ចម្លើយគឺ បង្កើនល្បឿនខ្លាំងពេក",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q041_ah0ry1.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066238/DRV-Q041_ah0ry1.jpg",
+            "audio_km_code": "DRV-Q041-KHMER_ltswph.wav",
+            "audio_en_code": "DRV-Q041-ENGLISH_z2itk6.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 458,
+          "topic_code": "DRV-Q042",
+          "sub_group": "Defensive Driving",
+          "name_en": "What are reasons that make front wheels slippery?",
+          "name_km": "តើមូលហេតុអ្វី ដែលធ្វើឲ្យកង់មុខរអិល​រេ ?",
+          "description_en": "The answer is Drive too fast on a road is not flat",
+          "description_km": "ចម្លើយគឺ បើកបរលឿនពេកលើផ្លូវមិនរាបស្មើ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q042_og3dwq.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066225/DRV-Q042_og3dwq.jpg",
+            "audio_km_code": "DRV-Q042-KHMER_utajtl.wav",
+            "audio_en_code": "DRV-Q042-ENGLISH_e9kl4t.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 459,
+          "topic_code": "DRV-Q043",
+          "sub_group": "Defensive Driving",
+          "name_en": "Driving outside built-up area, how far of distance limit do you leave?",
+          "name_km": "ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?",
+          "description_en": "The answer is At least 2 minute",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ២នាទី",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q043_ctkfm3.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066225/DRV-Q043_ctkfm3.jpg",
+            "audio_km_code": "DRV-Q043-KHMER_xcnehq.wav",
+            "audio_en_code": "DRV-Q043-ENGLISH_zlcpej.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 460,
+          "topic_code": "DRV-Q044",
+          "sub_group": "Defensive Driving",
+          "name_en": "How many meters of a stopping distance for small-sized vehicles at the speed of 90km/h?",
+          "name_km": "តើចំងាយឈប់របស់រថយន្តធុនតូចក្នុងល្បឿន ៩០គ.ម ក្នុងមួយម៉ោង មានប៉ុន្មានម៉ែត្រ ?",
+          "description_en": "The answer is About 81m",
+          "description_km": "ចម្លើយគឺ ប្រហែល ៨១ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q044_cdhba9.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066209/DRV-Q044_cdhba9.jpg",
+            "audio_km_code": "DRV-Q044-KHMER_yxznpj.wav",
+            "audio_en_code": "DRV-Q044-ENGLISH_hymd8o.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 461,
+          "topic_code": "DRV-Q045",
+          "sub_group": "Defensive Driving",
+          "name_en": "While driving, wow many minutes of the safety distance?",
+          "name_km": "ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?",
+          "description_en": "The answer is At least 2 second",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ២ វិនាទី",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q045_xssazd.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066205/DRV-Q045_xssazd.jpg",
+            "audio_km_code": "DRV-Q045-KHMER_mvl6at.wav",
+            "audio_en_code": "DRV-Q045-ENGLISH_hwgits.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 462,
+          "topic_code": "DRV-Q046",
+          "sub_group": "Defensive Driving",
+          "name_en": "On a wet road, how many times does braking distance increase?",
+          "name_km": "នៅលើផ្លូវសើម តើចំងាយចាប់ហ្វ្រាំងកើនឡើងប៉ុន្មានដង ?",
+          "description_en": "The answer is 2 times",
+          "description_km": "ចម្លើយគឺ ២ ដង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q046_rtyxud.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066232/DRV-Q046_rtyxud.jpg",
+            "audio_km_code": "DRV-Q046-KHMER_rptnru.wav",
+            "audio_en_code": "DRV-Q046-ENGLISH_c37xgp.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 463,
+          "topic_code": "DRV-Q047",
+          "sub_group": "Defensive Driving",
+          "name_en": "Before departure, how many seconds shall you give information sign?",
+          "name_km": "មុនបើកបរចេញដំណើរ តើអ្នកត្រូវឱ្យសញ្ញាជាដំណឹងប៉ុន្មានវិនាទី ?",
+          "description_en": "The answer is At least 5 seconds.",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ៥ វិនាទី",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q047_lrs70b.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066238/DRV-Q047_lrs70b.jpg",
+            "audio_km_code": "DRV-Q047-KHMER_lzwnpv.wav",
+            "audio_en_code": "DRV-Q047-ENGLISH_ouprnu.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 464,
+          "topic_code": "DRV-Q048",
+          "sub_group": "Defensive Driving",
+          "name_en": "How long do healthy drivers need?",
+          "name_km": "តើអ្នកបើកបរដែលមានសុខភាពធម្មតា ត្រូវការរយៈពេលធ្វើប្រតិកម្មប៉ុន្មានវិនាទី ?",
+          "description_en": "The answer is 1 minute",
+          "description_km": "ចម្លើយគឺ ១ នាទី",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q048_kz4dbf.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066208/DRV-Q048_kz4dbf.jpg",
+            "audio_km_code": "DRV-Q048-KHMER_laxjdk.wav",
+            "audio_en_code": "DRV-Q048-ENGLISH_hhgtdp.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 465,
+          "topic_code": "DRV-Q049",
+          "sub_group": "Defensive Driving",
+          "name_en": "Before getting into the vehicle in order to drive backward, what shall drivers do?",
+          "name_km": "មុននិងចូលក្នុងរថយន្ត ដើម្បីចាប់ផ្ដើមបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ ?",
+          "description_en": "The answer is Look to the back of the vehicle clearly, give signals, and drive backward slowly",
+          "description_km": "ចម្លើយគឺ ត្រូវមើលទៅខាងក្រោយឲ្យបានច្បាស់សិន រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q049_aga4pp.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066201/DRV-Q049_aga4pp.jpg",
+            "audio_km_code": "DRV-Q049-KHMER_r2p5ep.wav",
+            "audio_en_code": "DRV-Q049-ENGLISH_n4vkfp.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 466,
+          "topic_code": "DRV-Q050",
+          "sub_group": "Defensive Driving",
+          "name_en": "Turning left or right, how far at least do you give a turn sign from the turning road?",
+          "name_km": "នៅពេលបត់ឆ្វេង ឬ ស្ដាំ តើអ្នកបើកបរត្រូវឲ្យសញ្ញាបត់ចំងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ?",
+          "description_en": "The answer is At least 20m",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ២០ ម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "DRV-Q050_usfjzo.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066223/DRV-Q050_usfjzo.jpg",
+            "audio_km_code": "DRV-Q050-KHMER_sraoh8.wav",
+            "audio_en_code": "DRV-Q050-ENGLISH_ji5plv.wav"
+          },
+          "total_questions_linked": 9
+        }
+      ]
+    }
+  ]
+}

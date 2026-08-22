@@ -9,9 +9,10 @@ This skill provides canonical architectural knowledge for the Kesararam With Dig
 ## Architecture Style: Use-Case Vertical Slices
 
 **Key Decision:** The codebase separates two fundamentally different scoring economies:
-- **Solo Driver Play** (`អ្នកបើកបរឯករាជ្យ`): Drives the #1 priority leaderboard rank. Active daily practice in GameKit mini-games, quick-quiz, speed-round, and daily challenges directly boosts leaderboard rank.
+- **Solo Driver Play** (`អ្នកបើកបរឯករាជ្យ`): Drives the **#1 priority leaderboard rank** and **all player tier badges/avatar rings** (`soloPoints`). Active daily practice in GameKit mini-games, quick-quiz, speed-round, and daily challenges directly boosts leaderboard rank.
 - **Road Points Currency**: Spendable/claimable points earned across plays used in the Rewards Store to redeem custom license plates, badges, and avatar gear.
 - **Live Sessions**: Teacher-hosted real-time competition.
+- **Neon Cloud Architecture**: Live on 48 tables (27,280 Q&A questions/answers, 140 users) via `@neondatabase/serverless` connection pooler.
 
 This split is a first-class domain invariant and drives the component boundaries. See `/.agents/skills/kwd-gamification-leaderboard/SKILL.md` for details.
 
@@ -20,13 +21,22 @@ This split is a first-class domain invariant and drives the component boundaries
 ## Component Inventory
 
 ### 1. Content & Learning
-**Owned State:** `categories[8]`, `topics[638]`, `questions[5925]`, `answers[21355]`
+**Owned State:** `categories[8]`, `topics[638]`, `questions[5925]`, `answers[21355]`, `48 total tables on Neon Postgres`
+
+**Relational Hierarchy for `road-sign` (Traffic Signs / សញ្ញាចរាចរ):**
+```
+categories (id=1, slug="road-sign", title_en="Traffic Signs", title_km="សញ្ញាចរាចរ")
+  └── topics (category_id = 1, 247 sign topics e.g. warning, prohibitory, mandatory)
+        └── questions (topic_id = topics.id, 2,966 road sign questions)
+              └── answers (question_id = questions.id, 21,355 multiple-choice choices)
+                    └── game_attempts / game_scores (user plays, accuracy %, Solo Driver points)
+```
 
 **Responsibility:** Serves browsable content via `/learn/*` pages. Feeds question pools to both play engines.
 
 **Key Files:**
 - `src/app/(public)/learn/**`
-- `src/db/schema/content.ts`
+- `src/db/schema/content.ts` (defines `categories`, `topics`, `questions`, `answers`)
 - `src/app/api/categories/`, `src/app/api/content/`, `src/app/api/traffic-signs/`
 - `src/app/(dashboard)/staff/`, `src/app/(dashboard)/admin/`
 

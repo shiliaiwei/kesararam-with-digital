@@ -1,0 +1,1132 @@
+================================================================================
+CATEGORY 3: Right of Way / សិទ្ធិដំណើរ (priority)
+Total Topics: 70 | Total Questions: 70
+================================================================================
+
+>>> SUB-GROUP: Intersection Priority – Left Turn (30 topics)
+--------------------------------------------------------------------------------
+
+[ PRT-Q013] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 358
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1, next motorcycle 2, and then followed by left turn motorcycle 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ចេញទៅមុន បន្ទាប់មក លេខ ២ រួច លេខ ៣ បត់ឆ្វេងទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q013_zmomk5.png
+Audio KM: PRT-Q013-KHMER_u2owp3.wav
+Audio EN: PRT-Q013-ENLIS_n8tdwp.wav
+Questions Linked: 1
+
+[ PRT-Q046] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 391
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1, next left turn vehicle 2, then vehicle 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់មក លេខ ២បត់ឆ្វេង ហើយលេខ ៣ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q046_p7g6kh.png
+Audio KM: PRT-Q046-KHMER_dfta3u.wav
+Audio EN: PRT-Q046-ENLIS_itvojl.wav
+Questions Linked: 1
+
+[ PRT-Q053] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 398
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 2 and 4 together leave at the same time, then 1 and 3 turn left one. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ និង លេខ ៤ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ១ និង លេខ ៣បត់ឆ្វេងម្តងមួយៗ
+Law Reference: N/A
+Image Code: PRT-Q053_bwcbqx.png
+Audio KM: PRT-Q053-KHMER_sl0gcl.wav
+Audio EN: PRT-Q053-ENLIS_pa6zcr.wav
+Questions Linked: 1
+
+[PRT-Q001] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 346
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is 
+ 
+Vehicle 2 departs first, then vehicle 1
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន បន្ទាប់មក លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q001_vf7hhi.png
+Audio KM: PRT-Q001-KHMER_rsaswn.wav
+Audio EN: PRT-Q001-ENLIS_tktizc.wav
+Questions Linked: 1
+
+[PRT-Q005] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 350
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First left turn vehicle 2, then 1 and 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២បត់ឆ្វេងទៅមុន បន្ទាប់មក លេខ ១ រួច លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q005_h781qi.png
+Audio KM: PRT-Q005-KHMER_vdfpeu.wav
+Audio EN: PRT-Q005-ENLIS_fnngfi.wav
+Questions Linked: 1
+
+[PRT-Q006] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 351
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 4, next left turn number 2, then 1 and 3 together leave at the same time. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៤ទៅមុន លេខ ២បត់ឆ្វេងបន្ទាប់ រួច លេខ ១ និង លេខ ៣ទៅព្រមគ្នា
+Law Reference: N/A
+Image Code: PRT-Q006_razk7f.png
+Audio KM: PRT-Q006-KHMER_zoyy8x.wav
+Audio EN: PRT-Q006-ENLIS_dbdkvq.wav
+Questions Linked: 1
+
+[PRT-Q016] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 361
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and then followed by motorcycle 4. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ចេញទៅមុន បន្ទាប់ លេខ ២ ហើយ លេខ ៣បត់ឆ្វេង ទៅបន្ទាប់ រួច លេខ ៤ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q016_ocbipc.png
+Audio KM: PRT-Q016-KHMER_two7nd.wav
+Audio EN: PRT-Q016-ENLIS_hbejtd.wav
+Questions Linked: 1
+
+[PRT-Q017] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 362
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Number 2 and 4 together leave at the same time then followed by left turn number 1, then 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ និង លេខ ៤ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ១បត់ឆ្វេង រួច លេខ ៣ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q017_czjmje.png
+Audio KM: PRT-Q017-KHMER_gogy4u.wav
+Audio EN: PRT-Q017-ENLIS_jmhz9j.wav
+Questions Linked: 1
+
+[PRT-Q020] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 365
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 1, next left turn number 2, and then number 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់មក លេខ ២បត់ឆ្វេង ហើយលេខ ៣ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q020_n5a7yu.png
+Audio KM: PRT-Q020-KHMER_coxvmv.wav
+Audio EN: PRT-Q020-ENLIS_f4s6rd.wav
+Questions Linked: 1
+
+[PRT-Q024] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 369
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 3, next vehicle 2 turns left, and then vehicle 1. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ២បត់ឆ្វេង ហើយលេខ ១ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q024_sobqm6.png
+Audio KM: PRT-Q024-KHMER_rvejup.wav
+Audio EN: PRT-Q024-ENLIS_ovev1q.wav
+Questions Linked: 1
+
+[PRT-Q027] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 372
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 2, next vehicle 1 turns left, then vehicle 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន បន្ទាប់មក លេខ ១បត់ឆ្វេង ហើយលេខ ៣ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q027_hx9sze.png
+Audio KM: PRT-Q027-KHMER_v4toaa.wav
+Audio EN: PRT-Q027-ENLIS_kepbal.wav
+Questions Linked: 1
+
+[PRT-Q028] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 373
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 2; next left turn vehicle 1, and then vehicle 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន បន្ទាប់មក លេខ ១បត់ឆ្វេង ហើយលេខ ៣ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q028_nxztk2.png
+Audio KM: PRT-Q028-KHMER_koplgd.wav
+Audio EN: PRT-Q028-ENLIS_wfnsuf.wav
+Questions Linked: 1
+
+[PRT-Q029] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 374
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First left turn number 2, next 1 and 3 turn right. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២បត់ឆ្វេងទៅមុន បន្ទាប់មក លេខ ១ និង លេខ ៣បត់ស្តាំ
+Law Reference: N/A
+Image Code: PRT-Q029_gzcwhe.png
+Audio KM: PRT-Q029-KHMER_pok6qw.wav
+Audio EN: PRT-Q029-ENLIS_dioqbp.wav
+Questions Linked: 1
+
+[PRT-Q030] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 375
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Number 2 and 4 together leave at the same time, then vehicles 1 and 3 turn left. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ និង លេខ ៤ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ១ និង លេខ ៣បត់ឆ្វេង
+Law Reference: N/A
+Image Code: PRT-Q030_pc5xir.png
+Audio KM: PRT-Q030-KHMER_j7zo75.wav
+Audio EN: PRT-Q030-ENLIS_t26nej.wav
+Questions Linked: 1
+
+[PRT-Q031] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 376
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 3, next vehicle 2 turns left, then vehicle 1. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ២បត់ឆ្វេង ហើយលេខ ១ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q031_yc4t8t.png
+Audio KM: PRT-Q031-KHMER_a4lyrx.wav
+Audio EN: PRT-Q031-ENLIS_leqodd.wav
+Questions Linked: 1
+
+[PRT-Q032] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 377
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 2, then vehicle 1 turns left. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន បន្ទាប់មក លេខ ១បត់ឆ្វេង
+Law Reference: N/A
+Image Code: PRT-Q032_pspmkq.png
+Audio KM: PRT-Q032-KHMER_qiyyl5.wav
+Audio EN: PRT-Q032-ENLIS_fvxys6.wav
+Questions Linked: 1
+
+[PRT-Q035] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 380
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1, next 2, next 3 turns left, and then vehicle 4. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់ លេខ ២ រួច លេខ ៣បត់ឆ្វេង ហើយលេខ ៤ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q035_iwd4lc.png
+Audio KM: PRT-Q035-KHMER_bjixvz.wav
+Audio EN: PRT-Q035-ENLIS_b1cvxy.wav
+Questions Linked: 1
+
+[PRT-Q036] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 381
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First right turn number 2, next left turn number 4, then 3, and at last number 1. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២បត់ស្តាំទៅមុន បន្ទាប់មក លេខ ៤បត់ឆ្វេង រួច លេខ ៣ ហើយលេខ ១ចុងក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q036_kpxyks.png
+Audio KM: PRT-Q036-KHMER_t7jggn.wav
+Audio EN: PRT-Q036-ENLIS_jbvpxo.wav
+Questions Linked: 1
+
+[PRT-Q038] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 383
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 3, next vehicle 2 turn left, and then vehicle 1. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ២បត់ឆ្វេង ហើយលេខ ១ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q038_ffabaj.png
+Audio KM: PRT-Q038-KHMER_eesshx.wav
+Audio EN: PRT-Q038-ENLIS_og5tgu.wav
+Questions Linked: 1
+
+[PRT-Q041] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 386
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 4, number 2 turns left, then 1 and 3 together leave at the same time. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ  លេខ ៤ទៅមុន លេខ ២បត់ឆ្វេង បន្ទាប់ រួច លេខ ១ និង លេខ ៣ចេញទៅព្រមគ្នា
+Law Reference: N/A
+Image Code: PRT-Q041_exactx.png
+Audio KM: PRT-Q041-KHMER_xcpjoi.wav
+Audio EN: PRT-Q041-ENLIS_gfuagl.wav
+Questions Linked: 1
+
+[PRT-Q043] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 388
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 2 goes straight ahead then followed by vehicle 1 turns left. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ឈរទៅមុនដោយផ្លាត់ត្រង់ បន្ទាប់មក លេខ ១បត់ឆ្វេង ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q043_qae5tj.png
+Audio KM: PRT-Q043-KHMER_ogqvyz.wav
+Audio EN: PRT-Q043-ENLIS_kfedww.wav
+Questions Linked: 1
+
+[PRT-Q045] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 390
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First left turn vehicle 2 then number 1 and 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២បត់ឆ្វេងទៅមុន បន្ទាប់មក លេខ ១ និង លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q045_bsrpfl.png
+Audio KM: PRT-Q045-KHMER_cf6xyv.wav
+Audio EN: PRT-Q045-ENLIS_z2syl5.wav
+Questions Linked: 1
+
+[PRT-Q047] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 392
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3, next number 2 turns left, and then number 1. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ២បត់ឆ្វេង ហើយលេខ ១ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q047_owg7w7.png
+Audio KM: PRT-Q047-KHMER_z3vell.wav
+Audio EN: PRT-Q047-ENLIS_imn1yj.wav
+Questions Linked: 1
+
+[PRT-Q050] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 395
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First left turn vehicle 1 the vehicle 2. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១បត់ឆ្វេងទៅមុន រួច លេខ ២ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q050_vefzbh.png
+Audio KM: PRT-Q050-KHMER_o6bxii.wav
+Audio EN: PRT-Q050-ENLIS_xbypcr.wav
+Questions Linked: 1
+
+[PRT-Q052] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 397
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First left turn number 2, next 1, and then 3 turns left. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២បត់ឆ្វេងទៅមុន បន្ទាប់មក លេខ ១ រួច លេខ ៣បត់ឆ្វេង
+Law Reference: N/A
+Image Code: PRT-Q052_umiww9.png
+Audio KM: PRT-Q052-KHMER_bba6yb.wav
+Audio EN: PRT-Q052-ENLIS_jovjlu.wav
+Questions Linked: 1
+
+[PRT-Q056] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 401
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First right turn number 2, next left turn number 4, then number 3 and 1. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២បត់ស្តាំទៅមុន បន្ទាប់មក លេខ ៤បត់ឆ្វេង រួច លេខ ៣ និង លេខ ១ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q056_byjsqa.png
+Audio KM: PRT-Q056-KHMER_evnitd.wav
+Audio EN: PRT-Q056-ENLIS_iq7nk4.wav
+Questions Linked: 1
+
+[PRT-Q058] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 403
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 4, next vehicle 2 turns left, and then 1 and 3 together at the same time. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៤ទៅមុន លេខ ២បត់ឆ្វេង បន្ទាប់ រួច លេខ ១ និង លេខ ៣ចេះទៅព្រមគ្នា
+Law Reference: N/A
+Image Code: PRT-Q058_yxpkxg.png
+Audio KM: PRT-Q058-KHMER_wfbnlc.wav
+Audio EN: PRT-Q058-ENLIS_vljz0e.wav
+Questions Linked: 1
+
+[PRT-Q062] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 407
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicles 1 and 2 together leave at the same time, then vehicle 3 turns left. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ២ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ៣បត់ឆ្វេង
+Law Reference: N/A
+Image Code: PRT-Q062_c93yia.png
+Audio KM: PRT-Q062-KHMER_lftsn2.wav
+Audio EN: PRT-Q062-ENLIS_v9h6zq.wav
+Questions Linked: 1
+
+[PRT-Q063] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 408
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First right turn vehicle 1, next left turn vehicle 2, then vehicle 3. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១បត់ស្តាំទៅមុន បន្ទាប់មក លេខ ២បត់ឆ្វេង ហើយលេខ ៣ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q063_b76pbe.png
+Audio KM: PRT-Q063-KHMER_g4jwxf.wav
+Audio EN: PRT-Q063-ENLIS_moaqsi.wav
+Questions Linked: 1
+
+[PRT-Q068] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 414
+Sub-Group: Intersection Priority – Left Turn
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1 and 2 leave together at the same time, then vehicle 3 turns left. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ២ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ៣បត់ឆ្វេង
+Law Reference: N/A
+Image Code: PRT-Q068_g42qlq.png
+Audio KM: PRT-Q068-KHMER_gymrdu.wav
+Audio EN: PRT-Q068-ENLIS_ld2ezp.wav
+Questions Linked: 1
+
+>>> SUB-GROUP: Intersection Priority – Sequential (25 topics)
+--------------------------------------------------------------------------------
+
+[PRT-Q002] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 347
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1 then followed by motorcycle 2. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ ទៅមុន បន្ទាប់មក លេខ ២ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q002_fttgnb.png
+Audio KM: PRT-Q002-KHMER_kablho.wav
+Audio EN: PRT-Q002-ENLIS_jtri9n.wav
+Questions Linked: 1
+
+[PRT-Q003] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 348
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 2, next 1, and then 3. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ ទៅមុន បន្ទាប់មក លេខ ១ រួច លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q003_iztjbb.png
+Audio KM: PRT-Q003-KHMER_oiqprg.wav
+Audio EN: PRT-Q003-ENLIS_vemdsd.wav
+Questions Linked: 1
+
+[PRT-Q004] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 349
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1 then followed by motorcycle 2. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ចេញទៅមុន បន្ទាប់មក លេខ ២ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q004_ozt5s3.png
+Audio KM: PRT-Q004-KHMER_ex6pzr.wav
+Audio EN: PRT-Q004-ENLIS_o8p34y.wav
+Questions Linked: 1
+
+[PRT-Q007] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 352
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+number 1 and number 2 go together, and then 3. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ ទៅមុន បន្ទាប់មក លេខ ២ រួច លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q007_qddiqb.png
+Audio KM: PRT-Q007-KHMER_yyi2ir.wav
+Audio EN: PRT-Q007-ENLIS_tbybai.wav
+Questions Linked: 1
+
+[PRT-Q010] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 355
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 2, next 3, and then 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ ទៅមុន បន្ទាប់មក លេខ ៣ រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q010_a9wwqa.png
+Audio KM: PRT-Q010-KHMER_vvyogi.wav
+Audio EN: PRT-Q010-ENLIS_y8juue.wav
+Questions Linked: 1
+
+[PRT-Q015] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 360
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 2, next 1, and then 3. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ ទៅមុន បន្ទាប់មក លេខ ១ រួច លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q015_htfbxb.png
+Audio KM: PRT-Q015-KHMER_bectgm.wav
+Audio EN: PRT-Q015-ENLIS_ad60dj.wav
+Questions Linked: 1
+
+[PRT-Q018] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 363
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3, next 2, and then 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ២ រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q018_oxtpsz.png
+Audio KM: PRT-Q018-KHMER_inemcq.wav
+Audio EN: PRT-Q018-ENLIS_lsvclg.wav
+Questions Linked: 1
+
+[PRT-Q019] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 364
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+number 2 go first, then number 4, and then number 3 followed by number 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន បន្ទាប់ លេខ ៤ ហើយ លេខ ៣ ចុងក្រោយ លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q019_vxyvhb.png
+Audio KM: PRT-Q019-KHMER_u3actx.wav
+Audio EN: PRT-Q019-ENLIS_fdwqrq.wav
+Questions Linked: 1
+
+[PRT-Q021] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 366
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3, next 2, and then 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ២ រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q021_mw9kil.png
+Audio KM: PRT-Q021-KHMER_zmcnkw.wav
+Audio EN: PRT-Q021-ENLIS_jx88kr.wav
+Questions Linked: 1
+
+[PRT-Q022] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 367
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1, next vehicle 2, next vehicle 3, then vehicle 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់ លេខ ២ បន្ទាប់មក លេខ ៣ រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q022_vjt0kd.png
+Audio KM: PRT-Q022-KHMER_nhqdbm.wav
+Audio EN: PRT-Q022-ENLIS_dd6tyo.wav
+Questions Linked: 1
+
+[PRT-Q023] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 368
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 2 and then number 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q023_dp35gz.jpg
+Audio KM: PRT-Q023-KHMER_ubrhuj.wav
+Audio EN: PRT-Q023-ENLIS_iwjnfq.wav
+Questions Linked: 1
+
+[PRT-Q025] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 370
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 2 and then number 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q025_zcdlm3.png
+Audio KM: PRT-Q025-KHMER_tq3zw8.wav
+Audio EN: PRT-Q025-ENLIS_flzbnf.wav
+Questions Linked: 1
+
+[PRT-Q034] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 379
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1 then vehicle 2. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន រួច លេខ ២
+Law Reference: N/A
+Image Code: PRT-Q034_ylhjci.png
+Audio KM: PRT-Q034-KHMER_qq5b4y.wav
+Audio EN: PRT-Q034-ENLIS_ntd8yl.wav
+Questions Linked: 1
+
+[PRT-Q037] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 382
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3, then waiting for 2, next 1, and then 3. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ  លេខ ៣ទៅមុន រួច ស្ងាក់ចាំលេខ ២ បន្ទាប់មក លេខ ១ ហើយលេខ ៣ម្តងទៀត
+Law Reference: N/A
+Image Code: PRT-Q037_govwxf.png
+Audio KM: PRT-Q037-KHMER_pspnjh.wav
+Audio EN: PRT-Q037-ENLIS_dizsdr.wav
+Questions Linked: 1
+
+[PRT-Q044] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 389
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+vehicle 3 and vehicle 1 leave first and turning one after another, then vehicle 2. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ និង លេខ ១ចេញទៅមុនដោយបត់ម្តងមួយៗ បន្ទាប់មក លេខ ២ ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q044_tnjtze.png
+Audio KM: PRT-Q044-KHMER_qbqqqx.wav
+Audio EN: PRT-Q044-ENLIS_x8bjdv.wav
+Questions Linked: 1
+
+[PRT-Q051] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 396
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3 then 1 and 2. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន រួច លេខ ១ និង លេខ ២ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q051_igtht3.png
+Audio KM: PRT-Q051-KHMER_dhawvb.wav
+Audio EN: PRT-Q051-ENLIS_ptsqqi.wav
+Questions Linked: 1
+
+[PRT-Q057] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 402
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 1, after 2 and 3 alread left, then 1 moves on. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់ លេខ ២ និង លេខ ៣ចាកចេញហើយ រួច លេខ ១ឈានទៅ
+Law Reference: N/A
+Image Code: PRT-Q057_v21g8e.png
+Audio KM: PRT-Q057-KHMER_cyat2k.wav
+Audio EN: PRT-Q057-ENLIS_fta4vm.wav
+Questions Linked: 1
+
+[PRT-Q059] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 404
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1, next 2, and the 3. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់ លេខ ២ រួច លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q059_xkojf0.png
+Audio KM: PRT-Q059-KHMER_v7ncy4.wav
+Audio EN: PRT-Q059-ENLIS_fwykhg.wav
+Questions Linked: 1
+
+[PRT-Q060] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 405
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3, next 2, and then 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ២ រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q060_wg6mnu.png
+Audio KM: PRT-Q060-KHMER_j0dqlx.wav
+Audio EN: PRT-Q060-ENLIS_ydrajy.wav
+Questions Linked: 1
+
+[PRT-Q064] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 409
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 1, next 2, and then 3. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់ លេខ ២ រួច លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q064_ffj9ip.png
+Audio KM: PRT-Q064-KHMER_q2vczj.wav
+Audio EN: PRT-Q064-ENLIS_dmcjab.wav
+Questions Linked: 1
+
+[PRT-Q065] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 410
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 2, next 3, and then 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន បន្ទាប់មក លេខ ៣ រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q065_mopzmi.png
+Audio KM: PRT-Q065-KHMER_ijhj4j.wav
+Audio EN: PRT-Q065-ENLIS_lmnfsb.wav
+Questions Linked: 1
+
+[PRT-Q066] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 411
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 2, next 3, and then 1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ទៅមុន បន្ទាប់មក លេខ ៣ រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q066_cnwbaz.png
+Audio KM: PRT-Q066-KHMER_zh7ruo.wav
+Audio EN: PRT-Q066-ENLIS_fyrhvm.wav
+Questions Linked: 1
+
+[PRT-Q067] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 413
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3, next 2 , and then1. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ២ រួច លេខ ១
+Law Reference: N/A
+Image Code: PRT-Q067_jtabxe.png
+Audio KM: PRT-Q067-KHMER_enprfc.wav
+Audio EN: PRT-Q067-ENLIS_s3lgdh.wav
+Questions Linked: 1
+
+[PRT-Q069] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 415
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Number 1 leaves first, vehicle 2 next and then 3. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់មក លេខ ២ រួច លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q069_yi9yez.png
+Audio KM: PRT-Q069-KHMER_itm1kh.wav
+Audio EN: PRT-Q069-ENLIS_tfcyij.wav
+Questions Linked: 1
+
+[PRT-Q070] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 416
+Sub-Group: Intersection Priority – Sequential
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Vehicle 1 departs first, next vehicle 2. Follow the displayed order one by one to avoid conflict at the intersection.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ចេញទៅមុន បន្ទាប់មក លេខ ២
+Law Reference: N/A
+Image Code: PRT-Q070_v9yhq9.png
+Audio KM: PRT-Q070-KHMER_lvmglt.wav
+Audio EN: PRT-Q070-ENLIS_r88md4.wav
+Questions Linked: 1
+
+>>> SUB-GROUP: Intersection Priority – Simultaneous (15 topics)
+--------------------------------------------------------------------------------
+
+[PRT-Q008] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 353
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 2, next 3, and then 1. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ 2 ទៅព្រមគ្នា រួចហើយ លេខ 3
+Law Reference: N/A
+Image Code: PRT-Q008_r6tzvl.png
+Audio KM: PRT-Q008-KHMER_twmm5c.wav
+Audio EN: PRT-Q008-ENLIS_xstwlm.wav
+Questions Linked: 1
+
+[PRT-Q009] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 354
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Number 1 and 3 together leave at the same time, then 2. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ៣ទៅព្រមគ្នា រួច លេខ ២
+Law Reference: N/A
+Image Code: PRT-Q009_k5xcol.png
+Audio KM: PRT-Q009-KHMER_oeq3lk.wav
+Audio EN: PRT-Q009-ENLIS_pvccif.wav
+Questions Linked: 1
+
+[PRT-Q011] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 356
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Number 1 and 2 together leave at the same time, then 3. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ២ ទៅព្រមគ្នា បន្ទាប់មក លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q011_m600a4.png
+Audio KM: PRT-Q011-KHMER_wqhi7p.wav
+Audio EN: PRT-Q011-ENLIS_ic9psu.wav
+Questions Linked: 1
+
+[PRT-Q012] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 357
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+vehicle 1 and 2 together leave at the same time, then followed by motorcycle 3. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ២ចេញទៅព្រមគ្នា រួច លេខ ៣ ទៅតាមក្រាយ
+Law Reference: N/A
+Image Code: PRT-Q012_irwfri.png
+Audio KM: PRT-Q012-KHMER_cawbct.wav
+Audio EN: PRT-Q012-ENLIS_uxxiwi.wav
+Questions Linked: 1
+
+[PRT-Q014] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 359
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1 and 3 together leave at the same time, and then followed motorcycle 2 and 4. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ៣ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ២ និង លេខ ៤ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q014_vhzv4n.png
+Audio KM: PRT-Q014-KHMER_webnfx.wav
+Audio EN: PRT-Q014-ENLIS_bsdhef.wav
+Questions Linked: 1
+
+[PRT-Q026] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 371
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Vehicles 1 and 3 together leave at the same time, vehicle 2 and 4 follow. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ៣ចេញទៅព្រមគ្នា រួច លេខ ២ និង លេខ ៤ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q026_gyauls.png
+Audio KM: PRT-Q026-KHMER_ldm5jn.wav
+Audio EN: PRT-Q026-ENLIS_vsb1n1.wav
+Questions Linked: 1
+
+[PRT-Q033] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 378
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Vehicles 1 and 3 leave together at the same time, then vehicle 2 and 4. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ៣ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ២ និង លេខ ៤
+Law Reference: N/A
+Image Code: PRT-Q033_idpm6d.png
+Audio KM: PRT-Q033-KHMER_emiigg.wav
+Audio EN: PRT-Q033-ENLIS_trawve.wav
+Questions Linked: 1
+
+[PRT-Q039] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 384
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicles 2 and 4 together leave at the same time, then vehicle 3 turns right. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ២ និង លេខ ៤ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ៣បត់ស្តាំ ហើយលេខ ១ទៅតាមក្រោយ
+Law Reference: N/A
+Image Code: PRT-Q039_sltatt.png
+Audio KM: PRT-Q039-KHMER_z0vvxt.wav
+Audio EN: PRT-Q039-ENLIS_zqorpz.wav
+Questions Linked: 1
+
+[PRT-Q040] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 385
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+Vehicle 1 and 2 leave together at the same time then vehicle 3. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ២ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q040_hjyoyb.png
+Audio KM: PRT-Q040-KHMER_ukrfox.wav
+Audio EN: PRT-Q040-ENLIS_pylmmz.wav
+Questions Linked: 1
+
+[PRT-Q042] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 387
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle 1, next 2, and then vehicles 3 and 4. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់ លេខ ២ រួច លេខ ៣ និង លេខ ៤ចេញទៅព្រមគ្នា
+Law Reference: N/A
+Image Code: PRT-Q042_dhtuvn.png
+Audio KM: PRT-Q042-KHMER_fqiip0.wav
+Audio EN: PRT-Q042-ENLIS_roi9rh.wav
+Questions Linked: 1
+
+[PRT-Q048] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 393
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3 and 1, then number 2. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ និង លេខ ១ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ២
+Law Reference: N/A
+Image Code: PRT-Q048_hukks8.png
+Audio KM: PRT-Q048-KHMER_ekptmh.wav
+Audio EN: PRT-Q048-ENLIS_u4554l.wav
+Questions Linked: 1
+
+[PRT-Q049] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 394
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 1 and 2 then 3. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ និង លេខ ២ចេញទៅព្រមគ្នា បន្ទាប់មក លេខ ៣
+Law Reference: N/A
+Image Code: PRT-Q049_bo2la0.png
+Audio KM: PRT-Q049-KHMER_z9btd5.wav
+Audio EN: PRT-Q049-ENLIS_tmegcy.wav
+Questions Linked: 1
+
+[PRT-Q054] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 399
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 1, then 2 and 3. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់មក លេខ ២ និង លេខ ៣ចេញទៅព្រមគ្នា
+Law Reference: N/A
+Image Code: PRT-Q054_kuqtwm.png
+Audio KM: PRT-Q054-KHMER_btubbg.wav
+Audio EN: PRT-Q054-ENLIS_uzqtlq.wav
+Questions Linked: 1
+
+[PRT-Q055] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 400
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First vehicle1 then 2 and 3. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ១ទៅមុន បន្ទាប់មក លេខ ២ និង លេខ ៣ចេញទៅព្រមគ្នា
+Law Reference: N/A
+Image Code: PRT-Q055_u5ef8l.png
+Audio KM: PRT-Q055-KHMER_tcmok3.wav
+Audio EN: PRT-Q055-ENLIS_gac8kj.wav
+Questions Linked: 1
+
+[PRT-Q061] What does this sign stand for? | ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Topic ID: 406
+Sub-Group: Intersection Priority – Simultaneous
+Name (EN): What does this sign stand for?
+Name (KM): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+Desc (EN): The answer is:
+ 
+First number 3, next 1, and then 4 and 2. Non-conflicting vehicles may proceed together, then remaining vehicles follow the shown order.
+Desc (KM): ចម្លើយគឺ 
+លេខ ៣ទៅមុន បន្ទាប់មក លេខ ១ រួច លេខ ៤ និង លេខ ២ចេញទៅព្រមគ្នា
+Law Reference: N/A
+Image Code: PRT-Q061_zejymf.png
+Audio KM: PRT-Q061-KHMER_tnx5q3.wav
+Audio EN: PRT-Q061-ENLIS_yhemon.wav
+Questions Linked: 1
+

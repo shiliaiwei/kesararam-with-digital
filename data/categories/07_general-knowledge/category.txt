@@ -1,0 +1,167 @@
+================================================================================
+CATEGORY 7: General Knowledge / ចំណេះដឹងទូទៅ (general-knowledge)
+Total Topics: 12 | Total Questions: 108
+================================================================================
+
+>>> SUB-GROUP: Legal (2 topics)
+--------------------------------------------------------------------------------
+
+[GNL-Q007] Is a person with HIV allowed to take a test for driver license? | តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?
+Topic ID: 527
+Sub-Group: Legal
+Name (EN): Is a person with HIV allowed to take a test for driver license?
+Name (KM): តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?
+Desc (EN): The answer is Yes
+Desc (KM): ចម្លើយគឺ បាទ
+Law Reference: N/A
+Image Code: GNL-Q007_zukjo2.png
+Audio KM: GNL-Q007-KHMER_mg8orx.wav
+Audio EN: GNL-Q007-ENGLISH_eyrdvs.wav
+Questions Linked: 9
+
+[GNL-Q010] On what principle is blood testing for HIV conducted? | តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?
+Topic ID: 530
+Sub-Group: Legal
+Name (EN): On what principle is blood testing for HIV conducted?
+Name (KM): តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?
+Desc (EN): The answer is Voluntary, confidential, and counseling
+Desc (KM): ចម្លើយគឺ ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា
+Law Reference: N/A
+Image Code: GNL-Q010_kccqkl.jpg
+Audio KM: GNL-Q010-KHMER_ob4a6n.wav
+Audio EN: GNL-Q010-ENGLISH_aiqwcg.wav
+Questions Linked: 9
+
+>>> SUB-GROUP: Road Safety (10 topics)
+--------------------------------------------------------------------------------
+
+[GNL-Q001] Who can be infected HIV? | តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?
+Topic ID: 521
+Sub-Group: Road Safety
+Name (EN): Who can be infected HIV?
+Name (KM): តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?
+Desc (EN): The answer is Everyone
+Desc (KM): ចម្លើយគឺ គ្រប់គ្នា
+Law Reference: N/A
+Image Code: GNL-Q001_iz044c.jpg
+Audio KM: GNL-Q001-KHMER_vn9evx.wav
+Audio EN: GNL-Q001-ENGLISH_wqiikt.wav
+Questions Linked: 9
+
+[GNL-Q002] How can HIV infect? | តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?
+Topic ID: 522
+Sub-Group: Road Safety
+Name (EN): How can HIV infect?
+Name (KM): តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?
+Desc (EN): The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child
+Desc (KM): ចម្លើយគឺ តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន
+Law Reference: N/A
+Image Code: GNL-Q002_oro5do.png
+Audio KM: GNL-Q002-KHMER_ol5evk.wav
+Audio EN: GNL-Q002-ENGLISH_eqg1wq.wav
+Questions Linked: 9
+
+[GNL-Q003] Up to now, is there a medicine that can cure the HIV/AIDS? | មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?
+Topic ID: 523
+Sub-Group: Road Safety
+Name (EN): Up to now, is there a medicine that can cure the HIV/AIDS?
+Name (KM): មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?
+Desc (EN): The answer is No, there isn't.
+Desc (KM): ចម្លើយគឺ ទេ វាមិនមានទេ។
+Law Reference: N/A
+Image Code: GNL-Q003_apshtd.png
+Audio KM: GNL-Q003-KHMER_goon8q.wav
+Audio EN: GNL-Q003-ENGLISH_ljb7t5.wav
+Questions Linked: 9
+
+[GNL-Q004] How can you realize that someone have HIV? | តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?
+Topic ID: 524
+Sub-Group: Road Safety
+Name (EN): How can you realize that someone have HIV?
+Name (KM): តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?
+Desc (EN): The answer is By testing the blood.
+Desc (KM): ចម្លើយគឺ ដោយការធ្វើតេស្តឈាម។
+Law Reference: N/A
+Image Code: GNL-Q004_b41kxu.png
+Audio KM: GNL-Q004-KHMER_wpgh4h.wav
+Audio EN: GNL-Q004-ENGLISH_ilfqhu.wav
+Questions Linked: 9
+
+[GNL-Q005] Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases? | តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?
+Topic ID: 525
+Sub-Group: Road Safety
+Name (EN): Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?
+Name (KM): តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?
+Desc (EN): The answer is Have sex with condom properly and all time
+Desc (KM): ចម្លើយគឺ រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា
+Law Reference: N/A
+Image Code: GNL-Q005_vgea5w.png
+Audio KM: GNL-Q005-KHMER_ee8ame.wav
+Audio EN: GNL-Q005-ENGLISH_zjjvsy.wav
+Questions Linked: 9
+
+[GNL-Q006] What disease that can push to infect HIV? | តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?
+Topic ID: 526
+Sub-Group: Road Safety
+Name (EN): What disease that can push to infect HIV?
+Name (KM): តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?
+Desc (EN): The answer is Sexually transmitted disease
+Desc (KM): ចម្លើយគឺ ជំងឺកាមរោគ
+Law Reference: N/A
+Image Code: GNL-Q006_ne29va.png
+Audio KM: GNL-Q006-KHMER_aakdlb.wav
+Audio EN: GNL-Q006-ENGLISH_hnq1pm.wav
+Questions Linked: 9
+
+[GNL-Q008] Realizing the driver with HIV, dare you ride on that car? | ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?
+Topic ID: 528
+Sub-Group: Road Safety
+Name (EN): Realizing the driver with HIV, dare you ride on that car?
+Name (KM): ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?
+Desc (EN): The answer is Dare
+Desc (KM): ចម្លើយគឺ ហ៊ាន
+Law Reference: N/A
+Image Code: GNL-Q008_tunk7k.png
+Audio KM: GNL-Q008-KHMER_d7uknw.wav
+Audio EN: GNL-Q008-ENGLISH_nnyybu.wav
+Questions Linked: 9
+
+[GNL-Q009] Realizing that you have HIV, what practice shall you choose? | ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?
+Topic ID: 529
+Sub-Group: Road Safety
+Name (EN): Realizing that you have HIV, what practice shall you choose?
+Name (KM): ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?
+Desc (EN): The answer is Have sex using condom properly and all time.
+Desc (KM): ចម្លើយគឺ រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។
+Law Reference: N/A
+Image Code: GNL-Q009_v3xt2r.jpg
+Audio KM: GNL-Q009-KHMER_t0u0bh.wav
+Audio EN: GNL-Q009-ENGLISH_cuztkm.wav
+Questions Linked: 9
+
+[GNL-Q011] Realizing someone with HIV at your workplace, what shall you do? | ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?
+Topic ID: 531
+Sub-Group: Road Safety
+Name (EN): Realizing someone with HIV at your workplace, what shall you do?
+Name (KM): ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?
+Desc (EN): The answer is Let him or her work as usual.
+Desc (KM): ចម្លើយគឺ អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។
+Law Reference: N/A
+Image Code: GNL-Q011_dzq7bs.jpg
+Audio KM: GNL-Q011-KHMER_ufcqwj.wav
+Audio EN: GNL-Q011-ENGLISH_bdgin2.wav
+Questions Linked: 9
+
+[GNL-Q012] How shall you do toward a victim of HIV? | តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?
+Topic ID: 532
+Sub-Group: Road Safety
+Name (EN): How shall you do toward a victim of HIV?
+Name (KM): តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?
+Desc (EN): The answer is Suport and not discrimination
+Desc (KM): ចម្លើយគឺ គាំទ្រនិងមិនរើសអើង
+Law Reference: N/A
+Image Code: GNL-Q012_itc7rd.jpg
+Audio KM: GNL-Q012-KHMER_hcw7yq.wav
+Audio EN: GNL-Q012-ENGLISH_vrzvye.wav
+Questions Linked: 9
+

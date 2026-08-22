@@ -1,0 +1,689 @@
+{
+  "category": {
+    "id": 5,
+    "slug": "technical",
+    "title_en": "Vehicle Technology",
+    "title_km": "បច្ចេកទេសយានយន្ត",
+    "total_topics": 38,
+    "total_questions": 342,
+    "total_subgroups": 4,
+    "exported_at": "2026-08-22T14:03:34.806Z",
+    "database_host": "ep-rapid-glitter-am81r7j8-pooler.c-5.us-east-1.aws.neon.tech"
+  },
+  "subgroups": [
+    {
+      "subgroup_name": "Brakes",
+      "topics_count": 7,
+      "questions_count": 63,
+      "topics": [
+        {
+          "id": 496,
+          "topic_code": " TCH-Q030",
+          "sub_group": "Brakes",
+          "name_en": "What should you check on the vehicle's wheels?",
+          "name_km": "តើនៅត្រង់ថាសវិល (ប្លាតូហ៊្វម) អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?",
+          "description_en": "The answer is The state of being cracked or eroded",
+          "description_km": "ចម្លើយគឺ ភាពប្រេះស្រាំ ឬសឹកខ្លាំង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q030_xv0adl.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q030_xv0adl.jpg",
+            "audio_km_code": "TCH-Q030-KHMER_su68jw.wav",
+            "audio_en_code": "TCH-Q030-ENGLISH_hmyvyy.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 476,
+          "topic_code": "TCH-Q010",
+          "sub_group": "Brakes",
+          "name_en": "How shall you check the level of brake oil?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យកំរិតប្រេងហ្វ្រាំងដូចម្ដេច ?",
+          "description_en": "The answer is The level of brake oil must be between minimum and maximum markings",
+          "description_km": "ចម្លើយគឺ កំរិតប្រេងហ្វ្រាំង ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q010_ffi0eo.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q010_ffi0eo.jpg",
+            "audio_km_code": "TCH-Q010-KHMER_jmublp.wav",
+            "audio_en_code": "TCH-Q010-ENGLISH_vqaj0u.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 481,
+          "topic_code": "TCH-Q015",
+          "sub_group": "Brakes",
+          "name_en": "What shall you check at the brakes?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចហ្វ្រាំង ?",
+          "description_en": "The answer is The level of properly work of brake system",
+          "description_km": "ចម្លើយគឺ ហ្សឺ និងដំណើរការហ្វ្រាំងដៃ ហ្វ្រាំងជើង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q015_oxbzhi.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083819/TCH-Q015_oxbzhi.jpg",
+            "audio_km_code": "TCH-Q015-KHMER_eklux3.wav",
+            "audio_en_code": "TCH-Q015-ENGLISH_lmllcu.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 489,
+          "topic_code": "TCH-Q023",
+          "sub_group": "Brakes",
+          "name_en": "From how many millimeters of the gape of brake pedal need to be adjusted?",
+          "name_km": "តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវចាប់ពីប្រវែងប៉ុន្មានមីលីម៉ែត្រ ?",
+          "description_en": "The answer is More than 20mm",
+          "description_km": "ចម្លើយគឺ លើសពី ២០មីលីម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q023_s3ct1d.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083819/TCH-Q023_s3ct1d.jpg",
+            "audio_km_code": "TCH-Q023-KHMER_mhyscz.wav",
+            "audio_en_code": "TCH-Q023-ENGLISH_bcgrtu.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 490,
+          "topic_code": "TCH-Q024",
+          "sub_group": "Brakes",
+          "name_en": "In case the brakes using oil pump, how do you realize the oil leaks a lot?",
+          "name_km": "ក្នុងករណីហ្វ្រាំងប្រើបូមប្រេង តើអ្នកដឹងប្រេងលេចខ្លាំងដោយសារអ្វី ?",
+          "description_en": "The answer is By starting the engine then applying the brake pedal, falling on brake pedal board.",
+          "description_km": "ចម្លើយគឺ ដោយបញ្ឆេះម៉ាស៊ីន រួចជាន់ឈ្នាន់ហ្វ្រាំង ដោយឈ្នាន់ឆ្លាក់កើយដល់ក្ដារឈ្នាន់",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q024_cmgdsx.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083817/TCH-Q024_cmgdsx.jpg",
+            "audio_km_code": "TCH-Q024-KHMER_rabud2.wav",
+            "audio_en_code": "TCH-Q024-ENGLISH_sdoy4l.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 491,
+          "topic_code": "TCH-Q025",
+          "sub_group": "Brakes",
+          "name_en": "At the core of the ......what are the main things to be checked?",
+          "name_km": "តើនៅត្រង់ស្នូលថ្ពក់ថាសវិល អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?",
+          "description_en": "The answer is The twist of the core.",
+          "description_km": "ចម្លើយគឺ ភាពរមួលរបស់ស្នូល",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q025_jihthi.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q025_jihthi.jpg",
+            "audio_km_code": "TCH-Q025-KHMER_swqbfx.wav",
+            "audio_en_code": "TCH-Q025-ENGLISH_pxrz9x.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 499,
+          "topic_code": "TCH-Q033",
+          "sub_group": "Brakes",
+          "name_en": "How long, in millimetres, is the gape of a brake pedal needed adjusting to be accurately?",
+          "name_km": "តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវមកត្រឹមប្រវែងប្រហែលប៉ុន្មានមីលីម៉ែត្រទើបត្រឹមត្រូវ ?",
+          "description_en": "The answer is 13mm",
+          "description_km": "ចម្លើយគឺ ១៣មីលីម៉ែត្រ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q033_utnsry.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q033_utnsry.jpg",
+            "audio_km_code": "TCH-Q033-KHMER_irlmhr.wav",
+            "audio_en_code": "TCH-Q033-ENGLISH_bzos3l.wav"
+          },
+          "total_questions_linked": 9
+        }
+      ]
+    },
+    {
+      "subgroup_name": "Engine",
+      "topics_count": 8,
+      "questions_count": 72,
+      "topics": [
+        {
+          "id": 494,
+          "topic_code": " TCH-Q028",
+          "sub_group": "Engine",
+          "name_en": "What is the main check at the fuel tank?",
+          "name_km": "ចំពោះធុងប្រេងឥន្ធនៈ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ?",
+          "description_en": "The answer is The leakage of the fuel tank.",
+          "description_km": "ចម្លើយគឺ ភាពលេច ឬជ្រាប",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q028_weq8ce.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083818/TCH-Q028_weq8ce.jpg",
+            "audio_km_code": "TCH-Q028-KHMER_afju5g.wav",
+            "audio_en_code": "TCH-Q028-ENGLISH_o6lqmc.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 467,
+          "topic_code": "TCH-Q001",
+          "sub_group": "Engine",
+          "name_en": "How shall you check engine oil?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យកម្រិតប្រេងម៉ាស៊ីនដូចម្ដេច ?",
+          "description_en": "The answer is The level of engine oil must be between minimum and maximum markings",
+          "description_km": "ចម្លើយគឺ កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q001_ooz4zs.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q001_ooz4zs.jpg",
+            "audio_km_code": "TCH-Q001-KHMER_rfepwz.wav",
+            "audio_en_code": "TCH-Q001-ENGLISH_negyti.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 469,
+          "topic_code": "TCH-Q003",
+          "sub_group": "Engine",
+          "name_en": "What shall you check at the chain?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចច្រវ៉ាក់ ?",
+          "description_en": "The answer is tight enough, no loose, or not too tight, must be always with oil.",
+          "description_km": "ចម្លើយគឺ តឹងល្មម មិនធូរ ឬមិនតឹងពេក ត្រូវមានជាតិប្រេងរំអិលជានិច្ច",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q003_o0jgjj.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083820/TCH-Q003_o0jgjj.jpg",
+            "audio_km_code": "TCH-Q003-KHMER_o37ozr.wav",
+            "audio_en_code": "TCH-Q003-ENGLISH_nehysx.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 470,
+          "topic_code": "TCH-Q004",
+          "sub_group": "Engine",
+          "name_en": "What shall you check at the water tank?",
+          "name_km": "តើអ្នកត្រូវត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចធុងទឹក ?",
+          "description_en": "The answer is The level of water in the tank",
+          "description_km": "ចម្លើយគឺ កំរិតទឹកក្នុងធុង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q004_clpjgm.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083818/TCH-Q004_clpjgm.jpg",
+            "audio_km_code": "TCH-Q004-KHMER_bxnrz8.wav",
+            "audio_en_code": "TCH-Q004-ENGLISH_n8vcxq.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 473,
+          "topic_code": "TCH-Q007",
+          "sub_group": "Engine",
+          "name_en": "What shall you check at the oil point?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចប្រេងម៉ាស៊ីន ?",
+          "description_en": "The answer is The leakage and the existence of the specified level.",
+          "description_km": "ចម្លើយគឺ ភាពលេចជ្រាប និងត្រូវឱ្យមានតាមកម្រិតកំណត់",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q007_jw3wnq.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083823/TCH-Q007_jw3wnq.jpg",
+            "audio_km_code": "TCH-Q007-KHMER_mfmxzf.wav",
+            "audio_en_code": "TCH-Q007-ENGLISH_ue9iei.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 477,
+          "topic_code": "TCH-Q011",
+          "sub_group": "Engine",
+          "name_en": "While travelling, what shall you check?",
+          "name_km": "ក្នុងពេលធ្វើដំណើរ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?",
+          "description_en": "The answer is Water temperature device process , battery recharged device, and brake signal, including engine oil pressure.",
+          "description_km": "ចម្លើយគឺ ដំណើរការនាឡិកាសីតុណ្ហភាពទឹក នាឡិកាសាកអាគុយ និងសញ្ញាហ្វ្រាំង ព្រមទាំងសំពាធប្រេងម៉ាស៊ីន",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q011_sohrcm.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q011_sohrcm.jpg",
+            "audio_km_code": "TCH-Q011-KHMER_mbsue3.wav",
+            "audio_en_code": "TCH-Q011-ENGLISH_xwet2r.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 478,
+          "topic_code": "TCH-Q012",
+          "sub_group": "Engine",
+          "name_en": "What shall you check at the liquid battery?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចអាគុយទឹក ?",
+          "description_en": "The answer is The level of the water of battery.",
+          "description_km": "ចម្លើយគឺ កំរិតទឹកអាគុយ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q012_pw2zgc.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083818/TCH-Q012_pw2zgc.jpg",
+            "audio_km_code": "TCH-Q012-KHMER_h8au6f.wav",
+            "audio_en_code": "TCH-Q012-ENGLISH_dbdrba.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 485,
+          "topic_code": "TCH-Q019",
+          "sub_group": "Engine",
+          "name_en": "What shall you check at the motorcycle's engine?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ម៉ាស៊ីន ?",
+          "description_en": "The answer is The leakage of oil and the level of engine oil.",
+          "description_km": "ចម្លើយគឺ ភាពលេចជ្រាបប្រេងម៉ាស៊ីន និងកម្រិតប្រេងម៉ាស៊ីន",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q019_dpkcjh.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083819/TCH-Q019_dpkcjh.jpg",
+            "audio_km_code": "TCH-Q019-KHMER_liybsg.wav",
+            "audio_en_code": "TCH-Q019-ENGLISH_p8isuo.wav"
+          },
+          "total_questions_linked": 9
+        }
+      ]
+    },
+    {
+      "subgroup_name": "Lights",
+      "topics_count": 2,
+      "questions_count": 18,
+      "topics": [
+        {
+          "id": 474,
+          "topic_code": "TCH-Q008",
+          "sub_group": "Lights",
+          "name_en": "What shall you check at the sign lights?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចង្កៀងភ្លើងសញ្ញា ?",
+          "description_en": "The answer is Being well-processed or broken or dirty.",
+          "description_km": "ចម្លើយគឺ ភាពដំណើរការល្អ ឬភាពខូច ឬកខ្វក់",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q008_jyania.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083818/TCH-Q008_jyania.jpg",
+            "audio_km_code": "TCH-Q008-KHMER_hzji6v.wav",
+            "audio_en_code": "TCH-Q008-ENGLISH_fqq4b4.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 504,
+          "topic_code": "TCH-Q038",
+          "sub_group": "Lights",
+          "name_en": "What shall drivers check at the road light, headlights and coating lights?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចភ្លើងបំភ្លឺផ្លូវ (ហ្វា-កូត ) ?",
+          "description_en": "The answer is The clearness and the process of them.",
+          "description_km": "ចម្លើយគឺ ភាពភ្លឺថ្លា និងដំណើរការរបស់វា",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q038_pm86jq.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083820/TCH-Q038_pm86jq.jpg",
+            "audio_km_code": "TCH-Q038-KHMER_r3q2dd.wav",
+            "audio_en_code": "TCH-Q038-ENGLISH_bkphet.wav"
+          },
+          "total_questions_linked": 9
+        }
+      ]
+    },
+    {
+      "subgroup_name": "Safety Systems",
+      "topics_count": 21,
+      "questions_count": 189,
+      "topics": [
+        {
+          "id": 468,
+          "topic_code": "TCH-Q002",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check at the horn?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ស៊ីផ្លេ ?",
+          "description_en": "The answer is Well work of it.",
+          "description_km": "ចម្លើយគឺ ភាពដំណើរការល្អរបស់វា",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q002_a3jlea.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083820/TCH-Q002_a3jlea.jpg",
+            "audio_km_code": "TCH-Q002-KHMER_h33xi1.wav",
+            "audio_en_code": "TCH-Q002-ENGLISH_wxt5kx.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 471,
+          "topic_code": "TCH-Q005",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check at the water fan?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចផ្លិតទឹក ?",
+          "description_en": "The answer is The process and the wipe the water well",
+          "description_km": "ចម្លើយគឺ ដំណើការ និង ជូតទឹកបានស្អាតល្អ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q005_e5qfim.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083815/TCH-Q005_e5qfim.jpg",
+            "audio_km_code": "TCH-Q005-KHMER_vraei3.wav",
+            "audio_en_code": "TCH-Q005-ENGLISH_zsivnl.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 472,
+          "topic_code": "TCH-Q006",
+          "sub_group": "Safety Systems",
+          "name_en": "According to the law, the depth of the motorcycle's tyre tread after eroded, how many millimetres, at least, are they left need to be changed?",
+          "name_km": "តើច្បាប់កំណត់ឱ្យជម្រៅក្រឡាសំបកកៅស៊ូកង់សឹកនៅសល់យ៉ាងតិចប៉ុន្មានមីលីម៉ែត្រដែលត្រូវប្ដូរចេញ ?",
+          "description_en": "The answer is At least 1mm",
+          "description_km": "ចម្លើយគឺ យ៉ាងតិច ១ម.ម",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q006_msv2j2.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083825/TCH-Q006_msv2j2.jpg",
+            "audio_km_code": "TCH-Q006-KHMER_z9acls.wav",
+            "audio_en_code": "TCH-Q006-ENGLISH_za5z4r.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 475,
+          "topic_code": "TCH-Q009",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check on the wing mirrors?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យដូចម្ដេច នៅលើកញ្ចក់មើលក្រោយ ?",
+          "description_en": "The answer is Clearliness and right position.",
+          "description_km": "ចម្លើយគឺ ត្រូវមានសភាពច្បាស់ល្អ និងដាក់ឱ្យត្រូវទីតាំង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q009_xsgxvc.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q009_xsgxvc.jpg",
+            "audio_km_code": "TCH-Q009-KHMER_qt3ej4.wav",
+            "audio_en_code": "TCH-Q009-ENGLISH_hbkbxh.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 479,
+          "topic_code": "TCH-Q013",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check at the tyres?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចសំបកកៅស៊ូកង់ ?",
+          "description_en": "The answer is Air pressure, erosion, swellings, cracked, and punch.",
+          "description_km": "ចម្លើយគឺ សំពាធខ្យល់ ភាពសឹក ប៉ោង ប្រេះ មុត",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q013_twry9s.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q013_twry9s.jpg",
+            "audio_km_code": "TCH-Q013-KHMER_qanppr.wav",
+            "audio_en_code": "TCH-Q013-ENGLISH_g1ya3a.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 480,
+          "topic_code": "TCH-Q014",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check on the motorcycle's wheels?",
+          "name_km": "តើអ្នកពិនិត្យអ្វី នៅលើខ្នងកង់ ?",
+          "description_en": "The answer is The looseness of the radius of the wheels.",
+          "description_km": "ចម្លើយគឺ ភាពធូកាំនៃខ្នងកង់",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q014_aulikn.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q014_aulikn.jpg",
+            "audio_km_code": "TCH-Q014-KHMER_o3auu1.wav",
+            "audio_en_code": "TCH-Q014-ENGLISH_oiphyj.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 482,
+          "topic_code": "TCH-Q016",
+          "sub_group": "Safety Systems",
+          "name_en": "How shall you check on nuts and bolts?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យដូចម្ដេច ចំពោះខ្ចៅ និងប៊ូឡុង ?",
+          "description_en": "The answer is Shall be good tight.",
+          "description_km": "ចម្លើយគឺ ត្រូវមានសភាពតឹងល្អ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q016_uucyme.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q016_uucyme.jpg",
+            "audio_km_code": "TCH-Q016-KHMER_z2h5zt.wav",
+            "audio_en_code": "TCH-Q016-ENGLISH_maadgc.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 483,
+          "topic_code": "TCH-Q017",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check at the speedometer?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់កុងទ័រល្បឿន ?",
+          "description_en": "The answer is The process of it.",
+          "description_km": "ចម្លើយគឺ ការដំណើរការល្អរបស់វា",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q017_sxfnwx.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q017_sxfnwx.jpg",
+            "audio_km_code": "TCH-Q017-KHMER_mcxfnd.wav",
+            "audio_en_code": "TCH-Q017-ENGLISH_tzjbbv.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 484,
+          "topic_code": "TCH-Q018",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check at the motorcycle's steering?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចដៃចង្កូត ?",
+          "description_en": "The answer is The hardiness of it.",
+          "description_km": "ចម្លើយគឺ ភាពរឹងមាំល្អរបស់វា",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q018_frdokn.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q018_frdokn.jpg",
+            "audio_km_code": "TCH-Q018-KHMER_mzcane.wav",
+            "audio_en_code": "TCH-Q018-ENGLISH_n32ijh.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 486,
+          "topic_code": "TCH-Q020",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check every time before getting into the car?",
+          "name_km": "នៅរៀងរាល់ពេល មុននឹងចូលក្នុងរថយន្ត អ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?",
+          "description_en": "The answer is Check the wheels not to be flat and the lights must be cleaned all time.",
+          "description_km": "ចម្លើយគឺ មើលកង់កុំឲ្យធូរ និងភ្លើងចង្កៀងត្រូវឲ្យស្អាតជានិច្ច",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q020_rck0y3.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q020_rck0y3.jpg",
+            "audio_km_code": "TCH-Q020-KHMER_sekacs.wav",
+            "audio_en_code": "TCH-Q020-ENGLISH_h2r5vc.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 487,
+          "topic_code": "TCH-Q021",
+          "sub_group": "Safety Systems",
+          "name_en": "How many millimeters, at least, of the tyres' depth to be left for the family car?",
+          "name_km": "តើភាពសឹករបស់សំបកកង់រថយន្តគ្រួសារ ត្រូវឲ្យនៅសល់ជំរៅក្រឡាយ៉ាងតិចប៉ុន្មាន មីលីមែត្រ?",
+          "description_en": "The answer is 1.6mm",
+          "description_km": "ចម្លើយគឺ ១,៦ ម.ម",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q021_quxrs4.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q021_quxrs4.jpg",
+            "audio_km_code": "TCH-Q021-KHMER_xyhvjm.wav",
+            "audio_en_code": "TCH-Q021-ENGLISH_slhmte.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 488,
+          "topic_code": "TCH-Q022",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check at the steer?",
+          "name_km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចចង្កូត ?",
+          "description_en": "The answer is Hardiness and not to be tight to steer.",
+          "description_km": "ចម្លើយគឺ ភាពរឹងមាំ និង មិនត្រូវឲ្យតឹងពេលកាច់ចង្កូត",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q022_ovwjks.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q022_ovwjks.jpg",
+            "audio_km_code": "TCH-Q022-KHMER_xqj4ru.wav",
+            "audio_en_code": "TCH-Q022-ENGLISH_yr9ery.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 492,
+          "topic_code": "TCH-Q026",
+          "sub_group": "Safety Systems",
+          "name_en": "What should you take care on the car's chassis?",
+          "name_km": "តើនៅត្រង់ជន្ទាស អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?",
+          "description_en": "The answer is breaking a part",
+          "description_km": "ចម្លើយគឺ ភាពប្រេះស្រាំ បាក់ ឬរំកិល",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q026_abyymh.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q026_abyymh.jpg",
+            "audio_km_code": "TCH-Q026-KHMER_mmeyji.wav",
+            "audio_en_code": "TCH-Q026-ENGLISH_rlti7d.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 493,
+          "topic_code": "TCH-Q027",
+          "sub_group": "Safety Systems",
+          "name_en": "What is the main check at the doors of the car?",
+          "name_km": "តើនៅត្រង់ទ្វារនៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?",
+          "description_en": "The answer is Bolt or door key",
+          "description_km": "ចម្លើយគឺ គន្លឹះ ឬសោទ្វារ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q027_zbherv.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q027_zbherv.jpg",
+            "audio_km_code": "TCH-Q027-KHMER_ztxnyg.wav",
+            "audio_en_code": "TCH-Q027-ENGLISH_fnlpdd.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 495,
+          "topic_code": "TCH-Q029",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall you check at the drive shaft of the vehicle?",
+          "name_km": "តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ត្រង់កាឡេរថយន្ត ?",
+          "description_en": "The answer is The state of being cracked or bend",
+          "description_km": "ចម្លើយគឺ ភាពប្រេះស្រាំ ឬកោង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q029_nc0pqu.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q029_nc0pqu.jpg",
+            "audio_km_code": "TCH-Q029-KHMER_ng7qbc.wav",
+            "audio_en_code": "TCH-Q029-ENGLISH_votii5.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 497,
+          "topic_code": "TCH-Q031",
+          "sub_group": "Safety Systems",
+          "name_en": "What is the necessary check at the tyres?",
+          "name_km": "កៅស៊ូកង់នៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាចាំបាច់ ?",
+          "description_en": "The answer is Erosion, looseness, tightness, or being cracked.",
+          "description_km": "ចម្លើយគឺ ភាពសឹក ធូរ តឹង ឬប្រេះ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q031_aha0ap.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q031_aha0ap.jpg",
+            "audio_km_code": "TCH-Q031-KHMER_wjlyh4.wav",
+            "audio_en_code": "TCH-Q031-ENGLISH_cpzup2.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 498,
+          "topic_code": "TCH-Q032",
+          "sub_group": "Safety Systems",
+          "name_en": "While driving, how long shall you need to check the semi trailer-towed hooks or trailer?",
+          "name_km": "នៅពេលអ្នកធ្វើដំណើរ ប្រហែលប៉ុន្មានម៉ោងត្រូវឈប់ត្រួតពិនិត្យគ្រឿងថ្ពក់សណ្ដោងសឺមីរ៉ឺម៉ក ឬរ៉ឺម៉ក ?",
+          "description_en": "The answer is About 3 hours",
+          "description_km": "ចម្លើយគឺ ប្រហែល ៣ម៉ោង",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q032_rovtly.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083817/TCH-Q032_rovtly.jpg",
+            "audio_km_code": "TCH-Q032-KHMER_jxo7zf.wav",
+            "audio_en_code": "TCH-Q032-ENGLISH_su4x3y.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 500,
+          "topic_code": "TCH-Q034",
+          "sub_group": "Safety Systems",
+          "name_en": "If the steering wheel with a diameter of 0.5m, how many degrees is ...... steering wheel left?",
+          "name_km": "បើរង្វង់ដៃចង្កូតមានបន្ទាត់ផ្ចឹត០,៥០ម៉ែត្រ តើហ្សឺចង្កូតត្រូវរក្សាប៉ុន្មាន ?",
+          "description_en": "The answer is Not more than 10 degrees",
+          "description_km": "ចម្លើយគឺ មិនលើសពី ១០ដឺក្រេ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q034_kqxqr0.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q034_kqxqr0.jpg",
+            "audio_km_code": "TCH-Q034-KHMER_lghuop.wav",
+            "audio_en_code": "TCH-Q034-ENGLISH_dudctt.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 501,
+          "topic_code": "TCH-Q035",
+          "sub_group": "Safety Systems",
+          "name_en": "What are the main check at the steering wheel and steering pedal?",
+          "name_km": "តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ចំពោះដៃចង្កូត និងដងចង្កូត ?",
+          "description_en": "The answer is The looseness or stickiness, being cracked or broken.",
+          "description_km": "ចម្លើយគឺ ភាពធូររលុងឬជាប់គាំង ភាពប្រេះស្រាំឬបាក់",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q035_zovcc9.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083819/TCH-Q035_zovcc9.jpg",
+            "audio_km_code": "TCH-Q035-KHMER_mf6ehx.wav",
+            "audio_en_code": "TCH-Q035-ENGLISH_jcctni.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 502,
+          "topic_code": "TCH-Q036",
+          "sub_group": "Safety Systems",
+          "name_en": "What is the main check of battery case?",
+          "name_km": "តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ នៃធុងអាគុយ ?",
+          "description_en": "The answer is The quality and the level of water of the battery.",
+          "description_km": "ចម្លើយគឺ ភាពជាប់ និងកំរិតទឹកអាគុយ",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q036_uuwn4h.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q036_uuwn4h.jpg",
+            "audio_km_code": "TCH-Q036-KHMER_anxaeg.wav",
+            "audio_en_code": "TCH-Q036-ENGLISH_lxnzxl.wav"
+          },
+          "total_questions_linked": 9
+        },
+        {
+          "id": 503,
+          "topic_code": "TCH-Q037",
+          "sub_group": "Safety Systems",
+          "name_en": "What shall drivers check for the vehicle's chassis?",
+          "name_km": "តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ចំពោះសាក់ស៊ីរថយន្ត ?",
+          "description_en": "The answer is The state of being cracked, bend, or broken.",
+          "description_km": "ចម្លើយគឺ ភាពប្រេះស្រាំ កោង ឬបាក់",
+          "law_reference": "N/A",
+          "media": {
+            "primary_image_code": "TCH-Q037_xahrrg.jpg",
+            "primary_image_url": "https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q037_xahrrg.jpg",
+            "audio_km_code": "TCH-Q037-KHMER_yso3gm.wav",
+            "audio_en_code": "TCH-Q037-ENGLISH_nyh137.wav"
+          },
+          "total_questions_linked": 9
+        }
+      ]
+    }
+  ]
+}
