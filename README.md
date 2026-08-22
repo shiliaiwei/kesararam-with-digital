@@ -8,13 +8,30 @@ Kesararam With Digital (KWD) is an open-source, bilingual (Khmer and English) di
 
 ## Overview
 
-Road traffic accidents remain a critical public safety challenge in Cambodia. KWD addresses this by transforming standard road traffic curriculum into a modern, accessible digital learning experience.
+KWD transforms road safety learning into an accessible, engaging, and modern digital experience. The platform provides teachers and students with tools to explore traffic rules and road safety habits effectively.
 
 The platform includes:
 - **Comprehensive Bilingual Curriculum**: 8 official road safety categories covering 247 traffic signs and 5,925 validated questions in both Khmer and English.
-- **Interactive GameKit**: Engaging mini-games (Sign Connect, Tick Sign, Word Bank, Traffic Commander) designed for primary and secondary school students.
-- **Real-Time Multiplayer Challenges**: Classroom challenge lobbies enabling teachers to host live quizzes with instant score calculation and leaderboard ranking.
+- **Interactive GameKit**: Engaging mini-games (Sign Connect, Tick Sign, Word Bank, Traffic Commander) designed for interactive classroom practice.
+- **Real-Time Multiplayer Challenges**: Classroom challenge lobbies enabling teachers to host live quizzes with instant scoring and leaderboards.
 - **Role-Based Architecture**: Dedicated interfaces for Students, Teachers, Content Staff, and Platform Administrators.
+
+---
+
+## Open Source and Community
+
+KWD is released as an open-source project under the MIT License to encourage collaboration across schools, educators, developers, and organizations working on road safety education. Developers are welcome to explore the codebase, build new learning activities, and adapt the modules for their communities.
+
+---
+
+## Sponsorship and Sustainability
+
+To keep this platform freely accessible, maintain cloud database infrastructure, and continue expanding learning resources for schools in Cambodia, we welcome sponsorships and partnerships.
+
+Organizations, educational foundations, and individual sponsors interested in supporting server hosting, content development, or community workshops can connect with us:
+
+- **Website**: [kesararamwithdigital.tech](https://kesararamwithdigital.tech)
+- **Project Inquiries**: Contact the KWD team through our official channels or GitHub repository.
 
 ---
 
