@@ -18,24 +18,6 @@ The platform includes:
 
 ---
 
-## Open Educational Dataset
-
-All curriculum data is openly available in machine-readable and human-readable formats under [`data/categories/`](data/categories):
-
-| Category Folder | Category Name (English / Khmer) | Topics | Linked Questions | Formats |
-| :--- | :--- | :---: | :---: | :---: |
-| `01_road-sign/` | Traffic Signs / សញ្ញាចរាចរ | 247 | 2,966 | JSON, MD, TXT |
-| `02_road-traffic/` | Road Traffic Law / ច្បាប់ចរាចរ | 192 | 1,728 | JSON, MD, TXT |
-| `03_priority/` | Right of Way / សិទ្ធិដំណើរ | 70 | 70 | JSON, MD, TXT |
-| `04_driving/` | Driving Skills / ជំនាញបើកបរ | 50 | 450 | JSON, MD, TXT |
-| `05_technical/` | Vehicle Technology / បច្ចេកទេសយានយន្ត | 38 | 342 | JSON, MD, TXT |
-| `06_loading-people-goods/` | Loading People & Goods / ការដឹកអ្នកដំណើរ | 14 | 126 | JSON, MD, TXT |
-| `07_general-knowledge/` | General Knowledge / ចំណេះដឹងទូទៅ | 12 | 108 | JSON, MD, TXT |
-| `08_emergency/` | Emergency / អាសន្ន | 15 | 135 | JSON, MD, TXT |
-| **Total** | **8 Categories** | **638** | **5,925** | **Full Dataset** |
-
----
-
 ## Technology Stack
 
 - **Framework**: Next.js 15 (App Router)
