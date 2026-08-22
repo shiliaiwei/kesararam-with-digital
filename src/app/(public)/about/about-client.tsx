@@ -684,7 +684,7 @@ export function AboutClient() {
             <p className="font-black text-zinc-900 text-base mb-1" style={kf}>{c.legalTitle}</p>
             <p className="text-zinc-500 text-sm max-w-lg leading-relaxed" style={kf}>{c.legalText}</p>
           </div>
-          <div className="flex gap-3 flex-shrink-0">
+          <div className="flex flex-wrap gap-3 flex-shrink-0">
             <Link href="/privacy"
               className="text-xs font-black px-5 py-2.5 bg-yellow-400 text-black border border-zinc-900 hover:bg-yellow-300 transition-colors"
               style={kf}>
@@ -695,6 +695,15 @@ export function AboutClient() {
               style={kf}>
               {c.termsBtn}
             </Link>
+            <a
+              href="https://github.com/shiliaiwei/kesararam-with-digital"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-black px-5 py-2.5 bg-zinc-950 text-white border border-black hover:bg-zinc-800 transition-colors inline-flex items-center gap-1.5"
+              style={kf}>
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
+              {kh ? "កូដចំហ (Open Source)" : "Open Source (MIT)"}
+            </a>
           </div>
         </div>
       </section>
