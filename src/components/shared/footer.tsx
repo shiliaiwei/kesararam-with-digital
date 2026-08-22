@@ -205,19 +205,20 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t-2 border-zinc-200 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-            <p className="text-xs text-zinc-500 font-medium" style={kf}>
-              &copy; {new Date().getFullYear()} Kesararam With Digital.{" "}
-              {kh ? "រក្សាសិទ្ធិគ្រប់យ៉ាង" : "All rights reserved."}
-            </p>
-            <span className="hidden sm:inline text-zinc-300">·</span>
-            <span className="text-[11px] text-zinc-400 font-mono">
-              MIT License · Open Source
-            </span>
-          </div>
-          <p className="text-xs text-zinc-400 font-medium" style={kf}>
-            {kh ? "ចំណេះដឹងសុវត្ថិភាព សម្រាប់ប្រជាជនកម្ពុជាគ្រប់គ្នា" : "Safety knowledge for every Cambodian."}
+        <div className="border-t-2 border-zinc-200 pt-8 mt-2 flex flex-col items-center text-center gap-1.5">
+          <p className="text-xs md:text-sm text-zinc-900 font-bold" style={kf}>
+            &copy; {new Date().getFullYear()} Kesararam With Digital • វិថី សុវត្ថិភាព The Way of Safety
+          </p>
+          <p className="text-xs text-blue-600 font-medium">
+            <a href="mailto:kesararamwithdigital@gmail.com" className="hover:underline">kesararamwithdigital@gmail.com</a>
+            {" • "}
+            <a href="https://kesararamwithdigital.tech" className="hover:underline">kesararamwithdigital.tech</a>
+          </p>
+          <p className="text-xs text-zinc-500 font-medium" style={kf}>
+            Kesararam Primary School, Krong Siem Reap 17000, Cambodia
+          </p>
+          <p className="text-[10px] md:text-[11px] text-zinc-400 font-normal mt-2 max-w-3xl leading-relaxed" style={kf}>
+            គម្រោងនេះបង្កើតឡើងសម្រាប់គោលបំណងអប់រំសាធារណៈ | Not affiliated with MPWT, Traffic Police, National Police, or MOI | Support our project • We welcome collaborations
           </p>
         </div>
       </div>
