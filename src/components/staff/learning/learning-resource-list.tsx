@@ -168,9 +168,9 @@ export function LearningResourceList() {
                       <p className="text-zinc-600 mb-2">{resource.titleKm}</p>
                     )}
                     <div className="flex gap-4 text-sm text-zinc-600">
-                      <span>📝 {resource.questionCount} questions</span>
-                      <span>📊 {resource.difficulty}</span>
-                      {resource.subtopic && <span>🏷️ {resource.subtopic}</span>}
+                      <span>{resource.questionCount} questions</span>
+                      <span>Difficulty: {resource.difficulty}</span>
+                      {resource.subtopic && <span>Subtopic: {resource.subtopic}</span>}
                     </div>
                   </div>
 
@@ -178,16 +178,24 @@ export function LearningResourceList() {
                     <Link
                       href={`/staff/learning-resources/${resource.id}`}
                       className="bg-blue-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
+                      aria-label="View resource"
+                      title="View resource"
                     >
                       <Eye size={18} />
                     </Link>
                     <Link
                       href={`/staff/learning-resources/${resource.id}/edit`}
                       className="bg-yellow-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
+                      aria-label="Edit resource"
+                      title="Edit resource"
                     >
                       <Edit size={18} />
                     </Link>
-                    <button className="bg-red-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all">
+                    <button
+                      className="bg-red-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
+                      aria-label="Delete resource"
+                      title="Delete resource"
+                    >
                       <Trash2 size={18} />
                     </button>
                   </div>
