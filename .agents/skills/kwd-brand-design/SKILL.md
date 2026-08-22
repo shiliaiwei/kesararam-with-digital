@@ -26,7 +26,9 @@ must read this skill first and use it as the design source of truth. Do not rely
 on generic UI taste, old screenshots, or memory when this file and its references
 are available.
 
-> **KWD = Kesararam With Digital** — free, bilingual (English + ខ្មែរ) road-safety
+> **FULL NAME MANDATE**: Always write the full name **`Kesararam With Digital`** (Khmer: **`កេសរារាម ជាមួយឌីជីថល`**). **NEVER** use the acronym `KWD` in user-facing copy, titles, documentation, or public text.
+>
+> **Kesararam With Digital** is free, bilingual (English + ខ្មែរ) road-safety
 > education built by young Cambodian women. Technovation Girls 2026 · Team #50777 ·
 > Siem Reap, Cambodia. The visual identity is **road safety made into a UI**:
 > brutalist structure, traffic-sign color logic, and caution-tape accents.

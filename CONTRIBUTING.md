@@ -1,6 +1,6 @@
-# Contributing to Kesararam With Digital (KWD)
+# Contributing to Kesararam With Digital
 
-Thank you for your interest in contributing to **Kesararam With Digital (KWD)**.
+Thank you for your interest in contributing to **Kesararam With Digital**.
 
 ---
 
@@ -18,7 +18,7 @@ pnpm lint
 
 ## Design System and Brand Guidelines
 
-KWD strictly enforces a **Brutalist Road-Sign and Caution-Tape** design identity:
+Kesararam With Digital strictly enforces a **Brutalist Road-Sign and Caution-Tape** design identity:
 
 - **Colors**: Road sign yellow (`#eab308`), solid black (`#000000`), white (`#ffffff`), and traffic semantics (red = danger/stop, green = success/go, blue = info).
 - **Geometry**: Sharp or structured borders (`border-2 border-black` or `border-[3px] border-black`), hard offset drop-shadows (no Gaussian blur).
@@ -42,4 +42,4 @@ KWD strictly enforces a **Brutalist Road-Sign and Caution-Tape** design identity
 
 ## License
 
-By contributing to KWD, you agree that your contributions are licensed under the project's [MIT License](LICENSE).
+By contributing to Kesararam With Digital, you agree that your contributions are licensed under the project's [MIT License](LICENSE).

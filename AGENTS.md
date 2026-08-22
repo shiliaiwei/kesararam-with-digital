@@ -26,7 +26,12 @@ If the work touches Leaderboard, Solo Driver ranking, Road Points currency, or S
 Then inspect the current code before editing and keep changes scoped to the
 requested files or feature.
 
+## Full Name Mandate — Never use "KWD"
+
+Never use the abbreviation `KWD` in user-facing copy, titles, headings, documentation, or public text. Always write the full name: **`Kesararam With Digital`** (or Khmer: **`កេសរារាម ជាមួយឌីជីថល`**).
+
 ## Direct Git Push Workflow
 
 When the user says "push" in the chat, do not ask for confirmation or clarify what to commit. Immediately stage the files you edited by path, commit them with a descriptive message, and push the branch.
+
 
