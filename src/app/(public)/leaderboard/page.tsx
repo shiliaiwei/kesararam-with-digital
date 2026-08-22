@@ -463,7 +463,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
             )}
             <div className="relative z-10">
               <RankedAvatarRing
-                lifetimePoints={user.lifetimePoints}
+                lifetimePoints={user.soloPoints ?? user.lifetimePoints}
                 size={avatarSize}
                 index={index}
               >
@@ -535,7 +535,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect, celebrateRank, ce
         </h3>
 
         <div className="z-10 mt-2 flex flex-wrap items-center justify-center gap-1.5">
-          {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" index={index} />}
+          {user && <TierBadge lifetimePoints={user.soloPoints ?? user.lifetimePoints} size="xs" index={index} />}
         </div>
 
         <div className="z-10 my-4 h-[3px] w-12 bg-black" />
@@ -1416,7 +1416,8 @@ export default function LeaderboardPage() {
     const isPointsSort = sortKey === "rank" || sortKey === "live";
     const scoreKey = gameType !== "all" ? "lifetimePoints" : "soloPoints";
     const scoreValue = user[scoreKey] ?? 0;
-    const tier = getRank(user.lifetimePoints);
+    const driverPoints = user.soloPoints ?? user.lifetimePoints ?? 0;
+    const tier = getRank(driverPoints);
     
     const above = isPointsSort && rowIndex > 0 ? filteredSortedBoard[rowIndex - 1] : null;
     const toOvertake = above ? Math.max(0, (above[scoreKey] ?? 0) - scoreValue + 1) : 0;
@@ -1459,7 +1460,7 @@ export default function LeaderboardPage() {
 
             {/* Avatar + name + meta */}
             <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-1">
-              <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={mobileDevice ? 26 : 36} index={rowIndex}>
+              <RankedAvatarRing lifetimePoints={driverPoints} size={mobileDevice ? 26 : 36} index={rowIndex}>
                 <Avatar
                   url={rowAvatar}
                   name={user.displayName || user.username}
@@ -1654,12 +1655,12 @@ export default function LeaderboardPage() {
 
                     <div className="flex flex-col items-end justify-center">
                       <span className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-1.5">{kh ? "ថ្នាក់គណនី" : "Rank Tier"}</span>
-                      <TierBadge lifetimePoints={currentUser.lifetimePoints ?? 0} size="sm" lang={lang} />
+                      <TierBadge lifetimePoints={currentUser.soloPoints ?? currentUser.lifetimePoints ?? 0} size="sm" lang={lang} />
                     </div>
                   </div>
                   
                   <div className="w-full">
-                    <RankProgressBar lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} compact />
+                    <RankProgressBar lifetimePoints={currentUser.soloPoints ?? currentUser.lifetimePoints ?? 0} lang={lang} compact />
                   </div>
                 </div>
               </div>
@@ -1957,12 +1958,12 @@ export default function LeaderboardPage() {
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <TierBadge lifetimePoints={currentUser.lifetimePoints ?? 0} size="md" lang={lang} />
+                      <TierBadge lifetimePoints={currentUser.soloPoints ?? currentUser.lifetimePoints ?? 0} size="md" lang={lang} />
                     </div>
                   </div>
-                  <RankProgressBar lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} />
+                  <RankProgressBar lifetimePoints={currentUser.soloPoints ?? currentUser.lifetimePoints ?? 0} lang={lang} />
                   <div className="mt-4">
-                    <RankShowcase lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} />
+                    <RankShowcase lifetimePoints={currentUser.soloPoints ?? currentUser.lifetimePoints ?? 0} lang={lang} />
                   </div>
                 </div>
 
