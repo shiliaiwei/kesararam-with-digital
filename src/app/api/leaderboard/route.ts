@@ -81,7 +81,7 @@ async function storePointsLeaderboard(opts: {
     province !== "all" ? sql` AND ${users.province} = ${province} AND ${users.isProvincePublic} = true` : sql``;
   const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.isProfilePublic} = true AND ${users.username} NOT LIKE 'proptest_%'`;
 
-  const primaryRankExpr = gameType !== "all" ? gameScoreExpr : liveExpr;
+  const primaryRankExpr = gameType !== "all" ? gameScoreExpr : soloExpr;
 
   const rows = await db
     .select({
@@ -114,6 +114,7 @@ async function storePointsLeaderboard(opts: {
     .orderBy(
       desc(primaryRankExpr),
       desc(soloExpr),
+      desc(balanceExpr),
       desc(users.highestScore),
       asc(users.id)
     )
@@ -299,8 +300,8 @@ export async function GET(req: NextRequest) {
         .from(users)
         .where(sql`${publicFilter}${provinceFilter} AND ${users.totalGamesPlayed} > 0`)
         .orderBy(
-          desc(priorityExpr),
           desc(soloExpr),
+          desc(priorityExpr),
           desc(users.highestScore),
           asc(users.id)
         )
@@ -367,8 +368,8 @@ export async function GET(req: NextRequest) {
         .where(sql`${publicFilter}${provinceFilter}${gamePlayFilter}`)
         .orderBy(
           desc(gamePointsExpr),
-          desc(priorityExpr),
           desc(soloExpr),
+          desc(priorityExpr),
           desc(users.highestScore),
           asc(users.id)
         )

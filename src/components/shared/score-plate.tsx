@@ -110,6 +110,7 @@ interface ScorePlateProps {
   size?: ScorePlateSize;
   className?: string;
   shadow?: boolean;
+  isSoloDriver?: boolean;
 }
 
 const DIMENSIONS: Record<
@@ -134,6 +135,7 @@ export function ScorePlate({
   size = "sm",
   className = "",
   shadow = false,
+  isSoloDriver = false,
 }: ScorePlateProps) {
   const style = normalizeScorePlateStyle(styleId);
   const d = DIMENSIONS[size];
@@ -703,11 +705,19 @@ export function ScorePlate({
       className={`relative flex select-none flex-col items-center justify-center overflow-hidden text-center ${className} ${isMini ? "border" : "border-2"}`}
       style={{
         ...shell,
-        background: "linear-gradient(135deg, #f5f1e4 0%, #ebe5d3 50%, #dfd8c2 100%)", // Vintage cream metal
-        borderColor: "#b5ae95", // Aged cut metal edge
+        background: isSoloDriver
+          ? "linear-gradient(135deg, #fffdf0 0%, #fbf5dc 50%, #f3ecc9 100%)"
+          : "linear-gradient(135deg, #f5f1e4 0%, #ebe5d3 50%, #dfd8c2 100%)", // Vintage cream metal
+        borderColor: isSoloDriver ? "#000000" : "#b5ae95", // Crisp brutalist border for Solo Driver
+        boxShadow: shadow ? "4px 4px 0 #000" : (isSoloDriver ? "2px 2px 0 #000" : undefined),
         borderRadius: size === "xs" ? 2 : size === "sm" ? 3 : size === "md" ? 4 : 5,
       }}
     >
+      {/* Solo Driver Gold Accent Bar */}
+      {isSoloDriver && (
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-yellow-400 z-20 pointer-events-none border-b border-black/30" />
+      )}
+
       {/* Pressed metal plate sheen & shadow vignette */}
       <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-white/15 pointer-events-none rounded-[inherit]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/5 pointer-events-none rounded-[inherit]" />

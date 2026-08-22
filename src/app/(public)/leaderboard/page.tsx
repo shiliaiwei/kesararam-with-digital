@@ -95,12 +95,11 @@ function getProvinceKh(provinceEn: string | null | undefined): string {
 // all-time, all-sources. The game-mode filter is the only scope control now.
 
 // Sort options for the rankings table (client-side re-sort of the loaded page).
-// "Road Points" is a product term — never translated to Khmer (brand rule).
 const SORT_TABS: { id: "rank" | "live" | "games" | "acc"; en: string; kh: string }[] = [
-  { id: "rank",  en: "Rank",       kh: "ចំណាត់ថ្នាក់" },
-  { id: "live",  en: "Road Points", kh: "Road Points" },
-  { id: "games", en: "Games",      kh: "ហ្គេម" },
-  { id: "acc",   en: "Accuracy",   kh: "ត្រឹមត្រូវ" },
+  { id: "rank",  en: "Rank",        kh: "ចំណាត់ថ្នាក់" },
+  { id: "live",  en: "Solo Driver", kh: "អ្នកបើកបរឯករាជ្យ" },
+  { id: "games", en: "Games",       kh: "ហ្គេម" },
+  { id: "acc",   en: "Accuracy",    kh: "ត្រឹមត្រូវ" },
 ];
 
 // Game filter chips — derived from the shared GAME_CATALOG so every chip carries
@@ -1332,21 +1331,21 @@ export default function LeaderboardPage() {
 
   const sortedBoard = [...leaderboard].sort((a, b) => {
     if (sortKey === "rank") {
-      const aScore = gameType !== "all" ? (a.lifetimePoints ?? 0) : (a.priorityPoints ?? 0);
-      const bScore = gameType !== "all" ? (b.lifetimePoints ?? 0) : (b.priorityPoints ?? 0);
+      const aScore = gameType !== "all" ? (a.lifetimePoints ?? 0) : (a.soloPoints ?? 0);
+      const bScore = gameType !== "all" ? (b.lifetimePoints ?? 0) : (b.soloPoints ?? 0);
       if (aScore !== bScore) return bScore - aScore;
-      const aSolo = a.soloPoints ?? 0;
-      const bSolo = b.soloPoints ?? 0;
-      if (aSolo !== bSolo) return bSolo - aSolo;
-      return a.rank - b.rank;
-    }
-    if (sortKey === "live") {
       const aPriority = a.priorityPoints ?? 0;
       const bPriority = b.priorityPoints ?? 0;
       if (aPriority !== bPriority) return bPriority - aPriority;
+      return a.rank - b.rank;
+    }
+    if (sortKey === "live") {
       const aSolo = a.soloPoints ?? 0;
       const bSolo = b.soloPoints ?? 0;
       if (aSolo !== bSolo) return bSolo - aSolo;
+      const aPriority = a.priorityPoints ?? 0;
+      const bPriority = b.priorityPoints ?? 0;
+      if (aPriority !== bPriority) return bPriority - aPriority;
       return a.rank - b.rank;
     }
     if (sortKey === "games") {
@@ -1415,7 +1414,7 @@ export default function LeaderboardPage() {
     
     // Dynamic overtake calculation matching client-side sort
     const isPointsSort = sortKey === "rank" || sortKey === "live";
-    const scoreKey = gameType !== "all" ? "lifetimePoints" : "priorityPoints";
+    const scoreKey = gameType !== "all" ? "lifetimePoints" : "soloPoints";
     const scoreValue = user[scoreKey] ?? 0;
     const tier = getRank(user.lifetimePoints);
     
@@ -1510,21 +1509,22 @@ export default function LeaderboardPage() {
             </div>
           </div>
 
-          {/* Road Points Column (Cambodian License Plate card style always) */}
+          {/* Solo Driver Column (Cambodian License Plate card style always) */}
           <div className="flex col-span-3 sm:col-span-2 justify-end sm:justify-start items-center">
             <ScorePlate
-              value={user.priorityPoints ?? 0}
+              value={user.soloPoints ?? 0}
               styleId={rowPlateStyle}
               provinceEn={rowProvince}
               provinceKh={getProvinceKh(rowProvince)}
               size={mobileDevice ? "xs" : "sm"}
+              isSoloDriver={true}
             />
           </div>
 
-          {/* Solo Practice Column */}
+          {/* Road Points Column (Claimable Rewards Value) */}
           <div className="col-span-2 sm:col-span-2 flex justify-end sm:justify-start items-center">
             <span className="font-mono font-black text-xs md:text-sm text-black tabular-nums">
-              {user.soloPoints ?? 0}
+              {user.priorityPoints ?? 0}
             </span>
           </div>
 
@@ -1639,15 +1639,16 @@ export default function LeaderboardPage() {
                 
                 <div className="flex flex-col gap-3.5 p-4 pt-3 w-full sm:w-[260px]">
                   <div className="flex items-center justify-between gap-4 w-full">
-                    {/* Road Points styled as a Cambodian License Plate */}
+                    {/* Solo Driver styled as a Cambodian License Plate */}
                     <div className="flex flex-col items-start">
-                      <span className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-1.5">Road Points</span>
+                      <span className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-1.5">{kh ? "អ្នកបើកបរឯករាជ្យ" : "Solo Driver"}</span>
                       <ScorePlate
-                        value={currentUser.livePoints ?? 0}
+                        value={currentUser.soloPoints ?? 0}
                         styleId={currentUser.scorePlateStyle}
                         provinceEn={(currentUser.isProvincePublic ?? false) ? (currentUser.classProvince || currentUser.province) : null}
                         provinceKh={getProvinceKh((currentUser.isProvincePublic ?? false) ? (currentUser.classProvince || currentUser.province) : null)}
                         size="sm"
+                        isSoloDriver={true}
                       />
                     </div>
 
@@ -1767,14 +1768,14 @@ export default function LeaderboardPage() {
                     <span className="hidden sm:inline">{kh ? "សិស្ស" : "Player"}</span>
                   </span>
                   
-                  {/* Always Road Points column header */}
+                  {/* Solo Driver column header (ScorePlate display) */}
                   <span className="text-yellow-400 flex items-center font-black uppercase tracking-widest truncate col-span-3 sm:col-span-2">
-                    Road Points
+                    {kh ? "អ្នកបើកបរឯករាជ្យ" : (mobileDevice ? "Driver" : "Solo Driver")}
                   </span>
 
-                  {/* Solo Practice column header */}
+                  {/* Road Points column header */}
                   <span className="text-yellow-400 flex items-center font-black uppercase tracking-widest truncate col-span-2 sm:col-span-2">
-                    {kh ? "ហាត់" : (mobileDevice ? "Solo" : "Solo Practice")}
+                    Road Points
                   </span>
 
                   {/* Game-mode score header containing the filter dropdown */}
