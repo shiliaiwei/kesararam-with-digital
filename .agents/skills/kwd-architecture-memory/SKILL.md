@@ -9,10 +9,11 @@ This skill provides canonical architectural knowledge for the Kesararam With Dig
 ## Architecture Style: Use-Case Vertical Slices
 
 **Key Decision:** The codebase separates two fundamentally different scoring economies:
-- **Solo/Practice Play** (rank-only): GameKit mini-games, quick-quiz, speed-round, daily challenge
-- **Live Sessions** (rank + claimable points): Teacher-hosted real-time competition
+- **Solo Driver Play** (`អ្នកបើកបរឯករាជ្យ`): Drives the #1 priority leaderboard rank. Active daily practice in GameKit mini-games, quick-quiz, speed-round, and daily challenges directly boosts leaderboard rank.
+- **Road Points Currency**: Spendable/claimable points earned across plays used in the Rewards Store to redeem custom license plates, badges, and avatar gear.
+- **Live Sessions**: Teacher-hosted real-time competition.
 
-This two-economy split is a first-class domain invariant and drives the component boundaries.
+This split is a first-class domain invariant and drives the component boundaries. See `/.agents/skills/kwd-gamification-leaderboard/SKILL.md` for details.
 
 ---
 

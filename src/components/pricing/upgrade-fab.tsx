@@ -10,6 +10,34 @@ const MINI = {
   kh: ["វគ្គគ្មានដែនកំណត់", "ប្រភេទទាំង ៨", "Suar AI គ្មានដែនកំណត់", "វិភាគ និងនាំចេញ"],
 };
 
+function playChimeSound() {
+  if (typeof window === "undefined") return;
+  try {
+    const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    if (ctx.state === "suspended") ctx.resume();
+
+    const notes = [587.33, 880, 1174.66]; // D5 -> A5 -> D6 harmonic chime
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.08);
+
+      gain.gain.setValueAtTime(0.001, ctx.currentTime + i * 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + i * 0.08 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + i * 0.08 + 0.5);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(ctx.currentTime + i * 0.08);
+      osc.stop(ctx.currentTime + i * 0.08 + 0.55);
+    });
+  } catch {}
+}
+
 interface UpgradeFabProps {
   session?: JWTPayload | null;
 }
@@ -19,6 +47,7 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
   const [dismissed, setDismissed] = useState(false);
   const [yearly, setYearly] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("kwd-billing-cycle");
@@ -36,6 +65,14 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
 
   useEffect(() => {
     setMounted(true);
+
+    // 1-minute delay before floating in (60,000 ms)
+    const timer = setTimeout(() => {
+      setVisible(true);
+      playChimeSound();
+    }, 60000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -57,7 +94,7 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
 
   const showFab = !session || (session.role === "teacher" && subPlan === "free");
 
-  if (!mounted || dismissed || !showFab) return null;
+  if (!mounted || !visible || dismissed || !showFab) return null;
   const price = yearly ? 2 : 3;
   const stdPrice = yearly ? 6.67 : 10;
   return (
@@ -189,8 +226,8 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
         </div>
       )}
 
-      {/* Floating pill trigger */}
-      <div className="flex items-center gap-2">
+      {/* Floating pill trigger with float bobbing animation */}
+      <div className="flex items-center gap-2 animate-[floatBob_3.2s_ease-in-out_infinite]">
         <button
           onClick={() => setDismissed(true)}
           className="w-7 h-7 rounded-full bg-black/70 backdrop-blur border border-white/10 text-white/40 hover:text-white flex items-center justify-center transition-colors"
@@ -199,7 +236,10 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
           <X size={12} />
         </button>
         <button
-          onClick={() => setExpanded((v) => !v)}
+          onClick={() => {
+            playChimeSound();
+            setExpanded((v) => !v);
+          }}
           className="group relative flex items-center gap-2 font-black px-5 py-3 rounded-full text-sm text-black transition-all hover:scale-[1.04] active:scale-95"
           style={kf}
         >
@@ -234,6 +274,14 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
           to {
             opacity: 1;
             transform: translateY(0) scale(1);
+          }
+        }
+        @keyframes floatBob {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-6px);
           }
         }
       `}</style>

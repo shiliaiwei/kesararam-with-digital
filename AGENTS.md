@@ -19,6 +19,10 @@ If the work touches GameKit or `/play` activities, read this skill too:
 
 `/.agents/skills/kwd-gamekit-build-workflow/SKILL.md`
 
+If the work touches Leaderboard, Solo Driver ranking, Road Points currency, or ScorePlates, read this skill:
+
+`/.agents/skills/kwd-gamification-leaderboard/SKILL.md`
+
 Then inspect the current code before editing and keep changes scoped to the
 requested files or feature.
 

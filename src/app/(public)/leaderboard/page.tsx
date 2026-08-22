@@ -98,7 +98,7 @@ function getProvinceKh(provinceEn: string | null | undefined): string {
 const SORT_TABS: { id: "rank" | "live" | "games" | "acc"; en: string; kh: string }[] = [
   { id: "rank",  en: "Rank",        kh: "ចំណាត់ថ្នាក់" },
   { id: "live",  en: "Solo Driver", kh: "អ្នកបើកបរឯករាជ្យ" },
-  { id: "games", en: "Games",       kh: "ហ្គេម" },
+  { id: "games", en: "Plays",       kh: "ចំនួនលេង" },
   { id: "acc",   en: "Accuracy",    kh: "ត្រឹមត្រូវ" },
 ];
 
@@ -1796,13 +1796,13 @@ export default function LeaderboardPage() {
                       {gameType === "all" ? (
                         <>
                           <Gamepad2 size={11} strokeWidth={3} className="text-yellow-400 flex-shrink-0" />
-                          <span className="whitespace-nowrap">{kh ? "ហ្គេម" : "GAME"}</span>
+                          <span className="whitespace-nowrap">{kh ? "ប្រភេទហ្គេម" : "MODE"}</span>
                         </>
                       ) : (
                         <>
                           <GameBadge slug={gameType} size="xs" shadow={false} />
                           <span className="whitespace-nowrap text-yellow-400">
-                            {kh ? "ហ្គេម" : "GAME"}
+                            {kh ? "ប្រភេទហ្គេម" : "MODE"}
                           </span>
                         </>
                       )}
@@ -1853,15 +1853,15 @@ export default function LeaderboardPage() {
                     )}
                   </div>
                   
-                  {/* Clickable Games Header */}
+                  {/* Clickable Plays Header */}
                   <button
                     onClick={() => setSortKey(sortKey === "games" ? "rank" : "games")}
                     className={`col-span-1 text-center font-black uppercase tracking-widest hover:text-white transition-colors flex items-center justify-center gap-0.5 hidden sm:flex mx-auto focus:outline-none ${
                       sortKey === "games" ? "text-yellow-400" : "text-zinc-500"
                     }`}
-                    title={kh ? "ចំនួនលេងសរុប" : "Total games played"}
+                    title={kh ? "ចំនួនលេងសរុប" : "Total plays"}
                   >
-                    <span>{kh ? "ហ្គេម" : "Games"}</span>
+                    <span>{kh ? "ចំនួនលេង" : "Plays"}</span>
                     {sortKey === "games" ? (
                       <ChevronDown size={10} strokeWidth={3} />
                     ) : (
