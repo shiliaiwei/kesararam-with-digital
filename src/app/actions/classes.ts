@@ -6,12 +6,13 @@ import { and, desc, eq, ilike, or } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
 import { canManageTeacherOwnedClass, classFieldsMatch, normalizeClassValue } from "@/lib/class-control";
+import { randomBytes } from "crypto";
 
 function randomCode(len = 6) {
-  return Math.random()
-    .toString(36)
+  return randomBytes(Math.ceil(len / 2))
+    .toString("hex")
     .toUpperCase()
-    .slice(2, 2 + len)
+    .slice(0, len)
     .padEnd(len, "0");
 }
 

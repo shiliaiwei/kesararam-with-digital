@@ -7,6 +7,7 @@ import { getSession } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { logAudit } from "@/db/queries/audit";
 import { headers } from "next/headers";
+import { randomBytes } from "crypto";
 
 export interface VerificationDetails {
   school: { student: string; class: string; match: boolean };
@@ -199,10 +200,10 @@ export async function updateClassControlAction(classId: number, field: "status" 
       auditAction = `CLASS_${value.toUpperCase()}`;
     } else if (field === "code") {
       // Regenerate code (6 uppercase alphanumeric)
-      updates.code = Math.random()
-        .toString(36)
+      updates.code = randomBytes(3)
+        .toString("hex")
         .toUpperCase()
-        .slice(2, 8)
+        .slice(0, 6)
         .padEnd(6, "0");
       auditAction = "CLASS_CODE_REGENERATED";
     }
