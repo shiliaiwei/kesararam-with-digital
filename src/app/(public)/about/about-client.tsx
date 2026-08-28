@@ -695,15 +695,6 @@ export function AboutClient() {
               style={kf}>
               {c.termsBtn}
             </Link>
-            <a
-              href="https://github.com/shiliaiwei/kesararam-with-digital"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-black px-5 py-2.5 bg-zinc-950 text-white border border-black hover:bg-zinc-800 transition-colors inline-flex items-center gap-1.5"
-              style={kf}>
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
-              {kh ? "កូដចំហ (Open Source)" : "Open Source (MIT)"}
-            </a>
           </div>
         </div>
       </section>
