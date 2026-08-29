@@ -62,7 +62,19 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{ matrix.language }}"
+          upload: false
+          output: results
+
+      - name: Upload CodeQL SARIF Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: codeql-sarif-results
+          path: results
+          retention-days: 7
 ```
+
+> **Note on Private Repositories**: On GitHub Private repositories without an active GitHub Advanced Security (GHAS) license, CodeQL analysis runs successfully but direct upload to the GitHub Code Scanning API returns `Code scanning is not enabled for this repository`. Setting `upload: false` with `actions/upload-artifact@v4` ensures full CodeQL security scanning runs, checks pass with green status, and full SARIF security logs are preserved as download artifacts.
 
 ---
 
