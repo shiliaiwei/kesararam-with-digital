@@ -3,17 +3,27 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/lang-context";
-import { X, ChevronLeft, ChevronRight, ArrowUpRight, Maximize2 } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ArrowUpRight, Maximize2, Trophy, Award, MapPin, Sparkles } from "lucide-react";
 import { TeamSection } from "@/components/about/team-section";
 
 // ── Image protection helper ───────────────────────────────────────────────────
 const protect = (url: string) =>
   url.replace("/upload/", "/upload/q_auto,f_auto/");
 
+const WINNER_COVER_IMAGE =
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1788005472/teamkesararamwithdigitalwinner_xbpsdq.jpg";
+const HERO_PHOTO =
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783435140/OURTEAMFOUNDER_wcg9ao.webp";
+const STORY_PHOTO_1 =
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00057File_d4gnzg.jpg";
+const STORY_PHOTO_2 =
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783437729/DSC_1031_pxbzfi.jpg";
+
 const GALLERY = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783435140/OURTEAMFOUNDER_wcg9ao.webp",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00057File_d4gnzg.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1783437729/DSC_1031_pxbzfi.jpg",
+  WINNER_COVER_IMAGE,
+  HERO_PHOTO,
+  STORY_PHOTO_1,
+  STORY_PHOTO_2,
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00078File_mqcrbt.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760777/00074File_a4s9d1.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760788/00081File_vs67kw.jpg",
@@ -190,7 +200,6 @@ const CONTENT = {
       articleLinks: [
         { title: "MPTC Official Portal", url: "https://mptc.gov.kh/en/2026/07/secretary-of-state-chun-vat-presided-over-the-national-competition-technovation-girls-cambodia-x-future-digital-talents-2026/" },
         { title: "Technovation Worldwide HQ", url: "https://www.technovation.org/blogs/2026-semifinalist-announcement/#junior-kh" },
-        { title: "AMS Education Media", url: "https://education.ams.com.kh/outstanding-youth/news-award/news/national-pride-three-cambodian-girls-advance-to-the-global-semifinalists-of-technovation-girls-x-future-digital-talents-2026/" },
         { title: "Tech for Kids Asia", url: "https://techforkids.asia/en/blog/congratulations-to-the-top-15-national-teams-of-the-technovation-girls-cambodia-x-future-digital-talents-and-the-3-global-semifinalists" },
         { title: "CC Times Report", url: "https://kh.cc-times.com/posts/30029" },
       ]
@@ -257,7 +266,6 @@ const CONTENT = {
       articleLinks: [
         { title: "ព័ត៌មានផ្លូវការក្រសួង MPTC", url: "https://mptc.gov.kh/en/2026/07/secretary-of-state-chun-vat-presided-over-the-national-competition-technovation-girls-cambodia-x-future-digital-talents-2026/" },
         { title: "ទីស្នាក់ការកណ្តាល Technovation ពិភពលោក", url: "https://www.technovation.org/blogs/2026-semifinalist-announcement/#junior-kh" },
-        { title: "សារព័ត៌មានអប្សរា AMS Education", url: "https://education.ams.com.kh/outstanding-youth/news-award/news/national-pride-three-cambodian-girls-advance-to-the-global-semifinalists-of-technovation-girls-x-future-digital-talents-2026/" },
         { title: "Tech for Kids Asia", url: "https://techforkids.asia/en/blog/congratulations-to-the-top-15-national-teams-of-the-technovation-girls-cambodia-x-future-digital-talents-and-the-3-global-semifinalists" },
         { title: "សារព័ត៌មានស៊ីស៊ីថាមស៍ (CC Times)", url: "https://kh.cc-times.com/posts/30029" },
       ]
@@ -358,7 +366,7 @@ export function AboutClient() {
               style={{ boxShadow: "8px 8px 0 #ca8a04" }}
               onContextMenu={e => e.preventDefault()}
             >
-              <img src={GALLERY[0]} alt="Team Kesararam With Digital" draggable={false}
+              <img src={HERO_PHOTO} alt="Team Kesararam With Digital" draggable={false}
                 className="w-full h-full object-cover pointer-events-none"
                 style={{ userSelect: "none" }} />
               <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
@@ -400,7 +408,7 @@ export function AboutClient() {
             {c.story[0]}
           </p>
           <div className="relative w-full aspect-[3/2] border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
-            <img src={GALLERY[1]} alt="" draggable={false} className="w-full h-full object-cover pointer-events-none" style={{ userSelect: "none" }} />
+            <img src={STORY_PHOTO_1} alt="" draggable={false} className="w-full h-full object-cover pointer-events-none" style={{ userSelect: "none" }} />
             <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
           </div>
         </div>
@@ -426,7 +434,7 @@ export function AboutClient() {
             The three-part structure in the text maps to a natural cognitive chunk. */}
         <div className="grid md:grid-cols-[240px_1fr] gap-10 items-start mb-12 border-t border-zinc-100 pt-10">
           <div className="relative w-full aspect-[3/2] border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
-            <img src={GALLERY[2]} alt="" draggable={false} className="w-full h-full object-cover pointer-events-none" style={{ userSelect: "none" }} />
+            <img src={STORY_PHOTO_2} alt="" draggable={false} className="w-full h-full object-cover pointer-events-none" style={{ userSelect: "none" }} />
             <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
           </div>
           <p className="text-sm text-zinc-600 leading-relaxed" style={kf}>{c.story[4]}</p>
@@ -491,10 +499,171 @@ export function AboutClient() {
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          4. TECHNOVATION — Credibility signal
+          4. TECHNOVATION 2026 MILESTONE — National Champion & Semifinalist
+          Psychology: Peak accomplishment & proof of excellence.
+          Clean brutalist light background with high prestige winner showcase.
+          Centered cover presentation with structured road-sign DNA.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="bg-amber-50/40 border-t-2 border-b-2 border-black py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          
+          {/* Section Header — Centered */}
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#eab308] text-black border-2 border-black font-black text-[11px] uppercase tracking-wider shadow-[3px_3px_0_#000] mb-4">
+              <Trophy size={14} className="stroke-[2.5]" />
+              <span style={kf}>{c.awardSection.tag}</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black tracking-tight leading-tight" style={kf}>
+              {c.awardSection.title}
+            </h2>
+            <p className="text-zinc-700 text-sm md:text-base mt-3 leading-relaxed" style={kf}>
+              {c.awardSection.desc}
+            </p>
+          </div>
+
+          {/* Centered Winner Team Hero Cover Card */}
+          <div className="max-w-4xl mx-auto mb-10">
+            <div 
+              className="border-3 border-black bg-white shadow-[8px_8px_0_#000] overflow-hidden"
+              style={{ borderWidth: "3px" }}
+            >
+              {/* Cover Top Banner */}
+              <div className="bg-[#eab308] border-b-3 border-black px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <Award size={16} className="text-black stroke-[2.5]" />
+                  <span className="text-black font-black text-xs md:text-sm tracking-wider uppercase" style={kf}>
+                    {kh ? "ជើងឯកថ្នាក់ជាតិលេខ១ · Technovation Girls Cambodia ២០២៦" : "1st Place National Champion · Technovation Girls Cambodia 2026"}
+                  </span>
+                </div>
+                <span className="text-black/80 font-black text-xs tracking-widest bg-white/60 border border-black/30 px-2 py-0.5">
+                  TEAM #50777
+                </span>
+              </div>
+
+              {/* Cover Image Showcase */}
+              <div 
+                className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-zinc-100 overflow-hidden group cursor-pointer"
+                onClick={() => openLightbox(0)}
+                onContextMenu={e => e.preventDefault()}
+              >
+                <img 
+                  src={protect(WINNER_COVER_IMAGE)} 
+                  alt="Team Kesararam With Digital National Champion" 
+                  draggable={false}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none"
+                  style={{ userSelect: "none" }}
+                />
+                <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
+                
+                {/* Hover overlay hint */}
+                <div className="absolute bottom-3 right-3 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-black text-[#eab308] border-2 border-black text-[11px] font-black uppercase tracking-wider shadow-[3px_3px_0_#ca8a04]">
+                    <Maximize2 size={13} className="stroke-[2.5]" />
+                    <span style={kf}>{kh ? "ពង្រីករូបភាព" : "View Full Cover"}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cover Bottom Ticker Highlights */}
+              <div className="border-t-3 border-black bg-[#faf8f5] grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x-2 divide-black">
+                <div className="p-3.5 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-none bg-[#eab308] border-2 border-black flex items-center justify-center shrink-0 shadow-[2px_2px_0_#000]">
+                    <Trophy size={16} className="text-black stroke-[2.5]" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest" style={kf}>
+                      {kh ? "ពានរង្វាន់" : "Award"}
+                    </div>
+                    <div className="text-xs font-black text-black leading-tight" style={kf}>
+                      {kh ? "ជើងឯកថ្នាក់ជាតិ Junior" : "1st Place National Champion"}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3.5 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-none bg-[#3b82f6] border-2 border-black flex items-center justify-center shrink-0 shadow-[2px_2px_0_#000]">
+                    <Sparkles size={16} className="text-white stroke-[2.5]" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest" style={kf}>
+                      {kh ? "ឆាកអន្តរជាតិ" : "Global"}
+                    </div>
+                    <div className="text-xs font-black text-black leading-tight" style={kf}>
+                      Global Semifinalist (Top 3)
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3.5 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-none bg-[#22c55e] border-2 border-black flex items-center justify-center shrink-0 shadow-[2px_2px_0_#000]">
+                    <MapPin size={16} className="text-black stroke-[2.5]" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest" style={kf}>
+                      {kh ? "ទីតាំងប្រកួត" : "Grand Finals"}
+                    </div>
+                    <div className="text-xs font-black text-black leading-tight" style={kf}>
+                      AUPP, Phnom Penh
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 2-Column Meta & Media Details */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* Meta Specifications */}
+            <div className="border-2 border-black bg-white p-6 shadow-[4px_4px_0_#000] flex flex-col gap-4">
+              <div className="flex items-center gap-2 border-b-2 border-black pb-2.5">
+                <div className="w-2.5 h-2.5 bg-[#eab308] border border-black" />
+                <span className="text-xs font-black uppercase tracking-wider text-black" style={kf}>
+                  {kh ? "ព័ត៌មានលម្អិតផ្លូវការ" : "Official Recognition Details"}
+                </span>
+              </div>
+              <div className="flex flex-col divide-y divide-zinc-200">
+                {c.awardSection.metaList.map((m) => (
+                  <div key={m.label} className="py-2.5 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <span className="text-xs text-zinc-600 font-bold" style={kf}>{m.label}</span>
+                    <span className="text-xs text-zinc-950 font-black sm:text-right" style={kf}>{m.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Official Press & Media Links */}
+            <div className="border-2 border-black bg-white p-6 shadow-[4px_4px_0_#000] flex flex-col gap-4">
+              <div className="flex items-center gap-2 border-b-2 border-black pb-2.5">
+                <div className="w-2.5 h-2.5 bg-[#22c55e] border border-black" />
+                <span className="text-xs font-black uppercase tracking-wider text-black" style={kf}>
+                  {kh ? "ប្រភពសារព័ត៌មាន និងតំណភ្ជាប់ផ្លូវការ" : "Official Press & Media Mentions"}
+                </span>
+              </div>
+              <div className="flex flex-col gap-2.5">
+                {c.awardSection.articleLinks.map((link) => (
+                  <a
+                    key={link.title}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between gap-2 p-3 bg-zinc-50 border-2 border-zinc-200 hover:border-black hover:bg-yellow-50/60 transition-all text-xs text-zinc-900 group shadow-none hover:shadow-[2px_2px_0_#000]"
+                  >
+                    <span className="font-bold group-hover:text-black transition-colors" style={kf}>{link.title}</span>
+                    <ArrowUpRight size={14} className="text-zinc-400 group-hover:text-black transition-colors shrink-0" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          5. TECHNOVATION ALIGNMENT — Credibility signal
           Psychology: Authority bias — alignment with a global institution
           (Technovation Girls) raises perceived credibility immediately.
-          External links with ArrowUpRight signal transparency.
+          Placed directly below the 2026 Milestone.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="max-w-6xl mx-auto px-6 py-14">
         <div className="flex items-center gap-3 mb-6">
@@ -515,65 +684,6 @@ export function AboutClient() {
               <p className="text-xs text-zinc-500 leading-relaxed flex-1" style={kf}>{text}</p>
             </a>
           ))}
-        </div>
-      </section>
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          4.5 NATIONAL CHAMPION & GLOBAL SEMIFINALIST MILESTONE SECTION
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="bg-zinc-950 text-white border-t-2 border-black border-b-2 border-black py-14">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-400 text-black text-[10px] font-black uppercase tracking-wider mb-2">
-                <span>{c.awardSection.tag}</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight" style={kf}>
-                {c.awardSection.title}
-              </h2>
-              <p className="text-zinc-400 text-sm mt-2 max-w-2xl leading-relaxed" style={kf}>
-                {c.awardSection.desc}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Meta Specifications */}
-            <div className="border border-zinc-800 bg-zinc-900/60 p-6 flex flex-col gap-3">
-              <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400" style={kf}>
-                {kh ? "ព័ត៌មានលម្អិតផ្លូវការ" : "Official Recognition Details"}
-              </span>
-              <div className="flex flex-col divide-y divide-zinc-800">
-                {c.awardSection.metaList.map((m) => (
-                  <div key={m.label} className="py-2.5 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                    <span className="text-xs text-zinc-400 font-bold" style={kf}>{m.label}</span>
-                    <span className="text-xs text-zinc-100 font-medium sm:text-right" style={kf}>{m.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Official Press & Media Links */}
-            <div className="border border-zinc-800 bg-zinc-900/60 p-6 flex flex-col gap-3">
-              <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400" style={kf}>
-                {kh ? "ប្រភពសារព័ត៌មាន និងតំណភ្ជាប់ផ្លូវការ" : "Official Press & Media Mentions"}
-              </span>
-              <div className="flex flex-col gap-2 mt-1">
-                {c.awardSection.articleLinks.map((link) => (
-                  <a
-                    key={link.title}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between gap-2 p-3 bg-zinc-900 border border-zinc-800 hover:border-yellow-400 hover:bg-zinc-800/80 transition-all text-xs text-zinc-200 group"
-                  >
-                    <span className="font-bold group-hover:text-yellow-400 transition-colors" style={kf}>{link.title}</span>
-                    <ArrowUpRight size={14} className="text-zinc-500 group-hover:text-yellow-400 transition-colors shrink-0" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 

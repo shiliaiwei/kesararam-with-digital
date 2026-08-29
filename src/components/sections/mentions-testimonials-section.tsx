@@ -204,25 +204,6 @@ const PRESS_ARTICLES: PressArticleMention[] = [
     publisherIcon: "global",
   },
   {
-    id: "press-3",
-    sourceNameEn: "AMS Education Media",
-    sourceNameKh: "អប្សរា មេឌៀ ស៊ែវីស (AMS Education)",
-    categoryEn: "National Television & Press",
-    categoryKh: "មោទនភាពជាតិ",
-    titleEn: "National Pride: Three Cambodian Girls Advance to Global Semifinalists of Technovation 2026",
-    titleKh: "មោទនភាពជាតិ៖ យុវតីកម្ពុជា ៣ រូបឡើងទៅវគ្គពាក់កណ្តាលផ្តាច់ព្រ័ត្រពិភពលោក Technovation 2026",
-    summaryEn:
-      "AMS Education news feature spotlighting the inspirational journey of young primary school girls from Kesararam Primary School.",
-    summaryKh:
-      "សារព័ត៌មានអប្សរា AMS ផ្សាយពីមោទនភាពជាតិដែលយុវតីបឋមសិក្សាកេសរារាម សៀមរាប បាននាំយកស្នាដៃកម្ពុជាទៅកាន់ឆាកអន្តរជាតិ។",
-    date: "July 2026",
-    url: "https://education.ams.com.kh/outstanding-youth/news-award/news/national-pride-three-cambodian-girls-advance-to-the-global-semifinalists-of-technovation-girls-x-future-digital-talents-2026/",
-    color: "#ef4444",
-    badgeEn: "National Pride",
-    badgeKh: "មោទនភាពជាតិ",
-    publisherIcon: "ams",
-  },
-  {
     id: "press-4",
     sourceNameEn: "Tech for Kids Asia Blog",
     sourceNameKh: "Tech for Kids Asia",
