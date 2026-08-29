@@ -186,7 +186,15 @@ export function Footer() {
           <p className="text-xs text-zinc-500 font-medium" style={kf}>
             Kesararam Primary School, Krong Siem Reap 17000, Cambodia
           </p>
-          <p className="text-[10px] md:text-[11px] text-zinc-400 font-normal mt-2 max-w-3xl leading-relaxed" style={kf}>
+          <p className="text-[10px] text-zinc-400 font-mono tracking-tight flex flex-wrap items-center justify-center gap-x-2 gap-y-1 mt-1">
+            <span className="text-zinc-500 font-sans text-[10px]">{kh ? "គេហទំព័រផ្លូវការ៖" : "Available Domains:"}</span>
+            <a href="https://kesararamwithdigital.tech" target="_blank" rel="noopener noreferrer" className="hover:text-black hover:underline transition-colors">kesararamwithdigital.tech</a>
+            <span className="text-zinc-300">•</span>
+            <a href="https://www.kesararamwithdigital.tech" target="_blank" rel="noopener noreferrer" className="hover:text-black hover:underline transition-colors">www.kesararamwithdigital.tech</a>
+            <span className="text-zinc-300">•</span>
+            <a href="https://kesararamwithdigital.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-black hover:underline transition-colors">kesararamwithdigital.vercel.app</a>
+          </p>
+          <p className="text-[10px] md:text-[11px] text-zinc-400 font-normal mt-1.5 max-w-3xl leading-relaxed" style={kf}>
             គម្រោងនេះបង្កើតឡើងសម្រាប់គោលបំណងអប់រំសាធារណៈ · Created for Public Educational Purposes | Not affiliated with MPWT, Traffic Police, National Police, or MOI | Support our project • We welcome collaborations
           </p>
         </div>
