@@ -23,6 +23,10 @@ If the work touches Leaderboard, Solo Driver ranking, Road Points currency, or S
 
 `/.agents/skills/kwd-gamification-leaderboard/SKILL.md`
 
+If the work touches CI/CD, GitHub Actions, workflows, CodeQL, testing, or pushing/merging, read this skill:
+
+`/.agents/skills/kwd-ci-codeql-pipeline/SKILL.md`
+
 Then inspect the current code before editing and keep changes scoped to the
 requested files or feature.
 
@@ -30,8 +34,19 @@ requested files or feature.
 
 Never use the abbreviation `KWD` in user-facing copy, titles, headings, documentation, or public text. Always write the full name: **`Kesararam With Digital`** (or Khmer: **`កេសរារាម ជាមួយឌីជីថល`**).
 
-## Direct Git Push Workflow
+## Direct Git Push & Merge Quality Checklist
 
-When the user says "push" in the chat, do not ask for confirmation or clarify what to commit. Immediately stage the files you edited by path, commit them with a descriptive message, and push the branch.
+When the user says "push" or "merge" in the chat, do not ask for confirmation or clarify what to commit. Always follow these rules:
+
+1. **Pre-Push Quality Gate:**
+   - `pnpm run lint` — 0 ESLint errors.
+   - `pnpm exec tsc --noEmit` — 0 TypeScript type errors.
+   - `pnpm run test` — Vitest unit tests must pass.
+2. **Never Track Credentials or Ignored Directories:**
+   - Never commit raw passwords, API keys, `/scripts/`, `/data/`, or `/src/app/videoads/`.
+   - Keep `src/test/` tracked as it contains pure in-memory test suites required by CI.
+3. **Commit & Push:**
+   - Immediately stage edited files by path, commit with a clear descriptive message, and push the branch.
+
 
 
