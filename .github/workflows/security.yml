@@ -23,7 +23,7 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "pnpm"
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm audit --audit-level=critical
@@ -39,7 +39,7 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "pnpm"
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm run lint
@@ -55,7 +55,7 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "pnpm"
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm exec tsc --noEmit
@@ -75,7 +75,7 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "pnpm"
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm run test

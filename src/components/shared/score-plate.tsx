@@ -137,6 +137,7 @@ export function ScorePlate({
   shadow = false,
   isSoloDriver = false,
 }: ScorePlateProps) {
+  const langCtx = useLang();
   const style = normalizeScorePlateStyle(styleId);
   const d = DIMENSIONS[size];
   const en = (provinceEn || "CAMBODIA").toUpperCase();
@@ -685,16 +686,8 @@ export function ScorePlate({
     }
   }
 
-  // Determine active language safely
-  let isKh = true;
-  try {
-    const context = useLang();
-    if (context && context.lang === "en") {
-      isKh = false;
-    }
-  } catch {
-    // fallback to kh
-  }
+  // Determine active language safely from top-level hook
+  const isKh = langCtx?.lang !== "en";
 
   // Font sizes scaled according to size
   const khAbbrFontSize = size === "xs" ? 9 : size === "sm" ? 12 : size === "md" ? 17 : 21;
