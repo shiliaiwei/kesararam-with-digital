@@ -1,14 +1,47 @@
+<div align="center">
+
 # Kesararam With Digital
 
 **The Way of Safety · វិថី សុវត្ថិភាព**
 
-Kesararam With Digital is an open-source, bilingual (Khmer and English) digital road safety education platform. Built with Next.js 15, React 19, and Neon Serverless PostgreSQL, Kesararam With Digital digitizes traffic law, road signs, and safe driving theory through interactive curriculum modules, GameKit activities, and real-time classroom challenges for students and educators in Cambodia.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Neon PostgreSQL](https://img.shields.io/badge/Neon-PostgreSQL-00e599?style=flat&logo=postgresql)](https://neon.tech/)
+
+<br />
+
+<img src="public/brand/image_coverkh.png" alt="Kesararam With Digital Platform Cover" width="100%" />
+
+</div>
 
 ---
 
 ## Overview
 
-Kesararam With Digital transforms road safety learning into an accessible, engaging, and modern digital experience. The platform provides teachers and students with tools to explore traffic rules and road safety habits effectively.
+Kesararam With Digital is an open-source, bilingual (Khmer and English) digital road safety education platform. Built with Next.js 15, React 19, and Neon Serverless PostgreSQL, Kesararam With Digital digitizes traffic law, road signs, and safe driving theory through interactive curriculum modules, GameKit activities, and real-time classroom challenges for students and educators in Cambodia.
+
+### Platform Preview
+
+<div align="center">
+  <table>
+    <tr>
+      <td width="33.3%" align="center">
+        <strong>🚦 Curriculum & Road Signs</strong><br /><br />
+        <img src="public/brand/image_learn.png" alt="Curriculum & Road Signs Learning" width="100%" />
+      </td>
+      <td width="33.3%" align="center">
+        <strong>📝 Interactive Practice & Quizzes</strong><br /><br />
+        <img src="public/brand/image_qa_practice.png" alt="Interactive QA Practice & Mock Exam" width="100%" />
+      </td>
+      <td width="33.3%" align="center">
+        <strong>🏆 Solo Driver & Leaderboards</strong><br /><br />
+        <img src="public/brand/image_rank.png" alt="Gamification & License Plate Ranking" width="100%" />
+      </td>
+    </tr>
+  </table>
+</div>
 
 The platform includes:
 - **Comprehensive Bilingual Curriculum**: 8 official road safety categories covering 247 traffic signs and 5,925 validated questions in both Khmer and English.
