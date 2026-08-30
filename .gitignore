@@ -78,6 +78,10 @@ scratch/
 /docs/archive/auto-backups/
 /docs/archive/temp/
 
+# Local scripts and data directories (never commit or push)
+/scripts/
+/data/
+
 # Student login credentials — plaintext passwords, never commit
 /scripts/generated_credentials.txt
 /scripts/archive/generated_credentials.txt
