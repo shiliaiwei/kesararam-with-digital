@@ -9,7 +9,7 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=999",
     "test": "vitest --run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",

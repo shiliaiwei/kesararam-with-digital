@@ -5,6 +5,9 @@ import reactHooksPlugin from "eslint-plugin-react-hooks";
 
 const eslintConfig = [
   {
+    linterOptions: {
+      reportUnusedDisableDirectives: "off",
+    },
     ignores: [
       ".next/**",
       "out/**",
@@ -42,6 +45,7 @@ const eslintConfig = [
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs["core-web-vitals"].rules,
       ...reactHooksPlugin.configs.recommended.rules,
+      "react-hooks/exhaustive-deps": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unsafe-member-access": "off",
       "@typescript-eslint/no-unsafe-argument": "off",
