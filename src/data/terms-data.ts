@@ -39,9 +39,9 @@ export const SECTIONS: TermSection[] = [
   {
     id: "s5",
     num: "៥",
-    heading: { kh: "កម្មសិទ្ធិបញ្ញា", en: "Intellectual Property" },
-    kh: "ខ្លឹមសារ រូបភាព និងម៉ាកសញ្ញា Kesararam With Digital ត្រូវបានការពារដោយច្បាប់កម្មសិទ្ធិបញ្ញា សម្រាប់គោលបំណងអប់រំ និងការស្រាវជ្រាវ។",
-    en: "All curriculum content, brand assets, and designs are protected by IP law for educational and non-commercial community development.",
+    heading: { kh: "កម្មសិទ្ធិបញ្ញា និងប្រភពបើកចំហ", en: "Intellectual Property & Open Source" },
+    kh: "ខ្លឹមសារ រូបភាព និងម៉ាកសញ្ញា Kesararam With Digital ត្រូវបានការពារដោយច្បាប់កម្មសិទ្ធិបញ្ញា សម្រាប់គោលបំណងអប់រំ និងការស្រាវជ្រាវ។ កូដប្រភពនៃកម្មវិធីត្រូវបានផ្សព្វផ្សាយជាសាធារណៈ (Open Source) លើ GitHub សម្រាប់តម្លាភាព និងការចូលរួមអភិវឌ្ឍន៍សហគមន៍អប់រំ។",
+    en: "All curriculum content, brand assets, and educational designs are protected by IP law for educational and non-commercial community development. The software source code is published openly on GitHub for public audit, transparency, and community educational contributions under our open-source license.",
   },
   {
     id: "s6",
