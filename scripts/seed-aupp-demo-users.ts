@@ -8,25 +8,21 @@ import { eq, or } from "drizzle-orm";
 import * as fs from "fs";
 import * as path from "path";
 
-const targetUsers = [
-  { id_num: 1, username: "auppuser1", password: "AUPPUserX1", email: "auppuser1@demo.tech" },
-  { id_num: 2, username: "auppuser2", password: "AUPPUserX2", email: "auppuser2@demo.tech" },
-  { id_num: 3, username: "auppuser3", password: "AUPPUserX3", email: "auppuser3@demo.tech" },
-  { id_num: 4, username: "auppuser4", password: "AUPPUserX4", email: "auppuser4@demo.tech" },
-  { id_num: 5, username: "auppuser5", password: "AUPPUserX5", email: "auppuser5@demo.tech" },
-  { id_num: 6, username: "auppuser6", password: "AUPPUserX6", email: "auppuser6@demo.tech" },
-  { id_num: 7, username: "auppuser7", password: "AUPPUserX7", email: "auppuser7@demo.tech" },
-  { id_num: 8, username: "auppuser8", password: "AUPPUserX8", email: "auppuser8@demo.tech" },
-  { id_num: 9, username: "auppuser9", password: "AUPPUserX9", email: "auppuser9@demo.tech" },
-  { id_num: 10, username: "auppuser10", password: "AUPPUserX10", email: "auppuser10@demo.tech" },
-  { id_num: 11, username: "auppuser11", password: "AUPPUserX11", email: "auppuser11@demo.tech" },
-  { id_num: 12, username: "auppuser12", password: "AUPPUserX12", email: "auppuser12@demo.tech" },
-  { id_num: 13, username: "auppuser13", password: "AUPPUserX13", email: "auppuser13@demo.tech" },
-  { id_num: 14, username: "auppuser14", password: "AUPPUserX14", email: "auppuser14@demo.tech" },
-  { id_num: 15, username: "auppuser15", password: "AUPPUserX15", email: "auppuser15@demo.tech" },
-  { id_num: 16, username: "auppuser16", password: "AUPPUserX16", email: "auppuser16@demo.tech" },
-  { id_num: 17, username: "auppuser17", password: "AUPPUserX17", email: "auppuser17@demo.tech" },
-];
+// AUPP demo user accounts — passwords are set via AUPP_DEMO_PASSWORD env var,
+// NOT hardcoded. Set before running: AUPP_DEMO_PASSWORD=yourpassword
+const DEMO_PASSWORD = process.env.AUPP_DEMO_PASSWORD;
+if (!DEMO_PASSWORD) {
+  console.error("ERROR: AUPP_DEMO_PASSWORD env var is required. Aborting.");
+  process.exit(1);
+}
+
+const targetUsers = Array.from({ length: 17 }, (_, i) => ({
+  id_num: i + 1,
+  username: `auppuser${i + 1}`,
+  password: DEMO_PASSWORD,
+  email: `auppuser${i + 1}@demo.tech`,
+}));
+
 
 async function main() {
   const [cls] = await db.select().from(classes).where(eq(classes.code, "ZIHNM7"));

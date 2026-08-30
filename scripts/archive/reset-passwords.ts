@@ -8,19 +8,35 @@ import { eq } from "drizzle-orm";
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql, { schema });
 
+/**
+ * ARCHIVE SCRIPT — reset specific user passwords.
+ *
+ * Passwords are read from env vars, NOT hardcoded.
+ * Set before running (in your local .env or shell):
+ *   RESET_PW_ADMIN=...   RESET_PW_STAFF=...
+ *   RESET_PW_TEACHER=... RESET_PW_STUDENT=...
+ */
 async function main() {
-  console.log("Resetting user passwords and unlocking accounts...");
-
   const userResets = [
-    { username: "shiliaiwei", password: "Admin@2026" },
-    { username: "srievi", password: "Staff@2026" },
-    { username: "teacher1", password: "Teacher@2026" },
-    { username: "user1", password: "Student@2026" },
+    { username: "shiliaiwei", password: process.env.RESET_PW_ADMIN },
+    { username: "srievi",      password: process.env.RESET_PW_STAFF },
+    { username: "teacher1",    password: process.env.RESET_PW_TEACHER },
+    { username: "user1",       password: process.env.RESET_PW_STUDENT },
   ];
 
+  // Fail fast if any required password is missing
   for (const reset of userResets) {
-    const passwordHash = hashPassword(reset.password);
-    
+    if (!reset.password) {
+      console.error(`ERROR: env var for "${reset.username}" is not set. Aborting.`);
+      process.exit(1);
+    }
+  }
+
+  console.log("Resetting user passwords and unlocking accounts...");
+
+  for (const reset of userResets) {
+    const passwordHash = hashPassword(reset.password!);
+
     // Check if user exists
     const [existing] = await db
       .select()
@@ -38,32 +54,34 @@ async function main() {
           lockedUntil: null,
         })
         .where(eq(schema.users.username, reset.username));
-      console.log(`Updated existing user: ${reset.username} with password: ${reset.password}`);
+      console.log(`Updated: ${reset.username}`);
     } else {
-      // Create user if not exists
       await db.insert(schema.users).values({
         username: reset.username,
         email: `${reset.username}@kwd.tech`,
         passwordHash,
-        role: reset.username === "shiliaiwei" ? "admin" : reset.username === "teacher1" ? "teacher" : reset.username === "srievi" ? "staff" : "student",
-        displayName: reset.username.charAt(0).toUpperCase() + reset.username.slice(1),
+        role:
+          reset.username === "shiliaiwei" ? "admin"
+          : reset.username === "teacher1" ? "teacher"
+          : reset.username === "srievi" ? "staff"
+          : "student",
+        displayName:
+          reset.username.charAt(0).toUpperCase() + reset.username.slice(1),
         isActive: true,
         isSuspended: false,
         loginAttempts: 0,
       });
-      console.log(`Created user: ${reset.username} with password: ${reset.password}`);
+      console.log(`Created: ${reset.username}`);
     }
   }
 
-  // Also unlock any other locked users
-  await db
-    .update(schema.users)
-    .set({
-      loginAttempts: 0,
-      lockedUntil: null,
-      isActive: true,
-    });
-  console.log("Unlocked all other users and set them active.");
+  // Unlock any other locked users
+  await db.update(schema.users).set({
+    loginAttempts: 0,
+    lockedUntil: null,
+    isActive: true,
+  });
+  console.log("All other users unlocked and set active.");
 }
 
 main()
