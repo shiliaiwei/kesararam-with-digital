@@ -4,11 +4,7 @@
 
 **The Way of Safety · វិថី សុវត្ថិភាព**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
-[![Neon PostgreSQL](https://img.shields.io/badge/Neon-PostgreSQL-00e599?style=flat&logo=postgresql)](https://neon.tech/)
+
 
 <br />
 
