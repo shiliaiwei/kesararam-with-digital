@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function GET() {
     return new NextResponse("did:plc:7zm67iz4hjqrk6psvrcpecxx", {

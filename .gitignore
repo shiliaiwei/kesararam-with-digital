@@ -84,3 +84,11 @@ scratch/
 /Grade5_Student_Credentials_JVNUPL.html
 /Grade5_Student_Credentials_JVNUPL.xlsx
 /Grade5_Student_Logins_KH.html
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
