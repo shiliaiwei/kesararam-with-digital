@@ -203,72 +203,93 @@ function DetailPanel({
       canvas.style.padding = '60px';
       canvas.style.boxSizing = 'border-box';
 
-      // Build the content
-      canvas.innerHTML = `
-        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; font-family: ${isKh ? "'Kesararam With Digital Google Sans Khmer', 'Kesararam With Digital Roboto', sans-serif" : "'Kesararam With Digital Roboto', sans-serif"};">
-          <!-- Header with logo -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-            <div style="display: flex; align-items: center; gap: 20px;">
-              <img src="/brand/kwd-gray.png" alt="Kesararam With Digital" style="height: 60px; opacity: 0.7;" />
-              <div>
-                <div style="font-size: 14px; font-weight: bold; color: #666; text-transform: uppercase; letter-spacing: 1px;">
-                  ${isKh ? 'សញ្ញាចរាចរណ៍' : 'Traffic Sign'}
-                </div>
-                <div style="font-size: 24px; font-weight: 900; color: #000; margin-top: 4px;">
-                  ${topic.topic_code}
-                </div>
-              </div>
-            </div>
-            <div style="text-align: right; color: #666; font-size: 14px;">
-              <div style="font-weight: bold;">kesararamwithdigital.tech</div>
-              <div style="font-size: 12px; margin-top: 4px;">${isKh ? 'រៀនបើកបរ ប្រកបដោយសុវត្ថិភាព' : 'Learn to Drive Safely'}</div>
-            </div>
-          </div>
-          
-          <!-- Main content -->
-          <div style="flex: 1; display: flex; gap: 60px; align-items: center;">
-            <!-- Sign image -->
-            <div style="flex-shrink: 0; width: 400px; height: 400px; display: flex; align-items: center; justify-content: center; background: #f9fafb; border: 4px solid #000; padding: 40px;">
-              <img src="${topic.primary_image_url}" alt="${name}" style="max-width: 100%; max-height: 100%; object-fit: contain;" crossorigin="anonymous" />
-            </div>
-            
-            <!-- Text content -->
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
-              <div>
-                <div style="font-size: 48px; font-weight: 900; line-height: 1.2; color: #000; margin-bottom: 16px;">
-                  ${name}
-                </div>
-                ${description ? `
-                  <div style="font-size: 24px; line-height: 1.6; color: #374151;">
-                    ${description}
-                  </div>
-                ` : ''}
-              </div>
-              
-              ${subGroupLabel ? `
-                <div style="display: inline-block; background: #fef3c7; border: 3px solid #000; padding: 12px 24px; font-size: 18px; font-weight: bold;">
-                  ${isKh ? subGroupLabel.km : subGroupLabel.en}
-                </div>
-              ` : ''}
-              
-              ${topic.law_reference ? `
-                <div style="background: #dbeafe; border: 3px solid #3b82f6; padding: 16px 20px; font-size: 16px; color: #1e40af;">
-                  <div style="font-weight: 900; text-transform: uppercase; margin-bottom: 8px; font-size: 14px;">
-                    ${isKh ? 'ឯកសារយោងច្បាប់' : 'Law Reference'}
-                  </div>
-                  <div>${topic.law_reference}</div>
-                </div>
-              ` : ''}
-            </div>
-          </div>
-          
-          <!-- Footer -->
-          <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #9ca3af;">
-            <div>${isKh ? 'ទាញយកពី' : 'Downloaded from'} <strong style="color: #000;">kesararamwithdigital.tech</strong></div>
-            <div>${new Date().toLocaleDateString(isKh ? 'km-KH' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
-          </div>
-        </div>
-      `;
+      // Build the content using safe DOM API (no innerHTML with user data)
+      const fontFamily = isKh
+        ? "'Kesararam With Digital Google Sans Khmer', 'Kesararam With Digital Roboto', sans-serif"
+        : "'Kesararam With Digital Roboto', sans-serif";
+
+      function el(tag: string, styles: Record<string, string>, text?: string): HTMLElement {
+        const e = document.createElement(tag);
+        Object.assign(e.style, styles);
+        if (text !== undefined) e.textContent = text;
+        return e;
+      }
+
+      // Root wrapper
+      const root = el("div", { width: "100%", height: "100%", display: "flex", flexDirection: "column", fontFamily });
+
+      // ── Header ──────────────────────────────────────────────────────
+      const header = el("div", { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "40px" });
+
+      const headerLeft = el("div", { display: "flex", alignItems: "center", gap: "20px" });
+      const logoImg = document.createElement("img");
+      logoImg.src = "/brand/kwd-gray.png";
+      logoImg.alt = "Kesararam With Digital";
+      logoImg.style.cssText = "height:60px;opacity:0.7;";
+      const headerInfo = el("div", {});
+      headerInfo.appendChild(el("div", { fontSize: "14px", fontWeight: "bold", color: "#666", textTransform: "uppercase", letterSpacing: "1px" }, isKh ? "សញ្ញាចរាចរណ៍" : "Traffic Sign"));
+      headerInfo.appendChild(el("div", { fontSize: "24px", fontWeight: "900", color: "#000", marginTop: "4px" }, topic.topic_code ?? ""));
+      headerLeft.appendChild(logoImg);
+      headerLeft.appendChild(headerInfo);
+
+      const headerRight = el("div", { textAlign: "right", color: "#666", fontSize: "14px" });
+      headerRight.appendChild(el("div", { fontWeight: "bold" }, "kesararamwithdigital.tech"));
+      headerRight.appendChild(el("div", { fontSize: "12px", marginTop: "4px" }, isKh ? "រៀនបើកបរ ប្រកបដោយសុវត្ថិភាព" : "Learn to Drive Safely"));
+
+      header.appendChild(headerLeft);
+      header.appendChild(headerRight);
+      root.appendChild(header);
+
+      // ── Main content ─────────────────────────────────────────────────
+      const main = el("div", { flex: "1", display: "flex", gap: "60px", alignItems: "center" });
+
+      // Sign image
+      const signBox = el("div", { flexShrink: "0", width: "400px", height: "400px", display: "flex", alignItems: "center", justifyContent: "center", background: "#f9fafb", border: "4px solid #000", padding: "40px" });
+      const signImg = document.createElement("img");
+      // Only allow safe Cloudinary or relative URLs
+      const imgSrc = (topic.primary_image_url ?? "").trim();
+      if (imgSrc.startsWith("https://res.cloudinary.com/") || imgSrc.startsWith("/")) {
+        signImg.src = imgSrc;
+      }
+      signImg.alt = name ?? "";
+      signImg.style.cssText = "max-width:100%;max-height:100%;object-fit:contain;";
+      signImg.crossOrigin = "anonymous";
+      signBox.appendChild(signImg);
+      main.appendChild(signBox);
+
+      // Text content
+      const textCol = el("div", { flex: "1", display: "flex", flexDirection: "column", gap: "24px" });
+      const nameBox = el("div", {});
+      nameBox.appendChild(el("div", { fontSize: "48px", fontWeight: "900", lineHeight: "1.2", color: "#000", marginBottom: "16px" }, name ?? ""));
+      if (description) {
+        nameBox.appendChild(el("div", { fontSize: "24px", lineHeight: "1.6", color: "#374151" }, description));
+      }
+      textCol.appendChild(nameBox);
+
+      if (subGroupLabel) {
+        textCol.appendChild(el("div", { display: "inline-block", background: "#fef3c7", border: "3px solid #000", padding: "12px 24px", fontSize: "18px", fontWeight: "bold" }, isKh ? (subGroupLabel.km ?? "") : (subGroupLabel.en ?? "")));
+      }
+
+      if (topic.law_reference) {
+        const lawBox = el("div", { background: "#dbeafe", border: "3px solid #3b82f6", padding: "16px 20px", fontSize: "16px", color: "#1e40af" });
+        lawBox.appendChild(el("div", { fontWeight: "900", textTransform: "uppercase", marginBottom: "8px", fontSize: "14px" }, isKh ? "ឯកសារយោងច្បាប់" : "Law Reference"));
+        lawBox.appendChild(el("div", {}, topic.law_reference));
+        textCol.appendChild(lawBox);
+      }
+      main.appendChild(textCol);
+      root.appendChild(main);
+
+      // ── Footer ───────────────────────────────────────────────────────
+      const footer = el("div", { marginTop: "40px", paddingTop: "20px", borderTop: "2px solid #e5e7eb", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "12px", color: "#9ca3af" });
+      const footerLeft = document.createElement("div");
+      footerLeft.textContent = (isKh ? "ទាញយកពី " : "Downloaded from ");
+      const footerStrong = el("strong", { color: "#000" }, "kesararamwithdigital.tech");
+      footerLeft.appendChild(footerStrong);
+      footer.appendChild(footerLeft);
+      footer.appendChild(el("div", {}, new Date().toLocaleDateString(isKh ? "km-KH" : "en-US", { year: "numeric", month: "long", day: "numeric" })));
+      root.appendChild(footer);
+
+      canvas.appendChild(root);
 
       document.body.appendChild(canvas);
 

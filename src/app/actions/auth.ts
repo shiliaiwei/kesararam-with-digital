@@ -93,11 +93,20 @@ async function establishSession(user: DbUser, redirectParam: string): Promise<Lo
   if (redirectParam) {
     if (redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
       redirectTo = redirectParam;
-    } else if (
-      redirectParam.startsWith("https://kesararamwithdigital.tech") ||
-      redirectParam.startsWith("https://dashboard.kesararamwithdigital.tech")
-    ) {
-      redirectTo = redirectParam;
+    } else {
+      try {
+        const parsed = new URL(redirectParam);
+        if (
+          parsed.protocol === "https:" &&
+          (parsed.hostname === "kesararamwithdigital.tech" ||
+            parsed.hostname === "dashboard.kesararamwithdigital.tech" ||
+            parsed.hostname.endsWith(".kesararamwithdigital.tech"))
+        ) {
+          redirectTo = redirectParam;
+        }
+      } catch {
+        // Invalid URL — fallback to role default
+      }
     }
   }
 
