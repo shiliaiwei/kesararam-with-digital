@@ -14,6 +14,15 @@ interface MediaSelectorProps {
   audioLanguage?: "en" | "km"; // For filtering audio files by language
 }
 
+function sanitizeMediaSrc(url: string): string {
+  if (!url || typeof url !== "string") return "";
+  const trimmed = url.trim();
+  if (trimmed.startsWith("https://") || trimmed.startsWith("http://") || trimmed.startsWith("/")) {
+    return trimmed;
+  }
+  return "";
+}
+
 export function MediaSelector({
   type,
   label,
@@ -25,6 +34,7 @@ export function MediaSelector({
 }: MediaSelectorProps) {
   const [showBrowser, setShowBrowser] = useState(false);
   const [inputMode, setInputMode] = useState<"url" | "cloudinary">(source || "cloudinary");
+  const safeSrc = sanitizeMediaSrc(value);
 
   const getIcon = () => {
     switch (type) {
