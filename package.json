@@ -39,12 +39,7 @@
     "security:check": "bash scripts/check-secrets.sh",
     "security:install-hooks": "bash scripts/install-git-hooks.sh",
     "security:full": "pnpm run security:audit && pnpm run security:check && pnpm run lint && pnpm run test",
-    "security:generate-jwt": "node scripts/generate-jwt-secret.js",
-    "build:cf": "opennextjs-cloudflare build",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "security:generate-jwt": "node scripts/generate-jwt-secret.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -53,7 +48,6 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@neondatabase/serverless": "^1.0.2",
-    "@opennextjs/cloudflare": "^1.20.4",
     "@stripe/stripe-js": "^9.0.0",
     "@tanstack/react-table": "^8.21.2",
     "@types/mapbox-gl": "^3.4.1",
@@ -111,8 +105,7 @@
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5",
-    "vitest": "^4.1.8",
-    "wrangler": "^4.127.1"
+    "vitest": "^4.1.8"
   },
   "overrides": {
     "path-to-regexp": ">=8.0.0",

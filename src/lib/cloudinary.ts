@@ -14,8 +14,19 @@
  * @param width Target display width in px (request ~2x the CSS size for retina).
  */
 export function cloudinaryOptimize(url: string, width = 600): string {
-    if (!url || !url.includes("res.cloudinary.com") || !url.includes("/upload/")) {
+    if (!url || typeof url !== "string") {
         return url;
     }
-    return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+    try {
+        const parsed = new URL(url);
+        if (
+            (parsed.hostname === "res.cloudinary.com" || parsed.hostname.endsWith(".res.cloudinary.com")) &&
+            parsed.pathname.includes("/upload/")
+        ) {
+            return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+        }
+    } catch {
+        // Safe fallback if not a full valid URL
+    }
+    return url;
 }

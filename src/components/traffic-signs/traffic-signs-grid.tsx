@@ -5,11 +5,11 @@ import Image from "next/image";
 import { Volume2, X, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import type { TrafficSign } from "@/db/schema";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 // ── Cloudinary thumbnail optimizer ───────────────────────────────────────────
 function cloudinaryThumb(url: string, width = 120): string {
-  if (!url || !url.includes("res.cloudinary.com")) return url;
-  return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+  return cloudinaryOptimize(url, width);
 }
 
 // ── Sub-group order matches the official Cambodian traffic sign PDF ───────────

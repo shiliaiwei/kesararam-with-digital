@@ -120,13 +120,13 @@ export function MediaSelector({
           </button>
           
           {/* Preview */}
-          {value && (
+          {safeSrc && (
             <div className="border-2 border-black bg-white overflow-hidden">
               {type === "image" && (
                 <div className="relative">
                   <div className="aspect-video bg-zinc-100">
                     <img
-                      src={value}
+                      src={safeSrc}
                       alt="Selected"
                       className="w-full h-full object-contain"
                     />
@@ -147,19 +147,19 @@ export function MediaSelector({
                         Selected Audio
                       </p>
                       <p className="text-xs text-zinc-500 truncate">
-                        {value.split("/").pop()}
+                        {safeSrc.split("/").pop()}
                       </p>
                     </div>
                   </div>
                   <audio controls className="w-full">
-                    <source src={value} />
+                    <source src={safeSrc} />
                   </audio>
                 </div>
               )}
               {type === "video" && (
                 <div className="aspect-video bg-zinc-100">
                   <video controls className="w-full h-full">
-                    <source src={value} />
+                    <source src={safeSrc} />
                   </video>
                 </div>
               )}

@@ -7,7 +7,7 @@
  * verifyPassword() still accepts those and returns needsUpgrade=true so the
  * caller can transparently re-hash to scrypt on the next successful login.
  */
-import { scryptSync, randomBytes, timingSafeEqual, createHash } from "crypto";
+import { scryptSync, randomBytes, timingSafeEqual } from "crypto";
 
 const PREFIX = "scrypt$";
 const N = 16384; // CPU/memory cost (2^14) — ~16 MiB, well under the 32 MiB default
@@ -22,15 +22,11 @@ export function hashPassword(pw: string): string {
   return `${PREFIX}${N}$${salt}$${hash}`;
 }
 
-const legacySha256 = (pw: string) => createHash("sha256").update(pw).digest("hex");
-
 /**
- * Verify a plaintext password against a stored hash. Supports both the scrypt
- * format and legacy unsalted SHA-256 hex.
+ * Verify a plaintext password against a stored salted scrypt hash.
  *
  * @returns valid — does the password match?
- *          needsUpgrade — true when a legacy hash matched; the caller should
- *          re-hash with hashPassword() and persist it.
+ *          needsUpgrade — false for standard scrypt hashes.
  */
 export function verifyPassword(
   pw: string,
@@ -53,9 +49,5 @@ export function verifyPassword(
     return { valid, needsUpgrade: false };
   }
 
-  // Legacy unsalted SHA-256 hex.
-  const expected = Buffer.from(stored, "utf8");
-  const actual = Buffer.from(legacySha256(pw), "utf8");
-  const valid = expected.length === actual.length && timingSafeEqual(expected, actual);
-  return { valid, needsUpgrade: valid };
+  return { valid: false, needsUpgrade: false };
 }

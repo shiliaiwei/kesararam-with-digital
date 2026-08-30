@@ -10,6 +10,7 @@
 import { config } from "dotenv";
 config({ path: ".env.local" });
 import { readFileSync, writeFileSync } from "fs";
+import { randomInt } from "crypto";
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "../src/db/schema/users";
@@ -39,7 +40,7 @@ interface ExcelStudent {
 /** 6-char password derived from the username: 3 lowercase letters + 3 digits. */
 function makePassword(username: string): string {
   const prefix = username.toLowerCase().replace(/[^a-z]/g, "").slice(0, 3).padEnd(3, "s");
-  const digits = Math.floor(100 + Math.random() * 900).toString();
+  const digits = randomInt(100, 1000).toString();
   return prefix + digits;
 }
 

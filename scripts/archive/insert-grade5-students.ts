@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 config({ path: ".env.local" });
 import { readFileSync, writeFileSync } from "fs";
+import { randomInt } from "crypto";
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "../src/db/schema/users";
@@ -121,7 +122,7 @@ async function main() {
 
     // Generate custom 6-character password: 3 letters of username + 3 random digits
     const prefix = username.slice(0, 3).padEnd(3, "s");
-    const randomDigits = Math.floor(100 + Math.random() * 900).toString(); // 3 random digits
+    const randomDigits = randomInt(100, 1000).toString(); // 3 cryptographically secure random digits
     const password = prefix + randomDigits;
 
     // Hash the unique password

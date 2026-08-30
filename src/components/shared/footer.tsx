@@ -180,17 +180,6 @@ export function Footer() {
                   YouTube
                 </span>
               </a>
-
-              {/* GitHub — black */}
-              <a href="https://github.com/shiliaiwei/kesararam-with-digital" target="_blank" rel="noopener noreferrer"
-                className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
-                style={{ background: "#24292e", boxShadow: "3px 3px 0 #000" }}
-                aria-label="GitHub Repository">
-                <FaGithub className="w-5 h-5 text-white" aria-hidden="true" />
-                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  GitHub
-                </span>
-              </a>
             </div>
 
             {/* Open Source Star Badge */}

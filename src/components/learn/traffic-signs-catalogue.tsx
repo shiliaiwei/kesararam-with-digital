@@ -73,13 +73,13 @@ const UI = {
   },
 } as const;
 
+import { cloudinaryOptimize } from "@/lib/cloudinary";
+
 // ── Cloudinary thumbnail optimizer ───────────────────────────────────────────
 // Transforms full-res Cloudinary URLs into small, optimized thumbnails.
 // For a 120px grid cell, we only need ~120px wide images — not 1200px originals.
 function cloudinaryThumb(url: string, width = 120): string {
-  if (!url || !url.includes("res.cloudinary.com")) return url;
-  // Insert transformation before /upload/
-  return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+  return cloudinaryOptimize(url, width);
 }
 
 // ── Image with skeleton loader + stable height + AI disclaimer ───────────────

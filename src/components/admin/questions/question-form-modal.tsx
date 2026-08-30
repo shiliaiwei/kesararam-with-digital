@@ -536,7 +536,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                                 </button>
                             )}
                         </div>
-                        {imageUrl && (
+                        {imageUrl && (imageUrl.startsWith("https://") || imageUrl.startsWith("http://") || imageUrl.startsWith("/")) && (
                             <div className="mt-2 flex items-center gap-2">
                                 <img src={imageUrl} alt="preview" className="h-16 w-16 object-cover border-2 border-black" onError={e => (e.currentTarget.style.display = "none")} />
                                 <span className="text-xs text-zinc-500 font-medium">Preview</span>

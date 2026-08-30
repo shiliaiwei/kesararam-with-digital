@@ -282,11 +282,20 @@ export async function loginAction(
   if (redirectParam) {
     if (redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
       redirectTo = redirectParam;
-    } else if (
-      redirectParam.startsWith("https://kesararamwithdigital.tech") ||
-      redirectParam.startsWith("https://dashboard.kesararamwithdigital.tech")
-    ) {
-      redirectTo = redirectParam;
+    } else {
+      try {
+        const parsed = new URL(redirectParam);
+        if (
+          parsed.protocol === "https:" &&
+          (parsed.hostname === "kesararamwithdigital.tech" ||
+            parsed.hostname === "dashboard.kesararamwithdigital.tech" ||
+            parsed.hostname.endsWith(".kesararamwithdigital.tech"))
+        ) {
+          redirectTo = redirectParam;
+        }
+      } catch {
+        // Invalid redirect URL — fallback to default role redirect
+      }
     }
   }
 

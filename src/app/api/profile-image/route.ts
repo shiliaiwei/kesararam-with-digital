@@ -1,7 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyProfileToken } from "@/lib/signed-profile-url";
 
-const ALLOWED_CLOUDINARY_PREFIX = "https://res.cloudinary.com/dpgivqzrl/";
+function isSafeCloudinaryUrl(urlStr: string): boolean {
+  if (!urlStr || typeof urlStr !== "string") return false;
+  try {
+    const parsed = new URL(urlStr);
+    return (
+      parsed.protocol === "https:" &&
+      parsed.hostname === "res.cloudinary.com" &&
+      parsed.pathname.startsWith("/dpgivqzrl/")
+    );
+  } catch {
+    return false;
+  }
+}
 
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get("token");
@@ -12,13 +24,13 @@ export async function GET(req: NextRequest) {
   if (token) {
     // Token-based access (dashboard protected images)
     const payload = await verifyProfileToken(token);
-    if (!payload) {
-      return NextResponse.json({ error: "Invalid or expired token" }, { status: 403 });
+    if (!payload || !isSafeCloudinaryUrl(payload.imageUrl)) {
+      return NextResponse.json({ error: "Invalid, expired, or untrusted image token" }, { status: 403 });
     }
     imageUrl = payload.imageUrl;
   } else if (directImageUrl) {
     // Direct proxy for public profile page — only allow our Cloudinary domain
-    if (!directImageUrl.startsWith(ALLOWED_CLOUDINARY_PREFIX)) {
+    if (!isSafeCloudinaryUrl(directImageUrl)) {
       return NextResponse.json({ error: "Forbidden image source" }, { status: 403 });
     }
     imageUrl = directImageUrl;

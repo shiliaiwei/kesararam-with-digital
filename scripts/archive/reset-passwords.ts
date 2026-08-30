@@ -1,16 +1,12 @@
 import "dotenv/config";
-import { createHash } from "crypto";
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "../src/db/schema/users";
+import { hashPassword } from "../src/lib/password";
 import { eq } from "drizzle-orm";
 
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql, { schema });
-
-function hashPassword(pw: string): string {
-  return createHash("sha256").update(pw).digest("hex");
-}
 
 async function main() {
   console.log("Resetting user passwords and unlocking accounts...");
