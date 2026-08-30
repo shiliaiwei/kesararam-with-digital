@@ -1,16 +1,12 @@
 import "dotenv/config";
-import { createHash } from "crypto";
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { sql as drizzleSql } from "drizzle-orm";
 import * as schema from "../src/db/schema";
+import { hashPassword } from "../src/lib/password";
 
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql, { schema });
-
-function hashPassword(pw: string): string {
-  return createHash("sha256").update(pw).digest("hex");
-}
 
 async function main() {
   console.log("Truncating all tables...");
@@ -33,7 +29,7 @@ async function main() {
     loginAttempts: 0,
   });
 
-  console.log("Admin created: vi / srievffdd.tech");
+  console.log("Admin created: vi");
 }
 
 main()

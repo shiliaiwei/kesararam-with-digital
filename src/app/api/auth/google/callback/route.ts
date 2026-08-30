@@ -5,7 +5,7 @@ import { sessions } from "@/db/schema/sessions";
 import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
 import { assignSignupTrial, normalizePlan } from "@/lib/trial";
-import { randomBytes } from "crypto";
+import { randomBytes, randomInt } from "crypto";
 import { hashPassword } from "@/lib/password";
 
 export const dynamic = "force-dynamic";
@@ -114,7 +114,7 @@ export async function GET(req: NextRequest) {
     const randomPassword = hashPassword(randomBytes(32).toString("hex"));
 
     // Clean google username (e.g. janesmith + 3 numbers)
-    const derivedUsername = email.split("@")[0].replace(/[^a-zA-Z0-9]/g, "") + Math.floor(100 + Math.random() * 900);
+    const derivedUsername = email.split("@")[0].replace(/[^a-zA-Z0-9]/g, "") + (100 + randomInt(900));
 
     // Decode the OAuth state to learn the intended account type (set during
     // registration). Teachers can self-register via Google with a 7-day trial.
