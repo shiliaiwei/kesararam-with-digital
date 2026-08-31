@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Image as ImageIcon, Music, Video, Link as LinkIcon, Cloud, X, Check } from "lucide-react";
 import { CloudinarySelectorModal } from "./cloudinary-selector-modal";
+import { sanitizeSafeUrl } from "@/lib/cloudinary";
 
 interface MediaSelectorProps {
   type: "image" | "audio" | "video";
@@ -12,15 +13,6 @@ interface MediaSelectorProps {
   onChange: (url: string, source: "url" | "cloudinary") => void;
   placeholder?: string;
   audioLanguage?: "en" | "km"; // For filtering audio files by language
-}
-
-function sanitizeMediaSrc(url: string): string {
-  if (!url || typeof url !== "string") return "";
-  const trimmed = url.trim();
-  if (trimmed.startsWith("https://") || trimmed.startsWith("http://") || trimmed.startsWith("/")) {
-    return trimmed;
-  }
-  return "";
 }
 
 export function MediaSelector({
@@ -34,7 +26,7 @@ export function MediaSelector({
 }: MediaSelectorProps) {
   const [showBrowser, setShowBrowser] = useState(false);
   const [inputMode, setInputMode] = useState<"url" | "cloudinary">(source || "cloudinary");
-  const safeSrc = sanitizeMediaSrc(value);
+  const safeSrc = sanitizeSafeUrl(value);
 
   const getIcon = () => {
     switch (type) {

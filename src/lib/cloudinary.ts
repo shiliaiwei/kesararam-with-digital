@@ -16,8 +16,16 @@
 export function sanitizeSafeUrl(url?: string | null): string {
     if (!url || typeof url !== "string") return "";
     const trimmed = url.trim();
-    if (trimmed.startsWith("https://") || trimmed.startsWith("http://") || trimmed.startsWith("/")) {
-        return trimmed;
+    if (trimmed.startsWith("/")) {
+        return encodeURI(trimmed);
+    }
+    try {
+        const parsed = new URL(trimmed);
+        if (parsed.protocol === "https:" || parsed.protocol === "http:") {
+            return parsed.href;
+        }
+    } catch {
+        return "";
     }
     return "";
 }
