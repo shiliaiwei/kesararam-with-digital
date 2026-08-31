@@ -178,14 +178,11 @@ export async function POST(
 ) {
   try {
     const { code } = await params;
-    console.log(`[CONTROL] Request for session code: ${code}`);
 
     const user = await getSession();
     if (!user) {
-      console.log(`[CONTROL] Unauthorized - no user session`);
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    console.log(`[CONTROL] User: ${user.name} (${user.id})`);
 
     const [session] = await db
       .select()
@@ -193,21 +190,17 @@ export async function POST(
       .where(eq(gameSessions.sessionCode, code.toUpperCase()));
 
     if (!session) {
-      console.log(`[CONTROL] Session not found: ${code}`);
       return NextResponse.json({ error: "Session not found" }, { status: 404 });
     }
-    console.log(`[CONTROL] Session found: ID=${session.id}, status=${session.status}, questionIds=${session.questionIds?.length || 0}`);
 
     const isHost = session.hostId === user.id;
     const isAdmin = user.role === "admin";
     if (!isHost && !isAdmin) {
-      console.log(`[CONTROL] Forbidden - user ${user.id} is not host ${session.hostId}`);
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     const body = await req.json();
     const { action } = body as { action: "start" | "advance" | "pause" | "reveal" | "resume" | "end" | "terminate" | "back" | "set_time" };
-    console.log(`[CONTROL] Action: ${action}`);
 
     const currentStatus = session.status as GameStatus;
 
@@ -331,7 +324,6 @@ export async function POST(
     // ── BACK (Go backward: revert reveal or decrement question index or go back to lobby) ──
     if (action === "back") {
       const { currentPhase } = body as { currentPhase?: "active" | "round_end" };
-      console.log(`[BACK] Session ${session.id}, status: ${currentStatus}, currentQuestionIndex: ${session.currentQuestionIndex}, currentPhase: ${currentPhase}`);
 
       if (currentStatus !== "active") {
         return NextResponse.json({ error: "Session not active" }, { status: 409 });

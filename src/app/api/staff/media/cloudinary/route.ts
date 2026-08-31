@@ -89,8 +89,6 @@ export async function GET(request: NextRequest) {
           };
         });
 
-      console.log(`Found ${assets.length} ${type} assets (fetched ${allResources.length} total from Cloudinary)`);
-
       // Set no-cache headers
       const response = NextResponse.json({
         assets,

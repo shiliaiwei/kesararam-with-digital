@@ -26,8 +26,6 @@ export async function GET(request: NextRequest) {
     const resourceType = searchParams.get("type") || "image";
     const maxResults = parseInt(searchParams.get("limit") || "500");
 
-    console.log(`Fetching resources - type: ${resourceType}, search: ${search}`);
-
     // Check environment variables
     if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 
         !process.env.CLOUDINARY_API_KEY || 

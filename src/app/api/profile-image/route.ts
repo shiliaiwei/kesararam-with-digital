@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyProfileToken } from "@/lib/signed-profile-url";
 
 const CLOUDINARY_HOST = "res.cloudinary.com";
 const ALLOWED_PATH_PREFIX = "/dpgivqzrl/";
@@ -23,11 +22,8 @@ function getValidatedCloudinaryUrl(urlStr: string | null | undefined): string | 
 }
 
 export async function GET(req: NextRequest) {
-  const token = req.nextUrl.searchParams.get("token");
-  const directImageUrl = req.nextUrl.searchParams.get("imageUrl");
-
-  const rawUrl = token ? (await verifyProfileToken(token))?.imageUrl : directImageUrl;
-  const safeUrl = getValidatedCloudinaryUrl(rawUrl);
+  const imageUrl = req.nextUrl.searchParams.get("imageUrl");
+  const safeUrl = getValidatedCloudinaryUrl(imageUrl);
 
   if (!safeUrl) {
     return NextResponse.json({ error: "Forbidden or invalid image source" }, { status: 403 });

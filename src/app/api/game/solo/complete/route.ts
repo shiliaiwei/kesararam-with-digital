@@ -256,14 +256,12 @@ export async function POST(req: NextRequest) {
       }
 
       playsToday += 1;
-      console.log(`[solo/complete] DB write success for user ${session.id}: RawScore=${rawScore}, PointsAwarded=${soloPoints}, Diff=${rawScore - soloPoints}, GameType=${gameMode}, ScoreType=solo`);
     } catch (err) {
       console.error("[solo/complete] DB write failed:", err);
     }
   }
 
   const scoreDifference = 0; // solo now records at full value
-  console.log(`[solo/complete] Scoring audit recorded: GameMode/GameType=${gameMode}, ScoreType=solo, RawScore=${rawScore}, SoloPoints=${soloPoints} (full value, separate currency)`);
 
   return NextResponse.json({
     rawScore,
