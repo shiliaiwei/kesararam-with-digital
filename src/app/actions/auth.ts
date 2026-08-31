@@ -19,6 +19,29 @@ import { decryptSecret } from "@/lib/twofa-crypto";
 // In-memory IP rate limiter for login (5 attempts / 60s per IP)
 const ipRateMap = new Map<string, { count: number; resetAt: number }>();
 
+const ALLOWED_REDIRECT_HOSTS = new Set([
+  "kesararamwithdigital.tech",
+  "dashboard.kesararamwithdigital.tech",
+  "www.kesararamwithdigital.tech",
+  "kesararamwithdigital.vercel.app",
+]);
+
+function getSafeRedirectDestination(redirectParam: string | null | undefined, defaultUrl: string): string {
+  if (!redirectParam) return defaultUrl;
+  if (redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
+    return redirectParam;
+  }
+  try {
+    const parsed = new URL(redirectParam);
+    if (parsed.protocol === "https:" && ALLOWED_REDIRECT_HOSTS.has(parsed.hostname)) {
+      return redirectParam;
+    }
+  } catch {
+    // Invalid URL — fallback to default role redirect
+  }
+  return defaultUrl;
+}
+
 export interface LoginState {
   error: string;
   redirectTo?: string;
@@ -89,26 +112,7 @@ async function establishSession(user: DbUser, redirectParam: string): Promise<Lo
     maxAge: user.role === "student" ? 7 * 24 * 60 * 60 : 8 * 60 * 60,
   });
 
-  let redirectTo = getRedirectUrl(user.role);
-  if (redirectParam) {
-    if (redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
-      redirectTo = redirectParam;
-    } else {
-      try {
-        const parsed = new URL(redirectParam);
-        if (
-          parsed.protocol === "https:" &&
-          (parsed.hostname === "kesararamwithdigital.tech" ||
-            parsed.hostname === "dashboard.kesararamwithdigital.tech" ||
-            parsed.hostname.endsWith(".kesararamwithdigital.tech"))
-        ) {
-          redirectTo = redirectParam;
-        }
-      } catch {
-        // Invalid URL — fallback to role default
-      }
-    }
-  }
+  const redirectTo = getSafeRedirectDestination(redirectParam, getRedirectUrl(user.role));
 
   return { error: "", redirectTo };
 }
@@ -286,27 +290,7 @@ export async function loginAction(
   });
 
   const redirectParam = (formData.get("redirect") as string) ?? "";
-
-  let redirectTo = getRedirectUrl(user.role);
-  if (redirectParam) {
-    if (redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
-      redirectTo = redirectParam;
-    } else {
-      try {
-        const parsed = new URL(redirectParam);
-        if (
-          parsed.protocol === "https:" &&
-          (parsed.hostname === "kesararamwithdigital.tech" ||
-            parsed.hostname === "dashboard.kesararamwithdigital.tech" ||
-            parsed.hostname.endsWith(".kesararamwithdigital.tech"))
-        ) {
-          redirectTo = redirectParam;
-        }
-      } catch {
-        // Invalid redirect URL — fallback to default role redirect
-      }
-    }
-  }
+  const redirectTo = getSafeRedirectDestination(redirectParam, getRedirectUrl(user.role));
 
   return { error: "", redirectTo };
 }

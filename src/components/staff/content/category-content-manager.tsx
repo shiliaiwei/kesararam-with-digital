@@ -5,6 +5,7 @@ import { Plus, Search, Edit, Trash2, Send, Globe, Clock, FileText, XCircle, Chec
 import { TopicFormModal } from "./topic-form-modal";
 import { BrandSelect } from "@/components/ui/brand-select";
 import { useToast } from "@/components/ui/toast-container";
+import { sanitizeSafeUrl } from "@/lib/cloudinary";
 
 interface Topic { id: number; topicCode: string; topic_code: string; nameEn: string; name_en: string; nameKm: string; name_km: string; status: string; questionCount?: number; question_count?: number; createdAt: string; created_at: string; updatedAt: string; updated_at: string; subGroup: string | null; sub_group: string | null; createdBy: number; created_by: number; primaryImageUrl?: string | null; primary_image_url?: string | null; audioUrlEn?: string | null; audio_url_en?: string | null; rejectionReason?: string | null; rejection_reason?: string | null; descriptionEn?: string; description_en?: string; descriptionKm?: string; description_km?: string; lawReference?: string | null; law_reference?: string | null; audioUrlKm?: string | null; audio_url_km?: string | null; audioSourceEn?: string; audio_source_en?: string; audioSourceKm?: string; audio_source_km?: string; primaryImageSource?: string; primary_image_source?: string; categoryId?: number; category_id?: number; }
 interface Answer { id?: number; answerEn: string; answerKm: string; isCorrect: boolean; imageUrl: string; }
@@ -125,7 +126,7 @@ function QuestionsPanel({ topicId, topicStatus, isStaff = true }: { topicId: num
                   </div>
                   {expandedId === q.id && (
                     <div className="border-t-2 border-black px-3 py-2 bg-gray-50 space-y-2">
-                      {q.image_url && <img src={q.image_url} alt="" className="h-20 object-contain border border-black" />}
+                      {sanitizeSafeUrl(q.image_url) && <img src={sanitizeSafeUrl(q.image_url)} alt="" className="h-20 object-contain border border-black" />}
                       <div className="grid grid-cols-2 gap-1.5">
                         {q.answers?.map((a, ai) => (
                           <div key={ai} className={`flex items-center gap-1.5 px-2 py-1.5 border-2 text-xs font-bold ${a.isCorrect ? "border-green-500 bg-green-50 text-green-900" : "border-zinc-300 bg-white text-zinc-600"}`}>

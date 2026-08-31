@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { X, Plus, Trash2, Lightbulb, AlertCircle, CheckCircle, Zap, RefreshCw, Clipboard, Settings, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/components/ui/toast-container";
 import { BrandSelect } from "@/components/ui/brand-select";
+import { sanitizeSafeUrl } from "@/lib/cloudinary";
 
 interface QuestionFormModalProps {
     initialData?: any;
@@ -536,9 +537,9 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                                 </button>
                             )}
                         </div>
-                        {imageUrl && (imageUrl.startsWith("https://") || imageUrl.startsWith("http://") || imageUrl.startsWith("/")) && (
+                        {sanitizeSafeUrl(imageUrl) && (
                             <div className="mt-2 flex items-center gap-2">
-                                <img src={imageUrl} alt="preview" className="h-16 w-16 object-cover border-2 border-black" onError={e => (e.currentTarget.style.display = "none")} />
+                                <img src={sanitizeSafeUrl(imageUrl)} alt="preview" className="h-16 w-16 object-cover border-2 border-black" onError={e => (e.currentTarget.style.display = "none")} />
                                 <span className="text-xs text-zinc-500 font-medium">Preview</span>
                             </div>
                         )}
@@ -588,10 +589,10 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
 
                                     <div className="flex-1 space-y-1.5">
                                         {qType === "IMAGE_BASED" ? (
-                                            /* Image match: show image preview + label */
+                                             /* Image match: show image preview + label */
                                             <div className="flex items-center gap-2">
-                                                {ans.imageUrl ? (
-                                                    <img src={ans.imageUrl} alt="" className="h-14 w-14 object-cover border-2 border-black flex-shrink-0" />
+                                                {sanitizeSafeUrl(ans.imageUrl) ? (
+                                                    <img src={sanitizeSafeUrl(ans.imageUrl)} alt="" className="h-14 w-14 object-cover border-2 border-black flex-shrink-0" />
                                                 ) : (
                                                     <div className="h-14 w-14 border-2 border-dashed border-zinc-300 flex items-center justify-center flex-shrink-0">
                                                         <ImageIcon size={20} className="text-zinc-300" />

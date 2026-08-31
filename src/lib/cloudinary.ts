@@ -1,5 +1,5 @@
 /**
- * Cloudinary URL optimizer.
+ * Cloudinary URL optimizer and media URL sanitizer.
  *
  * Inserts on-the-fly transformations into a Cloudinary delivery URL so the
  * browser downloads small, modern-format images instead of full-resolution
@@ -13,20 +13,33 @@
  * @param url   Original Cloudinary image URL.
  * @param width Target display width in px (request ~2x the CSS size for retina).
  */
+export function sanitizeSafeUrl(url?: string | null): string {
+    if (!url || typeof url !== "string") return "";
+    const trimmed = url.trim();
+    if (trimmed.startsWith("https://") || trimmed.startsWith("http://") || trimmed.startsWith("/")) {
+        return trimmed;
+    }
+    return "";
+}
+
 export function cloudinaryOptimize(url: string, width = 600): string {
     if (!url || typeof url !== "string") {
-        return url;
+        return "";
     }
+    const safeUrl = sanitizeSafeUrl(url);
+    if (!safeUrl) return "";
     try {
-        const parsed = new URL(url);
+        const parsed = new URL(safeUrl);
         if (
-            (parsed.hostname === "res.cloudinary.com" || parsed.hostname.endsWith(".res.cloudinary.com")) &&
+            parsed.protocol === "https:" &&
+            parsed.hostname === "res.cloudinary.com" &&
             parsed.pathname.includes("/upload/")
         ) {
-            return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+            return safeUrl.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
         }
     } catch {
         // Safe fallback if not a full valid URL
     }
-    return url;
+    return safeUrl;
 }
+

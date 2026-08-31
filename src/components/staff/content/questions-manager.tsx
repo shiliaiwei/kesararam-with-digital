@@ -6,6 +6,7 @@ import {
   CheckCircle, Circle, Image as ImageIcon, Lock, HelpCircle, Plus, Edit, Trash2
 } from "lucide-react";
 import { QuestionFormModal } from "@/components/admin/questions/question-form-modal";
+import { sanitizeSafeUrl } from "@/lib/cloudinary";
 
 interface Answer {
   id?: number;
@@ -209,8 +210,8 @@ export function QuestionsManager({
 
               {expandedId === q.id && (
                 <div className="border-t-2 border-black px-4 py-3 bg-gray-50 space-y-3">
-                  {q.image_url && (
-                    <img src={q.image_url} alt="" className="h-24 object-contain border border-black" />
+                  {sanitizeSafeUrl(q.image_url) && (
+                    <img src={sanitizeSafeUrl(q.image_url)} alt="" className="h-24 object-contain border border-black" />
                   )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {q.answers?.map((a, ai) => (

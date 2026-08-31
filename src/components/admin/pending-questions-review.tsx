@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { BrandSelect } from "@/components/ui/brand-select";
 import { useToast } from "@/components/ui/toast-container";
+import { sanitizeSafeUrl } from "@/lib/cloudinary";
 
 interface Answer {
   id: number;
@@ -337,9 +338,9 @@ export function PendingQuestionsReview() {
                   {/* expanded detail */}
                   {isExpanded && (
                     <div className="border-t-2 border-black bg-zinc-50 p-4 space-y-4">
-                      {q.image_url && (
+                      {sanitizeSafeUrl(q.image_url) && (
                         <div className="border-2 border-black bg-white p-2 inline-block">
-                          <img src={q.image_url} alt="" className="max-h-32 object-contain" />
+                          <img src={sanitizeSafeUrl(q.image_url)} alt="" className="max-h-32 object-contain" />
                         </div>
                       )}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -355,7 +356,7 @@ export function PendingQuestionsReview() {
                             ) : (
                               <Circle size={14} className="text-zinc-400 shrink-0" />
                             )}
-                            {a.imageUrl && <img src={a.imageUrl} alt="" className="h-8 w-8 object-contain border border-zinc-300 bg-white shrink-0" />}
+                            {sanitizeSafeUrl(a.imageUrl) && <img src={sanitizeSafeUrl(a.imageUrl)} alt="" className="h-8 w-8 object-contain border border-zinc-300 bg-white shrink-0" />}
                             <div className="truncate">
                               <p>{a.answerEn}</p>
                               {a.answerKm && (

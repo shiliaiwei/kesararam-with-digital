@@ -1,45 +1,54 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyProfileToken } from "@/lib/signed-profile-url";
 
-function isSafeCloudinaryUrl(urlStr: string): boolean {
-  if (!urlStr || typeof urlStr !== "string") return false;
+const CLOUDINARY_HOST = "res.cloudinary.com";
+const ALLOWED_PATH_PREFIX = "/dpgivqzrl/";
+
+function getValidatedCloudinaryUrl(urlStr: string | null | undefined): string | null {
+  if (!urlStr || typeof urlStr !== "string") return null;
   try {
     const parsed = new URL(urlStr);
-    return (
+    if (
       parsed.protocol === "https:" &&
-      parsed.hostname === "res.cloudinary.com" &&
-      parsed.pathname.startsWith("/dpgivqzrl/")
-    );
+      parsed.hostname === CLOUDINARY_HOST &&
+      parsed.pathname.startsWith(ALLOWED_PATH_PREFIX)
+    ) {
+      // Reconstruct safe URL with hardcoded origin literal to eliminate SSRF taint
+      const safeSearch = parsed.search ? `?${new URLSearchParams(parsed.searchParams).toString()}` : "";
+      return `https://${CLOUDINARY_HOST}${encodeURI(parsed.pathname)}${safeSearch}`;
+    }
   } catch {
-    return false;
+    return null;
   }
+  return null;
 }
 
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get("token");
   const directImageUrl = req.nextUrl.searchParams.get("imageUrl");
 
-  let imageUrl: string;
+  let safeUrl: string | null = null;
 
   if (token) {
     // Token-based access (dashboard protected images)
     const payload = await verifyProfileToken(token);
-    if (!payload || !isSafeCloudinaryUrl(payload.imageUrl)) {
+    if (!payload) {
       return NextResponse.json({ error: "Invalid, expired, or untrusted image token" }, { status: 403 });
     }
-    imageUrl = payload.imageUrl;
+    safeUrl = getValidatedCloudinaryUrl(payload.imageUrl);
   } else if (directImageUrl) {
     // Direct proxy for public profile page — only allow our Cloudinary domain
-    if (!isSafeCloudinaryUrl(directImageUrl)) {
-      return NextResponse.json({ error: "Forbidden image source" }, { status: 403 });
-    }
-    imageUrl = directImageUrl;
+    safeUrl = getValidatedCloudinaryUrl(directImageUrl);
   } else {
     return NextResponse.json({ error: "Missing token or imageUrl" }, { status: 401 });
   }
 
+  if (!safeUrl) {
+    return NextResponse.json({ error: "Forbidden image source" }, { status: 403 });
+  }
+
   // Proxy the image — prevents direct URL exposure / download
-  const imageRes = await fetch(imageUrl);
+  const imageRes = await fetch(safeUrl);
   if (!imageRes.ok) {
     return NextResponse.json({ error: "Image not found" }, { status: 404 });
   }

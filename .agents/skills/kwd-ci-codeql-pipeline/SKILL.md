@@ -62,7 +62,6 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{ matrix.language }}"
-          upload: false
           output: results
 
       - name: Upload CodeQL SARIF Artifact

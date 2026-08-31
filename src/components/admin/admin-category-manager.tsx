@@ -10,6 +10,7 @@ import { TopicReviewModal } from "./topic-review-modal";
 import { BrandSelect } from "@/components/ui/brand-select";
 import { TopicFormModal } from "@/components/staff/content/topic-form-modal";
 import { useToast } from "@/components/ui/toast-container";
+import { sanitizeSafeUrl } from "@/lib/cloudinary";
 
 // ── Inline reject dialog (no browser prompt) ─────────────────────────────────
 function RejectDialog({
@@ -239,8 +240,8 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
                   <tr key={topic.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        {(topic.primary_image_url || topic.primaryImageUrl) ? (
-                          <img src={topic.primary_image_url || topic.primaryImageUrl!} alt="" className="w-8 h-8 object-cover border border-gray-200 shrink-0" />
+                        {sanitizeSafeUrl(topic.primary_image_url || topic.primaryImageUrl) ? (
+                          <img src={sanitizeSafeUrl(topic.primary_image_url || topic.primaryImageUrl)} alt="" className="w-8 h-8 object-cover border border-gray-200 shrink-0" />
                         ) : (
                           <div className="w-8 h-8 border border-gray-200 bg-gray-50 flex items-center justify-center shrink-0">
                             <ImageIcon size={14} className="text-gray-300" />
