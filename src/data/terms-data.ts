@@ -75,7 +75,7 @@ export const SECTIONS: TermSection[] = [
     id: "s10",
     num: "១០",
     heading: { kh: "ទំនាក់ទំនង", en: "Contact Us" },
-    kh: "ប្រសិនបើមានចម្ងល់ សូមទាក់ទងមកកាន់ contact@kesararamwithdigital.tech ឬទំព័រទំនាក់ទំនង។",
-    en: "If you have questions, please reach out via contact@kesararamwithdigital.tech or our contact page.",
+    kh: "ប្រសិនបើមានចម្ងល់ សូមទាក់ទងមកកាន់ kesararamwithdigital@gmail.com ឬទំព័រទំនាក់ទំនង។",
+    en: "If you have questions, please reach out via kesararamwithdigital@gmail.com or our contact page.",
   },
 ];

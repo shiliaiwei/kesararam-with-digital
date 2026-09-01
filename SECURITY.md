@@ -36,8 +36,8 @@ security problem.** Public disclosure before a fix puts students' data at risk.
 Use **[GitHub Private Vulnerability Reporting](https://github.com/shiliaiwei/kesararam/security/advisories/new)**.
 This opens a confidential advisory visible only to you and the maintainers.
 
-If you cannot use GitHub advisories, contact the maintainers privately via the
-email listed on the repository profile.
+If you cannot use GitHub advisories, contact the maintainers privately via
+email at `kesararamwithdigital@gmail.com`.
 
 ### What to include
 

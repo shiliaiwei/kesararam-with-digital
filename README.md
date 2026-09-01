@@ -60,7 +60,8 @@ To keep this platform freely accessible for schools, maintain cloud database inf
 Organizations, educational foundations, and individual sponsors interested in supporting server hosting, content development, or community workshops can connect with us:
 
 - **Website**: [kesararamwithdigital.tech](https://kesararamwithdigital.tech)
-- **Project Inquiries**: Contact the Kesararam With Digital team through our official channels.
+- **Official Email**: [kesararamwithdigital@gmail.com](mailto:kesararamwithdigital@gmail.com)
+- **Project Inquiries**: Contact the Kesararam With Digital team through our official email or website.
 
 ---
 
