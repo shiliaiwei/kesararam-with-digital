@@ -16,7 +16,7 @@
 
 ## Overview
 
-Kesararam With Digital is an open-source, bilingual (Khmer and English) digital road safety education platform. Built with Next.js 15, React 19, and Neon Serverless PostgreSQL, Kesararam With Digital digitizes traffic law, road signs, and safe driving theory through interactive curriculum modules, GameKit activities, and real-time classroom challenges for students and educators in Cambodia.
+Kesararam With Digital is a bilingual (Khmer and English) digital road safety education platform. Built with Next.js 15, React 19, and Neon Serverless PostgreSQL, Kesararam With Digital digitizes traffic law, road signs, and safe driving theory through interactive curriculum modules, GameKit activities, and real-time classroom challenges for students and educators in Cambodia.
 
 ### Platform Preview
 
@@ -47,20 +47,20 @@ The platform includes:
 
 ---
 
-## Open Source and Community
+## Proprietary Platform & Mission
 
-Kesararam With Digital is released as an open-source project under the MIT License to encourage collaboration across schools, educators, developers, and organizations working on road safety education. Developers are welcome to explore the codebase, build new learning activities, and adapt the modules for their communities.
+Kesararam With Digital is a proprietary educational initiative developed to advance road safety education and traffic law awareness across Cambodia. All curriculum materials, interactive mini-games, design systems, and source code are proprietary assets reserved exclusively for Kesararam With Digital.
 
 ---
 
 ## Sponsorship and Sustainability
 
-To keep this platform freely accessible, maintain cloud database infrastructure, and continue expanding learning resources for schools in Cambodia, we welcome sponsorships and partnerships.
+To keep this platform freely accessible for schools, maintain cloud database infrastructure, and continue expanding learning resources in Cambodia, we welcome sponsorships and partnerships.
 
 Organizations, educational foundations, and individual sponsors interested in supporting server hosting, content development, or community workshops can connect with us:
 
 - **Website**: [kesararamwithdigital.tech](https://kesararamwithdigital.tech)
-- **Project Inquiries**: Contact the Kesararam With Digital team through our official channels or GitHub repository.
+- **Project Inquiries**: Contact the Kesararam With Digital team through our official channels.
 
 ---
 
@@ -85,19 +85,18 @@ Kesararam With Digital was founded by a team of young Cambodian female students 
 
 ---
 
-## Contributing
+## Development & Contributions
 
-Contributions to the codebase, design systems, and curriculum translations are welcome. Please read our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before submitting a pull request.
+This repository is private and proprietary. Internal contributions, codebase maintenance, and content releases are managed exclusively by the authorized Kesararam With Digital development team. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for internal guidelines and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 ---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is proprietary and confidential. All rights reserved. See [LICENSE](LICENSE).
 
 ---
 
 © 2026 Kesararam With Digital • វិថី សុវត្ថិភាព The Way of Safety  
 Kesararam Primary School, Krong Siem Reap 17000, Cambodia  
 *គម្រោងនេះបង្កើតឡើងសម្រាប់គោលបំណងអប់រំសាធារណៈ · Created for Public Educational Purposes | Not affiliated with MPWT, Traffic Police, National Police, or MOI | Support our project • We welcome collaborations*
-

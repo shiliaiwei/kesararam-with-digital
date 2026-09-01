@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { FaYoutube, FaGithub } from "react-icons/fa";
-import { Star } from "lucide-react";
+import { FaYoutube } from "react-icons/fa";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
 
@@ -16,22 +14,6 @@ export function Footer() {
   const kf = kh
     ? { fontFamily: "var(--font-system)", fontWeight: 700 }
     : { fontFamily: "var(--font-en)" };
-
-  const [starCount, setStarCount] = useState<number | null>(null);
-
-  useEffect(() => {
-    fetch("https://api.github.com/repos/shiliaiwei/kesararam-with-digital")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && typeof data.stargazers_count === "number") {
-          setStarCount(data.stargazers_count);
-        }
-      })
-      .catch(() => {
-        // Fallback gracefully
-        setStarCount(null);
-      });
-  }, []);
 
   const LEARN_LINKS = [
     { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/learn/road-sign" },
@@ -182,24 +164,6 @@ export function Footer() {
               </a>
             </div>
 
-            {/* Open Source Star Badge */}
-            <div className="mb-6">
-              <a
-                href="https://github.com/shiliaiwei/kesararam-with-digital"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 px-3 py-1.5 bg-[#eab308] text-black border-2 border-black font-black text-xs transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-yellow-400"
-                style={{ boxShadow: "3px 3px 0 #000" }}
-                aria-label="Star Kesararam With Digital on GitHub"
-              >
-                <FaGithub className="w-4 h-4 text-black group-hover:rotate-12 transition-transform duration-200" />
-                <span style={kf}>{kh ? "ប្រភពបើកចំហ" : "Open Source"}</span>
-                <span className="inline-flex items-center gap-1 bg-black text-white px-2 py-0.5 text-[10px] font-mono font-bold border border-black group-hover:bg-zinc-800 transition-colors">
-                  <Star className="w-3 h-3 text-yellow-400 fill-yellow-400 group-hover:scale-125 transition-transform duration-200" />
-                  <span>{starCount !== null ? `${starCount} ★` : "Star"}</span>
-                </span>
-              </a>
-            </div>
 
             <ul className="flex flex-col gap-2">
               <li>

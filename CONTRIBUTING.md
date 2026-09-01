@@ -1,12 +1,12 @@
 # Contributing to Kesararam With Digital
 
-Thank you for your interest in contributing to **Kesararam With Digital**.
+This document outlines the internal development and code quality standards for **Kesararam With Digital**.
 
 ---
 
 ## Testing and Code Quality
 
-Before submitting a pull request, verify that all test suites and type checks pass:
+Before submitting a branch or opening a pull request, verify that all test suites and type checks pass:
 
 ```bash
 pnpm test
@@ -27,19 +27,19 @@ Kesararam With Digital strictly enforces a **Brutalist Road-Sign and Caution-Tap
 
 ---
 
-## Pull Request Workflow
+## Branch and Review Workflow
 
 1. Create a feature branch from `main`:
    ```bash
    git checkout -b feature/your-feature-name
    ```
 2. Implement scoped changes adhering to domain boundaries.
-3. Verify test suites and linters pass.
+3. Verify test suites and linters pass (`pnpm test && pnpm lint && pnpm exec tsc --noEmit`).
 4. Commit with descriptive semantic messages (`feat: ...`, `fix: ...`, `refactor: ...`).
-5. Submit a pull request with a concise description of the changes.
+5. Submit a pull request for team review.
 
 ---
 
-## License
+## Proprietary Rights & Licensing
 
-By contributing to Kesararam With Digital, you agree that your contributions are licensed under the project's [MIT License](LICENSE).
+Kesararam With Digital is a private, proprietary software project. All contributions, code, assets, and documentation submitted to this repository become the proprietary intellectual property of Kesararam With Digital under its [Proprietary License](LICENSE).
