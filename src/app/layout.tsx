@@ -118,6 +118,11 @@ export const metadata: Metadata = {
       "Free bilingual (ខ្មែរ / English) road-safety learning for Cambodia: road signs, traffic rules, quizzes and live classes — by Kesararam With Digital, The Way of Safety.",
     images: ["/brand/og-cover.png"],
   },
+  verification: {
+    other: {
+      "tiktok-developers-site-verification": ["lpaL0JCmmk24RErXuwLCcb5cIV8YyBAB"],
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -274,6 +279,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="lang-en" suppressHydrationWarning>
       <head>
+        <meta name="tiktok-developers-site-verification" content="lpaL0JCmmk24RErXuwLCcb5cIV8YyBAB" />
         <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/brand/kwd-green.png" />
