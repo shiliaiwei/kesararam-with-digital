@@ -120,7 +120,7 @@ export const metadata: Metadata = {
   },
   verification: {
     other: {
-      "tiktok-developers-site-verification": ["lpaL0JCmmk24RErXuwLCcb5cIV8YyBAB"],
+      "tiktok-developers-site-verification": ["3CQj09zgdMub7GIYNNNGsoPpSNef8Prg"],
     },
   },
 };
@@ -279,7 +279,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="lang-en" suppressHydrationWarning>
       <head>
-        <meta name="tiktok-developers-site-verification" content="lpaL0JCmmk24RErXuwLCcb5cIV8YyBAB" />
+        <meta name="tiktok-developers-site-verification" content="3CQj09zgdMub7GIYNNNGsoPpSNef8Prg" />
         <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/brand/kwd-green.png" />
