@@ -33,7 +33,7 @@ security problem.** Public disclosure before a fix puts students' data at risk.
 
 ### How to report — preferred
 
-Use **[GitHub Private Vulnerability Reporting](https://github.com/shiliaiwei/kesararam/security/advisories/new)**.
+Use **[GitHub Private Vulnerability Reporting](https://github.com/shiliaiwei/kesararam-with-digital/security/advisories/new)**.
 This opens a confidential advisory visible only to you and the maintainers.
 
 If you cannot use GitHub advisories, contact the maintainers privately via
@@ -139,8 +139,8 @@ You can independently check the production deployment:
 
 Maintainer-only dashboards:
 
-- **Security alerts** — https://github.com/shiliaiwei/kesararam/security
-- **Dependabot** — https://github.com/shiliaiwei/kesararam/security/dependabot
+- **Security alerts** — https://github.com/shiliaiwei/kesararam-with-digital/security
+- **Dependabot** — https://github.com/shiliaiwei/kesararam-with-digital/security/dependabot
 
 ---
 

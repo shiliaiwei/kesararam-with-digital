@@ -1,0 +1,19 @@
+# Global owner
+* @shiliaiwei
+
+# Sensitive CI/CD and security configurations
+/.github/ @shiliaiwei @kwd-ops
+/SECURITY.md @shiliaiwei
+
+# Authentication, Database & Security Logic
+/src/lib/auth.ts @shiliaiwei
+/src/lib/db.ts @shiliaiwei
+/src/db/ @shiliaiwei
+/src/app/actions/auth.ts @shiliaiwei
+/src/app/api/auth/ @shiliaiwei
+
+# Configuration files
+/next.config.ts @shiliaiwei
+/drizzle.config.ts @shiliaiwei
+/package.json @shiliaiwei
+/pnpm-lock.yaml @shiliaiwei
