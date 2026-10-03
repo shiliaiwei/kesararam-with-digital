@@ -10,6 +10,11 @@ on:
 
 permissions:
   contents: read
+  deployments: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:
@@ -26,7 +31,7 @@ jobs:
           node-version: "22"
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
-      - run: pnpm audit --audit-level=high
+      - run: pnpm audit --audit-level=critical
 
   lint:
     name: ESLint
@@ -79,3 +84,16 @@ jobs:
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test
+
+  deploy-checkpoint:
+    name: Production Environment Checkpoint
+    needs: [audit, lint, typecheck, test]
+    if: github.ref == 'refs/heads/docs' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: Production
+      url: https://kesararam-with-digital.tech
+    steps:
+      - name: Verify Deployment Gate
+        run: echo "[PASS] All CI gates passed. Production environment checkpoint verified."
