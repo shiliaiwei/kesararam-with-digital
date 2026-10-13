@@ -78,7 +78,7 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       cloud_name: cloudinary.config().cloud_name,
-      api_key: cloudinary.config().api_key,
+      api_key_configured: Boolean(cloudinary.config().api_key),
       connection: 'OK',
       stats: stats,
       sample_images: sampleImages,

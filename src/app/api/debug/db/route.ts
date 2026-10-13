@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  if (process.env.NODE_ENV === "production") {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
   try {
     const dbUrl = (process.env.DATABASE_URL ?? "").replace(/^['"]+|['"]+$/g, "");
     if (!dbUrl) return NextResponse.json({ error: "DATABASE_URL not set" }, { status: 500 });
@@ -25,8 +29,7 @@ export async function GET() {
   } catch (e: unknown) {
     return NextResponse.json({
       ok: false,
-      error: String(e),
-      stack: (e as Error)?.stack?.split("\n").slice(0, 5),
+      error: "Database check failed",
     }, { status: 500 });
   }
 }

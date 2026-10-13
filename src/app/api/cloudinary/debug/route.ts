@@ -2,9 +2,13 @@ import { NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 
 export async function GET() {
+  if (process.env.NODE_ENV === "production") {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
   const config = {
     cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "MISSING",
-    api_key: process.env.CLOUDINARY_API_KEY || "MISSING",
+    api_key: process.env.CLOUDINARY_API_KEY ? "SET (hidden)" : "MISSING",
     api_secret: process.env.CLOUDINARY_API_SECRET ? "SET (hidden)" : "MISSING",
   };
 

@@ -36,11 +36,10 @@
     "backup": "node node_modules/tsx/dist/cli.mjs scripts/backup-db.ts",
     "backup:full": "node node_modules/tsx/dist/cli.mjs scripts/backup-signs-structured.ts",
     "restore": "node node_modules/tsx/dist/cli.mjs scripts/restore-db.ts",
-    "security:audit": "pnpm audit --audit-level=moderate",
-    "security:check": "bash scripts/check-secrets.sh",
-    "security:install-hooks": "bash scripts/install-git-hooks.sh",
+    "security:audit": "pnpm audit --audit-level=critical",
+    "security:check": "bash .github/scripts/check-secrets.sh",
     "security:full": "pnpm run security:audit && pnpm run security:check && pnpm run lint && pnpm run test",
-    "security:generate-jwt": "node scripts/generate-jwt-secret.js"
+    "security:generate-jwt": "node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\""
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",

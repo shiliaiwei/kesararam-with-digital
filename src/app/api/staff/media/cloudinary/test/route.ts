@@ -2,11 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 
 export async function GET(request: NextRequest) {
+  if (process.env.NODE_ENV === "production") {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
   try {
     // Check environment variables
     const config = {
       cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
+      api_key: process.env.CLOUDINARY_API_KEY ? "SET" : "MISSING",
       api_secret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
     };
 
@@ -30,16 +34,15 @@ export async function GET(request: NextRequest) {
     });
   } catch (error: unknown) {
     console.error("Cloudinary test error:", error);
-    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown; stack?: unknown } : undefined;
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown } : undefined;
     return NextResponse.json(
       {
         config: {
           cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-          api_key: process.env.CLOUDINARY_API_KEY,
+          api_key: process.env.CLOUDINARY_API_KEY ? "SET" : "MISSING",
           api_secret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
         },
-        error: typeof maybeErr?.message === 'string' ? maybeErr.message : String(error),
-        stack: typeof maybeErr?.stack === 'string' ? maybeErr.stack : undefined,
+        error: typeof maybeErr?.message === 'string' ? maybeErr.message : "Cloudinary connection failed",
       },
       { status: 500 }
     );

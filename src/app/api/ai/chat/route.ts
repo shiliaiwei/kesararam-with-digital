@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import Groq from "groq-sdk";
+import { rateLimit, getClientIP, createRateLimitResponse } from "@/lib/simple-rate-limit";
 
 const SYSTEM_PROMPT = `You are Suar AI (សួរ), the AI assistant for Kesararam With Digital — Kesararam With Digital, a Cambodian driving theory education platform for students preparing for the mandatory driving exam.
 
@@ -23,6 +24,12 @@ Rules:
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = getClientIP(req);
+    const limiter = rateLimit(`ai-chat-${ip}`, 20, 60000);
+    if (!limiter.success) {
+      return createRateLimitResponse(limiter.resetTime);
+    }
+
     const { messages } = await req.json();
 
     if (!Array.isArray(messages) || messages.length === 0) {
