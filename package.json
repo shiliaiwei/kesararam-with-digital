@@ -69,7 +69,7 @@
     "lightgallery": "^2.9.0",
     "lucide-react": "^0.577.0",
     "mapbox-gl": "^3.19.1",
-    "next": "15.5.25",
+    "next": "15.5.27",
     "next-cloudinary": "^6.16.0",
     "next-intl": "^4.8.3",
     "next-themes": "^0.4.6",
@@ -92,7 +92,7 @@
     "zod": "^4.4.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "15.5.25",
+    "@next/eslint-plugin-next": "15.5.27",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20.19.37",
     "@types/qrcode": "^1.5.6",
@@ -102,7 +102,7 @@
     "@typescript-eslint/parser": "^8.26.0",
     "@vitest/ui": "^4.1.11",
     "eslint": "^9",
-    "eslint-config-next": "^15.5.25",
+    "eslint-config-next": "^15.5.27",
     "eslint-plugin-react-hooks": "^5.1.0",
     "fast-check": "^3.23.2",
     "jimp": "^1.6.1",
@@ -127,7 +127,7 @@
     "brace-expansion@1": ">=1.1.18",
     "brace-expansion@2": ">=2.0.1",
     "minimatch": ">=10.2.6",
-    "sharp": ">=0.35.4",
+    "sharp": ">=0.35.5",
     "body-parser": ">=2.3.0",
     "browserslist": ">=4.28.9",
     "baseline-browser-mapping": ">=2.11.23",
@@ -135,7 +135,10 @@
     "postcss-selector-parser": ">=7.1.6",
     "vitest": "4.1.11",
     "@vitest/mocker": "4.1.11",
-    "next": "15.5.25"
+    "next": "15.5.27",
+    "proxy-addr": ">=2.0.8",
+    "source-map-js": ">=1.2.2",
+    "@modelcontextprotocol/sdk": ">=1.31.0"
   },
   "resolutions": {
     "path-to-regexp": ">=8.0.0",
@@ -153,7 +156,7 @@
     "brace-expansion@1": ">=1.1.18",
     "brace-expansion@2": ">=2.0.1",
     "minimatch": ">=10.2.6",
-    "sharp": ">=0.35.4",
+    "sharp": ">=0.35.5",
     "body-parser": ">=2.3.0",
     "browserslist": ">=4.28.9",
     "baseline-browser-mapping": ">=2.11.23",
@@ -161,7 +164,10 @@
     "postcss-selector-parser": ">=7.1.6",
     "vitest": "4.1.11",
     "@vitest/mocker": "4.1.11",
-    "next": "15.5.25"
+    "next": "15.5.27",
+    "proxy-addr": ">=2.0.8",
+    "source-map-js": ">=1.2.2",
+    "@modelcontextprotocol/sdk": ">=1.31.0"
   },
   "pnpm": {
     "overrides": {
@@ -180,7 +186,7 @@
       "brace-expansion@1": ">=1.1.18",
       "brace-expansion@2": ">=2.0.1",
       "minimatch": ">=10.2.6",
-      "sharp": ">=0.35.4",
+      "sharp": ">=0.35.5",
       "body-parser": ">=2.3.0",
       "browserslist": ">=4.28.9",
       "baseline-browser-mapping": ">=2.11.23",
@@ -188,7 +194,10 @@
       "postcss-selector-parser": ">=7.1.6",
       "vitest": "4.1.11",
       "@vitest/mocker": "4.1.11",
-      "next": "15.5.25"
+      "next": "15.5.27",
+      "proxy-addr": ">=2.0.8",
+      "source-map-js": ">=1.2.2",
+      "@modelcontextprotocol/sdk": ">=1.31.0"
     }
   },
   "browserslist": [
