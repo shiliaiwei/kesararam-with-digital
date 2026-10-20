@@ -72,3 +72,7 @@ updates:
     labels:
       - "github-actions"
       - "security"
+    groups:
+      codeql-actions:
+        patterns:
+          - "github/codeql-action/*"
