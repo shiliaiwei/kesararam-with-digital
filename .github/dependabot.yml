@@ -6,59 +6,29 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "docs"
     labels:
       - "dependencies"
       - "security"
       - "automerge"
-    # Group related packages to reduce PR noise and streamline patch merges
+    # Consolidate all dependency updates into a single PR
     groups:
-      patch-updates:
+      all-dependencies:
         patterns:
           - "*"
-        update-types:
-          - "patch"
-      security-critical:
-        patterns:
-          - "next"
-          - "nanoid"
-          - "brace-expansion"
-          - "ip-address"
-          - "js-yaml"
-          - "fast-uri"
-          - "postcss"
-          - "esbuild"
-      hono-packages:
-        patterns:
-          - "hono"
-          - "@hono/*"
-      vitest-packages:
-        patterns:
-          - "vitest"
-          - "@vitest/*"
-      next-ecosystem:
-        patterns:
-          - "next-intl"
-          - "next-themes"
-          - "next-cloudinary"
-      drizzle-packages:
-        patterns:
-          - "drizzle-*"
-      eslint-packages:
-        patterns:
-          - "eslint"
-          - "eslint-*"
-          - "@eslint/*"
-      types-packages:
-        patterns:
-          - "@types/*"
     ignore:
       - dependency-name: "next"
         update-types: ["version-update:semver-major"]
       - dependency-name: "react"
         update-types: ["version-update:semver-major"]
       - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "openai"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "googleapis"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "lucide-react"
         update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
@@ -67,12 +37,13 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 5
     target-branch: "docs"
     labels:
       - "github-actions"
       - "security"
+    # Group all GitHub Actions together to prevent version mismatches (e.g. CodeQL steps)
     groups:
-      codeql-actions:
+      all-actions:
         patterns:
-          - "github/codeql-action/*"
+          - "*"
