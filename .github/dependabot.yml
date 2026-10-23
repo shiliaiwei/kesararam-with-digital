@@ -44,6 +44,9 @@ updates:
       - "security"
     # Group all GitHub Actions together to prevent version mismatches (e.g. CodeQL steps)
     groups:
+      codeql-actions:
+        patterns:
+          - "github/codeql-action/*"
       all-actions:
         patterns:
           - "*"
