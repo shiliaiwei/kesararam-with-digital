@@ -18,17 +18,7 @@ updates:
         patterns:
           - "*"
     ignore:
-      - dependency-name: "next"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "react"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "react-dom"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "openai"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "googleapis"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "lucide-react"
+      - dependency-name: "*"
         update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
@@ -42,8 +32,11 @@ updates:
     labels:
       - "github-actions"
       - "security"
-    # Group all GitHub Actions together to prevent version mismatches (e.g. CodeQL steps)
+    # Group CodeQL actions atomically and all others together
     groups:
+      codeql-actions:
+        patterns:
+          - "github/codeql-action/*"
       all-actions:
         patterns:
           - "*"

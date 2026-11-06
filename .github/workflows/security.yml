@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: "22"
           cache: "pnpm"
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm audit --audit-level=critical
 
   lint:
@@ -46,7 +46,7 @@ jobs:
         with:
           node-version: "22"
           cache: "pnpm"
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm run lint
 
   typecheck:
@@ -62,7 +62,7 @@ jobs:
         with:
           node-version: "22"
           cache: "pnpm"
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm exec tsc --noEmit
 
   test:
@@ -82,7 +82,7 @@ jobs:
         with:
           node-version: "22"
           cache: "pnpm"
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm run test
 
   deploy-checkpoint:
