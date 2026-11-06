@@ -20,6 +20,7 @@ overrides:
   brace-expansion@1: '>=1.1.18'
   brace-expansion@2: '>=2.0.1'
   minimatch: '>=11.0.5'
+  deepmerge: 4.1.2
   glob: '>=14.0.4'
   sharp: '>=0.35.5'
   body-parser: '>=2.4.0'
@@ -2579,8 +2580,8 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  deepmerge@4.3.1:
-    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
+  deepmerge@4.1.2:
+    resolution: {integrity: sha512-9ZXh/8Fp+ggcscoRg324S1aNdGSCl2X1P8F1FPTHbtq3RAxy9ECbU2Wgy2J12r6x/O0BStDlkzcpKK/HptX+Kg==}
     engines: {node: '>=0.10.0'}
 
   default-browser-id@5.0.1:
@@ -7451,7 +7452,7 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  deepmerge@4.3.1: {}
+  deepmerge@4.1.2: {}
 
   default-browser-id@5.0.1: {}
 
@@ -9687,7 +9688,7 @@ snapshots:
       commander: 14.0.3
       cosmiconfig: 9.0.1(typescript@5.9.3)
       dedent: 1.7.2
-      deepmerge: 4.3.1
+      deepmerge: 4.1.2
       diff: 8.0.4
       execa: 9.6.1
       fast-glob: 3.3.3
