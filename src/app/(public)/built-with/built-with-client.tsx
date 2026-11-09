@@ -7,7 +7,7 @@ import {
   SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, SiDrizzle,
   SiVercel, SiCloudinary, SiGit, SiGithub, SiZod,
   SiPostgresql, SiShadcnui, SiLucide, SiFigma,
-  SiAffinitydesigner, SiAnthropic, SiGooglegemini, SiOpenai,
+  SiAnthropic, SiGooglegemini,
   SiGithubcopilot, SiNotebooklm, SiKahoot, SiYoutube, SiGoogle,
   SiGoogleplay, SiVscodium, SiGraphql, SiMysql, SiMongodb,
   SiOpenjdk, SiPhp, SiRuby, SiPython, SiBootstrap, SiJquery,
@@ -532,7 +532,7 @@ const TECH_TREE: TechNode = {
                 en: "A proprietary vector graphics editor.",
                 kh: "កម្មវិធីកែសម្រួលក្រាហ្វិកវ៉ិចទ័រកម្មសិទ្ធិផ្ទាល់ខ្លួនដ៏ពេញនិយម។"
               },
-              icon: SiAffinitydesigner,
+              icon: PenTool,
               status: "used",
               usedInKwd: {
                 en: "Used in Kesararam With Digital to refine vector road signs and SVG assets to render cleanly at 4K.",
@@ -680,7 +680,7 @@ const TECH_TREE: TechNode = {
                 en: "Interactive productivity and documentation research model.",
                 kh: "ម៉ូដែលអន្តរកម្មសម្រាប់ផលិតភាព និងការស្រាវជ្រាវឯកសារ។"
               },
-              icon: SiOpenai,
+              icon: BrainCircuit,
               status: "used",
               usedInKwd: {
                 en: "Used in Kesararam With Digital for formatting markdown files and planning database migrations.",
